@@ -1,0 +1,120 @@
+city_key,offense,lat,lon,reason,evidence_url_note
+new_york,any,40.750423,-73.98928,Penn Station/Herald Square real concentration; max point below tripwire but pre-reviewed,geocoding audit 2026-07-05 findings.md VERIFIED CORRECT
+chicago,any,41.976290414,-87.905227221,O'Hare airport real airport incident concentration,geocoding audit 2026-07-05 findings.md VERIFIED CORRECT
+minneapolis,any,44.9745,-93.27432,900 Nicollet Mall/Target flagship real shoplifting hotspot,geocoding audit 2026-07-05 findings.md VERIFIED CORRECT
+boston,larceny,42.35512,-71.06088,Downtown Crossing real larceny hotspot noted as not a station default,geocoding audit 2026-07-05 findings.md section 1
+boston,larceny,42.34862,-71.08278,Prudential real larceny hotspot noted as not a station default,geocoding audit 2026-07-05 findings.md section 1
+san_diego,motor_vehicle_theft,32.55078632775014,-116.97416932940509,Otay Mesa border port recovery/reporting concentration reviewed as real record with wrong theft-location semantics,geocoding audit 2026-07-05 findings.md section 6
+san_diego,motor_vehicle_theft,32.55078542535234,-116.97416847625352,Otay Mesa border port recovery/reporting concentration reviewed as real record with wrong theft-location semantics,geocoding audit 2026-07-05 findings.md section 6
+san_diego,motor_vehicle_theft,32.54822079972711,-117.03459252923568,San Ysidro border port recovery/reporting concentration reviewed as real record with wrong theft-location semantics,geocoding audit 2026-07-05 findings.md section 6
+san_diego,motor_vehicle_theft,32.5533822484779,-116.97988214277878,Otay Mesa border port recovery/reporting concentration reviewed as real record with wrong theft-location semantics,geocoding audit 2026-07-05 findings.md section 6
+san_diego,motor_vehicle_theft,32.54527325199726,-117.03062413456904,San Ysidro border port recovery/reporting concentration reviewed as real record with wrong theft-location semantics,geocoding audit 2026-07-05 findings.md section 6
+charlotte,aggravated_assault,35.282932,-80.860061,1900 Griers Grove Rd apartment complex (Garden Park/Northwood),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+charlotte,burglary,35.343838,-80.824144,Davis Lake / Croft area residential-industrial block (near Gerdau steel mill),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+charlotte,larceny,35.1512,-80.828674,SouthPark Mall (South Park Dr ring road),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+charlotte,murder,35.212953,-80.794612,1348 Green Oaks Ln apartment complex (Chantilly/Eastway),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+charlotte,rape,35.303235,-80.751401,"University Place commercial/hotel block near UNCC (Hampton Inn University Place, IHOP)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+charlotte,robbery,35.276999,-80.766363,6500 N Tryon St commercial strip (Newell),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+chicago,larceny,41.883500187,-87.627876698,"100 block of N State St, the Loop - Macy's State Street / State St retail block",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+cincinnati,motor_vehicle_theft,39.0832269100598,-84.61760462,"Single residential incident, 168 Anderson Ferry Rd area (Riverside)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+cincinnati,murder,39.1027893000598,-84.57094302,"Single residential incident, Sedler St (East Price Hill)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+dallas,aggravated_assault,32.72825,-96.81244,"Maryland Ave residential block, South Dallas (Oak Cliff)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+dallas,burglary,32.90512,-96.71072,9530 Skillman St commercial strip (Lake Highlands/Audelia),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+dallas,larceny,32.86959,-96.77071,NorthPark Center mall (8699 N Central Expwy),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+dallas,murder,32.76577,-96.73354,"3839 Dixon Ave residential block, South Dallas",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,aggravated_assault,38.9901,-94.54488,"East Hills Village Apartments, 7500 Monroe Ave",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,burglary,39.03859,-94.59187,"4901 Wornall Rd block, Country Club Plaza",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,larceny,39.25013,-94.65713,"Walmart Supercenter #2857 / Boardwalk Square retail node, 8551 N Boardwalk Ave (Platte Co) - NOT airport",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,motor_vehicle_theft,38.97104,-94.60588,Ward Parkway Shopping Center,geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,murder,38.99969,-94.55684,55th St & Prospect Ave commercial corner (Church's Chicken/Shell/Xpress Mart),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,rape,39.1076,-94.54042,504 Bales Ave - multi-unit residential address off Independence Ave corridor,geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+kansas_city,robbery,39.02329,-94.57403,5642 Troost Ave commercial corridor,geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+milwaukee,larceny,42.98205977800798,-87.94943655421856,"3441 S 27th St discount-retail strip (Loomis Center: Ross, Marshalls, dd's Discounts, Five Below)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+milwaukee,murder,42.95525450596736,-87.93076043194478,1400 W Halsey Ave (single residential incident),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+milwaukee,rape,42.980723894913694,-88.00964571496351,7707 W Morgan Ave (single residential address),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,aggravated_assault,38.99062,-77.0267,"Downtown Silver Spring commercial block, 8100 Georgia Ave (adjacent to Fire Station 1)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,burglary,39.15858,-77.1984,"Cider Mill Apartments, 18379 Lost Knife Cir, Montgomery Village",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,larceny,39.03751,-77.052,"Westfield Wheaton mall, 11160 Veirs Mill Rd (user hypothesis confirmed)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,motor_vehicle_theft,39.03581,-77.0269,University Towers condominiums / 1221 University Blvd W block (Wheaton/Silver Spring),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,murder,38.98803,-77.0268,"8030 Georgia Ave, downtown Silver Spring (single incident)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,rape,39.05915,-77.0691,Wheaton High School (Randolph Rd),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+montgomery_county,robbery,39.04475,-77.1117,"Nicholson Ln retail strip, North Bethesda (CVS/LA Fitness/Metro Pike block)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+san_diego,burglary,32.55427844063729,-117.0550558638805,"San Ysidro commercial block (San Ysidro Blvd area: bank, college center, food strip)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+san_diego,larceny,32.76956812194773,-117.1695926208192,"Fashion Valley Mall, 7007/7050 Friars Rd, Mission Valley",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+san_diego,murder,32.701813548143036,-117.14683416842058,"1792 National Ave block, Sherman Heights/Barrio Logan",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+san_diego,robbery,32.76955321018462,-117.16961730613048,"Fashion Valley Mall (second nearby point, 7050 Friars Rd)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+seattle,larceny,47.7086028,-122.324615154453,"Northgate Station retail node (former Northgate Mall; Target et al.), NE Northgate Way",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+seattle,robbery,47.7086028,-122.324615154453,Northgate Station retail node (same point as larceny),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+st_louis,larceny,38.592507,-90.29552,"Target store, 4255 Hampton Ave (Hampton Village Plaza), St Louis Hills",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+st_louis,murder,38.640626,-90.197775,"Preservation Square housing complex, Carr Square (N 14th St / O'Fallon St / Cass Ave)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+st_louis,rape,38.550105,-90.257837,"221 Upton St private residence, Patch neighborhood",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+st_louis,robbery,38.667851,-90.291142,"1200 block Hodiamont Ave apartment cluster, West End",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+tucson,aggravated_assault,32.20028982930855,-110.82661127265123,1750 S Pantano Rd apartment complexes,geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+tucson,burglary,32.199858969886996,-110.90692663482874,E 29th St block near Monterey Market (29th & Columbus area),geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+tucson,larceny,32.177754626909994,-110.9776350815706,"Free-standing drugstore, 600 block W Ajo Way (Walgreens at Ajo Way & S 12th Ave)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+tucson,motor_vehicle_theft,32.1513653245539,-111.01089741938844,"Mission Rd / Valencia area apartments (Mission Antigua, Oak Tree at Midvale Park) [Tucson MVT label is 'Stolen and/or Recovered Vehicle'; some points may be recovery not theft locations, same semantics family as the San Diego border-recovery MVT exception]",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+tucson,murder,32.177857355544035,-110.99221663477572,"Santa Cruz Vista Apartments / Mesa Ridge Mobile Home Park block, 1300 W Ajo Way",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+tucson,robbery,32.221326220579265,-110.85783822644336,"Park Place Mall, 5870 E Broadway Blvd (N Wilmot Rd)",geocoding audit 2026-07-05 adjudication.csv REAL_HOTSPOT
+st_louis,murder,38.662896,-90.26198,"1451 N Kingshighway Blvd commercial corner; 11 distinct incidents (robbery/homicide/stealing mix); real commercial corner, 2 murders of 149 located",geocoding-integrity-v10 residual tripwire adjudication 2026-07-05 (supervisor ruling B2)
+st_louis,rape,38.604502,-90.27842,"St. Louis Psychiatric Rehabilitation Center campus (5300 Arsenal St) - in-facility incidents at true location, not exam-site masking; 5 distinct incidents with mixed offenses (property destruction, stealing, sex offenses, harassment)",geocoding-integrity-v10 residual tripwire adjudication 2026-07-05 (supervisor ruling B3; address text verified in raw rows)
+kansas_city,rape,39.02095,-94.55556,"Residential corridor point; 8 distinct reports with mixed offense (rape, aggravated/DV assault, stealing); no masking signature",geocoding-integrity-v10 residual tripwire adjudication 2026-07-05 (supervisor ruling B4)
+atlanta_ga,burglary,33.793956000,-84.371053500,268 Westminster Dr NE / Midtown commercial-retail block (revgeo building/retail; Atlanta Eagle/Burkharts Pub strip),geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+atlanta_ga,larceny,33.845305985,-84.362358034,"Lenox Square Mall, 3393 Peachtree Rd NE, Buckhead (revgeo Bloomingdale's; Great American Cookies-Lenox/Lenox Grille/CPK Lenox food court)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+atlanta_ga,motor_vehicle_theft,33.704206996,-84.482684026,"SW Atlanta residential block, 30311 (revgeo residential; Shell/wings ~410m, no strong anchor)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+atlanta_ga,robbery,33.748462984,-84.396368025,"Atlanta Greyhound Bus Station, 232 Forsyth St SW, South Downtown (revgeo; Hotels/Fidelity Bank/convenience store)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+baton_rouge_la,aggravated_assault,30.450051000,-91.153125000,Florida Blvd / Foster Dr commercial corridor (New China/Circle K/Church's Chicken strip) - top BR agg-assault point,geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+baton_rouge_la,burglary,30.429954000,-91.053540000,"11523 S Harrell's Ferry Rd, Eastgate (Value Place/WoodSpring extended-stay area)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+baton_rouge_la,larceny,30.388878000,-91.087582000,"Mall of Louisiana (revgeo Victoria's Secret, 6401 Bluebonnet Blvd) - same node as BR robbery point (offset ~30m)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+baton_rouge_la,motor_vehicle_theft,30.495285000,-91.126548000,Plank Rd / Mickens area truck-stop & gas frontage (Mobile Truck Stop/Mobil/Chevron ~260m),geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+baton_rouge_la,robbery,30.388923000,-91.087299000,"Mall of Louisiana, 6401 Bluebonnet Blvd (revgeo James Avery Jewelry; Auntie Anne's/Chick-fil-A/Fat Tuesday food court)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+cleveland_oh,larceny,41.467896347,-81.772701839,"Target-anchored retail (Steelyard Commons vicinity) - ATM Target 84m, Giant Eagle #230, Pizza Hut Express",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+cleveland_oh,motor_vehicle_theft,41.411038104,-81.837956921,Cleveland Hopkins International Airport parking (revgeo Upper Dr; Sheraton Airport/CLE Curbside Valet/airport terminals),geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+cleveland_oh,robbery,41.498704000,-81.693882000,"Tower City / Public Square, Downtown Cleveland (revgeo USPS Tower City; JACK Casino/Hotel Cleveland/Houlihan's)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+colorado_springs_co,aggravated_assault,38.836030000,-104.752800000,Same 4001 E Bijou St block as the CS MVT point,geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+colorado_springs_co,burglary,38.820550000,-104.757600000,S Academy Blvd commercial frontage (revgeo S Academy Blvd; La Sinaloense bakery/restaurant strip),geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+colorado_springs_co,larceny,38.840060000,-104.767990000,Citadel/E Platte Ave retail corridor by Walmart #001200 (352m) - revgeo 3240 E Platte Ave; Perkins/IHOP/Sonic food strip adjacent,geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+colorado_springs_co,motor_vehicle_theft,38.836030000,-104.752800000,4001 E Bijou St residential/commercial block (revgeo; Springs Korean Market ~500m),geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+colorado_springs_co,robbery,38.831910000,-104.757180000,"7-Eleven #23935 convenience-store corner, E Pikes Peak Ave (revgeo Big O Tires; Popeyes/liquor/Korean market strip)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+fort_worth_tx,larceny,32.712340946,-97.284039326,Renaissance Square retail center by Walmart #003044 (186m; revgeo 2933 Renaissance Square; Golden Chick/Wendy's/Panda Express),geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+indianapolis_in,aggravated_assault,39.787706900,-86.073841170,"1500 N Ritter Ave area, east-side (revgeo bus stop; Marathon/BP gas frontage) - top Indy agg-assault point",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+indianapolis_in,burglary,39.738173360,-86.297950190,"7820 W Washington St, Sterling Heights - west-side commercial frontage (Chase/gas stations ~350m)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+indianapolis_in,larceny,39.905212540,-86.064913100,"Castleton Square Mall food-court node (82nd St, 46250) - Panda Express/Sarku Japan/Krispy Kreme/Amber Indian cluster",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+omaha_ne,burglary,41.221820831,-96.138793945,"3962 S 144th St, Millard commercial/industrial block (Pizza Hut/Cilantros nearby)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+omaha_ne,larceny,41.244522095,-96.024063110,"Walmart Supercenter #004358 (S 72nd St / Aksarben area); Overture Walmart 130m, Subway/QuikTrip/Hampton Inn strip",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+sacramento_ca,burglary,38.474247644,-121.434016208,"5748 Mack Road commercial block, Valley Hi (Seafood City Supermarket/Dollar strip nearby)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+sacramento_ca,larceny,38.548346397,-121.425435154,"Target-anchored retail center, 65th St/Broadway area (ATM Target 112m, Pizza Hut Express/Starbucks)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+sacramento_ca,motor_vehicle_theft,38.496014212,-121.463305366,"3808 Florin Road, Parkway - retail frontage (Loop Market/A&W/KFC/FoodMaxx)",geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+sacramento_ca,robbery,38.548346397,-121.425435154,Same Target-anchored retail center as Sacramento larceny,geocoding-integrity-v10 batch-A residual tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+montgomery_county,burglary,39.1134,-77.1627,"recurring burglary target, precise ~11m geocode, burglary-dominant single-offense pattern (7 burglaries on 7 distinct dates across the year, 7 distinct incident IDs) matching the reviewed Cider Mill Apartments exception; not a multi-offense default centroid",geocoding-integrity-v10 feed-churn tripwire adjudication 2026-07-06 (REAL_HOTSPOT)
+jacksonville_fl,aggravated_assault,30.302668781279987,-81.7319614224,Eureka Gardens apartment complex real agg-assault concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+jacksonville_fl,larceny,30.302201816709992,-81.76104567924,Normandy Blvd Walmart real shoplifting concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+jacksonville_fl,motor_vehicle_theft,30.308212951699986,-81.57173725023,Century 21 Dr real MVT concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+jacksonville_fl,robbery,30.220813866989996,-81.55976592831,Baymeadows real robbery concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+aurora_co,robbery,39.745028092337314,-104.8476342048937,"E Colfax corridor (North Aurora, ZIP 80010) real robbery concentration",Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+aurora_co,burglary,39.69578589369729,-104.80712897689143,Reviewed real burglary concentration (residential complex block),Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+aurora_co,larceny,39.71524786773455,-104.82213658151198,Havana St retail corridor real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+aurora_co,motor_vehicle_theft,39.768557741449726,-104.78679788957973,Reviewed real MVT concentration (retail/commercial block),Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,burglary,35.076,-89.929,2700 block Getwell Rd large apartment-complex corridor; 81 burglaries at one block address,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,larceny,35.204,-89.797,7900 US Hwy 64 Wolfchase big-box retail block real shoplifting concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,larceny,35.147,-90.015,200 N Cleveland St retail block real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,larceny,35.135,-89.999,1800 Union Ave Midtown Kroger retail block real shoplifting concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,larceny,35.101,-89.864,5900 Poplar Ave retail block real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,larceny,35.078,-90.02,2400 Elvis Presley Blvd retail strip real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+memphis_tn,larceny,35.125,-90.056,100 E H Crump Blvd commercial block real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,any,37.73661,-122.19682,"400 Hegenberger Rd Coliseum-corridor retail; 230 larcenies + 22 robberies, real concentration",Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,burglary,37.78046,-122.23329,"2600 E 12th St commercial/storage address; 52 burglaries, real concentration",Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,burglary,37.74571,-122.19577,Reviewed real burglary concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,burglary,37.78611,-122.19718,Reviewed real burglary concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,burglary,37.79828,-122.27196,"Reviewed real burglary concentration (downtown block, distinct from OPD HQ point)",Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,burglary,37.83479,-122.24923,Reviewed real burglary concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,larceny,37.73072,-122.19899,Hegenberger/Edgewater retail area real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,larceny,37.81004,-122.24544,Reviewed real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,larceny,37.72808,-122.19756,Hegenberger corridor retail real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,larceny,37.74209,-122.1953,Reviewed real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,larceny,37.8365,-122.26249,Reviewed real larceny concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,robbery,37.79969,-122.25136,Reviewed real robbery concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,robbery,37.74209,-122.1953,Reviewed real robbery concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,robbery,37.77531,-122.23069,Reviewed real robbery concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,robbery,37.81004,-122.24544,Reviewed real robbery concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+oakland_ca,robbery,37.74213,-122.15065,Reviewed real robbery concentration,Batch B adjudication 2026-07-08; STATE.md Batch B onboarding results section
+houston_tx,larceny,29.740701000002545,-95.46362100000248,"5085 Westheimer Rd - Houston Galleria mall real retail larceny concentration (422 incidents, mall/department-store premises)",Batch C Houston adjudication 2026-07-09; STATE.md Batch C section

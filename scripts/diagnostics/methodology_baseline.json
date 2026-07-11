@@ -1,0 +1,164 @@
+{
+  "_doc": "Ratchet baseline for the methodology regression gate, kept beside its gate at scripts/diagnostics/methodology_baseline.json. See docs/STATE.md (Validation section); historical gate notes at docs/archive/METHODOLOGY-INVARIANTS.md. Each per-offense / global metric records the best-known value any future surface must not regress below. The gate (scripts/diagnostics/check_methodology_invariants.py) BLOCKS promotion on regression. A regression is NOT auto-accepted: to accept an intended tradeoff, re-run the gate with --update-baseline --rationale '<why>', which rewrites these numbers and appends to history. Never edit numbers by hand to silence a failure.",
+  "seeded_from": "state/output/crimerisk_block_group_2024_ags_core.parquet (committed rate-EB surface, built 2026-06-16) for explosion/coverage/normalization metrics; murder within-city gradient seeded from brief-16 kappa sweep (TRACKER) since the shipped surface predates the within-city sharpening.",
+  "seeded_at": "2026-06-18",
+  "rules": {
+    "max_index": {
+      "direction": "lower_is_better",
+      "tol_mult": 1.5,
+      "tol_abs": 250.0,
+      "blocking": true,
+      "_note": "candidate may not exceed max(baseline*1.5, baseline+250). Catches the share-EB tiny-denominator explosion (64x) while allowing legitimate sharpening (e.g. murder 2413->2636)."
+    },
+    "p999_index": {
+      "direction": "lower_is_better",
+      "tol_mult": 1.2,
+      "tol_abs": 100.0,
+      "blocking": true,
+      "_note": "candidate 99.9th percentile may not materially exceed the ratcheted tail; catches broad tail inflation that a single max can miss."
+    },
+    "cells_gt_5000": {
+      "direction": "lower_is_better",
+      "tol_abs": 0,
+      "blocking": true,
+      "_note": "ratcheted: candidate count of cells with index>5000 may not exceed baseline. Murder baseline is 0 -> any >5000 murder cell blocks. Property offenses keep their real-hotspot baseline."
+    },
+    "cells_gt_10000": {
+      "direction": "lower_is_better",
+      "tol_abs": 0,
+      "blocking": true
+    },
+    "high_index_low_denominator_cells": {
+      "direction": "lower_is_better",
+      "tol_abs": 0,
+      "blocking": true,
+      "_note": "count of cells with index>5000 and primary denominator<=10; directly catches tiny-denominator high-index artifacts."
+    },
+    "denom_weighted_mean_index": {
+      "direction": "exact",
+      "tol_abs": 0.6,
+      "target": 100.0,
+      "blocking": true,
+      "_note": "national denominator-weighted mean published index must stay ~100 (normalization invariant)."
+    },
+    "published_fraction": {
+      "direction": "higher_is_better",
+      "tol_abs": 0.003,
+      "blocking": true,
+      "_note": "guards against salvaging the map by broad blanking (the owner explicitly rejected large-scale suppression)."
+    },
+    "murder_gradient_chicago_observed_positive": {
+      "direction": "higher_is_better",
+      "tol_abs": 3.0,
+      "blocking": true,
+      "evaluated_only_if_supplied": true,
+      "_note": "within-city murder neighborhood resolution (owner priority). Supply via --murder-gradient-chicago; observed 7yr truth ~28x. Guards against regressing to the flat 'jurisdiction-level murder' state."
+    },
+    "no_support_high_index_cells": {
+      "direction": "lower_is_better",
+      "tol_abs": 0,
+      "blocking": true,
+      "_note": "count of published cells with index>5000 and the diagnostic EB low-denominator flag set; the no-evidence covariate over-extrapolation failure mode (a no-data jurisdiction's official total piling onto a few BGs) proxy. Distinct from genuine incident-backed hotspots, which are allowed. Added after the 2026-06-19 over-concentration fix as a named regression check."
+    }
+  },
+  "offenses": {
+    "murder": {
+      "max_index": 2472.27,
+      "p999_index": 987.84,
+      "cells_gt_5000": 0,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.99602
+    },
+    "rape": {
+      "max_index": 3979.76,
+      "p999_index": 444.5,
+      "cells_gt_5000": 0,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.99602
+    },
+    "robbery": {
+      "max_index": 5470.93,
+      "p999_index": 1902.95,
+      "cells_gt_5000": 3,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.99602
+    },
+    "aggravated_assault": {
+      "max_index": 3194.74,
+      "p999_index": 861.19,
+      "cells_gt_5000": 0,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.99602
+    },
+    "burglary": {
+      "max_index": 2731.44,
+      "p999_index": 685.01,
+      "cells_gt_5000": 0,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.99331
+    },
+    "larceny": {
+      "max_index": 4120.73,
+      "p999_index": 983.83,
+      "cells_gt_5000": 0,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.99602
+    },
+    "motor_vehicle_theft": {
+      "max_index": 3792.26,
+      "p999_index": 1273.08,
+      "cells_gt_5000": 0,
+      "cells_gt_10000": 0,
+      "high_index_low_denominator_cells": 0,
+      "no_support_high_index_cells": 0,
+      "denom_weighted_mean_index": 100.0,
+      "published_fraction": 0.98808
+    }
+  },
+  "global": {
+    "murder_gradient_chicago_observed_positive": 21.75
+  },
+  "history": [
+    {
+      "date": "2026-06-18",
+      "action": "seed",
+      "rationale": "Initial ratchet from the committed rate-EB surface (clean murder: max 2413, 0 cells>5000; property offenses keep their real-hotspot maxima) plus the brief-16 within-city murder gradient (21.75x). Establishes the bar the share-EB reformulation must clear before promotion."
+    },
+    {
+      "date": "2026-06-18",
+      "action": "update-baseline",
+      "surface": "state/tmp/estimator_v2/crimerisk_block_group_2024_ags_core.parquet",
+      "rationale": "Ship exposure-tempered log-rate index estimator (recovered+generalized brief-14, all 7 offenses, display-layer; counts untouched). Reseed per-offense tail metrics to the shipped surface: locks in improvements (larceny max 34433->4616, MVT cells>5000 24->5, agg-assault 4->1, rape 1->0, burglary 2->1) and accepts robbery cells>5000 1->3 as genuine adequate-denominator downtown-DC/Baltimore hotspots (high_index_low_denominator stays 0; max 5473<5515). GPT Pro consulted and endorsed generalizing + accepting robbery hotspots (thesis chat 2026-06-18). Murder-gradient baseline left at 21.75; shipped 20.41 clears the 18.75 floor."
+    },
+    {
+      "date": "2026-06-19",
+      "action": "update-baseline",
+      "surface": "state/output/crimerisk_block_group_2024_ags_core.parquet",
+      "rationale": "Promote coverage expansion (8 Gate-17 cities into residual-allocator training surface, 22->30; all 8 improve held-out leave-one-city-out TVD, aggregate -0.0492 vs -0.0459) + no-evidence prior fix (DEFAULT_EB_ALPHA_BY_OFFENSE rape/robbery/aggravated_assault 1->20 so block groups with NO geocoded incident data don't publish implausible covariate-extrapolated rates; with no incident support the index falls to the prior, a stronger prior pulls no-data cells toward the parent rate). Data-backed within-city gradients IDENTICAL (Chicago murder 20.41, agg 16.26; NY same). No-data tails cleared: rape/robbery/agg cells>5000 -> 0, agg max 6588->3195. Held-out TVD invariant (alpha display-only). Ratchet to the improved surface."
+    },
+    {
+      "date": "2026-06-19",
+      "action": "update-baseline",
+      "surface": "state/output/crimerisk_block_group_2024_ags_core.parquet",
+      "rationale": "Final over-concentration fix (GPT Pro review): strengthen no-evidence EB prior alpha 1->20 for rape/aggravated_assault/burglary/motor_vehicle_theft (>5000 tails entirely no-incident-support covariate over-extrapolation); robbery NOT bumped (genuine incident-backed hotspots). no_support_high_index_cells sentinel=0 for all. Data-backed gradients identical alpha 1 vs 20. Coverage expansion 22->30 cities + this fix."
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+ori,state_fips,jurisdiction_id,agency_name_std,current_ratio,reason
+TX1050700,48,48:municipal:place:4839952,KYLE,1.511456,growth_population_staleness_small_count_not_consolidated_service_area
+UT0250100,49,49:municipal:place:4901310,AMERICAN FORK CEDAR HLLS,1.503465,growth_population_staleness_small_count_not_consolidated_service_area
+UT0252200,49,49:municipal:place:4967825,SARATOGA SPRINGS,1.549236,growth_population_staleness_small_count_not_consolidated_service_area

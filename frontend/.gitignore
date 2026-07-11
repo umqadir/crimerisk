@@ -1,0 +1,7 @@
+# Generated/fetched build artifacts — regenerable from build/ scripts, never commit.
+tmp/
+public/*.pmtiles
+public/*.geojsonl
+public/snapshot.json
+__pycache__/
+*.pyc

@@ -1,0 +1,36 @@
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+*.egg-info/
+
+# Build state: the pipeline writes candidate outputs, review queues, and other
+# working state under state/ at build time. Only a small curated set of
+# evidence artifacts under state/output/ and state/modeling/ is tracked.
+state/*
+!state/output/
+!state/modeling/
+cache/
+dist/
+build/
+!scripts/build/
+!scripts/build/*.py
+!frontend/build/
+!frontend/build/*.py
+!frontend/build/*.sh
+!frontend/build/*.env
+
+# Editors
+.vscode/
+.idea/
+
+# Project data & outputs (too large for git)
+data/*
+!data/FDLE-FIBRS-2024/
+!data/city-incidents/
+materials/
