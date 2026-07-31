@@ -1,0 +1,69 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": { "type": "string" },
+          "ori": { "type": "string" },
+          "review_status": {
+            "type": "string",
+            "enum": ["resolved", "needs_escalation"]
+          },
+          "recommended_final_overlap_treatment": {
+            "type": ["string", "null"],
+            "enum": [
+              "absorb_into_primary_jurisdiction",
+              "localize_to_place",
+              "localize_to_county",
+              "localize_to_custom_footprint",
+              "keep_statewide_overlap",
+              "exclude_or_hold",
+              null
+            ]
+          },
+          "overlap_subtype_final": { "type": ["string", "null"] },
+          "footprint_type": { "type": ["string", "null"] },
+          "target_state_fips": { "type": ["string", "null"] },
+          "target_county_fips": { "type": ["string", "null"] },
+          "target_place_fips": { "type": ["string", "null"] },
+          "target_jurisdiction_id": { "type": ["string", "null"] },
+          "geometry_source_type": { "type": ["string", "null"] },
+          "geometry_source_ref": { "type": ["string", "null"] },
+          "confidence": { "type": "number" },
+          "source_note": { "type": "string" },
+          "reviewer_note": { "type": "string" },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "escalation_reason": { "type": ["string", "null"] }
+        },
+        "required": [
+          "case_id",
+          "ori",
+          "review_status",
+          "recommended_final_overlap_treatment",
+          "overlap_subtype_final",
+          "footprint_type",
+          "target_state_fips",
+          "target_county_fips",
+          "target_place_fips",
+          "target_jurisdiction_id",
+          "geometry_source_type",
+          "geometry_source_ref",
+          "confidence",
+          "source_note",
+          "reviewer_note",
+          "sources",
+          "escalation_reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["results"],
+  "additionalProperties": false
+}

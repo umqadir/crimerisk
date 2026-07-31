@@ -35,7 +35,6 @@ from crimerisk.local_publications import (
     get_v2_local_publication_input_path,
     promote_v2_local_publication_inputs,
 )
-from crimerisk.municipal_estimator import MunicipalEstimatorConfig, write_v2_municipal_estimates
 from crimerisk.observations import ObservationBuildConfig, write_v2_observations
 from crimerisk.reporting_regimes import ReportingRegimeBuildConfig, write_v2_reporting_regimes
 from crimerisk.reference_layers import (
@@ -158,7 +157,6 @@ def _cmd_v2_build_controls(args: argparse.Namespace) -> int:
         config=ControlBuildConfig(
             year=int(args.year),
             force_reporting_regimes_rebuild=bool(args.force_reporting_regimes_rebuild),
-            force_municipal_estimates_rebuild=bool(args.force_municipal_estimates_rebuild),
         ),
     )
     print(f"Wrote {state_out}")
@@ -263,29 +261,6 @@ def _cmd_v2_build_state_publication_inputs(args: argparse.Namespace) -> int:
     return 0
 
 
-def _cmd_v2_build_municipal_estimates(args: argparse.Namespace) -> int:
-    paths = get_paths()
-    out_path = (
-        Path(args.out)
-        if args.out
-        else Path(f"state/modeling/municipal_estimates_{int(args.target_year)}.parquet")
-    )
-    summary = write_v2_municipal_estimates(
-        paths=paths,
-        out_path=out_path,
-        config=MunicipalEstimatorConfig(
-            year_start=args.year_start,
-            year_end=args.year_end,
-            target_year=int(args.target_year),
-            force_reporting_regimes_rebuild=bool(args.force_reporting_regimes_rebuild),
-        ),
-    )
-    for key, value in summary.items():
-        print(f"{key}: {value}")
-    print(f"Wrote {out_path}")
-    return 0
-
-
 def _cmd_v2_build_geometry(args: argparse.Namespace) -> int:
     paths = get_paths()
     block_out, block_group_out = write_v2_geometry(
@@ -361,10 +336,7 @@ def _cmd_v2_build_outputs(args: argparse.Namespace) -> int:
         str(value) for value in args.residual_exclude_feature_policy_class
     )
     residual_exclude_classes_by_offense = tuple(
-        (
-            str(offense),
-            () if str(offense) == "burglary" else residual_exclude_classes,
-        )
+        (str(offense), residual_exclude_classes)
         for offense, _classes in DEFAULT_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES_BY_OFFENSE
     )
     summary = write_v2_outputs(
@@ -379,7 +351,6 @@ def _cmd_v2_build_outputs(args: argparse.Namespace) -> int:
             year=int(args.year),
             force_controls_rebuild=bool(args.force_controls_rebuild),
             force_reporting_regimes_rebuild=bool(args.force_reporting_regimes_rebuild),
-            force_municipal_estimates_rebuild=bool(args.force_municipal_estimates_rebuild),
             force_geometry_rebuild=bool(args.force_geometry_rebuild),
             force_bg_prior_rebuild=bool(args.force_bg_prior_rebuild),
             force_city_incident_share_rebuild=bool(args.force_city_incident_share_rebuild),
@@ -513,20 +484,6 @@ def _cmd_v2_build_release(args: argparse.Namespace) -> int:
     for key, value in reporting_summary.items():
         print(f"  {key}: {value}")
 
-    municipal_summary = write_v2_municipal_estimates(
-        paths=paths,
-        out_path=paths.state_dir / "modeling" / f"municipal_estimates_{int(args.year)}.parquet",
-        config=MunicipalEstimatorConfig(
-            year_start=2018,
-            year_end=int(args.year),
-            target_year=int(args.year),
-            force_reporting_regimes_rebuild=False,
-        ),
-    )
-    print("municipal_estimates_built:")
-    for key, value in municipal_summary.items():
-        print(f"  {key}: {value}")
-
     state_control_out, jurisdiction_control_out, jurisdiction_year_estimates_out = write_v2_controls(
         paths=paths,
         state_out_path=paths.state_dir / "controls" / "state_control_comparison.parquet",
@@ -535,7 +492,6 @@ def _cmd_v2_build_release(args: argparse.Namespace) -> int:
         config=ControlBuildConfig(
             year=int(args.year),
             force_reporting_regimes_rebuild=False,
-            force_municipal_estimates_rebuild=False,
         ),
     )
     print("controls_built:")
@@ -581,7 +537,6 @@ def _cmd_v2_build_release(args: argparse.Namespace) -> int:
             year=int(args.year),
             force_controls_rebuild=False,
             force_reporting_regimes_rebuild=False,
-            force_municipal_estimates_rebuild=False,
             force_geometry_rebuild=False,
             force_bg_prior_rebuild=True,
             force_city_incident_share_rebuild=False,
@@ -981,26 +936,6 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_regimes.set_defaults(func=_cmd_v2_build_reporting_regimes)
 
-    p_muni = sub.add_parser(
-        "build-municipal-estimates",
-        help="Build regime-aware municipal 2024 estimates for missing or unreliable jurisdictions.",
-    )
-    p_muni.add_argument("--year-start", type=int, default=2018)
-    p_muni.add_argument("--year-end", type=int, default=2024)
-    p_muni.add_argument("--target-year", type=int, default=2024)
-    p_muni.add_argument(
-        "--force-reporting-regimes-rebuild",
-        action="store_true",
-        help="Rebuild agency_year_reporting_regimes.parquet instead of reusing the cached artifact.",
-    )
-    p_muni.add_argument(
-        "--out",
-        type=str,
-        default=None,
-        help="Defaults to state/modeling/municipal_estimates_<target-year>.parquet.",
-    )
-    p_muni.set_defaults(func=_cmd_v2_build_municipal_estimates)
-
     p_ctrl = sub.add_parser(
         "build-controls",
         help="Build 2024 jurisdiction controls and state control comparison tables.",
@@ -1021,11 +956,6 @@ def build_parser() -> argparse.ArgumentParser:
         "--jurisdiction-year-estimates-out",
         type=str,
         default="state/controls/jurisdiction_year_estimates.parquet",
-    )
-    p_ctrl.add_argument(
-        "--force-municipal-estimates-rebuild",
-        action="store_true",
-        help="Rebuild municipal estimates instead of reusing the cached municipal_estimates_2024.parquet artifact.",
     )
     p_ctrl.add_argument(
         "--force-reporting-regimes-rebuild",
@@ -1127,11 +1057,6 @@ def build_parser() -> argparse.ArgumentParser:
         "--force-reporting-regimes-rebuild",
         action="store_true",
         help="When rebuilding controls from build-outputs, also rebuild agency_year_reporting_regimes.parquet.",
-    )
-    p_out.add_argument(
-        "--force-municipal-estimates-rebuild",
-        action="store_true",
-        help="When rebuilding controls from build-outputs, also rebuild municipal_estimates_2024.parquet.",
     )
     p_out.add_argument(
         "--force-geometry-rebuild",

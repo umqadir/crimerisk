@@ -6,6 +6,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
+from crimerisk.benchmark_imputation import load_benchmark_imputation_units
 from crimerisk.city_residuals import prepare_city_residual_frame
 from crimerisk.crime import OFFENSES_7
 from crimerisk.model_surface import build_bg_feature_frame, merge_extra_bg_features
@@ -19,6 +20,10 @@ SOURCE_MIXED_SHARE_CUTOFF = 0.60
 DOMAIN_LOW_CUTOFF = 1.0 / 3.0
 DOMAIN_IN_DOMAIN_CUTOFF = 2.0 / 3.0
 DOMAIN_FALLBACK_SCORE = 0.50
+# Territory whose jurisdiction target came from benchmark-constrained imputation
+# (Class A: no agency reported it at all) reads as modelled, not measured. Above this
+# share of a cell's mass the confidence tier is forced down and the reason is named.
+BENCHMARK_IMPUTED_SHARE_LOW_CUTOFF = 0.50
 
 
 @dataclass(frozen=True)
@@ -72,6 +77,13 @@ def build_confidence_artifacts(
         geo_col="bg_id",
         out_geo_col="block_group_geoid",
     )
+    imputation_units = load_benchmark_imputation_units(paths, year=int(year))
+    imputed_bg = _benchmark_imputed_share_wide(
+        component,
+        imputation_units,
+        geo_col="bg_id",
+        out_geo_col="block_group_geoid",
+    )
     model_share_bg = _component_model_share_long(component, geo_col="bg_id")
     modeled_domain = _modeled_domain_scores(
         paths=paths,
@@ -92,6 +104,8 @@ def build_confidence_artifacts(
     bg_metrics = bg_base.merge(urban, on=["state_fips", "block_group_geoid"], how="left")
     bg_metrics = bg_metrics.merge(source_bg, on=["state_fips", "block_group_geoid"], how="left")
     bg_metrics = bg_metrics.merge(feed_bg, on=["state_fips", "block_group_geoid"], how="left")
+    if not imputed_bg.empty:
+        bg_metrics = bg_metrics.merge(imputed_bg, on=["state_fips", "block_group_geoid"], how="left")
     bg_metrics = bg_metrics.merge(modeled_domain, on=["state_fips", "block_group_geoid"], how="left")
     for offense in OFFENSES_7:
         _fill_source_defaults(bg_metrics, offense=offense)
@@ -117,7 +131,17 @@ def build_confidence_artifacts(
         geo_col="tract_id",
         out_geo_col="tract_id",
     )
+    imputed_tract = _benchmark_imputed_share_wide(
+        component,
+        imputation_units,
+        geo_col="tract_id",
+        out_geo_col="tract_id",
+    )
     tract_component_metrics = source_tract.merge(feed_tract, on=["state_fips", "tract_id"], how="outer")
+    if not imputed_tract.empty:
+        tract_component_metrics = tract_component_metrics.merge(
+            imputed_tract, on=["state_fips", "tract_id"], how="left"
+        )
     for offense in OFFENSES_7:
         _fill_source_defaults(tract_component_metrics, offense=offense)
     tract_component_metrics = tract_component_metrics[
@@ -305,6 +329,61 @@ def _component_source_long(component: pd.DataFrame, *, geo_col: str) -> pd.DataF
             "source_mode_mixed": mixed.astype(bool),
         }
     )
+
+
+def _benchmark_imputed_share_wide(
+    component: pd.DataFrame,
+    imputation_units: pd.DataFrame,
+    *,
+    geo_col: str,
+    out_geo_col: str,
+) -> pd.DataFrame:
+    """Share of each cell's mass whose jurisdiction target is benchmark-imputed.
+
+    An imputation unit has zero locked observed mass by construction, so the whole of
+    its target is imputed and the per-jurisdiction fraction is exactly one; the cell
+    share is then the component-weighted fraction of imputed jurisdictions.
+    """
+    out_columns = ["state_fips", out_geo_col] + [
+        f"benchmark_imputed_share_{offense}" for offense in OFFENSES_7
+    ]
+    if component.empty or imputation_units is None or imputation_units.empty:
+        return pd.DataFrame(columns=out_columns)
+    units = imputation_units[
+        pd.to_numeric(imputation_units["imputed_count"], errors="coerce").fillna(0.0).gt(0.0)
+    ][["unit_id", "offense"]].drop_duplicates()
+    if units.empty:
+        return pd.DataFrame(columns=out_columns)
+    units = units.rename(columns={"unit_id": "jurisdiction_id"})
+    units["jurisdiction_id"] = units["jurisdiction_id"].astype("string")
+    units["offense"] = units["offense"].astype("string")
+    units["_imputed"] = 1.0
+
+    work = component.copy()
+    work["_weight"] = _component_weights(work, geo_col=geo_col)
+    work = work.merge(units, on=["jurisdiction_id", "offense"], how="left")
+    work["_imputed"] = pd.to_numeric(work["_imputed"], errors="coerce").fillna(0.0)
+    work["_imputed_weight"] = work["_weight"] * work["_imputed"]
+    grouped = (
+        work.groupby(["state_fips", geo_col, "offense"], dropna=False)
+        .agg(_weight=("_weight", "sum"), _imputed_weight=("_imputed_weight", "sum"))
+        .reset_index()
+    )
+    grouped["share"] = np.where(
+        pd.to_numeric(grouped["_weight"], errors="coerce").fillna(0.0).gt(0.0),
+        grouped["_imputed_weight"] / grouped["_weight"].replace(0.0, np.nan),
+        0.0,
+    )
+    grouped["share"] = pd.to_numeric(grouped["share"], errors="coerce").fillna(0.0).clip(0.0, 1.0)
+    base = grouped[["state_fips", geo_col]].drop_duplicates().rename(columns={geo_col: out_geo_col})
+    for offense in OFFENSES_7:
+        one = grouped[grouped["offense"].eq(offense)][["state_fips", geo_col, "share"]].rename(
+            columns={geo_col: out_geo_col, "share": f"benchmark_imputed_share_{offense}"}
+        )
+        base = base.merge(one, on=["state_fips", out_geo_col], how="left")
+    base["state_fips"] = base["state_fips"].astype("string").str.zfill(2)
+    base[out_geo_col] = base[out_geo_col].astype("string").str.zfill(12 if out_geo_col == "block_group_geoid" else 11)
+    return base
 
 
 def _source_long_to_wide(source_long: pd.DataFrame, *, geo_col: str, out_geo_col: str) -> pd.DataFrame:
@@ -664,6 +743,10 @@ def _fill_source_defaults(df: pd.DataFrame, *, offense: str) -> None:
     if modeled_share_col not in df.columns:
         df[modeled_share_col] = 1.0 - df[direct_share_col]
     df[modeled_share_col] = pd.to_numeric(df[modeled_share_col], errors="coerce").fillna(1.0).clip(0.0, 1.0)
+    imputed_col = f"benchmark_imputed_share_{offense}"
+    if imputed_col not in df.columns:
+        df[imputed_col] = 0.0
+    df[imputed_col] = pd.to_numeric(df[imputed_col], errors="coerce").fillna(0.0).clip(0.0, 1.0)
 
 
 def _drop_internal_confidence_columns(df: pd.DataFrame) -> pd.DataFrame:
@@ -698,6 +781,7 @@ def _published_metric_columns(
             f"feed_missing_fraction_{offense}",
             f"feed_alpha_{offense}",
             f"feed_prior_fraction_{offense}",
+            f"benchmark_imputed_share_{offense}",
             f"domain_overlap_score_{offense}",
         ):
             if col in df.columns and (include_domain or not col.startswith("domain_overlap_score_")):
@@ -776,9 +860,20 @@ def _append_confidence_tiers(surface: pd.DataFrame) -> pd.DataFrame:
         reliability = out[f"reliability_tier_{offense}"].astype("string") if f"reliability_tier_{offense}" in out.columns else pd.Series("low", index=out.index, dtype="string")
         source = out[f"source_mode_{offense}"].astype("string") if f"source_mode_{offense}" in out.columns else pd.Series(MODELED_SOURCE_MODE, index=out.index, dtype="string")
         domain = _numeric_series(out, f"domain_overlap_score_{offense}", default=DOMAIN_FALLBACK_SCORE).fillna(DOMAIN_FALLBACK_SCORE).clip(0.0, 1.0)
+        imputed_share = (
+            _numeric_series(out, f"benchmark_imputed_share_{offense}", default=0.0)
+            .fillna(0.0)
+            .clip(0.0, 1.0)
+        )
         valid_denominator = mode.eq("count_derived")
         modeled_or_mixed = source.isin([MODELED_SOURCE_MODE, MIXED_SOURCE_MODE])
-        low = (~valid_denominator) | reliability.eq("low") | (modeled_or_mixed & domain.lt(DOMAIN_LOW_CUTOFF))
+        benchmark_imputed = imputed_share.ge(BENCHMARK_IMPUTED_SHARE_LOW_CUTOFF)
+        low = (
+            (~valid_denominator)
+            | reliability.eq("low")
+            | (modeled_or_mixed & domain.lt(DOMAIN_LOW_CUTOFF))
+            | benchmark_imputed
+        )
         high = (
             ~low
             & valid_denominator
@@ -803,13 +898,15 @@ def _append_confidence_tiers(surface: pd.DataFrame) -> pd.DataFrame:
                 source_value=source_value,
                 domain_value=domain_value,
                 transient_value=transient_value,
+                benchmark_imputed_value=benchmark_imputed_value,
             )
-            for mode_value, reliability_value, source_value, domain_value, transient_value in zip(
+            for mode_value, reliability_value, source_value, domain_value, transient_value, benchmark_imputed_value in zip(
                 mode.astype(object),
                 reliability.astype(object),
                 source.astype(object),
                 domain.to_numpy(dtype=float),
                 transient.to_numpy(dtype=bool),
+                benchmark_imputed.to_numpy(dtype=bool),
                 strict=True,
             )
         ]
@@ -823,6 +920,7 @@ def _confidence_reason(
     source_value: object,
     domain_value: float,
     transient_value: bool,
+    benchmark_imputed_value: bool = False,
 ) -> str:
     reasons: list[str] = []
     mode = str(mode_value)
@@ -850,4 +948,6 @@ def _confidence_reason(
         reasons.append("domain_overlap_moderate")
     if transient_value:
         reasons.append("transient_exposure_likely")
+    if bool(benchmark_imputed_value):
+        reasons.append("benchmarked_nonreporter_imputation")
     return "|".join(reasons)

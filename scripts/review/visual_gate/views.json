@@ -1,0 +1,12 @@
+[
+  { "name": "national_total", "layer": "i_evw", "center": [-96.0, 38.0], "zoom": 4 },
+  { "name": "texas_total", "layer": "i_evw", "center": [-99.0, 31.0], "zoom": 5.5 },
+  { "name": "kenedy_total", "layer": "i_evw", "center": [-97.65, 26.93], "zoom": 8 },
+  { "name": "wheeler_or_total", "layer": "i_evw", "center": [-120.0, 44.75], "zoom": 8 },
+  { "name": "okanogan_wa_total", "layer": "i_evw", "center": [-119.7, 48.4], "zoom": 8 },
+  { "name": "clark_nv_desert_total", "layer": "i_evw", "center": [-115.3, 36.4], "zoom": 8 },
+  { "name": "gila_az_total", "layer": "i_evw", "center": [-110.8, 33.8], "zoom": 8 },
+  { "name": "chicago_burglary", "layer": "ip_bur", "center": [-87.65, 41.85], "zoom": 10 },
+  { "name": "chicago_murder", "layer": "ip_mur", "center": [-87.65, 41.85], "zoom": 10 },
+  { "name": "pittsburgh_total", "layer": "i_evw", "center": [-79.99, 40.44], "zoom": 10 }
+]

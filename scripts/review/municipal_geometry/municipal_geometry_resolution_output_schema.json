@@ -1,0 +1,54 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": { "type": "string" },
+          "jurisdiction_id": { "type": "string" },
+          "decision": {
+            "type": "string",
+            "enum": [
+              "map_to_place",
+              "map_to_cousub",
+              "exclude",
+              "escalate"
+            ]
+          },
+          "replacement_geo_type": {
+            "type": ["string", "null"],
+            "enum": ["place", "cousub", null]
+          },
+          "replacement_geoid": {
+            "type": ["string", "null"]
+          },
+          "replacement_jurisdiction_name": {
+            "type": ["string", "null"]
+          },
+          "confidence": { "type": "number" },
+          "reason": { "type": "string" },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [
+          "case_id",
+          "jurisdiction_id",
+          "decision",
+          "replacement_geo_type",
+          "replacement_geoid",
+          "replacement_jurisdiction_name",
+          "confidence",
+          "reason",
+          "sources"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["results"],
+  "additionalProperties": false
+}

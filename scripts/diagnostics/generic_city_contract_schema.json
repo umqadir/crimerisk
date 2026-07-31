@@ -1,0 +1,134 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "city_key",
+    "city_name",
+    "year",
+    "geography",
+    "mapping",
+    "worker_judgment_notes",
+    "sources_checked"
+  ],
+  "oneOf": [
+    { "required": ["source"], "not": { "required": ["sources"] } },
+    { "required": ["sources"], "not": { "required": ["source"] } }
+  ],
+  "properties": {
+    "city_key": { "type": "string" },
+    "city_name": { "type": "string" },
+    "year": { "type": "integer" },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "source_url", "api_endpoint", "portal_type", "select", "where", "order", "page_size"],
+      "properties": {
+        "name": { "type": "string" },
+        "source_url": { "type": "string" },
+        "api_endpoint": { "type": "string" },
+        "portal_type": { "type": "string", "enum": ["socrata", "arcgis_feature_service", "csv"] },
+        "select": { "type": "array", "items": { "type": "string" } },
+        "where": { "type": "string" },
+        "order": { "type": "string" },
+        "page_size": { "type": "integer" }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["slug", "name", "source_url", "api_endpoint", "portal_type", "select", "where", "order", "page_size"],
+        "properties": {
+          "slug": { "type": "string", "pattern": "^[a-z0-9_]{1,40}$" },
+          "name": { "type": "string" },
+          "source_url": { "type": "string" },
+          "api_endpoint": { "type": "string" },
+          "portal_type": { "type": "string", "enum": ["socrata", "arcgis_feature_service", "csv"] },
+          "select": { "type": "array", "items": { "type": "string" } },
+          "where": { "type": "string" },
+          "order": { "type": "string" },
+          "page_size": { "type": "integer" }
+        }
+      }
+    },
+    "geography": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["jurisdiction_id", "state_fips", "bounds"],
+      "properties": {
+        "jurisdiction_id": { "type": "string" },
+        "state_fips": { "type": "string" },
+        "bounds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min_latitude", "max_latitude", "min_longitude", "max_longitude"],
+          "properties": {
+            "min_latitude": { "type": "number" },
+            "max_latitude": { "type": "number" },
+            "min_longitude": { "type": "number" },
+            "max_longitude": { "type": "number" }
+          }
+        }
+      }
+    },
+    "mapping": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id_field", "id_fields", "date_field", "latitude_field", "longitude_field", "offense_rules"],
+      "properties": {
+        "id_field": { "type": "string" },
+        "id_fields": { "type": "array", "items": { "type": "string" } },
+        "date_field": { "type": "string" },
+        "latitude_field": { "type": "string" },
+        "longitude_field": { "type": "string" },
+        "offense_rules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["offense", "conditions", "exclude_conditions"],
+            "properties": {
+              "offense": {
+                "type": "string",
+                "enum": [
+                  "murder",
+                  "rape",
+                  "robbery",
+                  "aggravated_assault",
+                  "burglary",
+                  "larceny",
+                  "motor_vehicle_theft"
+                ]
+              },
+              "conditions": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/condition" }
+              },
+              "exclude_conditions": {
+                "type": "array",
+                "items": { "$ref": "#/$defs/condition" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "worker_judgment_notes": { "type": "string" },
+    "sources_checked": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["field", "op", "value", "values"],
+      "properties": {
+        "field": { "type": "string" },
+        "op": { "type": "string", "enum": ["eq", "in", "contains", "not_contains", "regex", "not_regex"] },
+        "value": { "type": "string" },
+        "values": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

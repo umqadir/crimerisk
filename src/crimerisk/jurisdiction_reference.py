@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -7,7 +8,7 @@ import pandas as pd
 
 from crimerisk.paths import get_paths
 from crimerisk.jurisdiction_review import _load_all_tiger_lookups
-from crimerisk.reference import _std_text
+from crimerisk.reference import _std_text, matches_tribal_name
 
 
 STATE_NAME_BY_FIPS: dict[str, str] = {
@@ -150,15 +151,16 @@ _TRANSPORT_HUB_KEYWORDS = (
     " PORT ",
     " SEAPORT",
 )
-_TRIBAL_KEYWORDS = (
-    " TRIBAL",
-    " NATION",
-    " PUEBLO",
-    " RESERVATION",
-    " INDIAN",
-    " BIA",
-    " NAVAJO",
-)
+# Tribal overlap-SUBTYPE inference. The name test itself lives in `reference.matches_tribal_name`
+# (word boundaries, one definition in the codebase) because the same tokens also form half the
+# tribal-agency identity witness. Tribal ROUTING is driven by `reference.tribal_agency_flag`, not
+# by a name: a name test is not a defensible identity witness (Stage 2 screen c measured 74 false
+# hits / 49 misses for the substring form this replaced -- `" NATION"` matched NATIONAL SECURITY
+# AGENCY, NATIONAL INSTITUTES OF HEALTH and, because the tribal branch below is tested BEFORE the
+# statewide branch, every NATIONAL PARK force too, while `" INDIAN"` matched INDIANAPOLIS).
+_matches_tribal_name = matches_tribal_name
+
+
 _CAMPUS_KEYWORDS = (
     " UNIVERSITY",
     " COLLEGE",
@@ -373,6 +375,80 @@ def _load_local_resolution_overrides(path: Path | None) -> pd.DataFrame:
     if overrides.loc[municipal, "replacement_jurisdiction_name"].isna().any():
         raise ValueError("Municipal local-resolution overrides must include replacement_jurisdiction_name")
     return overrides
+
+
+def _tribal_oris_from_agency_master(agency_master: pd.DataFrame) -> set[str]:
+    """Tribal ORI set, preferring the flag the agency master already carries."""
+    if "is_tribal_agency" in agency_master.columns:
+        flag = agency_master["is_tribal_agency"].fillna(False).astype(bool)
+        return {
+            str(value).strip().upper()
+            for value in agency_master.loc[flag, "ori9"]
+            if pd.notna(value)
+        }
+    raise ValueError(
+        "agency_master is missing is_tribal_agency; rebuild it (reference.write_agency_master) "
+        "before building the reference layers -- the Class D gate depends on it."
+    )
+
+
+def _municipal_placement_licensed_oris(local_override_path: Path | None) -> set[str]:
+    """ORIs a reviewed registry row is allowed to place on a municipal jurisdiction."""
+    overrides = _load_local_resolution_overrides(local_override_path)
+    if overrides.empty:
+        return set()
+    return {
+        str(value).strip().upper()
+        for value in overrides["ori9"]
+        if pd.notna(value)
+    }
+
+
+def assert_tribal_agencies_not_auto_placed(
+    full_local: pd.DataFrame,
+    *,
+    tribal_oris: set[str],
+    licensed_oris: set[str],
+) -> None:
+    """FAIL CLOSED when an automatic lane places a tribal agency on a municipality.
+
+    This is the Class D gate. LEAIC gives a tribal police department the FPLACE of its
+    agency-seat CDP, and the automatic local lanes (`provisional_local_agency_matches`, and
+    rung (b) of `_build_unassigned_fallbacks`) take a valid place_fips unconditionally -- so
+    a whole reservation's crime lands on one small town. Measured 2026-07-29: 171 tribal
+    links resolved exclusively to a municipal place/cousub, 169 of them `provisional_auto`
+    (Stage 2 screen S2-3), producing e.g. Colville -> Nespelem town at 19.7x the national
+    rate and, in the other direction, Seminole Tribal -> Hollywood city (751 counts
+    invisibly diluted into a 153k city).
+
+    The rule is therefore: a tribal agency may sit on a municipal jurisdiction ONLY because
+    a reviewed registry row says so. `licensed_oris` is the union of the ORIs named in
+    `configs/local_resolution_overrides.csv` and `configs/municipal_geometry_overrides.csv`;
+    the licence is keyed on registry membership rather than on `resolution_source` because
+    the PA/CDP canonicalization passes downstream rewrite that column.
+
+    Everything else must be routed off the municipal lane (normally `reclassify_overlap`
+    plus an AIANNH footprint in the overlap footprint registries).
+    """
+    if full_local.empty or not tribal_oris:
+        return
+    ori = full_local["ori9"].astype("string").str.strip().str.upper()
+    municipal = full_local["final_decision"].astype("string").isin(
+        ["municipal_place", "municipal_cousub"]
+    )
+    offending = full_local.loc[
+        municipal & ori.isin(tribal_oris) & ~ori.isin(licensed_oris)
+    ]
+    if offending.empty:
+        return
+    detail = offending[["ori9", "agency_name_std", "final_decision", "resolved_geoid", "resolution_source"]]
+    raise ValueError(
+        "Tribal agencies placed on a municipal jurisdiction by an automatic lane "
+        f"({len(offending)} ORIs). Each needs a reviewed row in "
+        "configs/local_resolution_overrides.csv (reclassify_overlap plus an AIANNH "
+        "footprint, or an explicit municipal_place pin with a reviewer_note saying why). "
+        f"Offending rows: {detail.to_dict(orient='records')}"
+    )
 
 
 def _apply_local_resolution_overrides(frame: pd.DataFrame, override_path: Path | None) -> pd.DataFrame:
@@ -630,7 +706,7 @@ def _infer_special_bucket(text_candidates: list[str], agency_type_norm: str | No
         return "localized_special_overlap", "transport_hub", "facility_or_authority_footprint"
     if any(keyword in text for keyword in _TRANSIT_KEYWORDS):
         return "localized_special_overlap", "transit", "network_or_system_footprint"
-    if any(keyword in text for keyword in _TRIBAL_KEYWORDS):
+    if _matches_tribal_name(text):
         return "localized_special_overlap", "tribal", "tribal_or_reservation_footprint"
     if any(keyword in text for keyword in _CAMPUS_KEYWORDS):
         return "localized_special_overlap", "campus", "campus_footprint"
@@ -727,16 +803,24 @@ def _build_unassigned_fallbacks(
             continue
 
         texts = _text_candidates(row_series)
-        explicit_special = agency_type_norm in {"special_jurisdiction", "state_law_enforcement"} or any(
-            keyword in " | ".join(f" {value} " for value in texts)
-            for keyword in (
-                _TRANSPORT_HUB_KEYWORDS
-                + _TRANSIT_KEYWORDS
-                + _TRIBAL_KEYWORDS
-                + _CAMPUS_KEYWORDS
-                + _LOCAL_SPECIAL_KEYWORDS
-                + _OTHER_SPECIAL_KEYWORDS
-                + _STATEWIDE_KEYWORDS
+        joined_text = " | ".join(f" {value} " for value in texts)
+        explicit_special = (
+            agency_type_norm in {"special_jurisdiction", "state_law_enforcement"}
+            # The Class D gate at rung (b): a LEAIC/roster-identified tribal agency never
+            # takes the agency-seat place shortcut. Without this the shortcut fires before
+            # the tribal branch of `_infer_special_bucket` is reachable at all.
+            or bool(row.get("is_tribal_agency") is True)
+            or _matches_tribal_name(joined_text)
+            or any(
+                keyword in joined_text
+                for keyword in (
+                    _TRANSPORT_HUB_KEYWORDS
+                    + _TRANSIT_KEYWORDS
+                    + _CAMPUS_KEYWORDS
+                    + _LOCAL_SPECIAL_KEYWORDS
+                    + _OTHER_SPECIAL_KEYWORDS
+                    + _STATEWIDE_KEYWORDS
+                )
             )
         )
         municipal = None
@@ -1794,6 +1878,11 @@ def build_reference_artifacts(
         )
         full_nonlocal = _apply_nonlocal_resolution_overrides(full_nonlocal, local_override_path)
     full_nonlocal = _enrich_from_agency_master(full_nonlocal, agency_master=agency_master)
+    assert_tribal_agencies_not_auto_placed(
+        full_local,
+        tribal_oris=_tribal_oris_from_agency_master(agency_master),
+        licensed_oris=_municipal_placement_licensed_oris(local_override_path),
+    )
     jurisdiction_master = build_jurisdiction_master(
         full_local=full_local,
         full_nonlocal=full_nonlocal,

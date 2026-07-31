@@ -17,6 +17,11 @@ from crimerisk.observations import (
     write_v2_observations,
 )
 from crimerisk.paths import RepoPaths
+from crimerisk.stage1_adjudications import (
+    assert_registry_bit,
+    build_zero_missing_directives,
+    registry_dependency_paths,
+)
 from crimerisk.stage_locks import blockers_for_stage, stage_write_lock
 from crimerisk.source_provenance import (
     CIUS_SOURCE,
@@ -26,6 +31,11 @@ from crimerisk.source_provenance import (
     SUMMARY_SOURCE,
 )
 
+
+# The regime reason a Stage-1 adjudicated zero-vs-missing verdict writes. Named rather than reusing
+# "manual_override" so a consumer can tell a reviewed 2024 case from a hand-curated config row, and
+# so `trend_fills._assert_no_fill_where_the_chosen_lane_reported` can recognise it.
+STAGE1_ADJUDICATED_MISSING_REASON = "stage1_adjudicated_zero_reads_missing"
 
 MONTH_ORDER = {
     "january": 1,
@@ -130,6 +140,7 @@ def reporting_regime_dependency_paths(
         deps.append(resolved.override_path)
     if resolved.source_override_path is not None:
         deps.append(resolved.source_override_path)
+    deps.extend(registry_dependency_paths(paths))
     return deps
 
 
@@ -573,6 +584,7 @@ def build_agency_year_reporting_regimes(
     srs_count = pd.to_numeric(base["srs_count"], errors="coerce").fillna(0.0)
     srs_months = pd.to_numeric(base["srs_months_reported"], errors="coerce").fillna(0.0)
     nibrs_count = pd.to_numeric(base["nibrs_count"], errors="coerce").fillna(0.0)
+    nibrs_months = pd.to_numeric(base["nibrs_months_reported"], errors="coerce").fillna(0.0)
     srs_has = base["srs_count"].notna()
     nibrs_has = base["nibrs_count"].notna()
     match_flag = (
@@ -703,15 +715,26 @@ def build_agency_year_reporting_regimes(
     base.loc[annual_usable_srs_mask, "regime_confidence"] = "medium"
 
     unassigned_mask = base["reporting_regime"].eq("structurally_missing_or_unreliable")
-    annual_usable_nibrs_mask = (
-        unassigned_mask
-        & nibrs_has
-        & nibrs_count.gt(0)
-    )
+    # Months, not count: a NIBRS agency-year that reported is a report for every Part I
+    # offense it covers, and an offense with no incidents in it is a zero, not an absence.
+    # Gating this rung on a positive count sent exactly those true zeros to the fill
+    # ladder -- the same zero-vs-missing misread the panel now resolves at emission.
+    # The rung splits on coverage, because a partial year is a partial year whichever
+    # lane reports it: the batch header's months are the agency-year's coverage, so
+    # 1-11 of them is the same `true_partial` the SRS lane has always carried and
+    # licenses the same x12/months annualisation. Reading them as complete years at
+    # their partial value understated 8,006 rows across 1,410 agencies in 2024.
+    usable_nibrs_mask = unassigned_mask & nibrs_has & nibrs_months.gt(0)
+    nibrs_partial_mask = usable_nibrs_mask & nibrs_months.between(1, 11, inclusive="both")
+    annual_usable_nibrs_mask = usable_nibrs_mask & ~nibrs_partial_mask
     base.loc[annual_usable_nibrs_mask, "reporting_regime"] = "annual_only_but_usable"
     base.loc[annual_usable_nibrs_mask, "regime_reason"] = "nibrs_annual_support_when_srs_not_usable"
     base.loc[annual_usable_nibrs_mask, "preferred_source_by_regime"] = NIBRS_SOURCE
     base.loc[annual_usable_nibrs_mask, "regime_confidence"] = "medium"
+    base.loc[nibrs_partial_mask, "reporting_regime"] = "true_partial"
+    base.loc[nibrs_partial_mask, "regime_reason"] = "nibrs_batch_header_partial_year"
+    base.loc[nibrs_partial_mask, "preferred_source_by_regime"] = NIBRS_SOURCE
+    base.loc[nibrs_partial_mask, "regime_confidence"] = "medium"
 
     structural_missing_mask = (
         base["reporting_regime"].eq("structurally_missing_or_unreliable")
@@ -873,6 +896,72 @@ def build_agency_year_reporting_regimes(
     base.loc[state_publication_preferred_partial.index[state_publication_preferred_partial], "regime_reason"] = "state_publication_partial_quarter_ytd"
     base.loc[state_publication_preferred_mask, "regime_confidence"] = "high"
 
+    # ---- Stage-1 adjudicated zero-vs-missing, applied last -------------------------------------
+    # The rules above resolve zero-vs-missing at emission (a submitted NIBRS agency-year's empty
+    # offense is a zero; an all-zero state publication behind zero SRS months is a non-report).
+    # What no rule can settle is a full-year-backed published zero: the record says the agency
+    # reported twelve months and counted nothing, and only the agency's own history, capacity and
+    # population say whether that is a quiet year or an empty feed. Those cases were adjudicated one
+    # by one, and a `misread_missing` verdict lands HERE -- the same statement the rule's
+    # `structural_missing_mask` makes, about the cases the rule could not reach.
+    #
+    # It is applied after every rung, including the publication-lane blocks, because a reviewed
+    # verdict is not one more rung competing with the others. `preferred_source_by_regime` is
+    # cleared for the same reason the manual-override block clears it: a row still naming a lane
+    # would be re-read as that lane's usable annual figure.
+    adjudicated_zero_counts: dict[str, int] = {}
+    zero_directives = build_zero_missing_directives(paths, target_year=int(config.year_end))
+    unusable = zero_directives[zero_directives["directive"].eq("reads_missing")]
+    if not unusable.empty:
+        key = pd.MultiIndex.from_arrays(
+            [base["ori9"].astype("string").str.upper(), pd.to_numeric(base["year"], errors="coerce")]
+        )
+        directive_index = pd.MultiIndex.from_arrays(
+            [unusable["ori9"].astype("string").str.upper(), unusable["year"].astype(int)]
+        )
+        adjudicated = pd.Series(key.isin(directive_index), index=base.index)
+        case_by_key = (
+            unusable.assign(_k=list(zip(unusable["ori9"].str.upper(), unusable["year"].astype(int))))
+            .set_index("_k")[["case_id", "verdict", "confidence"]]
+        )
+        base.loc[adjudicated, "reporting_regime"] = "structurally_missing_or_unreliable"
+        base.loc[adjudicated, "regime_reason"] = STAGE1_ADJUDICATED_MISSING_REASON
+        base.loc[adjudicated, "preferred_source_by_regime"] = pd.NA
+        base.loc[adjudicated, "regime_confidence"] = "high"
+        base.loc[adjudicated, "override_applied"] = True
+        base.loc[adjudicated, "override_evidence_type"] = "stage1_adhoc_case_review"
+        keys = pd.Index(list(zip(base.loc[adjudicated, "ori9"].astype("string").str.upper(),
+                                 pd.to_numeric(base.loc[adjudicated, "year"], errors="coerce"))))
+        base.loc[adjudicated, "override_source_note"] = (
+            case_by_key["case_id"].reindex(keys).to_numpy()
+        )
+        base.loc[adjudicated, "override_reviewer_note"] = (
+            case_by_key["verdict"].reindex(keys).to_numpy()
+        )
+        adjudicated_zero_counts = {
+            "adjudicated_zero_rulings": int(len(zero_directives)),
+            "adjudicated_zero_reads_missing_rulings": int(len(unusable)),
+            "adjudicated_zero_rows_marked_missing": int(adjudicated.sum()),
+            "adjudicated_zero_agency_years_marked_missing": int(
+                base.loc[adjudicated, ["ori9", "year"]].drop_duplicates().shape[0]
+            ),
+            "adjudicated_zero_oris_not_in_panel": int(
+                len(unusable)
+                - base.loc[adjudicated, ["ori9", "year"]].drop_duplicates().shape[0]
+            ),
+        }
+        assert_registry_bit(
+            adjudicated_zero_counts,
+            what="reporting regimes: Stage-1 adjudicated zero-vs-missing",
+            expected_key="adjudicated_zero_rows_marked_missing",
+        )
+        print(
+            "build_v2_reporting_regimes: Stage-1 adjudicated zeros -> missing on "
+            f"{adjudicated_zero_counts['adjudicated_zero_agency_years_marked_missing']} agency-years "
+            f"({adjudicated_zero_counts['adjudicated_zero_rows_marked_missing']} rows)",
+            flush=True,
+        )
+
     base["supports_partial_annualization"] = base["reporting_regime"].eq("true_partial")
     base["supports_as_reported_observation"] = base["reporting_regime"].isin(
         ["full_monthly", "lumpy_or_batched", "annual_only_but_usable"]
@@ -962,7 +1051,9 @@ def build_agency_year_reporting_regimes(
         "is_structurally_missing_or_unreliable",
         "support_weight",
     ]
-    return base[cols].sort_values(["ori9", "year", "offense"], kind="mergesort").reset_index(drop=True)
+    out = base[cols].sort_values(["ori9", "year", "offense"], kind="mergesort").reset_index(drop=True)
+    out.attrs["stage1_adjudications"] = adjudicated_zero_counts
+    return out
 
 
 def write_v2_reporting_regimes(
@@ -985,4 +1076,5 @@ def write_v2_reporting_regimes(
             "rows": int(len(regimes)),
             "agency_years": int(regimes[["ori9", "year"]].drop_duplicates().shape[0]),
             "oris": int(regimes["ori9"].nunique()),
+            **regimes.attrs.get("stage1_adjudications", {}),
         }

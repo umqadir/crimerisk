@@ -84,6 +84,300 @@ STATE_ABBR_TO_FIPS: dict[str, str] = {
 # manifest is generated from that single source of truth.
 
 
+# --- county-FIPS canonicalization -------------------------------------------
+# The SRS agency header carries the county code the agency was coded with when its
+# ORI was issued, so a handful of ORIs still point at county FIPS the Census retired
+# (and NIBRS-only agencies carry no county code at all). Both defects land in the same
+# place: allocation._build_county_remainder_group_targets anchors remainder-lane
+# agencies to `state_fips + county_fips`, so a retired or missing code silently fails
+# the county join and the agency's territory drops back into the state residual pool.
+RETIRED_COUNTY_GEOID_REMAP: dict[str, str] = {
+    # Shannon County SD renamed Oglala Lakota County (2015).
+    "46113": "46102",
+    # Valdez-Cordova Census Area AK split into Chugach + Copper River (2019); the
+    # three ORIs carrying it (Valdez, Cordova, Whittier) all sit in Chugach.
+    "02261": "02063",
+    # Wade Hampton Census Area AK renamed Kusilvak (2015).
+    "02270": "02158",
+    # Bedford city VA reverted to a town inside Bedford County (2013).
+    "51515": "51019",
+}
+# 999 is the SRS sentinel for "no county", not a county. The Canal Zone (state 57)
+# carries 57999 and has no successor geography at all.
+SENTINEL_COUNTY_CODES: frozenset[str] = frozenset({"999"})
+
+# Which county_fips provenances are strong enough to ANCHOR an agency's crime to a
+# county remainder (allocation._build_county_remainder_group_targets).
+#
+# The SRS agency header is the FBI's own placement of the agency, and the retired-FIPS
+# remap is that same placement forwarded to a live GEOID -- both are authoritative for
+# where the agency's crime happened. The roster/LEAIC fills are NOT: they resolve a
+# county NAME for an agency the header never placed, which is enough to say which
+# county's silence an agency speaks to (imputation eligibility, dead/active predicates)
+# but not enough to concentrate its crime into that county's unincorporated remainder.
+#
+# Verified 2026-07-28: of the 38 remainder-lane agencies the fills made county-anchorable
+# with nonzero mass, 36 are roster type "City" whose real footprint is a municipality or a
+# regional township force -- Pontiac MI (MI631900X, 1,619 crimes onto Oakland County's
+# 32,376-person remainder = 5,001/100k, the v20 candidate's national #1 aggravated-assault
+# block group) is the extreme. 24 of the 38 also carry a same-state ORI twin reporting
+# identical counts, a pre-existing duplicate-ORI condition this scoping deliberately does
+# not deepen.
+COUNTY_ANCHOR_ELIGIBLE_COUNTY_FIPS_SOURCES: frozenset[str] = frozenset(
+    {"srs_agency_header", "retired_county_remap"}
+)
+
+# Tribal agency identity. Two witnesses, combined asymmetrically because they fail differently.
+#
+# The FBI CDE roster's own `agency_type_name == "Tribal"` (217 ORIs) is the FBI's declaration
+# about the agency and is used on its own.
+#
+# LEAIC's `LG_POPULATION = 999999999` sentinel means "the local government this agency belongs
+# to has no Census place population". That is true of tribes -- but MEASURED 2026-07-30 it is
+# ALSO true of police-protection and community-services districts: Kensington CA, Broadmoor CA,
+# Bear Valley CA, Lake Shastina CA and Stallion Springs CA all carry the sentinel and are not
+# tribal (LEAIC likewise uses 888888888 for state parks and counties). So the sentinel alone is
+# NOT a tribal witness and is required to agree with a word-boundary tribal name token.
+#
+# Verified against the Stage 2 screen: this definition flags 292 ORIs, 246 with a crosswalk
+# link, 165 of them resolving to a municipal place/cousub -- the Class D defect population,
+# with all 12 of the screen's named false positives excluded.
+LEAIC_TRIBAL_LG_POPULATION_SENTINEL = "999999999"
+FBI_ROSTER_TRIBAL_AGENCY_TYPE = "Tribal"
+# Word boundaries, not substrings: the substring form matched NATIONAL PARK / NATIONAL SECURITY
+# AGENCY / INDIANAPOLIS (Stage 2 screen c: 74 false hits over all links). Shared with
+# jurisdiction_reference so there is one tribal name test in the codebase.
+TRIBAL_NAME_TOKENS: tuple[str, ...] = (
+    "TRIBAL",
+    "TRIBE",
+    "NATION",
+    "PUEBLO",
+    "RESERVATION",
+    "RANCHERIA",
+    "INDIAN",
+    "BIA",
+    "NAVAJO",
+)
+TRIBAL_NAME_RE = re.compile(r"\b(?:" + "|".join(TRIBAL_NAME_TOKENS) + r")\b")
+
+
+def matches_tribal_name(value: object) -> bool:
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return False
+    return bool(TRIBAL_NAME_RE.search(_NON_ALNUM_RE.sub(" ", str(value).upper())))
+
+
+def _leaic_tribal_witnesses(*, paths: RepoPaths) -> tuple[set[str], set[str]]:
+    """(ORIs carrying the LG_POPULATION sentinel, ORIs whose LEAIC names read tribal)."""
+    leaic_path = (
+        paths.data_dir / "LEAIC-Crosswalk-ICPSR_35158" / "DS0001" / "35158-0001-Data.tsv"
+    )
+    if not leaic_path.exists():
+        return set(), set()
+    leaic = pd.read_csv(
+        leaic_path, sep="\t", dtype=str, usecols=["ORI9", "LG_POPULATION", "NAME", "LG_NAME"]
+    )
+    ori = leaic["ORI9"].astype("string").str.strip().str.upper()
+    sentinel = leaic["LG_POPULATION"].astype("string").str.strip().eq(
+        LEAIC_TRIBAL_LG_POPULATION_SENTINEL
+    )
+    named = leaic["NAME"].map(matches_tribal_name) | leaic["LG_NAME"].map(matches_tribal_name)
+    return (
+        {value for value in ori[sentinel].dropna() if value},
+        {value for value in ori[named].dropna() if value},
+    )
+
+
+def _fbi_roster_tribal_oris(*, paths: RepoPaths, roster_year: int) -> set[str]:
+    roster_path = (
+        paths.data_dir
+        / "FBI-CDE-Agency-Rosters-2024"
+        / "parsed"
+        / f"agency_rosters_{int(roster_year)}.csv"
+    )
+    if not roster_path.exists():
+        return set()
+    roster = pd.read_csv(roster_path, dtype=str, usecols=["ori", "agency_type_name"])
+    tribal = roster["agency_type_name"].astype("string").str.strip().eq(
+        FBI_ROSTER_TRIBAL_AGENCY_TYPE
+    )
+    return {
+        value
+        for value in roster.loc[tribal, "ori"].astype("string").str.strip().str.upper().dropna()
+        if value
+    }
+
+
+def tribal_agency_flag(
+    ori: pd.Series,
+    agency_name: pd.Series | None = None,
+    *,
+    paths: RepoPaths,
+    roster_year: int = 2024,
+) -> pd.Series:
+    """Boolean tribal-agency flag, per the definition documented above.
+
+    This is what gates the automatic agency-seat-place shortcut in `jurisdiction_reference`,
+    which is the Class D mechanism: LEAIC hands a tribal PD the FPLACE of its agency-seat CDP,
+    the automatic local lane takes any valid place_fips unconditionally, and a whole
+    reservation's crime lands on one small town.
+    """
+    key = ori.astype("string").str.strip().str.upper()
+    sentinel_oris, leaic_named_oris = _leaic_tribal_witnesses(paths=paths)
+    roster_oris = _fbi_roster_tribal_oris(paths=paths, roster_year=roster_year)
+    named = key.isin(leaic_named_oris)
+    if agency_name is not None:
+        named = named | agency_name.map(matches_tribal_name).fillna(False).astype(bool)
+    return (key.isin(roster_oris) | (key.isin(sentinel_oris) & named)).fillna(False).astype(bool)
+
+
+def _county_name_key(value: object) -> str:
+    text = str(value or "").upper()
+    text = _NON_ALNUM_RE.sub(" ", text).strip()
+    for suffix in (
+        "CITY AND BOROUGH",
+        "COUNTY AND BOROUGH",
+        "CENSUS AREA",
+        "MUNICIPALITY",
+        "COUNTY",
+        "PARISH",
+        "BOROUGH",
+    ):
+        if text.endswith(f" {suffix}"):
+            text = text[: -len(suffix)].strip()
+            break
+    return _WS_RE.sub(" ", text)
+
+
+def _county_name_to_geoid_lookup(*, paths: RepoPaths) -> dict[tuple[str, str], str]:
+    path = paths.repo_root / "configs" / "county_names_2020.csv"
+    if not path.exists():
+        return {}
+    names = pd.read_csv(path, dtype=str)
+    return {
+        (str(row.state_fips).zfill(2), _county_name_key(row.county_name)): str(
+            row.county_fips
+        ).zfill(5)
+        for row in names.itertuples(index=False)
+        if pd.notna(row.state_fips) and pd.notna(row.county_fips)
+    }
+
+
+def _roster_county_geoid_by_ori(*, paths: RepoPaths, year: int) -> pd.Series:
+    """ORI -> county GEOID from the FBI CDE agency roster (`counties` name field).
+
+    The roster is the FBI's own 2024 agency directory, so it covers NIBRS-only
+    agencies the SRS header never carried. Where an agency lists several counties the
+    first is taken: the county anchor is a single-county assignment by construction.
+    Validated against the master's own SRS-derived county on the 16,507 ORIs that
+    carry both: 97.7% agreement, and this pass only FILLS nulls, never overrides.
+    """
+    path = (
+        paths.data_dir
+        / f"FBI-CDE-Agency-Rosters-{int(year)}"
+        / "parsed"
+        / f"agency_rosters_{int(year)}.parquet"
+    )
+    if not path.exists():
+        return pd.Series(dtype="string")
+    roster = pd.read_parquet(path, columns=["ori", "state_abbr", "counties"])
+    roster["ori"] = roster["ori"].astype("string").str.strip().str.upper()
+    roster["state_fips"] = (
+        roster["state_abbr"].astype("string").str.upper().map(STATE_ABBR_TO_FIPS)
+    )
+    roster["county_key"] = (
+        roster["counties"].astype("string").str.split(",").str[0].map(_county_name_key)
+    )
+    lookup = _county_name_to_geoid_lookup(paths=paths)
+    geoid = [
+        lookup.get((str(state_fips), str(key)))
+        if pd.notna(state_fips) and pd.notna(key)
+        else None
+        for state_fips, key in zip(roster["state_fips"], roster["county_key"], strict=True)
+    ]
+    roster["county_geoid"] = pd.Series(geoid, index=roster.index, dtype="string")
+    resolved = roster[roster["ori"].notna() & roster["county_geoid"].notna()]
+    return resolved.drop_duplicates(subset=["ori"], keep="first").set_index("ori")[
+        "county_geoid"
+    ]
+
+
+def _leaic_county_geoid_by_ori(*, paths: RepoPaths) -> pd.Series:
+    path = (
+        paths.data_dir
+        / "LEAIC-Crosswalk-ICPSR_35158"
+        / "DS0001"
+        / "35158-0001-Data.tsv"
+    )
+    if not path.exists():
+        return pd.Series(dtype="string")
+    leaic = pd.read_csv(path, sep="\t", dtype=str, usecols=["ORI9", "FIPS"])
+    leaic["ORI9"] = leaic["ORI9"].astype("string").str.strip().str.upper()
+    # LEAIC's FIPS column is the combined 5-digit state+county GEOID (FIPS_COUNTY is
+    # the bare 3-digit county code).
+    leaic["FIPS"] = leaic["FIPS"].astype("string").str.strip().str.zfill(5)
+    resolved = leaic[
+        leaic["ORI9"].notna()
+        & leaic["FIPS"].notna()
+        & leaic["FIPS"].str.fullmatch(r"\d{5}").fillna(False)
+    ]
+    return resolved.drop_duplicates(subset=["ORI9"], keep="first").set_index("ORI9")[
+        "FIPS"
+    ]
+
+
+def canonicalize_agency_county_fips(
+    df: pd.DataFrame, *, paths: RepoPaths, roster_year: int = 2024
+) -> pd.DataFrame:
+    """Make `state_fips + county_fips` a live 2020-vintage county GEOID wherever it can be.
+
+    Three deterministic steps, in order, each recorded on the row so the pass is
+    auditable downstream:
+      1. sentinel county codes (999) are cleared -- they are "no county", not a county;
+      2. retired county GEOIDs are remapped to their successor (RETIRED_COUNTY_GEOID_REMAP);
+      3. still-missing county codes are filled from the FBI CDE agency roster, then LEAIC.
+    Existing valid codes are never overridden.
+    """
+    out = df.copy()
+    state = out["state_fips"].astype("string").str.zfill(2)
+    county = out["county_fips"].astype("string").str.zfill(3)
+    source = pd.Series("srs_agency_header", index=out.index, dtype="string")
+    source = source.where(county.notna(), pd.NA)
+
+    sentinel = county.isin(SENTINEL_COUNTY_CODES).fillna(False)
+    county = county.mask(sentinel, pd.NA)
+    source = source.mask(sentinel, pd.NA)
+
+    geoid = state.fillna("") + county.fillna("")
+    retired = county.notna() & geoid.isin(RETIRED_COUNTY_GEOID_REMAP)
+    if retired.any():
+        remapped = geoid[retired].map(RETIRED_COUNTY_GEOID_REMAP).astype("string")
+        state = state.mask(retired, remapped.str.slice(0, 2))
+        county = county.mask(retired, remapped.str.slice(2, 5))
+        source = source.mask(retired, "retired_county_remap")
+
+    ori = out["ori9"].astype("string").str.strip().str.upper()
+    for label, lookup in (
+        ("fbi_cde_agency_roster", _roster_county_geoid_by_ori(paths=paths, year=roster_year)),
+        ("leaic_crosswalk", _leaic_county_geoid_by_ori(paths=paths)),
+    ):
+        missing = county.isna()
+        if not missing.any() or lookup.empty:
+            continue
+        filled = ori.map(lookup).astype("string")
+        # Only fill where the resolved county belongs to the agency's own state.
+        usable = missing & filled.notna() & (filled.str.slice(0, 2) == state)
+        if not usable.any():
+            continue
+        county = county.mask(usable, filled.str.slice(2, 5))
+        source = source.mask(usable, label)
+
+    out["county_fips"] = county
+    out["state_fips"] = state
+    out["county_fips_source"] = source
+    return out
+
+
 def _empty_agency_master_supplement() -> pd.DataFrame:
     return pd.DataFrame(
         columns=[
@@ -488,6 +782,13 @@ def build_agency_master(
         df,
         _load_agency_master_supplement(supplement_path=supplement_path),
     )
+    df = canonicalize_agency_county_fips(df, paths=paths, roster_year=int(year_end))
+    df["is_tribal_agency"] = tribal_agency_flag(
+        df["ori9"],
+        df["agency_name_std"],
+        paths=paths,
+        roster_year=int(year_end),
+    )
     df["name_alias_group"] = df["agency_name_std"]
     df["manual_review_flag"] = df["agency_name_std"].isna() | df["state_fips"].isna()
 
@@ -522,6 +823,8 @@ def build_agency_master(
         "population_latest_nibrs",
         "name_alias_group",
         "manual_review_flag",
+        "county_fips_source",
+        "is_tribal_agency",
     ]
     for col in keep_cols:
         if col not in df.columns:

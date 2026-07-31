@@ -1,0 +1,72 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": { "type": "string" },
+          "ori": { "type": "string" },
+          "year": { "type": "integer" },
+          "offense": { "type": "string" },
+          "review_status": {
+            "type": "string",
+            "enum": ["resolved", "needs_escalation"]
+          },
+          "final_reporting_regime": {
+            "type": ["string", "null"],
+            "enum": [
+              "full_monthly",
+              "true_partial",
+              "lumpy_or_batched",
+              "annual_only_but_usable",
+              "structurally_missing_or_unreliable",
+              null
+            ]
+          },
+          "evidence_type": {
+            "type": ["string", "null"],
+            "enum": [
+              "queue_payload_lumpiness_signal",
+              "queue_payload_nibrs_annual_support",
+              "queue_payload_month_mask_mismatch",
+              "queue_payload_annual_only_support",
+              "official_monthly_publication",
+              "official_open_data_portal",
+              "official_methodology_or_policy",
+              "official_agency_statement",
+              "mixed_payload_and_official_source",
+              null
+            ]
+          },
+          "source_note": { "type": ["string", "null"] },
+          "confidence": { "type": "number" },
+          "reviewer_note": { "type": ["string", "null"] },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "escalation_reason": { "type": ["string", "null"] }
+        },
+        "required": [
+          "case_id",
+          "ori",
+          "year",
+          "offense",
+          "review_status",
+          "final_reporting_regime",
+          "evidence_type",
+          "source_note",
+          "confidence",
+          "reviewer_note",
+          "sources",
+          "escalation_reason"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["results"],
+  "additionalProperties": false
+}

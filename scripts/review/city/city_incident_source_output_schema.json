@@ -1,0 +1,77 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": { "type": "string" },
+          "city_key": { "type": "string" },
+          "jurisdiction_id": { "type": ["string", "null"] },
+          "city_name": { "type": "string" },
+          "state_abbr": { "type": ["string", "null"] },
+          "source_name": { "type": "string" },
+          "source_url": { "type": "string" },
+          "portal_type": { "type": ["string", "null"] },
+          "coverage_start_year": { "type": ["integer", "null"] },
+          "coverage_end_year": { "type": ["integer", "null"] },
+          "years_usable": { "type": ["integer", "null"] },
+          "offense_fields_present": { "type": ["string", "null"] },
+          "date_field": { "type": ["string", "null"] },
+          "location_fields_present": { "type": ["string", "null"] },
+          "latlon_present": { "type": ["boolean", "null"] },
+          "address_present": { "type": ["boolean", "null"] },
+          "block_group_join_ready": { "type": ["boolean", "null"] },
+          "geocode_quality_tier": { "type": ["string", "null"] },
+          "dedupe_key_available": { "type": ["boolean", "null"] },
+          "offense_crosswalk_complexity": { "type": ["string", "null"] },
+          "recommended_disposition": {
+            "type": "string",
+            "enum": [
+              "ready_now",
+              "needs_schema_work",
+              "needs_geocode_work",
+              "insufficient_history",
+              "insufficient_quality",
+              "exclude"
+            ]
+          },
+          "analyst_notes": { "type": "string" },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [
+          "case_id",
+          "city_key",
+          "jurisdiction_id",
+          "city_name",
+          "state_abbr",
+          "source_name",
+          "source_url",
+          "portal_type",
+          "coverage_start_year",
+          "coverage_end_year",
+          "years_usable",
+          "offense_fields_present",
+          "date_field",
+          "location_fields_present",
+          "latlon_present",
+          "address_present",
+          "block_group_join_ready",
+          "geocode_quality_tier",
+          "dedupe_key_available",
+          "offense_crosswalk_complexity",
+          "recommended_disposition",
+          "analyst_notes",
+          "sources"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["results"],
+  "additionalProperties": false
+}

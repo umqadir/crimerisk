@@ -37,12 +37,6 @@ def main() -> int:
         action="store_true",
         dest="force_reporting_regimes_rebuild",
     )
-    parser.add_argument(
-        "--force-municipal-estimates-rebuild",
-        "--force-municipal-estimates",
-        action="store_true",
-        dest="force_municipal_estimates_rebuild",
-    )
     args = parser.parse_args()
 
     paths = RepoPaths.from_repo_root(REPO_ROOT)
@@ -54,7 +48,6 @@ def main() -> int:
         config=ControlBuildConfig(
             year=int(args.year),
             force_reporting_regimes_rebuild=bool(args.force_reporting_regimes_rebuild),
-            force_municipal_estimates_rebuild=bool(args.force_municipal_estimates_rebuild),
         ),
     )
     print(f"wrote {state_out}")

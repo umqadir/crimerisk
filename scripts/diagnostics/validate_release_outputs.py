@@ -9,6 +9,7 @@ from typing import Any
 
 import numpy as np
 import pandas as pd
+from scipy.stats import chi2
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -16,7 +17,7 @@ SRC_ROOT = REPO_ROOT / "src"
 if str(SRC_ROOT) not in sys.path:
     sys.path.insert(0, str(SRC_ROOT))
 
-from crimerisk.allocation import HARM_WEIGHTS
+from crimerisk.allocation import HARM_WEIGHTS, POISSON_INTERVAL_ALPHA
 from crimerisk.paths import RepoPaths
 from crimerisk.published_nibrs import (
     build_published_nibrs_corroboration_mask,
@@ -29,9 +30,13 @@ from crimerisk.source_provenance import (
     SOURCE_PRIORITY,
     STATE_PUBLICATION_SOURCE,
     SUMMARY_SOURCE,
-    build_prefer_nibrs_mask,
-    initialize_preferred_source,
     source_lane_from_source,
+)
+from crimerisk.source_selection import (
+    LANE_STANDING_ORDER,
+    PREFERRED_LANE_COLUMNS,
+    _agency_year_lane_signals,
+    _rank_agency_year_lanes,
 )
 
 STATE_OUTPUT_DIR = REPO_ROOT / "state" / "output"
@@ -99,6 +104,11 @@ AGGREGATE_INDEX_FIELDS = [
     "index_total_equal_offense",
     "index_total_harm",
 ]
+# The rare person offenses whose published per-offense index and rate point fields are carried
+# only at census tract and coarser (docs/STATE.md, "rare-offense publication support"). At block
+# group they are null by policy; the aggregates that consume a per-offense index or a rare-offense
+# count take the rare terms at tract support so they stay published and recomputable at block group.
+RARE_OFFENSE_TRACT_SUPPORT = ("murder", "rape")
 PRIMARY_DENOMINATOR_BY_OFFENSE = {
     "murder": "exposure",
     "rape": "exposure",
@@ -119,8 +129,7 @@ EXPECTED_PROMOTED_RESIDUAL_FEATURE_PATH_FRAGMENTS = (
 EXPECTED_RESIDUAL_FEATURE_POLICY_PATH_FRAGMENT = f"state/modeling/feature_transfer_policy_{YEAR}.parquet"
 EXPECTED_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES = {"between_only", "excluded_protected"}
 EXPECTED_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES_BY_OFFENSE = {
-    offense: (set() if offense == "burglary" else set(EXPECTED_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES))
-    for offense in OFFENSES_7
+    offense: set(EXPECTED_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES) for offense in OFFENSES_7
 }
 MANIFEST_RELATIVE_ROOT_MARKERS = ("state/", "data/")
 # Resident indexes are population-weighted to mean 100; exposure indexes are
@@ -139,6 +148,27 @@ MVT_VEHICLE_EXPOSURE_DENOMINATOR_FLOOR = 50.0
 BURGLARY_PREMISES_DENOMINATOR_FLOOR = 10.0
 SPECIAL_USE_TRACT_PREFIX = "98"
 SPECIAL_USE_EXPOSURE_DENOMINATOR_FLOOR = 10.0
+# Ambient-blind custom footprints (allocation.py). Restated here, like every other floor in this
+# file, so the gate recomputes the rule from published fields rather than trusting the module that
+# wrote them.
+FOOTPRINT_DERIVED_MASS_SHARE_FLOOR = 0.5
+AMBIENT_BLIND_FOOTPRINT_RESIDENT_RATE_RATIO = 3.0
+INSUFFICIENT_AMBIENT_EXPOSURE_REASON = "insufficient_ambient_exposure"
+
+
+def _poisson_count_interval(counts: pd.Series, *, alpha: float = POISSON_INTERVAL_ALPHA):
+    """Exact Poisson (chi-square) interval on a count, restated here like the floors above so
+    the gate recomputes the ambient-blind rule rather than importing the code that wrote it."""
+    count = pd.to_numeric(counts, errors="coerce").fillna(0.0).clip(lower=0.0)
+    values = count.to_numpy(dtype=float)
+    lower = np.zeros(len(values), dtype=float)
+    positive = values > 0.0
+    lower[positive] = 0.5 * chi2.ppf(float(alpha) / 2.0, 2.0 * values[positive])
+    upper = 0.5 * chi2.ppf(1.0 - float(alpha) / 2.0, 2.0 * (values + 1.0))
+    return (
+        pd.Series(lower, index=count.index, dtype=float),
+        pd.Series(upper, index=count.index, dtype=float),
+    )
 BURGLARY_COMMERCIAL_GRADIENT_DIRECT_MIN = 0.8
 BURGLARY_COMMERCIAL_GRADIENT_DIRECT_MAX = 1.3
 BURGLARY_COMMERCIAL_GRADIENT_MODELED_MIN = 0.8
@@ -149,6 +179,10 @@ CT_POPULATION_TOLERANCE = 1000.0
 TOTAL_LANE_TOLERANCE = 1e-6
 TOTAL_LANE_SAMPLE_LIMIT = 10
 TOTAL_LANE_TARGET_COLUMN = "adjusted_count_ags_core"
+# Class A (v20): jurisdiction-target mass supplied by benchmark-constrained imputation
+# for territory no agency reported. It is part of the control target but has no
+# counterpart in the agency/jurisdiction estimate panel by construction.
+BENCHMARK_IMPUTED_COUNT_COLUMN = "benchmark_imputed_count"
 CITY_EXACT_POINT_SHARE_MAX = 0.005
 # Minimum located-incident denominator before the exact-point share rule applies.
 # Below this floor a single or double incident trivially crosses 0.5% (tiny-denominator
@@ -169,6 +203,38 @@ CONSOLIDATED_AGENCY_MIN_FBI_POPULATION = 50000.0
 # high-growth population-staleness cases below the fail line unless they worsen.
 CONSOLIDATED_AGENCY_POPULATION_RATIO_THRESHOLD = 1.75
 CONSOLIDATED_AGENCY_FOOTPRINT_TYPE = "consolidated_agency_footprint"
+
+# --- Stage 2 footprint plausibility (productionized 2026-07-30) ------------------------
+# The composite screen the Stage 2 first-read audit designed and measured, promoted to a
+# fail-closed release invariant. It asks one question of every exclusive municipal crosswalk
+# link: is the piece of ground this agency's mass landed on plausible for the population the
+# agency itself says it serves?
+#
+# Two directions, because the audit proved one screen only sees one of them:
+#   CONCENTRATION -- implied rate > 3x national AND the footprint population disagrees with
+#     the agency's own service population. Measured over all 26,767 links: 34 hits / 85,705
+#     counts, of which 2 are the known-good consolidated footprints (LVMPD, LMPD), 18 tribal
+#     and 14 genuine municipal misresolutions (Germantown WI town-for-village, York County
+#     Regional on a 530-person borough, River Falls resolved into a different county).
+#   DILUTION -- footprint population >= 2x the service population. Invisible to the rate
+#     test (it LOWERS the implied rate): 9 municipal hits, 0 of them caught by the composite,
+#     plus the 25 tribal reverse cases (Seminole Tribal -> Hollywood city, 751 counts into a
+#     153k city). This is the conservation error a rate screen cannot see.
+#
+# The 3x threshold is the audit's: the bare rate>3x condition alone flags 195 links dominated
+# by cities that are genuinely that dangerous with a CONSISTENT service population (Memphis
+# 4.2x, Oakland 4.2x, St Louis 3.0x), so the service-population condition is what makes the
+# screen a review queue rather than noise.
+#
+# A hit clears by being fixed or by carrying a reviewed registry row -- an ORI named in
+# configs/local_resolution_overrides.csv or configs/consolidated_agency_footprints.csv. The
+# registry note is the audit trail; there is no separate exemption list to drift.
+STAGE2_RATE_RATIO_THRESHOLD = 3.0
+# Footprint/service-population ratio band outside which the two disagree. Symmetric, because
+# the same mismatch signal drives both directions.
+STAGE2_SERVICE_POP_LOW_RATIO = 0.5
+STAGE2_SERVICE_POP_HIGH_RATIO = 2.0
+
 COUNTY_PLAUSIBILITY_MIN_POPULATION = 100_000.0
 # Peers = other >100k-population counties in the same state; a state needs at least
 # this many peer counties for its median to be a meaningful reference.
@@ -226,37 +292,16 @@ SPATIAL_HOTSPOT_INDEX_FIELDS = [
 ]
 BG_CENTROIDS_PATH = REPO_ROOT / "data" / "tiger_bg" / "parsed" / "bg_centroids.parquet"
 
+# The control panel carries one per-lane column: that lane's own crosswalk-weighted
+# rollup of what the agencies reported. The per-lane weight/months/relationship columns
+# it used to carry existed only to feed the jurisdiction-level source preference that
+# Stage 3's consumption restructure deleted.
 SOURCE_TO_CONTROL_COLUMNS = {
-    CIUS_SOURCE: {
-        "count": "reported_count_cius",
-        "weight": "observation_weight_cius",
-        "months": "mean_months_reported_cius",
-        "relationship": "relationship_type_cius",
-    },
-    LOCAL_PUBLICATION_SOURCE: {
-        "count": "reported_count_local_publication",
-        "weight": "observation_weight_local_publication",
-        "months": "mean_months_reported_local_publication",
-        "relationship": "relationship_type_local_publication",
-    },
-    STATE_PUBLICATION_SOURCE: {
-        "count": "reported_count_state_publication",
-        "weight": "observation_weight_state_publication",
-        "months": "mean_months_reported_state_publication",
-        "relationship": "relationship_type_state_publication",
-    },
-    SUMMARY_SOURCE: {
-        "count": "reported_count_srs",
-        "weight": "observation_weight_srs",
-        "months": "mean_months_reported_srs",
-        "relationship": "relationship_type_srs",
-    },
-    NIBRS_SOURCE: {
-        "count": "reported_count_nibrs",
-        "weight": "observation_weight_nibrs",
-        "months": "mean_months_reported_nibrs",
-        "relationship": "relationship_type_nibrs",
-    },
+    CIUS_SOURCE: {"count": "reported_count_cius"},
+    LOCAL_PUBLICATION_SOURCE: {"count": "reported_count_local_publication"},
+    STATE_PUBLICATION_SOURCE: {"count": "reported_count_state_publication"},
+    SUMMARY_SOURCE: {"count": "reported_count_srs"},
+    NIBRS_SOURCE: {"count": "reported_count_nibrs"},
 }
 
 
@@ -330,6 +375,7 @@ def _expected_columns(*, geography: str) -> list[str]:
         "resident_secondary_denominator",
         "resident_secondary_denominator_low_reliability",
         "population_zero_with_positive_count",
+        "transient_exposure_daytime_to_resident_ratio",
         "urban_stratum",
     ]
     if geography == "block_group":
@@ -388,6 +434,13 @@ def _expected_columns(*, geography: str) -> list[str]:
                 f"index_{offense}_primary_ci95_width_ratio",
                 f"reliability_tier_{offense}",
                 f"recommended_display_geography_{offense}",
+                # Ambient-blind custom footprints: the compositional mass, its share, and the
+                # rule's own flag. Listed so the loader carries them -- the Stage 2 batch found
+                # this validator's entire total lane silently dead because three columns it
+                # needed had been dropped from the surface and the loader failed quietly.
+                f"footprint_derived_count_{offense}",
+                f"footprint_derived_count_share_{offense}",
+                f"footprint_ambient_exposure_missing_{offense}",
                 f"transient_exposure_likely_{offense}",
                 f"source_mode_{offense}",
                 f"source_mode_dominant_share_{offense}",
@@ -396,6 +449,10 @@ def _expected_columns(*, geography: str) -> list[str]:
                 f"feed_missing_fraction_{offense}",
                 f"feed_alpha_{offense}",
                 f"feed_prior_fraction_{offense}",
+                # Class A (v20): share of the cell's mass whose jurisdiction target came
+                # from benchmark-constrained imputation, so imputed territory reads as
+                # modeled in the published confidence metadata.
+                f"benchmark_imputed_share_{offense}",
                 f"domain_overlap_score_{offense}",
                 f"confidence_tier_{offense}",
                 f"confidence_reasons_{offense}",
@@ -488,6 +545,59 @@ def _national_expected_count_weights(df: pd.DataFrame, offenses: list[str]) -> d
     return {offense: totals[offense] / total for offense in offenses}
 
 
+def _rare_offense_point_fields(offense: str) -> tuple[str, ...]:
+    """The per-offense index and rate point fields (and their confidence intervals) that are null
+    at block-group support for the rare person offenses (mirror of allocation's field list)."""
+    return (
+        f"raw_rate_{offense}",
+        f"rate_{offense}_primary",
+        f"rate_{offense}_primary_ci95_lower",
+        f"rate_{offense}_primary_ci95_upper",
+        f"index_{offense}_primary",
+        f"index_{offense}_primary_ci95_lower",
+        f"index_{offense}_primary_ci95_upper",
+        f"index_{offense}_primary_ci95_width",
+        f"index_{offense}_primary_ci95_width_ratio",
+        f"resident_raw_rate_{offense}",
+        f"rate_{offense}_resident",
+        f"index_{offense}_resident",
+    )
+
+
+def _within_tract_person_exposure_share(df: pd.DataFrame, tract_ids: pd.Series) -> pd.Series:
+    """Independently reproduce allocation's within-tract person-exposure share: each block group's
+    share of its parent tract's person exposure, with resident-population then equal-weight
+    fallbacks so the shares always sum to 1 within a tract (exact count conservation)."""
+    candidates = [
+        pd.to_numeric(df.get("exposure_proxy_2024"), errors="coerce").fillna(0.0).clip(lower=0.0),
+        pd.to_numeric(df.get("resident_secondary_denominator"), errors="coerce").fillna(0.0).clip(lower=0.0),
+        pd.Series(1.0, index=df.index, dtype=float),
+    ]
+    weight = candidates[0].copy()
+    for fallback in candidates[1:]:
+        group_sum = weight.groupby(tract_ids).transform("sum")
+        weight = weight.where(group_sum.gt(0.0), fallback)
+    group_sum = weight.groupby(tract_ids).transform("sum")
+    share = pd.Series(0.0, index=df.index, dtype=float)
+    mask = group_sum.gt(0.0)
+    share.loc[mask] = weight.loc[mask] / group_sum.loc[mask]
+    return share
+
+
+def _redistributed_rare_offense_counts(
+    df: pd.DataFrame, tract_ids: pd.Series, offenses: tuple[str, ...] = RARE_OFFENSE_TRACT_SUPPORT
+) -> dict[str, pd.Series]:
+    """The tract count of each rare offense spread within the tract by person-exposure share — the
+    rare-offense input the block-group harm index consumes (recomputable from published fields)."""
+    share = _within_tract_person_exposure_share(df, tract_ids)
+    redistributed: dict[str, pd.Series] = {}
+    for offense in offenses:
+        expected = pd.to_numeric(df.get(f"expected_count_{offense}"), errors="coerce").fillna(0.0).clip(lower=0.0)
+        tract_total = expected.groupby(tract_ids).transform("sum")
+        redistributed[offense] = tract_total * share
+    return redistributed
+
+
 def _resident_part1_expected(
     df: pd.DataFrame,
     *,
@@ -500,7 +610,15 @@ def _resident_part1_expected(
     )
     publishable = denominator.gt(0.0)
     for offense in offenses:
-        publishable &= pd.to_numeric(df.get(f"index_{offense}_resident"), errors="coerce").notna()
+        # Gate on the published per-offense resident publishability FLAG, not the resident index
+        # value: the value is null at block group for the rare offenses (tract-support policy), but
+        # the aggregate is a count-derived resident volume total that still publishes wherever each
+        # component offense is denominator-eligible (murder/rape enter only at their count share).
+        publishable &= (
+            df.get(f"index_{offense}_resident_publishable", pd.Series(False, index=df.index))
+            .fillna(False)
+            .astype(bool)
+        )
     denominator_sum = float(denominator.loc[publishable].sum())
     count_sum = float(counts.loc[publishable].sum())
     national_rate = RATE_PER_100K * count_sum / denominator_sum if denominator_sum > 0.0 else float("nan")
@@ -517,9 +635,18 @@ def _primary_composite_expected(
     *,
     offenses: list[str],
     weights: dict[str, float],
+    index_overrides: dict[str, pd.Series] | None = None,
 ) -> tuple[pd.Series, pd.Series]:
+    # index_overrides carries the parent-tract per-offense index for the rare offenses at block
+    # group (their block-group index is null by policy); every other offense uses its own surface
+    # index. Empty at tract, where the rare offenses carry their native index.
+    overrides = index_overrides or {}
     values = [
-        pd.to_numeric(df.get(f"index_{offense}_primary"), errors="coerce")
+        (
+            pd.to_numeric(overrides[offense], errors="coerce")
+            if offense in overrides
+            else pd.to_numeric(df.get(f"index_{offense}_primary"), errors="coerce")
+        )
         for offense in offenses
     ]
     publishable = pd.Series(True, index=df.index)
@@ -534,13 +661,22 @@ def _primary_composite_expected(
     return expected.replace([float("inf"), float("-inf")], float("nan")), publishable
 
 
-def _harm_total_expected(df: pd.DataFrame) -> tuple[pd.Series, float, pd.Series]:
+def _harm_total_expected(
+    df: pd.DataFrame,
+    *,
+    count_overrides: dict[str, pd.Series] | None = None,
+) -> tuple[pd.Series, float, pd.Series]:
     """Count-derived index_total_harm identity: harm_count = sum(HARM_WEIGHTS[o] * expected_count_o)
     over the seven Part-I offenses, normalized once over the person-exposure denominator and its
     national rate. Publishable wherever person exposure is publishable (residential-eligible,
     non-special-use, exposure at or above the person-exposure floor) — NOT the all-or-null
     seven-index composite rule, and not nulled by any single offense's own denominator validity.
+
+    count_overrides carries the tract-support rare-offense counts (tract count spread within the
+    tract by person-exposure share) that the block-group harm index consumes for murder/rape;
+    every other offense enters at its own expected count. Empty at tract (native counts).
     """
+    overrides = count_overrides or {}
     denominator = pd.to_numeric(df.get("exposure_proxy_2024"), errors="coerce").fillna(0.0).clip(lower=0.0)
     residential_eligible = pd.to_numeric(df.get("households_total"), errors="coerce").fillna(0.0).ge(
         float(NON_RESIDENTIAL_HOUSEHOLD_FLOOR)
@@ -558,7 +694,10 @@ def _harm_total_expected(df: pd.DataFrame) -> tuple[pd.Series, float, pd.Series]
     )
     counts = sum(
         float(HARM_WEIGHTS[offense])
-        * pd.to_numeric(df.get(f"expected_count_{offense}"), errors="coerce").fillna(0.0).clip(lower=0.0)
+        * pd.to_numeric(
+            overrides[offense] if offense in overrides else df.get(f"expected_count_{offense}"),
+            errors="coerce",
+        ).fillna(0.0).clip(lower=0.0)
         for offense in OFFENSES_7
     )
     published = _count_derived_rate_index(counts=counts, denominator=denominator, publishable=publishable)
@@ -1636,6 +1775,7 @@ def _check_surface(
     path: Path,
     geography: str,
     issues: list[str],
+    rare_support_tract_path: Path | None = None,
 ) -> dict[str, Any]:
     if not path.exists():
         issues.append(f"{label}: missing file {path}")
@@ -1833,7 +1973,38 @@ def _check_surface(
         if unexpected_urban:
             issues.append(f"{label}: urban_stratum has unexpected values {unexpected_urban}")
         urban_stratum_counts = {str(k): int(v) for k, v in urban.value_counts(dropna=False).to_dict().items()}
+
+    # Rare-offense tract-support policy (docs/STATE.md). At block group the murder/rape per-offense
+    # index and rate point fields are null by policy; the aggregates that consume a per-offense
+    # index or a rare-offense count take those terms at tract support. Load the parent-tract
+    # rare-offense primary index and build the within-tract redistributed rare counts so the
+    # composites and the harm index recompute exactly from published fields.
+    surface_tract_ids = (
+        df["tract_id"].astype("string").str.zfill(11)
+        if "tract_id" in df.columns
+        else df[id_col].astype("string").str.zfill(11)
+    )
+    rare_nulled_offenses = set(RARE_OFFENSE_TRACT_SUPPORT) if geography == "block_group" else set()
+    rare_primary_index_overrides: dict[str, pd.Series] = {}
+    rare_harm_count_overrides: dict[str, pd.Series] = {}
+    if rare_nulled_offenses:
+        rare_harm_count_overrides = _redistributed_rare_offense_counts(df, surface_tract_ids)
+        if rare_support_tract_path is not None and rare_support_tract_path.exists():
+            tract_cols = ["tract_id", *[f"index_{o}_primary" for o in RARE_OFFENSE_TRACT_SUPPORT]]
+            tract_rare = pd.read_parquet(rare_support_tract_path, columns=tract_cols)
+            tract_rare["tract_id"] = tract_rare["tract_id"].astype("string").str.zfill(11)
+            for offense in RARE_OFFENSE_TRACT_SUPPORT:
+                tract_map = dict(zip(tract_rare["tract_id"], tract_rare[f"index_{offense}_primary"], strict=False))
+                rare_primary_index_overrides[offense] = surface_tract_ids.map(tract_map).astype("float64")
+        else:
+            issues.append(
+                f"{label}: rare-offense tract-support index unavailable for aggregate recompute "
+                f"(tract surface {rare_support_tract_path})"
+            )
+
     for offense in OFFENSES_7:
+        rare_nulled = offense in rare_nulled_offenses
+        count_derived_max_abs[offense] = {}
         for required_col in [
             f"expected_count_{offense}",
             f"rate_{offense}_primary",
@@ -1843,6 +2014,19 @@ def _check_surface(
         ]:
             if required_col not in df.columns:
                 issues.append(f"{label}: missing required expected-count companion column {required_col}")
+        if rare_nulled:
+            # Positive assertion of the support rule: every published per-offense index/rate point
+            # field (and its confidence interval) for this rare offense is null at block group.
+            populated = [
+                field
+                for field in _rare_offense_point_fields(offense)
+                if field in df.columns and pd.to_numeric(df[field], errors="coerce").notna().any()
+            ]
+            if populated:
+                issues.append(
+                    f"{label}: {offense} per-offense index/rate fields must be null at block-group "
+                    f"support but are populated: {populated}"
+                )
         value = pd.to_numeric(df.get(f"index_{offense}_primary"), errors="coerce")
         rate = pd.to_numeric(df.get(f"rate_{offense}_primary"), errors="coerce")
         count = pd.to_numeric(df.get(f"expected_count_{offense}"), errors="coerce").fillna(0.0).clip(lower=0.0)
@@ -1957,11 +2141,90 @@ def _check_surface(
         else:
             expected_insufficient_exposure = pd.Series(False, index=df.index)
         expected_insufficient_exposure = expected_insufficient_exposure.fillna(False).astype(bool)
+
+        # --- ambient-blind custom footprint, recomputed from published fields ---------------
+        # allocation.py: a MAJORITY of the offense's mass through a custom-footprint overlap
+        # layer, NO ambient lift on the exposure denominator, and an implied resident rate above
+        # 3x the national resident rate over the rows publishable under the pre-existing floors.
+        footprint_count = pd.to_numeric(
+            df.get(f"footprint_derived_count_{offense}"), errors="coerce"
+        ).fillna(0.0).clip(lower=0.0)
+        expected_footprint_share = pd.Series(
+            np.where(count.to_numpy() > 0.0, footprint_count.to_numpy() / np.where(count > 0.0, count, 1.0), 0.0),
+            index=df.index,
+            dtype=float,
+        ).clip(0.0, 1.0)
+        published_footprint_share = pd.to_numeric(
+            df.get(f"footprint_derived_count_share_{offense}"), errors="coerce"
+        )
+        if f"footprint_derived_count_share_{offense}" in df.columns:
+            share_delta = (published_footprint_share - expected_footprint_share).abs().max()
+            if pd.notna(share_delta) and float(share_delta) > 1e-9:
+                issues.append(
+                    f"{label}: footprint_derived_count_share_{offense} does not equal "
+                    f"footprint_derived_count_{offense} / expected_count_{offense}"
+                )
+        resident_denominator_for_footprint = pd.to_numeric(
+            df.get("resident_secondary_denominator"), errors="coerce"
+        ).fillna(0.0).clip(lower=0.0)
+        exposure_for_footprint = pd.to_numeric(df.get("exposure_proxy_2024"), errors="coerce").fillna(0.0)
+        # `resident_secondary_denominator` IS the resident population on both surfaces, and it is
+        # present on every row, so it stands in for the year-suffixed population column here.
+        population_for_footprint = resident_denominator_for_footprint
+        if offense in PERSON_EXPOSURE_FLOOR_OFFENSES:
+            resident_floor_hit = resident_denominator_for_footprint.lt(PERSON_EXPOSURE_DENOMINATOR_FLOOR)
+        elif offense == "motor_vehicle_theft":
+            resident_floor_hit = denominator.lt(MVT_VEHICLE_EXPOSURE_DENOMINATOR_FLOOR)
+        else:
+            resident_floor_hit = pd.Series(False, index=df.index)
+        baseline_resident_publishable = (
+            (~expected_non_residential)
+            & resident_denominator_for_footprint.gt(0.0)
+            & ~expected_special_suppressed
+            & ~resident_floor_hit.fillna(False).astype(bool)
+        )
+        baseline_resident = _count_derived_rate_index(
+            counts=count,
+            denominator=resident_denominator_for_footprint,
+            publishable=baseline_resident_publishable,
+        )
+        baseline_national = float(baseline_resident["national_rate_per_100k"])
+        # Mirrors allocation.py: the rate is measured on the count's exact-Poisson LOWER bound,
+        # so a fractional modelled count cannot carry the claim on its own.
+        count_lower, _count_upper = _poisson_count_interval(count)
+        measurable = baseline_resident_publishable & resident_denominator_for_footprint.gt(0.0)
+        conservative_rate = pd.Series(float("nan"), index=df.index, dtype=float)
+        conservative_rate.loc[measurable] = (
+            RATE_PER_100K * count_lower.loc[measurable] / resident_denominator_for_footprint.loc[measurable]
+        )
+        baseline_ratio = pd.Series(float("nan"), index=df.index, dtype=float)
+        if np.isfinite(baseline_national) and baseline_national > 0:
+            baseline_ratio = conservative_rate / baseline_national
+        expected_footprint_ambient_missing = (
+            expected_footprint_share.gt(FOOTPRINT_DERIVED_MASS_SHARE_FLOOR)
+            & ~exposure_for_footprint.gt(population_for_footprint)
+            & baseline_ratio.ge(AMBIENT_BLIND_FOOTPRINT_RESIDENT_RATE_RATIO)
+        ).fillna(False)
+        flag_col = f"footprint_ambient_exposure_missing_{offense}"
+        if flag_col in df.columns:
+            published_flag = df[flag_col].fillna(False).astype(bool)
+            flag_mismatch = int(
+                (published_flag.to_numpy(dtype=bool) != expected_footprint_ambient_missing.to_numpy(dtype=bool)).sum()
+            )
+            if flag_mismatch:
+                issues.append(
+                    f"{label}: {flag_col} does not match the ambient-blind footprint rule for "
+                    f"{flag_mismatch} rows"
+                )
+        else:
+            issues.append(f"{label}: {flag_col} is missing from the surface")
+
         expected_suppressed = (
             expected_non_residential
             | expected_denominator_invalid
             | expected_special_suppressed
             | expected_insufficient_exposure
+            | expected_footprint_ambient_missing
         )
         publishable = (
             df[f"primary_index_publishable_{offense}"].astype(bool)
@@ -2051,18 +2314,33 @@ def _check_surface(
         expected_special_mode = expected_special_suppressed & ~expected_non_residential & ~expected_denominator_invalid
         if int((mode.eq("special_use") != expected_special_mode).sum()):
             issues.append(f"{label}: estimate_mode_{offense}=special_use does not match the per-offense special-use rule")
+        expected_footprint_mode = (
+            expected_footprint_ambient_missing
+            & ~expected_non_residential
+            & ~expected_denominator_invalid
+            & ~expected_special_suppressed
+            & ~expected_insufficient_exposure
+        )
         expected_insufficient_mode = (
             expected_insufficient_exposure
             & ~expected_non_residential
             & ~expected_denominator_invalid
             & ~expected_special_suppressed
         )
-        if int((mode.eq("insufficient_exposure") != expected_insufficient_mode).sum()):
+        # `insufficient_exposure` is the DISPLAY code for two mechanisms -- the plain denominator
+        # floor and the ambient-blind custom footprint. `denominator_reason` separates them; the
+        # viewer's five codes cover the surface without a new one (see docs/PIPELINE.md).
+        expected_insufficient_display_mode = expected_insufficient_mode | expected_footprint_mode
+        if int((mode.eq("insufficient_exposure") != expected_insufficient_display_mode).sum()):
             issues.append(
                 f"{label}: estimate_mode_{offense}=insufficient_exposure does not match the "
-                "offense denominator floor"
+                "offense denominator floor or the ambient-blind footprint rule"
             )
-        if offense not in PERSON_EXPOSURE_FLOOR_OFFENSES and offense != "motor_vehicle_theft" and mode.eq("insufficient_exposure").any():
+        if (
+            offense not in PERSON_EXPOSURE_FLOOR_OFFENSES
+            and offense != "motor_vehicle_theft"
+            and bool((mode.eq("insufficient_exposure") & ~expected_footprint_mode).any())
+        ):
             issues.append(f"{label}: non-person-exposure offense {offense} has insufficient_exposure estimate mode")
         if offense == "motor_vehicle_theft":
             primary_invalid = (
@@ -2112,21 +2390,46 @@ def _check_surface(
             issues.append(f"{label}: denominator_reason_{offense} does not flag insufficient_exposure rows")
         if df.loc[expected_insufficient_mode, f"expected_count_{offense}"].isna().any():
             issues.append(f"{label}: expected_count_{offense} has nulls in insufficient_exposure-suppressed rows")
+        # Stage 5 F7: `denominator_reason` had NO non_residential value, so 2,306 BG rows per
+        # offense read "publishable" next to a null index. Both arms now carry it, and both are
+        # asserted -- the hole was invisible precisely because nothing checked for it.
+        if denominator_reason.loc[expected_non_residential].ne("non_residential").any():
+            issues.append(f"{label}: denominator_reason_{offense} does not flag non_residential rows")
+        if resident_denominator_reason.loc[expected_non_residential].ne("non_residential").any():
+            issues.append(f"{label}: resident_denominator_reason_{offense} does not flag non_residential rows")
+        if denominator_reason.loc[expected_footprint_mode].ne(INSUFFICIENT_AMBIENT_EXPOSURE_REASON).any():
+            issues.append(
+                f"{label}: denominator_reason_{offense} does not flag ambient-blind footprint rows "
+                f"as {INSUFFICIENT_AMBIENT_EXPOSURE_REASON}"
+            )
+        if resident_denominator_reason.loc[expected_footprint_mode].ne(INSUFFICIENT_AMBIENT_EXPOSURE_REASON).any():
+            issues.append(
+                f"{label}: resident_denominator_reason_{offense} does not flag ambient-blind "
+                f"footprint rows as {INSUFFICIENT_AMBIENT_EXPOSURE_REASON}"
+            )
+        if df.loc[expected_footprint_mode, f"expected_count_{offense}"].isna().any():
+            issues.append(
+                f"{label}: expected_count_{offense} has nulls in ambient-blind-footprint-suppressed rows"
+            )
         real_housing_suppressed = (
             suppressed
             & households.ge(50.0)
             & ~expected_denominator_invalid
             & ~expected_special_suppressed
             & ~expected_insufficient_exposure
+            # An ambient-blind footprint cell DOES carry households (a casino parcel with a few
+            # hundred residents is the whole point of the class), so it is a declared exception
+            # to "no populated cell is suppressed" rather than a violation of it.
+            & ~expected_footprint_ambient_missing
         )
         if bool(real_housing_suppressed.any()):
             issues.append(
                 f"{label}: primary_index_suppressed_{offense} suppresses "
                 f"{int(real_housing_suppressed.sum())} rows with households_total >= 50"
             )
-        if value.loc[publishable].isna().any():
+        if not rare_nulled and value.loc[publishable].isna().any():
             issues.append(f"{label}: index_{offense}_primary has nulls on published rows")
-        if rate.loc[publishable].isna().any():
+        if not rare_nulled and rate.loc[publishable].isna().any():
             issues.append(f"{label}: rate_{offense}_primary has nulls on published rows")
         if value.loc[~publishable].notna().any():
             issues.append(f"{label}: index_{offense}_primary is populated on non-publishable rows")
@@ -2165,44 +2468,51 @@ def _check_surface(
                 f"{label}: primary_index_publishable_{offense} is not exactly eligible and denominator > 0 "
                 f"for {publishable_mismatch_count} rows"
             )
-        primary_expected = _count_derived_rate_index(
-            counts=count,
-            denominator=denominator,
-            publishable=publishable,
-            national_rate_per_100k=pd.to_numeric(df.get(f"primary_national_rate_per_100k_{offense}"), errors="coerce"),
-        )
-        primary_rate_delta, primary_rate_null_mismatch = _max_abs_pair_delta(
-            rate,
-            pd.Series(primary_expected["rate"], index=df.index),
-        )
-        primary_index_delta, primary_index_null_mismatch = _max_abs_pair_delta(
-            value,
-            pd.Series(primary_expected["index"], index=df.index),
-        )
-        raw_rate_delta, raw_rate_null_mismatch = _max_abs_pair_delta(
-            pd.to_numeric(df.get(f"raw_rate_{offense}"), errors="coerce"),
-            pd.Series(primary_expected["rate"], index=df.index),
-        )
-        count_derived_max_abs[offense] = {
-            "rate": primary_rate_delta,
-            "index": primary_index_delta,
-            "raw_rate": raw_rate_delta,
-        }
-        if primary_rate_null_mismatch or primary_rate_delta > COUNT_DERIVED_TOLERANCE:
-            issues.append(
-                f"{label}: rate_{offense}_primary is not count-derived "
-                f"(max abs diff {primary_rate_delta:.3e}, null mismatches {primary_rate_null_mismatch})"
+        # The count-derived rate/index identity is only asserted where the point value is
+        # published: the rare offenses carry null block-group point fields by policy (their
+        # count-derived value lives at tract support), so skip the identity for them here — the
+        # positive null assertion above and the tract-surface identity together cover them.
+        if not rare_nulled:
+            primary_expected = _count_derived_rate_index(
+                counts=count,
+                denominator=denominator,
+                publishable=publishable,
+                national_rate_per_100k=pd.to_numeric(df.get(f"primary_national_rate_per_100k_{offense}"), errors="coerce"),
             )
-        if primary_index_null_mismatch or primary_index_delta > COUNT_DERIVED_TOLERANCE:
-            issues.append(
-                f"{label}: index_{offense}_primary is not count-derived "
-                f"(max abs diff {primary_index_delta:.3e}, null mismatches {primary_index_null_mismatch})"
+            primary_rate_delta, primary_rate_null_mismatch = _max_abs_pair_delta(
+                rate,
+                pd.Series(primary_expected["rate"], index=df.index),
             )
-        if raw_rate_null_mismatch or raw_rate_delta > COUNT_DERIVED_TOLERANCE:
-            issues.append(
-                f"{label}: raw_rate_{offense} is not the count/denominator formula "
-                f"(max abs diff {raw_rate_delta:.3e}, null mismatches {raw_rate_null_mismatch})"
+            primary_index_delta, primary_index_null_mismatch = _max_abs_pair_delta(
+                value,
+                pd.Series(primary_expected["index"], index=df.index),
             )
+            raw_rate_delta, raw_rate_null_mismatch = _max_abs_pair_delta(
+                pd.to_numeric(df.get(f"raw_rate_{offense}"), errors="coerce"),
+                pd.Series(primary_expected["rate"], index=df.index),
+            )
+            count_derived_max_abs[offense].update(
+                {
+                    "rate": primary_rate_delta,
+                    "index": primary_index_delta,
+                    "raw_rate": raw_rate_delta,
+                }
+            )
+            if primary_rate_null_mismatch or primary_rate_delta > COUNT_DERIVED_TOLERANCE:
+                issues.append(
+                    f"{label}: rate_{offense}_primary is not count-derived "
+                    f"(max abs diff {primary_rate_delta:.3e}, null mismatches {primary_rate_null_mismatch})"
+                )
+            if primary_index_null_mismatch or primary_index_delta > COUNT_DERIVED_TOLERANCE:
+                issues.append(
+                    f"{label}: index_{offense}_primary is not count-derived "
+                    f"(max abs diff {primary_index_delta:.3e}, null mismatches {primary_index_null_mismatch})"
+                )
+            if raw_rate_null_mismatch or raw_rate_delta > COUNT_DERIVED_TOLERANCE:
+                issues.append(
+                    f"{label}: raw_rate_{offense} is not the count/denominator formula "
+                    f"(max abs diff {raw_rate_delta:.3e}, null mismatches {raw_rate_null_mismatch})"
+                )
 
         resident_value = pd.to_numeric(df.get(f"index_{offense}_resident"), errors="coerce")
         resident_rate = pd.to_numeric(df.get(f"rate_{offense}_resident"), errors="coerce")
@@ -2214,11 +2524,14 @@ def _check_surface(
         else:
             expected_resident_insufficient_exposure = pd.Series(False, index=df.index)
         expected_resident_insufficient_exposure = expected_resident_insufficient_exposure.fillna(False).astype(bool)
+        # Both arms are suppressed by the ambient-blind footprint rule: the missing denominator is
+        # the visitors, and neither the exposure nor the resident arm has them.
         expected_resident_suppressed = (
             expected_non_residential
             | expected_denominator_invalid
             | expected_special_suppressed
             | expected_resident_insufficient_exposure
+            | expected_footprint_ambient_missing
         )
         expected_resident_insufficient_reason = (
             expected_resident_insufficient_exposure
@@ -2241,9 +2554,9 @@ def _check_surface(
                 f"{label}: {resident_suppressed_col} does not match denominator eligibility"
             )
         resident_publishable = (~expected_resident_suppressed) & resident_denominator.gt(0.0)
-        if resident_value.loc[resident_publishable].isna().any():
+        if not rare_nulled and resident_value.loc[resident_publishable].isna().any():
             issues.append(f"{label}: index_{offense}_resident has nulls on published rows")
-        if resident_rate.loc[resident_publishable].isna().any():
+        if not rare_nulled and resident_rate.loc[resident_publishable].isna().any():
             issues.append(f"{label}: rate_{offense}_resident has nulls on published rows")
         if resident_value.loc[~resident_publishable].notna().any():
             issues.append(f"{label}: index_{offense}_resident is populated on resident non-publishable-denominator rows")
@@ -2271,46 +2584,47 @@ def _check_surface(
                     f"{label}: {offense} published resident rate/index fields below "
                     f"{floor:g} {floor_label}: {leaked_resident_cols}"
                 )
-        resident_expected = _count_derived_rate_index(
-            counts=count,
-            denominator=resident_denominator,
-            publishable=resident_publishable,
-            national_rate_per_100k=pd.to_numeric(df.get(f"resident_national_rate_per_100k_{offense}"), errors="coerce"),
-        )
-        resident_rate_delta, resident_rate_null_mismatch = _max_abs_pair_delta(
-            resident_rate,
-            pd.Series(resident_expected["rate"], index=df.index),
-        )
-        resident_index_delta, resident_index_null_mismatch = _max_abs_pair_delta(
-            resident_value,
-            pd.Series(resident_expected["index"], index=df.index),
-        )
-        resident_raw_delta, resident_raw_null_mismatch = _max_abs_pair_delta(
-            pd.to_numeric(df.get(f"resident_raw_rate_{offense}"), errors="coerce"),
-            pd.Series(resident_expected["rate"], index=df.index),
-        )
-        count_derived_max_abs[offense].update(
-            {
-                "resident_rate": resident_rate_delta,
-                "resident_index": resident_index_delta,
-                "resident_raw_rate": resident_raw_delta,
-            }
-        )
-        if resident_rate_null_mismatch or resident_rate_delta > COUNT_DERIVED_TOLERANCE:
-            issues.append(
-                f"{label}: rate_{offense}_resident is not count-derived "
-                f"(max abs diff {resident_rate_delta:.3e}, null mismatches {resident_rate_null_mismatch})"
+        if not rare_nulled:
+            resident_expected = _count_derived_rate_index(
+                counts=count,
+                denominator=resident_denominator,
+                publishable=resident_publishable,
+                national_rate_per_100k=pd.to_numeric(df.get(f"resident_national_rate_per_100k_{offense}"), errors="coerce"),
             )
-        if resident_index_null_mismatch or resident_index_delta > COUNT_DERIVED_TOLERANCE:
-            issues.append(
-                f"{label}: index_{offense}_resident is not count-derived "
-                f"(max abs diff {resident_index_delta:.3e}, null mismatches {resident_index_null_mismatch})"
+            resident_rate_delta, resident_rate_null_mismatch = _max_abs_pair_delta(
+                resident_rate,
+                pd.Series(resident_expected["rate"], index=df.index),
             )
-        if resident_raw_null_mismatch or resident_raw_delta > COUNT_DERIVED_TOLERANCE:
-            issues.append(
-                f"{label}: resident_raw_rate_{offense} is not the count/resident-denominator formula "
-                f"(max abs diff {resident_raw_delta:.3e}, null mismatches {resident_raw_null_mismatch})"
+            resident_index_delta, resident_index_null_mismatch = _max_abs_pair_delta(
+                resident_value,
+                pd.Series(resident_expected["index"], index=df.index),
             )
+            resident_raw_delta, resident_raw_null_mismatch = _max_abs_pair_delta(
+                pd.to_numeric(df.get(f"resident_raw_rate_{offense}"), errors="coerce"),
+                pd.Series(resident_expected["rate"], index=df.index),
+            )
+            count_derived_max_abs[offense].update(
+                {
+                    "resident_rate": resident_rate_delta,
+                    "resident_index": resident_index_delta,
+                    "resident_raw_rate": resident_raw_delta,
+                }
+            )
+            if resident_rate_null_mismatch or resident_rate_delta > COUNT_DERIVED_TOLERANCE:
+                issues.append(
+                    f"{label}: rate_{offense}_resident is not count-derived "
+                    f"(max abs diff {resident_rate_delta:.3e}, null mismatches {resident_rate_null_mismatch})"
+                )
+            if resident_index_null_mismatch or resident_index_delta > COUNT_DERIVED_TOLERANCE:
+                issues.append(
+                    f"{label}: index_{offense}_resident is not count-derived "
+                    f"(max abs diff {resident_index_delta:.3e}, null mismatches {resident_index_null_mismatch})"
+                )
+            if resident_raw_null_mismatch or resident_raw_delta > COUNT_DERIVED_TOLERANCE:
+                issues.append(
+                    f"{label}: resident_raw_rate_{offense} is not the count/resident-denominator formula "
+                    f"(max abs diff {resident_raw_delta:.3e}, null mismatches {resident_raw_null_mismatch})"
+                )
 
     aggregate_max_abs: dict[str, float] = {}
     aggregate_specs = {
@@ -2338,7 +2652,14 @@ def _check_surface(
     }
     for field, weights in primary_composite_specs.items():
         actual = pd.to_numeric(df.get(field), errors="coerce")
-        expected, publishable = _primary_composite_expected(df, offenses=list(OFFENSES_7), weights=weights)
+        # At block group the murder/rape components enter at tract support (their block-group index
+        # is null); at tract the composite uses native per-offense indices.
+        expected, publishable = _primary_composite_expected(
+            df,
+            offenses=list(OFFENSES_7),
+            weights=weights,
+            index_overrides=rare_primary_index_overrides,
+        )
         max_abs, null_mismatch = _max_abs_pair_delta(actual, expected)
         aggregate_max_abs[field] = max_abs
         if null_mismatch or max_abs > COUNT_DERIVED_TOLERANCE:
@@ -2350,7 +2671,11 @@ def _check_surface(
             issues.append(f"{label}: {field} does not match seven-component all-or-null publishability")
 
     harm_actual = pd.to_numeric(df.get("index_total_harm"), errors="coerce")
-    harm_expected, harm_national_rate, harm_publishable = _harm_total_expected(df)
+    # At block group the harm index takes murder/rape as the within-tract redistributed tract count
+    # (five volume offenses at full block-group resolution); at tract it uses native counts.
+    harm_expected, harm_national_rate, harm_publishable = _harm_total_expected(
+        df, count_overrides=rare_harm_count_overrides
+    )
     harm_max_abs, harm_null_mismatch = _max_abs_pair_delta(harm_actual, harm_expected)
     aggregate_max_abs["index_total_harm"] = harm_max_abs
     if harm_null_mismatch or harm_max_abs > COUNT_DERIVED_TOLERANCE:
@@ -3470,10 +3795,27 @@ def _load_controls_for_total_lane(
         "overlap_subtype_preferred",
         TOTAL_LANE_TARGET_COLUMN,
         "bucket_population",
+        # Null preferred_source is the honest value for a skeleton row with no
+        # target-year agency contribution. This column is load-bearing for that
+        # distinction: omitting it made _check_source_priority_honored fall back to
+        # "every row has an agency" and falsely rejected all 28 no-evidence rows.
+        "contributing_agency_count",
         "dominant_reporting_regime",
-        "dominant_preferred_source_by_regime",
-        "published_nibrs_corroborated_count",
-        "cius_municipal_official_count",
+        # `dominant_preferred_source_by_regime`, `published_nibrs_corroborated_count` and
+        # `cius_municipal_official_count` used to be required here. The Stage 3
+        # consumption-plus-skeleton restructure dropped all three from the control schema and
+        # this list was not updated, so the whole total lane failed to load with
+        # "controls missing required columns" -- i.e. every total-lane check silently stopped
+        # running. None of the three is read anywhere in this file. Removed rather than
+        # re-added: a required column that nothing consumes is a tripwire without a purpose.
+        # (Found 2026-07-30 while landing the Stage 2 fix batch; it belongs to the Stage 3/4
+        # batch's ledger, not to Stage 2.)
+        # Class A benchmark-constrained imputation: the control target of a silent
+        # jurisdiction is the panel estimate plus this, because the silent agency has no
+        # panel row at all by design (v19 drops silent agencies rather than fabricating
+        # an anchor). Carried here so the panel-alignment check can reconcile it
+        # explicitly rather than exempting the rows.
+        BENCHMARK_IMPUTED_COUNT_COLUMN,
         *[
             value
             for source_cols in SOURCE_TO_CONTROL_COLUMNS.values()
@@ -3783,25 +4125,15 @@ def _build_readonly_agency_preferred_panel(*, issues: list[str]) -> tuple[pd.Dat
         how="left",
     )
 
-    has_cius = panel["reported_count_cius"].notna()
-    has_local_publication = panel["reported_count_local_publication"].notna()
-    has_state_publication = panel["reported_count_state_publication"].notna()
-    has_srs = panel["reported_count_srs"].notna()
-    has_nibrs = panel["reported_count_nibrs"].notna()
-    srs_obs_weight = pd.to_numeric(panel["srs_observation_weight"], errors="coerce").fillna(
-        pd.to_numeric(panel["observation_weight_srs"], errors="coerce").fillna(0.0)
-    )
-    nibrs_obs_weight = pd.to_numeric(panel["nibrs_observation_weight"], errors="coerce").fillna(
-        pd.to_numeric(panel["observation_weight_nibrs"], errors="coerce").fillna(0.0)
-    )
-    srs_months = pd.to_numeric(panel["srs_months_reported"], errors="coerce").fillna(
-        pd.to_numeric(panel["mean_months_reported_srs"], errors="coerce").fillna(0.0)
-    )
+    # Lane choice is a property of the agency-year (see source_selection's docstring),
+    # so the expectation is rebuilt the same way: rank the present lanes once per
+    # agency and read every offense from the winner, falling to the next ranked lane
+    # only where the winner does not publish that offense at all.
     nibrs_months = pd.to_numeric(panel["nibrs_months_reported"], errors="coerce").fillna(
         pd.to_numeric(panel["mean_months_reported_nibrs"], errors="coerce").fillna(0.0)
     )
     published_nibrs_supports_nibrs = (
-        has_nibrs
+        panel["reported_count_nibrs"].notna()
         & build_published_nibrs_corroboration_mask(
             nibrs_count=panel["reported_count_nibrs"],
             published_nibrs_count=panel.get("published_nibrs_official_count"),
@@ -3809,31 +4141,34 @@ def _build_readonly_agency_preferred_panel(*, issues: list[str]) -> tuple[pd.Dat
             srs_count=panel["reported_count_srs"],
         )
     )
-    prefer_nibrs = build_prefer_nibrs_mask(
-        has_cius=has_cius,
-        has_local_publication=has_local_publication,
-        has_state_publication=has_state_publication,
-        has_srs=has_srs,
-        has_nibrs=has_nibrs,
-        regime_prefers_nibrs=panel["preferred_source_by_regime"].eq(NIBRS_SOURCE),
-        srs_regime_inferior=panel["reporting_regime"].isin(
-            ["structurally_missing_or_unreliable", "lumpy_or_batched", "annual_only_but_usable"]
-        ),
-        nibrs_supports_better=nibrs_obs_weight.gt(srs_obs_weight)
-        | (nibrs_obs_weight.eq(srs_obs_weight) & nibrs_months.gt(srs_months)),
-        srs_count_num=pd.to_numeric(panel["reported_count_srs"], errors="coerce").fillna(0.0),
-        nibrs_months=nibrs_months,
-        manual_source_override=panel["source_override_applied"].astype("boolean").fillna(False).astype(bool),
-        published_nibrs_supports_nibrs=published_nibrs_supports_nibrs,
+    manual_source_override = (
+        panel["source_override_applied"].astype("boolean").fillna(False).astype(bool)
     )
-    panel["expected_preferred_source"] = initialize_preferred_source(
-        has_cius=has_cius,
-        has_local_publication=has_local_publication,
-        has_state_publication=has_state_publication,
-        has_srs=has_srs,
-        has_nibrs=has_nibrs,
-        prefer_nibrs_mask=prefer_nibrs,
+    override_lane = (
+        panel.loc[manual_source_override, ["ori9", "preferred_source_by_regime"]]
+        .dropna()
+        .drop_duplicates(subset=["ori9"], keep="first")
+        .set_index("ori9")["preferred_source_by_regime"]
+        .astype("string")
     )
+    ranked = _rank_agency_year_lanes(
+        _agency_year_lane_signals(panel, corroborated=published_nibrs_supports_nibrs),
+        override_lane=override_lane,
+    )
+    expected_source = pd.Series(pd.NA, index=panel.index, dtype="string")
+    best_rank = pd.Series(np.inf, index=panel.index, dtype=float)
+    for source in LANE_STANDING_ORDER:
+        count_col, _ = PREFERRED_LANE_COLUMNS[source]
+        rank = pd.to_numeric(
+            panel["ori9"].map(
+                ranked[ranked["source"].eq(source)].set_index("ori9")["lane_rank"]
+            ),
+            errors="coerce",
+        )
+        candidate = panel[count_col].notna() & rank.notna() & rank.lt(best_rank)
+        expected_source = expected_source.where(~candidate, source)
+        best_rank = best_rank.where(~candidate, rank)
+    panel["expected_preferred_source"] = expected_source
     panel["expected_preferred_count"] = pd.Series(np.nan, index=panel.index, dtype=float)
     for source, cols in SOURCE_TO_CONTROL_COLUMNS.items():
         prefix_count_col = cols["count"]
@@ -3923,51 +4258,23 @@ def _aggregate_readonly_agency_preferred_to_jurisdiction(
     }
 
 
-def _control_prefer_nibrs_mask(controls: pd.DataFrame) -> pd.Series:
-    has_cius = controls["reported_count_cius"].notna()
-    has_local = controls["reported_count_local_publication"].notna()
-    has_state = controls["reported_count_state_publication"].notna()
-    has_srs = controls["reported_count_srs"].notna()
-    has_nibrs = controls["reported_count_nibrs"].notna()
-    srs_obs_weight = pd.to_numeric(controls["observation_weight_srs"], errors="coerce").fillna(0.0)
-    nibrs_obs_weight = pd.to_numeric(controls["observation_weight_nibrs"], errors="coerce").fillna(0.0)
-    srs_months = pd.to_numeric(controls["mean_months_reported_srs"], errors="coerce").fillna(0.0)
-    nibrs_months = pd.to_numeric(controls["mean_months_reported_nibrs"], errors="coerce").fillna(0.0)
-    published_nibrs_supports_nibrs = (
-        has_nibrs
-        & build_published_nibrs_corroboration_mask(
-            nibrs_count=controls["reported_count_nibrs"],
-            published_nibrs_count=controls["published_nibrs_corroborated_count"],
-            srs_count=controls["reported_count_srs"],
-            veto_mask=pd.to_numeric(controls["cius_municipal_official_count"], errors="coerce").notna(),
-        )
-    )
-    return build_prefer_nibrs_mask(
-        has_cius=has_cius,
-        has_local_publication=has_local,
-        has_state_publication=has_state,
-        has_srs=has_srs,
-        has_nibrs=has_nibrs,
-        regime_prefers_nibrs=controls["dominant_preferred_source_by_regime"].eq(NIBRS_SOURCE),
-        srs_regime_inferior=controls["dominant_reporting_regime"].isin(
-            ["structurally_missing_or_unreliable", "lumpy_or_batched", "annual_only_but_usable"]
-        ),
-        nibrs_supports_better=nibrs_obs_weight.gt(srs_obs_weight)
-        | (nibrs_obs_weight.eq(srs_obs_weight) & nibrs_months.gt(srs_months)),
-        srs_count_num=pd.to_numeric(controls["reported_count_srs"], errors="coerce").fillna(0.0),
-        nibrs_months=nibrs_months,
-        published_nibrs_supports_nibrs=published_nibrs_supports_nibrs,
-    )
-
-
 def _check_source_priority_honored(
     *,
     controls: pd.DataFrame,
     issues: list[str],
 ) -> dict[str, Any]:
-    source_rank = {source: idx for idx, source in enumerate(SOURCE_PRIORITY)}
     preferred_source = controls["preferred_source"].astype("string")
-    unknown_source_rows = controls[~preferred_source.isin(SOURCE_PRIORITY)].copy()
+    # A control row whose jurisdiction had no contributing agency in the target year has
+    # no reported lane to name, and says so with a null rather than a fabricated label.
+    # Its whole target is benchmark-imputed or zero, and `estimate_source` carries that.
+    has_contributing_agency = (
+        pd.to_numeric(controls.get("contributing_agency_count"), errors="coerce").fillna(1).gt(0)
+        if "contributing_agency_count" in controls.columns
+        else pd.Series(True, index=controls.index)
+    )
+    unknown_source_rows = controls[
+        ~preferred_source.isin(SOURCE_PRIORITY) & has_contributing_agency
+    ].copy()
     if not unknown_source_rows.empty:
         _append_total_lane_issue(
             issues,
@@ -4006,41 +4313,6 @@ def _check_source_priority_honored(
             ],
         )
 
-    preferred_rank = preferred_source.map(source_rank)
-    prefer_nibrs = _control_prefer_nibrs_mask(controls)
-    municipal = controls["jurisdiction_type"].eq("municipal")
-    precedence_bad = pd.Series(False, index=controls.index)
-    for source in SOURCE_PRIORITY:
-        source_cols = SOURCE_TO_CONTROL_COLUMNS[source]
-        higher_source_available = (
-            controls[source_cols["count"]].notna()
-            & controls[source_cols["relationship"]].astype("string").eq("exclusive")
-        )
-        skipped_higher_source = higher_source_available & municipal & (source_rank[source] < preferred_rank)
-        allowed_srs_to_nibrs_exception = (
-            preferred_source.eq(NIBRS_SOURCE)
-            & prefer_nibrs
-            & (source == SUMMARY_SOURCE)
-        )
-        precedence_bad |= skipped_higher_source & ~allowed_srs_to_nibrs_exception
-    municipal_precedence_bad_rows = controls[precedence_bad].copy()
-    if not municipal_precedence_bad_rows.empty:
-        _append_total_lane_issue(
-            issues,
-            "total_lane.source_priority_honored: municipal preferred_source skipped a higher-priority exclusive source",
-            municipal_precedence_bad_rows,
-            columns=[
-                "jurisdiction_id",
-                "offense",
-                "preferred_source",
-                "reported_count_cius",
-                "reported_count_local_publication",
-                "reported_count_state_publication",
-                "reported_count_srs",
-                "reported_count_nibrs",
-            ],
-        )
-
     agency_panel, agency_summary = _build_readonly_agency_preferred_panel(issues=issues)
     aggregate_summary: dict[str, Any] = {"present": False}
     synthetic_count_bad_rows = pd.DataFrame()
@@ -4054,8 +4326,11 @@ def _check_source_priority_honored(
             issues=issues,
         )
         if aggregate is not None:
-            synthetic = controls[controls["jurisdiction_type"].isin(["state_nonmunicipal_remainder", "statewide_overlap_layer"])].copy()
-            merged = synthetic.merge(aggregate, on=["jurisdiction_id", "offense"], how="left")
+            # Every lane, not only the two synthetic ones. Since Stage 3 consumes the
+            # agency estimates instead of re-deriving a jurisdiction-level preference,
+            # `reported_count_preferred` IS the crosswalk-weighted agency rollup on the
+            # municipal lane too, and this recompute is the independent check on it.
+            merged = controls.merge(aggregate, on=["jurisdiction_id", "offense"], how="left")
             has_recomputed = merged["recomputed_reported_count"].notna()
             synthetic_recomputed_rows = int(has_recomputed.sum())
             synthetic_missing_recomputed_rows = int((~has_recomputed).sum())
@@ -4074,7 +4349,7 @@ def _check_source_priority_honored(
             if not synthetic_count_bad_rows.empty:
                 _append_total_lane_issue(
                     issues,
-                    "total_lane.source_priority_honored: synthetic layer reported_count_preferred does not equal agency-level preferred-source rollup",
+                    "total_lane.source_priority_honored: control reported_count_preferred does not equal the agency-level preferred-source rollup",
                     synthetic_count_bad_rows,
                     columns=[
                         "state_fips",
@@ -4089,7 +4364,7 @@ def _check_source_priority_honored(
             if not synthetic_source_bad_rows.empty:
                 _append_total_lane_issue(
                     issues,
-                    "total_lane.source_priority_honored: synthetic layer preferred_source does not match agency-level dominant preferred source",
+                    "total_lane.source_priority_honored: control preferred_source does not match the agency-level dominant preferred source",
                     synthetic_source_bad_rows,
                     columns=[
                         "state_fips",
@@ -4143,9 +4418,22 @@ def _check_source_priority_honored(
             pd.to_numeric(aligned["reported_count_preferred"], errors="coerce").fillna(0.0)
             - pd.to_numeric(aligned["estimate_reported_count_preferred"], errors="coerce").fillna(0.0)
         )
+        # A benchmark-imputed jurisdiction is silent, so v19's zero-fabrication rule
+        # leaves it with no estimate row (or a zero one) and its whole control target is
+        # the imputed sub-target. Reconcile that explicitly -- panel estimate plus
+        # benchmark_imputed_count -- rather than exempting the rows, so a drift in the
+        # non-imputed part of an imputed jurisdiction's target still fails.
+        benchmark_imputed = pd.to_numeric(
+            aligned.get(
+                BENCHMARK_IMPUTED_COUNT_COLUMN,
+                pd.Series(0.0, index=aligned.index, dtype=float),
+            ),
+            errors="coerce",
+        ).fillna(0.0)
         target_delta = (
             pd.to_numeric(aligned[TOTAL_LANE_TARGET_COLUMN], errors="coerce").fillna(0.0)
             - pd.to_numeric(aligned["estimate_target_count"], errors="coerce").fillna(0.0)
+            - benchmark_imputed
         )
         source_bad = (
             aligned["preferred_source"].astype("string").fillna("")
@@ -4192,7 +4480,6 @@ def _check_source_priority_honored(
         len(unknown_source_rows)
         + len(lane_bad)
         + len(null_preferred_rows)
-        + len(municipal_precedence_bad_rows)
         + len(synthetic_count_bad_rows)
         + len(synthetic_source_bad_rows)
         + len(estimate_count_bad_rows)
@@ -4205,29 +4492,15 @@ def _check_source_priority_honored(
         "unknown_preferred_source_rows": int(len(unknown_source_rows)),
         "lane_mismatch_rows": int(len(lane_bad)),
         "null_preferred_source_value_rows": int(len(null_preferred_rows)),
-        "municipal_precedence_violation_rows": int(len(municipal_precedence_bad_rows)),
-        "synthetic_rows_with_agency_recomputed_preference": synthetic_recomputed_rows,
-        "synthetic_rows_missing_agency_recomputed_preference": synthetic_missing_recomputed_rows,
-        "synthetic_agency_rollup_reported_count_bad_rows": int(len(synthetic_count_bad_rows)),
-        "synthetic_agency_rollup_preferred_source_bad_rows": int(len(synthetic_source_bad_rows)),
-        "max_synthetic_agency_rollup_reported_count_delta": max_synthetic_count_delta,
+        "control_rows_with_agency_recomputed_preference": synthetic_recomputed_rows,
+        "control_rows_missing_agency_recomputed_preference": synthetic_missing_recomputed_rows,
+        "agency_rollup_reported_count_bad_rows": int(len(synthetic_count_bad_rows)),
+        "agency_rollup_preferred_source_bad_rows": int(len(synthetic_source_bad_rows)),
+        "max_agency_rollup_reported_count_delta": max_synthetic_count_delta,
         "agency_preferred_panel": agency_summary,
         "agency_to_jurisdiction_preferred_rollup": aggregate_summary,
         "jurisdiction_year_estimate_alignment": estimate_alignment_summary,
         "offending_rows_sample": {
-            "municipal_precedence": _sample_records(
-                municipal_precedence_bad_rows,
-                columns=[
-                    "jurisdiction_id",
-                    "offense",
-                    "preferred_source",
-                    "reported_count_cius",
-                    "reported_count_local_publication",
-                    "reported_count_state_publication",
-                    "reported_count_srs",
-                    "reported_count_nibrs",
-                ],
-            ),
             "synthetic_count": _sample_records(
                 synthetic_count_bad_rows,
                 columns=[
@@ -4859,6 +5132,265 @@ def _check_consolidated_agency_population_detector(
     }
 
 
+def _stage2_reviewed_footprint_oris(*, issues: list[str]) -> tuple[set[str], dict[str, Any]]:
+    """ORIs whose footprint carries a reviewed registry decision.
+
+    `local_resolution_overrides.csv` is the ORI-keyed local/nonlocal resolution registry (a row
+    there means a reviewer decided where this agency's ground is), and
+    `consolidated_agency_footprints.csv` is the city-county consolidation registry the plain
+    screen cannot know about -- it will always flag LVMPD and LMPD as concentrated because
+    their FBI service population is county-wide while their principal jurisdiction is the city.
+    `overlap_footprint_overrides.csv` is included for completeness: an agency with a reviewed
+    overlap footprint is not being placed by an automatic municipal match at all.
+    """
+    summary: dict[str, Any] = {}
+    oris: set[str] = set()
+    for name, column in (
+        ("local_resolution_overrides.csv", "ori"),
+        ("consolidated_agency_footprints.csv", "ori"),
+        ("overlap_footprint_overrides.csv", "ori"),
+    ):
+        path = REPO_ROOT / "configs" / name
+        if not path.exists():
+            summary[name] = {"present": False, "rows": 0}
+            continue
+        try:
+            frame = pd.read_csv(path, dtype=str)
+        except Exception as exc:  # pragma: no cover - config read failure is an issue, not a crash
+            issues.append(f"total_lane.stage2_footprint_plausibility: cannot read configs/{name}: {exc}")
+            summary[name] = {"present": True, "rows": 0, "error": str(exc)}
+            continue
+        values = {
+            str(value).strip().upper()
+            for value in frame.get(column, pd.Series(dtype=str)).dropna()
+        }
+        values.discard("")
+        oris |= values
+        summary[name] = {"present": True, "rows": int(len(frame)), "oris": int(len(values))}
+    return oris, summary
+
+
+def _check_stage2_footprint_plausibility(
+    *,
+    controls: pd.DataFrame,
+    issues: list[str],
+) -> dict[str, Any]:
+    """Fail-closed Stage 2 invariant: agency mass must land on a plausible footprint.
+
+    See the STAGE2_* constants for the design, the measured hit sets and the thresholds.
+    """
+    reviewed_oris, registry_summary = _stage2_reviewed_footprint_oris(issues=issues)
+    crosswalk_path = REPO_ROOT / "state" / "reference" / "agency_to_jurisdiction_crosswalk.parquet"
+    agency_path = REPO_ROOT / "state" / "reference" / "agency_master.parquet"
+    observations_path = REPO_ROOT / "state" / "observations" / "agency_year_observations.parquet"
+    bg_crosswalk_path = (
+        REPO_ROOT / "state" / "geometry" / "block_group_to_jurisdiction_crosswalk.parquet"
+    )
+    missing = [
+        str(path)
+        for path in (crosswalk_path, agency_path, observations_path, bg_crosswalk_path)
+        if not path.exists()
+    ]
+    if missing:
+        issues.append(
+            f"total_lane.stage2_footprint_plausibility: missing required input paths {missing}"
+        )
+        return {"ok": False, "missing_input_paths": missing, "registries": registry_summary}
+
+    crosswalk = pd.read_parquet(
+        crosswalk_path,
+        columns=["ori", "state_fips", "jurisdiction_id", "relationship_type", "resolution_source"],
+    ).rename(columns={"ori": "ori9"})
+    crosswalk["state_fips"] = crosswalk["state_fips"].astype("string").str.zfill(2)
+    links = crosswalk[
+        crosswalk["relationship_type"].astype("string").eq("exclusive")
+        & crosswalk["jurisdiction_id"].astype("string").str.contains(":municipal:", na=False)
+        & ~crosswalk["state_fips"].isin(RELEASE_EXCLUDED_STATE_FIPS)
+    ].copy()
+
+    agency = pd.read_parquet(
+        agency_path, columns=["ori9", "state_abbr", "agency_name_std", "agency_type_norm"]
+    )
+    links = links.merge(agency, on="ori9", how="left")
+
+    observations = pd.read_parquet(
+        observations_path, columns=["ori9", "year", "offense", "count", "population"]
+    )
+    observations = observations[
+        observations["year"].astype("Int64").eq(YEAR)
+        & observations["offense"].astype("string").isin(OFFENSES_7)
+    ].copy()
+    observations["population"] = pd.to_numeric(
+        observations["population"], errors="coerce"
+    ).fillna(0.0).clip(lower=0.0)
+    observations["count"] = pd.to_numeric(observations["count"], errors="coerce").fillna(0.0)
+    service_pop = (
+        observations.groupby("ori9", dropna=False)["population"].max().rename("service_pop").reset_index()
+    )
+    reported = (
+        observations.groupby(["ori9", "offense"], dropna=False)["count"].max().groupby("ori9").sum()
+        .rename("agency_reported_count")
+        .reset_index()
+    )
+    links = links.merge(service_pop, on="ori9", how="left").merge(reported, on="ori9", how="left")
+
+    # Footprint population and the mass actually targeted at that footprint, per jurisdiction.
+    municipal_controls = controls[controls["jurisdiction_type"].eq("municipal")].copy()
+    municipal_controls["adjusted_count_ags_core"] = pd.to_numeric(
+        municipal_controls["adjusted_count_ags_core"], errors="coerce"
+    ).fillna(0.0)
+    jurisdiction = (
+        municipal_controls.groupby("jurisdiction_id", dropna=False)
+        .agg(
+            jurisdiction_name=("jurisdiction_name", "first"),
+            footprint_pop=("bucket_population", "max"),
+            jurisdiction_count=("adjusted_count_ags_core", "sum"),
+        )
+        .reset_index()
+    )
+    links = links.merge(jurisdiction, on="jurisdiction_id", how="left")
+
+    bg_crosswalk = pd.read_parquet(
+        bg_crosswalk_path, columns=["state_fips", "jurisdiction_type", "pop20"]
+    )
+    in_scope_pop = float(
+        pd.to_numeric(
+            bg_crosswalk.loc[
+                ~bg_crosswalk["state_fips"].astype("string").str.zfill(2).isin(RELEASE_EXCLUDED_STATE_FIPS),
+                "pop20",
+            ],
+            errors="coerce",
+        )
+        .fillna(0.0)
+        .sum()
+    )
+    in_scope_counts = float(
+        pd.to_numeric(
+            controls.loc[
+                ~controls["state_fips"].astype("string").str.zfill(2).isin(RELEASE_EXCLUDED_STATE_FIPS),
+                "adjusted_count_ags_core",
+            ],
+            errors="coerce",
+        )
+        .fillna(0.0)
+        .sum()
+    )
+    national_rate = (in_scope_counts / in_scope_pop * 100_000.0) if in_scope_pop > 0 else None
+    if not national_rate or national_rate <= 0:
+        issues.append(
+            "total_lane.stage2_footprint_plausibility: cannot compute a national reference rate"
+        )
+        return {"ok": False, "registries": registry_summary}
+
+    # Attribute the jurisdiction's control mass across its links so a zero-mass link (e.g. the
+    # dormant half of a duplicate-ORI twin pair) is not screened as if it carried the whole
+    # jurisdiction. Where every link on a jurisdiction reports zero -- a fill-only or
+    # imputation-only jurisdiction, which is exactly the tribal fill class the screen must see
+    # -- the mass is split evenly rather than dropped.
+    links["agency_reported_count"] = pd.to_numeric(
+        links["agency_reported_count"], errors="coerce"
+    ).fillna(0.0).clip(lower=0.0)
+    reported_total = links.groupby("jurisdiction_id", dropna=False)["agency_reported_count"].transform("sum")
+    link_count = links.groupby("jurisdiction_id", dropna=False)["ori9"].transform("size")
+    links["link_mass_share"] = np.where(
+        reported_total > 0,
+        links["agency_reported_count"] / reported_total.where(reported_total > 0, 1.0),
+        1.0 / link_count.where(link_count > 0, 1.0),
+    )
+    links["footprint_pop"] = pd.to_numeric(links["footprint_pop"], errors="coerce")
+    links["service_pop"] = pd.to_numeric(links["service_pop"], errors="coerce")
+    links["jurisdiction_count"] = pd.to_numeric(links["jurisdiction_count"], errors="coerce").fillna(0.0)
+    links["link_mass"] = links["jurisdiction_count"] * links["link_mass_share"]
+    links["implied_rate"] = np.where(
+        links["footprint_pop"].fillna(0.0) > 0,
+        links["jurisdiction_count"] / links["footprint_pop"].where(links["footprint_pop"] > 0, 1.0) * 100_000.0,
+        np.nan,
+    )
+    links["rate_ratio"] = links["implied_rate"] / float(national_rate)
+    links["footprint_over_service_pop"] = np.where(
+        links["service_pop"].fillna(0.0) > 0,
+        links["footprint_pop"] / links["service_pop"].where(links["service_pop"] > 0, 1.0),
+        np.nan,
+    )
+    has_service_pop = links["service_pop"].fillna(0.0).gt(0.0)
+    service_pop_bad = (~has_service_pop) | links["footprint_over_service_pop"].lt(
+        float(STAGE2_SERVICE_POP_LOW_RATIO)
+    ) | links["footprint_over_service_pop"].gt(float(STAGE2_SERVICE_POP_HIGH_RATIO))
+    links["reviewed_registry_row"] = links["ori9"].astype("string").str.upper().isin(reviewed_oris)
+
+    concentration = links[
+        links["link_mass"].gt(0.0)
+        & links["rate_ratio"].gt(float(STAGE2_RATE_RATIO_THRESHOLD))
+        & service_pop_bad
+    ].copy()
+    dilution = links[
+        links["link_mass"].gt(0.0)
+        & has_service_pop
+        & links["footprint_over_service_pop"].ge(float(STAGE2_SERVICE_POP_HIGH_RATIO))
+    ].copy()
+
+    report_columns = [
+        "ori9",
+        "state_abbr",
+        "agency_name_std",
+        "agency_type_norm",
+        "jurisdiction_id",
+        "jurisdiction_name",
+        "resolution_source",
+        "footprint_pop",
+        "service_pop",
+        "footprint_over_service_pop",
+        "jurisdiction_count",
+        "agency_reported_count",
+        "link_mass",
+        "implied_rate",
+        "rate_ratio",
+    ]
+    unreviewed: dict[str, pd.DataFrame] = {}
+    for label, frame, sort_col, ascending in (
+        ("concentration", concentration, "rate_ratio", False),
+        ("dilution", dilution, "footprint_over_service_pop", False),
+    ):
+        bad = frame[~frame["reviewed_registry_row"]].sort_values(
+            sort_col, ascending=ascending, kind="mergesort"
+        )
+        unreviewed[label] = bad
+        if not bad.empty:
+            _append_total_lane_issue(
+                issues,
+                "total_lane.stage2_footprint_plausibility: "
+                f"{label} hit on an exclusive municipal crosswalk link with no reviewed registry row "
+                "(configs/local_resolution_overrides.csv or configs/consolidated_agency_footprints.csv)",
+                bad,
+                columns=report_columns,
+            )
+    return {
+        "ok": all(frame.empty for frame in unreviewed.values()),
+        "registries": registry_summary,
+        "thresholds": {
+            "rate_ratio": float(STAGE2_RATE_RATIO_THRESHOLD),
+            "service_pop_low_ratio": float(STAGE2_SERVICE_POP_LOW_RATIO),
+            "service_pop_high_ratio": float(STAGE2_SERVICE_POP_HIGH_RATIO),
+            "national_reference_rate_per_100k": float(national_rate),
+            "in_scope_counts": float(in_scope_counts),
+            "in_scope_population": float(in_scope_pop),
+        },
+        "links_screened": int(len(links)),
+        "concentration_hits": int(len(concentration)),
+        "concentration_hits_unreviewed": int(len(unreviewed["concentration"])),
+        "dilution_hits": int(len(dilution)),
+        "dilution_hits_unreviewed": int(len(unreviewed["dilution"])),
+        "concentration_sample": _sample_records(
+            concentration.sort_values("rate_ratio", ascending=False, kind="mergesort"),
+            columns=[*report_columns, "reviewed_registry_row"],
+        ),
+        "dilution_sample": _sample_records(
+            dilution.sort_values("footprint_over_service_pop", ascending=False, kind="mergesort"),
+            columns=[*report_columns, "reviewed_registry_row"],
+        ),
+    }
+
+
 def _component_control_reconciliation(
     *,
     output_dir: Path,
@@ -5180,6 +5712,7 @@ def _check_total_lane_qa(*, output_dir: Path, issues: list[str]) -> dict[str, An
     )
     city_exact_point_summary = _check_city_feed_exact_point_tripwire(issues=issues)
     county_plausibility_summary = _check_county_level_plausibility(output_dir=output_dir, issues=issues)
+    stage2_footprint_summary = _check_stage2_footprint_plausibility(controls=controls, issues=issues)
     checks = {
         "no_duplicate_control_totals": duplicate_summary,
         "source_priority_honored": source_priority_summary,
@@ -5189,6 +5722,7 @@ def _check_total_lane_qa(*, output_dir: Path, issues: list[str]) -> dict[str, An
         "published_output_total_reconciliation": published_reconciliation_summary,
         "city_feed_exact_point_tripwire": city_exact_point_summary,
         "county_level_plausibility": county_plausibility_summary,
+        "stage2_footprint_plausibility": stage2_footprint_summary,
     }
     return {
         "ok": all(check.get("ok") is True for check in checks.values()),
@@ -5199,35 +5733,104 @@ def _check_total_lane_qa(*, output_dir: Path, issues: list[str]) -> dict[str, An
     }
 
 
+def _check_rare_offense_tract_support(*, output_dir: Path, issues: list[str]) -> dict[str, Any]:
+    """Assert the rare-offense publication-support rule as a single cross-surface statement: the
+    block-group murder/rape per-offense index/rate points are null while their expected counts are
+    retained, and the tract surface carries the murder/rape indices at a broad, published scale
+    (docs/STATE.md decision record). Per-surface count-derived checks live in _check_surface; this
+    is the explicit policy gate."""
+    summary: dict[str, Any] = {"variants": {}}
+    ok = True
+    for variant in ("ags_core", "fbi_calibrated"):
+        bg_path = output_dir / f"crimerisk_block_group_{YEAR}_{variant}.parquet"
+        tr_path = output_dir / f"crimerisk_tract_{YEAR}_{variant}.parquet"
+        if not (bg_path.exists() and tr_path.exists()):
+            issues.append(f"rare_offense_tract_support: missing surface(s) for {variant}")
+            ok = False
+            continue
+        variant_summary: dict[str, Any] = {}
+        point_cols: list[str] = []
+        count_cols: list[str] = []
+        for offense in RARE_OFFENSE_TRACT_SUPPORT:
+            point_cols.extend(_rare_offense_point_fields(offense))
+            count_cols.append(f"expected_count_{offense}")
+        bg = pd.read_parquet(bg_path, columns=["block_group_geoid", *point_cols, *count_cols])
+        tr = pd.read_parquet(tr_path, columns=["tract_id", *[f"index_{o}_primary" for o in RARE_OFFENSE_TRACT_SUPPORT]])
+        for offense in RARE_OFFENSE_TRACT_SUPPORT:
+            populated_points = [
+                field
+                for field in _rare_offense_point_fields(offense)
+                if pd.to_numeric(bg[field], errors="coerce").notna().any()
+            ]
+            if populated_points:
+                issues.append(
+                    f"rare_offense_tract_support ({variant}): block-group {offense} index/rate points "
+                    f"must be null but are populated: {populated_points}"
+                )
+                ok = False
+            bg_count = pd.to_numeric(bg[f"expected_count_{offense}"], errors="coerce")
+            if bg_count.isna().any():
+                issues.append(f"rare_offense_tract_support ({variant}): block-group expected_count_{offense} has nulls")
+                ok = False
+            tract_index_populated = int(pd.to_numeric(tr[f"index_{offense}_primary"], errors="coerce").notna().sum())
+            if tract_index_populated < 1000:
+                issues.append(
+                    f"rare_offense_tract_support ({variant}): tract index_{offense}_primary is populated on only "
+                    f"{tract_index_populated} rows — the rare offense is not carried at tract support"
+                )
+                ok = False
+            variant_summary[offense] = {
+                "block_group_expected_count_sum": float(bg_count.fillna(0.0).sum()),
+                "tract_index_populated_rows": tract_index_populated,
+            }
+        summary["variants"][variant] = variant_summary
+    summary["ok"] = ok
+    return summary
+
+
 def build_summary(*, state_output_dir: Path = STATE_OUTPUT_DIR) -> tuple[dict[str, Any], list[str]]:
     issues: list[str] = []
     static_overwrite_summary = _check_no_exposure_tempered_calls(issues=issues)
     confidence_pure_enrichment_summary = _check_confidence_pure_enrichment(issues=issues)
+    tract_ags_core_path = state_output_dir / f"crimerisk_tract_{YEAR}_ags_core.parquet"
+    tract_fbi_calibrated_path = state_output_dir / f"crimerisk_tract_{YEAR}_fbi_calibrated.parquet"
+    # Each block-group surface names the tract surface that carries its rare-offense (murder/rape)
+    # index at tract support, used to recompute the block-group aggregates that consume it.
     surfaces = [
         (
             "block_group_ags_core",
             state_output_dir / f"crimerisk_block_group_{YEAR}_ags_core.parquet",
             "block_group",
+            tract_ags_core_path,
         ),
         (
             "tract_ags_core",
-            state_output_dir / f"crimerisk_tract_{YEAR}_ags_core.parquet",
+            tract_ags_core_path,
             "tract",
+            None,
         ),
         (
             "block_group_fbi_calibrated",
             state_output_dir / f"crimerisk_block_group_{YEAR}_fbi_calibrated.parquet",
             "block_group",
+            tract_fbi_calibrated_path,
         ),
         (
             "tract_fbi_calibrated",
-            state_output_dir / f"crimerisk_tract_{YEAR}_fbi_calibrated.parquet",
+            tract_fbi_calibrated_path,
             "tract",
+            None,
         ),
     ]
     surface_summaries = [
-        _check_surface(label=label, path=path, geography=geography, issues=issues)
-        for label, path, geography in surfaces
+        _check_surface(
+            label=label,
+            path=path,
+            geography=geography,
+            issues=issues,
+            rare_support_tract_path=rare_support_tract_path,
+        )
+        for label, path, geography, rare_support_tract_path in surfaces
     ]
     burglary_tau_calibration_summary = _load_burglary_tau_calibration(issues=issues)
     build_manifest_summary = _check_build_manifest(
@@ -5250,6 +5853,10 @@ def build_summary(*, state_output_dir: Path = STATE_OUTPUT_DIR) -> tuple[dict[st
         issues=issues,
     )
     spatial_artifact_gates_summary = _check_spatial_artifact_gates(
+        output_dir=state_output_dir,
+        issues=issues,
+    )
+    rare_offense_tract_support_summary = _check_rare_offense_tract_support(
         output_dir=state_output_dir,
         issues=issues,
     )
@@ -5361,6 +5968,7 @@ def build_summary(*, state_output_dir: Path = STATE_OUTPUT_DIR) -> tuple[dict[st
         "sparse_residual_transfer_policy": sparse_transfer_policy_summary,
         "total_lane_qa": total_lane_qa_summary,
         "spatial_artifact_gates": spatial_artifact_gates_summary,
+        "rare_offense_tract_support": rare_offense_tract_support_summary,
         "validation_summary_present": qa_summary is not None,
         "issues": issues,
     }, issues

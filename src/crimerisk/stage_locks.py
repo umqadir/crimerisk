@@ -19,7 +19,6 @@ STAGE_BLOCKERS: dict[str, tuple[str, ...]] = {
     "reference_layers": (
         "observations",
         "reporting_regimes",
-        "municipal_estimates",
         "controls",
         "geometry",
         "city_incident_shares",
@@ -28,26 +27,17 @@ STAGE_BLOCKERS: dict[str, tuple[str, ...]] = {
     "observations": (
         "reference_layers",
         "reporting_regimes",
-        "municipal_estimates",
         "controls",
     ),
     "reporting_regimes": (
         "reference_layers",
         "observations",
-        "municipal_estimates",
-        "controls",
-    ),
-    "municipal_estimates": (
-        "reference_layers",
-        "observations",
-        "reporting_regimes",
         "controls",
     ),
     "controls": (
         "reference_layers",
         "observations",
         "reporting_regimes",
-        "municipal_estimates",
         "outputs",
     ),
     "geometry": (

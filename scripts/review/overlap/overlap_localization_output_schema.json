@@ -1,0 +1,65 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": { "type": "string" },
+          "ori": { "type": "string" },
+          "final_overlap_treatment": {
+            "type": "string",
+            "enum": [
+              "absorb_into_primary_jurisdiction",
+              "localize_to_place",
+              "localize_to_county",
+              "localize_to_custom_footprint",
+              "keep_statewide_overlap",
+              "exclude_or_hold"
+            ]
+          },
+          "overlap_subtype_final": { "type": ["string", "null"] },
+          "footprint_type": { "type": ["string", "null"] },
+          "target_state_fips": { "type": ["string", "null"] },
+          "target_county_fips": { "type": ["string", "null"] },
+          "target_place_fips": { "type": ["string", "null"] },
+          "target_jurisdiction_id": { "type": ["string", "null"] },
+          "geometry_source_type": { "type": ["string", "null"] },
+          "geometry_source_ref": { "type": ["string", "null"] },
+          "confidence": { "type": "number" },
+          "requires_escalation": { "type": "boolean" },
+          "escalation_reason": { "type": ["string", "null"] },
+          "source_note": { "type": "string" },
+          "reviewer_note": { "type": "string" },
+          "sources": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        },
+        "required": [
+          "case_id",
+          "ori",
+          "final_overlap_treatment",
+          "overlap_subtype_final",
+          "footprint_type",
+          "target_state_fips",
+          "target_county_fips",
+          "target_place_fips",
+          "target_jurisdiction_id",
+          "geometry_source_type",
+          "geometry_source_ref",
+          "confidence",
+          "requires_escalation",
+          "escalation_reason",
+          "source_note",
+          "reviewer_note",
+          "sources"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": ["results"],
+  "additionalProperties": false
+}

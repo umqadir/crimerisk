@@ -135,7 +135,9 @@ def _frontend_hash_check(
     *,
     snapshot_path: Path,
     candidate_bg_path: Path,
+    candidate_tract_path: Path,
     promoted_bg_path: Path | None = None,
+    promoted_tract_path: Path | None = None,
 ) -> dict[str, Any]:
     snapshot = _load_json(snapshot_path)
     source_value = snapshot.get("source_parquet")
@@ -146,6 +148,16 @@ def _frontend_hash_check(
         raise SystemExit(f"frontend snapshot source parquet does not exist: {_repo_relative(source_path)}")
     if not candidate_bg_path.exists():
         raise SystemExit(f"candidate BG parquet does not exist: {_repo_relative(candidate_bg_path)}")
+    tract_source_value = snapshot.get("source_tract_parquet")
+    if not tract_source_value:
+        raise SystemExit(f"{_repo_relative(snapshot_path)} is missing source_tract_parquet")
+    tract_source_path = _resolve_repo_path(tract_source_value)
+    if not tract_source_path.exists():
+        raise SystemExit(
+            f"frontend snapshot tract source parquet does not exist: {_repo_relative(tract_source_path)}"
+        )
+    if not candidate_tract_path.exists():
+        raise SystemExit(f"candidate tract parquet does not exist: {_repo_relative(candidate_tract_path)}")
     source_sha = _sha256_file(source_path)
     candidate_sha = _sha256_file(candidate_bg_path)
     if source_sha != candidate_sha:
@@ -154,6 +166,14 @@ def _frontend_hash_check(
             f"{_repo_relative(source_path)} sha256={source_sha}, "
             f"{_repo_relative(candidate_bg_path)} sha256={candidate_sha}"
         )
+    tract_source_sha = _sha256_file(tract_source_path)
+    candidate_tract_sha = _sha256_file(candidate_tract_path)
+    if tract_source_sha != candidate_tract_sha:
+        raise SystemExit(
+            "frontend snapshot tract source parquet does not match candidate tract AGS-core parquet: "
+            f"{_repo_relative(tract_source_path)} sha256={tract_source_sha}, "
+            f"{_repo_relative(candidate_tract_path)} sha256={candidate_tract_sha}"
+        )
     result: dict[str, Any] = {
         "snapshot_path": _repo_relative(snapshot_path),
         "snapshot_source_parquet": _repo_relative(source_path),
@@ -161,6 +181,11 @@ def _frontend_hash_check(
         "candidate_block_group_ags_core_path": _repo_relative(candidate_bg_path),
         "candidate_block_group_ags_core_sha256": candidate_sha,
         "matches_candidate_block_group_ags_core": True,
+        "snapshot_source_tract_parquet": _repo_relative(tract_source_path),
+        "snapshot_source_tract_parquet_sha256": tract_source_sha,
+        "candidate_tract_ags_core_path": _repo_relative(candidate_tract_path),
+        "candidate_tract_ags_core_sha256": candidate_tract_sha,
+        "matches_candidate_tract_ags_core": True,
     }
     if promoted_bg_path is not None:
         promoted_sha = _sha256_file(promoted_bg_path)
@@ -175,6 +200,20 @@ def _frontend_hash_check(
             raise SystemExit(
                 "frontend snapshot source parquet does not match promoted BG AGS-core parquet: "
                 f"{source_sha} != {promoted_sha}"
+            )
+    if promoted_tract_path is not None:
+        promoted_tract_sha = _sha256_file(promoted_tract_path)
+        result.update(
+            {
+                "promoted_tract_ags_core_path": _repo_relative(promoted_tract_path),
+                "promoted_tract_ags_core_sha256": promoted_tract_sha,
+                "matches_promoted_tract_ags_core": tract_source_sha == promoted_tract_sha,
+            }
+        )
+        if tract_source_sha != promoted_tract_sha:
+            raise SystemExit(
+                "frontend snapshot tract source parquet does not match promoted tract AGS-core parquet: "
+                f"{tract_source_sha} != {promoted_tract_sha}"
             )
     return result
 
@@ -227,9 +266,11 @@ def promote_candidate(*, candidate_dir: Path, output_dir: Path, frontend_snapsho
         raise SystemExit(f"candidate is missing required promotion artifacts: {missing}")
 
     candidate_bg_path = candidate_dir / f"crimerisk_block_group_{YEAR}_ags_core.parquet"
+    candidate_tract_path = candidate_dir / f"crimerisk_tract_{YEAR}_ags_core.parquet"
     frontend_check = _frontend_hash_check(
         snapshot_path=frontend_snapshot,
         candidate_bg_path=candidate_bg_path,
+        candidate_tract_path=candidate_tract_path,
     )
 
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -245,10 +286,13 @@ def promote_candidate(*, candidate_dir: Path, output_dir: Path, frontend_snapsho
         for name in required_artifacts
     ]
     promoted_bg_path = output_dir / f"crimerisk_block_group_{YEAR}_ags_core.parquet"
+    promoted_tract_path = output_dir / f"crimerisk_tract_{YEAR}_ags_core.parquet"
     frontend_check = _frontend_hash_check(
         snapshot_path=frontend_snapshot,
         candidate_bg_path=candidate_bg_path,
+        candidate_tract_path=candidate_tract_path,
         promoted_bg_path=promoted_bg_path,
+        promoted_tract_path=promoted_tract_path,
     )
 
     promoted_manifest = dict(manifest)

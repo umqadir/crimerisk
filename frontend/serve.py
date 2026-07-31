@@ -5,9 +5,13 @@ Serves frontend/public/ with HTTP Range support so MapLibre's pmtiles protocol
 can range-request tiles directly out of the single .pmtiles archive. pmtiles.js
 REQUIRES 206 Partial Content responses; the stdlib SimpleHTTPRequestHandler does
 not implement Range, so we add a minimal single-range handler here. No build
-step, no node — just `uv run python frontend/serve.py [port]`.
+step, no node — just `uv run python frontend/serve.py [port] [dir]`.
 
-Run:  uv run python frontend/serve.py 8777
+The optional second argument is the directory to serve; it defaults to the public
+dir next to this script, but a frozen snapshot staged elsewhere can be served for
+review by pointing it at that directory.
+
+Run:  uv run python frontend/serve.py 8777 [dir]
 """
 
 import os
@@ -18,8 +22,12 @@ from http import HTTPStatus
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
-PUBLIC = Path(__file__).resolve().parent / "public"
 PORT = int(sys.argv[1]) if len(sys.argv) > 1 else 8777
+PUBLIC = (
+    Path(sys.argv[2]).resolve()
+    if len(sys.argv) > 2
+    else Path(__file__).resolve().parent / "public"
+)
 
 _RANGE_RE = re.compile(r"bytes=(\d*)-(\d*)")
 

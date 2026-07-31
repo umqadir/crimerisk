@@ -523,7 +523,9 @@ def build_inventory() -> pd.DataFrame:
             role_sources.append(source or str(PACKET_STATUS_SUMMARY.relative_to(REPO_ROOT)))
             evidences.append("packet exists, but city/offense is absent from live, residual-training, and holdout sets")
         elif not texture_policy_allows(
-            resolve_texture_key(_text(row.get("city_name"))),
+            # Read-only sweep over every packet city, including names with no canonical key:
+            # a permissive resolve is correct here because an unmapped name has no policy row.
+            resolve_texture_key(_text(row.get("city_name")), strict=False),
             _text(row.get("offense")),
             policy=texture_policy_table,
         ):

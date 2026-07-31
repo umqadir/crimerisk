@@ -11,11 +11,18 @@ import numpy as np
 import pandas as pd
 from scipy.stats import chi2
 
+from crimerisk.benchmark_imputation import (
+    county_remainder_imputed_targets,
+    load_benchmark_imputation_units,
+)
 from crimerisk.confidence import build_confidence_artifacts, enrich_confidence_surfaces
 from crimerisk.crime import OFFENSES_7
 from crimerisk.city_residuals import CityResidualConfig, apply_city_residual_model, attach_city_residual_features, fit_city_residual_model_from_truth
 from crimerisk.city_shares import CityIncidentShareBuildConfig, write_v2_city_incident_shares
-from crimerisk.crosswalk_shares import normalize_block_group_allocation_shares
+from crimerisk.crosswalk_shares import (
+    assert_allocation_shares_conserve,
+    normalize_block_group_allocation_shares,
+)
 from crimerisk.denominators import (
     BURGLARY_COMMERCIAL_WEIGHT_FALLBACK,
     DENOMINATOR_SOURCE_COLUMNS,
@@ -27,6 +34,7 @@ from crimerisk.denominators import (
 )
 from crimerisk.model_surface import ModelSurfaceConfig, bg_feature_dependency_paths, build_bg_feature_frame, build_model_surface
 from crimerisk.paths import RepoPaths
+from crimerisk.reference import COUNTY_ANCHOR_ELIGIBLE_COUNTY_FIPS_SOURCES
 from crimerisk.controls import ControlBuildConfig, controls_artifacts_are_current, write_v2_controls
 from crimerisk.source_provenance import (
     CIUS_ORIGIN,
@@ -82,6 +90,55 @@ SPECIAL_USE_EXPOSURE_DENOMINATOR_FLOOR = 10.0
 SQ_METERS_PER_SQ_MILE = 2_589_988.11
 TRANSIENT_EXPOSURE_DAYTIME_TO_RESIDENT_RATIO = 5.0
 TRANSIENT_EXPOSURE_INDEX_THRESHOLD = 1000.0
+
+# --- ambient-blind custom footprints (Stage 2 fork ruling 2, wired in the Stage 4/5 batch) ---
+#
+# A casino, trust-parcel or campus footprint is placed CORRECTLY and its counts are real, but
+# its published denominator is its resident population, and the people who generate the counts
+# are visitors who appear in neither LODES nor LandScan. Stillaguamish WA carries 31 counts
+# against 16 residents; Poarch Creek AL 342 against 281; Seminole FL 751 against 2,352. There
+# is no per-person rate to publish there, for the same reason there is none on an airfield, so
+# these cells join the existing insufficient-exposure eligibility family: the index is
+# suppressed, the count and the crime density still publish, and `denominator_reason` names the
+# mechanism rather than borrowing the plain floor's.
+#
+# Three conditions, all measured, none of them a label:
+#   1. a MAJORITY of the block group's modelled mass for that offense arrives through a
+#      custom-footprint overlap layer (`footprint_derived_count_share_{offense}`);
+#   2. the exposure denominator carries NO ambient lift -- neither the LODES jobs proxy nor
+#      LandScan daytime population raised it above resident population, so the denominator is
+#      residents and nothing else;
+#   3. the implied RESIDENT rate is more than 3x the national resident rate for that offense,
+#      i.e. the residents alone cannot account for the counts -- measured on the LOWER bound of
+#      the count's exact-Poisson interval, not on the point count.
+#
+# Condition 3 is measured against the national rate over the rows publishable under the
+# pre-existing floors, so the rule is one pass and not circular in its own suppression.
+#
+# The Poisson lower bound in condition 3 is what stops the rule firing on rare-offense
+# allocation noise. On the point count it fired on 66 murder and 38 rape cells whose MEDIAN
+# flagged count was 0.27 and 2.30: a quarter of one modelled murder over 1,137 residents clears
+# 3x the national murder rate arithmetically while saying nothing about ambient exposure, and 17
+# tracts would have lost a published murder index for it. The claim the rule makes is "the
+# residents cannot account for the counts", and that claim is only evidence when the counts can
+# be told apart from a much smaller number. Using the interval's lower bound is the surface's own
+# existing device for that (POISSON_INTERVAL_ALPHA, the same interval published on every row) and
+# adds no new threshold.
+FOOTPRINT_DERIVED_MASS_SHARE_FLOOR = 0.5
+AMBIENT_BLIND_FOOTPRINT_RESIDENT_RATE_RATIO = 3.0
+INSUFFICIENT_AMBIENT_EXPOSURE_REASON = "insufficient_ambient_exposure"
+
+
+def _footprint_derived_count_col(offense: str) -> str:
+    return f"footprint_derived_count_{offense}"
+
+
+def _footprint_derived_share_col(offense: str) -> str:
+    return f"footprint_derived_count_share_{offense}"
+
+
+def _footprint_ambient_exposure_missing_col(offense: str) -> str:
+    return f"footprint_ambient_exposure_missing_{offense}"
 # Gate-06 trial redistribution degraded held-out allocation TVD, so the release
 # path keeps validity-only suppression and emits the zero-target audit for review.
 APPLY_ZERO_TARGET_REDISTRIBUTION = False
@@ -105,6 +162,17 @@ AGGREGATE_INDEX_FIELDS = (
     "index_total_equal_offense",
     "index_total_harm",
 )
+# RARE_OFFENSE_TRACT_SUPPORT — the person offenses whose published per-offense index and rate
+# point estimates are carried only at census tract and coarser. At block-group support a single
+# year of murder/rape is Poisson noise on a model prior, so the point value is not a defensible
+# quantity there (see the decision record in docs/STATE.md). Block groups keep the expected
+# counts (for tract/aggregate reconciliation and reproducibility) and all reliability/diagnostic
+# metadata; the block-group index and rate fields for these offenses are null by policy.
+# Aggregates stay at block-group support but take their murder/rape terms at tract support: the
+# harm-weighted index draws murder/rape as the tract count spread within the tract by
+# person-exposure share, and the equal-offense index draws them from the parent tract's
+# per-offense index (both the shrunken estimator the description and risk readings endorse).
+RARE_OFFENSE_TRACT_SUPPORT = ("murder", "rape")
 # alpha = EB prior strength (shrinkage toward the nested parent rate). Raised to 20 for the offenses
 # whose diagnostic EB tails were historically most prior-sensitive. These values are retained only
 # for diagnostic_eb_* fields; published rate/index fields are count-derived.
@@ -123,11 +191,7 @@ DEFAULT_MODEL_SURFACE_EXCLUDE_FEATURE_POLICY_CLASSES = ("between_only", "exclude
 DEFAULT_RESIDUAL_FEATURE_POLICY_PATH = DEFAULT_MODEL_SURFACE_FEATURE_POLICY_PATH
 DEFAULT_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES = DEFAULT_MODEL_SURFACE_EXCLUDE_FEATURE_POLICY_CLASSES
 DEFAULT_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES_BY_OFFENSE = tuple(
-    (
-        offense,
-        () if offense == "burglary" else DEFAULT_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES,
-    )
-    for offense in OFFENSES_7
+    (offense, DEFAULT_RESIDUAL_EXCLUDE_FEATURE_POLICY_CLASSES) for offense in OFFENSES_7
 )
 CITY_INCIDENT_SHARE_SUM_TOLERANCE = 1e-6
 CITY_INCIDENT_PARTIAL_YEAR_MIN_RATIO = 0.25
@@ -144,6 +208,21 @@ STATE_OVERLAP_TYPE = "statewide_overlap_layer"
 COUNTY_REMAINDER_TYPE = "localized_remainder_county_layer"
 RESIDUAL_REMAINDER_TYPE = "localized_remainder_residual_layer"
 COUNTY_OVERLAP_TYPE = "localized_overlap_county_layer"
+# A county-anchored STATE POLICE group spreads over the non-municipal exposure of the county
+# only. `county_overlap` spreads over every block group in the county by activity prior,
+# incorporated ground included, which is wrong for a state police post: measured 2026-07-29,
+# 25,832 of 47,131 county-anchored state-police counts (54.8%) landed on incorporated block
+# groups a municipal PD owns (Stage 2 screen S2-4; KY Post 13 Hazard put ~55% of its mass on
+# Hazard-city block groups KSP does not patrol).
+#
+# The basis is the state non-municipal remainder's block-group population share, which is
+# exactly "ground no agency-bearing municipality covers" -- not "unincorporated", which would
+# be wrong in New England, where towns with no police department are VSP's primary territory
+# and DO appear in the remainder. Where a county has NO non-municipal exposure at all
+# (Virginia independent cities, every Rhode Island county, Baltimore city) the restriction
+# would strand the mass, so those fall back to the plain county spread, labelled.
+COUNTY_NONMUNICIPAL_OVERLAP_KIND = "county_nonmunicipal_overlap"
+COUNTY_NONMUNICIPAL_OVERLAP_TYPE = "localized_overlap_county_nonmunicipal_layer"
 CONSOLIDATED_AGENCY_FOOTPRINT_TYPE = "consolidated_agency_footprint"
 COUNTY_ANCHOR_MIN_OBSERVED_OFFENSE_COUNT = 3.0
 COUNTY_ANCHOR_MIN_EVIDENCE_OFFENSES = frozenset(("murder", "rape"))
@@ -163,7 +242,6 @@ class AllocationBuildConfig:
     year: int = 2024
     force_controls_rebuild: bool = False
     force_reporting_regimes_rebuild: bool = False
-    force_municipal_estimates_rebuild: bool = False
     force_geometry_rebuild: bool = False
     force_bg_prior_rebuild: bool = False
     force_city_incident_share_rebuild: bool = False
@@ -530,7 +608,6 @@ def _allocation_build_manifest(
             },
             "force_controls_rebuild": bool(config.force_controls_rebuild),
             "force_reporting_regimes_rebuild": bool(config.force_reporting_regimes_rebuild),
-            "force_municipal_estimates_rebuild": bool(config.force_municipal_estimates_rebuild),
             "force_geometry_rebuild": bool(config.force_geometry_rebuild),
             "force_bg_prior_rebuild": bool(config.force_bg_prior_rebuild),
             "force_city_incident_share_rebuild": bool(config.force_city_incident_share_rebuild),
@@ -705,6 +782,14 @@ def _load_bg_covariates(
 def _load_bg_crosswalk(paths: RepoPaths) -> pd.DataFrame:
     path = paths.state_dir / "geometry" / "block_group_to_jurisdiction_crosswalk.parquet"
     bg = normalize_block_group_allocation_shares(pd.read_parquet(path))
+    # Re-normalised here rather than trusted from the artifact, so assert the invariant the
+    # Stage-4 recipient floor made load-bearing before any lane multiplies by it.
+    assert_allocation_shares_conserve(bg)
+    # `allocation_basis` / `allocation_recipient_status` are deliberately NOT carried past
+    # this point. They are per-crosswalk-row facts, and the consolidated-footprint lane
+    # unions rows from two jurisdictions -- carrying either column through would force a
+    # dominant label onto a mixture, which is the thing Stage 3 ruled out. The screens read
+    # them from the crosswalk artifact instead.
     return bg[
         ["state_fips", "block_group_geoid", "jurisdiction_id", "jurisdiction_type", "allocation_share"]
     ].copy()
@@ -788,8 +873,8 @@ def _build_agency_allocation_target_estimates(
 ) -> pd.DataFrame:
     """Thin wrapper: per-agency target-year estimates are computed once in
     trend_fills.py (build_agency_allocation_target_estimates) and shared by both the
-    county-remainder split below and the jurisdiction-controls remainder-pool rollup
-    in jurisdiction_estimator.py, so both consumers see identical fill amounts.
+    county-remainder split below and the jurisdiction-target consumption layer in
+    jurisdiction_targets.py, so both consumers see identical per-agency amounts.
     """
     return build_agency_allocation_target_estimates(paths=paths, year=int(year))
 
@@ -890,6 +975,149 @@ def _state_police_county_subunit_mask(merged: pd.DataFrame, name_norm: pd.Series
     )
 
 
+def _assert_no_negative_group_targets(group_targets: pd.DataFrame) -> None:
+    """Fail closed on a negative group target.
+
+    The trailing clip(lower=0) on target_count is floating-point hygiene, not a
+    correction. A materially negative target means the groups over-drew the state
+    control and the delta reconciliation parked the overdraft in the residual group, so
+    clipping it away silently RE-ADDS mass the control never had -- the published
+    surface then exceeds its own control. That is exactly how the v20 county-remainder
+    double count (imputed mass normalized into the observed split and then added again
+    as county sub-targets) reached the candidate surface, so it fails closed here
+    instead of being absorbed.
+    """
+    if group_targets.empty:
+        return
+    values = pd.to_numeric(group_targets["target_count"], errors="coerce").fillna(0.0)
+    negative = group_targets[values.lt(-1e-6)]
+    if negative.empty:
+        return
+    raise ValueError(
+        f"{len(negative)} county remainder group target(s) are negative, so the group "
+        "split over-drew the state control: "
+        + str(
+            negative[["state_fips", "offense", "group_kind", "group_id", "target_count"]]
+            .sort_values("target_count")
+            .head(20)
+            .to_dict(orient="records")
+        )
+    )
+
+
+def _assert_imputed_county_targets_survive(
+    group_targets: pd.DataFrame, imputed_county_targets: pd.DataFrame
+) -> None:
+    """Fail closed if benchmark-imputed county mass did not land on its own county.
+
+    The delta reconciliation above pushes any leftover into the state residual group,
+    so a mismatch between the control row and the injected county rows would silently
+    smear the imputed mass back over the whole state -- reproducing the very defect
+    this lane exists to fix. This asserts the county sub-target survived intact.
+    """
+    if imputed_county_targets is None or imputed_county_targets.empty:
+        return
+    expected = imputed_county_targets.groupby(
+        ["state_fips", "offense", "group_id"], dropna=False, as_index=False
+    )["imputed_target_count"].sum()
+    expected = expected[
+        pd.to_numeric(expected["imputed_target_count"], errors="coerce").fillna(0.0).gt(0.0)
+    ]
+    if expected.empty:
+        return
+    actual = group_targets[group_targets["group_kind"].eq("county_remainder")][
+        ["state_fips", "offense", "group_id", "target_count"]
+    ]
+    merged = expected.merge(actual, on=["state_fips", "offense", "group_id"], how="left")
+    merged["target_count"] = pd.to_numeric(merged["target_count"], errors="coerce").fillna(0.0)
+    # A county may also carry observed mass, so the surviving target is a lower bound.
+    shortfall = merged["imputed_target_count"] - merged["target_count"]
+    bad = merged[shortfall.gt(1e-6)]
+    if not bad.empty:
+        raise ValueError(
+            f"{len(bad)} benchmark-imputed county sub-target(s) did not survive into the "
+            "county remainder group targets: "
+            + str(bad.head(20).to_dict(orient="records"))
+        )
+
+
+def _partition_imputed_county_targets_by_support(
+    imputed_county_targets: pd.DataFrame,
+    supported_counties: set[tuple[str, str]],
+) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Separate county sub-targets that still have remainder ground from displaced ones.
+
+    Exclusive tribal footprints can remove every remainder block group in a county
+    while leaving the state's remainder pool alive. A benchmark sub-target created
+    before that Stage-2 displacement is then no longer county-localizable. It must not
+    be dropped, and it must not be put back on the reservation. It falls back to the
+    state residual remainder group, exactly like any other remainder mass without an
+    authoritative supported county anchor.
+    """
+    if imputed_county_targets.empty:
+        empty = imputed_county_targets.copy()
+        return empty, empty
+    work = imputed_county_targets.copy()
+    state = work["state_fips"].astype("string").str.zfill(2)
+    county = work["county_geoid"].astype("string").str.zfill(5)
+    supported = pd.Series(
+        [(str(s), str(c)) in supported_counties for s, c in zip(state, county, strict=True)],
+        index=work.index,
+        dtype=bool,
+    )
+    localized = work.loc[supported].copy()
+    displaced = work.loc[~supported].copy()
+    original_mass = float(
+        pd.to_numeric(work["imputed_target_count"], errors="coerce").fillna(0.0).sum()
+    )
+    partitioned_mass = float(
+        pd.to_numeric(localized["imputed_target_count"], errors="coerce").fillna(0.0).sum()
+        + pd.to_numeric(displaced["imputed_target_count"], errors="coerce").fillna(0.0).sum()
+    )
+    if abs(original_mass - partitioned_mass) > 1e-8 or len(work) != len(localized) + len(displaced):
+        raise ValueError(
+            "Benchmark county sub-target support partition lost or duplicated mass: "
+            f"original={original_mass:.12f}, partitioned={partitioned_mass:.12f}"
+        )
+    return localized, displaced
+
+
+def _assert_displaced_imputed_county_targets_survive(
+    group_targets: pd.DataFrame, displaced_imputed_county_targets: pd.DataFrame
+) -> None:
+    """Fail closed unless explicitly displaced county mass reached the state residual."""
+    if displaced_imputed_county_targets.empty:
+        return
+    expected = (
+        displaced_imputed_county_targets.groupby(
+            ["state_fips", "offense"], dropna=False, as_index=False
+        )["imputed_target_count"]
+        .sum()
+    )
+    actual = (
+        group_targets[group_targets["group_kind"].eq("residual_remainder")]
+        .groupby(["state_fips", "offense"], dropna=False, as_index=False)[
+            "adjustment_target_count"
+        ]
+        .sum()
+    )
+    merged = expected.merge(actual, on=["state_fips", "offense"], how="left")
+    merged["adjustment_target_count"] = pd.to_numeric(
+        merged["adjustment_target_count"], errors="coerce"
+    ).fillna(0.0)
+    shortfall = (
+        pd.to_numeric(merged["imputed_target_count"], errors="coerce").fillna(0.0)
+        - merged["adjustment_target_count"]
+    )
+    bad = merged[shortfall.gt(1e-6)]
+    if not bad.empty:
+        raise ValueError(
+            f"{len(bad)} fully-displaced benchmark county sub-target(s) did not survive "
+            "in the state residual remainder group: "
+            + str(bad.head(20).to_dict(orient="records"))
+        )
+
+
 def _build_county_remainder_group_targets(
     *,
     paths: RepoPaths,
@@ -934,8 +1162,54 @@ def _build_county_remainder_group_targets(
         remainder_controls["state_reported_target"].to_numpy(dtype=float),
         remainder_controls["state_target"].to_numpy(dtype=float),
     )
+
+    # Class A: the state remainder control row carries the benchmark-imputed mass for
+    # its silent counties (that is where the accounting identity is asserted), so the
+    # pool this function splits across REPORTING agencies' counties must have it carved
+    # out first. Without the carve-out the imputed mass is normalized over the observed
+    # county groups AND then added again as county sub-targets below -- the double count
+    # that the delta reconciliation turns into a negative residual and the trailing
+    # clip(lower=0) silently restores.
+    imputed_county_targets = county_remainder_imputed_targets(
+        load_benchmark_imputation_units(paths, year=int(year))
+    )
+    supported_counties = _supported_counties_for_jurisdiction_type(
+        bg_crosswalk, STATE_REMAINDER_TYPE
+    )
+    (
+        localized_imputed_county_targets,
+        displaced_imputed_county_targets,
+    ) = _partition_imputed_county_targets_by_support(
+        imputed_county_targets,
+        supported_counties,
+    )
+    imputed_state_totals = (
+        imputed_county_targets.groupby(["state_fips", "offense"], dropna=False, as_index=False)[
+            "imputed_target_count"
+        ]
+        .sum()
+        .rename(columns={"imputed_target_count": "state_imputed_target"})
+        if not imputed_county_targets.empty
+        else pd.DataFrame(columns=["state_fips", "offense", "state_imputed_target"])
+    )
+    remainder_controls = remainder_controls.merge(
+        imputed_state_totals, on=["state_fips", "offense"], how="left"
+    )
+    remainder_controls["state_imputed_target"] = (
+        pd.to_numeric(remainder_controls["state_imputed_target"], errors="coerce")
+        .fillna(0.0)
+        .clip(lower=0.0)
+    )
+    remainder_controls["state_imputed_target"] = np.minimum(
+        remainder_controls["state_imputed_target"].to_numpy(dtype=float),
+        (remainder_controls["state_target"] - remainder_controls["state_reported_target"])
+        .clip(lower=0.0)
+        .to_numpy(dtype=float),
+    )
     remainder_controls["state_adjustment_target"] = (
-        remainder_controls["state_target"] - remainder_controls["state_reported_target"]
+        remainder_controls["state_target"]
+        - remainder_controls["state_reported_target"]
+        - remainder_controls["state_imputed_target"]
     ).clip(lower=0.0)
 
     residual_base = remainder_controls.copy()
@@ -952,7 +1226,6 @@ def _build_county_remainder_group_targets(
     residual_base["county_anchor_evidence_count"] = 0.0
     residual_base["county_anchor_supported"] = False
 
-    supported_counties = _supported_counties_for_jurisdiction_type(bg_crosswalk, STATE_REMAINDER_TYPE)
     crosswalk = _load_crosswalk(paths).rename(columns={"ori": "ori9"})
     crosswalk["state_fips"] = crosswalk["state_fips"].astype("string").str.zfill(2)
     crosswalk["weight"] = pd.to_numeric(crosswalk["weight"], errors="coerce").fillna(0.0).clip(lower=0.0)
@@ -960,9 +1233,16 @@ def _build_county_remainder_group_targets(
     if remainder_cw.empty:
         return residual_base[columns].sort_values(["state_fips", "offense"], kind="mergesort").reset_index(drop=True)
 
-    agency_master = _load_agency_master(paths)[["ori9", "state_fips", "county_fips"]].copy()
+    agency_master_full = _load_agency_master(paths)
+    master_cols = ["ori9", "state_fips", "county_fips"]
+    if "county_fips_source" in agency_master_full.columns:
+        master_cols.append("county_fips_source")
+    agency_master = agency_master_full[master_cols].copy()
     agency_master["state_fips"] = agency_master["state_fips"].astype("string").str.zfill(2)
     agency_master["county_fips"] = agency_master["county_fips"].astype("string").str.zfill(3)
+    if "county_fips_source" not in agency_master.columns:
+        agency_master["county_fips_source"] = pd.NA
+    agency_master["county_fips_source"] = agency_master["county_fips_source"].astype("string")
     agency_estimates = (
         agency_estimates.copy()
         if agency_estimates is not None
@@ -1001,7 +1281,22 @@ def _build_county_remainder_group_targets(
     merged["adjustment_raw_count"] = merged["agency_adjustment_count"] * pd.to_numeric(
         merged["weight"], errors="coerce"
     ).fillna(0.0).clip(lower=0.0)
-    has_supported_county = _valid_county_fips(merged["county_fips"]) & _county_supported_mask(merged, supported_counties)
+    # County anchoring requires an authoritative placement, not merely a resolvable
+    # county name -- see COUNTY_ANCHOR_ELIGIBLE_COUNTY_FIPS_SOURCES for the evidence.
+    # A name-resolved county still flows everywhere else (imputation eligibility,
+    # dead/active predicates); it just cannot concentrate an agency's crime into a
+    # county remainder it was never placed in.
+    county_placement_is_authoritative = (
+        merged["county_fips_source"]
+        .astype("string")
+        .isin(COUNTY_ANCHOR_ELIGIBLE_COUNTY_FIPS_SOURCES)
+        .fillna(False)
+    )
+    has_supported_county = (
+        _valid_county_fips(merged["county_fips"])
+        & county_placement_is_authoritative
+        & _county_supported_mask(merged, supported_counties)
+    )
     evidence = (
         merged.loc[has_supported_county]
         .groupby(["state_fips", "offense", "county_geoid"], dropna=False)["observed_raw_count"]
@@ -1214,6 +1509,74 @@ def _build_county_remainder_group_targets(
     combined["reported_count"] = combined["observed_target_count"]
     combined["target_count"] = combined["observed_target_count"] + combined["adjustment_target_count"]
 
+    # Class A: benchmark-constrained imputation for silent-agency county territory.
+    # These counties have no reporting agency at all, so nothing above created a group
+    # for them and their remainder territory would take a target of exactly zero. The
+    # sub-target was sized in benchmark_imputation.py against the FBI's published state
+    # estimate and is already carved out of state_adjustment_target above, so these rows
+    # restore exactly the mass the observed split was denied -- the group total still
+    # equals the control row by construction.
+    if not imputed_county_targets.empty:
+        imputed_rows = localized_imputed_county_targets.copy()
+        if not displaced_imputed_county_targets.empty:
+            displaced_rows = displaced_imputed_county_targets.copy()
+            displaced_rows["group_id"] = (
+                displaced_rows["state_fips"].astype("string").str.zfill(2)
+                + ":state_nonmunicipal_remainder:residual"
+            )
+            imputed_rows = pd.concat([imputed_rows, displaced_rows], ignore_index=True)
+        imputed_rows["state_fips"] = imputed_rows["state_fips"].astype("string").str.zfill(2)
+        imputed_rows["offense"] = imputed_rows["offense"].astype("string")
+        imputed_rows = imputed_rows[
+            pd.to_numeric(imputed_rows["imputed_target_count"], errors="coerce").fillna(0.0).gt(0.0)
+        ]
+        imputed_rows = imputed_rows.merge(
+            remainder_controls[["state_fips", "offense"]].drop_duplicates(),
+            on=["state_fips", "offense"],
+            how="inner",
+        )
+        if not imputed_rows.empty:
+            target = pd.to_numeric(imputed_rows["imputed_target_count"], errors="coerce").fillna(0.0)
+            displaced_group_ids = set(
+                displaced_imputed_county_targets.assign(
+                    group_id=(
+                        displaced_imputed_county_targets["state_fips"]
+                        .astype("string")
+                        .str.zfill(2)
+                        + ":state_nonmunicipal_remainder:residual"
+                    )
+                )["group_id"].astype("string")
+            )
+            is_displaced_fallback = imputed_rows["group_id"].astype("string").isin(
+                displaced_group_ids
+            )
+            combined = pd.concat(
+                [
+                    combined,
+                    pd.DataFrame(
+                        {
+                            "state_fips": imputed_rows["state_fips"].to_numpy(),
+                            "offense": imputed_rows["offense"].to_numpy(),
+                            "group_kind": np.where(
+                                is_displaced_fallback,
+                                "residual_remainder",
+                                "county_remainder",
+                            ),
+                            "group_id": imputed_rows["group_id"].astype("string").to_numpy(),
+                            "target_count": target.to_numpy(dtype=float),
+                            "reported_count": 0.0,
+                            "observed_target_count": 0.0,
+                            "adjustment_target_count": target.to_numpy(dtype=float),
+                            "observed_raw_count": 0.0,
+                            "adjustment_raw_count": 0.0,
+                            "county_anchor_evidence_count": 0.0,
+                            "county_anchor_supported": ~is_displaced_fallback.to_numpy(),
+                        }
+                    ),
+                ],
+                ignore_index=True,
+            )
+
     residual_rows = remainder_controls[["state_fips", "offense"]].copy()
     residual_rows["group_kind"] = "residual_remainder"
     residual_rows["group_id"] = (
@@ -1282,6 +1645,11 @@ def _build_county_remainder_group_targets(
     max_delta = float((check["target_sum"].fillna(0.0) - check["state_target"]).abs().max() or 0.0)
     if max_delta > 1e-6:
         raise ValueError(f"County remainder targets do not partition controls; max abs delta={max_delta:.3e}")
+    _assert_no_negative_group_targets(out)
+    _assert_imputed_county_targets_survive(out, localized_imputed_county_targets)
+    _assert_displaced_imputed_county_targets_survive(
+        out, displaced_imputed_county_targets
+    )
     out["target_count"] = pd.to_numeric(out["target_count"], errors="coerce").fillna(0.0).clip(lower=0.0)
     out["reported_count"] = pd.to_numeric(out["reported_count"], errors="coerce").fillna(0.0).clip(lower=0.0)
     return out[columns].sort_values(["state_fips", "offense", "group_kind", "group_id"], kind="mergesort").reset_index(drop=True)
@@ -1749,72 +2117,174 @@ def _build_bg_direct_incident_support(
     return out[output_columns].copy()
 
 
+OVERLAP_FOOTPRINT_OVERRIDE_COLUMNS = (
+    "ori",
+    "final_overlap_treatment",
+    "overlap_subtype_final",
+    "footprint_type",
+    "target_state_fips",
+    "target_county_fips",
+    "target_place_fips",
+    "target_jurisdiction_id",
+    "displaces_county_remainder",
+    "geometry_source_type",
+    "geometry_source_ref",
+    "confidence",
+    "source_note",
+    "reviewer_note",
+)
+# The treatments the classification cascade in `_build_overlap_group_targets` can act on.
+# Previously unvalidated (Stage 2 contract SURPRISE): a typo silently fell through to the
+# statewide default, which is the same failure mode as the fail-open below.
+VALID_OVERLAP_TREATMENTS: frozenset[str] = frozenset(
+    {
+        "localize_to_custom_footprint",
+        "localize_to_place",
+        "localize_to_county",
+        "keep_statewide_overlap",
+        "absorb_into_primary_jurisdiction",
+        "exclude_or_hold",
+    }
+)
+
+
 def _load_overlap_footprint_overrides(paths: RepoPaths) -> pd.DataFrame:
     path = paths.repo_root / "configs" / "overlap_footprint_overrides.csv"
     if not path.exists():
-        return pd.DataFrame(
-            columns=[
-                "ori",
-                "final_overlap_treatment",
-                "overlap_subtype_final",
-                "footprint_type",
-                "target_state_fips",
-                "target_county_fips",
-                "target_place_fips",
-                "target_jurisdiction_id",
-                "geometry_source_type",
-                "geometry_source_ref",
-                "confidence",
-                "source_note",
-                "reviewer_note",
-            ]
-        )
+        return pd.DataFrame(columns=list(OVERLAP_FOOTPRINT_OVERRIDE_COLUMNS))
     overrides = pd.read_csv(path).copy()
-    required = {
-        "ori",
-        "final_overlap_treatment",
-        "overlap_subtype_final",
-        "footprint_type",
-        "target_state_fips",
-        "target_county_fips",
-        "target_place_fips",
-        "target_jurisdiction_id",
-        "geometry_source_type",
-        "geometry_source_ref",
-        "confidence",
-        "source_note",
-        "reviewer_note",
-    }
-    missing = required - set(overrides.columns)
+    missing = set(OVERLAP_FOOTPRINT_OVERRIDE_COLUMNS) - set(overrides.columns)
     if missing:
         raise ValueError(f"Overlap footprint overrides missing columns: {sorted(missing)}")
     overrides["ori9"] = overrides["ori"].astype("string")
     dupes = overrides.loc[overrides.duplicated("ori9", keep=False), ["ori9"]]
     if not dupes.empty:
         raise ValueError(f"Duplicate overlap overrides by ori: {dupes.to_dict(orient='records')}")
+    treatment = overrides["final_overlap_treatment"].astype("string").str.strip()
+    bad_treatment = ~treatment.isin(VALID_OVERLAP_TREATMENTS)
+    if bool(bad_treatment.any()):
+        raise ValueError(
+            "Overlap footprint overrides carry unknown final_overlap_treatment values "
+            f"(valid: {sorted(VALID_OVERLAP_TREATMENTS)}): "
+            f"{overrides.loc[bad_treatment, ['ori9', 'final_overlap_treatment']].to_dict(orient='records')}"
+        )
+    overrides["final_overlap_treatment"] = treatment
+    overrides["displaces_county_remainder"] = _parse_registry_flag(
+        overrides["displaces_county_remainder"]
+    )
+    displacing_non_custom = overrides["displaces_county_remainder"] & ~treatment.eq(
+        "localize_to_custom_footprint"
+    )
+    if bool(displacing_non_custom.any()):
+        raise ValueError(
+            "displaces_county_remainder is only defined for localize_to_custom_footprint "
+            "rows (an exclusive footprint has to name the block groups it takes over): "
+            f"{overrides.loc[displacing_non_custom, ['ori9', 'final_overlap_treatment']].to_dict(orient='records')}"
+        )
     return overrides
+
+
+def _parse_registry_flag(series: pd.Series) -> pd.Series:
+    """Parse a registry boolean column where blank means False."""
+    text = series.astype("string").str.strip().str.lower()
+    truthy = text.isin(["true", "t", "yes", "y", "1"])
+    falsy = text.isin(["false", "f", "no", "n", "0"]) | text.isna() | text.eq("")
+    unknown = ~(truthy | falsy)
+    if bool(unknown.any()):
+        raise ValueError(
+            f"Unparseable registry boolean values: {sorted(set(text[unknown].dropna()))}"
+        )
+    return truthy.fillna(False).astype(bool)
+
+
+def _assert_custom_footprint_overrides_have_rows(
+    overrides: pd.DataFrame,
+    custom_footprints: pd.DataFrame,
+) -> None:
+    """FAIL CLOSED on `localize_to_custom_footprint` with no footprint rows.
+
+    Rung 5 of the cascade used to convert such an override into `keep_statewide_overlap`,
+    silently: the registry said "put this agency on its own footprint" and the allocator
+    spread it over the entire state. Measured 2026-07-29 (Stage 2 screen S2-6a): 6 ORIs /
+    5,776 counts in that state -- NJ Transit Police over all of New Jersey, WMATA over all
+    of DC, Port Authority NY&NJ, UC Berkeley PD and UCLA PD over all of California.
+
+    Routing an agency statewide is a legitimate outcome; it just has to be *declared*
+    (`keep_statewide_overlap` with a reviewer_note), never arrived at by omission.
+    """
+    if overrides.empty:
+        return
+    declared = overrides.loc[
+        overrides["final_overlap_treatment"].astype("string").eq("localize_to_custom_footprint"),
+        "ori9",
+    ].astype("string")
+    if declared.empty:
+        return
+    have_rows = (
+        set(custom_footprints["ori9"].astype("string"))
+        if not custom_footprints.empty
+        else set()
+    )
+    missing = sorted(set(declared) - have_rows)
+    if missing:
+        raise ValueError(
+            "configs/overlap_footprint_overrides.csv declares localize_to_custom_footprint "
+            "for ORIs with no rows in configs/overlap_custom_footprints.csv, which would "
+            "silently spread them over the whole state. Supply footprint rows or change the "
+            f"treatment to keep_statewide_overlap with a reviewer_note: {missing}"
+        )
+
+
+OVERLAP_CUSTOM_FOOTPRINT_OUT_COLUMNS = (
+    "ori9",
+    "state_fips",
+    "bg_id",
+    "weight_share",
+    "bg_population_coverage_share",
+    "weight_share_basis",
+    "geometry_source_type",
+    "geometry_source_ref",
+    "footprint_note",
+)
+
+# What `weight_share` MEASURES, declared per footprint row rather than inferred from the
+# geometry-source string. Stage 2 fork ruling 3: the custom-footprint lane allocated by
+# `weight_share` alone, with no activity or exposure term, while every county lane multiplies
+# its share by `bg_weight`. The distinction that matters is what the share already contains:
+#
+#   resident_population -- the share IS a 2020 resident-population share of the footprint
+#       (tribal AIANNH block-assignment footprints, state-police post footprints). Spreading
+#       an agency total over it by population alone is the size-blind form the county lanes
+#       do not use, so these get the same `bg_weight x share` activity basis.
+#   activity_or_area -- the share is ALREADY an activity or exposure measure (station
+#       boardings, annual passengers, LandScan daytime population, per-station equal share)
+#       or a deliberate area apportionment onto parcels with no residents (airfields, port
+#       property). Multiplying these by `bg_weight` would apply an activity term twice.
+CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASIS_RESIDENT = "resident_population"
+CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASIS_ACTIVITY = "activity_or_area"
+VALID_CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASES: frozenset[str] = frozenset(
+    {CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASIS_RESIDENT, CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASIS_ACTIVITY}
+)
 
 
 def _load_overlap_custom_footprints(paths: RepoPaths) -> pd.DataFrame:
     path = paths.repo_root / "configs" / "overlap_custom_footprints.csv"
     if not path.exists():
-        return pd.DataFrame(
-            columns=[
-                "ori9",
-                "state_fips",
-                "bg_id",
-                "weight_share",
-                "geometry_source_type",
-                "geometry_source_ref",
-                "footprint_note",
-            ]
-        )
+        return pd.DataFrame(columns=list(OVERLAP_CUSTOM_FOOTPRINT_OUT_COLUMNS))
     footprints = pd.read_csv(path).copy()
     required = {
         "ori",
         "state_fips",
         "block_group_geoid",
         "weight_share",
+        # How much of the BLOCK GROUP the footprint covers, on a 2020-population basis.
+        # `weight_share` is a share of the AGENCY's mass and says nothing about how much of
+        # the receiving block group the footprint occupies, so it cannot drive the exclusive
+        # (remainder-displacing) semantics. Nullable except on displacing footprints.
+        "bg_population_coverage_share",
+        # What `weight_share` measures. Declared, never inferred -- see
+        # VALID_CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASES.
+        "weight_share_basis",
         "geometry_source_type",
         "geometry_source_ref",
         "footprint_note",
@@ -1826,9 +2296,27 @@ def _load_overlap_custom_footprints(paths: RepoPaths) -> pd.DataFrame:
     footprints["state_fips"] = footprints["state_fips"].astype("string").str.zfill(2)
     footprints["bg_id"] = footprints["block_group_geoid"].astype("string").str.zfill(12)
     footprints["weight_share"] = pd.to_numeric(footprints["weight_share"], errors="coerce").fillna(0.0)
+    footprints["bg_population_coverage_share"] = pd.to_numeric(
+        footprints["bg_population_coverage_share"], errors="coerce"
+    )
     footprints = footprints[footprints["weight_share"].gt(0)].copy()
     if footprints.empty:
         return footprints
+    bad_bg = ~footprints["bg_id"].str.fullmatch(r"\d{12}").fillna(False)
+    if bool(bad_bg.any()):
+        raise ValueError(
+            "Overlap custom footprints carry malformed block_group_geoid values: "
+            f"{footprints.loc[bad_bg, ['ori9', 'block_group_geoid']].to_dict(orient='records')}"
+        )
+    out_of_range = footprints["bg_population_coverage_share"].notna() & (
+        footprints["bg_population_coverage_share"].le(0.0)
+        | footprints["bg_population_coverage_share"].gt(1.0 + 1e-9)
+    )
+    if bool(out_of_range.any()):
+        raise ValueError(
+            "bg_population_coverage_share must lie in (0, 1]: "
+            f"{footprints.loc[out_of_range, ['ori9', 'bg_id', 'bg_population_coverage_share']].to_dict(orient='records')}"
+        )
     totals = footprints.groupby(["ori9", "state_fips"], dropna=False)["weight_share"].sum().reset_index()
     bad = totals[~np.isclose(totals["weight_share"], 1.0, atol=1e-6)]
     if not bad.empty:
@@ -1842,9 +2330,229 @@ def _load_overlap_custom_footprints(paths: RepoPaths) -> pd.DataFrame:
             "Duplicate overlap custom footprint rows: "
             f"{dupes.to_dict(orient='records')}"
         )
-    return footprints[
-        ["ori9", "state_fips", "bg_id", "weight_share", "geometry_source_type", "geometry_source_ref", "footprint_note"]
-    ].copy()
+    basis = footprints["weight_share_basis"].astype("string").str.strip()
+    bad_basis = ~basis.isin(VALID_CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASES)
+    if bool(bad_basis.any()):
+        raise ValueError(
+            "Overlap custom footprints carry unknown weight_share_basis values "
+            f"(valid: {sorted(VALID_CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASES)}): "
+            f"{footprints.loc[bad_basis, ['ori9', 'weight_share_basis']].drop_duplicates().to_dict(orient='records')}"
+        )
+    footprints["weight_share_basis"] = basis
+    # One basis per footprint. A mixed (ori, state) would need two normalisations inside one
+    # pool and there is no defensible way to add an activity-weighted share to a verbatim one.
+    mixed = (
+        footprints.groupby(["ori9", "state_fips"], dropna=False)["weight_share_basis"].nunique().rename("bases")
+    )
+    mixed = mixed[mixed.gt(1)]
+    if not mixed.empty:
+        raise ValueError(
+            "Overlap custom footprints mix weight_share_basis values inside one (ori, state) "
+            f"pool: {mixed.reset_index().to_dict(orient='records')}"
+        )
+    return footprints[list(OVERLAP_CUSTOM_FOOTPRINT_OUT_COLUMNS)].copy()
+
+
+CONCURRENT_JURISDICTION_CARVEOUT_COLUMNS = (
+    "state_fips",
+    "county_fips",
+    "county_geoid",
+    "county_name",
+    "reviewer_note",
+    "remainder_exposure_before_displacement",
+    "remainder_exposure_after_displacement",
+    "remainder_exposure_retained_share",
+    "reporting_remainder_agency_mass_2024",
+    "source_artifact",
+)
+CONCURRENT_JURISDICTION_REVIEWER_NOTE = "concurrent_jurisdiction_unresolved"
+
+
+def _load_concurrent_jurisdiction_carveouts(paths: RepoPaths) -> pd.DataFrame:
+    """Counties where exclusive displacement reverts to SHARED overlap treatment.
+
+    Stage 2 fork ruling 1: exclusive displacement is the default, but in the 20 counties
+    where it removes more than half of a REPORTING non-municipal remainder agency's
+    block-group exposure it trades one distortion for another -- a reporting sheriff whose
+    territory is zeroed out is as wrong as a double-counted reservation. Those counties keep
+    shared (additive) treatment until the PL-280 concurrent-jurisdiction question is
+    adjudicated per case, and every row says so in `reviewer_note`.
+
+    Fail-closed on: missing columns, malformed county geoids, duplicate counties, and any
+    `reviewer_note` other than the declared one. A carve-out that matches no displacing
+    footprint also fails, in `_build_exclusive_footprint_displacement` -- a registry row
+    that quietly does nothing is the same defect class as the fail-open custom footprints
+    Stage 2 closed.
+    """
+    path = paths.repo_root / "configs" / "concurrent_jurisdiction_carveouts.csv"
+    if not path.exists():
+        return pd.DataFrame(columns=list(CONCURRENT_JURISDICTION_CARVEOUT_COLUMNS))
+    carveouts = pd.read_csv(path).copy()
+    missing = set(CONCURRENT_JURISDICTION_CARVEOUT_COLUMNS) - set(carveouts.columns)
+    if missing:
+        raise ValueError(f"Concurrent-jurisdiction carve-outs missing columns: {sorted(missing)}")
+    if carveouts.empty:
+        return carveouts
+    carveouts["state_fips"] = carveouts["state_fips"].astype("string").str.zfill(2)
+    carveouts["county_fips"] = carveouts["county_fips"].astype("string").str.zfill(3)
+    carveouts["county_geoid"] = carveouts["county_geoid"].astype("string").str.zfill(5)
+    rebuilt = carveouts["state_fips"] + carveouts["county_fips"]
+    bad_geoid = ~carveouts["county_geoid"].eq(rebuilt) | ~_valid_county_fips(carveouts["county_fips"])
+    if bool(bad_geoid.any()):
+        raise ValueError(
+            "Concurrent-jurisdiction carve-outs carry malformed county keys: "
+            f"{carveouts.loc[bad_geoid, ['state_fips', 'county_fips', 'county_geoid']].to_dict(orient='records')}"
+        )
+    dupes = carveouts.loc[carveouts.duplicated("county_geoid", keep=False), ["county_geoid"]]
+    if not dupes.empty:
+        raise ValueError(
+            f"Duplicate concurrent-jurisdiction carve-out counties: {dupes.to_dict(orient='records')}"
+        )
+    note = carveouts["reviewer_note"].astype("string").str.strip()
+    bad_note = ~note.eq(CONCURRENT_JURISDICTION_REVIEWER_NOTE)
+    if bool(bad_note.any()):
+        raise ValueError(
+            "Concurrent-jurisdiction carve-outs may only carry reviewer_note="
+            f"{CONCURRENT_JURISDICTION_REVIEWER_NOTE!r} (a carve-out is an UNRESOLVED "
+            "adjudication, not a decided treatment): "
+            f"{carveouts.loc[bad_note, ['county_geoid', 'reviewer_note']].to_dict(orient='records')}"
+        )
+    carveouts["reviewer_note"] = note
+    return carveouts[list(CONCURRENT_JURISDICTION_CARVEOUT_COLUMNS)].copy()
+
+
+def _build_exclusive_footprint_displacement(
+    *,
+    overrides: pd.DataFrame,
+    custom_footprints: pd.DataFrame,
+    concurrent_jurisdiction_carveouts: pd.DataFrame | None = None,
+) -> pd.DataFrame:
+    """Per block group, the share of resident exposure an exclusive footprint takes over.
+
+    Pro's Class D correction (STATE.md, v20 program): a tribal police department is the
+    PRIMARY agency on its reservation, so its footprint share must DISPLACE the county
+    remainder there rather than add to it -- mutually exclusive responsibility shares, every
+    agency total allocated exactly once. Additive overlap for a primary agency double-counts.
+
+    Returns one row per (state_fips, bg_id) with `displaced_share` in (0, 1]: the fraction of
+    that block group's 2020 population inside one or more displacing footprints.
+    """
+    empty = pd.DataFrame(columns=["state_fips", "bg_id", "displaced_share"])
+    if overrides.empty or custom_footprints.empty:
+        return empty
+    displacing = set(
+        overrides.loc[overrides["displaces_county_remainder"], "ori9"].astype("string")
+    )
+    if not displacing:
+        return empty
+    rows = custom_footprints[custom_footprints["ori9"].astype("string").isin(displacing)].copy()
+    if rows.empty:
+        return empty
+    unset = rows["bg_population_coverage_share"].isna()
+    if bool(unset.any()):
+        raise ValueError(
+            "Footprints declared displaces_county_remainder must carry "
+            "bg_population_coverage_share on every row (it is what leaves the county "
+            "remainder). Missing on: "
+            f"{rows.loc[unset, ['ori9', 'state_fips', 'bg_id']].to_dict(orient='records')}"
+        )
+    # Concurrent-jurisdiction carve-out (Stage 2 fork ruling 1): in the declared counties the
+    # footprint stays exactly where it is and keeps its own mass, but it stops DISPLACING the
+    # non-municipal remainder -- shared overlap, additive, pending PL-280 adjudication.
+    carveouts = (
+        concurrent_jurisdiction_carveouts
+        if concurrent_jurisdiction_carveouts is not None
+        else pd.DataFrame(columns=["county_geoid"])
+    )
+    if not carveouts.empty:
+        row_county = rows["state_fips"].astype("string").str.zfill(2) + rows["bg_id"].astype(
+            "string"
+        ).str.zfill(12).str.slice(2, 5)
+        carved = set(carveouts["county_geoid"].astype("string").str.zfill(5))
+        in_carveout = row_county.isin(carved)
+        matched = sorted(set(row_county.loc[in_carveout]))
+        unmatched = sorted(carved - set(matched))
+        if unmatched:
+            raise ValueError(
+                "configs/concurrent_jurisdiction_carveouts.csv names counties that no "
+                "displacing footprint touches, so the carve-out is inert rather than "
+                "load-bearing. Remove the row or fix the county: "
+                f"{unmatched}"
+            )
+        rows = rows.loc[~in_carveout].copy()
+        if rows.empty:
+            return empty
+
+    # MAX, not sum: `bg_population_coverage_share` is defined as the share of the block group
+    # covered by the UNION of all displacing footprints, so every displacing row touching a
+    # block group carries the same value and set semantics are already resolved upstream (in
+    # the generator, which has the block-level data). Summing would double-displace the 24
+    # footprints that two ORIs share -- duplicate tribal/BIA ORI pairs and joint OTSAs.
+    displaced = (
+        rows.groupby(["state_fips", "bg_id"], dropna=False)["bg_population_coverage_share"]
+        .max()
+        .rename("displaced_share")
+        .reset_index()
+    )
+    displaced["displaced_share"] = (
+        pd.to_numeric(displaced["displaced_share"], errors="coerce").fillna(0.0).clip(0.0, 1.0)
+    )
+    return displaced[displaced["displaced_share"].gt(0.0)].reset_index(drop=True)
+
+
+def _apply_exclusive_footprint_displacement(
+    bg_crosswalk: pd.DataFrame,
+    displacement: pd.DataFrame,
+) -> pd.DataFrame:
+    """Remove displaced exposure from the state non-municipal remainder's block-group support.
+
+    Scales the remainder rows' `allocation_share` (which is a population share of the block
+    group) by `1 - displaced_share`. Municipal rows are untouched: a reservation inside an
+    incorporated place is a separate question and is not what this displacement is about.
+
+    The remainder's TOTAL target does not change -- only the ground it spreads over -- so
+    conservation is unaffected; the reservation simply stops receiving sheriff mass on top of
+    the tribal agency's own.
+    """
+    if bg_crosswalk.empty or displacement.empty:
+        return bg_crosswalk
+    out = bg_crosswalk.copy()
+    key = "block_group_geoid" if "block_group_geoid" in out.columns else "bg_id"
+    out["_state_key"] = out["state_fips"].astype("string").str.zfill(2)
+    out["_bg_key"] = out[key].astype("string").str.zfill(12)
+    factor = displacement.rename(columns={"state_fips": "_state_key", "bg_id": "_bg_key"})
+    out = out.merge(factor, on=["_state_key", "_bg_key"], how="left")
+    remainder = out["jurisdiction_type"].astype("string").eq(STATE_REMAINDER_TYPE)
+    share = pd.to_numeric(out["displaced_share"], errors="coerce").fillna(0.0).clip(0.0, 1.0)
+    keep = pd.Series(1.0, index=out.index)
+    keep.loc[remainder] = 1.0 - share.loc[remainder]
+    out["allocation_share"] = (
+        pd.to_numeric(out["allocation_share"], errors="coerce").fillna(0.0) * keep
+    )
+    for column in ("pop_share", "housing_share", "block_share", "aland_share"):
+        if column in out.columns:
+            out[column] = pd.to_numeric(out[column], errors="coerce").fillna(0.0) * keep
+    out = out.drop(columns=["_state_key", "_bg_key", "displaced_share"], errors="ignore")
+    # A remainder row scaled to exactly zero owns none of the block group any more; keeping
+    # it would leave a zero-weight support row that no assertion distinguishes from a real
+    # one, so drop it the same way the geometry build drops unsupported jurisdictions.
+    drop = out["jurisdiction_type"].astype("string").eq(STATE_REMAINDER_TYPE) & pd.to_numeric(
+        out["allocation_share"], errors="coerce"
+    ).fillna(0.0).le(0.0)
+    out = out.loc[~drop].reset_index(drop=True)
+
+    def _remainder_states(frame: pd.DataFrame) -> set[str]:
+        mask = frame["jurisdiction_type"].astype("string").eq(STATE_REMAINDER_TYPE)
+        return set(frame.loc[mask, "state_fips"].astype("string").str.zfill(2))
+
+    lost = _remainder_states(bg_crosswalk) - _remainder_states(out)
+    if lost:
+        raise ValueError(
+            "Exclusive footprint displacement removed every non-municipal remainder block "
+            f"group in state(s) {sorted(lost)}, which would strand that state's remainder "
+            "target. Check bg_population_coverage_share in configs/overlap_custom_footprints.csv."
+        )
+    return out
 
 
 def _load_consolidated_agency_footprints(paths: RepoPaths) -> pd.DataFrame:
@@ -2047,6 +2755,16 @@ def _build_jurisdiction_component_allocations(
 ) -> pd.DataFrame:
     residual_transfer_tau = _residual_transfer_tau_dict(residual_transfer_tau_by_offense)
     consolidated_footprints = _load_consolidated_agency_footprints(paths) if bool(enable_county_anchoring) else pd.DataFrame()
+    # EXCLUSIVE footprints displace the county remainder before anything reads the support,
+    # so the remainder targets, the county/residual split and the allocation all see the same
+    # ground. See `_apply_exclusive_footprint_displacement`.
+    exclusive_displacement = _build_exclusive_footprint_displacement(
+        overrides=_load_overlap_footprint_overrides(paths),
+        custom_footprints=_load_overlap_custom_footprints(paths),
+        concurrent_jurisdiction_carveouts=_load_concurrent_jurisdiction_carveouts(paths),
+    )
+    if not exclusive_displacement.empty:
+        bg_crosswalk = _apply_exclusive_footprint_displacement(bg_crosswalk, exclusive_displacement)
     county_remainder_targets = (
         _build_county_remainder_group_targets(
             paths=paths,
@@ -2614,6 +3332,7 @@ def _build_overlap_group_targets(
     enable_county_anchoring: bool = True,
     bg_prior: pd.DataFrame | None = None,
     agency_estimates: pd.DataFrame | None = None,
+    bg_crosswalk: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     control_cols = ["state_fips", "offense", "adjusted_count_ags_core"]
     if "reported_count_preferred" in controls.columns:
@@ -2652,10 +3371,22 @@ def _build_overlap_group_targets(
     if overlap_cw.empty:
         return pd.DataFrame(columns=["state_fips", "offense", "group_kind", "group_id", "target_count"])
 
-    agency_master = _load_agency_master(paths)[
-        ["ori9", "state_fips", "county_fips", "place_fips", "agency_name_std", "agency_type_norm"]
-    ].copy()
+    agency_master_full = _load_agency_master(paths)
+    overlap_master_cols = [
+        "ori9",
+        "state_fips",
+        "county_fips",
+        "place_fips",
+        "agency_name_std",
+        "agency_type_norm",
+    ]
+    if "county_fips_source" in agency_master_full.columns:
+        overlap_master_cols.append("county_fips_source")
+    agency_master = agency_master_full[overlap_master_cols].copy()
     agency_master["state_fips"] = agency_master["state_fips"].astype("string").str.zfill(2)
+    if "county_fips_source" not in agency_master.columns:
+        agency_master["county_fips_source"] = pd.NA
+    agency_master["county_fips_source"] = agency_master["county_fips_source"].astype("string")
 
     jm = _load_jurisdiction_master(paths)
     place_map = (
@@ -2666,12 +3397,29 @@ def _build_overlap_group_targets(
         ][["geoid", "jurisdiction_id"]]
         .drop_duplicates()
     )
+    if bg_crosswalk is not None and not bg_crosswalk.empty:
+        # A place jurisdiction with no BG-crosswalk support is not a valid
+        # overlap-localization target: the place allocator inner-joins the
+        # municipal BG crosswalk, so localizing to it would silently strand the
+        # group's mass. This is the same normalization rule as the geometry
+        # build's dead-jurisdiction exclusion (globally dead ORIs are dropped
+        # from BG assignment, so those jurisdictions have no crosswalk rows):
+        # treat the place as if it did not exist, so the agency falls through
+        # the existing cascade to county_overlap / statewide_overlap.
+        supported_municipal_ids = set(
+            bg_crosswalk.loc[
+                bg_crosswalk["jurisdiction_type"].astype("string").eq("municipal"),
+                "jurisdiction_id",
+            ].astype(str)
+        )
+        place_map = place_map[place_map["jurisdiction_id"].astype(str).isin(supported_municipal_ids)]
     place_to_jurisdiction = dict(zip(place_map["geoid"].astype(str), place_map["jurisdiction_id"].astype(str)))
 
     merged = preferred.merge(overlap_cw, left_on=["ori9", "state_fips"], right_on=["ori", "state_fips"], how="inner")
     merged = merged.merge(agency_master, on=["ori9", "state_fips"], how="left", suffixes=("", "_agency"))
     overrides = _load_overlap_footprint_overrides(paths)
     custom_footprints = _load_overlap_custom_footprints(paths)
+    _assert_custom_footprint_overrides_have_rows(overrides, custom_footprints)
     if not overrides.empty:
         merged = merged.merge(
             overrides[
@@ -2711,7 +3459,14 @@ def _build_overlap_group_targets(
     hint_lower = merged["geometry_hint"].fillna("").astype(str).str.lower()
     localizable = merged["overlap_subtype"].notna() & (~hint_lower.str.contains("statewide", regex=False))
     has_place = merged["place_jurisdiction_id"].notna()
-    has_county = _valid_county_fips(merged["county_fips"])
+    # Same authority rule as the county remainder lane: a name-resolved county cannot
+    # localize an overlap agency into a county it was never placed in. Without this the
+    # canonicalization would newly county-anchor 2,149 overlap agencies carrying 9,618
+    # motor-vehicle thefts -- overwhelmingly CHP area offices, whose office county is
+    # not their patrol footprint (a CHP "area" spans several counties).
+    has_county = _valid_county_fips(merged["county_fips"]) & merged[
+        "county_fips_source"
+    ].astype("string").isin(COUNTY_ANCHOR_ELIGIBLE_COUNTY_FIPS_SOURCES).fillna(False)
     name_norm = merged.get("agency_name_std", pd.Series("", index=merged.index)).map(
         _normalize_agency_name_for_county_match
     )
@@ -2740,8 +3495,7 @@ def _build_overlap_group_targets(
     has_override_county = treatment.eq("localize_to_county") & merged["override_county_geoid"].str.fullmatch(r"\d{5}").fillna(False)
     has_absorb_target = treatment.eq("absorb_into_primary_jurisdiction") & override_place_id.notna()
     has_custom_footprint = treatment.eq("localize_to_custom_footprint") & merged.get("has_custom_footprint", pd.Series(index=merged.index)).eq(True)
-    custom_without_footprint = treatment.eq("localize_to_custom_footprint") & (~has_custom_footprint)
-    force_statewide = treatment.isin(["keep_statewide_overlap", "exclude_or_hold"]) | custom_without_footprint
+    force_statewide = treatment.isin(["keep_statewide_overlap", "exclude_or_hold"])
 
     def _bool_mask(series: pd.Series) -> np.ndarray:
         return series.fillna(False).astype(bool).to_numpy()
@@ -2753,7 +3507,10 @@ def _build_overlap_group_targets(
             _bool_mask(has_override_place),
             _bool_mask(has_override_county),
             _bool_mask(force_statewide),
-            _bool_mask(state_police_county_subunit | county_name_agreement),
+            # State police first, so a "SP <county> COUNTY" agency (which fires BOTH masks)
+            # gets the non-municipal spread rather than the whole-county one.
+            _bool_mask(state_police_county_subunit),
+            _bool_mask(county_name_agreement),
             _bool_mask(localizable & has_place),
             _bool_mask(localizable & has_county),
         ],
@@ -2763,12 +3520,14 @@ def _build_overlap_group_targets(
             "municipal_place_overlap",
             "county_overlap",
             "statewide_overlap",
+            COUNTY_NONMUNICIPAL_OVERLAP_KIND,
             "county_overlap",
             "municipal_place_overlap",
             "county_overlap",
         ],
         default="statewide_overlap",
     )
+    county_kinds = ["county_overlap", COUNTY_NONMUNICIPAL_OVERLAP_KIND]
     merged["group_id"] = np.where(
         merged["group_kind"].eq("custom_footprint_overlap"),
         merged["ori9"],
@@ -2778,7 +3537,7 @@ def _build_overlap_group_targets(
         np.where(
         merged["group_kind"].eq("municipal_place_overlap"),
         override_place_id.where(has_override_place, merged["place_jurisdiction_id"]),
-        np.where(merged["group_kind"].eq("county_overlap"), merged["county_geoid"], merged["state_fips"]),
+        np.where(merged["group_kind"].isin(county_kinds), merged["county_geoid"], merged["state_fips"]),
     )))
     merged.loc[has_override_county, "group_id"] = merged.loc[has_override_county, "override_county_geoid"]
 
@@ -2813,9 +3572,17 @@ def _build_overlap_group_targets(
         merged["agency_adjustment_count"], errors="coerce"
     ).fillna(0.0).clip(lower=0.0)
 
+    unsupported_custom = treatment.eq("localize_to_custom_footprint") & ~has_custom_footprint
+    if bool(unsupported_custom.fillna(False).any()):
+        raise ValueError(
+            "localize_to_custom_footprint override has no footprint rows for the state its "
+            "crosswalk link sits in, which would silently spread the agency statewide: "
+            f"{merged.loc[unsupported_custom.fillna(False), ['ori9', 'state_fips']].drop_duplicates().to_dict(orient='records')}"
+        )
+
     if bg_prior is not None and not bg_prior.empty:
         supported_counties = _supported_counties_for_bg_prior(bg_prior)
-        county_mask = merged["group_kind"].eq("county_overlap")
+        county_mask = merged["group_kind"].isin(county_kinds)
         support_frame = pd.DataFrame(
             {
                 "state_fips": merged["state_fips"].astype("string").str.zfill(2),
@@ -2831,7 +3598,7 @@ def _build_overlap_group_targets(
     else:
         unsupported_county = pd.Series(False, index=merged.index)
     county_evidence = (
-        merged.loc[merged["group_kind"].eq("county_overlap")]
+        merged.loc[merged["group_kind"].isin(county_kinds)]
         .groupby(["state_fips", "offense", "group_id"], dropna=False)["reported_count_current_supported"]
         .sum()
         .rename("county_anchor_evidence_count")
@@ -2842,7 +3609,7 @@ def _build_overlap_group_targets(
         merged["county_anchor_evidence_count"], errors="coerce"
     ).fillna(0.0)
     rare_low_evidence = (
-        merged["group_kind"].eq("county_overlap")
+        merged["group_kind"].isin(county_kinds)
         & merged["offense"].astype("string").isin(COUNTY_ANCHOR_MIN_EVIDENCE_OFFENSES)
         & merged["county_anchor_evidence_count"].lt(float(COUNTY_ANCHOR_MIN_OBSERVED_OFFENSE_COUNT))
     )
@@ -3073,6 +3840,83 @@ def _build_overlap_group_targets(
     return grouped[["state_fips", "offense", "group_kind", "group_id", "target_count"]]
 
 
+def _nonmunicipal_bg_exposure_share(bg_crosswalk: pd.DataFrame) -> pd.DataFrame:
+    """Per block group, the population share owned by the state non-municipal remainder.
+
+    `allocation_share` in the block-group crosswalk is a 2020-population share and sums to 1
+    per block group across jurisdictions, so the remainder's share is exactly the fraction of
+    the block group's residents that no agency-bearing municipality covers.
+    """
+    columns = ["state_fips", "bg_id", "nonmunicipal_share"]
+    if bg_crosswalk.empty:
+        return pd.DataFrame(columns=columns)
+    frame = bg_crosswalk.copy()
+    key = "block_group_geoid" if "block_group_geoid" in frame.columns else "bg_id"
+    remainder = frame["jurisdiction_type"].astype("string").eq(STATE_REMAINDER_TYPE)
+    out = (
+        frame.loc[remainder]
+        .assign(
+            state_fips=lambda df: df["state_fips"].astype("string").str.zfill(2),
+            bg_id=lambda df: df[key].astype("string").str.zfill(12),
+            nonmunicipal_share=lambda df: pd.to_numeric(
+                df["allocation_share"], errors="coerce"
+            ).fillna(0.0),
+        )
+        .groupby(["state_fips", "bg_id"], dropna=False, as_index=False)["nonmunicipal_share"]
+        .sum()
+    )
+    return out[columns]
+
+
+def _custom_footprint_component_shares(merged: pd.DataFrame) -> pd.DataFrame:
+    """Component share for the custom-footprint overlap lane, per `weight_share_basis`.
+
+    Extracted so the arithmetic is testable without a targets frame. Adds
+    `footprint_activity_weight`, the two pool totals, and `component_share`; the share sums to
+    1 inside every (state, ori, offense) pool that carries any weight.
+    """
+    out = merged.copy()
+    weight_share = pd.to_numeric(out["weight_share"], errors="coerce").fillna(0.0)
+    resident_basis = out["weight_share_basis"].astype("string").eq(
+        CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASIS_RESIDENT
+    )
+    out["footprint_activity_weight"] = (
+        pd.to_numeric(out["bg_weight"], errors="coerce").fillna(0.0) * weight_share
+    ).where(resident_basis, 0.0)
+    pool_cols = ["state_fips", "ori9", "offense"]
+    totals = (
+        out.groupby(pool_cols, dropna=False)
+        .agg(
+            footprint_activity_total=("footprint_activity_weight", "sum"),
+            footprint_weight_total=("weight_share", "sum"),
+        )
+        .reset_index()
+    )
+    out = out.merge(totals, on=pool_cols, how="left")
+    resident_basis = out["weight_share_basis"].astype("string").eq(
+        CUSTOM_FOOTPRINT_WEIGHT_SHARE_BASIS_RESIDENT
+    )
+    activity_total = pd.to_numeric(out["footprint_activity_total"], errors="coerce").fillna(0.0)
+    weight_total = pd.to_numeric(out["footprint_weight_total"], errors="coerce").fillna(0.0)
+    verbatim_share = np.where(
+        weight_total > 0,
+        pd.to_numeric(out["weight_share"], errors="coerce").fillna(0.0)
+        / np.where(weight_total > 0, weight_total, 1.0),
+        0.0,
+    )
+    # Fail-SAFE, not fail-open: a resident-basis footprint whose whole support carries zero
+    # activity weight (an offense whose denominator is absent everywhere inside the footprint)
+    # keeps the declared population apportionment rather than stranding the agency's mass on an
+    # empty support set.
+    out["component_share"] = np.where(
+        resident_basis.to_numpy() & (activity_total.to_numpy() > 0),
+        pd.to_numeric(out["footprint_activity_weight"], errors="coerce").fillna(0.0)
+        / np.where(activity_total > 0, activity_total, 1.0),
+        verbatim_share,
+    )
+    return out
+
+
 def _build_overlap_allocations(
     *,
     paths: RepoPaths,
@@ -3090,6 +3934,7 @@ def _build_overlap_allocations(
         enable_county_anchoring=bool(enable_county_anchoring),
         bg_prior=bg_prior,
         agency_estimates=agency_estimates,
+        bg_crosswalk=bg_crosswalk,
     )
     if targets.empty:
         return pd.DataFrame(columns=["state_fips", "bg_id", "tract_id", "jurisdiction_id", "jurisdiction_type", "offense", "component_count"])
@@ -3148,7 +3993,69 @@ def _build_overlap_allocations(
         )
         merged["component_count"] = pd.to_numeric(merged["target_count"], errors="coerce").fillna(0.0) * merged["component_share"]
         merged["jurisdiction_id"] = merged["group_id"]
-        merged["jurisdiction_type"] = "localized_overlap_county_layer"
+        merged["jurisdiction_type"] = COUNTY_OVERLAP_TYPE
+        out_frames.append(merged[["state_fips", "bg_id", "tract_id", "jurisdiction_id", "jurisdiction_type", "offense", "component_count"]].copy())
+
+    county_nonmunicipal_targets = targets[
+        targets["group_kind"].eq(COUNTY_NONMUNICIPAL_OVERLAP_KIND)
+    ].copy()
+    if not county_nonmunicipal_targets.empty:
+        county_bg = bg_prior[["state_fips", "bg_id", "tract_id", "offense", "bg_weight"]].copy()
+        county_bg["group_id"] = county_bg["state_fips"].astype(str).str.zfill(2) + county_bg["tract_id"].astype(str).str.slice(2, 5)
+        exposure = _nonmunicipal_bg_exposure_share(bg_crosswalk)
+        # Normalize the join keys on BOTH sides. A silent key-dtype mismatch here would leave
+        # every non-municipal share at 0, the fallback below would fire everywhere, and the fix
+        # would become an invisible no-op -- so the join is also asserted to have matched.
+        county_bg["_state_key"] = county_bg["state_fips"].astype("string").str.zfill(2)
+        county_bg["_bg_key"] = county_bg["bg_id"].astype("string").str.zfill(12)
+        exposure = exposure.rename(columns={"state_fips": "_state_key", "bg_id": "_bg_key"})
+        county_bg = county_bg.merge(exposure, on=["_state_key", "_bg_key"], how="left")
+        county_bg["nonmunicipal_share"] = (
+            pd.to_numeric(county_bg["nonmunicipal_share"], errors="coerce").fillna(0.0).clip(0.0, 1.0)
+        )
+        if not exposure.empty and not county_bg["nonmunicipal_share"].gt(0.0).any():
+            raise ValueError(
+                "state-police non-municipal county spread matched no block groups against the "
+                "block-group crosswalk's non-municipal remainder support; the join keys are wrong"
+            )
+        county_bg = county_bg.drop(columns=["_state_key", "_bg_key"], errors="ignore")
+        merged = county_bg.merge(
+            county_nonmunicipal_targets[["state_fips", "group_id", "offense", "target_count"]],
+            on=["state_fips", "group_id", "offense"],
+            how="inner",
+        )
+        merged["nonmunicipal_weight"] = (
+            pd.to_numeric(merged["bg_weight"], errors="coerce").fillna(0.0)
+            * merged["nonmunicipal_share"]
+        )
+        totals = (
+            merged.groupby(["state_fips", "group_id", "offense"], dropna=False)
+            .agg(
+                nonmunicipal_total=("nonmunicipal_weight", "sum"),
+                activity_total=("bg_weight", "sum"),
+            )
+            .reset_index()
+        )
+        merged = merged.merge(totals, on=["state_fips", "group_id", "offense"], how="left")
+        nonmunicipal_total = pd.to_numeric(merged["nonmunicipal_total"], errors="coerce").fillna(0.0)
+        activity_total = pd.to_numeric(merged["activity_total"], errors="coerce").fillna(0.0)
+        # Fail-SAFE, not fail-open: a county with no non-municipal exposure at all (VA
+        # independent cities, RI, Baltimore city) keeps the plain whole-county spread rather
+        # than stranding the state police's mass on an empty support set.
+        merged["component_share"] = np.where(
+            nonmunicipal_total > 0,
+            pd.to_numeric(merged["nonmunicipal_weight"], errors="coerce").fillna(0.0)
+            / nonmunicipal_total.where(nonmunicipal_total > 0, 1.0),
+            np.where(
+                activity_total > 0,
+                pd.to_numeric(merged["bg_weight"], errors="coerce").fillna(0.0)
+                / activity_total.where(activity_total > 0, 1.0),
+                0.0,
+            ),
+        )
+        merged["component_count"] = pd.to_numeric(merged["target_count"], errors="coerce").fillna(0.0) * merged["component_share"]
+        merged["jurisdiction_id"] = merged["group_id"]
+        merged["jurisdiction_type"] = COUNTY_NONMUNICIPAL_OVERLAP_TYPE
         out_frames.append(merged[["state_fips", "bg_id", "tract_id", "jurisdiction_id", "jurisdiction_type", "offense", "component_count"]].copy())
 
     absorbed_targets = targets[targets["group_kind"].eq("absorbed_overlap")].copy()
@@ -3187,14 +4094,23 @@ def _build_overlap_allocations(
     if not custom_targets.empty:
         custom_footprints = _load_overlap_custom_footprints(paths)
         if not custom_footprints.empty:
+            # Stage 2 fork ruling 3. A footprint whose `weight_share` is a resident-population
+            # share gets the same activity basis every county lane uses (`bg_weight x share`,
+            # normalised inside the pool); a footprint whose share already measures activity
+            # (boardings, throughput, LandScan daytime) or is a deliberate area apportionment
+            # onto unpopulated parcels is used verbatim, because multiplying it by `bg_weight`
+            # would apply an activity term twice. `weight_share_basis` is declared per row and one
+            # basis per (ori, state) is enforced in the loader.
             merged = (
-                bg_prior[["state_fips", "bg_id", "tract_id", "offense"]]
+                bg_prior[["state_fips", "bg_id", "tract_id", "offense", "bg_weight"]]
                 .merge(custom_footprints, on=["state_fips", "bg_id"], how="inner")
                 .merge(custom_targets.rename(columns={"group_id": "ori9"})[["state_fips", "ori9", "offense", "target_count"]], on=["state_fips", "ori9", "offense"], how="inner")
             )
-            merged["component_count"] = pd.to_numeric(merged["target_count"], errors="coerce").fillna(0.0) * pd.to_numeric(
-                merged["weight_share"], errors="coerce"
-            ).fillna(0.0)
+            merged = _custom_footprint_component_shares(merged)
+            merged["component_count"] = (
+                pd.to_numeric(merged["target_count"], errors="coerce").fillna(0.0)
+                * merged["component_share"]
+            )
             merged["jurisdiction_id"] = merged["ori9"]
             merged["jurisdiction_type"] = "custom_footprint_overlap_layer"
             out_frames.append(merged[["state_fips", "bg_id", "tract_id", "jurisdiction_id", "jurisdiction_type", "offense", "component_count"]].copy())
@@ -3608,10 +4524,17 @@ def _full_component_index_composite(
     *,
     index_suffix: str,
     weights: dict[str, float],
+    index_overrides: dict[str, pd.Series] | None = None,
 ) -> pd.Series:
+    # index_overrides lets a rare offense contribute its tract-support index in place of the
+    # (unpublished) block-group one, so the equal-offense composite stays defined at block group.
+    overrides = index_overrides or {}
     values = np.vstack(
         [
-            pd.to_numeric(out[f"index_{offense}_{index_suffix}"], errors="coerce").to_numpy(dtype=float)
+            pd.to_numeric(
+                overrides[offense] if offense in overrides else out[f"index_{offense}_{index_suffix}"],
+                errors="coerce",
+            ).to_numpy(dtype=float)
             for offense in offenses
         ]
     )
@@ -3649,14 +4572,24 @@ def _resident_part1_index(out: pd.DataFrame, offenses: list[str]) -> tuple[pd.Se
     return index.replace([np.inf, -np.inf], np.nan), national_rate
 
 
-def _harm_weighted_total_index(out: pd.DataFrame, offenses: list[str]) -> pd.Series:
+def _harm_weighted_total_index(
+    out: pd.DataFrame,
+    offenses: list[str],
+    *,
+    count_overrides: dict[str, pd.Series] | None = None,
+) -> pd.Series:
     """Count-derived total harm index (Crime Harm Index shape): harm_count is the sentencing-days
     weighted SUM of expected counts across the seven primary offenses (not an average of already-
     normalized per-offense indices), normalized by the same person-exposure denominator and
     publication floor/eligibility rule used by the person-offense primary indices (murder, rape,
     robbery, aggravated assault, larceny). One normalization at the end, mirroring how the other
     count-derived indices in this function are computed.
+
+    count_overrides lets a rare offense enter the harm sum at its tract-support count (spread
+    within the tract by person exposure) instead of its noisy block-group count, so the aggregate
+    is more robust than its parts while the sentencing-day weights stay untouched.
     """
+    overrides = count_overrides or {}
     denom = _raw_denominator(out["exposure_proxy_2024"])
     insufficient_exposure = denom.lt(float(PERSON_EXPOSURE_DENOMINATOR_FLOOR))
     residential_eligible = pd.to_numeric(out["households_total"], errors="coerce").fillna(0.0).ge(
@@ -3666,7 +4599,10 @@ def _harm_weighted_total_index(out: pd.DataFrame, offenses: list[str]) -> pd.Ser
     publishable = residential_eligible & denom.gt(0.0) & ~special_use_tract & ~insufficient_exposure
     counts = sum(
         float(HARM_WEIGHTS[offense])
-        * pd.to_numeric(out[_expected_count_col(offense)], errors="coerce").fillna(0.0).clip(lower=0.0)
+        * pd.to_numeric(
+            overrides[offense] if offense in overrides else out[_expected_count_col(offense)],
+            errors="coerce",
+        ).fillna(0.0).clip(lower=0.0)
         for offense in offenses
     )
     published = _count_derived_rate_index(counts=counts, denominator=denom, publishable=publishable)
@@ -3735,6 +4671,156 @@ def _aggregate_index_normalizers(surface: pd.DataFrame) -> dict[str, object]:
             ),
         },
     }
+
+
+def _rare_offense_published_point_fields(offense: str) -> tuple[str, ...]:
+    """The per-offense index and rate point fields (and their confidence intervals) that a
+    consumer would read as this area's own value for the offense. These are nulled at block-group
+    support for the rare person offenses; every other per-offense field (expected count,
+    diagnostics, reliability, denominator, support) is retained."""
+    return (
+        f"raw_rate_{offense}",
+        f"rate_{offense}_primary",
+        f"rate_{offense}_primary_ci95_lower",
+        f"rate_{offense}_primary_ci95_upper",
+        f"index_{offense}_primary",
+        f"index_{offense}_primary_ci95_lower",
+        f"index_{offense}_primary_ci95_upper",
+        f"index_{offense}_primary_ci95_width",
+        f"index_{offense}_primary_ci95_width_ratio",
+        f"resident_raw_rate_{offense}",
+        f"rate_{offense}_resident",
+        f"index_{offense}_resident",
+    )
+
+
+def _within_tract_person_exposure_share(bg: pd.DataFrame, group: pd.Series) -> pd.Series:
+    """Each block group's share of its parent tract's person exposure, with resident-population
+    then equal-weight fallbacks so the shares always sum to 1 within a tract. That guarantee is
+    what makes redistributing a tract count to its block groups conserve the tract total exactly.
+    `group` is the (normalized) parent-tract id per block group."""
+    candidates = [
+        pd.to_numeric(bg["exposure_proxy_2024"], errors="coerce").fillna(0.0).clip(lower=0.0),
+        pd.to_numeric(bg["resident_secondary_denominator"], errors="coerce").fillna(0.0).clip(lower=0.0),
+        pd.Series(1.0, index=bg.index, dtype=float),
+    ]
+    weight = candidates[0].copy()
+    for fallback in candidates[1:]:
+        group_sum = weight.groupby(group).transform("sum")
+        weight = weight.where(group_sum.gt(0.0), fallback)
+    group_sum = weight.groupby(group).transform("sum")
+    share = np.divide(
+        weight.to_numpy(dtype=float),
+        group_sum.to_numpy(dtype=float),
+        out=np.zeros(len(bg), dtype=float),
+        where=group_sum.gt(0.0).to_numpy(dtype=bool),
+    )
+    return pd.Series(share, index=bg.index, dtype=float)
+
+
+def apply_rare_offense_tract_support(
+    bg: pd.DataFrame,
+    tract: pd.DataFrame,
+    *,
+    tract_geo_id_col: str = "tract_id",
+) -> pd.DataFrame:
+    """RARE_OFFENSE_TRACT_SUPPORT publication policy (docs/STATE.md decision record).
+
+    Applied to a finalized block-group surface at publication time. Murder and rape are
+    Poisson-noise-dominated at block-group support, so their published per-offense index and rate
+    point estimates are carried only at census tract and coarser. This step:
+
+      1. Re-expresses the two rare-offense-sensitive aggregate indices at block-group support,
+         with the murder/rape terms taken at their honest (tract) support:
+           - index_total_harm: murder/rape enter as the tract count spread within the tract by
+             person-exposure share (conserving every tract total exactly); the five volume
+             offenses enter at full block-group resolution; the CHI sentencing-day weights are
+             untouched. The aggregate is more robust than its parts, and stays recomputable from
+             published fields (five block-group counts + tract murder/rape counts + exposure
+             shares + fixed weights).
+           - index_total_equal_offense: the murder/rape terms use the parent tract's per-offense
+             index; the five volume offenses use the block-group index.
+      2. Nulls the block-group murder/rape per-offense index and rate point fields (and their
+         confidence intervals). Expected counts and all reliability/diagnostic metadata remain,
+         so the counts still reconcile block group -> tract -> national.
+
+    The tract surface is returned untouched: it carries murder/rape at its native support.
+    """
+    out = bg.copy()
+    group = out[tract_geo_id_col].astype("string").str.zfill(11)
+    share = _within_tract_person_exposure_share(out, group)
+
+    redistributed_counts: dict[str, pd.Series] = {}
+    for offense in RARE_OFFENSE_TRACT_SUPPORT:
+        expected = pd.to_numeric(out[_expected_count_col(offense)], errors="coerce").fillna(0.0).clip(lower=0.0)
+        tract_total = expected.groupby(group).transform("sum")
+        redistributed = tract_total * share
+        conservation = (
+            pd.DataFrame({"tract": group, "expected": expected, "redistributed": redistributed})
+            .groupby("tract")[["expected", "redistributed"]]
+            .sum()
+        )
+        max_abs_dev = (
+            float((conservation["redistributed"] - conservation["expected"]).abs().max())
+            if not conservation.empty
+            else 0.0
+        )
+        if not np.isfinite(max_abs_dev) or max_abs_dev > 1e-6:
+            raise ValueError(
+                f"rare-offense tract redistribution not conserved for {offense}: "
+                f"max within-tract absolute deviation {max_abs_dev}"
+            )
+        redistributed_counts[offense] = redistributed
+
+    out["index_total_harm"] = _harm_weighted_total_index(
+        out,
+        list(OFFENSES_7),
+        count_overrides=redistributed_counts,
+    )
+
+    tract_index_cols = [f"index_{offense}_primary" for offense in RARE_OFFENSE_TRACT_SUPPORT]
+    tract_index = tract[[tract_geo_id_col, *tract_index_cols]].copy()
+    tract_index[tract_geo_id_col] = tract_index[tract_geo_id_col].astype("string").str.zfill(11)
+    joined = (
+        pd.DataFrame({tract_geo_id_col: group.to_numpy()})
+        .merge(tract_index, on=tract_geo_id_col, how="left")
+    )
+    index_overrides = {
+        offense: pd.Series(joined[f"index_{offense}_primary"].to_numpy(dtype=float), index=out.index)
+        for offense in RARE_OFFENSE_TRACT_SUPPORT
+    }
+    out["index_total_equal_offense"] = _full_component_index_composite(
+        out,
+        list(OFFENSES_7),
+        index_suffix="primary",
+        weights={offense: 1.0 for offense in OFFENSES_7},
+        index_overrides=index_overrides,
+    )
+    # The national-count-weighted composite averages per-offense primary indices too, so its
+    # murder/rape terms likewise come from tract support. Their weight here is only the offenses'
+    # tiny national count share, so this barely moves the surface -- it keeps the aggregate
+    # recomputable from published fields and drains the last of the block-group murder noise out
+    # of the default total layer.
+    out["index_total_primary_event_weighted"] = _full_component_index_composite(
+        out,
+        list(OFFENSES_7),
+        index_suffix="primary",
+        weights=_national_expected_count_weights(out, list(OFFENSES_7)),
+        index_overrides=index_overrides,
+    )
+
+    for offense in RARE_OFFENSE_TRACT_SUPPORT:
+        for field in _rare_offense_published_point_fields(offense):
+            if field in out.columns:
+                out[field] = np.nan
+        # The transient-exposure guard reads `index_{offense}_resident`, which step 2 has just
+        # nulled at block-group support: the flag is evaluated before this policy runs, so 88
+        # of its 162 firings (murder 86, rape 2) sat on an index no consumer can ever see.
+        # Cleared here rather than left as a flag whose own trigger field is null on the row.
+        flag_col = f"transient_exposure_likely_{offense}"
+        if flag_col in out.columns:
+            out[flag_col] = False
+    return out
 
 
 def _attach_primary_denominator_for_audit(frame: pd.DataFrame) -> pd.DataFrame:
@@ -3895,6 +4981,10 @@ def _rollup_tracts_from_bg(
 ) -> pd.DataFrame:
     rollup_cols = (
         [_expected_count_col(offense) for offense in OFFENSES_7]
+        # Footprint-derived MASS, not its share: a share cannot be summed, and rolling the mass
+        # up and re-deriving the share inside `_finalize_output` gives the tract surface the same
+        # compositional quantity the block-group surface has, with no second code path.
+        + [_footprint_derived_count_col(offense) for offense in OFFENSES_7]
         + [
             population_col,
             "daytime_population_jobs_proxy",
@@ -4643,6 +5733,68 @@ def _finalize_output(
             pd.Series(primary_insufficient_exposure, index=out.index).fillna(False).astype(bool)
         )
 
+        # The resident arm's own floor, hoisted above the primary block: the ambient-blind
+        # footprint rule below is defined against the RESIDENT rate, so its baseline
+        # publishable mask has to exist before either arm is finalised.
+        resident_denominator = out["resident_secondary_denominator"]
+        if offense in PERSON_EXPOSURE_FLOOR_OFFENSES:
+            resident_insufficient_exposure = resident_denominator.lt(float(PERSON_EXPOSURE_DENOMINATOR_FLOOR))
+        elif offense == "motor_vehicle_theft":
+            resident_insufficient_exposure = raw_denominator.lt(float(MVT_VEHICLE_EXPOSURE_DENOMINATOR_FLOOR))
+        else:
+            resident_insufficient_exposure = pd.Series(False, index=out.index)
+        resident_insufficient_exposure = (
+            pd.Series(resident_insufficient_exposure, index=out.index).fillna(False).astype(bool)
+        )
+
+        # --- ambient-blind custom footprint (see the constants block) ---------------------
+        footprint_count = pd.to_numeric(
+            out[_footprint_derived_count_col(offense)]
+            if _footprint_derived_count_col(offense) in out.columns
+            else pd.Series(0.0, index=out.index, dtype=float),
+            errors="coerce",
+        ).fillna(0.0).clip(lower=0.0)
+        footprint_share = pd.Series(
+            np.where(count.to_numpy() > 0.0, footprint_count.to_numpy() / np.where(count > 0.0, count, 1.0), 0.0),
+            index=out.index,
+            dtype=float,
+        ).clip(0.0, 1.0)
+        # "No ambient lift": the published exposure denominator is resident population and
+        # nothing else -- neither the LODES jobs proxy nor LandScan raised it.
+        ambient_exposure_lift = exposure_proxy.gt(pop)
+        baseline_resident_publishable = (
+            residential_eligible
+            & resident_denominator.gt(0.0)
+            & ~special_use_suppressed
+            & ~resident_insufficient_exposure
+        )
+        baseline_resident = _count_derived_rate_index(
+            counts=count,
+            denominator=resident_denominator,
+            publishable=baseline_resident_publishable,
+        )
+        baseline_national_resident_rate = float(baseline_resident["national_rate_per_100k"])
+        # The rate the ratio is measured on uses the count's exact-Poisson LOWER bound, so a
+        # fractional modelled count cannot make the claim on its own (see the constants block).
+        count_lower, _count_upper = _poisson_count_interval(count)
+        conservative_resident_rate = pd.Series(np.nan, index=out.index, dtype=float)
+        rate_measurable = baseline_resident_publishable & resident_denominator.gt(0.0)
+        conservative_resident_rate.loc[rate_measurable] = (
+            RATE_PER_100K
+            * count_lower.loc[rate_measurable]
+            / resident_denominator.loc[rate_measurable]
+        )
+        resident_rate_ratio = pd.Series(np.nan, index=out.index, dtype=float)
+        if np.isfinite(baseline_national_resident_rate) and baseline_national_resident_rate > 0:
+            resident_rate_ratio = conservative_resident_rate / baseline_national_resident_rate
+        footprint_ambient_exposure_missing = (
+            footprint_share.gt(float(FOOTPRINT_DERIVED_MASS_SHARE_FLOOR))
+            & ~ambient_exposure_lift
+            & resident_rate_ratio.ge(float(AMBIENT_BLIND_FOOTPRINT_RESIDENT_RATE_RATIO))
+        ).fillna(False)
+        out[_footprint_derived_share_col(offense)] = footprint_share
+        out[_footprint_ambient_exposure_missing_col(offense)] = footprint_ambient_exposure_missing
+
         primary_eb = _empirical_bayes_index(
             out,
             offense=offense,
@@ -4659,6 +5811,7 @@ def _finalize_output(
             & ~primary_denominator_invalid
             & ~special_use_suppressed
             & ~primary_insufficient_exposure
+            & ~footprint_ambient_exposure_missing
         )
         primary_published = _count_derived_rate_index(
             counts=count,
@@ -4681,6 +5834,21 @@ def _finalize_output(
             & ~special_use_suppressed
         )
         primary_denominator_reason.loc[primary_insufficient_reason_mask] = "insufficient_exposure"
+        # A cell that is BOTH below the plain exposure floor and ambient-blind reports the
+        # floor: the floor is the harder structural fact and does not need the footprint.
+        footprint_reason_mask = (
+            footprint_ambient_exposure_missing
+            & ~non_residential
+            & ~primary_denominator_invalid
+            & ~special_use_suppressed
+            & ~primary_insufficient_exposure
+        )
+        primary_denominator_reason.loc[footprint_reason_mask] = INSUFFICIENT_AMBIENT_EXPOSURE_REASON
+        # `denominator_reason` had no `non_residential` value at all (Stage 5 F7): 2,306 BG rows
+        # per offense carried "publishable" next to a null index, because the households floor
+        # nulls the index without touching the reason. Assigned LAST so the precedence matches
+        # `_estimate_mode`, where `non_residential` also wins.
+        primary_denominator_reason.loc[non_residential] = "non_residential"
         out[f"primary_denominator_raw_{offense}"] = primary_eb["denominator_raw"]
         out[f"primary_national_rate_per_100k_{offense}"] = primary_published["national_rate_per_100k"]
         out[f"primary_alpha_{offense}"] = float(eb_alpha[offense])
@@ -4698,7 +5866,11 @@ def _finalize_output(
         out[f"denominator_reason_{offense}"] = primary_denominator_reason
         out[f"primary_index_publishable_{offense}"] = primary_publishable
         out[f"primary_index_suppressed_{offense}"] = (
-            non_residential | primary_denominator_invalid | special_use_suppressed | primary_insufficient_exposure
+            non_residential
+            | primary_denominator_invalid
+            | special_use_suppressed
+            | primary_insufficient_exposure
+            | footprint_ambient_exposure_missing
         )
         out[f"primary_zero_denominator_positive_count_{offense}"] = raw_denominator.le(0.0) & count.gt(0.0)
         if offense == "motor_vehicle_theft":
@@ -4712,6 +5884,12 @@ def _finalize_output(
         )
         estimate_mode.loc[special_reason_mask] = "special_use"
         estimate_mode.loc[primary_insufficient_reason_mask] = "insufficient_exposure"
+        # The ambient-blind footprint class shares the DISPLAY vocabulary of the plain
+        # exposure floor -- "too little exposure for a per-person rate" is exactly true of a
+        # casino parcel measured by its residents -- so no new `estimate_mode` value is minted
+        # and the viewer's five codes still cover the surface. `denominator_reason` above is
+        # where the mechanism is named. See docs/PIPELINE.md on the two vocabularies.
+        estimate_mode.loc[footprint_reason_mask] = "insufficient_exposure"
         out[f"estimate_mode_{offense}"] = estimate_mode
         out[f"rate_{offense}_primary"] = primary_published["rate"]
         out[f"index_{offense}_primary"] = primary_published["index"]
@@ -4773,21 +5951,6 @@ def _finalize_output(
             geo_id_col=geo_id_col,
         )
 
-        transient_ratio_values = np.full(len(out), np.nan, dtype=float)
-        np.divide(
-            exposure_proxy.to_numpy(dtype=float),
-            pop.replace(0.0, np.nan).to_numpy(dtype=float),
-            out=transient_ratio_values,
-            where=pop.gt(0.0).to_numpy(dtype=bool),
-        )
-        transient_ratio = pd.Series(transient_ratio_values, index=out.index, dtype=float)
-        out[f"transient_exposure_likely_{offense}"] = (
-            residential_eligible
-            & pop.gt(0.0)
-            & transient_ratio.ge(float(TRANSIENT_EXPOSURE_DAYTIME_TO_RESIDENT_RATIO))
-            & pd.to_numeric(out[f"index_{offense}_primary"], errors="coerce").ge(float(TRANSIENT_EXPOSURE_INDEX_THRESHOLD))
-        )
-
         resident_eb = _empirical_bayes_index(
             out,
             offense=offense,
@@ -4799,22 +5962,13 @@ def _finalize_output(
             jurisdiction_col=jurisdiction_col,
         )
         resident_denominator_invalid = primary_denominator_invalid
-        resident_denominator = out["resident_secondary_denominator"]
-        if offense in PERSON_EXPOSURE_FLOOR_OFFENSES:
-            resident_insufficient_exposure = resident_denominator.lt(float(PERSON_EXPOSURE_DENOMINATOR_FLOOR))
-        elif offense == "motor_vehicle_theft":
-            resident_insufficient_exposure = raw_denominator.lt(float(MVT_VEHICLE_EXPOSURE_DENOMINATOR_FLOOR))
-        else:
-            resident_insufficient_exposure = pd.Series(False, index=out.index)
-        resident_insufficient_exposure = (
-            pd.Series(resident_insufficient_exposure, index=out.index).fillna(False).astype(bool)
-        )
+        # `resident_denominator` and `resident_insufficient_exposure` are computed above the
+        # primary block, because the ambient-blind footprint rule is defined on the resident
+        # rate and needs them first.
         resident_publishable = (
-            residential_eligible
-            & resident_denominator.gt(0.0)
+            baseline_resident_publishable
             & ~resident_denominator_invalid
-            & ~special_use_suppressed
-            & ~resident_insufficient_exposure
+            & ~footprint_ambient_exposure_missing
         )
         resident_published = _count_derived_rate_index(
             counts=count,
@@ -4836,6 +5990,9 @@ def _finalize_output(
             & ~special_use_suppressed
         )
         resident_denominator_reason.loc[resident_insufficient_reason_mask] = "insufficient_exposure"
+        resident_denominator_reason.loc[footprint_reason_mask] = INSUFFICIENT_AMBIENT_EXPOSURE_REASON
+        # Same Stage 5 F7 hole on the resident arm (771 BG rows).
+        resident_denominator_reason.loc[non_residential] = "non_residential"
         out[f"resident_raw_rate_{offense}"] = resident_published["rate"]
         out[f"diagnostic_resident_eb_rate_{offense}"] = resident_eb["diagnostic_eb_rate"]
         out[f"diagnostic_resident_eb_national_rate_per_100k_{offense}"] = resident_eb["diagnostic_eb_national_rate_per_100k"]
@@ -4852,10 +6009,52 @@ def _finalize_output(
         if offense == "motor_vehicle_theft":
             out[f"resident_denominator_invalid_{offense}"] = resident_denominator_invalid
         out[f"index_{offense}_resident_suppressed"] = (
-            non_residential | resident_denominator_invalid | special_use_suppressed | resident_insufficient_exposure
+            non_residential
+            | resident_denominator_invalid
+            | special_use_suppressed
+            | resident_insufficient_exposure
+            | footprint_ambient_exposure_missing
         )
         out[f"rate_{offense}_resident"] = resident_published["rate"]
         out[f"index_{offense}_resident"] = resident_published["index"]
+
+        transient_ratio_values = np.full(len(out), np.nan, dtype=float)
+        np.divide(
+            exposure_proxy.to_numpy(dtype=float),
+            pop.replace(0.0, np.nan).to_numpy(dtype=float),
+            out=transient_ratio_values,
+            where=pop.gt(0.0).to_numpy(dtype=bool),
+        )
+        transient_ratio = pd.Series(transient_ratio_values, index=out.index, dtype=float)
+        # One column, not seven: the ratio is exposure over residents and does not vary by
+        # offense. Only the index condition below does.
+        out["transient_exposure_daytime_to_resident_ratio"] = transient_ratio
+        # Two Stage-5 defects fixed here; the flag stays ADVISORY and gates nothing (Stage 4/5
+        # batch: report the firing population, do not couple it to suppression this release).
+        #
+        # 1. The `households_total >= 10` term was dead. Every one of the 290 candidate cells it
+        #    excluded is non-residential, and a non-residential cell publishes no index at all,
+        #    so the index condition was already False there: measured, 0 cells were blocked by
+        #    the household floor alone. It is gone rather than left as a term that reads
+        #    load-bearing and is not.
+        #
+        # 2. The threshold was applied to the wrong estimator. The condition
+        #    `exposure / population >= 5` says the RESIDENT denominator understates the
+        #    population at risk -- but murder, rape, robbery, aggravated assault and larceny
+        #    already publish against person EXPOSURE, so the primary index has absorbed the
+        #    transience the ratio is complaining about. The estimator the ratio indicts is
+        #    `index_{offense}_resident`, and that is what the flag now reads. Measured on the
+        #    promoted surface this moves the reachable population from 82 block groups to
+        #    ~2,087 -- the guard now fires on its own definition instead of on a surface that
+        #    has already been corrected.
+        out[f"transient_exposure_likely_{offense}"] = (
+            pop.gt(0.0)
+            & transient_ratio.ge(float(TRANSIENT_EXPOSURE_DAYTIME_TO_RESIDENT_RATIO))
+            & pd.to_numeric(out[f"index_{offense}_resident"], errors="coerce").ge(
+                float(TRANSIENT_EXPOSURE_INDEX_THRESHOLD)
+            )
+        )
+
 
     total_counts_arr = np.sum(np.vstack(total_counts), axis=0)
     out[_expected_count_col("personal")] = personal_counts
@@ -4930,6 +6129,7 @@ def _finalize_output(
         "resident_secondary_denominator",
         "resident_secondary_denominator_low_reliability",
         "population_zero_with_positive_count",
+        "transient_exposure_daytime_to_resident_ratio",
     ]
     ordered_cols += [_expected_count_col(offense) for offense in OFFENSES_7]
     for offense in OFFENSES_7:
@@ -4976,6 +6176,9 @@ def _finalize_output(
             f"index_{offense}_primary_ci95_width_ratio",
             f"reliability_tier_{offense}",
             f"recommended_display_geography_{offense}",
+            _footprint_derived_count_col(offense),
+            _footprint_derived_share_col(offense),
+            _footprint_ambient_exposure_missing_col(offense),
             f"transient_exposure_likely_{offense}",
             f"resident_national_rate_per_100k_{offense}",
             f"resident_raw_rate_{offense}",
@@ -5023,7 +6226,6 @@ def _ensure_output_dependencies(
     if (
         config.force_controls_rebuild
         or config.force_reporting_regimes_rebuild
-        or config.force_municipal_estimates_rebuild
         or not controls_artifacts_are_current(
             paths,
             year=int(config.year),
@@ -5040,7 +6242,6 @@ def _ensure_output_dependencies(
             config=ControlBuildConfig(
                 year=int(config.year),
                 force_reporting_regimes_rebuild=bool(config.force_reporting_regimes_rebuild),
-                force_municipal_estimates_rebuild=bool(config.force_municipal_estimates_rebuild),
             ),
             blocked_by=blockers_for_stage("controls", ignore=("outputs",)),
             observation_ignore_blockers=("outputs",),
@@ -5160,6 +6361,40 @@ def build_v2_outputs(
     )
     bg_counts = bg_counts.rename(columns={offense: _expected_count_col(offense) for offense in OFFENSES_7})
 
+    # Compositional input to the ambient-blind footprint eligibility rule: per block group and
+    # offense, how much of the modelled mass arrived through a custom-footprint overlap layer.
+    # Carried as MASS so the tract rollup can sum it; the share is derived where it is used.
+    footprint_components = all_components[
+        all_components["jurisdiction_type"].astype("string").eq("custom_footprint_overlap_layer")
+    ]
+    footprint_counts = (
+        footprint_components.groupby(["state_fips", "bg_id", "tract_id", "offense"], dropna=False)[
+            "component_count"
+        ]
+        .sum()
+        .reset_index()
+        .pivot_table(
+            index=["state_fips", "bg_id", "tract_id"],
+            columns="offense",
+            values="component_count",
+            fill_value=0.0,
+        )
+        .reset_index()
+        if not footprint_components.empty
+        else pd.DataFrame(columns=["state_fips", "bg_id", "tract_id"])
+    )
+    footprint_counts = footprint_counts.rename(
+        columns={offense: _footprint_derived_count_col(offense) for offense in OFFENSES_7}
+    )
+    for offense in OFFENSES_7:
+        col = _footprint_derived_count_col(offense)
+        if col not in footprint_counts.columns:
+            footprint_counts[col] = 0.0
+    bg_counts = bg_counts.merge(footprint_counts, on=["state_fips", "bg_id", "tract_id"], how="left")
+    for offense in OFFENSES_7:
+        col = _footprint_derived_count_col(offense)
+        bg_counts[col] = pd.to_numeric(bg_counts[col], errors="coerce").fillna(0.0).clip(lower=0.0)
+
     population_col = f"population_{int(config.year)}"
     bg_cov = bg_cov_raw.rename(
         columns={"bg_id": "block_group_geoid", "population": population_col}
@@ -5196,6 +6431,8 @@ def build_v2_outputs(
     for offense in OFFENSES_7:
         col = _expected_count_col(offense)
         bg_out[col] = pd.to_numeric(bg_out.get(col), errors="coerce").fillna(0.0)
+        footprint_col = _footprint_derived_count_col(offense)
+        bg_out[footprint_col] = pd.to_numeric(bg_out.get(footprint_col), errors="coerce").fillna(0.0)
     bg_out[population_col] = pd.to_numeric(bg_out.get(population_col), errors="coerce").fillna(0.0)
     bg_out = bg_out.drop(columns=["bg_id"], errors="ignore")
     bg_out = _finalize_output(
@@ -5238,6 +6475,10 @@ def build_v2_outputs(
         ratio = bg_cal["state_fips"].map(lambda st: ratio_map.get((str(st).zfill(2), offense), 1.0))
         expected_col = _expected_count_col(offense)
         bg_cal[expected_col] = pd.to_numeric(bg_cal[expected_col], errors="coerce").fillna(0.0) * ratio
+        # Scaled by the same per-state ratio as the count it is a part of, so the derived
+        # footprint share is identical on both twins rather than off by the calibration factor.
+        footprint_col = _footprint_derived_count_col(offense)
+        bg_cal[footprint_col] = pd.to_numeric(bg_cal[footprint_col], errors="coerce").fillna(0.0) * ratio
 
     bg_cal = _finalize_output(
         bg_cal,
@@ -5328,6 +6569,12 @@ def write_v2_outputs(
             paths=paths,
             config=resolved_config,
         )
+        # Publication-support policy: carry murder/rape per-offense indices only at tract and
+        # coarser, with the rare-offense-sensitive aggregates re-expressed compositionally. Applied
+        # here at publication time so every internal diagnostic and confidence surface upstream is
+        # computed from the full block-group signal (see RARE_OFFENSE_TRACT_SUPPORT).
+        bg_out = apply_rare_offense_tract_support(bg_out, tract_out)
+        bg_cal = apply_rare_offense_tract_support(bg_cal, tract_cal)
         out_paths = [block_group_ags_core_out, tract_ags_core_out]
         if block_group_fbi_out is not None and tract_fbi_out is not None:
             out_paths.extend([block_group_fbi_out, tract_fbi_out])

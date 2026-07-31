@@ -7,6 +7,11 @@ import duckdb
 import numpy as np
 import pandas as pd
 
+from crimerisk.agency_identity import (
+    load_fbi_roster_oris,
+    resolve_agency_identity,
+)
+from crimerisk.stage1_adjudications import registry_dependency_paths
 from crimerisk.build_freshness import artifact_is_current
 from crimerisk.crime import OFFENSES_7
 from crimerisk.fbi_publications import (
@@ -32,6 +37,8 @@ from crimerisk.local_publications import (
     load_local_publication_annual_ags_rows,
 )
 from crimerisk.paths import RepoPaths
+from crimerisk.reference import canonicalize_agency_county_fips
+from crimerisk.scope import production_scope_excluded
 from crimerisk.reference_layers import (
     ReferenceLayerBuildConfig,
     get_v2_reference_output_paths,
@@ -128,6 +135,7 @@ def observation_dependency_paths(
         else []
     )
     dependencies = [
+        *registry_dependency_paths(paths),
         paths.state_dir / "reference" / "agency_master.parquet",
         paths.state_dir / "reference" / "agency_to_jurisdiction_crosswalk.parquet",
         paths.state_dir / "reference" / "jurisdiction_master.parquet",
@@ -673,6 +681,67 @@ def _build_srs_annual_observations(
     return srs_long
 
 
+def _complete_nibrs_offense_rows_with_zeros(
+    nibrs: pd.DataFrame, *, submitted_agency_years: pd.DataFrame
+) -> pd.DataFrame:
+    """Complete every submitted NIBRS agency-year to the full Part I offense set.
+
+    Reporting in NIBRS is an agency-year property -- the batch header's months cover
+    the whole submission, not one offense -- so an offense with no incidents in a year
+    the agency submitted is a zero over exactly those months. That is the same
+    semantics the SRS/Return A lane already carries explicitly, and it holds for partial
+    years too: a 5-month submission's absent offenses are zeros over those 5 months, and
+    zero uplifts to zero.
+
+    The population that gets completed is the **batch header's** submitted agency-years,
+    not the offense rollup's. Keying on the rollup (v19) silently excluded the agencies
+    whose whole submission contained no Part I incident at all -- 8,306 agency-years
+    over 2018-2024, 1,631 of them in 2024, including Los Angeles County's and San
+    Bernardino County's sheriffs -- and downstream read that absence as missing data
+    rather than as the all-zero year the header says it is. An agency-year present in
+    the rollup but absent from the header (incidents filed without a header record)
+    keeps its rows too: the union is the submitted population.
+
+    `incident_months_any` is an agency-year property and carries onto every emitted row;
+    `offense_incident_months` is 0 for an offense with no incidents by construction.
+    """
+    header_years = submitted_agency_years[["ori9", "year"]].drop_duplicates()
+    rollup_years = (
+        nibrs[["ori9", "year"]].drop_duplicates()
+        if not nibrs.empty
+        else pd.DataFrame(columns=["ori9", "year"])
+    )
+    agency_years = pd.concat([header_years, rollup_years], ignore_index=True).drop_duplicates(
+        subset=["ori9", "year"]
+    )
+    if agency_years.empty:
+        return nibrs
+    incident_months = (
+        nibrs[["ori9", "year", "incident_months_any"]].drop_duplicates(subset=["ori9", "year"])
+        if not nibrs.empty
+        else pd.DataFrame(columns=["ori9", "year", "incident_months_any"])
+    )
+    agency_years = agency_years.merge(incident_months, on=["ori9", "year"], how="left")
+    agency_years["incident_months_any"] = pd.to_numeric(
+        agency_years["incident_months_any"], errors="coerce"
+    ).fillna(0)
+
+    complete = agency_years.merge(
+        pd.DataFrame({"offense": list(OFFENSES_7)}), how="cross"
+    )
+    counts = (
+        nibrs.drop(columns=["incident_months_any"])
+        if "incident_months_any" in nibrs.columns
+        else nibrs
+    )
+    out = complete.merge(counts, on=["ori9", "year", "offense"], how="left")
+    out["count"] = pd.to_numeric(out["count"], errors="coerce").fillna(0).astype(int)
+    out["offense_incident_months"] = pd.to_numeric(
+        out["offense_incident_months"], errors="coerce"
+    ).fillna(0)
+    return out
+
+
 def _build_nibrs_annual_observations(
     *,
     paths: RepoPaths,
@@ -738,6 +807,15 @@ def _build_nibrs_annual_observations(
 
     nibrs = (
         pd.concat(nibrs_frames, ignore_index=True) if nibrs_frames else pd.DataFrame()
+    )
+    # The submitted population: header rows claiming at least one reported month.
+    # A header row with no months is a registration, not a submission.
+    submitted_agency_years = batch_header.loc[
+        pd.to_numeric(batch_header["header_months_reported"], errors="coerce").fillna(0.0).gt(0.0),
+        ["ori9", "year"],
+    ].drop_duplicates()
+    nibrs = _complete_nibrs_offense_rows_with_zeros(
+        nibrs, submitted_agency_years=submitted_agency_years
     )
     nibrs = nibrs.merge(batch_header, on=["ori9", "year"], how="left")
     nibrs["months_reported"] = pd.to_numeric(
@@ -998,6 +1076,83 @@ def _concat_agency_observation_frames(
     return out.reset_index(drop=True)
 
 
+# Return A carries unfounded-offense adjustments, so a year in which an agency
+# unfounded more offences of a category than it reported can publish a small negative
+# residual (29 rows over 2018-2024, -37 counts in total, all rape/MVT/burglary at -1
+# to -4). A negative annual count is not a count: it is clamped to zero with the
+# clamped amount recorded, and the post-condition below then forbids negatives in the
+# panel outright. The clamp is licensed only on the Return A lane, where the
+# adjustment mechanism is documented; a negative anywhere else is a parse error and
+# fails the build.
+NEGATIVE_COUNT_CLAMP_ELIGIBLE_SOURCES = frozenset({SUMMARY_SOURCE})
+
+
+def _clamp_return_a_negative_counts(observations: pd.DataFrame) -> pd.DataFrame:
+    """Clamp Return A's negative adjustment residues to zero, recording the amount."""
+    out = observations.copy()
+    counts = pd.to_numeric(out["count"], errors="coerce")
+    negative = counts.lt(0.0).fillna(False)
+    out["negative_count_clamped_amount"] = np.where(negative, -counts.fillna(0.0), 0.0)
+    if not negative.any():
+        return out
+    ineligible = negative & ~out["source"].isin(NEGATIVE_COUNT_CLAMP_ELIGIBLE_SOURCES)
+    if ineligible.any():
+        raise ValueError(
+            f"{int(ineligible.sum())} negative observation count(s) on a lane with no "
+            "documented adjustment mechanism: "
+            + str(
+                out.loc[ineligible, ["ori9", "year", "source", "offense", "count"]]
+                .head(20)
+                .to_dict(orient="records")
+            )
+        )
+    out.loc[negative, "count"] = 0.0
+    return out
+
+
+def _assert_no_negative_counts(observations: pd.DataFrame) -> None:
+    """Fail closed on a negative count in the written panel."""
+    counts = pd.to_numeric(observations["count"], errors="coerce")
+    negative = counts.lt(0.0).fillna(False)
+    if not negative.any():
+        return
+    raise ValueError(
+        f"{int(negative.sum())} agency observation(s) carry a negative count: "
+        + str(
+            observations.loc[negative, ["ori9", "year", "source", "offense", "count"]]
+            .head(20)
+            .to_dict(orient="records")
+        )
+    )
+
+
+# The two FBI lanes claim a complete offense set per agency-year: Return A emits an
+# explicit row per Part I offense, and the NIBRS rollup is completed to all seven
+# above. The publication lanes do not, and their absent offences are MISSING rather
+# than zero -- CIUS withholds individual cells with the published footnote "The FBI
+# determined that the agency's data were overreported. Consequently, those data are
+# not included in this table", and the MS TOPS extract applies column suppression.
+# The panel therefore simply has no row for them and the preference ladder falls to
+# the next lane; see docs/PIPELINE.md Stage 1.
+OFFENSE_COMPLETE_SOURCES = frozenset({SUMMARY_SOURCE, NIBRS_SOURCE})
+
+
+def _assert_fbi_lane_offense_sets_are_complete(observations: pd.DataFrame) -> None:
+    """Fail closed if a Return A or NIBRS agency-year is missing an offense row."""
+    fbi = observations[observations["source"].isin(OFFENSE_COMPLETE_SOURCES)]
+    if fbi.empty:
+        return
+    sizes = fbi.groupby(["ori9", "year", "source"], dropna=False)["offense"].nunique()
+    incomplete = sizes[sizes.ne(len(OFFENSES_7))]
+    if incomplete.empty:
+        return
+    raise ValueError(
+        f"{len(incomplete)} FBI-lane agency-year(s) carry fewer than {len(OFFENSES_7)} "
+        "offense rows, so an absent offense is indistinguishable from a zero: "
+        + str(incomplete.head(20).to_dict())
+    )
+
+
 def _deduplicate_agency_source_candidates(observations: pd.DataFrame) -> pd.DataFrame:
     if observations.empty:
         return observations.copy()
@@ -1032,6 +1187,54 @@ def _deduplicate_agency_source_candidates(observations: pd.DataFrame) -> pd.Data
         .reset_index(drop=True)
     )
     return out
+
+
+def _drop_state_publication_non_reports(
+    promotions: pd.DataFrame,
+    *,
+    srs_obs: pd.DataFrame,
+) -> pd.DataFrame:
+    """Drop state-publication agency-years that are a non-report, not a zero.
+
+    State-publication sheets (FDLE FIBRS, NY DCJS) carry no months-reported
+    field of their own, so an agency that simply did not submit for a year is
+    indistinguishable on the sheet from an agency that genuinely reported zero
+    for every offense: both arrive here as all-zero rows that would be
+    promoted at months_reported=12 / quality high. The SRS Return A panel
+    resolves the ambiguity -- it is the FBI-side source that can record a
+    literal zero months (a NIBRS row's presence implies at least one reported
+    month, and CIUS carries only completed annual compilations). An
+    agency-year that is zero for every offense in the state publication AND
+    shows zero SRS months reported for the same year (or is absent from the
+    SRS panel entirely) is a non-report: it is dropped -- missing, not zero --
+    so source selection falls back to the FBI lane and the existing gap-fill
+    machinery engages instead of a fabricated full-year zero.
+    """
+    if promotions.empty:
+        return promotions
+    srs_months = srs_obs[["ori9", "year", "months_reported"]].copy()
+    srs_months["months_reported"] = pd.to_numeric(
+        srs_months["months_reported"], errors="coerce"
+    ).fillna(0.0)
+    srs_max_months = srs_months.groupby(
+        [srs_months["ori9"].astype(str), srs_months["year"].astype(int)]
+    )["months_reported"].max()
+
+    counts = pd.to_numeric(promotions["count"], errors="coerce").fillna(0.0)
+    agency_year_total = counts.groupby(
+        [promotions["ori9"], promotions["year"]]
+    ).transform("sum")
+    lookup_keys = pd.MultiIndex.from_arrays(
+        [promotions["ori9"].astype(str), promotions["year"].astype(int)]
+    )
+    months_for_rows = pd.Series(
+        srs_max_months.reindex(lookup_keys).fillna(0.0).to_numpy(),
+        index=promotions.index,
+    )
+    is_non_report = agency_year_total.le(0.0) & months_for_rows.le(0.0)
+    if not is_non_report.any():
+        return promotions
+    return promotions.loc[~is_non_report].reset_index(drop=True)
 
 
 def _prepare_concat_frames(
@@ -1125,6 +1328,10 @@ def build_agency_year_observations(
         year_end=config.year_end,
         source_path=state_publication_input_path,
         require_source_exists=True,
+    )
+    state_publication_promotions = _drop_state_publication_non_reports(
+        state_publication_promotions,
+        srs_obs=srs_obs,
     )
     if not state_publication_promotions.empty:
         state_publication_promotions = state_publication_promotions.merge(
@@ -1241,6 +1448,31 @@ def build_agency_year_observations(
     )
     observations = _deduplicate_agency_source_candidates(observations)
 
+    # Identity before value: fold each NIBRS-lane ORI9 variant onto the summary-lane
+    # ORI it duplicates, so source preference sees one agency carrying both lanes
+    # rather than two agencies each carrying the same submission. Re-keying can put
+    # two rows on one primary key, so the dedupe rule runs again over the result.
+    # The deterministic rule runs first and the adjudicated a2/a3 residue lands on top
+    # of it inside resolve_agency_identity, which fails closed if the two overlap.
+    row_count_before_identity = len(observations)
+    observations, identity_summary = resolve_agency_identity(
+        observations,
+        paths=paths,
+        roster_oris=load_fbi_roster_oris(paths, year=int(config.year_end)),
+    )
+    if len(observations) != row_count_before_identity or identity_summary[
+        "twin_adjudicated_variants_merged"
+    ]:
+        observations = _deduplicate_agency_source_candidates(observations)
+    print(
+        "build_v2_observations: identity resolution "
+        f"{identity_summary['twin_rule_variants_merged']} rule variants + "
+        f"{identity_summary['twin_adjudicated_variants_merged']} adjudicated variants merged; "
+        f"{identity_summary['twin_adjudicated_cases_quarantined']} adjudicated cases quarantined",
+        flush=True,
+    )
+
+    observations = _clamp_return_a_negative_counts(observations)
     observations["count"] = pd.to_numeric(
         observations["count"], errors="coerce"
     ).fillna(0.0)
@@ -1323,6 +1555,21 @@ def build_agency_year_observations(
     observations["state_abbr"] = observations["state_abbr"].astype("string").str.upper()
     observations = observations[observations["state_fips"].notna()].copy()
 
+    # The same canonicalisation `agency_master` gets, applied to the panel's own
+    # county column, which until now came straight off the SRS annual header and
+    # still carried the 999 sentinel and retired GEOIDs (02261, 02270, 46113, 51515,
+    # 57999). One implementation, one `county_fips_source` vocabulary, so a consumer
+    # can gate on placement authority here exactly as it does on the master.
+    observations = canonicalize_agency_county_fips(
+        observations, paths=paths, roster_year=int(config.year_end)
+    )
+    observations["production_scope_excluded"] = production_scope_excluded(
+        observations["state_abbr"]
+    )
+
+    _assert_no_negative_counts(observations)
+    _assert_fbi_lane_offense_sets_are_complete(observations)
+
     observations = observations[
         [
             "ori9",
@@ -1357,10 +1604,13 @@ def build_agency_year_observations(
             "nonzero_months",
             "max_month_share",
             "annual_month_diff_ratio",
+            "negative_count_clamped_amount",
             "state_fips",
             "state_abbr",
             "county_fips",
+            "county_fips_source",
             "place_fips",
+            "production_scope_excluded",
             "population",
             "agency_name_raw",
             "agency_name_std",
@@ -1372,7 +1622,11 @@ def build_agency_year_observations(
         ]
     ].sort_values(["ori9", "year", "source", "offense"], kind="mergesort")
 
-    return observations.reset_index(drop=True)
+    observations = observations.reset_index(drop=True)
+    # Carried on the frame so `write_v2_observations` can report what identity resolution did
+    # without this builder having to change its return type for every consumer.
+    observations.attrs["identity_resolution"] = identity_summary
+    return observations
 
 
 def _weighted_mean(values: pd.Series, weights: pd.Series) -> float:
@@ -1703,13 +1957,35 @@ def write_v2_observations(
         print(f"build_v2_observations: writing {jurisdiction_out_path}", flush=True)
         jurisdiction_obs.to_parquet(jurisdiction_out_path, index=False)
 
+        publication_partial_offense_sets = (
+            agency_obs[~agency_obs["source"].isin(OFFENSE_COMPLETE_SOURCES)]
+            .groupby(["ori9", "year", "source"], dropna=False)["offense"]
+            .nunique()
+        )
         return {
             "agency_rows": int(len(agency_obs)),
             "agency_oris": int(agency_obs["ori9"].nunique()),
+            **{
+                key: value
+                for key, value in agency_obs.attrs.get("identity_resolution", {}).items()
+                if not isinstance(value, list)
+            },
             "agency_cius_reference_rows": (
                 int(agency_obs["cius_reference_flag"].fillna(False).sum())
                 if "cius_reference_flag" in agency_obs.columns
                 else 0
+            ),
+            "negative_counts_clamped_rows": int(
+                pd.to_numeric(agency_obs["negative_count_clamped_amount"], errors="coerce")
+                .fillna(0.0)
+                .gt(0.0)
+                .sum()
+            ),
+            "production_scope_excluded_rows": int(
+                agency_obs["production_scope_excluded"].fillna(False).sum()
+            ),
+            "publication_lane_partial_offense_agency_years": int(
+                publication_partial_offense_sets.lt(len(OFFENSES_7)).sum()
             ),
             "jurisdiction_rows": int(len(jurisdiction_obs)),
             "jurisdictions": int(jurisdiction_obs["jurisdiction_id"].nunique()),

@@ -27,12 +27,27 @@ edges that bleed into water. See that file's water-overlay note.
 
 Schema note: per-offense fields are `index_{o}_primary` (default point),
 `index_{o}_resident`, `rate_{o}_primary`, `expected_count_{o}`,
-`crime_density_{o}`, `estimate_mode_{o}`, `reliability_tier_{o}`. Aggregates are
+`crime_density_{o}` (at the precision 01 declares in index_stats.json `_meta`,
+NOT the 2dp of the fractional counts), `estimate_mode_{o}`,
+`reliability_tier_{o}`. Aggregates are
 the six explicit published indexes plus `crime_density_total`; the frontend
 default total layer is `index_total_primary_event_weighted` (exposure). NaN
 survives the join as JSON null so suppressed / non-residential per-capita cells
 (and water-only density cells) render as "no data". `special_use_tract_flag` and
 the per-offense estimate-mode codes drive the distinct "special area" styling.
+
+Two display-only fields ride along, both declared and computed by 01:
+`provenance_class_{o}` (the 2-bit disclosure code the viewer hatches — see 01's
+PROVENANCE_* block) and `population_density_{year}` (the input to the viewer's
+national-zoom population-aware emphasis). Neither changes a published value.
+
+Murder and rape publish at census-tract support, so their four map layers are
+drawn from a SECOND set of tiles built from tract geometry. This step therefore
+also joins the slim tract index table (`tract_indices_slim.csv`) onto the 2020
+TIGER/Line tract shapefiles and writes `tracts_with_indices.geojsonl`, using the
+SAME short tile keys as the block-group tiles so the viewer's paint expressions
+work against either source. On the block-group side the parent tract's murder/rape
+index + rate are carried as baked `ipt_*` / `rpt_*` keys for the popup.
 
 Run:  uv run python frontend/build/03_join_geometry.py
 """
@@ -49,6 +64,15 @@ TIGER_DIR = REPO / "data/tiger_bg"
 INDICES = REPO / "frontend/tmp/bg_indices_slim.csv"
 OUT = REPO / "frontend/tmp/block_groups_with_indices.geojsonl"
 
+# Tract lane (murder/rape publish at census-tract support): the slim tract index
+# table joins onto the 2020 TIGER/Line tract shapefiles, one zip per state.
+TRACT_TIGER_DIR = REPO / "data/tiger_tracts"
+TRACT_INDICES = REPO / "frontend/tmp/tract_indices_slim.csv"
+TRACT_OUT = REPO / "frontend/tmp/tracts_with_indices.geojsonl"
+TRACT_TIGER_TPL = "tl_2020_{ss}_tract.zip"
+TRACT_ID = "tract_id"
+TRACT_ID_LEN = 11
+
 # Snapshot data year: single point of control in snapshot_config.env (see 01).
 # Drives the year-suffixed published population column name.
 CONFIG = {
@@ -61,6 +85,28 @@ CONFIG = {
 }
 YEAR = int(CONFIG["CRIMERISK_SNAPSHOT_YEAR"])
 POPULATION_COL = f"population_{YEAR}"
+
+# Density field precision. This step re-rounds the density columns after the join
+# (they arrive already rounded from 01), so a precision change in 01 that is not
+# mirrored here is silently undone before tiling — the coupling the stage-6 audit's
+# R-01 change surface missed. Read it from the `_meta` block 01 writes rather than
+# duplicating the literal, so the two cannot drift. Fails closed on an old stats
+# file: no `_meta` means the upstream step did not declare a precision.
+STATS_PATH = REPO / "frontend/tmp/index_stats.json"
+
+
+def density_dp() -> int:
+    if not STATS_PATH.exists():
+        raise FileNotFoundError(
+            f"{STATS_PATH} not found — run 01_extract_indices.py before 03."
+        )
+    meta = json.loads(STATS_PATH.read_text()).get("_meta")
+    if not meta or "density_dp" not in meta:
+        raise ValueError(
+            f"{STATS_PATH.name} carries no _meta.density_dp; re-run "
+            "01_extract_indices.py (it declares the density field precision)."
+        )
+    return int(meta["density_dp"])
 
 # Geography key: 12-char zero-padded block-group GEOID.
 GEO_ID = "block_group_geoid"
@@ -130,6 +176,15 @@ DENSITY_TOTAL = ["crime_density_total"]
 OFFENSE_ESTIMATE_MODE = [f"estimate_mode_{o}" for o in OFFENSES]
 OFFENSE_RELIABILITY = [f"reliability_tier_{o}" for o in OFFENSES]
 OFFENSE_SUPPORT = [f"effective_numerator_support_{o}" for o in OFFENSES]
+# Per-offense provenance disclosure code (0 none / 1 benchmark-imputed / 2
+# model-only outlier / 3 both). Declared and computed by 01 — see its PROVENANCE_*
+# block for what each class means and why the marked set is these two and not the
+# reliability tier. This step only carries them into the tiles, fail-closed on any
+# code it does not recognise.
+OFFENSE_PROVENANCE = [f"provenance_class_{o}" for o in OFFENSES]
+PROVENANCE_CODES = {0, 1, 2, 3}
+# Residents per square mile — the viewer's national-zoom emphasis input.
+POP_DENSITY_COL = f"population_density_{YEAR}"
 
 INDEX_COLS = AGG_INDEX_COLS + OFFENSE_INDEX_PRIMARY + OFFENSE_INDEX_RESIDENT
 RATE_COLS = OFFENSE_RATE_PRIMARY
@@ -153,8 +208,20 @@ RELIABILITY_CODE = {
     "medium": 1,
     "low": 0,
 }
+# Baked tract popup values on the block-group rows: the parent tract's murder/rape
+# primary index + rate, so the block-group popup can show a tract-scale value for
+# these two tract-support offenses. Distinct short keys (ipt_/rpt_) so they never
+# collide with the block group's own (null) murder/rape keys.
+BG_TRACT_BAKE_SHORT = {
+    "index_murder_primary_tract": "ipt_mur",
+    "index_rape_primary_tract": "ipt_rap",
+    "rate_murder_primary_tract": "rpt_mur",
+    "rate_rape_primary_tract": "rpt_rap",
+}
+BG_TRACT_BAKE_COLS = list(BG_TRACT_BAKE_SHORT)
+
 ATTR_COLS = (
-    [POPULATION_COL, "special_use_tract_flag"]
+    [POPULATION_COL, POP_DENSITY_COL, "special_use_tract_flag"]
     + INDEX_COLS
     + RATE_COLS
     + COUNT_COLS
@@ -162,6 +229,35 @@ ATTR_COLS = (
     + OFFENSE_RELIABILITY
     + OFFENSE_SUPPORT
     + OFFENSE_ESTIMATE_MODE
+    + OFFENSE_PROVENANCE
+    + BG_TRACT_BAKE_COLS
+)
+
+# Tract-support offenses (murder, rape). The slim tract frame carries the same
+# field families as the block-group frame, restricted to these two offenses, and
+# is rendered with the SAME short tile keys (below) so the viewer's paint
+# expressions work against either source.
+RARE_OFFENSES = ["murder", "rape"]
+TRACT_INDEX_PRIMARY = [f"index_{o}_primary" for o in RARE_OFFENSES]
+TRACT_INDEX_RESIDENT = [f"index_{o}_resident" for o in RARE_OFFENSES]
+TRACT_RATE_PRIMARY = [f"rate_{o}_primary" for o in RARE_OFFENSES]
+TRACT_EXPECTED_COUNT = [f"expected_count_{o}" for o in RARE_OFFENSES]
+TRACT_RELIABILITY = [f"reliability_tier_{o}" for o in RARE_OFFENSES]
+TRACT_SUPPORT = [f"effective_numerator_support_{o}" for o in RARE_OFFENSES]
+TRACT_ESTIMATE_MODE = [f"estimate_mode_{o}" for o in RARE_OFFENSES]
+TRACT_PROVENANCE = [f"provenance_class_{o}" for o in RARE_OFFENSES]
+TRACT_INDEX_COLS = TRACT_INDEX_PRIMARY + TRACT_INDEX_RESIDENT
+TRACT_RATE_COLS = TRACT_RATE_PRIMARY
+TRACT_COUNT_COLS = TRACT_EXPECTED_COUNT
+TRACT_ATTR_COLS = (
+    [POPULATION_COL, POP_DENSITY_COL, "special_use_tract_flag"]
+    + TRACT_INDEX_COLS
+    + TRACT_RATE_COLS
+    + TRACT_COUNT_COLS
+    + TRACT_RELIABILITY
+    + TRACT_SUPPORT
+    + TRACT_ESTIMATE_MODE
+    + TRACT_PROVENANCE
 )
 
 # Short per-offense suffix used in the compact tile keys.
@@ -178,6 +274,7 @@ SUFFIX = {
 # Long published field -> short tile key. The frontend KEY_MAP mirrors this.
 SHORT = {
     POPULATION_COL: "pop",
+    POP_DENSITY_COL: "pd",
     "special_use_tract_flag": "su",
     "index_total_part1_resident": "i_tot",
     "index_personal_part1_resident": "i_per",
@@ -197,6 +294,27 @@ for o in OFFENSES:
     SHORT[f"estimate_mode_{o}"] = f"em_{s}"
     SHORT[f"reliability_tier_{o}"] = f"rt_{s}"
     SHORT[f"effective_numerator_support_{o}"] = f"es_{s}"
+    SHORT[f"provenance_class_{o}"] = f"pv_{s}"
+# Baked tract popup values (block-group side). The tract tiles reuse the plain
+# ip_*/r_* keys above, so these distinct ipt_/rpt_ keys are block-group only.
+SHORT.update(BG_TRACT_BAKE_SHORT)
+
+
+def provenance_codes(series: pd.Series, col: str) -> pd.Series:
+    """Coerce a provenance disclosure column to int16, fail-closed on bad codes.
+
+    01 owns the class definitions; this only guards the carry into the tiles. A
+    row that matched no index (NaN after the join) is 0 — no class marked, which
+    is the same thing the viewer shows for a cell it has no code for.
+    """
+    s = pd.to_numeric(series, errors="coerce")
+    unknown = sorted(set(s.dropna().astype(int).unique()) - PROVENANCE_CODES)
+    if unknown:
+        raise ValueError(
+            f"Unknown provenance codes in {col}: {unknown} "
+            f"(expected {sorted(PROVENANCE_CODES)} — re-run 01_extract_indices.py)"
+        )
+    return s.fillna(0).astype("int16")
 
 
 def clip_water(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
@@ -249,6 +367,108 @@ def clip_water(gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
         f"clipped {int(keep_clip.sum()):,}, kept-as-is {int((~keep_clip).sum()):,} (guard)."
     )
     return gdf
+
+
+def join_tracts() -> dict:
+    """Join the slim tract index table onto tract geometry and write GeoJSONSeq.
+
+    Murder and rape publish at census-tract support, so their four map layers are
+    drawn from tract geometry. The attribute schema reuses the SAME short tile keys
+    as the block-group tiles (ip_*/ir_*/r_*/ec_*/rt_*/es_*/em_* plus pop/su), so the
+    viewer's paint expressions work against either source. Returns the tract feature
+    counts folded into the join manifest.
+    """
+    print(f"Reading tract indices: {TRACT_INDICES.name}")
+    idx = pd.read_csv(TRACT_INDICES, dtype={TRACT_ID: str, "state_fips": str})
+    idx[TRACT_ID] = idx[TRACT_ID].str.zfill(TRACT_ID_LEN)
+    states = set(idx["state_fips"].str.zfill(2))
+    print(f"  {len(idx):,} tracts across {len(states)} states")
+
+    # Full-resolution 2020 TIGER tract geometry per state (same vintage + reasoning
+    # as the block-group files: 2020 GEOIDs match the published index everywhere,
+    # including Connecticut's legacy county-based GEOIDs).
+    print(f"Reading full-resolution TIGER tract geometry for {len(states)} states ...")
+    parts = []
+    for ss in sorted(states):
+        path = TRACT_TIGER_DIR / TRACT_TIGER_TPL.format(ss=ss)
+        if not path.exists():
+            raise FileNotFoundError(f"Missing TIGER tract file for state {ss}: {path}")
+        g = gpd.read_file(f"zip://{path}")
+        g["GEOID"] = g["GEOID"].astype(str).str.zfill(TRACT_ID_LEN)
+        g["STATEFP"] = g["STATEFP"].astype(str).str.zfill(2)
+        parts.append(g[["GEOID", "STATEFP", "NAMELSAD", "ALAND", "AWATER", "geometry"]])
+    gdf = gpd.GeoDataFrame(
+        pd.concat(parts, ignore_index=True), geometry="geometry", crs=parts[0].crs
+    )
+    gdf["STUSPS"] = gdf["STATEFP"].map(FIPS_TO_USPS)
+    print(f"  {len(gdf):,} TIGER tract polygons (CRS {gdf.crs})")
+
+    # Reproject to WGS84 and clip water-heavy coastal polygons (same fix as BG; the
+    # clip is geography-agnostic).
+    gdf = gdf.to_crs(4326)
+    gdf = clip_water(gdf)
+
+    merged = gdf.merge(
+        idx[[TRACT_ID] + TRACT_ATTR_COLS],
+        left_on="GEOID",
+        right_on=TRACT_ID,
+        how="left",
+    )
+
+    # No index match if the merge key came back null (drop — nothing to color).
+    geom_only = merged[TRACT_ID].isna()
+    n_geom_only = int(geom_only.sum())
+    idx_only = set(idx[TRACT_ID]) - set(gdf["GEOID"])
+    print(f"  geometry tracts with NO index match: {n_geom_only:,} (dropped)")
+    print(f"  index tracts with NO geometry match: {len(idx_only):,}")
+    merged = merged[~geom_only].copy()
+
+    # Keep only what the tiles need: GEOID + name + attributes.
+    keep = ["GEOID", "STUSPS", "NAMELSAD"] + TRACT_ATTR_COLS + ["geometry"]
+    merged = merged[keep].rename(
+        columns={"GEOID": TRACT_ID, "STUSPS": "st", "NAMELSAD": "name"}
+    )
+
+    # Same attribute encodings as the block-group frame.
+    for c in TRACT_INDEX_COLS + TRACT_RATE_COLS:
+        merged[c] = merged[c].astype("float64").round(1)
+    for c in TRACT_COUNT_COLS + TRACT_SUPPORT:
+        merged[c] = merged[c].astype("float64").round(2)
+    for c in TRACT_RELIABILITY:
+        merged[c] = merged[c].map(RELIABILITY_CODE).fillna(0).astype("int16")
+    merged[POPULATION_COL] = (
+        merged[POPULATION_COL].astype("Float64").round().astype("Int64")
+    )
+    for c in TRACT_ESTIMATE_MODE:
+        modes = set(merged[c].dropna().astype(str).unique())
+        unknown = sorted(modes - set(EMODE_CODE))
+        if unknown:
+            raise ValueError(f"Unknown estimate modes in {c}: {unknown}")
+        missing = int(merged[c].isna().sum())
+        if missing:
+            raise ValueError(f"Missing estimate modes after join in {c}: {missing:,}")
+        merged[c] = merged[c].map(EMODE_CODE).astype("int16")
+    merged["special_use_tract_flag"] = (
+        merged["special_use_tract_flag"].fillna(0).astype("int16")
+    )
+    for c in TRACT_PROVENANCE:
+        merged[c] = provenance_codes(merged[c], c)
+    merged[POP_DENSITY_COL] = merged[POP_DENSITY_COL].astype("float64").round(2)
+
+    # Reuse the SAME short tile keys as the block-group tiles.
+    merged = merged.rename(columns=SHORT)
+
+    print(f"Writing tract GeoJSONSeq -> {TRACT_OUT.name}")
+    TRACT_OUT.parent.mkdir(parents=True, exist_ok=True)
+    merged.to_file(TRACT_OUT, driver="GeoJSONSeq")
+    print(f"  wrote {len(merged):,} tract features  ({TRACT_OUT.stat().st_size/1e6:.1f} MB)")
+
+    return {
+        "n_tract_features": int(len(merged)),
+        "n_tract_index_features": int(len(idx)),
+        "n_tract_geometry_dropped_no_index": n_geom_only,
+        "n_tract_index_no_geometry": len(idx_only),
+    }
 
 
 def main() -> None:
@@ -312,13 +532,19 @@ def main() -> None:
     )
 
     # Coerce attribute dtypes: round indices/rates, ints for pop, 2dp for the
-    # fractional expected counts and density. Keep NaN (-> JSON null) so the
-    # frontend can render suppressed / non-residential per-capita cells, and
-    # water-only density cells, as "no data".
-    for c in INDEX_COLS + RATE_COLS:
+    # fractional expected counts, and the declared density precision for the
+    # density columns (see density_dp() — 2dp here would undo 01's precision
+    # before the tiles are built). Keep NaN (-> JSON null) so the frontend can
+    # render suppressed / non-residential per-capita cells, and water-only
+    # density cells, as "no data".
+    dens_dp = density_dp()
+    print(f"  density precision from index_stats.json _meta: {dens_dp}dp")
+    for c in INDEX_COLS + RATE_COLS + BG_TRACT_BAKE_COLS:
         merged[c] = merged[c].astype("float64").round(1)
-    for c in COUNT_COLS + DENSITY_COLS + OFFENSE_SUPPORT:
+    for c in COUNT_COLS + OFFENSE_SUPPORT:
         merged[c] = merged[c].astype("float64").round(2)
+    for c in DENSITY_COLS:
+        merged[c] = merged[c].astype("float64").round(dens_dp)
     # Reliability tier string -> compact int code (high=2/medium=1/low=0). Unmatched
     # / missing default to 0 (low / least-confident) so the display never over-states
     # confidence for a cell we couldn't tier.
@@ -343,6 +569,15 @@ def main() -> None:
     merged["special_use_tract_flag"] = (
         merged["special_use_tract_flag"].fillna(0).astype("int16")
     )
+    # Provenance disclosure codes: already integers from 01, but a cell that fell
+    # out of the geometry join carries NaN, and an unknown code would silently
+    # paint a hatch (or fail to). Fail closed on anything outside {0,1,2,3}.
+    for c in OFFENSE_PROVENANCE:
+        merged[c] = provenance_codes(merged[c], c)
+    # Residents per square mile (national-zoom emphasis). Two decimals is what 01
+    # emits; re-rounding here keeps the tile payload from carrying float noise the
+    # CSV round-trip can introduce.
+    merged[POP_DENSITY_COL] = merged[POP_DENSITY_COL].astype("float64").round(2)
 
     # Shorten attribute keys to keep per-feature tile payload tiny (lets us tile
     # to z12 without dropping block groups). The frontend KEY_MAP mirrors this exactly.
@@ -355,13 +590,30 @@ def main() -> None:
     merged.to_file(OUT, driver="GeoJSONSeq")
     print(f"  wrote {len(merged):,} features  ({OUT.stat().st_size/1e6:.1f} MB)")
 
-    # Persist a tiny manifest of what made it in (counts + matched block groups).
+    # Tract lane: murder/rape publish at census-tract support, drawn from tract
+    # geometry with the same short tile keys.
+    tract_counts = join_tracts()
+
+    # Persist a tiny manifest of what made it in (counts + matched block groups),
+    # including the tract-lane counts.
     manifest = {
         "n_features": int(len(merged)),
         "n_index_features": int(len(idx)),
         "n_geometry_dropped_no_index": n_geom_only,
         "n_index_no_geometry": len(idx_only),
         "states": sorted(states),
+        # The precision the TILED attributes actually carry. 05 refuses to stamp a
+        # snapshot whose declared density_floor does not match this, so a snapshot
+        # can never claim a precision the tiles were not built at.
+        "density_dp": dens_dp,
+        # How many features actually carry a provenance mark on at least one
+        # offense, on each lane. 05 stamps the same figure from 01's own coverage
+        # block and refuses a mismatch, so a snapshot can never describe a hatch
+        # the tiles do not carry.
+        "n_provenance_marked_features": int(
+            (merged[[SHORT[c] for c in OFFENSE_PROVENANCE]] > 0).any(axis=1).sum()
+        ),
+        **tract_counts,
     }
     (REPO / "frontend/tmp/join_manifest.json").write_text(json.dumps(manifest, indent=2))
     print("  wrote join_manifest.json")

@@ -21,6 +21,9 @@ from crimerisk.covariates.features import CovariateBuildConfig, build_block_grou
 from crimerisk.crosswalk_shares import normalize_block_group_allocation_shares
 from crimerisk.crime import OFFENSES_7
 from crimerisk.denominators import add_offense_denominators, offense_denominator_column
+# The ONE definition of the coverage -> tier ladder, imported rather than restated so the check
+# below cannot drift from the derivation it is checking.
+from crimerisk.jurisdiction_targets import _quality_tier_from_months
 from crimerisk.monotone_gam import MonotoneGAMRegressor, monotone_gam_feature_columns
 from crimerisk.paths import RepoPaths
 from crimerisk.qa.model_diagnostics import cross_validated_diagnostics
@@ -1134,6 +1137,35 @@ def _prepare_model_surface_context(
     return controls, bg_crosswalk, bg, training, feature_cols, train_state_cols, base_x, bg_x, extra_feature_cols
 
 
+def _assert_quality_tier_is_recomputed_from_coverage(target: pd.DataFrame, *, offense: str) -> None:
+    """The training gate must read the RE-DERIVED compositional tier, not a carried-over one.
+
+    Stage 3's restructure re-derives `quality_tier_preferred` from the jurisdiction's own
+    mass-weighted `mean_months_reported_preferred` (jurisdiction_targets._quality_tier_from_months)
+    instead of inheriting whichever lane a per-offense preference happened to pick -- the shipped
+    control panel had 289 rows / 201,621 counts whose published tier came from a different lane
+    than the count it described. `high_confidence_training_only` gates model training on that
+    tier, so if a future change ever writes the tier from a lane again the model would silently
+    train on a different population. Checked here rather than assumed: recompute the tier from the
+    published coverage column and fail on any disagreement.
+    """
+    published = target["quality_tier_preferred"].astype("string").str.lower()
+    recomputed = _quality_tier_from_months(target["mean_months_reported_preferred"]).astype("string").str.lower()
+    mismatch = published.fillna("unknown").ne(recomputed.fillna("unknown"))
+    if bool(mismatch.any()):
+        sample = (
+            target.loc[mismatch, ["jurisdiction_id", "mean_months_reported_preferred", "quality_tier_preferred"]]
+            .head(10)
+            .to_dict(orient="records")
+        )
+        raise ValueError(
+            "quality_tier_preferred is not the tier re-derived from mean_months_reported_preferred "
+            f"({offense}: {int(mismatch.sum())} of {len(target)} control rows disagree), so the "
+            "model training gate would read a tier that does not describe the count it gates on. "
+            f"sample={sample}"
+        )
+
+
 def _build_offense_training_state(
     *,
     training: pd.DataFrame,
@@ -1156,7 +1188,14 @@ def _build_offense_training_state(
             "estimate_confidence",
             "quality_tier_preferred",
             "needs_partial_reporting_uplift",
-            "preferred_source",
+            # The COMPOSITIONAL quantity the tier is derived from, carried so the gate can be
+            # checked against it below. `preferred_source` used to be selected here and used for
+            # nothing: it is a mass-weighted DOMINANT LABEL over the jurisdiction's agencies
+            # (jurisdiction_targets._dominant_label), and Pro's Stage 3 ruling is that no
+            # downstream decision may be taken off a dominant label, because the label conceals
+            # the mixture. It is gone rather than left in a training frame for someone to reach
+            # for; the descriptive label is still published on the control panel.
+            "mean_months_reported_preferred",
         ]
     ].copy()
     dup_mask = target.duplicated(subset=["jurisdiction_id"], keep=False)
@@ -1174,6 +1213,7 @@ def _build_offense_training_state(
         )
     target["adjusted_count_ags_core"] = pd.to_numeric(target["adjusted_count_ags_core"], errors="coerce").fillna(0.0)
     target["needs_current_year_fill"] = target["needs_current_year_fill"].eq(True)
+    _assert_quality_tier_is_recomputed_from_coverage(target, offense=offense)
     frame = training.merge(target, on="jurisdiction_id", how="left")
     counts = pd.to_numeric(frame["adjusted_count_ags_core"], errors="coerce").fillna(0.0)
     pop = pd.to_numeric(frame["bucket_population"], errors="coerce").fillna(0.0)

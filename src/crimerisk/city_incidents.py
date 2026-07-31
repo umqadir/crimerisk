@@ -11,7 +11,11 @@ import warnings
 import geopandas as gpd
 import pandas as pd
 
-from crimerisk.city_feed_quarantine import flag_quarantined_coordinates, quarantine_counts_by_year_offense
+from crimerisk.city_feed_quarantine import (
+    flag_quarantined_coordinates,
+    quarantine_counts_by_year_offense,
+    record_quarantine_not_applicable,
+)
 
 
 class CityFeedCoverageError(RuntimeError):
@@ -1386,6 +1390,42 @@ def _map_nyc_offenses(raw: pd.DataFrame, cats: pd.DataFrame) -> pd.DataFrame:
     return mapped
 
 
+def _drop_quarantined_coordinates(
+    frame: pd.DataFrame,
+    *,
+    city_key: str,
+    lat_col: str = "latitude",
+    lon_col: str = "longitude",
+    offense_col: str | None = "offense",
+) -> pd.DataFrame:
+    """THE coordinate-quarantine call. Every production city builder routes through here.
+
+    Stage 4 screen b3: `flag_quarantined_coordinates` was called from 4 of the 13 production
+    builders with three different argument shapes, and nothing detected the other 9 -- a
+    quarantine row keyed to them was inert rather than wrong. One helper, called once per
+    builder, gives one implementation and one place where the offense scoping is decided
+    (per-row when the frame carries an offense column, `any`-rows always).
+
+    A frame with no coordinate columns DECLARES itself coordinate-free rather than silently
+    skipping: Austin publishes a source block group and never a point, and that is a fact about
+    the feed, not a gap in the wiring. `city_shares.build_city_incident_share_surface` asserts
+    every enabled city reached one of the two outcomes.
+    """
+    if lat_col not in frame.columns or lon_col not in frame.columns:
+        record_quarantine_not_applicable(city_key, reason="feed_carries_no_point_coordinates")
+        return frame
+    mask = flag_quarantined_coordinates(
+        frame,
+        city_key=city_key,
+        lat_col=lat_col,
+        lon_col=lon_col,
+        offense_col=offense_col if offense_col and offense_col in frame.columns else None,
+    )
+    if not bool(mask.any()):
+        return frame
+    return frame.loc[~mask].copy()
+
+
 def _empty_city_surface() -> pd.DataFrame:
     return pd.DataFrame(
         columns=[
@@ -1945,9 +1985,7 @@ def build_nyc_incident_share_surface(
     ].copy()
     if raw.empty:
         return _empty_city_surface()
-    raw = raw.loc[
-        ~flag_quarantined_coordinates(raw, city_key="new_york", offense_col="offense")
-    ].copy()
+    raw = _drop_quarantined_coordinates(raw, city_key="new_york")
     if raw.empty:
         return _empty_city_surface()
 
@@ -2156,9 +2194,7 @@ def build_chicago_incident_share_surface(
             stacklevel=2,
         )
         return _empty_city_surface()
-    geocoded = geocoded.loc[
-        ~flag_quarantined_coordinates(geocoded, city_key="chicago", offense_col="offense")
-    ].copy()
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="chicago")
     if geocoded.empty:
         return _empty_city_surface()
 
@@ -2380,6 +2416,11 @@ def build_seattle_incident_share_surface(
 
     raw["latitude"] = pd.to_numeric(raw["latitude"], errors="coerce")
     raw["longitude"] = pd.to_numeric(raw["longitude"], errors="coerce")
+    # Applied to `raw`, not to the `geocoded` subset below: `_assign_seattle_block_groups` is
+    # handed `raw` and derives its own geocoded subset from it, so filtering the local subset
+    # would have been inert -- the exact failure mode Stage 4 screen b3 was about. Beat-fallback
+    # rows carry no coordinate and are untouched.
+    raw = _drop_quarantined_coordinates(raw, city_key="seattle")
     geocoded = raw[
         raw["latitude"].between(SEATTLE_BOUNDS["min_latitude"], SEATTLE_BOUNDS["max_latitude"], inclusive="both")
         & raw["longitude"].between(SEATTLE_BOUNDS["min_longitude"], SEATTLE_BOUNDS["max_longitude"], inclusive="both")
@@ -2547,6 +2588,9 @@ def build_austin_incident_share_surface(
         return _empty_city_surface()
 
     raw["census_block_group"] = raw["census_block_group"].astype(str).str.extract(r"(\d+)", expand=False).fillna("")
+    # Austin publishes a source block group and never a point, so there is nothing for the
+    # coordinate quarantine to act on. Declared rather than absent (Stage 4 screen b3).
+    raw = _drop_quarantined_coordinates(raw, city_key="austin")
     raw["block_group_geoid"] = raw["census_block_group"].str.zfill(10)
     raw = raw[raw["block_group_geoid"].str.fullmatch(r"\d{10}")].copy()
     raw["block_group_geoid"] = "48" + raw["block_group_geoid"]
@@ -2713,8 +2757,7 @@ def build_boston_incident_share_surface(
         + geocoded["offense"].astype(str).str.strip()
     )
     geocoded = geocoded.drop_duplicates("offense_row_id").copy()
-    quarantine_mask = flag_quarantined_coordinates(geocoded, city_key="boston")
-    geocoded = geocoded.loc[~quarantine_mask].copy()
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="boston")
     if geocoded.empty:
         return _empty_city_surface()
 
@@ -3238,6 +3281,7 @@ def build_baltimore_incident_share_surface(
         )
         return _empty_city_surface()
 
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="baltimore")
     incidents = gpd.GeoDataFrame(
         geocoded[["offense_row_id", "year", "offense", "latitude", "longitude"]].copy(),
         geometry=gpd.points_from_xy(geocoded["longitude"], geocoded["latitude"]),
@@ -3854,8 +3898,7 @@ def build_philadelphia_incident_share_surface(
             stacklevel=2,
         )
         return _empty_city_surface()
-    quarantine_mask = flag_quarantined_coordinates(geocoded, city_key="philadelphia")
-    geocoded = geocoded.loc[~quarantine_mask].copy()
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="philadelphia")
     if geocoded.empty:
         return _empty_city_surface()
 
@@ -4028,6 +4071,7 @@ def build_washington_dc_incident_share_surface(
         )
         return _empty_city_surface()
 
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="washington_dc")
     crosswalk = pd.read_parquet(bg_crosswalk_parquet)[["block_group_geoid", "jurisdiction_id", "state_fips"]].drop_duplicates()
     crosswalk["block_group_geoid"] = crosswalk["block_group_geoid"].astype(str).str.zfill(12)
     matched = geocoded.merge(crosswalk, on="block_group_geoid", how="left")
@@ -4332,6 +4376,7 @@ def build_denver_incident_share_surface(
         )
         return _empty_city_surface()
 
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="denver")
     bg = _load_city_bg_geometry(
         bg_zip=co_bg_zip,
         bg_crosswalk_parquet=bg_crosswalk_parquet,
@@ -4625,6 +4670,7 @@ def build_minneapolis_incident_share_surface(
         )
         return _empty_city_surface()
 
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="minneapolis")
     bg = _load_city_bg_geometry(
         bg_zip=mn_bg_zip,
         bg_crosswalk_parquet=bg_crosswalk_parquet,
@@ -4938,6 +4984,7 @@ def build_st_louis_incident_share_surface(
         )
         return _empty_city_surface()
 
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="st_louis_mo")
     bg = _load_city_bg_geometry(
         bg_zip=mo_bg_zip,
         bg_crosswalk_parquet=bg_crosswalk_parquet,
@@ -5202,6 +5249,7 @@ def build_mesa_incident_share_surface(
         return _empty_city_surface()
 
     geocoded = mapped[mapped["latitude"].notna() & mapped["longitude"].notna()].copy()
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="mesa")
     if geocoded.empty:
         return _empty_city_surface()
     incidents = gpd.GeoDataFrame(
@@ -5342,6 +5390,7 @@ def build_san_francisco_incident_share_surface(
         return _empty_city_surface()
 
     geocoded = mapped[mapped["latitude"].notna() & mapped["longitude"].notna()].copy()
+    geocoded = _drop_quarantined_coordinates(geocoded, city_key="san_francisco", offense_col="v2_offense")
     if geocoded.empty:
         return _empty_city_surface()
     incidents = gpd.GeoDataFrame(

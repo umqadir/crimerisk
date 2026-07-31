@@ -96,11 +96,6 @@ def main() -> int:
         help="When rebuilding controls from build-outputs, also rebuild agency_year_reporting_regimes.parquet.",
     )
     parser.add_argument(
-        "--force-municipal-estimates-rebuild",
-        action="store_true",
-        help="When rebuilding controls from build-outputs, also rebuild municipal_estimates_2024.parquet.",
-    )
-    parser.add_argument(
         "--force-geometry-rebuild",
         action="store_true",
         help="Rebuild block and block-group jurisdiction crosswalks before allocating outputs.",
@@ -212,7 +207,6 @@ def main() -> int:
             year=int(args.year),
             force_controls_rebuild=bool(args.force_controls_rebuild),
             force_reporting_regimes_rebuild=bool(args.force_reporting_regimes_rebuild),
-            force_municipal_estimates_rebuild=bool(args.force_municipal_estimates_rebuild),
             force_geometry_rebuild=bool(args.force_geometry_rebuild),
             force_bg_prior_rebuild=bool(args.force_bg_prior_rebuild),
             bg_prior_path=args.bg_prior_path,

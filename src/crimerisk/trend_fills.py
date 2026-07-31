@@ -1,20 +1,25 @@
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
 
 import numpy as np
 import pandas as pd
 
-from crimerisk.crime.municipal_totals import _project_count_log_linear
-from crimerisk.source_provenance import (
-    CIUS_ORIGIN,
-    CIUS_SOURCE,
-    LOCAL_PUBLICATION_SOURCE,
-    NIBRS_SOURCE,
-    STATE_PUBLICATION_SOURCE,
-    SUMMARY_SOURCE,
+from crimerisk.agency_identity import (
+    build_ori_succession_ledger,  # noqa: F401  re-exported: tests and callers import it from here
+    load_agency_jurisdiction_crosswalk,
+    resolve_ori_succession,
 )
+from crimerisk.crime.municipal_totals import _project_count_log_linear
+from crimerisk.scope import PRODUCTION_SCOPE_EXCLUDE
+from crimerisk.source_provenance import NIBRS_SOURCE, SUMMARY_SOURCE
 from crimerisk.source_selection import build_agency_preferred_observations
+from crimerisk.stage1_adjudications import (
+    Stage1AdjudicationError,
+    assert_registry_bit,
+    build_usability_directives,
+)
 
 
 TREND_FILL_MIN_PANEL_AGENCIES = 10
@@ -280,31 +285,43 @@ def build_trend_fill_lookup(
 
 
 def add_preferred_support_flags(preferred: pd.DataFrame) -> pd.DataFrame:
+    """Split every preferred row into supported-as-reported vs supported-but-partial.
+
+    One statement, applied to whichever lane selection chose:
+
+    * **Supported** -- the chosen lane produced a report for the target year, i.e. the
+      regime is anything other than `structurally_missing_or_unreliable`.
+    * **True partial** -- a supported row whose chosen lane covered 1-11 of the twelve
+      months, and whose partial month set is coherent (`lumpy_or_batched` is the regime
+      that says it is not, so a lumpy row is read as reported rather than annualised).
+    * **Usable as observed** -- every other supported row.
+
+    Coverage is read off the SELECTED lane's own `preferred_months_reported` rather
+    than off the lane family, because partiality is a property of months and not of
+    who published them. Keying it on lane family made the NIBRS lane structurally
+    incapable of being partial (8,006 rows in 2024 read as complete years at their
+    partial value), and the additional `count > 0` guard sent the zero offenses of an
+    otherwise-uplifted partial year down the fill ladder instead of leaving them the
+    zeros over reported months that they are (3,164 rows). Both are the same misread:
+    a zero over five months is data, and five months is not a year.
+    """
     out = preferred.copy()
     counts = pd.to_numeric(out["preferred_count"], errors="coerce")
     months = pd.to_numeric(out["preferred_months_reported"], errors="coerce")
     regime = out["reporting_regime"].astype("string")
     source = out["preferred_source"].astype("string")
-    origin = out["preferred_source_origin"].astype("string")
 
-    summary_usable = (
-        source.isin([CIUS_SOURCE, LOCAL_PUBLICATION_SOURCE, STATE_PUBLICATION_SOURCE, SUMMARY_SOURCE])
-        & counts.notna()
-        & (
-            origin.eq(CIUS_ORIGIN)
-            | (source.eq(LOCAL_PUBLICATION_SOURCE) & regime.eq("annual_only_but_usable"))
-            | (source.eq(STATE_PUBLICATION_SOURCE) & regime.eq("annual_only_but_usable"))
-            | regime.isin(["full_monthly", "lumpy_or_batched", "annual_only_but_usable"])
-        )
+    # `lumpy_or_batched` is the SRS monthly file's own diagnostic -- month-share
+    # concentration and a month mask contradicting the header -- so it can only speak
+    # about the Return A lane. Applied to a row the NIBRS lane won it would veto an
+    # annualisation on evidence about a lane that was not chosen.
+    month_set_incoherent = regime.eq("lumpy_or_batched").fillna(False) & source.eq(
+        SUMMARY_SOURCE
     )
-    nibrs_usable = source.eq(NIBRS_SOURCE) & counts.notna() & ~regime.eq("structurally_missing_or_unreliable")
-    out["usable_as_observed"] = summary_usable | nibrs_usable
-    out["current_row_is_true_partial"] = (
-        source.isin([LOCAL_PUBLICATION_SOURCE, SUMMARY_SOURCE, STATE_PUBLICATION_SOURCE])
-        & regime.eq("true_partial")
-        & months.between(1, 11, inclusive="both")
-        & counts.fillna(0.0).gt(0.0)
-    )
+    supported = counts.notna() & ~regime.eq("structurally_missing_or_unreliable").fillna(False)
+    partial = supported & months.between(1, 11, inclusive="both") & ~month_set_incoherent
+    out["usable_as_observed"] = supported & ~partial
+    out["current_row_is_true_partial"] = partial
     return out
 
 
@@ -314,8 +331,16 @@ def build_agency_trend_fill_panel(
     year_start: int,
     year_end: int,
     force_reporting_regimes_rebuild: bool = False,
-    exclude_state_abbrs: tuple[str, ...] = (),
+    exclude_state_abbrs: tuple[str, ...] = tuple(sorted(PRODUCTION_SCOPE_EXCLUDE)),
 ) -> pd.DataFrame:
+    """The preferred-observation panel over a span, restricted to the published scope.
+
+    The scope restriction defaults ON (`crimerisk.scope.PRODUCTION_SCOPE_EXCLUDE`):
+    territories and the non-contiguous states have no geography in this surface, so an
+    agency estimate for them can never land anywhere. Leaving it to each consumer meant
+    Stage 1 built 2,247 rows and 142,960 counts of Puerto Rico, Guam and Virgin Islands
+    estimates every run and every consumer silently dropped them afterwards.
+    """
     frames: list[pd.DataFrame] = []
     for year in range(int(year_start), int(year_end) + 1):
         preferred = build_agency_preferred_observations(
@@ -348,7 +373,7 @@ def build_agency_trend_fill_lookup(
     year_end: int,
     target_year: int,
     force_reporting_regimes_rebuild: bool = False,
-    exclude_state_abbrs: tuple[str, ...] = (),
+    exclude_state_abbrs: tuple[str, ...] = tuple(sorted(PRODUCTION_SCOPE_EXCLUDE)),
 ) -> TrendFillLookup:
     panel = build_agency_trend_fill_panel(
         paths=paths,
@@ -429,6 +454,8 @@ AGENCY_TARGET_ESTIMATE_COLUMNS = [
     "agency_estimate_review_reason",
     "masked_gap_reclassified",
     "masked_gap_kind",
+    "stage1_adjudicated_kind",
+    "stage1_adjudicated_case",
     "reference_years_excluded",
 ]
 
@@ -916,70 +943,326 @@ def apply_masked_gap_reclassification(
     return out
 
 
-def load_agency_type_lookup(paths: object) -> dict[str, str]:
-    path = paths.state_dir / "reference" / "agency_master.parquet"
-    master = pd.read_parquet(path, columns=["ori9", "agency_type_norm"])
-    master["ori9"] = master["ori9"].astype("string")
-    master["agency_type_norm"] = master["agency_type_norm"].astype("string").fillna("unknown")
-    return dict(zip(master["ori9"], master["agency_type_norm"], strict=True))
+STAGE1_ADJUDICATED_LADDER_KIND = "stage1_adjudicated_missing"
+STAGE1_ADJUDICATED_PARTIAL_KIND = "stage1_adjudicated_partial"
 
 
-def _agency_no_history_peer_fallback(
+def apply_stage1_adjudicated_usability(
+    agency_panel: pd.DataFrame,
+    *,
+    target_year: int,
+    directives: pd.DataFrame,
+) -> tuple[pd.DataFrame, dict[str, int]]:
+    """Take the adjudicated agency-years out of "measured as published", nothing more.
+
+    The token-reporter class is a compliant twelve-month header in front of a number that is not a
+    year of policing: Hanford CHP reported 107 and 88 Part-I equivalents in 2022-2023 and one motor
+    vehicle theft in 2024. No rule separates that from a very quiet agency, so the cases were
+    reviewed one by one, and a `token_reporting_flag` verdict says exactly one thing here -- the
+    year is not usable as observed. Where the reviewer named a believable month count the row
+    becomes the true-partial the pipeline already annualises; where nobody could, it goes to the
+    same trend / hist-median ladder every other unusable year goes to.
+
+    This is deliberately the same three assignments `apply_masked_gap_reclassification` makes, for
+    the same reason: no new fill math exists for adjudicated rows. What the detector concludes from
+    month masks and collapse ratios, these rows conclude from a reviewer reading the record.
+
+    The zero-vs-missing class arrives here too, because the ESTIMATOR sees one population. Those
+    rows were already made unusable at the regime site, and this function FAILS CLOSED if they were
+    not: a `misread_missing` verdict that reaches the estimator still reading as observed means the
+    regime wiring did not run, and silently flipping the flag here would hide that.
+    """
+    counts = {
+        "stage1_adjudicated_directives": int(len(directives)) if directives is not None else 0,
+        "stage1_adjudicated_rows_to_ladder": 0,
+        "stage1_adjudicated_rows_to_partial": 0,
+        "stage1_adjudicated_agency_years_matched": 0,
+        "stage1_adjudicated_directives_not_in_panel": 0,
+    }
+    if directives is None or directives.empty or agency_panel.empty:
+        return agency_panel, counts
+
+    out = agency_panel.copy()
+    ori9 = out["ori9"].astype("string").str.upper()
+    is_target = pd.to_numeric(out["year"], errors="coerce").eq(int(target_year))
+    directive_by_ori = directives[directives["year"].astype(int).eq(int(target_year))].set_index(
+        directives.loc[directives["year"].astype(int).eq(int(target_year)), "ori9"]
+        .astype("string")
+        .str.upper()
+    )
+    matched_ori = ori9.where(is_target).map(directive_by_ori["directive"])
+    months = ori9.where(is_target).map(directive_by_ori["believable_months"])
+    months = pd.to_numeric(months, errors="coerce")
+    registry = ori9.where(is_target).map(directive_by_ori["source_registry"])
+
+    partial_rows = matched_ori.eq("partial_year") & months.between(
+        1.0, 11.999999, inclusive="both"
+    )
+    ladder_rows = matched_ori.eq("reads_missing")
+
+    # Cross-site check: the zero registry's verdicts land at the regime site, so by the time the
+    # estimator sees them the panel must already read them as unusable.
+    zero_registry = registry.astype("string").str.contains("zero_missing_adjudicated", na=False)
+    still_observed = out.index[
+        ladder_rows
+        & zero_registry
+        & out["usable_as_observed"].fillna(False).astype(bool)
+    ]
+    if len(still_observed):
+        offenders = (
+            out.loc[still_observed, ["ori9", "year", "offense"]].head(20).to_dict(orient="records")
+        )
+        raise Stage1AdjudicationError(
+            f"{len(still_observed)} adjudicated zero-vs-missing agency-offense row(s) still read as "
+            "usable_as_observed when the estimator received them, so the reporting-regime site did "
+            f"not apply the registry. Rebuild the reporting regimes. First rows: {offenders}"
+        )
+
+    out.loc[ladder_rows | partial_rows, "usable_as_observed"] = False
+    out.loc[ladder_rows, "current_row_is_true_partial"] = False
+    out.loc[partial_rows, "current_row_is_true_partial"] = True
+    out.loc[partial_rows, "preferred_months_reported"] = months.loc[partial_rows]
+
+    counts["stage1_adjudicated_rows_to_ladder"] = int(ladder_rows.sum())
+    counts["stage1_adjudicated_rows_to_partial"] = int(partial_rows.sum())
+    # This counter is a cross-consumer mismatch sentinel. The estimator applies the directive on
+    # its own panel copy; benchmark_imputation independently loads the same fail-closed directives
+    # and subtracts reads-missing ORIs from its supported set. Therefore no reads-missing directive
+    # is now flipped ONLY inside the estimator.
+    benchmark_recognises = matched_ori.eq("reads_missing")
+    counts["stage1_adjudicated_flipped_only_inside_the_estimator"] = int(
+        (
+            ladder_rows
+            & ~zero_registry
+            & agency_panel["usable_as_observed"].fillna(False).astype(bool)
+            & ~benchmark_recognises
+        )
+        .pipe(lambda mask: out.loc[mask, "ori9"].nunique())
+    )
+    matched = matched_ori.notna()
+    counts["stage1_adjudicated_agency_years_matched"] = int(
+        out.loc[matched, ["ori9", "year"]].drop_duplicates().shape[0]
+    )
+    counts["stage1_adjudicated_directives_not_in_panel"] = int(
+        len(directive_by_ori) - counts["stage1_adjudicated_agency_years_matched"]
+    )
+    return out, counts
+
+
+def stage1_adjudicated_estimate_kinds(directives: pd.DataFrame) -> pd.DataFrame:
+    """Per-ORI kind labels, for the estimate frame's provenance column and the fill assertion."""
+    if directives is None or directives.empty:
+        return pd.DataFrame(columns=["ori9", "stage1_adjudicated_kind", "stage1_adjudicated_case"])
+    kind = np.where(
+        directives["directive"].eq("partial_year")
+        & pd.to_numeric(directives["believable_months"], errors="coerce").between(
+            1.0, 11.999999, inclusive="both"
+        ),
+        STAGE1_ADJUDICATED_PARTIAL_KIND,
+        STAGE1_ADJUDICATED_LADDER_KIND,
+    )
+    return pd.DataFrame(
+        {
+            "ori9": directives["ori9"].astype("string").str.upper(),
+            "stage1_adjudicated_kind": pd.Series(kind, dtype="string"),
+            "stage1_adjudicated_case": directives["case_id"].astype("string"),
+        }
+    ).drop_duplicates(subset=["ori9"], keep="first")
+
+
+# An own-history fill claims that the agency's own recent level is the best available
+# estimate of its target-year level. That claim expires: the `hist_median` rung used to
+# accept a reference from any year back to 2018, so 2,168 agencies with no usable report
+# since 2021 carried 163,614 filled counts into 2024 -- 52% of all fill mass, on levels
+# up to six years stale. Two years is the bound because it is the span over which the
+# ladder's own carry-forward and trend rungs already operate (`max_year_gap_for_trend`
+# is one year; the median rung reaches one further), so beyond it the pipeline is not
+# extrapolating a reporting gap, it is reanimating an agency that stopped reporting.
+# Agencies past the bound produce no fill at all: rostered ones become silent units for
+# benchmark_imputation, which sizes their territory against an external benchmark
+# instead of against their own memory, and off-roster ones are dead.
+FILL_MAX_REFERENCE_AGE_YEARS = 2
+
+AGENCY_NO_HISTORY_ESTIMATE_SOURCE = "current_count_no_history"
+AGENCY_STALE_HISTORY_ESTIMATE_SOURCE = "no_recent_history_beyond_fill_recency_bound"
+# Estimate sources that carry no evidence of the target year at all. When the agency
+# also reported nothing in the target year, the row is not an estimate of anything and
+# is dropped rather than published as a zero or a fabricated level.
+UNEVIDENCED_ESTIMATE_SOURCES = frozenset(
+    {AGENCY_NO_HISTORY_ESTIMATE_SOURCE, AGENCY_STALE_HISTORY_ESTIMATE_SOURCE}
+)
+
+
+def _drop_silent_agency_estimates(result: pd.DataFrame) -> pd.DataFrame:
+    """Drop agency-offense rows for agencies with no current report and no usable evidence.
+
+    A genuinely silent agency is not evidence of anything, so it gets no estimate row at
+    all -- not a peer-median anchor, and not a zero, which would be just as fabricated.
+    Absence is the point: without a row the agency contributes no observed mass and no
+    fill mass, `_build_county_remainder_group_targets` never promotes its county into a
+    `county_remainder` group, and the territory stays in the state nonmunicipal residual
+    where the covariate model allocates it and raking conserves the state total. Agencies
+    that DO report -- including Kenedy-class agencies whose report is a true zero -- keep
+    their rows and anchor their counties at their real totals.
+
+    An agency whose only history is older than the fill recency bound is silent in
+    exactly the same sense: it has neither a current report nor a reference the ladder
+    is willing to stand behind.
+    """
+    silent = (
+        result["agency_estimate_source"].isin(UNEVIDENCED_ESTIMATE_SOURCES)
+        & pd.to_numeric(result["reported_count_current"], errors="coerce").fillna(0.0).le(0.0)
+    )
+    return result.loc[~silent].reset_index(drop=True)
+
+
+def _drop_superseded_ori_estimates(
+    result: pd.DataFrame, *, succession_ledger: pd.DataFrame
+) -> pd.DataFrame:
+    """Drop every estimate row for an ORI a live successor already covers in full.
+
+    Not merely un-filled: excluded. A superseded ORI's territory is not silent -- the
+    successor reports it -- so leaving the row in place would double the jurisdiction's
+    mass through the fill ladder, and marking it silent would double it again through
+    benchmark imputation.
+    """
+    if result.empty or succession_ledger.empty:
+        return result
+    superseded = set(succession_ledger["superseded_ori9"].astype("string"))
+    keep = ~result["ori9"].astype("string").isin(superseded)
+    return result.loc[keep].reset_index(drop=True)
+
+
+AGENCY_OBSERVED_ESTIMATE_SOURCE = "observed"
+# Sources grounded in the agency-year's own report on its own chosen lane: the observed
+# count itself, and the annualization of a lane that reported only part of the year.
+# Everything else takes its level from other years or other agencies -- a fill.
+LANE_GROUNDED_ESTIMATE_SOURCES = frozenset(
+    {AGENCY_OBSERVED_ESTIMATE_SOURCE, "true_partial_month_ratio"}
+)
+FILL_MASS_BASELINE_FILENAME = "agency_fill_mass_baseline.json"
+
+
+def _assert_no_fill_where_the_chosen_lane_reported(
     result: pd.DataFrame,
     *,
-    agency_type_lookup: dict[str, str] | None,
-) -> pd.DataFrame:
-    """Final-resort peer fallback for agencies with zero reported mass and zero usable
-    history (agency_estimate_source == "current_count_no_history"), mirroring the
-    population-peer fallback municipal_estimator.py applies when its own trend/hist-median
-    ladder is exhausted. Agency-level population isn't readily available for special-
-    jurisdiction/sheriff entities, so the peer reference class here is the median
-    estimated_count among same (state, agency_type_norm, offense) peers -- the same
-    population-free fallback pattern municipal_estimator.py already uses as its last
-    resort (peer_state_count_median / peer_national_count_median) when no bucket
-    population is available.
+    current_rows: pd.DataFrame,
+) -> None:
+    """Fail closed when an offense got a fill although its chosen lane covered the year.
+
+    Lane coherence: the preferred source is picked for the agency-year, and every Part I
+    offense is then defined within that lane -- an offense the lane did not record is a
+    zero over the lane's reported months, not missing data. So when the chosen lane
+    covered the full twelve months, no offense of that agency-year can legitimately fall
+    through to a fill that borrows from other years or other agencies. This is the Kenedy
+    failure stated as a post-condition: with it in place that shape cannot ship silently.
+    A lane that covered only part of the year is a different case -- one month of zeros is
+    not a zero year -- and those rows are outside the claim. So is a twelve-month row the
+    masked-gap detector has already ruled not credible -- and, for exactly the same reason, a
+    twelve-month row a Stage-1 REVIEWER ruled not credible. The header claiming twelve months is
+    the thing under review in both cases, so it cannot also be the premise: an adjudicated
+    `misread_missing` or `token_reporting_flag` verdict says the twelve-month claim is false, and
+    `stage1_adjudicated_kind` is how the estimate frame records that a reviewer said so.
     """
-    out = result.copy()
-    out["agency_type_norm"] = (
-        out["ori9"].map(agency_type_lookup or {}).fillna("unknown").astype("string")
+    if result.empty or current_rows.empty:
+        return
+    reported = current_rows.loc[
+        pd.to_numeric(current_rows["preferred_months_reported"], errors="coerce").ge(12.0)
+        & pd.to_numeric(current_rows["preferred_count"], errors="coerce").notna(),
+        ["ori9", "offense", "preferred_source", "preferred_months_reported"],
+    ]
+    merged = result.merge(reported, on=["ori9", "offense"], how="inner")
+    adjudicated = (
+        merged["stage1_adjudicated_kind"].notna()
+        if "stage1_adjudicated_kind" in merged.columns
+        else pd.Series(False, index=merged.index)
     )
-    gap_mask = (
-        out["agency_estimate_source"].eq("current_count_no_history")
-        & pd.to_numeric(out["reported_count_current"], errors="coerce").fillna(0.0).le(0.0)
+    violations = merged[
+        ~merged["agency_estimate_source"].isin(LANE_GROUNDED_ESTIMATE_SOURCES)
+        & ~merged["agency_estimate_source"].str.startswith("partial_uplift_sanity_cap_")
+        & ~merged["masked_gap_reclassified"].fillna(False).astype(bool)
+        & ~adjudicated
+    ]
+    if violations.empty:
+        return
+    raise ValueError(
+        f"{len(violations)} agency-offense estimate(s) across "
+        f"{violations['ori9'].nunique()} agencies were filled although their preferred "
+        "lane reported the target year: "
+        + str(
+            violations[
+                [
+                    "ori9",
+                    "offense",
+                    "preferred_source",
+                    "preferred_months_reported",
+                    "reported_count_current",
+                    "estimated_count",
+                    "agency_estimate_source",
+                ]
+            ]
+            .head(20)
+            .to_dict(orient="records")
+        )
     )
-    if gap_mask.any():
-        peers = out.loc[
-            ~gap_mask,
-            ["state_fips", "agency_type_norm", "offense", "estimated_count"],
-        ].copy()
-        state_type_median = peers.groupby(
-            ["state_fips", "agency_type_norm", "offense"], dropna=False
-        )["estimated_count"].median()
-        national_type_median = peers.groupby(
-            ["agency_type_norm", "offense"], dropna=False
-        )["estimated_count"].median()
-        for idx in out.index[gap_mask]:
-            state_key = (
-                str(out.at[idx, "state_fips"]),
-                str(out.at[idx, "agency_type_norm"]),
-                str(out.at[idx, "offense"]),
+
+
+def _assert_estimates_finite_and_nonnegative(result: pd.DataFrame) -> None:
+    """Fail closed on a non-finite or negative estimate.
+
+    Cheap and true by construction; it exists so that an upstream change that starts
+    emitting NaN or negative mass stops the build instead of raking it into the surface.
+    """
+    if result.empty:
+        return
+    for column in ["estimated_count", "agency_adjustment_count", "reported_count_current"]:
+        values = pd.to_numeric(result[column], errors="coerce")
+        bad = result[~np.isfinite(values) | values.lt(0.0)]
+        if not bad.empty:
+            raise ValueError(
+                f"{len(bad)} agency estimate(s) have a non-finite or negative {column}: "
+                + str(bad[["ori9", "offense", column, "agency_estimate_source"]].head(20).to_dict(orient="records"))
             )
-            national_key = (str(out.at[idx, "agency_type_norm"]), str(out.at[idx, "offense"]))
-            value = state_type_median.get(state_key, np.nan)
-            source = "peer_state_type_count_median"
-            if not (pd.notna(value) and np.isfinite(value)):
-                value = national_type_median.get(national_key, np.nan)
-                source = "peer_national_type_count_median"
-            if not (pd.notna(value) and np.isfinite(value)):
-                value = 0.0
-                source = "peer_fallback_zero"
-            value = float(max(0.0, value))
-            out.at[idx, "estimated_count"] = value
-            out.at[idx, "agency_adjustment_count"] = float(
-                max(0.0, value - float(out.at[idx, "reported_count_current"]))
-            )
-            out.at[idx, "agency_estimate_source"] = source
-    return out.drop(columns=["agency_type_norm"])
+
+
+def _check_fill_mass_against_baseline(
+    result: pd.DataFrame,
+    *,
+    paths: object,
+) -> dict[str, float]:
+    """Operational regression alarm on the size of the filled population.
+
+    Not a validity claim about any single estimate: it is a tripwire on the aggregate.
+    Total non-observed estimate mass and the number of agencies carrying a fill are
+    recorded per build and compared against the values in
+    configs/agency_fill_mass_baseline.json; an increase beyond the recorded tolerance
+    fails the build. Accepting a genuine increase means updating that file deliberately,
+    the same contract the methodology gate's ratchet baseline uses.
+    """
+    filled = result[~result["agency_estimate_source"].eq(AGENCY_OBSERVED_ESTIMATE_SOURCE)]
+    measured = {
+        "non_observed_estimate_mass": float(
+            pd.to_numeric(filled["estimated_count"], errors="coerce").fillna(0.0).sum()
+        ),
+        "filled_agency_count": float(filled["ori9"].nunique()),
+    }
+    baseline_path = paths.repo_root / "configs" / FILL_MASS_BASELINE_FILENAME
+    if not baseline_path.exists():
+        return measured
+    baseline = json.loads(baseline_path.read_text())
+    tolerance = float(baseline["tolerance_fraction"])
+    breaches = {
+        metric: (value, float(baseline[metric]))
+        for metric, value in measured.items()
+        if value > float(baseline[metric]) * (1.0 + tolerance)
+    }
+    if breaches:
+        raise ValueError(
+            f"agency fill mass regressed beyond the {tolerance:.0%} tolerance in "
+            f"{baseline_path}: "
+            + str({k: {"measured": v[0], "baseline": v[1]} for k, v in breaches.items()})
+        )
+    return measured
 
 
 def build_agency_target_estimates_from_panel(
@@ -987,11 +1270,13 @@ def build_agency_target_estimates_from_panel(
     *,
     target_year: int,
     trend_fill_lookup: TrendFillLookup,
-    agency_type_lookup: dict[str, str] | None = None,
     masked_gap_flags: pd.DataFrame | None = None,
+    stage1_adjudications: pd.DataFrame | None = None,
     reference_year_exclusions: pd.DataFrame | None = None,
+    succession_ledger: pd.DataFrame | None = None,
     min_usable_years_for_trend: int = 3,
     max_year_gap_for_trend: int = 1,
+    max_reference_age_years: int = FILL_MAX_REFERENCE_AGE_YEARS,
 ) -> pd.DataFrame:
     columns = AGENCY_TARGET_ESTIMATE_COLUMNS
     if agency_panel.empty:
@@ -1015,6 +1300,13 @@ def build_agency_target_estimates_from_panel(
             target_year=int(target_year),
             masked_gap_flags=masked_gap_flags,
         )
+    # Rule first, adjudicated residue second: the detector's own flags are applied above, and the
+    # reviewed cases the detector's thresholds could never reach land here.
+    agency_panel, stage1_adjudication_counts = apply_stage1_adjudicated_usability(
+        agency_panel,
+        target_year=int(target_year),
+        directives=stage1_adjudications,
+    )
 
     work = agency_panel.copy()
     work["state_fips"] = work["state_fips"].astype("string").str.zfill(2)
@@ -1107,6 +1399,13 @@ def build_agency_target_estimates_from_panel(
         offense: str,
         current_count: float,
     ) -> tuple[float, str]:
+        if len(usable_hist) >= 1:
+            latest_usable_year = int(usable_hist["year"].max())
+            if (int(target_year) - latest_usable_year) > int(max_reference_age_years):
+                return (
+                    float(max(0.0, current_count)),
+                    AGENCY_STALE_HISTORY_ESTIMATE_SOURCE,
+                )
         if len(usable_hist) >= int(min_usable_years_for_trend):
             last_year = int(usable_hist["year"].max())
             if (int(target_year) - last_year) <= int(max_year_gap_for_trend):
@@ -1144,7 +1443,7 @@ def build_agency_target_estimates_from_panel(
                     float(max(current_count, max(0.0, float(scaled_median)))),
                     "hist_median_state_trend" if year_gap <= int(max_year_gap_for_trend) else "hist_median",
                 )
-        return float(max(0.0, current_count)), "current_count_no_history"
+        return float(max(0.0, current_count)), AGENCY_NO_HISTORY_ESTIMATE_SOURCE
 
     rows: list[dict[str, object]] = []
     for (ori9, offense), grp in work.groupby(["ori9", "offense"], sort=False):
@@ -1206,7 +1505,14 @@ def build_agency_target_estimates_from_panel(
         elif not current.empty and current_true_partial:
             months_value = pd.to_numeric(current["preferred_months_reported"].iloc[0], errors="coerce")
             months = float(months_value) if pd.notna(months_value) else 0.0
-            if 0 < months < 12 and current_count > 0:
+            if 0 < months < 12 and current_count <= 0:
+                # A zero over the reported months annualises to zero. The offense is
+                # reported, not missing, so it must not fall through to the ladder and
+                # borrow a level from other years.
+                estimated = 0.0
+                partial_uplift_raw_count = 0.0
+                source = "true_partial_month_ratio"
+            elif 0 < months < 12 and current_count > 0:
                 partial_uplift_raw_count = float(max(current_count, current_count * (12.0 / months)))
                 if agency_sanity_cap_flag:
                     cap_estimate, cap_source = _historical_estimate(
@@ -1263,7 +1569,30 @@ def build_agency_target_estimates_from_panel(
             }
         )
     result = pd.DataFrame(rows, columns=columns)
-    result = _agency_no_history_peer_fallback(result, agency_type_lookup=agency_type_lookup)
+    result = _drop_silent_agency_estimates(result)
+    if succession_ledger is not None:
+        result = _drop_superseded_ori_estimates(result, succession_ledger=succession_ledger)
+    _assert_estimates_finite_and_nonnegative(result)
+    result["stage1_adjudicated_kind"] = pd.Series(pd.NA, index=result.index, dtype="string")
+    result["stage1_adjudicated_case"] = pd.Series(pd.NA, index=result.index, dtype="string")
+    adjudicated_kinds = stage1_adjudicated_estimate_kinds(stage1_adjudications)
+    if not adjudicated_kinds.empty:
+        result = result.merge(
+            adjudicated_kinds.rename(
+                columns={
+                    "stage1_adjudicated_kind": "_adj_kind",
+                    "stage1_adjudicated_case": "_adj_case",
+                }
+            ),
+            left_on=result["ori9"].astype("string").str.upper(),
+            right_on="ori9",
+            how="left",
+            suffixes=("", "_adj"),
+        )
+        result["stage1_adjudicated_kind"] = result["_adj_kind"].astype("string")
+        result["stage1_adjudicated_case"] = result["_adj_case"].astype("string")
+        result = result.drop(columns=[c for c in ("_adj_kind", "_adj_case", "ori9_adj", "key_0")
+                                      if c in result.columns])
     result["masked_gap_reclassified"] = False
     result["masked_gap_kind"] = pd.Series(pd.NA, index=result.index, dtype="string")
     if masked_gap_flags is not None and not masked_gap_flags.empty:
@@ -1276,7 +1605,10 @@ def build_agency_target_estimates_from_panel(
         result["masked_gap_reclassified"] = result["_flag_kind"].notna()
         result["masked_gap_kind"] = result["_flag_kind"].astype("string")
         result = result.drop(columns=["_flag_kind"])
-    return result[columns]
+    _assert_no_fill_where_the_chosen_lane_reported(result, current_rows=current_rows)
+    out = result[columns]
+    out.attrs["stage1_adjudications"] = stage1_adjudication_counts
+    return out
 
 
 def build_agency_allocation_target_estimates(
@@ -1286,7 +1618,9 @@ def build_agency_allocation_target_estimates(
     agency_panel: pd.DataFrame | None = None,
     trend_fill_lookup: TrendFillLookup | None = None,
     masked_gap_flags: pd.DataFrame | None = None,
+    stage1_adjudications: pd.DataFrame | None = None,
     reference_year_exclusions: pd.DataFrame | None = None,
+    succession_ledger: pd.DataFrame | None = None,
 ) -> pd.DataFrame:
     """Single source of truth for per-agency target-year estimates (observed vs.
     trend/hist-median/peer-fallback fill), shared by allocation.py's county-remainder
@@ -1296,7 +1630,9 @@ def build_agency_allocation_target_estimates(
     Reference-year hygiene (build_reference_year_masked_gap_years) is likewise computed
     here by default: historical years that are themselves masked gaps (per the same
     detector, evaluated against their own preceding years) are excluded as fill
-    references so every consumer sees the same hygienic reference set.
+    references so every consumer sees the same hygienic reference set. The ORI
+    succession ledger is computed here for the same reason: identity resolution has to
+    reach every consumer or the retired ORI is resurrected by whichever one missed it.
     """
     if agency_panel is None:
         agency_panel = build_agency_trend_fill_panel(
@@ -1321,6 +1657,8 @@ def build_agency_allocation_target_estimates(
             target_year=int(year),
             agency_panel=agency_panel,
         )
+    if stage1_adjudications is None:
+        stage1_adjudications = build_usability_directives(paths, target_year=int(year))
     if reference_year_exclusions is None:
         candidate_years = (
             sorted(
@@ -1336,12 +1674,39 @@ def build_agency_allocation_target_estimates(
             agency_panel=agency_panel,
             candidate_years=candidate_years,
         )
-    agency_type_lookup = load_agency_type_lookup(paths)
-    return build_agency_target_estimates_from_panel(
+    succession_summary: dict[str, object] = {}
+    if succession_ledger is None:
+        succession_ledger, succession_summary = resolve_ori_succession(
+            paths=paths,
+            agency_panel=agency_panel,
+            agency_jurisdiction_crosswalk=load_agency_jurisdiction_crosswalk(paths),
+            target_year=int(year),
+            max_reference_age_years=FILL_MAX_REFERENCE_AGE_YEARS,
+        )
+    estimates = build_agency_target_estimates_from_panel(
         agency_panel,
         target_year=int(year),
         trend_fill_lookup=trend_fill_lookup,
-        agency_type_lookup=agency_type_lookup,
         masked_gap_flags=masked_gap_flags,
+        stage1_adjudications=stage1_adjudications,
         reference_year_exclusions=reference_year_exclusions,
+        succession_ledger=succession_ledger,
     )
+    _check_fill_mass_against_baseline(estimates, paths=paths)
+    counts = dict(estimates.attrs.get("stage1_adjudications", {}))
+    if stage1_adjudications is not None and not stage1_adjudications.empty:
+        assert_registry_bit(
+            counts,
+            what="agency target estimates: Stage-1 adjudicated usability",
+            expected_key="stage1_adjudicated_agency_years_matched",
+        )
+    counts.update(succession_summary)
+    estimates.attrs["stage1_adjudications"] = counts
+    print(
+        "build_agency_allocation_target_estimates: Stage-1 adjudications -> "
+        f"{counts.get('stage1_adjudicated_rows_to_ladder', 0)} rows to the fill ladder, "
+        f"{counts.get('stage1_adjudicated_rows_to_partial', 0)} rows to true-partial uplift, "
+        f"{counts.get('succession_adjudicated_oris_added', 0)} adjudicated successions",
+        flush=True,
+    )
+    return estimates

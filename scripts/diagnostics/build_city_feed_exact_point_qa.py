@@ -17,7 +17,11 @@ for path in (SRC_ROOT, DIAG_ROOT):
     if str(path) not in sys.path:
         sys.path.insert(0, str(path))
 
-from crimerisk.city_feed_quarantine import flag_quarantined_coordinates  # noqa: E402
+from crimerisk.city_feed_quarantine import (  # noqa: E402
+    canonical_city_key,
+    canonical_city_key_for_city_name,
+    flag_quarantined_coordinates,
+)
 from crimerisk.city_incidents import (  # noqa: E402
     BOSTON_LARCENY_CODES,
     BOSTON_MOTOR_VEHICLE_THEFT_CODES,
@@ -183,7 +187,10 @@ def _records(
         out.loc[blank, "incident_id"] = pd.NA
     else:
         out["incident_id"] = pd.NA
-    out["city_key"] = city_key
+    # Emitted through the one canonical vocabulary. This artifact used to carry a third key set
+    # produced by string-mangling display names (`oakland_california`, `houston_texas`), which is
+    # what made cross-referencing it against the two live configs unreliable (Stage 4 screen b3).
+    out["city_key"] = canonical_city_key(city_key, strict=False)
     out["city_name"] = city_name
     return out[_RECORD_COLUMNS]
 
@@ -558,7 +565,9 @@ def _load_active_groups(surface_path: Path) -> pd.DataFrame:
         .rename("surface_located_incident_count")
         .reset_index()
     )
-    groups["city_key"] = groups["city_name"].map(CITY_NAME_TO_KEY).fillna(groups["city_name"].astype(str).str.lower().str.replace(r"\W+", "_", regex=True))
+    groups["city_key"] = [
+        canonical_city_key_for_city_name(name, strict=False) for name in groups["city_name"]
+    ]
     return groups[["city_key", "city_name", "offense", "surface_located_incident_count"]].sort_values(["city_name", "offense"], kind="mergesort")
 
 
@@ -566,7 +575,7 @@ def _load_exceptions(path: Path) -> pd.DataFrame:
     if not path.exists():
         return pd.DataFrame(columns=["city_key", "offense", "lat", "lon"])
     df = pd.read_csv(path, dtype=str).fillna("")
-    df["city_key"] = df["city_key"].astype(str).str.strip().str.lower()
+    df["city_key"] = [canonical_city_key(value, strict=False) for value in df["city_key"]]
     df["offense"] = df["offense"].astype(str).str.strip()
     df["lat"] = pd.to_numeric(df["lat"], errors="coerce")
     df["lon"] = pd.to_numeric(df["lon"], errors="coerce")

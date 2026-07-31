@@ -16,6 +16,7 @@ set -euo pipefail
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 TMP="$REPO/frontend/tmp"
 BG_DIR="$REPO/data/tiger_bg"
+TRACT_DIR="$REPO/data/tiger_tracts"
 mkdir -p "$TMP"
 
 # Verify the per-state block-group TIGER files are present. 03 reads them by
@@ -26,6 +27,20 @@ if [ -d "$BG_DIR" ] && ls "$BG_DIR"/tl_2020_*_bg.zip >/dev/null 2>&1; then
 else
   echo "ERROR: no block-group TIGER files found in $BG_DIR" >&2
   echo "       expected per-state files like tl_2020_06_bg.zip." >&2
+  exit 1
+fi
+
+# Verify the per-state tract TIGER files are present. The murder/rape layers are
+# drawn at census-tract granularity, so 03 also reads the tract geometry by state
+# FIPS (tl_2020_{ss}_tract.zip). The 2020 vintage matches the published index
+# GEOIDs everywhere, including Connecticut's legacy 2020 county-based GEOIDs (the
+# same reasoning as the block-group chain); any non-2020 vintage present is ignored.
+if [ -d "$TRACT_DIR" ] && ls "$TRACT_DIR"/tl_2020_*_tract.zip >/dev/null 2>&1; then
+  n=$(ls "$TRACT_DIR"/tl_2020_*_tract.zip | wc -l | tr -d ' ')
+  echo "Tract TIGER geometry present: $n state files in $TRACT_DIR."
+else
+  echo "ERROR: no tract TIGER files found in $TRACT_DIR" >&2
+  echo "       expected per-state files like tl_2020_06_tract.zip." >&2
   exit 1
 fi
 

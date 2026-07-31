@@ -8,8 +8,11 @@ import pandas as pd
 
 from crimerisk.build_freshness import artifact_is_current
 from crimerisk.city_feed_quarantine import (
+    assert_quarantine_wired,
     filter_denied_texture_surface,
     load_texture_policy,
+    quarantine_application_log,
+    reset_quarantine_application_log,
 )
 from crimerisk.city_incidents import (
     build_austin_incident_reconciliation,
@@ -497,6 +500,10 @@ def build_city_incident_share_surface(
         return _empty_city_share_frame(), [], {}
 
     texture_policy = load_texture_policy()
+    # The coordinate quarantine is applied per builder (only the builder has the raw points), so
+    # whether it is WIRED is a pipeline-level fact and is asserted as one here. Stage 4 screen
+    # b3 found it in 4 of 13 builders with nothing detecting the other 9.
+    reset_quarantine_application_log()
     frames: list[pd.DataFrame] = []
     active_summaries: list[dict[str, object]] = []
     recon_payloads: dict[str, pd.DataFrame] = {}
@@ -519,10 +526,15 @@ def build_city_incident_share_surface(
                 "mode": "offense_selective" if allowed_offenses else "city_wide",
                 "offenses": sorted(allowed_offenses) if allowed_offenses else "all",
                 "texture_denied_offenses": texture_denied_offenses,
+                "coordinate_quarantine": quarantine_application_log().get(city_key),
             }
         )
         recon_payloads[city_key] = impl["recon_fn"](**impl["kwargs"])
 
+    # Asserted over the cities that actually CONTRIBUTED texture: those are the ones where a
+    # quarantine row keyed to the city would be silently inert. A city whose feed failed to load
+    # has already warned and contributes nothing, and is not turned into a build failure here.
+    assert_quarantine_wired([summary["city_key"] for summary in active_summaries])
     if not frames:
         raise RuntimeError("City incident share build found no rows after applying city/offense gates.")
     return pd.concat(frames, ignore_index=True), active_summaries, recon_payloads

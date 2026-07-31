@@ -1,0 +1,67 @@
+{
+  "type": "object",
+  "properties": {
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "case_id": {
+            "type": "string"
+          },
+          "ori9": {
+            "type": "string"
+          },
+          "bucket_decision": {
+            "type": "string",
+            "enum": [
+              "nonmunicipal_exclusive",
+              "statewide_overlap",
+              "localized_special_overlap",
+              "exclude"
+            ]
+          },
+          "overlap_subtype": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "geometry_hint": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "confidence": {
+            "type": "number"
+          },
+          "reason": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "case_id",
+          "ori9",
+          "bucket_decision",
+          "overlap_subtype",
+          "geometry_hint",
+          "confidence",
+          "reason",
+          "sources"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "results"
+  ],
+  "additionalProperties": false
+}

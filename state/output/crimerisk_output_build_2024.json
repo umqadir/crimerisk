@@ -1,285 +1,293 @@
 {
-  "created_at_utc": "2026-07-09T14:11:44.833056+00:00",
+  "created_at_utc": "2026-07-30T04:34:10.292452+00:00",
   "input_file_stats": {
     "bg_prior_long": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:05:46.417411+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/bg_prior_long_2024_houston_batch_c_v15.parquet",
-      "size_bytes": 26860315
+      "mtime_utc": "2026-06-23T09:01:15.668695+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/bg_prior_long_2024_arm_b.parquet",
+      "size_bytes": 26659295
     },
     "block_group_crosswalk": {
       "exists": true,
-      "mtime_utc": "2026-07-09T13:57:27.975708+00:00",
-      "path": "./state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
-      "size_bytes": 14908272
+      "mtime_utc": "2026-07-30T04:26:36.516119+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
+      "size_bytes": 15238357
     },
     "burglary_tau_calibration": {
       "exists": true,
       "mtime_utc": "2026-07-03T14:13:29.594424+00:00",
-      "path": "./state/modeling/burglary_tau_calibration_2024.json",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/burglary_tau_calibration_2024.json",
       "size_bytes": 39125
     },
     "city_incident_reconciliation": {
       "exists": true,
-      "mtime_utc": "2026-07-09T13:59:18.633268+00:00",
-      "path": "./state/modeling/city_incident_reconciliation_2024.parquet",
+      "mtime_utc": "2026-07-30T04:28:20.357781+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/city_incident_reconciliation_2024.parquet",
       "size_bytes": 31779
     },
     "city_incident_share_surface": {
       "exists": true,
-      "mtime_utc": "2026-07-09T13:59:18.715136+00:00",
-      "path": "./state/modeling/city_incident_share_surface.parquet",
+      "mtime_utc": "2026-07-30T04:28:20.438359+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/city_incident_share_surface.parquet",
       "size_bytes": 1890320
     },
     "consolidated_agency_footprints": {
       "exists": true,
-      "mtime_utc": "2026-07-03T03:38:57.304861+00:00",
-      "path": "./configs/consolidated_agency_footprints.csv",
+      "mtime_utc": "2026-07-11T22:07:31.039272+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/configs/consolidated_agency_footprints.csv",
       "size_bytes": 1158
     },
     "jurisdiction_controls": {
       "exists": true,
-      "mtime_utc": "2026-07-09T13:51:12.766919+00:00",
-      "path": "./state/controls/jurisdiction_controls_2024.parquet",
-      "size_bytes": 2561950
+      "mtime_utc": "2026-07-30T04:20:40.760332+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/controls/jurisdiction_controls_2024.parquet",
+      "size_bytes": 1858472
     },
     "landscan_lift_allocation_decision": {
       "exists": true,
       "mtime_utc": "2026-07-05T06:54:53.663825+00:00",
-      "path": "./state/modeling/landscan_lift_allocation_decision_2024.json",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/landscan_lift_allocation_decision_2024.json",
       "size_bytes": 975
     },
     "landscan_lift_allocation_decision_summary": {
       "exists": true,
       "mtime_utc": "2026-07-05T06:54:53.663722+00:00",
-      "path": "./state/modeling/landscan_lift_allocation_decision_summary_2024.csv",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/landscan_lift_allocation_decision_summary_2024.csv",
       "size_bytes": 819
     },
     "landscan_usa_2021_block_group": {
       "exists": true,
       "mtime_utc": "2026-07-04T06:15:42.573916+00:00",
-      "path": "./data/LandScan-USA/block_group_landscan_usa_2021.parquet",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/LandScan-USA/block_group_landscan_usa_2021.parquet",
       "size_bytes": 2096950
     },
     "model_surface_feature_policy": {
       "exists": true,
       "mtime_utc": "2026-06-23T08:14:40.070832+00:00",
-      "path": "./state/modeling/feature_transfer_policy_2024.parquet",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
       "size_bytes": 93805
     },
     "residual_feature_policy": {
       "exists": true,
       "mtime_utc": "2026-06-23T08:14:40.070832+00:00",
-      "path": "./state/modeling/feature_transfer_policy_2024.parquet",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
       "size_bytes": 93805
     },
     "residual_training_city_shares": {
       "exists": true,
       "mtime_utc": "2026-07-09T08:41:06.964947+00:00",
-      "path": "./state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
       "size_bytes": 2286171
     },
     "residual_training_extra_bg_features": [
       {
         "exists": true,
         "mtime_utc": "2026-07-09T04:19:53.992483+00:00",
-        "path": "./data/Overture-Places/parsed/block_group_overture_places_states_latest.parquet",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/Overture-Places/parsed/block_group_overture_places_states_latest.parquet",
         "size_bytes": 37680018
       },
       {
         "exists": true,
         "mtime_utc": "2026-07-09T04:23:28.233930+00:00",
-        "path": "./data/Overture-Places/parsed/block_group_overture_commercial_core_states_latest.parquet",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/Overture-Places/parsed/block_group_overture_commercial_core_states_latest.parquet",
         "size_bytes": 13438381
       }
     ],
     "state_control_comparison": {
       "exists": true,
-      "mtime_utc": "2026-07-09T13:51:12.769301+00:00",
-      "path": "./state/controls/state_control_comparison.parquet",
-      "size_bytes": 96686
+      "mtime_utc": "2026-07-30T04:20:40.762876+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/controls/state_control_comparison.parquet",
+      "size_bytes": 116033
     }
   },
   "output_file_stats": {
     "allocation_component_denominator_audit": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:44.724904+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/allocation_component_denominator_audit_2024.parquet",
-      "size_bytes": 416906308
+      "mtime_utc": "2026-07-30T04:34:10.188064+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/allocation_component_denominator_audit_2024.parquet",
+      "size_bytes": 404340801
     },
     "block_group_ags_core": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:36.734689+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_ags_core.parquet",
-      "size_bytes": 360644085
+      "mtime_utc": "2026-07-30T04:34:02.523014+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_block_group_2024_ags_core.parquet",
+      "size_bytes": 312669626
     },
     "block_group_fbi_calibrated": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:39.970678+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_fbi_calibrated.parquet",
-      "size_bytes": 360618926
+      "mtime_utc": "2026-07-30T04:34:05.526595+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_block_group_2024_fbi_calibrated.parquet",
+      "size_bytes": 312662460
     },
     "city_posterior_diagnostics": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:44.832938+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/city_posterior_diagnostics_2024.parquet",
-      "size_bytes": 34843
+      "mtime_utc": "2026-07-30T04:34:10.292336+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/city_posterior_diagnostics_2024.parquet",
+      "size_bytes": 34825
     },
     "denominator_publishability_audit": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:44.831264+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/denominator_publishability_audit_2024.csv",
-      "size_bytes": 1954
+      "mtime_utc": "2026-07-30T04:34:10.290798+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/denominator_publishability_audit_2024.csv",
+      "size_bytes": 1890
     },
     "tract_ags_core": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:37.599125+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/crimerisk_tract_2024_ags_core.parquet",
-      "size_bytes": 142319447
+      "mtime_utc": "2026-07-30T04:34:03.373282+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_tract_2024_ags_core.parquet",
+      "size_bytes": 143265361
     },
     "tract_fbi_calibrated": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:40.836295+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/crimerisk_tract_2024_fbi_calibrated.parquet",
-      "size_bytes": 142318768
+      "mtime_utc": "2026-07-30T04:34:06.370995+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_tract_2024_fbi_calibrated.parquet",
+      "size_bytes": 143261183
     },
     "zero_target_denominator_audit": {
       "exists": true,
-      "mtime_utc": "2026-07-09T14:11:40.876093+00:00",
-      "path": "./state/candidates/houston-batch-c-v15/zero_target_denominator_audit_2024.parquet",
-      "size_bytes": 49885
+      "mtime_utc": "2026-07-30T04:34:06.409784+00:00",
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/zero_target_denominator_audit_2024.parquet",
+      "size_bytes": 54814
     }
   },
   "promotion": {
-    "candidate_git_sha": "c860742ac24a6aaae292c55c2bb2a9b477ae6ffb",
+    "candidate_git_sha": "e8f1146f536ca69151a08d73b4ce76eb7d4f2bde",
     "candidate_git_sha_is_ancestor_of_promoting_git_sha": true,
-    "candidate_manifest_path": "state/candidates/houston-batch-c-v15/manifest.json",
-    "candidate_manifest_sha256": "e07bd891e4c4862b727d377602b8f58495bf852989afe6b09645dc236f6711b7",
-    "candidate_path": "state/candidates/houston-batch-c-v15",
-    "candidate_run_id": "houston-batch-c-v15",
+    "candidate_manifest_path": "state/candidates/stage-program-v21/manifest.json",
+    "candidate_manifest_sha256": "18a5f9ef7ba553ffd2f30027b82155327d82cb0c513aa9be80d7d6b1cd4c6bee",
+    "candidate_path": "state/candidates/stage-program-v21",
+    "candidate_run_id": "stage-program-v21",
     "copied_artifacts": [
       {
         "destination": "state/output/crimerisk_block_group_2024_ags_core.parquet",
         "name": "crimerisk_block_group_2024_ags_core.parquet",
-        "sha256": "47950efeb49acefe318e8f0f8c9054e3fcf2fcdfd972a7a03856a4feb8ff7478",
-        "size_bytes": 360644085,
-        "source": "state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_ags_core.parquet"
+        "sha256": "6bc75707bcb92ebff88cf61ec8af72b35b3b44fbf5e82ebde784e46f11d9536f",
+        "size_bytes": 312669626,
+        "source": "state/candidates/stage-program-v21/crimerisk_block_group_2024_ags_core.parquet"
       },
       {
         "destination": "state/output/crimerisk_tract_2024_ags_core.parquet",
         "name": "crimerisk_tract_2024_ags_core.parquet",
-        "sha256": "d3c570a3d27617b8d1d472208a6160fecb42e86f18890f98e7b43065fbf7e497",
-        "size_bytes": 142319447,
-        "source": "state/candidates/houston-batch-c-v15/crimerisk_tract_2024_ags_core.parquet"
+        "sha256": "c349fcf08ad8e6c19f1cdc80f86c580296c076e4513c6ee5ee199817b7a080cc",
+        "size_bytes": 143265361,
+        "source": "state/candidates/stage-program-v21/crimerisk_tract_2024_ags_core.parquet"
       },
       {
         "destination": "state/output/crimerisk_block_group_2024_fbi_calibrated.parquet",
         "name": "crimerisk_block_group_2024_fbi_calibrated.parquet",
-        "sha256": "8eb27316467a1c7863205394c6e5ad038e1102c32ccb2c2c77f45978e29ef99e",
-        "size_bytes": 360618926,
-        "source": "state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_fbi_calibrated.parquet"
+        "sha256": "60677dda9d41f45e2e5f930f563cebce4a9342cb32dba7c338d68aa398b4a465",
+        "size_bytes": 312662460,
+        "source": "state/candidates/stage-program-v21/crimerisk_block_group_2024_fbi_calibrated.parquet"
       },
       {
         "destination": "state/output/crimerisk_tract_2024_fbi_calibrated.parquet",
         "name": "crimerisk_tract_2024_fbi_calibrated.parquet",
-        "sha256": "00e0948651f4d7fb6153c673af068e35f3b32b3d98659cff144bf84130a556a8",
-        "size_bytes": 142318768,
-        "source": "state/candidates/houston-batch-c-v15/crimerisk_tract_2024_fbi_calibrated.parquet"
+        "sha256": "884eb9b9c98a7976a210d84bc8f68ffab0895f52ff573e3db5fead80296b0164",
+        "size_bytes": 143261183,
+        "source": "state/candidates/stage-program-v21/crimerisk_tract_2024_fbi_calibrated.parquet"
       },
       {
         "destination": "state/output/zero_target_denominator_audit_2024.parquet",
         "name": "zero_target_denominator_audit_2024.parquet",
-        "sha256": "0fd16a583dee586ed309c66b71680f7350841ddcc9215184abe76ae894e5ee3d",
-        "size_bytes": 49885,
-        "source": "state/candidates/houston-batch-c-v15/zero_target_denominator_audit_2024.parquet"
+        "sha256": "5c6759d87154ff7770d81fc1c3d29aee0f1062bee67dd7dccb52f7fe199f4428",
+        "size_bytes": 54814,
+        "source": "state/candidates/stage-program-v21/zero_target_denominator_audit_2024.parquet"
       },
       {
         "destination": "state/output/allocation_component_denominator_audit_2024.parquet",
         "name": "allocation_component_denominator_audit_2024.parquet",
-        "sha256": "956133bc33e5f426bc8c4d954a794d2bfe14ec431d199a45498c6faf6d35615f",
-        "size_bytes": 416906308,
-        "source": "state/candidates/houston-batch-c-v15/allocation_component_denominator_audit_2024.parquet"
+        "sha256": "944f14c36c0773974b7b3524aca8a8bf5e0d8f227e7a19d5eea074e0bc3afdd2",
+        "size_bytes": 404340801,
+        "source": "state/candidates/stage-program-v21/allocation_component_denominator_audit_2024.parquet"
       },
       {
         "destination": "state/output/denominator_publishability_audit_2024.csv",
         "name": "denominator_publishability_audit_2024.csv",
-        "sha256": "eb6a8b61e1f232f288fd82736fda752f0d7bb5291cf2d35abbab7da47ea3e886",
-        "size_bytes": 1954,
-        "source": "state/candidates/houston-batch-c-v15/denominator_publishability_audit_2024.csv"
+        "sha256": "11d8ff9e1b96a7d9f31e7f9efb98ceff534df28c25b8ce638e661cd3ae997379",
+        "size_bytes": 1890,
+        "source": "state/candidates/stage-program-v21/denominator_publishability_audit_2024.csv"
       },
       {
         "destination": "state/output/city_posterior_diagnostics_2024.parquet",
         "name": "city_posterior_diagnostics_2024.parquet",
-        "sha256": "82cbddee850bf3932516393df97d500da136fe5ce016512002ba94c33fa5e763",
-        "size_bytes": 34843,
-        "source": "state/candidates/houston-batch-c-v15/city_posterior_diagnostics_2024.parquet"
+        "sha256": "bdbdcad55258f5f0c971177264aea07a64554cc835a49cfb1390618406cb1a45",
+        "size_bytes": 34825,
+        "source": "state/candidates/stage-program-v21/city_posterior_diagnostics_2024.parquet"
       }
     ],
     "frontend_snapshot_hash_check": {
-      "candidate_block_group_ags_core_path": "state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_ags_core.parquet",
-      "candidate_block_group_ags_core_sha256": "47950efeb49acefe318e8f0f8c9054e3fcf2fcdfd972a7a03856a4feb8ff7478",
+      "candidate_block_group_ags_core_path": "state/candidates/stage-program-v21/crimerisk_block_group_2024_ags_core.parquet",
+      "candidate_block_group_ags_core_sha256": "6bc75707bcb92ebff88cf61ec8af72b35b3b44fbf5e82ebde784e46f11d9536f",
+      "candidate_tract_ags_core_path": "state/candidates/stage-program-v21/crimerisk_tract_2024_ags_core.parquet",
+      "candidate_tract_ags_core_sha256": "c349fcf08ad8e6c19f1cdc80f86c580296c076e4513c6ee5ee199817b7a080cc",
       "matches_candidate_block_group_ags_core": true,
+      "matches_candidate_tract_ags_core": true,
       "matches_promoted_block_group_ags_core": true,
+      "matches_promoted_tract_ags_core": true,
       "promoted_block_group_ags_core_path": "state/output/crimerisk_block_group_2024_ags_core.parquet",
-      "promoted_block_group_ags_core_sha256": "47950efeb49acefe318e8f0f8c9054e3fcf2fcdfd972a7a03856a4feb8ff7478",
+      "promoted_block_group_ags_core_sha256": "6bc75707bcb92ebff88cf61ec8af72b35b3b44fbf5e82ebde784e46f11d9536f",
+      "promoted_tract_ags_core_path": "state/output/crimerisk_tract_2024_ags_core.parquet",
+      "promoted_tract_ags_core_sha256": "c349fcf08ad8e6c19f1cdc80f86c580296c076e4513c6ee5ee199817b7a080cc",
       "snapshot_path": "frontend/public/snapshot.json",
-      "snapshot_source_parquet": "state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_ags_core.parquet",
-      "snapshot_source_parquet_sha256": "47950efeb49acefe318e8f0f8c9054e3fcf2fcdfd972a7a03856a4feb8ff7478"
+      "snapshot_source_parquet": "state/candidates/stage-program-v21/crimerisk_block_group_2024_ags_core.parquet",
+      "snapshot_source_parquet_sha256": "6bc75707bcb92ebff88cf61ec8af72b35b3b44fbf5e82ebde784e46f11d9536f",
+      "snapshot_source_tract_parquet": "state/candidates/stage-program-v21/crimerisk_tract_2024_ags_core.parquet",
+      "snapshot_source_tract_parquet_sha256": "c349fcf08ad8e6c19f1cdc80f86c580296c076e4513c6ee5ee199817b7a080cc"
     },
-    "promoted_at_utc": "2026-07-09T21:02:34.674938+00:00",
+    "promoted_at_utc": "2026-07-30T04:50:30.234683+00:00",
     "promoted_manifest_path": "state/output/crimerisk_output_build_2024.json",
     "promoted_output_dir": "state/output",
     "promoted_output_file_stats": {
       "allocation_component_denominator_audit_2024.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:44.724904+00:00",
-        "path": "./state/output/allocation_component_denominator_audit_2024.parquet",
-        "size_bytes": 416906308
+        "mtime_utc": "2026-07-30T04:34:10.188064+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/allocation_component_denominator_audit_2024.parquet",
+        "size_bytes": 404340801
       },
       "city_posterior_diagnostics_2024.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:44.832938+00:00",
-        "path": "./state/output/city_posterior_diagnostics_2024.parquet",
-        "size_bytes": 34843
+        "mtime_utc": "2026-07-30T04:34:10.292336+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/city_posterior_diagnostics_2024.parquet",
+        "size_bytes": 34825
       },
       "crimerisk_block_group_2024_ags_core.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:36.734689+00:00",
-        "path": "./state/output/crimerisk_block_group_2024_ags_core.parquet",
-        "size_bytes": 360644085
+        "mtime_utc": "2026-07-30T04:34:02.523014+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/crimerisk_block_group_2024_ags_core.parquet",
+        "size_bytes": 312669626
       },
       "crimerisk_block_group_2024_fbi_calibrated.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:39.970678+00:00",
-        "path": "./state/output/crimerisk_block_group_2024_fbi_calibrated.parquet",
-        "size_bytes": 360618926
+        "mtime_utc": "2026-07-30T04:34:05.526595+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/crimerisk_block_group_2024_fbi_calibrated.parquet",
+        "size_bytes": 312662460
       },
       "crimerisk_tract_2024_ags_core.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:37.599125+00:00",
-        "path": "./state/output/crimerisk_tract_2024_ags_core.parquet",
-        "size_bytes": 142319447
+        "mtime_utc": "2026-07-30T04:34:03.373282+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/crimerisk_tract_2024_ags_core.parquet",
+        "size_bytes": 143265361
       },
       "crimerisk_tract_2024_fbi_calibrated.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:40.836295+00:00",
-        "path": "./state/output/crimerisk_tract_2024_fbi_calibrated.parquet",
-        "size_bytes": 142318768
+        "mtime_utc": "2026-07-30T04:34:06.370995+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/crimerisk_tract_2024_fbi_calibrated.parquet",
+        "size_bytes": 143261183
       },
       "denominator_publishability_audit_2024.csv": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:44.831264+00:00",
-        "path": "./state/output/denominator_publishability_audit_2024.csv",
-        "size_bytes": 1954
+        "mtime_utc": "2026-07-30T04:34:10.290798+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/denominator_publishability_audit_2024.csv",
+        "size_bytes": 1890
       },
       "zero_target_denominator_audit_2024.parquet": {
         "exists": true,
-        "mtime_utc": "2026-07-09T14:11:40.876093+00:00",
-        "path": "./state/output/zero_target_denominator_audit_2024.parquet",
-        "size_bytes": 49885
+        "mtime_utc": "2026-07-30T04:34:06.409784+00:00",
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/output/zero_target_denominator_audit_2024.parquet",
+        "size_bytes": 54814
       }
     },
-    "promoting_git_sha": "3262a4d04d23766a9b7ca47bc5ce0f6baab70b69",
+    "promoting_git_sha": "f58514b63ea28b053b26f5eb966405f474e69ddf",
     "removed_stale_files": [
       "state/output/crimerisk_block_group_2024_ags_core.parquet",
       "state/output/crimerisk_tract_2024_ags_core.parquet",
@@ -293,11 +301,11 @@
       "state/output/validation_summary.json"
     ],
     "validation_summary_ok": true,
-    "validation_summary_path": "state/candidates/houston-batch-c-v15/validation_summary.json",
-    "validation_summary_sha256": "d2660a2dfc129c97b001c50929f2d002185aeb18bb231ee791aa83e9b0132364"
+    "validation_summary_path": "state/candidates/stage-program-v21/validation_summary.json",
+    "validation_summary_sha256": "ebbd3e3ade35123344fdac0c616beeddceb337ddfb0e2cd745490bd07bd326cf"
   },
   "resolved_config": {
-    "bg_prior_path": "./state/candidates/houston-batch-c-v15/bg_prior_long_2024_houston_batch_c_v15.parquet",
+    "bg_prior_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/bg_prior_long_2024_arm_b.parquet",
     "burglary_commercial_weight_override": null,
     "city_posterior_alpha_floor": 0.001,
     "city_posterior_alpha_max_prior_fraction": 0.995,
@@ -331,18 +339,17 @@
       "robbery": 1.0
     },
     "eb_hard_min_denominator": 1.0,
-    "force_bg_prior_rebuild": true,
+    "force_bg_prior_rebuild": false,
     "force_city_incident_share_rebuild": false,
     "force_city_incident_source_refresh": false,
-    "force_controls_rebuild": true,
+    "force_controls_rebuild": false,
     "force_geometry_rebuild": false,
-    "force_municipal_estimates_rebuild": false,
     "force_reporting_regimes_rebuild": false,
     "model_surface_exclude_feature_policy_classes": [
       "between_only",
       "excluded_protected"
     ],
-    "model_surface_feature_policy_path": "./state/modeling/feature_transfer_policy_2024.parquet",
+    "model_surface_feature_policy_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
     "model_surface_prior_anchor": "offense_denominator",
     "motor_vehicle_theft_denominator_policy": {
       "audit_columns": [
@@ -360,7 +367,7 @@
         "accepted_for_allocation": false,
         "allocation_branch": "publication_denominators_only_allocation_baselines_current_exposure",
         "criterion": "accept LandScan lift for allocation if murder+rape exposure-baseline TVD does not degrade beyond one city-bootstrap SE",
-        "decision_path": "./state/modeling/landscan_lift_allocation_decision_2024.json",
+        "decision_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/landscan_lift_allocation_decision_2024.json",
         "decision_record_present": true,
         "gradient_gate_status": "descriptive_not_decision_gate_for_person_offenses",
         "murder_rape_bootstrap_se_delta": 0.016480821519272083,
@@ -402,7 +409,10 @@
         "between_only",
         "excluded_protected"
       ],
-      "burglary": [],
+      "burglary": [
+        "between_only",
+        "excluded_protected"
+      ],
       "larceny": [
         "between_only",
         "excluded_protected"
@@ -424,15 +434,15 @@
         "excluded_protected"
       ]
     },
-    "residual_feature_policy_path": "./state/modeling/feature_transfer_policy_2024.parquet",
-    "residual_training_city_shares_path": "./state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
+    "residual_feature_policy_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
+    "residual_training_city_shares_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
     "residual_training_exclude_validation_case_types": [
       "suburban_county_validation_case",
       "partial_year_municipal_validation_case"
     ],
     "residual_training_extra_bg_feature_paths": [
-      "./data/Overture-Places/parsed/block_group_overture_places_states_latest.parquet",
-      "./data/Overture-Places/parsed/block_group_overture_commercial_core_states_latest.parquet"
+      "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/Overture-Places/parsed/block_group_overture_places_states_latest.parquet",
+      "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/Overture-Places/parsed/block_group_overture_commercial_core_states_latest.parquet"
     ],
     "residual_transfer_tau_by_offense": {
       "aggravated_assault": 1.0,
@@ -449,37 +459,71 @@
     "argv": [
       "main.py",
       "build-outputs",
+      "--year",
+      "2024",
       "--candidate-run",
-      "houston-batch-c-v15",
-      "--emit-fbi-calibrated",
-      "--force-controls-rebuild",
-      "--force-bg-prior-rebuild",
-      "--bg-prior-path",
-      "state/candidates/houston-batch-c-v15/bg_prior_long_2024_houston_batch_c_v15.parquet"
+      "stage-program-v21",
+      "--emit-fbi-calibrated"
     ],
-    "candidate_dir": "./state/candidates/houston-batch-c-v15",
-    "command": "main.py build-outputs --candidate-run houston-batch-c-v15 --emit-fbi-calibrated --force-controls-rebuild --force-bg-prior-rebuild --bg-prior-path state/candidates/houston-batch-c-v15/bg_prior_long_2024_houston_batch_c_v15.parquet",
-    "created_at_utc": "2026-07-09T08:43:33.556196+00:00",
-    "cwd": ".",
+    "candidate_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21",
+    "command": "main.py build-outputs --year 2024 --candidate-run stage-program-v21 --emit-fbi-calibrated",
+    "created_at_utc": "2026-07-30T04:10:41.766928+00:00",
+    "cwd": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone",
     "git": {
       "branch": "main",
       "dirty": true,
-      "head_sha": "c860742ac24a6aaae292c55c2bb2a9b477ae6ffb",
-      "short_sha": "c860742ac24a",
+      "head_sha": "e8f1146f536ca69151a08d73b4ce76eb7d4f2bde",
+      "short_sha": "e8f1146f536c",
       "status_porcelain": [
-        "?? scripts/pull/snapshot_lvmpd_feed.py"
+        "M configs/stage1_adjudications/zero_missing_adjudicated.csv",
+        " M scripts/diagnostics/validate_release_outputs.py",
+        " M src/crimerisk/allocation.py",
+        " M state/qa/stage1_adhoc_review/zero_missing_adjudicated.csv",
+        " M tests/test_benchmark_imputation.py",
+        "?? .wrangler/",
+        "?? analysis_scratch/agency_target_estimates_2024.parquet",
+        "?? analysis_scratch/agency_target_estimates_2024.parquet.state_mass.csv",
+        "?? analysis_scratch/agency_target_estimates_2024_v19.parquet",
+        "?? analysis_scratch/agency_target_estimates_2024_v19.parquet.state_mass.csv",
+        "?? analysis_scratch/display_hi_fix_captures/",
+        "?? analysis_scratch/first_look_screen_v18_baseline.csv",
+        "?? analysis_scratch/first_look_screen_v19_candidate.csv",
+        "?? analysis_scratch/first_look_screen_v20_candidate.csv",
+        "?? analysis_scratch/insample_r2/",
+        "?? analysis_scratch/ramp_rebuild_captures/",
+        "?? analysis_scratch/sol_v19_design_review.txt",
+        "?? analysis_scratch/sol_v20_review.txt",
+        "?? analysis_scratch/stage2_fix_batch/",
+        "?? analysis_scratch/stage45_fix_batch/",
+        "?? analysis_scratch/stage6_batch_captures/",
+        "?? analysis_scratch/total_index_hist.png",
+        "?? analysis_scratch/v17_gate_site/",
+        "?? analysis_scratch/v18_gate_captures/",
+        "?? analysis_scratch/v18_scratch_site/",
+        "?? analysis_scratch/v19_design_memo.md",
+        "?? analysis_scratch/v19_gate_captures/",
+        "?? analysis_scratch/v19_gate_site/",
+        "?? analysis_scratch/v19_sweep_captures/",
+        "?? analysis_scratch/v19_sweep_result.json",
+        "?? analysis_scratch/v20_design_memo.md",
+        "?? analysis_scratch/v20_gate_captures/",
+        "?? analysis_scratch/v20_gate_site/",
+        "?? analysis_scratch/v20_retest_result.json",
+        "?? analysis_scratch/v20_sweep_captures/",
+        "?? analysis_scratch/v20a/",
+        "?? ks_gis_query.json"
       ],
-      "tracked_dirty": false
+      "tracked_dirty": true
     },
     "resolved_outputs": {
-      "block_group_ags_core": "./state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_ags_core.parquet",
-      "block_group_fbi_calibrated": "./state/candidates/houston-batch-c-v15/crimerisk_block_group_2024_fbi_calibrated.parquet",
-      "build_manifest": "./state/candidates/houston-batch-c-v15/manifest.json",
-      "tract_ags_core": "./state/candidates/houston-batch-c-v15/crimerisk_tract_2024_ags_core.parquet",
-      "tract_fbi_calibrated": "./state/candidates/houston-batch-c-v15/crimerisk_tract_2024_fbi_calibrated.parquet"
+      "block_group_ags_core": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_block_group_2024_ags_core.parquet",
+      "block_group_fbi_calibrated": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_block_group_2024_fbi_calibrated.parquet",
+      "build_manifest": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/manifest.json",
+      "tract_ags_core": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_tract_2024_ags_core.parquet",
+      "tract_fbi_calibrated": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/crimerisk_tract_2024_fbi_calibrated.parquet"
     },
-    "run_id": "houston-batch-c-v15",
-    "validation_summary_path": "./state/candidates/houston-batch-c-v15/validation_summary.json"
+    "run_id": "stage-program-v21",
+    "validation_summary_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/validation_summary.json"
   },
   "summary": {
     "aggregate_index_normalizers": {
@@ -500,13 +544,13 @@
         "primary_event_weighted": {
           "field": "index_total_primary_event_weighted",
           "offense_weights": {
-            "aggravated_assault": 0.12233410764731163,
-            "burglary": 0.10951186003978719,
-            "larceny": 0.5966876731285394,
-            "motor_vehicle_theft": 0.12203478985257724,
-            "murder": 0.002415045413841744,
-            "rape": 0.018275558879567978,
-            "robbery": 0.0287409650383747
+            "aggravated_assault": 0.12133976385905125,
+            "burglary": 0.10915928007063537,
+            "larceny": 0.5988818810492902,
+            "motor_vehicle_theft": 0.12160521705696326,
+            "murder": 0.0023785378621327164,
+            "rape": 0.018050696272054842,
+            "robbery": 0.028584623829872428
           },
           "weight_source": "national expected_count offense shares in this surface"
         },
@@ -526,31 +570,31 @@
         },
         "resident_part1": {
           "index_personal_part1_resident": {
-            "expected_count_total": 1218654.3730449292,
-            "national_rate_per_100k": 362.09274344439086,
+            "expected_count_total": 1207962.4234455316,
+            "national_rate_per_100k": 358.9426443353216,
             "offenses": [
               "murder",
               "rape",
               "robbery",
               "aggravated_assault"
             ],
-            "published_rows": 235160,
-            "resident_denominator_total": 336558629.0
+            "published_rows": 235144,
+            "resident_denominator_total": 336533550.0
           },
           "index_property_part1_resident": {
-            "expected_count_total": 5875834.845296915,
-            "national_rate_per_100k": 1747.1102250165538,
+            "expected_count_total": 5890846.722042341,
+            "national_rate_per_100k": 1751.6165110075613,
             "offenses": [
               "burglary",
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 234888,
-            "resident_denominator_total": 336317352.0
+            "published_rows": 234882,
+            "resident_denominator_total": 336309157.0
           },
           "index_total_part1_resident": {
-            "expected_count_total": 7092101.844878599,
-            "national_rate_per_100k": 2108.7528795952812,
+            "expected_count_total": 7095729.319315221,
+            "national_rate_per_100k": 2110.040225964912,
             "offenses": [
               "murder",
               "rape",
@@ -560,8 +604,8 @@
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 234888,
-            "resident_denominator_total": 336317352.0
+            "published_rows": 234866,
+            "resident_denominator_total": 336284078.0
           }
         }
       },
@@ -582,10 +626,10 @@
         "primary_event_weighted": {
           "field": "index_total_primary_event_weighted",
           "offense_weights": {
-            "aggravated_assault": 0.12086020670206647,
+            "aggravated_assault": 0.12086020670206649,
             "burglary": 0.10826762166338684,
             "larceny": 0.600301686727195,
-            "motor_vehicle_theft": 0.12200249803762536,
+            "motor_vehicle_theft": 0.12200249803762535,
             "murder": 0.0023554083660093103,
             "rape": 0.017610173419577702,
             "robbery": 0.028602405084139387
@@ -608,31 +652,31 @@
         },
         "resident_part1": {
           "index_personal_part1_resident": {
-            "expected_count_total": 1200589.4142624994,
-            "national_rate_per_100k": 356.7251916344416,
+            "expected_count_total": 1198154.1441194126,
+            "national_rate_per_100k": 356.0281416576186,
             "offenses": [
               "murder",
               "rape",
               "robbery",
               "aggravated_assault"
             ],
-            "published_rows": 235160,
-            "resident_denominator_total": 336558629.0
+            "published_rows": 235144,
+            "resident_denominator_total": 336533550.0
           },
           "index_property_part1_resident": {
-            "expected_count_total": 5884913.744839173,
-            "national_rate_per_100k": 1749.8097287704538,
+            "expected_count_total": 5881004.742632125,
+            "national_rate_per_100k": 1748.6900431415027,
             "offenses": [
               "burglary",
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 234888,
-            "resident_denominator_total": 336317352.0
+            "published_rows": 234882,
+            "resident_denominator_total": 336309157.0
           },
           "index_total_part1_resident": {
-            "expected_count_total": 7083146.113687679,
-            "national_rate_per_100k": 2106.0899984987036,
+            "expected_count_total": 7076178.193352584,
+            "national_rate_per_100k": 2104.226353931804,
             "offenses": [
               "murder",
               "rape",
@@ -642,8 +686,8 @@
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 234888,
-            "resident_denominator_total": 336317352.0
+            "published_rows": 234866,
+            "resident_denominator_total": 336284078.0
           }
         }
       },
@@ -664,13 +708,13 @@
         "primary_event_weighted": {
           "field": "index_total_primary_event_weighted",
           "offense_weights": {
-            "aggravated_assault": 0.12233410764731162,
-            "burglary": 0.10951186003978718,
-            "larceny": 0.5966876731285395,
-            "motor_vehicle_theft": 0.12203478985257722,
-            "murder": 0.0024150454138417436,
-            "rape": 0.018275558879567978,
-            "robbery": 0.028740965038374696
+            "aggravated_assault": 0.12133976385905124,
+            "burglary": 0.10915928007063534,
+            "larceny": 0.5988818810492902,
+            "motor_vehicle_theft": 0.12160521705696323,
+            "murder": 0.002378537862132716,
+            "rape": 0.01805069627205484,
+            "robbery": 0.028584623829872424
           },
           "weight_source": "national expected_count offense shares in this surface"
         },
@@ -690,31 +734,31 @@
         },
         "resident_part1": {
           "index_personal_part1_resident": {
-            "expected_count_total": 1224486.6169640697,
-            "national_rate_per_100k": 363.2814081479068,
+            "expected_count_total": 1215352.5648148954,
+            "national_rate_per_100k": 360.58265394120855,
             "offenses": [
               "murder",
               "rape",
               "robbery",
               "aggravated_assault"
             ],
-            "published_rows": 82558,
-            "resident_denominator_total": 337062836.0
+            "published_rows": 82555,
+            "resident_denominator_total": 337052421.0
           },
           "index_property_part1_resident": {
-            "expected_count_total": 5905625.954203749,
-            "national_rate_per_100k": 1752.1024140313702,
+            "expected_count_total": 5922249.014442239,
+            "national_rate_per_100k": 1757.039510194011,
             "offenses": [
               "burglary",
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 82554,
-            "resident_denominator_total": 337059404.0
+            "published_rows": 82553,
+            "resident_denominator_total": 337058386.0
           },
           "index_total_part1_resident": {
-            "expected_count_total": 7130055.950962591,
-            "national_rate_per_100k": 2115.370722889723,
+            "expected_count_total": 7137266.251762908,
+            "national_rate_per_100k": 2117.5817289708316,
             "offenses": [
               "murder",
               "rape",
@@ -724,8 +768,8 @@
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 82554,
-            "resident_denominator_total": 337059404.0
+            "published_rows": 82550,
+            "resident_denominator_total": 337047971.0
           }
         }
       },
@@ -749,7 +793,7 @@
             "aggravated_assault": 0.12086020670206647,
             "burglary": 0.10826762166338684,
             "larceny": 0.600301686727195,
-            "motor_vehicle_theft": 0.12200249803762536,
+            "motor_vehicle_theft": 0.12200249803762535,
             "murder": 0.0023554083660093103,
             "rape": 0.017610173419577702,
             "robbery": 0.028602405084139387
@@ -772,31 +816,31 @@
         },
         "resident_part1": {
           "index_personal_part1_resident": {
-            "expected_count_total": 1206225.1613331058,
-            "national_rate_per_100k": 357.86358877402483,
+            "expected_count_total": 1205353.4542950504,
+            "national_rate_per_100k": 357.6160202970476,
             "offenses": [
               "murder",
               "rape",
               "robbery",
               "aggravated_assault"
             ],
-            "published_rows": 82558,
-            "resident_denominator_total": 337062836.0
+            "published_rows": 82555,
+            "resident_denominator_total": 337052421.0
           },
           "index_property_part1_resident": {
-            "expected_count_total": 5914362.891555244,
-            "national_rate_per_100k": 1754.6945201253736,
+            "expected_count_total": 5911825.531006587,
+            "national_rate_per_100k": 1753.9470241831002,
             "offenses": [
               "burglary",
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 82554,
-            "resident_denominator_total": 337059404.0
+            "published_rows": 82553,
+            "resident_denominator_total": 337058386.0
           },
           "index_total_part1_resident": {
-            "expected_count_total": 7120531.713040313,
-            "national_rate_per_100k": 2112.545037622007,
+            "expected_count_total": 7116848.366390651,
+            "national_rate_per_100k": 2111.5238715947203,
             "offenses": [
               "murder",
               "rape",
@@ -806,19 +850,19 @@
               "larceny",
               "motor_vehicle_theft"
             ],
-            "published_rows": 82554,
-            "resident_denominator_total": 337059404.0
+            "published_rows": 82550,
+            "resident_denominator_total": 337047971.0
           }
         }
       }
     },
-    "allocation_component_denominator_audit_path": "./state/candidates/houston-batch-c-v15/allocation_component_denominator_audit_2024.parquet",
-    "allocation_component_denominator_audit_rows": 4711964,
-    "bg_prior_path": "./state/candidates/houston-batch-c-v15/bg_prior_long_2024_houston_batch_c_v15.parquet",
+    "allocation_component_denominator_audit_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/allocation_component_denominator_audit_2024.parquet",
+    "allocation_component_denominator_audit_rows": 4739220,
+    "bg_prior_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/bg_prior_long_2024_arm_b.parquet",
     "block_groups": 238193,
     "burglary_commercial_calibration": {
       "beats_single_term_nnls_residual": true,
-      "calibration_admission_path": "./configs/gate17_city_offense_admissions.csv",
+      "calibration_admission_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/configs/gate17_city_offense_admissions.csv",
       "calibration_appended_city_count": 0,
       "calibration_appended_city_names": [],
       "calibration_appended_paths": [],
@@ -860,9 +904,9 @@
         "Tucson",
         "Washington"
       ],
-      "calibration_path": "./state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
+      "calibration_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
       "calibration_paths": [
-        "./state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet"
+        "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet"
       ],
       "calibration_rows": 76631,
       "calibration_source": "covered_city_direct_burglary_incident_nnls",
@@ -2015,56 +2059,56 @@
     "burglary_commercial_gradient": {
       "block_group_ags_core": {
         "after_denominator": "primary_denominator_burglary",
-        "after_q5_q1_mean": 1.3131661152557077,
-        "after_q5_q1_mean_direct": 1.18632120412341,
-        "after_q5_q1_mean_modeled": 1.3215892461792178,
+        "after_q5_q1_mean": 1.3236390058253804,
+        "after_q5_q1_mean_direct": 1.19059444639153,
+        "after_q5_q1_mean_modeled": 1.332682640836363,
         "before_denominator": "households_total + commercial_premises_total",
-        "before_q5_q1_mean": 3.1607448295279,
+        "before_q5_q1_mean": 3.167123791080683,
         "ok": true,
         "quintile_basis": "commercial_premises_total / (households_total + commercial_premises_total) over published burglary rows",
         "quintiles": [
           {
-            "after_index_mean": 89.5358731444025,
-            "after_index_median": 61.207311059201785,
-            "before_index_mean": 65.26521910950702,
-            "before_index_median": 44.48842072974877,
+            "after_index_mean": 88.39168524092217,
+            "after_index_median": 60.71327050420607,
+            "before_index_mean": 64.3622541917218,
+            "before_index_median": 44.072066154240744,
             "commercial_share_mean": 0.0,
             "quintile": 1,
             "rows": 47052
           },
           {
-            "after_index_mean": 88.47573722744741,
-            "after_index_median": 60.338511129030934,
-            "before_index_mean": 68.35206609646951,
-            "before_index_median": 46.241032989080374,
-            "commercial_share_mean": 0.0024616807077770145,
+            "after_index_mean": 87.89860116501274,
+            "after_index_median": 60.447166046391864,
+            "before_index_mean": 67.84395534149434,
+            "before_index_median": 46.50085751637307,
+            "commercial_share_mean": 0.0024616293514174744,
             "quintile": 2,
-            "rows": 47052
-          },
-          {
-            "after_index_mean": 104.40547688450606,
-            "after_index_median": 70.96666599306788,
-            "before_index_mean": 90.73278378186998,
-            "before_index_median": 61.38756817676589,
-            "commercial_share_mean": 0.00819358691255501,
-            "quintile": 3,
             "rows": 47051
           },
           {
-            "after_index_mean": 109.75617180777745,
-            "after_index_median": 75.7622894018921,
-            "before_index_mean": 114.31793230545088,
-            "before_index_median": 78.30006662369323,
-            "commercial_share_mean": 0.018254790003234184,
-            "quintile": 4,
+            "after_index_mean": 104.39300190645652,
+            "after_index_median": 71.13868227620972,
+            "before_index_mean": 90.60388783440845,
+            "before_index_median": 61.645774713838264,
+            "commercial_share_mean": 0.00819351644715222,
+            "quintile": 3,
             "rows": 47052
           },
           {
-            "after_index_mean": 117.57547471306287,
-            "after_index_median": 81.64831178683873,
-            "before_index_mean": 206.28670384837977,
-            "before_index_median": 129.40205970498974,
-            "commercial_share_mean": 0.05693526390334243,
+            "after_index_mean": 110.29608585072394,
+            "after_index_median": 75.91464440571669,
+            "before_index_mean": 114.68283342282668,
+            "before_index_median": 78.47610899688355,
+            "commercial_share_mean": 0.018254619727862628,
+            "quintile": 4,
+            "rows": 47051
+          },
+          {
+            "after_index_mean": 116.99868237552417,
+            "after_index_median": 80.97922577735966,
+            "before_index_mean": 203.84322649818452,
+            "before_index_median": 129.31655452909501,
+            "commercial_share_mean": 0.05693471582083774,
             "quintile": 5,
             "rows": 47052
           }
@@ -2073,133 +2117,133 @@
         "regime_quintiles": {
           "direct_city_incident": [
             {
-              "after_index_mean": 116.91604867087227,
-              "after_index_median": 72.8620509179515,
+              "after_index_mean": 116.7834499324448,
+              "after_index_median": 72.98594112129072,
               "commercial_share_mean": 0.0,
               "quintile": 1,
-              "rows": 2473
+              "rows": 2482
             },
             {
-              "after_index_mean": 135.984325225861,
-              "after_index_median": 90.63855349950481,
-              "commercial_share_mean": 0.0025991050287423813,
+              "after_index_mean": 136.129453577022,
+              "after_index_median": 90.66870768112642,
+              "commercial_share_mean": 0.0026001555519893057,
               "quintile": 2,
-              "rows": 2516
+              "rows": 2517
             },
             {
-              "after_index_mean": 139.61554135113732,
-              "after_index_median": 92.12831931001023,
-              "commercial_share_mean": 0.008205397837060686,
+              "after_index_mean": 139.86233528022933,
+              "after_index_median": 92.29190597413967,
+              "commercial_share_mean": 0.008201335969024484,
               "quintile": 3,
-              "rows": 2915
+              "rows": 2916
             },
             {
-              "after_index_mean": 136.6452551870999,
-              "after_index_median": 91.20582872781549,
-              "commercial_share_mean": 0.018215213088978895,
+              "after_index_mean": 137.00690434160015,
+              "after_index_median": 91.37950744324121,
+              "commercial_share_mean": 0.018223234156072972,
               "quintile": 4,
-              "rows": 2998
+              "rows": 3000
             },
             {
-              "after_index_mean": 138.6999876405804,
-              "after_index_median": 91.021713520785,
-              "commercial_share_mean": 0.058084023031389105,
+              "after_index_mean": 139.04172692001205,
+              "after_index_median": 90.66818480814332,
+              "commercial_share_mean": 0.05813025709875589,
               "quintile": 5,
               "rows": 2635
             }
           ],
           "modeled_transfer": [
             {
-              "after_index_mean": 88.01697020631596,
-              "after_index_median": 60.73846222415743,
+              "after_index_mean": 86.81061366891501,
+              "after_index_median": 60.13642481863734,
               "commercial_share_mean": 0.0,
               "quintile": 1,
-              "rows": 44579
+              "rows": 44570
             },
             {
-              "after_index_mean": 85.79180496132544,
-              "after_index_median": 58.91830125188764,
-              "commercial_share_mean": 0.0024539171099786294,
+              "after_index_mean": 85.1726601868606,
+              "after_index_median": 58.92757753988058,
+              "commercial_share_mean": 0.002453800042421218,
               "quintile": 2,
-              "rows": 44536
+              "rows": 44534
             },
             {
-              "after_index_mean": 102.07999795754779,
-              "after_index_median": 69.4689363667515,
-              "commercial_share_mean": 0.008192806849909232,
+              "after_index_mean": 102.04959570476355,
+              "after_index_median": 69.9119957931815,
+              "commercial_share_mean": 0.008192999822950218,
               "quintile": 3,
               "rows": 44136
             },
             {
-              "after_index_mean": 107.92629320489897,
-              "after_index_median": 74.53781660624834,
-              "commercial_share_mean": 0.018257483324815364,
+              "after_index_mean": 108.47700216425534,
+              "after_index_median": 74.64234340842333,
+              "commercial_share_mean": 0.018256757175715548,
               "quintile": 4,
-              "rows": 44054
+              "rows": 44051
             },
             {
-              "after_index_mean": 116.32228130594379,
-              "after_index_median": 80.96459104919298,
-              "commercial_share_mean": 0.05686711476444509,
+              "after_index_mean": 115.69099787691493,
+              "after_index_median": 80.16902527123963,
+              "commercial_share_mean": 0.05686379137147569,
               "quintile": 5,
               "rows": 44417
             }
           ]
         },
-        "rows": 235259
+        "rows": 235258
       },
       "block_group_fbi_calibrated": {
         "after_denominator": "primary_denominator_burglary",
-        "after_q5_q1_mean": 1.311752078994133,
-        "after_q5_q1_mean_direct": 1.19065787552957,
-        "after_q5_q1_mean_modeled": 1.3196905018304415,
+        "after_q5_q1_mean": 1.324195025762985,
+        "after_q5_q1_mean_direct": 1.199947321622581,
+        "after_q5_q1_mean_modeled": 1.3324483691532971,
         "before_denominator": "households_total + commercial_premises_total",
-        "before_q5_q1_mean": 3.1578568335467327,
+        "before_q5_q1_mean": 3.1690407150915414,
         "ok": true,
         "quintile_basis": "commercial_premises_total / (households_total + commercial_premises_total) over published burglary rows",
         "quintiles": [
           {
-            "after_index_mean": 89.76072392114872,
-            "after_index_median": 61.19474297643124,
-            "before_index_mean": 65.42860388671552,
-            "before_index_median": 44.484650067101825,
+            "after_index_mean": 88.37958847314331,
+            "after_index_median": 60.71029956407292,
+            "before_index_mean": 64.35221531347018,
+            "before_index_median": 44.16477627208593,
             "commercial_share_mean": 0.0,
             "quintile": 1,
             "rows": 47052
           },
           {
-            "after_index_mean": 88.32579332312626,
-            "after_index_median": 59.984932646445344,
-            "before_index_mean": 68.23964531585972,
-            "before_index_median": 46.02195321872291,
-            "commercial_share_mean": 0.0024616807077770145,
+            "after_index_mean": 87.80036629989411,
+            "after_index_median": 60.30561382636018,
+            "before_index_mean": 67.7691071633718,
+            "before_index_median": 46.34672018372438,
+            "commercial_share_mean": 0.0024616293514174744,
             "quintile": 2,
-            "rows": 47052
-          },
-          {
-            "after_index_mean": 104.41233284694111,
-            "after_index_median": 70.51315402652997,
-            "before_index_mean": 90.73916491653256,
-            "before_index_median": 61.092368721084775,
-            "commercial_share_mean": 0.00819358691255501,
-            "quintile": 3,
             "rows": 47051
           },
           {
-            "after_index_mean": 109.75673051419076,
-            "after_index_median": 75.43468889764807,
-            "before_index_mean": 114.31874948899853,
-            "before_index_median": 78.04007240945184,
-            "commercial_share_mean": 0.018254790003234184,
-            "quintile": 4,
+            "after_index_mean": 104.23760833293576,
+            "after_index_median": 70.96960280603457,
+            "before_index_mean": 90.46971660522793,
+            "before_index_median": 61.41566002019312,
+            "commercial_share_mean": 0.00819351644715222,
+            "quintile": 3,
             "rows": 47052
           },
           {
-            "after_index_mean": 117.74381621558524,
-            "after_index_median": 81.2641415941095,
-            "before_index_mean": 206.61416389308692,
-            "before_index_median": 128.891507876574,
-            "commercial_share_mean": 0.05693526390334243,
+            "after_index_mean": 110.13924924434828,
+            "after_index_median": 75.68799707455459,
+            "before_index_mean": 114.5209787421188,
+            "before_index_median": 78.22395173095244,
+            "commercial_share_mean": 0.018254619727862628,
+            "quintile": 4,
+            "rows": 47051
+          },
+          {
+            "after_index_mean": 117.03181143511604,
+            "after_index_median": 80.83427845346819,
+            "before_index_mean": 203.9347904347244,
+            "before_index_median": 128.83131030934055,
+            "commercial_share_mean": 0.05693471582083774,
             "quintile": 5,
             "rows": 47052
           }
@@ -2208,133 +2252,133 @@
         "regime_quintiles": {
           "direct_city_incident": [
             {
-              "after_index_mean": 116.07066012332429,
-              "after_index_median": 72.06220791181461,
+              "after_index_mean": 114.24619308441166,
+              "after_index_median": 69.38136572568479,
               "commercial_share_mean": 0.0,
               "quintile": 1,
-              "rows": 2473
+              "rows": 2482
             },
             {
-              "after_index_mean": 135.56826119078625,
-              "after_index_median": 90.34203881445369,
-              "commercial_share_mean": 0.0025991050287423813,
+              "after_index_mean": 134.87442598587313,
+              "after_index_median": 88.22294678538593,
+              "commercial_share_mean": 0.0026001555519893057,
               "quintile": 2,
-              "rows": 2516
+              "rows": 2517
             },
             {
-              "after_index_mean": 139.01958850526094,
-              "after_index_median": 91.60723021601751,
-              "commercial_share_mean": 0.008205397837060686,
+              "after_index_mean": 138.34371780567236,
+              "after_index_median": 89.9146045236634,
+              "commercial_share_mean": 0.008201335969024484,
               "quintile": 3,
-              "rows": 2915
+              "rows": 2916
             },
             {
-              "after_index_mean": 136.08605957216136,
-              "after_index_median": 90.68248045006928,
-              "commercial_share_mean": 0.018215213088978895,
+              "after_index_mean": 135.32646743929521,
+              "after_index_median": 88.93477701689058,
+              "commercial_share_mean": 0.018223234156072972,
               "quintile": 4,
-              "rows": 2998
+              "rows": 3000
             },
             {
-              "after_index_mean": 138.20044559375208,
-              "after_index_median": 89.72092174005442,
-              "commercial_share_mean": 0.058084023031389105,
+              "after_index_mean": 137.08941339721602,
+              "after_index_median": 87.4640111828246,
+              "commercial_share_mean": 0.05813025709875589,
               "quintile": 5,
               "rows": 2635
             }
           ],
           "modeled_transfer": [
             {
-              "after_index_mean": 88.3011920288232,
-              "after_index_median": 60.679846576075136,
+              "after_index_mean": 86.93913721343571,
+              "after_index_median": 60.29658714726487,
               "commercial_share_mean": 0.0,
               "quintile": 1,
-              "rows": 44579
+              "rows": 44570
             },
             {
-              "after_index_mean": 85.65689514738007,
-              "after_index_median": 58.5482358983665,
-              "commercial_share_mean": 0.0024539171099786294,
+              "after_index_mean": 85.1398056444486,
+              "after_index_median": 58.93343108010383,
+              "commercial_share_mean": 0.002453800042421218,
               "quintile": 2,
-              "rows": 44536
+              "rows": 44534
             },
             {
-              "after_index_mean": 102.12666694509225,
-              "after_index_median": 69.13849810877761,
-              "commercial_share_mean": 0.008192806849909232,
+              "after_index_mean": 101.98426831067505,
+              "after_index_median": 69.8886259772506,
+              "commercial_share_mean": 0.008192999822950218,
               "quintile": 3,
               "rows": 44136
             },
             {
-              "after_index_mean": 107.96494478495406,
-              "after_index_median": 74.25667574749252,
-              "commercial_share_mean": 0.018257483324815364,
+              "after_index_mean": 108.42392712714684,
+              "after_index_median": 74.68582988454169,
+              "commercial_share_mean": 0.018256757175715548,
               "quintile": 4,
-              "rows": 44054
+              "rows": 44051
             },
             {
-              "after_index_mean": 116.53024442074386,
-              "after_index_median": 80.60640193557668,
-              "commercial_share_mean": 0.05686711476444509,
+              "after_index_mean": 115.84191159563714,
+              "after_index_median": 80.30678202472191,
+              "commercial_share_mean": 0.05686379137147569,
               "quintile": 5,
               "rows": 44417
             }
           ]
         },
-        "rows": 235259
+        "rows": 235258
       },
       "tract_ags_core": {
         "after_denominator": "primary_denominator_burglary",
-        "after_q5_q1_mean": 1.4049900942120386,
-        "after_q5_q1_mean_direct": 1.196656831661205,
-        "after_q5_q1_mean_modeled": 1.4225751194718597,
+        "after_q5_q1_mean": 1.4051041670673101,
+        "after_q5_q1_mean_direct": 1.1951937752921458,
+        "after_q5_q1_mean_modeled": 1.4231241425967218,
         "before_denominator": "households_total + commercial_premises_total",
-        "before_q5_q1_mean": 2.8292762716740625,
+        "before_q5_q1_mean": 2.830642590521011,
         "ok": true,
         "quintile_basis": "commercial_premises_total / (households_total + commercial_premises_total) over published burglary rows",
         "quintiles": [
           {
-            "after_index_mean": 84.96923614215302,
-            "after_index_median": 60.35527469468312,
-            "before_index_mean": 64.50246721746699,
-            "before_index_median": 45.651208213287596,
+            "after_index_mean": 84.1736504633403,
+            "after_index_median": 60.62805748515548,
+            "before_index_mean": 63.887487704603096,
+            "before_index_median": 45.82136243389533,
             "commercial_share_mean": 0.0018805227690137062,
             "quintile": 1,
             "rows": 16514
           },
           {
-            "after_index_mean": 98.78053747495616,
-            "after_index_median": 70.75534625657403,
-            "before_index_mean": 82.78651437964844,
-            "before_index_median": 59.09954612674004,
+            "after_index_mean": 99.05057783326413,
+            "after_index_median": 71.06832276603703,
+            "before_index_mean": 82.96872138143186,
+            "before_index_median": 59.42359855601027,
             "commercial_share_mean": 0.006543872572907155,
             "quintile": 2,
             "rows": 16514
           },
           {
-            "after_index_mean": 105.52805645703734,
-            "after_index_median": 75.16051443167608,
-            "before_index_mean": 97.65026964056459,
-            "before_index_median": 69.3121570205178,
-            "commercial_share_mean": 0.01160925590657076,
+            "after_index_mean": 106.11991474838707,
+            "after_index_median": 74.97090704195195,
+            "before_index_mean": 98.13826433772685,
+            "before_index_median": 69.65595435700052,
+            "commercial_share_mean": 0.011609071813157516,
             "quintile": 3,
-            "rows": 16514
+            "rows": 16513
           },
           {
-            "after_index_mean": 108.33975163993996,
-            "after_index_median": 78.77146173901436,
-            "before_index_mean": 113.93414156447693,
-            "before_index_median": 82.33264258376487,
-            "commercial_share_mean": 0.01884758785725048,
+            "after_index_mean": 108.14666540725409,
+            "after_index_median": 77.95775034849851,
+            "before_index_mean": 113.6454257842291,
+            "before_index_median": 82.08458527768533,
+            "commercial_share_mean": 0.018847012676383747,
             "quintile": 4,
             "rows": 16514
           },
           {
-            "after_index_mean": 119.38093509248853,
-            "after_index_median": 86.07995449835663,
-            "before_index_mean": 182.49529996281342,
-            "before_index_median": 124.22398649488836,
-            "commercial_share_mean": 0.04430409418023333,
+            "after_index_mean": 118.27274702330666,
+            "after_index_median": 85.14198672956763,
+            "before_index_mean": 180.84264369803694,
+            "before_index_median": 121.33069154230382,
+            "commercial_share_mean": 0.044302404276681924,
             "quintile": 5,
             "rows": 16514
           }
@@ -2343,36 +2387,36 @@
         "regime_quintiles": {
           "direct_city_incident": [
             {
-              "after_index_mean": 112.95580069667965,
-              "after_index_median": 72.24868487606945,
-              "commercial_share_mean": 0.001885542856751575,
+              "after_index_mean": 113.49346680211698,
+              "after_index_median": 73.09742694608696,
+              "commercial_share_mean": 0.0018898621290348735,
               "quintile": 1,
-              "rows": 931
+              "rows": 930
             },
             {
-              "after_index_mean": 127.90994485435662,
-              "after_index_median": 90.99720973358198,
-              "commercial_share_mean": 0.006566626793209637,
+              "after_index_mean": 128.152522685971,
+              "after_index_median": 90.84848225772316,
+              "commercial_share_mean": 0.006567240122942973,
               "quintile": 2,
               "rows": 999
             },
             {
-              "after_index_mean": 130.6692849020119,
-              "after_index_median": 90.44549685311982,
-              "commercial_share_mean": 0.011591633887142913,
+              "after_index_mean": 131.0689096311298,
+              "after_index_median": 90.76208868714221,
+              "commercial_share_mean": 0.011592805292612541,
               "quintile": 3,
-              "rows": 1037
+              "rows": 1036
             },
             {
-              "after_index_mean": 125.66877364451113,
-              "after_index_median": 89.8167132876177,
+              "after_index_mean": 125.97058212763112,
+              "after_index_median": 89.74731238391362,
               "commercial_share_mean": 0.018735450496163385,
               "quintile": 4,
               "rows": 889
             },
             {
-              "after_index_mean": 135.1693305794432,
-              "after_index_median": 90.88945299367842,
+              "after_index_mean": 135.646685058216,
+              "after_index_median": 91.94064650976516,
               "commercial_share_mean": 0.05412347538154405,
               "quintile": 5,
               "rows": 876
@@ -2380,96 +2424,96 @@
           ],
           "modeled_transfer": [
             {
-              "after_index_mean": 83.29719022029815,
-              "after_index_median": 59.51179458511876,
-              "commercial_share_mean": 0.001880222845912637,
+              "after_index_mean": 82.42394376447851,
+              "after_index_median": 59.86784293897041,
+              "commercial_share_mean": 0.0018799654278420115,
               "quintile": 1,
-              "rows": 15583
+              "rows": 15584
             },
             {
-              "after_index_mean": 96.904915304668,
-              "after_index_median": 69.50594028616672,
-              "commercial_share_mean": 0.006542407444574434,
+              "after_index_mean": 97.17672395586457,
+              "after_index_median": 69.68095987891952,
+              "commercial_share_mean": 0.0065423679527018205,
               "quintile": 2,
               "rows": 15515
             },
             {
-              "after_index_mean": 103.84352754979184,
-              "after_index_median": 74.1542579416854,
-              "commercial_share_mean": 0.01161043662855478,
+              "after_index_mean": 104.44987800363542,
+              "after_index_median": 73.89460573376837,
+              "commercial_share_mean": 0.011610160662113038,
               "quintile": 3,
               "rows": 15477
             },
             {
-              "after_index_mean": 107.35379960396789,
-              "after_index_median": 77.88153604610613,
-              "commercial_share_mean": 0.01885396802454689,
+              "after_index_mean": 107.13255584153151,
+              "after_index_median": 77.24052327167257,
+              "commercial_share_mean": 0.018853360118189565,
               "quintile": 4,
               "rows": 15625
             },
             {
-              "after_index_mean": 118.49651032931087,
-              "after_index_median": 85.75464527194212,
-              "commercial_share_mean": 0.043754038039272324,
+              "after_index_mean": 117.2995042992639,
+              "after_index_median": 84.69142123368597,
+              "commercial_share_mean": 0.043752253471728654,
               "quintile": 5,
               "rows": 15638
             }
           ]
         },
-        "rows": 82570
+        "rows": 82569
       },
       "tract_fbi_calibrated": {
         "after_denominator": "primary_denominator_burglary",
-        "after_q5_q1_mean": 1.4066510457277008,
-        "after_q5_q1_mean_direct": 1.202799006889684,
-        "after_q5_q1_mean_modeled": 1.4237183017107633,
+        "after_q5_q1_mean": 1.405868772474627,
+        "after_q5_q1_mean_direct": 1.204798633721796,
+        "after_q5_q1_mean_modeled": 1.4226916336277824,
         "before_denominator": "households_total + commercial_premises_total",
-        "before_q5_q1_mean": 2.833330683207647,
+        "before_q5_q1_mean": 2.8321856667541403,
         "ok": true,
         "quintile_basis": "commercial_premises_total / (households_total + commercial_premises_total) over published burglary rows",
         "quintiles": [
           {
-            "after_index_mean": 84.94664598871469,
-            "after_index_median": 60.13676816892777,
-            "before_index_mean": 64.48206844142682,
-            "before_index_median": 45.485766915357374,
+            "after_index_mean": 84.23486247337543,
+            "after_index_median": 60.619155660025925,
+            "before_index_mean": 63.93181293223323,
+            "before_index_median": 45.79107456892406,
             "commercial_share_mean": 0.0018805227690137062,
             "quintile": 1,
             "rows": 16514
           },
           {
-            "after_index_mean": 98.74872934674983,
-            "after_index_median": 70.60536831595795,
-            "before_index_mean": 82.75884006402211,
-            "before_index_median": 59.00018386115106,
+            "after_index_mean": 98.96103531474391,
+            "after_index_median": 70.7506000956864,
+            "before_index_mean": 82.89424207735176,
+            "before_index_median": 59.174069131280675,
             "commercial_share_mean": 0.006543872572907155,
             "quintile": 2,
             "rows": 16514
           },
           {
-            "after_index_mean": 105.47472717035447,
-            "after_index_median": 74.85602900799347,
-            "before_index_mean": 97.60261597692133,
-            "before_index_median": 68.90108727529807,
-            "commercial_share_mean": 0.01160925590657076,
+            "after_index_mean": 105.90976087958892,
+            "after_index_median": 74.82294099650467,
+            "before_index_mean": 97.94593468436278,
+            "before_index_median": 69.35062129522491,
+            "commercial_share_mean": 0.011609071813157516,
             "quintile": 3,
-            "rows": 16514
+            "rows": 16513
           },
           {
-            "after_index_mean": 108.3632802400647,
-            "after_index_median": 78.3462120643843,
-            "before_index_mean": 113.95910150977333,
-            "before_index_median": 81.95158529842712,
-            "commercial_share_mean": 0.01884758785725048,
+            "after_index_mean": 108.10321857019885,
+            "after_index_median": 78.12818389970349,
+            "before_index_mean": 113.59561628395882,
+            "before_index_median": 81.92744599895539,
+            "commercial_share_mean": 0.018847012676383747,
             "quintile": 4,
             "rows": 16514
           },
           {
-            "after_index_mean": 119.49028841108633,
-            "after_index_median": 85.9100878034488,
-            "before_index_mean": 182.6990230317901,
-            "before_index_median": 123.38901642426953,
-            "commercial_share_mean": 0.04430409418023333,
+            "after_index_mean": 118.42316270501334,
+            "after_index_median": 85.11569776801724,
+            "before_index_mean": 181.06676423627795,
+            "before_index_median": 120.95586521605455,
+            "commercial_share_mean": 0.044302404276681924,
             "quintile": 5,
             "rows": 16514
           }
@@ -2478,36 +2522,36 @@
         "regime_quintiles": {
           "direct_city_incident": [
             {
-              "after_index_mean": 112.0806576205147,
-              "after_index_median": 70.99186677597187,
-              "commercial_share_mean": 0.001885542856751575,
+              "after_index_mean": 111.13046225912335,
+              "after_index_median": 69.63758882903943,
+              "commercial_share_mean": 0.0018898621290348735,
               "quintile": 1,
-              "rows": 931
+              "rows": 930
             },
             {
-              "after_index_mean": 127.28854987797716,
-              "after_index_median": 90.26591906856754,
-              "commercial_share_mean": 0.006566626793209637,
+              "after_index_mean": 126.41316678287362,
+              "after_index_median": 87.50800499778941,
+              "commercial_share_mean": 0.006567240122942973,
               "quintile": 2,
               "rows": 999
             },
             {
-              "after_index_mean": 130.20500001406344,
-              "after_index_median": 89.90495643158108,
-              "commercial_share_mean": 0.011591633887142913,
+              "after_index_mean": 129.5896030793847,
+              "after_index_median": 87.75545673439831,
+              "commercial_share_mean": 0.011592805292612541,
               "quintile": 3,
-              "rows": 1037
+              "rows": 1036
             },
             {
-              "after_index_mean": 125.06626102954377,
-              "after_index_median": 88.21493254887564,
+              "after_index_mean": 124.37859239770195,
+              "after_index_median": 87.97027167606616,
               "commercial_share_mean": 0.018735450496163385,
               "quintile": 4,
               "rows": 889
             },
             {
-              "after_index_mean": 134.8105036774978,
-              "after_index_median": 90.82539308443046,
+              "after_index_mean": 133.8898290946634,
+              "after_index_median": 88.8701471836959,
               "commercial_share_mean": 0.05412347538154405,
               "quintile": 5,
               "rows": 876
@@ -2515,46 +2559,46 @@
           ],
           "modeled_transfer": [
             {
-              "after_index_mean": 83.32553549463744,
-              "after_index_median": 59.32101761467997,
-              "commercial_share_mean": 0.001880222845912637,
+              "after_index_mean": 82.6298247551551,
+              "after_index_median": 59.910572811479895,
+              "commercial_share_mean": 0.0018799654278420115,
               "quintile": 1,
-              "rows": 15583
+              "rows": 15584
             },
             {
-              "after_index_mean": 96.91107026130375,
-              "after_index_median": 69.14329620857718,
-              "commercial_share_mean": 0.006542407444574434,
+              "after_index_mean": 97.19341176742444,
+              "after_index_median": 69.68768021564564,
+              "commercial_share_mean": 0.0065423679527018205,
               "quintile": 2,
               "rows": 15515
             },
             {
-              "after_index_mean": 103.81773337705303,
-              "after_index_median": 73.79789121442641,
-              "commercial_share_mean": 0.01161043662855478,
+              "after_index_mean": 104.32467872419778,
+              "after_index_median": 73.95238780724286,
+              "commercial_share_mean": 0.011610160662113038,
               "quintile": 3,
               "rows": 15477
             },
             {
-              "after_index_mean": 107.41294744506651,
-              "after_index_median": 77.4068933660811,
-              "commercial_share_mean": 0.01885396802454689,
+              "after_index_mean": 107.17721490090922,
+              "after_index_median": 77.5338652506311,
+              "commercial_share_mean": 0.018853360118189565,
               "quintile": 4,
               "rows": 15625
             },
             {
-              "after_index_mean": 118.63208988356513,
-              "after_index_median": 85.54392538287215,
-              "commercial_share_mean": 0.043754038039272324,
+              "after_index_mean": 117.55676036728897,
+              "after_index_median": 84.83401999464688,
+              "commercial_share_mean": 0.043752253471728654,
               "quintile": 5,
               "rows": 15638
             }
           ]
         },
-        "rows": 82570
+        "rows": 82569
       }
     },
-    "city_posterior_diagnostics_path": "./state/candidates/houston-batch-c-v15/city_posterior_diagnostics_2024.parquet",
+    "city_posterior_diagnostics_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/city_posterior_diagnostics_2024.parquet",
     "city_posterior_diagnostics_rows": 62,
     "city_posterior_share": {
       "active_groups": 62,
@@ -2570,14 +2614,14 @@
       },
       "clean_dense_groups": 39,
       "clean_dense_tvd_distribution": {
-        "max": 0.035879583418503926,
-        "mean": 0.011331069578237324,
-        "median": 0.009529725281383818,
-        "min": 0.0012893626076248934,
-        "p05": 0.0020640785055765208,
-        "p25": 0.004880110655084838,
-        "p75": 0.016580569708945357,
-        "p95": 0.025222179491723135
+        "max": 0.03516201095923946,
+        "mean": 0.011538749327520696,
+        "median": 0.009969507402605701,
+        "min": 0.001291961230172391,
+        "p05": 0.002041044718619348,
+        "p25": 0.005354659592868298,
+        "p75": 0.017166133330969207,
+        "p95": 0.025843581052346805
       },
       "example_under_counting_group": {
         "alpha": 30623.728950240115,
@@ -2589,15 +2633,15 @@
         "match_rate": 0.2940185341196293,
         "missing_fraction": 0.6618217054263567,
         "offense": "motor_vehicle_theft",
-        "posterior_mass_in_zero_feed_bgs": 0.046885866848344004,
+        "posterior_mass_in_zero_feed_bgs": 0.045868190436700484,
         "posterior_prior_fraction": 0.9072157498178478,
         "state_fips": "25",
-        "tvd_posterior_vs_direct": 0.27545148895209515,
+        "tvd_posterior_vs_direct": 0.29580315344719565,
         "volume_prior_fraction": 0.06684491978609626,
-        "zero_feed_prior_positive_bg_count": 62.0
+        "zero_feed_prior_positive_bg_count": 53.0
       },
-      "groups_materially_changed_vs_direct": 41,
-      "groups_with_zero_feed_prior_mass": 55,
+      "groups_materially_changed_vs_direct": 42,
+      "groups_with_zero_feed_prior_mass": 54,
       "material_tvd_threshold": 0.01,
       "posterior_prior_fraction_distribution": {
         "max": 0.9072157498178478,
@@ -2930,7 +2974,10 @@
           "between_only",
           "excluded_protected"
         ],
-        "burglary": [],
+        "burglary": [
+          "between_only",
+          "excluded_protected"
+        ],
         "larceny": [
           "between_only",
           "excluded_protected"
@@ -3363,7 +3410,139 @@
             "final_class": "excluded_protected"
           }
         ],
-        "burglary": [],
+        "burglary": [
+          {
+            "feature_cols": [
+              "commute_45_59_share",
+              "commute_45plus_share",
+              "commute_60plus_share",
+              "commute_bicycle_share",
+              "commute_carpool_share",
+              "commute_drive_alone_share",
+              "commute_taxi_ridehail_share",
+              "commute_transit_share",
+              "commute_walk_share",
+              "commute_work_from_home_share",
+              "resident_same_bg_commute_share"
+            ],
+            "feature_count": 11,
+            "feature_group": "commute_transport_exposure",
+            "final_class": "between_only"
+          },
+          {
+            "feature_cols": [
+              "avg_household_size_owner",
+              "avg_household_size_renter",
+              "hh_access_without_subscription_share",
+              "hh_other_service_only_share"
+            ],
+            "feature_count": 4,
+            "feature_group": "household_composition_other",
+            "final_class": "between_only"
+          },
+          {
+            "feature_cols": [
+              "education_anchor_density_sqkm",
+              "nearest_acute_care_hospital_km",
+              "nearest_emergency_hospital_km",
+              "postsecondary_density_sqkm",
+              "public_school_density_sqkm"
+            ],
+            "feature_count": 5,
+            "feature_group": "institutional_anchors",
+            "final_class": "between_only"
+          },
+          {
+            "feature_cols": [
+              "lodes_ca01_share",
+              "lodes_ca02_share",
+              "lodes_ca03_share"
+            ],
+            "feature_count": 3,
+            "feature_group": "lodes_age",
+            "final_class": "between_only"
+          },
+          {
+            "feature_cols": [
+              "tract_mobility_diff_county_same_state_share",
+              "tract_mobility_diff_house_same_county_share",
+              "tract_mobility_diff_state_share",
+              "tract_mobility_same_house_share"
+            ],
+            "feature_count": 4,
+            "feature_group": "residential_mobility_domestic",
+            "final_class": "between_only"
+          },
+          {
+            "feature_cols": [
+              "avg_vehicles_owner",
+              "avg_vehicles_per_household",
+              "avg_vehicles_renter",
+              "hh_1_vehicle_share",
+              "hh_2_vehicle_share",
+              "hh_2plus_vehicle_share",
+              "hh_3_vehicle_share",
+              "hh_3plus_vehicle_share",
+              "hh_4plus_vehicle_share",
+              "hh_no_vehicle_share",
+              "owner_2plus_vehicle_share",
+              "owner_no_vehicle_share",
+              "renter_2plus_vehicle_share",
+              "renter_no_vehicle_share"
+            ],
+            "feature_count": 14,
+            "feature_group": "vehicle_availability",
+            "final_class": "between_only"
+          },
+          {
+            "feature_cols": [
+              "hh_family_female_no_spouse_children_share",
+              "hh_family_female_no_spouse_share",
+              "hh_family_male_no_spouse_children_share",
+              "hh_family_male_no_spouse_share",
+              "hh_family_married_children_share",
+              "hh_family_married_no_children_share",
+              "hh_family_married_share",
+              "hh_family_share",
+              "hh_family_single_parent_with_children_share",
+              "hh_family_with_children_share",
+              "hh_family_with_children_within_family_share",
+              "hh_under18_nonfamily_share",
+              "hh_under18_share"
+            ],
+            "feature_count": 13,
+            "feature_group": "familial_status_composition",
+            "final_class": "excluded_protected"
+          },
+          {
+            "feature_cols": [
+              "tract_mobility_abroad_share"
+            ],
+            "feature_count": 1,
+            "feature_group": "national_origin_proxy",
+            "final_class": "excluded_protected"
+          },
+          {
+            "feature_cols": [
+              "lodes_cs01_share",
+              "male_15_24_share",
+              "male_18_24_share",
+              "male_18_29_share",
+              "male_18_34_share",
+              "male_25_34_share",
+              "male_25_44_share",
+              "male_35_54_share",
+              "male_45_64_share",
+              "male_65plus_share",
+              "male_under18_share",
+              "median_age_female",
+              "median_age_male"
+            ],
+            "feature_count": 13,
+            "feature_group": "sex_composition",
+            "final_class": "excluded_protected"
+          }
+        ],
         "larceny": [
           {
             "feature_cols": [
@@ -4101,7 +4280,76 @@
           "tract_mobility_diff_state_share",
           "tract_mobility_same_house_share"
         ],
-        "burglary": [],
+        "burglary": [
+          "avg_household_size_owner",
+          "avg_household_size_renter",
+          "avg_vehicles_owner",
+          "avg_vehicles_per_household",
+          "avg_vehicles_renter",
+          "commute_45_59_share",
+          "commute_45plus_share",
+          "commute_60plus_share",
+          "commute_bicycle_share",
+          "commute_carpool_share",
+          "commute_drive_alone_share",
+          "commute_taxi_ridehail_share",
+          "commute_transit_share",
+          "commute_walk_share",
+          "commute_work_from_home_share",
+          "education_anchor_density_sqkm",
+          "hh_1_vehicle_share",
+          "hh_2_vehicle_share",
+          "hh_2plus_vehicle_share",
+          "hh_3_vehicle_share",
+          "hh_3plus_vehicle_share",
+          "hh_4plus_vehicle_share",
+          "hh_access_without_subscription_share",
+          "hh_family_female_no_spouse_children_share",
+          "hh_family_female_no_spouse_share",
+          "hh_family_male_no_spouse_children_share",
+          "hh_family_male_no_spouse_share",
+          "hh_family_married_children_share",
+          "hh_family_married_no_children_share",
+          "hh_family_married_share",
+          "hh_family_share",
+          "hh_family_single_parent_with_children_share",
+          "hh_family_with_children_share",
+          "hh_family_with_children_within_family_share",
+          "hh_no_vehicle_share",
+          "hh_other_service_only_share",
+          "hh_under18_nonfamily_share",
+          "hh_under18_share",
+          "lodes_ca01_share",
+          "lodes_ca02_share",
+          "lodes_ca03_share",
+          "lodes_cs01_share",
+          "male_15_24_share",
+          "male_18_24_share",
+          "male_18_29_share",
+          "male_18_34_share",
+          "male_25_34_share",
+          "male_25_44_share",
+          "male_35_54_share",
+          "male_45_64_share",
+          "male_65plus_share",
+          "male_under18_share",
+          "median_age_female",
+          "median_age_male",
+          "nearest_acute_care_hospital_km",
+          "nearest_emergency_hospital_km",
+          "owner_2plus_vehicle_share",
+          "owner_no_vehicle_share",
+          "postsecondary_density_sqkm",
+          "public_school_density_sqkm",
+          "renter_2plus_vehicle_share",
+          "renter_no_vehicle_share",
+          "resident_same_bg_commute_share",
+          "tract_mobility_abroad_share",
+          "tract_mobility_diff_county_same_state_share",
+          "tract_mobility_diff_house_same_county_share",
+          "tract_mobility_diff_state_share",
+          "tract_mobility_same_house_share"
+        ],
         "larceny": [
           "avg_household_size_owner",
           "avg_household_size_renter",
@@ -4454,12 +4702,11 @@
         ]
       },
       "excluded_feature_count": 68,
-      "path": "./state/modeling/feature_transfer_policy_2024.parquet",
-      "policy_carveout_offenses": [
-        "burglary"
-      ],
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
+      "policy_carveout_offenses": [],
       "policy_enforced_offenses": [
         "aggravated_assault",
+        "burglary",
         "larceny",
         "motor_vehicle_theft",
         "murder",
@@ -5039,8 +5286,6 @@
       "retained_proxy_review_feature_count": 69,
       "selected_feature_class_counts": {
         "between_and_within": 158,
-        "between_only": 41,
-        "excluded_protected": 27,
         "proxy_review": 69,
         "unstable_drop": 1
       },
@@ -5052,8 +5297,6 @@
         },
         "burglary": {
           "between_and_within": 158,
-          "between_only": 41,
-          "excluded_protected": 27,
           "proxy_review": 69,
           "unstable_drop": 1
         },
@@ -5085,22 +5328,7 @@
       },
       "selected_feature_cols": [
         "alley_length_km",
-        "avg_household_size_owner",
-        "avg_household_size_renter",
-        "avg_vehicles_owner",
-        "avg_vehicles_per_household",
-        "avg_vehicles_renter",
         "bike_path_length_km",
-        "commute_45_59_share",
-        "commute_45plus_share",
-        "commute_60plus_share",
-        "commute_bicycle_share",
-        "commute_carpool_share",
-        "commute_drive_alone_share",
-        "commute_taxi_ridehail_share",
-        "commute_transit_share",
-        "commute_walk_share",
-        "commute_work_from_home_share",
         "daytime_population_jobs_proxy_density_sqkm",
         "daytime_population_jobs_proxy_ratio",
         "edu_bachelors_share",
@@ -5108,17 +5336,9 @@
         "edu_hs_diploma_share",
         "edu_masters_share",
         "edu_professional_share",
-        "education_anchor_density_sqkm",
         "employed_per_capita",
         "fixed_guideway_stop_density_sqkm",
         "fixed_guideway_stop_present",
-        "hh_1_vehicle_share",
-        "hh_2_vehicle_share",
-        "hh_2plus_vehicle_share",
-        "hh_3_vehicle_share",
-        "hh_3plus_vehicle_share",
-        "hh_4plus_vehicle_share",
-        "hh_access_without_subscription_share",
         "hh_broadband_any_share",
         "hh_cellular_only_share",
         "hh_cellular_plan_share",
@@ -5126,29 +5346,14 @@
         "hh_computer_broadband_share",
         "hh_computer_no_internet_share",
         "hh_dialup_only_share",
-        "hh_family_female_no_spouse_children_share",
-        "hh_family_female_no_spouse_share",
-        "hh_family_male_no_spouse_children_share",
-        "hh_family_male_no_spouse_share",
-        "hh_family_married_children_share",
-        "hh_family_married_no_children_share",
-        "hh_family_married_share",
-        "hh_family_share",
-        "hh_family_single_parent_with_children_share",
-        "hh_family_with_children_share",
-        "hh_family_with_children_within_family_share",
         "hh_income_100_200k_share",
         "hh_income_200k_plus_share",
         "hh_income_25_50k_share",
         "hh_income_50_100k_share",
         "hh_income_lt25k_share",
         "hh_no_internet_share",
-        "hh_no_vehicle_share",
-        "hh_other_service_only_share",
         "hh_satellite_only_share",
         "hh_satellite_share",
-        "hh_under18_nonfamily_share",
-        "hh_under18_share",
         "hh_wired_broadband_only_share",
         "hh_wired_broadband_share",
         "housing_density_sqkm",
@@ -5171,9 +5376,6 @@
         "limited_access_road_length_km",
         "limited_access_road_share",
         "local_road_length_km",
-        "lodes_ca01_share",
-        "lodes_ca02_share",
-        "lodes_ca03_share",
         "lodes_cd01_share",
         "lodes_cd02_share",
         "lodes_cd03_share",
@@ -5201,7 +5403,6 @@
         "lodes_cns18_share",
         "lodes_cns19_share",
         "lodes_cns20_share",
-        "lodes_cs01_share",
         "log_aland20",
         "log_daytime_population_jobs_proxy",
         "log_daytime_population_jobs_proxy_density_sqkm",
@@ -5221,24 +5422,10 @@
         "log_overture_parking_density_sqkm",
         "log_population_density_sqkm",
         "log_total_population",
-        "male_15_24_share",
-        "male_18_24_share",
-        "male_18_29_share",
-        "male_18_34_share",
-        "male_25_34_share",
-        "male_25_44_share",
-        "male_35_54_share",
-        "male_45_64_share",
-        "male_65plus_share",
-        "male_under18_share",
         "median_age",
-        "median_age_female",
-        "median_age_male",
         "median_home_value_2024",
         "median_household_income_2024",
         "median_rent_2024",
-        "nearest_acute_care_hospital_km",
-        "nearest_emergency_hospital_km",
         "nearest_fixed_guideway_stop_km",
         "nearest_overture_atm_bank_km",
         "nearest_overture_commercial_core_km",
@@ -5315,8 +5502,6 @@
         "overture_parking_present",
         "overture_parking_within_1km",
         "overture_state_commercial_core_flag",
-        "owner_2plus_vehicle_share",
-        "owner_no_vehicle_share",
         "owner_overcrowded_share",
         "owner_units_per_capita",
         "parking_lot_road_length_km",
@@ -5324,21 +5509,16 @@
         "pop_2024",
         "pop_factor_2024",
         "population_density_sqkm",
-        "postsecondary_density_sqkm",
         "primary_road_length_km",
         "private_road_length_km",
-        "public_school_density_sqkm",
         "ramp_length_km",
         "rent_30_35pct_share",
         "rent_35_40pct_share",
         "rent_40_50pct_share",
         "rent_50plus_pct_share",
-        "renter_2plus_vehicle_share",
-        "renter_no_vehicle_share",
         "renter_overcrowded_share",
         "renter_units_per_capita",
         "resident_jobs_per_capita",
-        "resident_same_bg_commute_share",
         "road_total_length_km",
         "secondary_road_length_km",
         "service_drive_length_km",
@@ -5355,11 +5535,6 @@
         "structure_single_attached_share",
         "structure_single_detached_share",
         "tenure_owner_share",
-        "tract_mobility_abroad_share",
-        "tract_mobility_diff_county_same_state_share",
-        "tract_mobility_diff_house_same_county_share",
-        "tract_mobility_diff_state_share",
-        "tract_mobility_same_house_share",
         "tract_poverty_rate",
         "transit_mode_count_bg",
         "transit_stop_density_sqkm",
@@ -5614,22 +5789,7 @@
         ],
         "burglary": [
           "alley_length_km",
-          "avg_household_size_owner",
-          "avg_household_size_renter",
-          "avg_vehicles_owner",
-          "avg_vehicles_per_household",
-          "avg_vehicles_renter",
           "bike_path_length_km",
-          "commute_45_59_share",
-          "commute_45plus_share",
-          "commute_60plus_share",
-          "commute_bicycle_share",
-          "commute_carpool_share",
-          "commute_drive_alone_share",
-          "commute_taxi_ridehail_share",
-          "commute_transit_share",
-          "commute_walk_share",
-          "commute_work_from_home_share",
           "daytime_population_jobs_proxy_density_sqkm",
           "daytime_population_jobs_proxy_ratio",
           "edu_bachelors_share",
@@ -5637,17 +5797,9 @@
           "edu_hs_diploma_share",
           "edu_masters_share",
           "edu_professional_share",
-          "education_anchor_density_sqkm",
           "employed_per_capita",
           "fixed_guideway_stop_density_sqkm",
           "fixed_guideway_stop_present",
-          "hh_1_vehicle_share",
-          "hh_2_vehicle_share",
-          "hh_2plus_vehicle_share",
-          "hh_3_vehicle_share",
-          "hh_3plus_vehicle_share",
-          "hh_4plus_vehicle_share",
-          "hh_access_without_subscription_share",
           "hh_broadband_any_share",
           "hh_cellular_only_share",
           "hh_cellular_plan_share",
@@ -5655,29 +5807,14 @@
           "hh_computer_broadband_share",
           "hh_computer_no_internet_share",
           "hh_dialup_only_share",
-          "hh_family_female_no_spouse_children_share",
-          "hh_family_female_no_spouse_share",
-          "hh_family_male_no_spouse_children_share",
-          "hh_family_male_no_spouse_share",
-          "hh_family_married_children_share",
-          "hh_family_married_no_children_share",
-          "hh_family_married_share",
-          "hh_family_share",
-          "hh_family_single_parent_with_children_share",
-          "hh_family_with_children_share",
-          "hh_family_with_children_within_family_share",
           "hh_income_100_200k_share",
           "hh_income_200k_plus_share",
           "hh_income_25_50k_share",
           "hh_income_50_100k_share",
           "hh_income_lt25k_share",
           "hh_no_internet_share",
-          "hh_no_vehicle_share",
-          "hh_other_service_only_share",
           "hh_satellite_only_share",
           "hh_satellite_share",
-          "hh_under18_nonfamily_share",
-          "hh_under18_share",
           "hh_wired_broadband_only_share",
           "hh_wired_broadband_share",
           "housing_density_sqkm",
@@ -5700,9 +5837,6 @@
           "limited_access_road_length_km",
           "limited_access_road_share",
           "local_road_length_km",
-          "lodes_ca01_share",
-          "lodes_ca02_share",
-          "lodes_ca03_share",
           "lodes_cd01_share",
           "lodes_cd02_share",
           "lodes_cd03_share",
@@ -5730,7 +5864,6 @@
           "lodes_cns18_share",
           "lodes_cns19_share",
           "lodes_cns20_share",
-          "lodes_cs01_share",
           "log_aland20",
           "log_daytime_population_jobs_proxy",
           "log_daytime_population_jobs_proxy_density_sqkm",
@@ -5750,24 +5883,10 @@
           "log_overture_parking_density_sqkm",
           "log_population_density_sqkm",
           "log_total_population",
-          "male_15_24_share",
-          "male_18_24_share",
-          "male_18_29_share",
-          "male_18_34_share",
-          "male_25_34_share",
-          "male_25_44_share",
-          "male_35_54_share",
-          "male_45_64_share",
-          "male_65plus_share",
-          "male_under18_share",
           "median_age",
-          "median_age_female",
-          "median_age_male",
           "median_home_value_2024",
           "median_household_income_2024",
           "median_rent_2024",
-          "nearest_acute_care_hospital_km",
-          "nearest_emergency_hospital_km",
           "nearest_fixed_guideway_stop_km",
           "nearest_overture_atm_bank_km",
           "nearest_overture_commercial_core_km",
@@ -5844,8 +5963,6 @@
           "overture_parking_present",
           "overture_parking_within_1km",
           "overture_state_commercial_core_flag",
-          "owner_2plus_vehicle_share",
-          "owner_no_vehicle_share",
           "owner_overcrowded_share",
           "owner_units_per_capita",
           "parking_lot_road_length_km",
@@ -5853,21 +5970,16 @@
           "pop_2024",
           "pop_factor_2024",
           "population_density_sqkm",
-          "postsecondary_density_sqkm",
           "primary_road_length_km",
           "private_road_length_km",
-          "public_school_density_sqkm",
           "ramp_length_km",
           "rent_30_35pct_share",
           "rent_35_40pct_share",
           "rent_40_50pct_share",
           "rent_50plus_pct_share",
-          "renter_2plus_vehicle_share",
-          "renter_no_vehicle_share",
           "renter_overcrowded_share",
           "renter_units_per_capita",
           "resident_jobs_per_capita",
-          "resident_same_bg_commute_share",
           "road_total_length_km",
           "secondary_road_length_km",
           "service_drive_length_km",
@@ -5884,11 +5996,6 @@
           "structure_single_attached_share",
           "structure_single_detached_share",
           "tenure_owner_share",
-          "tract_mobility_abroad_share",
-          "tract_mobility_diff_county_same_state_share",
-          "tract_mobility_diff_house_same_county_share",
-          "tract_mobility_diff_state_share",
-          "tract_mobility_same_house_share",
           "tract_poverty_rate",
           "transit_mode_count_bg",
           "transit_stop_density_sqkm",
@@ -7061,17 +7168,17 @@
           "workplace_same_tract_commute_share"
         ]
       },
-      "selected_feature_count": 296,
+      "selected_feature_count": 228,
       "unmapped_feature_count": 0
     },
     "county_anchoring_enabled": true,
-    "denominator_publishability_audit_path": "./state/candidates/houston-batch-c-v15/denominator_publishability_audit_2024.csv",
+    "denominator_publishability_audit_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/denominator_publishability_audit_2024.csv",
     "fbi_calibrated_written": true,
     "model_surface_exclude_feature_policy_classes": [
       "between_only",
       "excluded_protected"
     ],
-    "model_surface_feature_policy_path": "./state/modeling/feature_transfer_policy_2024.parquet",
+    "model_surface_feature_policy_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
     "model_surface_prior_anchor": "offense_denominator",
     "motor_vehicle_theft_denominator_policy": {
       "audit_columns": [
@@ -7089,7 +7196,7 @@
         "accepted_for_allocation": false,
         "allocation_branch": "publication_denominators_only_allocation_baselines_current_exposure",
         "criterion": "accept LandScan lift for allocation if murder+rape exposure-baseline TVD does not degrade beyond one city-bootstrap SE",
-        "decision_path": "./state/modeling/landscan_lift_allocation_decision_2024.json",
+        "decision_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/landscan_lift_allocation_decision_2024.json",
         "decision_record_present": true,
         "gradient_gate_status": "descriptive_not_decision_gate_for_person_offenses",
         "murder_rape_bootstrap_se_delta": 0.016480821519272083,
@@ -7130,7 +7237,10 @@
         "between_only",
         "excluded_protected"
       ],
-      "burglary": [],
+      "burglary": [
+        "between_only",
+        "excluded_protected"
+      ],
       "larceny": [
         "between_only",
         "excluded_protected"
@@ -7152,15 +7262,15 @@
         "excluded_protected"
       ]
     },
-    "residual_feature_policy_path": "./state/modeling/feature_transfer_policy_2024.parquet",
-    "residual_training_city_shares_path": "./state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
+    "residual_feature_policy_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
+    "residual_training_city_shares_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/next_phase_validation_city_incident_share_surface_2024.parquet",
     "residual_training_exclude_validation_case_types": [
       "suburban_county_validation_case",
       "partial_year_municipal_validation_case"
     ],
     "residual_training_extra_bg_feature_paths": [
-      "./data/Overture-Places/parsed/block_group_overture_places_states_latest.parquet",
-      "./data/Overture-Places/parsed/block_group_overture_commercial_core_states_latest.parquet"
+      "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/Overture-Places/parsed/block_group_overture_places_states_latest.parquet",
+      "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/Overture-Places/parsed/block_group_overture_commercial_core_states_latest.parquet"
     ],
     "residual_transfer_tau_by_offense": {
       "aggravated_assault": 1.0,
@@ -7174,38 +7284,38 @@
     "suppression_mode_counts": {
       "block_group_ags_core": {
         "aggravated_assault": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235243,
+          "insufficient_exposure": 16,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2950,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "burglary": {
-          "count_derived": 235259,
-          "insufficient_exposure": 0,
+          "count_derived": 235258,
+          "insufficient_exposure": 1,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2934,
+          "suppressed_cells": 2935,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "larceny": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235246,
+          "insufficient_exposure": 13,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2947,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "motor_vehicle_theft": {
-          "count_derived": 234964,
-          "insufficient_exposure": 295,
+          "count_derived": 234962,
+          "insufficient_exposure": 297,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 3229,
+          "suppressed_cells": 3231,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
@@ -7219,58 +7329,58 @@
           "zero_primary_denominator": 0
         },
         "rape": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235247,
+          "insufficient_exposure": 12,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2946,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "robbery": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235244,
+          "insufficient_exposure": 15,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2949,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         }
       },
       "block_group_fbi_calibrated": {
         "aggravated_assault": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235243,
+          "insufficient_exposure": 16,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2950,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "burglary": {
-          "count_derived": 235259,
-          "insufficient_exposure": 0,
+          "count_derived": 235258,
+          "insufficient_exposure": 1,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2934,
+          "suppressed_cells": 2935,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "larceny": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235246,
+          "insufficient_exposure": 13,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2947,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "motor_vehicle_theft": {
-          "count_derived": 234964,
-          "insufficient_exposure": 295,
+          "count_derived": 234962,
+          "insufficient_exposure": 297,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 3229,
+          "suppressed_cells": 3231,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
@@ -7284,40 +7394,40 @@
           "zero_primary_denominator": 0
         },
         "rape": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235247,
+          "insufficient_exposure": 12,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2946,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "robbery": {
-          "count_derived": 235250,
-          "insufficient_exposure": 9,
+          "count_derived": 235244,
+          "insufficient_exposure": 15,
           "non_residential": 2797,
           "special_use": 137,
-          "suppressed_cells": 2943,
+          "suppressed_cells": 2949,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         }
       },
       "tract_ags_core": {
         "aggravated_assault": {
-          "count_derived": 82568,
-          "insufficient_exposure": 2,
+          "count_derived": 82566,
+          "insufficient_exposure": 4,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1208,
+          "suppressed_cells": 1210,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "burglary": {
-          "count_derived": 82570,
-          "insufficient_exposure": 0,
+          "count_derived": 82569,
+          "insufficient_exposure": 1,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1206,
+          "suppressed_cells": 1207,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
@@ -7349,40 +7459,40 @@
           "zero_primary_denominator": 0
         },
         "rape": {
-          "count_derived": 82568,
-          "insufficient_exposure": 2,
+          "count_derived": 82567,
+          "insufficient_exposure": 3,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1208,
+          "suppressed_cells": 1209,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "robbery": {
-          "count_derived": 82568,
-          "insufficient_exposure": 2,
+          "count_derived": 82567,
+          "insufficient_exposure": 3,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1208,
+          "suppressed_cells": 1209,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         }
       },
       "tract_fbi_calibrated": {
         "aggravated_assault": {
-          "count_derived": 82568,
-          "insufficient_exposure": 2,
+          "count_derived": 82566,
+          "insufficient_exposure": 4,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1208,
+          "suppressed_cells": 1210,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "burglary": {
-          "count_derived": 82570,
-          "insufficient_exposure": 0,
+          "count_derived": 82569,
+          "insufficient_exposure": 1,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1206,
+          "suppressed_cells": 1207,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
@@ -7414,28 +7524,28 @@
           "zero_primary_denominator": 0
         },
         "rape": {
-          "count_derived": 82568,
-          "insufficient_exposure": 2,
+          "count_derived": 82567,
+          "insufficient_exposure": 3,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1208,
+          "suppressed_cells": 1209,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         },
         "robbery": {
-          "count_derived": 82568,
-          "insufficient_exposure": 2,
+          "count_derived": 82567,
+          "insufficient_exposure": 3,
           "non_residential": 1083,
           "special_use": 123,
-          "suppressed_cells": 1208,
+          "suppressed_cells": 1209,
           "vehicle_denominator_invalid": 0,
           "zero_primary_denominator": 0
         }
       }
     },
     "tracts": 83776,
-    "zero_target_denominator_audit_path": "./state/candidates/houston-batch-c-v15/zero_target_denominator_audit_2024.parquet",
-    "zero_target_denominator_audit_rows": 115
+    "zero_target_denominator_audit_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/candidates/stage-program-v21/zero_target_denominator_audit_2024.parquet",
+    "zero_target_denominator_audit_rows": 167
   },
   "year": 2024
 }

@@ -156,56 +156,6 @@ def initialize_preferred_source(
     return preferred
 
 
-def build_prefer_nibrs_mask(
-    *,
-    has_cius: pd.Series,
-    has_local_publication: pd.Series | None = None,
-    has_state_publication: pd.Series,
-    has_srs: pd.Series,
-    has_nibrs: pd.Series,
-    regime_prefers_nibrs: pd.Series | None = None,
-    srs_regime_inferior: pd.Series | None = None,
-    nibrs_supports_better: pd.Series | None = None,
-    srs_count_num: pd.Series | None = None,
-    nibrs_months: pd.Series | None = None,
-    manual_source_override: pd.Series | None = None,
-    published_nibrs_supports_nibrs: pd.Series | None = None,
-) -> pd.Series:
-    index = has_cius.index
-
-    def _false_mask(mask: pd.Series | None) -> pd.Series:
-        if mask is None:
-            return pd.Series(False, index=index)
-        return mask.fillna(False).astype(bool)
-
-    regime_prefers_nibrs = _false_mask(regime_prefers_nibrs)
-    srs_regime_inferior = _false_mask(srs_regime_inferior)
-    nibrs_supports_better = _false_mask(nibrs_supports_better)
-    manual_source_override = _false_mask(manual_source_override)
-    published_nibrs_supports_nibrs = _false_mask(published_nibrs_supports_nibrs)
-    if srs_count_num is None:
-        srs_count_num = pd.Series(0.0, index=index)
-    else:
-        srs_count_num = pd.to_numeric(srs_count_num, errors="coerce").fillna(0.0)
-    if has_local_publication is None:
-        has_local_publication = pd.Series(False, index=index)
-    else:
-        has_local_publication = has_local_publication.fillna(False).astype(bool)
-    if nibrs_months is None:
-        nibrs_months = pd.Series(0.0, index=index)
-    else:
-        nibrs_months = pd.to_numeric(nibrs_months, errors="coerce").fillna(0.0)
-
-    return ~has_cius & ~has_local_publication & ~has_state_publication & has_nibrs & (
-        ~has_srs
-        | manual_source_override
-        | regime_prefers_nibrs
-        | published_nibrs_supports_nibrs
-        | (has_srs & srs_regime_inferior & nibrs_supports_better)
-        | (has_srs & srs_count_num.eq(0) & nibrs_months.gt(0))
-    )
-
-
 def assign_preferred_value(
     frame: pd.DataFrame,
     *,

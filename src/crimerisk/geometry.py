@@ -8,12 +8,14 @@ import pandas as pd
 import pyogrio
 
 from crimerisk.build_freshness import artifact_is_current
-from crimerisk.crosswalk_shares import normalize_block_group_allocation_shares
+from crimerisk.crosswalk_shares import (
+    assert_allocation_shares_conserve,
+    normalize_block_group_allocation_shares,
+)
 from crimerisk.paths import RepoPaths
+from crimerisk.source_selection import globally_dead_municipal_jurisdiction_ids
 from crimerisk.stage_locks import stage_write_lock
-
-
-PRODUCTION_SCOPE_EXCLUDE = {"AK", "AS", "CZ", "GU", "HI", "MP", "PR", "VI"}
+from crimerisk.scope import PRODUCTION_SCOPE_EXCLUDE
 
 
 @dataclass(frozen=True)
@@ -136,10 +138,45 @@ def _read_state_geo(path: Path, geoid_values: set[str]) -> gpd.GeoDataFrame:
     return gdf[["geoid", "namelsad", "geometry"]].copy()
 
 
-def _load_state_municipal_polygons(paths: RepoPaths, state_fips: str, jurisdiction_master: pd.DataFrame) -> gpd.GeoDataFrame:
+def _load_dead_municipal_jurisdiction_ids(paths: RepoPaths) -> frozenset[str]:
+    """Municipal jurisdictions that are not a valid BG-assignment target.
+
+    See `crimerisk.source_selection.globally_dead_municipal_jurisdiction_ids`
+    for the predicate. Excluding these jurisdiction_ids from the polygons used
+    for the block-group spatial join is the mechanism: a BG that would
+    otherwise land inside one of these (e.g. Patchogue Village NY, whose only
+    linked ORI NY0511000 is a defunct village PD) instead falls through to
+    `state_nonmunicipal_remainder`, exactly as if the place were unincorporated,
+    so it picks up the covering agency's mass through the existing county-
+    remainder allocation path.
+    """
+    agency_obs = pd.read_parquet(
+        paths.state_dir / "observations" / "agency_year_observations.parquet",
+        columns=["ori9", "count", "months_reported"],
+    )
+    agency_jurisdiction_crosswalk = pd.read_parquet(
+        paths.state_dir / "reference" / "agency_to_jurisdiction_crosswalk.parquet",
+        columns=["ori", "jurisdiction_id"],
+    )
+    jurisdiction_master = _load_jurisdiction_master(paths)
+    return globally_dead_municipal_jurisdiction_ids(
+        agency_obs=agency_obs,
+        agency_jurisdiction_crosswalk=agency_jurisdiction_crosswalk,
+        jurisdiction_master=jurisdiction_master,
+    )
+
+
+def _load_state_municipal_polygons(
+    paths: RepoPaths,
+    state_fips: str,
+    jurisdiction_master: pd.DataFrame,
+    *,
+    dead_municipal_jurisdiction_ids: frozenset[str] = frozenset(),
+) -> gpd.GeoDataFrame:
     muni = jurisdiction_master[
         (jurisdiction_master["jurisdiction_type"] == "municipal")
         & (jurisdiction_master["state_fips"].astype("string").str.zfill(2) == str(state_fips).zfill(2))
+        & (~jurisdiction_master["jurisdiction_id"].astype("string").isin(dead_municipal_jurisdiction_ids))
     ].copy()
     if muni.empty:
         return gpd.GeoDataFrame(columns=["jurisdiction_id", "geo_type", "geoid", "jurisdiction_name", "geometry"], geometry="geometry", crs="EPSG:4269")
@@ -245,18 +282,27 @@ def build_state_block_assignments(
     paths: RepoPaths,
     state_fips: str,
     config: GeometryBuildConfig = GeometryBuildConfig(),
+    dead_municipal_jurisdiction_ids: frozenset[str] | None = None,
 ) -> pd.DataFrame:
     jurisdiction_master = _load_jurisdiction_master(paths)
     jurisdiction_master["state_fips"] = jurisdiction_master["state_fips"].astype("string").str.zfill(2)
     jurisdiction_master["state_abbr"] = jurisdiction_master["state_abbr"].astype("string").str.upper()
     jurisdiction_master = jurisdiction_master[~jurisdiction_master["state_abbr"].isin(set(config.exclude_scope_state_abbrs))].copy()
 
+    if dead_municipal_jurisdiction_ids is None:
+        dead_municipal_jurisdiction_ids = _load_dead_municipal_jurisdiction_ids(paths)
+
     block_zip = paths.data_dir / "tiger_tabblock20" / f"tl_2020_{str(state_fips).zfill(2)}_tabblock20.zip"
     if not block_zip.exists():
         raise FileNotFoundError(block_zip)
 
     blocks = _read_state_blocks(block_zip)
-    polys = _load_state_municipal_polygons(paths, str(state_fips).zfill(2), jurisdiction_master)
+    polys = _load_state_municipal_polygons(
+        paths,
+        str(state_fips).zfill(2),
+        jurisdiction_master,
+        dead_municipal_jurisdiction_ids=dead_municipal_jurisdiction_ids,
+    )
 
     if polys.empty:
         assigned = blocks.copy()
@@ -340,8 +386,15 @@ def _build_missing_municipal_bg_allocations(
     paths: RepoPaths,
     bg_crosswalk: pd.DataFrame,
     jurisdiction_master: pd.DataFrame,
+    dead_municipal_jurisdiction_ids: frozenset[str] | None = None,
 ) -> pd.DataFrame:
-    municipal = jurisdiction_master[jurisdiction_master["jurisdiction_type"].eq("municipal")].copy()
+    if dead_municipal_jurisdiction_ids is None:
+        dead_municipal_jurisdiction_ids = _load_dead_municipal_jurisdiction_ids(paths)
+
+    municipal = jurisdiction_master[
+        jurisdiction_master["jurisdiction_type"].eq("municipal")
+        & (~jurisdiction_master["jurisdiction_id"].astype("string").isin(dead_municipal_jurisdiction_ids))
+    ].copy()
     if municipal.empty:
         return pd.DataFrame(columns=list(bg_crosswalk.columns))
 
@@ -361,7 +414,12 @@ def _build_missing_municipal_bg_allocations(
     frames: list[pd.DataFrame] = []
     for state_fips, state_missing in missing.groupby("state_fips", dropna=False):
         state_fips = str(state_fips).zfill(2)
-        muni_polys = _load_state_municipal_polygons(paths, state_fips, jurisdiction_master)
+        muni_polys = _load_state_municipal_polygons(
+            paths,
+            state_fips,
+            jurisdiction_master,
+            dead_municipal_jurisdiction_ids=dead_municipal_jurisdiction_ids,
+        )
         muni_polys = muni_polys[muni_polys["jurisdiction_id"].isin(state_missing["jurisdiction_id"])].copy()
         if muni_polys.empty:
             continue
@@ -449,13 +507,29 @@ def build_block_crosswalk(
     state_dir = geometry_dir / "blocks_by_state"
     state_dir.mkdir(parents=True, exist_ok=True)
 
+    dead_municipal_jurisdiction_ids = _load_dead_municipal_jurisdiction_ids(paths)
+
     state_frames: list[pd.DataFrame] = []
     for state_fips in states:
         state_out = state_dir / f"{str(state_fips).zfill(2)}.parquet"
-        if state_out.exists() and not force_rebuild:
+        # Per-state caches bake in the dead-municipal exclusion at spatial-join
+        # time, so reuse must honor the declared dependency list (observations
+        # panel, crosswalk, jurisdiction master, TIGER inputs) -- a merely
+        # existing cache may carry a stale dead set.
+        if not force_rebuild and artifact_is_current(
+            state_out,
+            _geometry_state_dependency_paths(
+                paths, state_fips=str(state_fips).zfill(2)
+            ),
+        ):
             state_df = pd.read_parquet(state_out)
         else:
-            state_df = build_state_block_assignments(paths=paths, state_fips=str(state_fips).zfill(2), config=config)
+            state_df = build_state_block_assignments(
+                paths=paths,
+                state_fips=str(state_fips).zfill(2),
+                config=config,
+                dead_municipal_jurisdiction_ids=dead_municipal_jurisdiction_ids,
+            )
             state_df.to_parquet(state_out, index=False)
         state_frames.append(state_df)
 
@@ -496,10 +570,15 @@ def build_block_crosswalk(
         paths=paths,
         bg_crosswalk=bg,
         jurisdiction_master=jurisdiction_master,
+        dead_municipal_jurisdiction_ids=dead_municipal_jurisdiction_ids,
     )
     if not supplemental_bg.empty:
         bg = pd.concat([bg, supplemental_bg.reindex(columns=bg.columns)], ignore_index=True)
         bg = normalize_block_group_allocation_shares(bg)
+    # The Stage-4 recipient floor can zero a share, so "shares sum to 1 per block group"
+    # stops being structural and becomes load-bearing: assert it here rather than leave it
+    # as a property the audit has to rediscover.
+    assert_allocation_shares_conserve(bg)
     return block_df, bg
 
 
@@ -530,6 +609,8 @@ def _geometry_common_dependency_paths(paths: RepoPaths) -> list[Path]:
     return [
         paths.state_dir / "reference" / "jurisdiction_master.parquet",
         paths.state_dir / "controls" / "state_control_comparison.parquet",
+        paths.state_dir / "observations" / "agency_year_observations.parquet",
+        paths.state_dir / "reference" / "agency_to_jurisdiction_crosswalk.parquet",
         Path(__file__),
     ]
 
