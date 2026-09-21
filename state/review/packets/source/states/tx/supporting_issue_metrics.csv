@@ -1,0 +1,16 @@
+metric_group,metric_name,metric_value,notes
+statewide_context,official_oris,1721,Official 2024 roster rows for Texas in the live product scope.
+statewide_context,official_effective_nibrs_oris,1536,Derived with effective-year logic from official roster start dates.
+statewide_context,mixed_source_2024_rows,1158,Official-effective-NIBRS agencies where repo still has both SRS and NIBRS or prefers SRS in 2024.
+statewide_context,agencies_both_12m_srs_and_nibrs,947,Texas has a large overlap set suitable for SRS-vs-NIBRS sanity checks.
+statewide_context,repo_srs_vs_fbi_cde_max_abs_pct_diff,0.004792,Maximum absolute statewide percentage difference across the seven benchmark offenses is under 0.5 percent.
+reference_gap,missing_in_repo_master_total,123,Raw missing-master count from official-vs-repo validation.
+reference_gap,missing_in_repo_master_support_gt_zero,4,Only four missing-master rows have any 2024 repo support.
+reference_gap,missing_in_repo_master_effective_nibrs_zero_support,5,Effective-NIBRS missing-master rows with zero repo support should stay contextual.
+source_policy,official_nibrs_repo_no_nibrs_total,363,Official-effective-NIBRS rows with no repo NIBRS output.
+source_policy,priority_disagreement_rows_with_support,3,Only three of those rows appear in the TX priority queue and each has one support count.
+missing_obs,present_but_no_2024_observation_total,424,Rows present in master but with neither repo SRS nor repo NIBRS observations in 2024.
+missing_obs,present_but_no_2024_observation_effective_nibrs,355,Most of the no-observation tail is effective-NIBRS by the official roster.
+missing_obs,present_no_obs_other_type_rows,320,Institutional and special-jurisdiction tail dominates the no-observation problem.
+missing_obs,present_no_obs_city_rows,75,Local police tail exists but is not the majority.
+missing_obs,effective_nibrs_no_obs_started_2023_or_2024,297,Most effective-NIBRS no-observation rows are recent entrants and lower priority than the four live support omissions.

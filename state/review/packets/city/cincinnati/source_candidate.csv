@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+cincinnati,"Cincinnati, Ohio",39:municipal:place:3915000,City of Cincinnati Open Data - Reported Crime (STARS Category Offenses) on or after 6/3/2024,https://data.cincinnati-oh.gov/safety/Reported-Crime-STARS-Category-Offenses-/7aqy-xrv9/about_data,ready_now,Gate-1.5 generic worker onboarding proof. Incident feed is share lane only.

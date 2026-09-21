@@ -1,0 +1,207 @@
+{
+  "state_abbr": "NJ",
+  "generated_on": "2026-03-22",
+  "packet_scope": "New Jersey official-source reconciliation for V2 with emphasis on whether 2024 NJ should be treated as a narrow late-transition source issue or a broader statewide replacement problem.",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/nj/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/nj/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/state_source_benchmark_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/top_partial_reporters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/nj/supporting_issue_metrics.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "njsp_uniform_crime_reports_landing",
+      "source_name": "New Jersey State Police Uniform Crime Reports landing page",
+      "source_url": "https://www.nj.gov/njsp/ucr/uniform-crime-reports.shtml",
+      "coverage_note": "NJSP publishes annual Uniform Crime Report workbooks through 2023 and links the live Current Crime Data page from the same UCR surface.",
+      "packet_use": "Confirms that New Jersey still exposes an annual publication-style path, but not yet a 2024 annual workbook."
+    },
+    {
+      "source_id": "njsp_current_crime_data",
+      "source_name": "New Jersey State Police Current Crime Data",
+      "source_url": "https://www.nj.gov/njsp/ucr/current-crime-data.shtml",
+      "coverage_note": "NJSP says the current data are preliminary, the reporting agency is responsible for the data, zeros can mean no offenses or delinquency, and ancillary agencies such as State Police, NJ Transit Police, Park Police, and Port Authority Police may or may not be included.",
+      "packet_use": "Primary public 2024 New Jersey monitoring surface, but not strong enough to justify a blind statewide replacement of the repo source layer."
+    },
+    {
+      "source_id": "njsp_2023_ucr_workbook",
+      "source_name": "NJSP 2023 Uniform Crime Report workbook",
+      "source_url": "https://www.nj.gov/njsp/ucr/pdf/current/20250416_2023_Uniform_Crime_Report.xlsx",
+      "coverage_note": "Latest annual NJSP statewide workbook linked from the UCR landing page.",
+      "packet_use": "Shows New Jersey's annual official publication path currently lags the live 2024 target year."
+    },
+    {
+      "source_id": "nj_budget_response_ucr_transition_2024",
+      "source_name": "New Jersey budget response on UCR/NIBRS transition",
+      "source_url": "https://pub.njleg.state.nj.us/publications/budget/governors-budget/2024/LPS_follow_up_response_ABU.pdf",
+      "coverage_note": "State response explains that NJSP transitioned to a new UCR repository collecting both NIBRS and traditional summary data, that the traditional 2016-style publication could not be produced during the transition, and that current crime data had been posted in limited capacity while the state accommodated mixed reporting.",
+      "packet_use": "Supports treating New Jersey's 2024 public surface as a mixed transition environment rather than assuming one clean statewide annual NIBRS workbook already exists."
+    }
+  ],
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "NJ",
+      "official_oris": 579,
+      "official_nibrs_oris": 402,
+      "official_effective_nibrs_oris": 378,
+      "repo_master_matches": 579,
+      "mismatch_rows": 63,
+      "mismatch_weight": 361.0,
+      "official_nibrs_repo_no_nibrs": 16,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 61
+    },
+    "priority_offense_context": [
+      {
+        "offense": "larceny",
+        "priority_rank": 13,
+        "repo_srs_gap_below_fbi_cde": 3587.0,
+        "repo_nibrs_gap_below_bjs_ckle": 25026.0
+      },
+      {
+        "offense": "aggravated_assault",
+        "priority_rank": 53,
+        "repo_srs_gap_below_fbi_cde": 306.0,
+        "repo_nibrs_gap_below_bjs_ckle": 4939.0
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "priority_rank": 64,
+        "repo_srs_gap_below_fbi_cde": 283.0,
+        "repo_nibrs_gap_below_bjs_ckle": 4287.0
+      },
+      {
+        "offense": "burglary",
+        "priority_rank": 68,
+        "repo_srs_gap_below_fbi_cde": 363.0,
+        "repo_nibrs_gap_below_bjs_ckle": 3702.0
+      }
+    ],
+    "coverage_matched_srs_to_nibrs_ratios_2024": {
+      "aggravated_assault": 0.895249,
+      "burglary": 0.958345,
+      "larceny": 0.986579,
+      "motor_vehicle_theft": 0.948648,
+      "murder": 0.95122,
+      "rape": 0.799841,
+      "robbery": 0.992896
+    },
+    "interpretation": "New Jersey's statewide SRS-to-CDE gaps are modest relative to the highest-priority states and the 12-month SRS/NIBRS ratios are close to parity for most offenses. That argues against a Florida-style statewide replacement lane and toward targeted handling of the small late-transition mismatch tail."
+  },
+  "issue_groups": [
+    {
+      "issue_id": "nj_no_master_reference_omissions_in_official_validation",
+      "issue_type": "master_reference_omission",
+      "severity": "low",
+      "finding": "New Jersey has no official roster rows missing from the repo master.",
+      "statewide_evidence": {
+        "official_oris": 579,
+        "repo_master_matches": 579,
+        "missing_in_repo_master": 0
+      },
+      "why_it_matters": "NJ is not a California-style reference-layer problem. The state packet should not spend effort on master supplementation.",
+      "recommended_next_action": "None for the master layer. Keep New Jersey out of the reference-supplement queue unless a later official source reveals concrete omitted ORIs with offense-bearing observations.",
+      "representative_entities": [],
+      "doctrine_candidate": "When official roster coverage already matches the repo master exactly, source review should focus on source selection and observation coverage, not roster supplementation."
+    },
+    {
+      "issue_id": "nj_late_2024_nibrs_starters_still_land_as_sparse_srs_partials",
+      "issue_type": "source_policy_disagreement",
+      "severity": "high",
+      "finding": "Only two New Jersey rows are actionable source-policy disagreements: Kearny Police Department and Gloucester City Police Department both show official 2024-effective NIBRS start dates, but repo data still sees only sparse SRS annual support and no NIBRS observations.",
+      "statewide_evidence": {
+        "official_effective_nibrs_repo_no_nibrs_with_srs": 2,
+        "queue_rows": 2,
+        "queue_rows_detail": [
+          {
+            "priority_rank": 16,
+            "ori9": "NJ0090700",
+            "agency_name": "Kearny Police Department",
+            "official_nibrs_start_date": "2024-05-01",
+            "repo_months_reported_2024": 3,
+            "repo_preferred_support_count_2024": 259.0,
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable|true_partial"
+          },
+          {
+            "priority_rank": 37,
+            "ori9": "NJ0041400",
+            "agency_name": "Gloucester City Police Department",
+            "official_nibrs_start_date": "2024-08-01",
+            "repo_months_reported_2024": 5,
+            "repo_preferred_support_count_2024": 102.0,
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable|true_partial"
+          }
+        ]
+      },
+      "why_it_matters": "These are the only NJ rows where a targeted official-source backfill could change production source policy immediately. The rest of the state's official-effective NIBRS/no-repo-NIBRS tail has zero support in the repo and belongs in a separate coverage review lane.",
+      "recommended_next_action": "Run a targeted official-source reconciliation for these two agencies using NJSP current-crime data, CDE agency surfaces, and direct local public releases. If incident-based 2024 counts are recoverable, backfill them; if not, retain current SRS-derived support for 2024 instead of forcing a statewide NJ source-policy flip.",
+      "representative_entities": [
+        "Kearny Police Department",
+        "Gloucester City Police Department"
+      ],
+      "doctrine_candidate": "When a state has only a tiny late-transition official-NIBRS disagreement tail with nonzero repo SRS support, resolve it agency-by-agency instead of changing statewide source policy."
+    },
+    {
+      "issue_id": "nj_public_2024_surface_is_preliminary_and_not_a_florida_style_replacement_lane",
+      "issue_type": "broader_nj_reporting_structure_or_continuity_issue",
+      "severity": "medium",
+      "finding": "New Jersey's official current-year public surface is a preliminary current-crime page rather than a clean statewide 2024 annual workbook. NJSP explicitly says zeros can mean no offenses or delinquency and that ancillary agencies may or may not be included.",
+      "statewide_evidence": {
+        "mixed_source_2024_rows": 361,
+        "annual_publication_available_through": 2023,
+        "current_data_caveats": [
+          "current data are preliminary",
+          "zeros can mean no offenses or delinquent reporting",
+          "ancillary contributing agencies may or may not be included",
+          "year-end data may be subject to review and verification"
+        ]
+      },
+      "why_it_matters": "A Florida-style statewide replacement doctrine would be overreach here. The public New Jersey 2024 lane is useful for monitoring and targeted reconciliation, but it is not a clean single-source production substitute for the current hybrid repo layer.",
+      "recommended_next_action": "Keep the repo hybrid source lane for New Jersey 2024 and use NJSP public data for targeted validations and narrow backfills only. Treat the annual NJSP workbook as the publication-style path through 2023, not as evidence that a 2024 annual replacement already exists.",
+      "representative_entities": [
+        "Newark Police Department",
+        "New Jersey Transit Police",
+        "Port Authority of New York and New Jersey"
+      ],
+      "doctrine_candidate": "If the state's target-year public surface is preliminary, explicitly ambiguous about zeros and ancillary coverage, and the benchmark gaps are modest, use it as a validation and exception lane rather than a full statewide replacement source."
+    },
+    {
+      "issue_id": "nj_present_in_master_but_missing_2024_observations_are_coverage_review_rows_not_master_failures",
+      "issue_type": "repo_missing_observation_problem",
+      "severity": "medium",
+      "finding": "New Jersey has 61 rows already present in master with no 2024 observations. Fourteen of those are official 2024-effective NIBRS rows with no repo SRS or NIBRS support, while the broader tail is concentrated in prosecutors, sheriffs, and special-agency rows.",
+      "statewide_evidence": {
+        "present_but_no_2024_observation_total": 61,
+        "official_effective_nibrs_no_2024_observation": 14,
+        "top_missing_groups": {
+          "Prosecutor": 20,
+          "County sheriff rows": 13,
+          "City rows": 19,
+          "University or college rows": 5
+        },
+        "official_effective_nibrs_examples": [
+          "Atlantic County Sheriff's Office",
+          "Salem County Sheriff's Office",
+          "Union County Sheriff's Office",
+          "Montclair State University",
+          "William Paterson University",
+          "Middlesex County College"
+        ]
+      },
+      "why_it_matters": "These rows should not be mistaken for master omissions or immediately zero-filled. The state's own public current-data caveats mean no-observation rows are a bounded coverage-review problem.",
+      "recommended_next_action": "Queue a second-pass coverage review for the 14 official-effective-NIBRS no-observation rows first, then treat the remaining prosecutor/sheriff/special rows as monitoring cases unless a concrete 2024 public source appears.",
+      "representative_entities": [
+        "Atlantic County Sheriff's Office",
+        "Montclair State University",
+        "Prosecutor: Atlantic County"
+      ],
+      "doctrine_candidate": "Rows present in master but missing target-year observations stay in a coverage-review lane unless the state offers a stable target-year public dataset that clearly distinguishes zero reporting from delinquency."
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+houston_tx,"Houston, Texas",48:municipal:place:4835000,"HPD NIBRS Yearly Cases (Houston Police Department NIBRS-coded incident feed, published by Houston Information Technology Services)",https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm (HPD_NIBRS_Yearly_Cases ArcGIS hosted layer),ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

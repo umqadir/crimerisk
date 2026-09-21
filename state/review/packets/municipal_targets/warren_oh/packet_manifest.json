@@ -1,0 +1,14 @@
+{
+  "case_key": "warren_oh",
+  "jurisdiction_id": "39:municipal:place:3980892",
+  "jurisdiction_name": "Warren city",
+  "state_abbr": "OH",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/warren_oh",
+  "review_goal": "Determine whether Warren city should retain a standalone municipal control row and whether the current 2024 all-fill condition reflects a real reporting continuity failure, county replacement, merged/shared service structure, or target invalidity.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

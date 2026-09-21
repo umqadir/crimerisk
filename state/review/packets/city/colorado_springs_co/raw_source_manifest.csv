@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+colorado_springs_co,Colorado Springs Police Department Open Data Crime Level Data,https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr,https://policedata.coloradosprings.gov/resource/bc88-hemr.json,socrata,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/colorado_springs_co_raw.parquet,2023643,aa6f62e24315a26cef24f8cd2dd7f45171e796b4185a3af507944eae7894ac0b

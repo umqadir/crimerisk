@@ -1,0 +1,14 @@
+{
+  "case_key": "bloomington_il",
+  "jurisdiction_id": "17:municipal:place:1706613",
+  "jurisdiction_name": "Bloomington city",
+  "state_abbr": "IL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/bloomington_il",
+  "review_goal": "Determine whether Bloomington city, Illinois should retain a standalone municipal control row and whether the current all-fill condition reflects reporting/publication continuity failure, county replacement, target invalidity, or another issue.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

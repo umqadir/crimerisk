@@ -1,0 +1,25 @@
+metric_group,metric_name,metric_value,metric_note
+statewide_validation,official_oris,537,Official roster rows in NY validation summary
+statewide_validation,official_nibrs_oris,223,Roster rows flagged current NIBRS
+statewide_validation,official_effective_nibrs_oris_2024,207,Roster rows effective in NIBRS by 2024 using start-date logic
+statewide_validation,repo_master_matches,536,Official roster rows matched to repo master
+statewide_validation,mismatch_rows,88,NY validation rows with any mismatch
+statewide_validation,mismatch_weight,881.0,Sum of repo preferred support among mismatch rows
+statewide_validation,official_nibrs_repo_no_nibrs,16,Rows where roster says effective NIBRS by 2024 but repo has no NIBRS observations
+statewide_validation,present_but_no_2024_observation,80,Rows present in repo master but missing 2024 observations
+statewide_validation,missing_in_repo_master,1,Official roster rows absent from repo master
+source_policy,support_weight_in_7_queue_rows,881.0,All NY mismatch weight is concentrated in the 7 effective-NIBRS/source-policy rows
+source_structure,mixed_source_2024,190,Rows where repo has both SRS and NIBRS presence or mixed-source behavior in 2024
+source_structure,ny_top_partial_reporters_2024,5,NY rows in top_partial_reporters_2024.csv
+source_structure,ny_srs_quarterly_pattern_candidates_2024,0,NY rows in quarterly-pattern candidate file
+source_structure,agencies_both_12m_srs_vs_nibrs,176,NY agencies with both full-year SRS and NIBRS in ratio table
+source_structure,ratio_murder_srs_to_nibrs,0.9698924731182796,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_rape_srs_to_nibrs,0.7005235602094241,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_robbery_srs_to_nibrs,1.000056834327934,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_aggravated_assault_srs_to_nibrs,0.9708455452962824,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_burglary_srs_to_nibrs,0.9754831952775398,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_larceny_srs_to_nibrs,1.0008292701988075,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_motor_vehicle_theft_srs_to_nibrs,0.9304378256474064,Coverage-matched SRS to NIBRS ratio
+present_but_no_2024_observation,effective_nibrs_true_zero_obs_rows,9,Zero-observation rows that are official effective-NIBRS by 2024 and may merit later targeted review
+present_but_no_2024_observation,city_zero_obs_rows,52,City rows in the no-observation tail
+present_but_no_2024_observation,state_and_special_zero_obs_rows,26,State/special-jurisdiction rows in the no-observation tail

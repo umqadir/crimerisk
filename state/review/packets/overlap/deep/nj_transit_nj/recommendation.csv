@@ -1,0 +1,2 @@
+case_key,ori,agency_name_raw,recommended_disposition,fallback_if_not_supported,production_ready,confidence,summary
+nj_transit_nj,NJ0073200,NJ Transit Police,localize_to_custom_footprint,keep_broad_overlap,no,high,"NJ Transit Police is a true statewide transit-police overlap whose defensible geometry is the NJ TRANSIT multimodal network and associated NJ TRANSIT facilities within New Jersey; no single county/place proxy is defensible, and the row should remain broad overlap until that custom footprint is built."

@@ -1,0 +1,9 @@
+column,dtype
+PK,int64
+RB,object
+dteMidpoint,int64
+NIBRSCategory,object
+LatBlock,float64
+LonBlock,float64
+__arcgis_longitude,float64
+__arcgis_latitude,float64

@@ -1,0 +1,113 @@
+{
+  "case_key": "bart_alameda_ca",
+  "ori": "CA0012100",
+  "agency_name_raw": "sf bart: alameda county",
+  "review_date": "2026-03-24",
+  "question": "What is the most defensible production footprint for the BART policing row CA0012100: Alameda County proxy, place proxy, or custom transit-network/system footprint, and should production keep it broad overlap until that custom footprint exists?",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "bart_multi_county_system_properties",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": false,
+    "confidence": 0.98
+  },
+  "core_findings": [
+    "Official BART system materials say BART currently operates in five counties with 131 miles of track and 50 stations. That alone defeats any Alameda-only or Oakland-only production proxy.",
+    "The current official BART Police strategic plan says the department provides service twenty-four hours a day, seven days a week for the district and describes that district as a 131-mile, 50-station system servicing five counties. The policing layer follows the transit system, not one county label.",
+    "California Penal Code Section 830.33 ties BART peace officers' primary duty to enforcement in or about properties owned, operated, or administered by the district and to necessary duties involving district patrons, employees, and properties. That is a property-and-system footprint, not a countywide patrol footprint.",
+    "California Public Utilities Code Section 99170 likewise treats the relevant geography as transit-district property, facilities, and vehicles, plus property, facilities, and vehicles on which BART owes policing responsibilities to a local government under an operations and maintenance agreement or similar interagency agreement. This supports a custom BART system/property footprint with limited agreement-based extensions, not county or place polygons.",
+    "BART's official police mission is to ensure a safe environment within the transit system, and the older but explicit official police annual report describes jurisdiction in trackway, stations, and parking-stall terms. The operational footprint is the rail system and associated district properties.",
+    "Local repo evidence shows that CA0012100 is one of several county-labeled BART ORIs. The 2024 FBI-derived roster contains Alameda, Contra Costa, San Francisco, and San Mateo BART rows; three of those rows share the same Oakland coordinate, and the validation layer assigns the same Oakland place anchor to multiple county-tagged rows. That is strong evidence that the county/place labels are administrative artifacts rather than real local footprints."
+  ],
+  "provider_vs_geography": {
+    "provider_identity": "The provider is the BART Police Department, a single special-jurisdiction transit police department for the BART system.",
+    "geography_for_production": "Production geography should follow BART-owned, operated, or administered system properties and vehicles, plus any facilities where BART officially owes policing responsibilities under interagency agreement.",
+    "why_the_ori_label_is_misleading": "The ORI name appends a county label, but official BART materials describe a single five-county rail system and local repo evidence shows multiple county-coded roster slices for that same system. The label is therefore administrative metadata, not a defensible county footprint."
+  },
+  "service_jurisdiction_footprint": {
+    "is_single_county": false,
+    "is_single_place": false,
+    "is_multi_county": true,
+    "is_network_geometry": true,
+    "legal_backdrop": {
+      "peace_officer_scope": "Penal Code Section 830.33 gives BART officers peace-officer status when their primary duty is enforcing the law in or about district-owned, operated, or administered properties and when performing necessary duties regarding district patrons, employees, and properties.",
+      "transit_property_scope": "Public Utilities Code Section 99170 regulates conduct on transit-district property, facilities, and vehicles and separately recognizes facilities where BART owes policing responsibilities to a local government under operations-and-maintenance or similar agreements.",
+      "important_interpretation": "The operative geography is the BART system and its properties. Legal authority language tied to district property should not be converted into Alameda County, Oakland, or any other county/place surrogate."
+    },
+    "explicitly_documented_operational_components": [
+      "the BART rail system across five counties, currently extending as far as Millbrae, Richmond, Antioch, Dublin/Pleasanton, and Berryessa/North San Jose",
+      "trackway, guideway, tunnels, stations, and trains/vehicles operated as part of the BART system",
+      "station parking and other rider-facing access facilities associated with BART stations",
+      "other district-owned, operated, or administered properties used for BART operations, support, maintenance, or administration",
+      "property, facilities, or vehicles for which BART owes policing responsibilities to a local government under an operations and maintenance agreement or similar interagency agreement"
+    ],
+    "implementation_interpretation": "The defensible production target is a custom California multi-county BART system/property footprint. If the geometry stack cannot yet support that custom footprint, broad overlap is safer than inventing local precision with Alameda County or Oakland."
+  },
+  "administrative_label_assessment": {
+    "county_tagged_naming_is_administrative_artifact": true,
+    "supporting_repo_evidence": [
+      "The 2024 FBI-derived roster in the repo contains separate BART rows for Alameda, Contra Costa, San Francisco, and San Mateo counties rather than a single countywide local agency row.",
+      "CA0012100, CA0380500, and CA0412300 share the same Oakland-area roster coordinate even though they carry different county tags, which is not consistent with true county-localized police agencies.",
+      "The validation layer assigns place_fips 53000 to CA0012100, CA0071800, and CA0380500, and local provisional matching decodes 53000 as Oakland. Reusing the same Oakland anchor for multiple county-labeled BART rows shows the place anchor is only an administrative heuristic."
+    ],
+    "implication": "Neither the county tag nor the Oakland anchor should be promoted into production geography. They are evidence of roster slicing, not evidence that CA0012100 is actually an Alameda County or Oakland police footprint."
+  },
+  "why_simple_proxies_fail": {
+    "single_county_proxy": [
+      "Alameda County is too narrow for the true BART policing layer because official BART materials document a five-county system.",
+      "A county polygon would also be too broad because BART police authority follows system properties and facilities, not all territory inside Alameda County."
+    ],
+    "single_place_proxy": [
+      "Oakland is only an administrative anchor in repo matching and cannot represent system properties in Contra Costa, San Francisco, San Mateo, and Santa Clara Counties.",
+      "The same Oakland anchor is reused for multiple county-labeled BART rows, which is incompatible with treating Oakland as a true footprint."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing CA0012100 into Alameda County Sheriff, Oakland Police, or another local primary would erase a real special-jurisdiction transit police layer that official BART and California law treat as distinct.",
+      "Concurrent local policing around stations does not turn BART into a county or municipal patrol geography."
+    ],
+    "countywide_multi_county_proxy": [
+      "Even a five-county union polygon would overstate the real footprint because BART police authority follows track, stations, vehicles, parking, and district properties, not whole counties."
+    ]
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a California multi-county BART footprint consisting of BART-owned, operated, or administered properties and vehicles: the active rail network, guideway/trackway, stations, station parking, yards, tunnels, maintenance and administrative facilities, and any additional facilities or vehicles for which BART officially owes policing responsibilities under interagency agreement.",
+    "geometry_guidance": [
+      "Use official BART system and police materials as the semantic basis for geometry creation.",
+      "Represent the footprint as a network/system-property layer, not as Alameda County, Oakland, or any other local government polygon.",
+      "Include system branches and facilities in all counties BART currently serves, including the current Santa Clara extension, rather than freezing the footprint to the older four-county police-report wording.",
+      "Do not broaden the geometry to full county polygons or to generalized station-buffer halos unless those shapes are separately justified in production methodology.",
+      "If only partial geometry is available, broad overlap is preferable to a false local proxy."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "not_recommended": [
+      "localize_to_alameda_county",
+      "localize_to_oakland",
+      "localize_to_any_single_bart_county_row",
+      "localize_to_union_of_entire_served_counties",
+      "absorb_into_primary_jurisdiction"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": true,
+    "exact_recommended_production_disposition": "custom BART transit-system-and-district-property footprint; otherwise keep broad overlap"
+  },
+  "authoritative_sources_used": [
+    "https://www.bart.gov/about",
+    "https://www.bart.gov/about/police",
+    "https://www.bart.gov/about/police/zones",
+    "https://www.bart.gov/sites/default/files/docs/BPD%20Strategic%20Plan%20Draft%202023%20-%202027%20-%20FINAL.pdf",
+    "https://www.bart.gov/sites/default/files/docs/BART%20Police%20AR%2010_16_17.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=830.33.",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PUC&sectionNum=99170."
+  ],
+  "local_repo_evidence_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/agency_rosters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/provisional_local_agency_matches.csv"
+  ]
+}

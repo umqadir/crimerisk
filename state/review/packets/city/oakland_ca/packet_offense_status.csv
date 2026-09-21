@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,admission_mode,share_lane_disposition,total_lane_disposition
+oakland_ca,aggravated_assault,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+oakland_ca,burglary,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+oakland_ca,larceny,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+oakland_ca,motor_vehicle_theft,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+oakland_ca,murder,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+oakland_ca,rape,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+oakland_ca,robbery,True,False,True,pass_share_only,share_only,admit_share_only,official_control

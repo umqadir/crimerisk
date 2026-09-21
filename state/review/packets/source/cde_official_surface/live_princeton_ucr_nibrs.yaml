@@ -1,0 +1,341 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Main Content" [ref=e2] [cursor=pointer]:
+    - /url: "#s-lg-guide-main"
+  - generic [ref=e5]:
+    - link "Princeton University Library" [ref=e7] [cursor=pointer]:
+      - /url: https://library.princeton.edu
+      - img "Princeton University Library" [ref=e8]
+    - link "Research Guides" [ref=e16] [cursor=pointer]:
+      - /url: https://libguides.princeton.edu/
+      - generic [ref=e17]: Research Guides
+    - navigation "Main Navigation" [ref=e18]:
+      - list [ref=e19]:
+        - listitem [ref=e20]:
+          - link "Help" [ref=e21] [cursor=pointer]:
+            - /url: https://library.princeton.edu/help
+        - listitem [ref=e22]:
+          - link "Your Accounts" [ref=e23] [cursor=pointer]:
+            - /url: https://library.princeton.edu/services/accounts
+  - generic [ref=e24]:
+    - navigation "breadcrumb" [ref=e25]:
+      - list [ref=e26]:
+        - listitem [ref=e27]:
+          - link " Princeton University Library":
+            - /url: https://library.princeton.edu
+        - listitem [ref=e28]:
+          - text: /
+          - link "Research Guides" [ref=e29] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/
+        - listitem [ref=e30]:
+          - text: /
+          - link "Economics & Finance" [ref=e31] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/economics-guides
+        - listitem [ref=e32]:
+          - text: /
+          - link "Crime data and statistics" [ref=e33] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/crime
+        - listitem [ref=e34]: / Uniform Crime Reporting System (UCR) & National Incident Based Reporting System (NIBRS)
+    - search [ref=e38]:
+      - generic [ref=e39]:
+        - textbox "Search this Guide" [ref=e40]
+        - generic [ref=e41]: Search this Guide
+        - button "Search" [ref=e43] [cursor=pointer]
+    - generic [ref=e44]:
+      - heading "Crime data and statistics" [level=1] [ref=e45]
+      - generic [ref=e46]: Guide to crime data and statistics
+  - generic [ref=e48]:
+    - navigation "Guide Pages" [ref=e51]:
+      - list [ref=e52]:
+        - listitem [ref=e53]:
+          - link "Home" [ref=e54] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/c.php?g=563458&p=3879275
+        - listitem [ref=e55]:
+          - link "International" [ref=e56] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/crime/International
+        - listitem [ref=e57]:
+          - link "USA" [ref=e58] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/crime/USA
+        - listitem [ref=e59]:
+          - link "Uniform Crime Reporting System (UCR) & National Incident Based Reporting System (NIBRS)" [ref=e60]:
+            - /url: https://libguides.princeton.edu/crime/UCR-NIBRS
+          - list [ref=e61]:
+            - listitem [ref=e62]:
+              - link "Uniform Crime Reporting System (UCR) & National Incident Based Reporting System (NIBRS)" [ref=e63] [cursor=pointer]:
+                - /url: "#s-lg-box-11999652"
+        - listitem [ref=e64]:
+          - link "Incarerated" [ref=e65] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/crime/Incarerated
+        - listitem [ref=e66]:
+          - link "Law Enforcement Personnel / Police  This link opens in a new window" [ref=e67] [cursor=pointer]:
+            - /url: https://faq.library.princeton.edu/econ/faq/210572
+            - text: Law Enforcement Personnel / Police
+            - generic "This link opens in a new window" [ref=e68]:
+              - text: 
+              - generic [ref=e69]: This link opens in a new window
+        - listitem [ref=e70]:
+          - link "FAQ  This link opens in a new window" [ref=e71] [cursor=pointer]:
+            - /url: http://faq.library.princeton.edu/econ/search/?q=crime&t=0
+            - text: FAQ
+            - generic "This link opens in a new window" [ref=e72]:
+              - text: 
+              - generic [ref=e73]: This link opens in a new window
+    - generic [ref=e85]:
+      - paragraph [ref=e86]:
+        - strong [ref=e87]:
+          - link "Uniform Crime Reporting Program Data [United States] (1960+)" [ref=e88] [cursor=pointer]:
+            - /url: https://www.icpsr.umich.edu/web/ICPSR/series/57
+        - strong [ref=e89]: Scope
+        - text: ": Periodic nationwide assessments of reported crimes. The UCR program was subsequently expanded to capture incident-level data with the implementation of the"
+        - link "National Incident-Based Reporting System" [ref=e90] [cursor=pointer]:
+          - /url: https://dss.princeton.edu/resources/482
+        - text: . The
+        - link "NIBRS" [ref=e91] [cursor=pointer]:
+          - /url: https://dss.princeton.edu/resources/482
+        - text: data focus on various aspects of a crime incident. Gathering of hate crime data by the UCR program was began in 1990. Hate crimes are defined as crimes that manifest evidence of prejudice based on race, religion, sexual orientation, or ethnicity. In September 1994, disabilities, both physical and mental, were added to the list. Also see
+        - link "Missing Data in the Uniform Crime Reports, 1977-2000" [ref=e92] [cursor=pointer]:
+          - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/32061
+        - text: . Select data is also contained in
+        - link "Sage Data" [ref=e93] [cursor=pointer]:
+          - /url: https://libguides.princeton.edu/resource/4899
+        - text: .
+        - link "1930-1959" [ref=e94] [cursor=pointer]:
+          - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/3666
+        - text: are available as scans of the books.
+        - strong [ref=e95]: Where is the documentation
+        - text: ":"
+        - link "ICPSR site" [ref=e96] [cursor=pointer]:
+          - /url: https://www.icpsr.umich.edu/web/ICPSR/series/57
+        - strong [ref=e97]: "Sample Size:"
+        - text: Over 4,500 agencies reporting since 1998.
+        - strong [ref=e98]: "Unit of Analysis:"
+      - list [ref=e99]:
+        - listitem [ref=e100]:
+          - strong [ref=e101]: Agency-Level UCR Data
+      - paragraph [ref=e102]:
+        - text: The
+        - strong [ref=e103]: agency-level
+        - text: "data, where the unit of analysis is the police agency (or incident for Supplementary Homicide Reports and Hate Crime) and contain information on:"
+      - list [ref=e104]:
+        - listitem [ref=e105]:
+          - strong [ref=e106]: Offenses known and clearances by arrest
+        - listitem [ref=e107]:
+          - strong [ref=e108]: Property stolen and recovered.
+          - text: Aggregated at the agency-level, report on the nature of the crime, the monetary value of the property stolen, and the type of property stolen.
+        - listitem [ref=e109]:
+          - strong [ref=e110]: Supplementary Homicide Reports (SHR)
+          - text: provide incident-based information on criminal homicides. Contain information describing the victim(s) of the homicide, the offender(s), the relationship between victim and offender, the weapon used, and the circumstance of the incident.
+        - listitem [ref=e111]:
+          - strong [ref=e112]: Police Employee (LEOKA) Data
+          - text: provide information about Law Enforcement Officers Killed or Assaulted in the line of duty. Provide in-depth information on the circumstances surrounding killings or assaults, including type of call answered, type of weapon used, and type of patrol the officers were on.
+        - listitem [ref=e113]:
+          - strong [ref=e114]: Hate Crime Data
+          - text: includes number of victims and offenders involved in each hate crime incident, type of victims, bias motivation, offense type, and location type.
+        - listitem [ref=e115]:
+          - strong [ref=e116]: Arrests by age, sex, and race
+        - listitem [ref=e117]:
+          - strong [ref=e118]: Arson
+      - list [ref=e119]:
+        - listitem [ref=e120]:
+          - strong [ref=e121]: Incident-Level UCR Data
+      - paragraph [ref=e122]:
+        - strong [ref=e123]: Incident-level
+        - text: data are collected through the
+        - link "National Incident-Based Reporting System (NIBRS)" [ref=e124] [cursor=pointer]:
+          - /url: http://www.icpsr.umich.edu/icpsrweb/ICPSR/series/128
+        - text: component of the UCR.
+        - link "NIBRS" [ref=e125] [cursor=pointer]:
+          - /url: http://www.icpsr.umich.edu/icpsrweb/ICPSR/series/128
+        - text: collects data on each single incident and arrest within 24 offense categories made up of 52 specific crimes called Group A offenses. For each of the offenses coming to the attention of law enforcement, specified types of facts about each crime are collected. In addition to the Group A offenses, there are 10 Group B offense categories for which only arrest data are reported. More information about this study can be found in the
+        - link "NIBRS Resource Guide" [ref=e126] [cursor=pointer]:
+          - /url: https://www.icpsr.umich.edu/web/pages/NACJD/NIBRS/index.html
+        - text: . Beginning in January, 2021, the FBI’s National Incident-Based Reporting System (NIBRS) became the national standard for law enforcement crime data reporting in the United States. The transition to NIBRS represented a significant improvement in how reported crime is measured and estimated by the federal government.
+      - paragraph [ref=e127]: As of May 2024—
+      - list [ref=e128]:
+        - listitem [ref=e129]: all 50 U.S. states and the District of Columbia are certified to report crime data to NIBRS
+        - listitem [ref=e130]: 82% of the U.S. population is covered by NIBRS-reporting law enforcement agencies
+        - listitem [ref=e131]: 125 of the 154 police agencies serving cities and counties with a population of 250,000 or more are reporting to NIBRS, covering a total population of more than 76.7 million persons.
+      - paragraph [ref=e132]:
+        - text: See
+        - link "coverage map" [ref=e133] [cursor=pointer]:
+          - /url: https://bjs.ojp.gov/national-incident-based-reporting-system-nibrs#0-0
+        - text: .
+      - paragraph [ref=e134]:
+        - strong [ref=e135]: County-Level UCR Data
+      - paragraph [ref=e136]:
+        - text: Note UCR County Codes are different than FIPS codes. To convert use the
+        - generic [ref=e138]:
+          - link "Law Enforcement Agency Identifiers Crosswalk" [ref=e139] [cursor=pointer]:
+            - /url: https://www.icpsr.umich.edu/web/NACJD/studies/35158/variables?q=county
+          - text: .
+        - text: The
+        - strong [ref=e140]: county-level
+        - text: "Uniform Crime Reporting files contain only arrests and crimes reported data and are distributed annually as 4 separate data files:"
+      - list [ref=e141]:
+        - listitem [ref=e142]: Arrests, All Ages
+        - listitem [ref=e143]: Arrests, Adults
+        - listitem [ref=e144]: Arrests, Juveniles
+        - listitem [ref=e145]: Crimes Reported
+      - paragraph [ref=e146]: Beginning in 1993, an Allocated Statewide Data file is also distributed for each part above. The Statewide data files provide the amount of data from statewide agencies allocated to each county based on the county's share of the state population. These Statewide data files can also be used to "back out" the statewide counts if only the county total is desired.
+      - paragraph [ref=e147]:
+        - strong [ref=e148]: Major Studies that have used this data
+        - text: ":"
+        - link "ICPSR Related Publications Site" [ref=e149] [cursor=pointer]:
+          - /url: https://www.icpsr.umich.edu/web/ICPSR/series/57/publications
+        - text: .
+      - paragraph [ref=e150]:
+        - text: "State Participants in NIBRS:"
+        - link "2023" [ref=e151] [cursor=pointer]:
+          - /url: https://nibrs.fbi.gov/2023/
+        - text: ","
+        - link "2022" [ref=e152] [cursor=pointer]:
+          - /url: https://nibrs.fbi.gov/2022/
+        - text: ","
+        - link "2021" [ref=e153] [cursor=pointer]:
+          - /url: https://nibrs.fbi.gov/2021/
+        - text: ","
+        - link "2020" [ref=e154] [cursor=pointer]:
+          - /url: https://crsreports.congress.gov/product/pdf/IN/IN11936
+        - text: ","
+        - link "2019, 2018," [ref=e155] [cursor=pointer]:
+          - /url: https://ucr.fbi.gov/nibrs/2019/tables/pdfs/participation_by_state_2019.pdf
+        - link "2017" [ref=e156] [cursor=pointer]:
+          - /url: https://ucr.fbi.gov/nibrs/2017/tables/pdfs/participation_by_state_2017.pdf/at_download/file
+        - text: ","
+        - link "2016" [ref=e157] [cursor=pointer]:
+          - /url: https://ucr.fbi.gov/nibrs/2016/tables/pdfs/participation_by_state_2016.pdf/at_download/file
+        - text: ","
+        - link "2015" [ref=e158] [cursor=pointer]:
+          - /url: https://ucr.fbi.gov/nibrs/2015/tables/pdfs/participation_by_state_2015.pdf/at_download/file
+        - text: ","
+        - link "2014" [ref=e159] [cursor=pointer]:
+          - /url: https://ucr.fbi.gov/nibrs/2014/tables/by-state/participation_by_state_2014_final.pdf
+        - text: ","
+        - link "2013" [ref=e160] [cursor=pointer]:
+          - /url: https://ucr.fbi.gov/nibrs/2013/resources/nibrs-participation-by-state
+        - text: ","
+        - link "2012 with history" [ref=e161] [cursor=pointer]:
+          - /url: https://web.archive.org/web/20180917185950/http://www.jrsa.org/ibrrc/background-status/nibrs-states.html
+      - paragraph [ref=e162]:
+        - text: Also see
+        - 'link "Jacob Kaplan''s Concatenated Files: National Incident-Based Reporting System (NIBRS) Data, 1991-2024" [ref=e163] [cursor=pointer]':
+          - /url: https://www.openicpsr.org/openicpsr/project/118281
+        - text: .
+      - paragraph [ref=e164]: Also see Jacob Kaplan's Concatenated files on Uniform Crime Reporting
+      - generic [ref=e167]:
+        - paragraph [ref=e168]
+        - list [ref=e173]:
+          - listitem [ref=e174]:
+            - strong [ref=e175]:
+              - link "Arrests by Age, Sex, and Race, 1974-2024" [ref=e176] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/102263/
+          - listitem [ref=e177]:
+            - strong [ref=e178]:
+              - link "Offenses Known and Clearances by Arrest (Return A), 1960-2024" [ref=e179] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/100707
+          - listitem [ref=e180]:
+            - strong [ref=e181]:
+              - link "Supplementary Homicide Reports (SHR), 1976-2024" [ref=e182] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/100699/
+          - listitem [ref=e183]:
+            - strong [ref=e184]:
+              - link "Arson 1979-2024" [ref=e185] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/103540
+          - listitem [ref=e186]:
+            - strong [ref=e187]:
+              - link "Hate Crime Data 1991-2024" [ref=e188] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/103500
+          - listitem [ref=e189]:
+            - strong [ref=e190]:
+              - link "Human Trafficking 2013-2019" [ref=e191] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/117974/version/V3/view
+          - listitem [ref=e192]:
+            - strong [ref=e193]:
+              - link "Property Stolen and Recovered (Supplement to Return A) 1960-2024" [ref=e194] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/105403/
+          - listitem [ref=e195]:
+            - strong [ref=e196]:
+              - link "Law Enforcement Officers Killed and Assaulted (LEOKA) 1960-2024" [ref=e197] [cursor=pointer]:
+                - /url: https://www.openicpsr.org/openicpsr/project/102180
+  - generic [ref=e198]:
+    - generic [ref=e199]:
+      - list:
+        - listitem [ref=e200]: "Last Updated: Aug 21, 2025 3:40 PM"
+        - listitem [ref=e201]: "URL: https://libguides.princeton.edu/crime"
+        - listitem [ref=e202]:
+          - link "Print Page" [ref=e203] [cursor=pointer]:
+            - /url: "javascript: window.print();"
+            - generic [ref=e204]: 
+            - text: Print Page
+      - link "Login to LibApps" [ref=e206] [cursor=pointer]:
+        - /url: https://princeton.libapps.com/libapps/login.php?site_id=77&target64=L2xpYmd1aWRlcy9hZG1pbl9jLnBocD9nPTU2MzQ1OCZwPTM4NzkyNzk=
+    - generic [ref=e208]:
+      - text: "Subjects:"
+      - 'link "Economics: Economic Data" [ref=e210] [cursor=pointer]':
+        - /url: https://libguides.princeton.edu/sb.php?subject_id=222734
+  - text:  
+  - generic [ref=e214]:
+    - generic [ref=e215]:
+      - generic [ref=e216]:
+        - link "Princeton University Library" [ref=e218] [cursor=pointer]:
+          - /url: https://library.princeton.edu
+          - img "Princeton University Library" [ref=e219]
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - text: One Washington Road
+            - text: Princeton, NJ 08544-2098 USA
+          - link "(609) 258-1470" [ref=e232] [cursor=pointer]:
+            - /url: tel:1-609-258-1470
+      - generic [ref=e233]:
+        - heading "Subscribe to our Newsletter" [level=2] [ref=e234]
+        - generic [ref=e237]:
+          - generic [ref=e238]:
+            - generic [ref=e239]: Email address
+            - textbox "Email address" [ref=e241]:
+              - /placeholder: ""
+          - button "Subscribe" [ref=e242] [cursor=pointer]
+          - generic [ref=e243]: Opens the form in a new tab
+          - textbox [ref=e245]
+        - generic [ref=e246]:
+          - link "PUL X" [ref=e247] [cursor=pointer]:
+            - /url: https://x.com/PULibrary
+            - img "PUL X" [ref=e248]
+          - link "PUL Facebook" [ref=e251] [cursor=pointer]:
+            - /url: http://www.facebook.com/PULibrary
+            - img "PUL Facebook" [ref=e252]
+          - link "PUL Instagram" [ref=e256] [cursor=pointer]:
+            - /url: https://www.instagram.com/PULibrary/
+            - img "PUL Instagram" [ref=e257]
+          - link "Government Docs" [ref=e260] [cursor=pointer]:
+            - /url: https://libguides.princeton.edu/usgovdocs
+            - img "Government Docs" [ref=e261]
+          - link "Friends of Princeton University Library" [ref=e269] [cursor=pointer]:
+            - /url: https://fpul.princeton.edu/
+            - img "Friends of Princeton University Library" [ref=e270]
+      - navigation "Library Staff" [ref=e278]:
+        - list [ref=e279]:
+          - listitem [ref=e280]:
+            - link "For Library Staff" [ref=e281] [cursor=pointer]:
+              - /url: https://library.princeton.edu/library-staff
+          - listitem [ref=e282]:
+            - link "Staff Directory" [ref=e283] [cursor=pointer]:
+              - /url: https://library.princeton.edu/about/staff-directory
+          - listitem [ref=e284]:
+            - link "Library Jobs" [ref=e285] [cursor=pointer]:
+              - /url: https://library.princeton.edu/about/employment
+          - listitem [ref=e286]:
+            - link "Princeton University Privacy Notice (opens in new tab)" [ref=e288] [cursor=pointer]:
+              - /url: https://www.princeton.edu/privacy-notice
+              - text: Princeton University Privacy Notice
+              - img "(opens in new tab)" [ref=e290]
+    - generic [ref=e298]:
+      - link "Accessibility Help (opens in new tab)" [ref=e301] [cursor=pointer]:
+        - /url: https://accessibility.princeton.edu/help
+        - text: Accessibility Help
+        - img "(opens in new tab)" [ref=e303]
+      - generic [ref=e312]: © 2026 The Trustees of Princeton University
+      - link "Princeton University" [ref=e314] [cursor=pointer]:
+        - /url: https://www.princeton.edu
+        - img "Princeton University" [ref=e315]
+  - region "Chat Widget":
+    - button [ref=e337] [cursor=pointer]:
+      - img [ref=e338]

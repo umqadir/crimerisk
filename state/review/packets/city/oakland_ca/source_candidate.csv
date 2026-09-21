@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+oakland_ca,"Oakland, California",06:municipal:place:0653000,Oakland Police Department CrimeWatch Data (Socrata ppgh-7dqv),https://data.oaklandca.gov/Public-Safety/CrimeWatch-Data/ppgh-7dqv,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

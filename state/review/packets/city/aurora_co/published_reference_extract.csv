@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,aggravated_assault,2896.0,cius_publication_annual,high
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,burglary,1477.0,cius_publication_annual,high
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,larceny,7305.0,cius_publication_annual,high
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,motor_vehicle_theft,3567.0,cius_publication_annual,high
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,murder,41.0,cius_publication_annual,high
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,rape,292.0,cius_publication_annual,high
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,robbery,542.0,cius_publication_annual,high

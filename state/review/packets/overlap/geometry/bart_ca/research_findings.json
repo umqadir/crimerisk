@@ -1,0 +1,189 @@
+{
+  "case_key": "bart_ca",
+  "ori": "CA0012100",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "CA0012100 should use a full-system BART property footprint built from official BART track, station, and entrance geometry across all served California counties, not an Alameda-only, Oakland-only, or board-district proxy.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "custom_system_property_footprint",
+    "official_scope_support": {
+      "source_url": "https://www.bart.gov/about/police/howto/faq",
+      "summary": "BART Police says officers investigate crimes that occur on BART property and within the BART District; broader statewide peace-officer authority exists but is not the routine property footprint."
+    },
+    "explicit_exclusions": [
+      "BART board district boundaries",
+      "Alameda County-only proxy",
+      "Oakland-only proxy",
+      "union of served counties as a blanket polygon",
+      "fabricated parking-lot polygons not present in the supplied official geometry"
+    ]
+  },
+  "source_validation": {
+    "gtfs": {
+      "documentation_page_url": "https://www.bart.gov/schedules/developers/gtfs",
+      "permalink_url": "https://www.bart.gov/dev/schedules/google_transit.zip",
+      "permalink_initial_status": 307,
+      "permalink_redirect_url": "https://www.bart.gov/sites/default/files/2026-02/google_transit_20260112-20260807_v04.zip",
+      "permalink_final_url": "https://www.bart.gov/sites/default/files/2026-02/google_transit_20260112-20260807_v04.zip",
+      "permalink_final_status": 200,
+      "feed_info": {
+        "feed_publisher_name": "Bay Area Rapid Transit",
+        "feed_publisher_url": "http://www.bart.gov",
+        "feed_start_date": "20260112",
+        "feed_end_date": "20260807",
+        "feed_version": "72"
+      },
+      "gtfs_counts": {
+        "routes_txt_rows": 14,
+        "trips_txt_rows": 2701,
+        "stops_txt_rows": 287,
+        "station_rows_location_type_1": 50,
+        "entrance_rows_location_type_2": 132
+      },
+      "interpretation": "GTFS confirms the current public BART service network and station-stop inventory and is suitable as a stable QA/support source behind the stronger KMZ geometry."
+    },
+    "kmz": {
+      "catalog_page_url": "https://www.bart.gov/schedules/developers/geo",
+      "kmz_url": "https://www.bart.gov/sites/default/files/2025-12/BART-Stations-tracks-entrances-121025.kmz_.zip",
+      "kmz_status": 200,
+      "kmz_last_modified": "Wed, 10 Dec 2025 17:36:22 GMT",
+      "layers": {
+        "Station Entrance": {
+          "row_count": 132,
+          "unique_parent_station_groups": 50
+        },
+        "BART Station": {
+          "row_count": 53,
+          "unique_station_names": 52,
+          "duplicate_station_names": {
+            "eBART Transfer": 2
+          }
+        },
+        "BART Track Centerline": {
+          "row_count": 1,
+          "geometry_type": "MultiLineString",
+          "parts": 96,
+          "length_km": 211.87644833714882
+        }
+      },
+      "interpretation": "The KMZ is the authoritative exact geometry source in this packet because it explicitly carries station entrances and the full track centerline, which are more specific than GTFS stop points alone."
+    }
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "track_buffer_m": 20,
+    "station_complex_method": "For each of the 50 official entrance groups, take the convex hull of all official entrance points plus the nearest official BART Station centroid, then buffer that hull by 45 meters in EPSG:5070.",
+    "extra_station_assets": {
+      "method": "Buffer unmatched official KMZ station centroids by 75 meters so they are not dropped as zero-area point assets.",
+      "asset_names": [
+        "Coliseum/Airport Connector",
+        "eBART Transfer"
+      ]
+    },
+    "why_this_is_defensible": [
+      "The KMZ provides exact official tracks and entrances but not station polygons, so a modest buffered-hull treatment is required to turn official point and line features into area geometry for block-group weighting.",
+      "Using entrance-group hulls keeps station complexes tied to official access points and linked centroids rather than inventing parking lots or using generic city/county buffers.",
+      "The two unmatched KMZ-only station assets, Coliseum/Airport Connector and eBART Transfer, would disappear without a small standalone buffer despite being explicit official station-layer features."
+    ],
+    "omissions_by_design": [
+      "No board-district geometry is used.",
+      "No parking lots are added because the requested official BART sources here do not supply parcel-grade parking geometry.",
+      "No off-property mutual-aid or statewide peace-officer area is modeled."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_06_bg.zip",
+    "intersected_counties": [
+      {
+        "county_fips": "001",
+        "block_groups": 170
+      },
+      {
+        "county_fips": "013",
+        "block_groups": 87
+      },
+      {
+        "county_fips": "075",
+        "block_groups": 57
+      },
+      {
+        "county_fips": "081",
+        "block_groups": 22
+      },
+      {
+        "county_fips": "085",
+        "block_groups": 18
+      }
+    ],
+    "intersected_county_fips_sorted": [
+      "001",
+      "013",
+      "075",
+      "081",
+      "085"
+    ],
+    "intersected_block_groups": 354,
+    "intersection_area_total_m2": 8669100.19774112,
+    "intersection_area_total_acres": 2142.1813113398975,
+    "weight_sum_exact": 1.0,
+    "weight_sum_rounded_csv": 0.999999999999995,
+    "largest_block_group_geoid": "060014506012",
+    "largest_block_group_share": 0.035050252095722,
+    "county_share_summary": [
+      {
+        "county_fips": "001",
+        "share_sum": 0.4946062136961084,
+        "area_acres": 1059.536187452391
+      },
+      {
+        "county_fips": "013",
+        "share_sum": 0.27742620335007434,
+        "area_acres": 594.2972280925114
+      },
+      {
+        "county_fips": "075",
+        "share_sum": 0.09714360124874599,
+        "area_acres": 208.0992071113188
+      },
+      {
+        "county_fips": "081",
+        "share_sum": 0.07873603193745662,
+        "area_acres": 168.6668561454809
+      },
+      {
+        "county_fips": "085",
+        "share_sum": 0.05208794976761464,
+        "area_acres": 111.58183253819544
+      }
+    ]
+  },
+  "qa_checks": {
+    "station_link_summary": {
+      "linked_station_group_count": 50,
+      "max_link_distance_m": 126.49820270544103,
+      "median_link_distance_m": 19.322874897818902,
+      "groups_over_100m": [
+        {
+          "parent_station": "place_PITT",
+          "linked_station_name": "Pittsburg/Bay Point",
+          "centroid_dist_m": 126.49820270544103
+        }
+      ]
+    },
+    "county_span_matches_bart_system": true,
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_after_csv_rounding": true
+  },
+  "residual_caveats": [
+    "This is a conservative system-property footprint. It includes tracks, entrances, and station complexes from the supplied official BART geometry, but it does not try to infer parking-parcel extents or maintenance yards from non-supplied sources.",
+    "Because the source geometry is line and point based, the station and guideway polygons depend on the documented 20 m and 45 m buffer assumptions. If BART later publishes parcel or station-footprint polygons, the packet should be regenerated from those exact surfaces.",
+    "Pittsburg/Bay Point is the only linked entrance group whose nearest official station centroid sat more than 100 meters away; that is recorded explicitly rather than hidden, but the asset is still official and remains in the build."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bart_ca/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bart_ca/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bart_ca/sources.csv"
+  }
+}

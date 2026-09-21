@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,admission_mode,share_lane_disposition,total_lane_disposition
+omaha_ne,aggravated_assault,False,False,False,reject,rejected,reject_share,official_control
+omaha_ne,burglary,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+omaha_ne,larceny,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+omaha_ne,motor_vehicle_theft,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+omaha_ne,murder,False,False,False,reject,rejected,reject_share,official_control
+omaha_ne,rape,False,False,False,reject,rejected,reject_share,official_control
+omaha_ne,robbery,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate

@@ -1,0 +1,14 @@
+{
+  "case_key": "islip_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610338000",
+  "jurisdiction_name": "Islip town",
+  "state_abbr": "NY",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/islip_ny",
+  "review_goal": "Determine whether Islip town should retain a town-level municipal control row or whether Suffolk County and village policing make the town-level target methodologically wrong.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

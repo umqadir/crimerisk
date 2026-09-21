@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,Colorado Springs Police Department Open Data Crime Level Data,https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

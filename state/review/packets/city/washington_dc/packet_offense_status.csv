@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,yes,offense_selective,exact_local_anchor,"Direct HOMICIDE mapping closes exactly to the 2024 MPD year-end table."
+rape,no,blocked,blocked_local_ontology,"Public MPD Sex Abuse is not treated as the repo's rape offense even though the numeric gap is only one incident."
+robbery,yes,offense_selective,exact_local_anchor,"Direct ROBBERY mapping is short by two incidents versus the 2024 MPD year-end table."
+aggravated_assault,yes,offense_selective,approximate_local_analogue_exact_anchor,"ASSAULT W/DANGEROUS WEAPON is a local analogue rather than a literal FBI aggravated-assault bucket, but it closes exactly to the 2024 MPD year-end table and remains spatially usable."
+burglary,yes,offense_selective,exact_local_anchor,"Direct BURGLARY mapping is high by two incidents versus the 2024 MPD year-end table."
+larceny,yes,offense_selective,close_exact_family_aggregation,"THEFT F/AUTO plus THEFT/OTHER closes within 64 incidents of the combined 2024 MPD theft-family total."
+motor_vehicle_theft,yes,offense_selective,exact_local_anchor,"Direct MOTOR VEHICLE THEFT mapping is short by one incident versus the 2024 MPD year-end table."

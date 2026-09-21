@@ -1,0 +1,159 @@
+{
+  "case_key": "uc_davis_ca",
+  "ori": "CA0579700",
+  "agency_name_raw": "un of ca: davis",
+  "state_abbr": "CA",
+  "review_date": "2026-03-24",
+  "question": "What is the most defensible production footprint for CA0579700, University of California Davis: a bounded campus footprint, a larger city/county proxy, a broader university-system row, or broad overlap pending a custom campus footprint?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "campus",
+    "footprint_type": "uc_davis_multi_campus_property_footprint",
+    "fallback_if_custom_geometry_not_supported": "keep_broad_overlap",
+    "production_ready": false,
+    "confidence": 0.97
+  },
+  "repo_evidence": {
+    "queue_row": "The live overlap localization queue currently anchors CA0579700 to Davis place 18100 in Yolo County 113 and marks it proxy-safe, but the tracker already records that higher-tier review escalated the row because official police coverage spans Davis and Sacramento campuses.",
+    "fbi_roster_and_leaic_shape": "Local repo FBI roster and LEAIC files both show a single CA0579700 / CA05797 UC Davis police row anchored at One Shields Avenue in Davis. No separate Sacramento UC Davis police ORI appears in the local roster evidence, which supports treating this as one reporting row with a multi-campus service footprint rather than as separate Davis-only and Sacramento-only ORIs."
+  },
+  "verified_findings": [
+    {
+      "topic": "UCDPD is one department with both Davis and Sacramento public-facing commands",
+      "finding": "The official UC Davis Police homepage lists separate 24-hour emergency and non-emergency contacts for Davis and Sacramento under one department, confirming that the active policing organization is not confined to one Davis-only campus node."
+    },
+    {
+      "topic": "Official Davis patrol scope",
+      "finding": "The official Davis Campus patrol page says the Davis campus, including UC properties in the city of Davis, is patrolled 24/7 by UC Davis Police officers. That is narrower than Davis city as a whole but broader than a single central-campus parcel."
+    },
+    {
+      "topic": "Official Sacramento patrol scope",
+      "finding": "The official Sacramento Campus patrol page says the Sacramento campus, including UC properties and surrounding areas, is patrolled 24/7 by UC Davis Police officers. That is direct official evidence that the same department serves a second campus in Sacramento rather than only the Davis campus."
+    },
+    {
+      "topic": "Official city-versus-campus policing distinction",
+      "finding": "UC Davis international-student safety guidance tells readers they may see UC Davis Police on campus, Davis Police Department around town in Davis, and Sacramento Police Department in Sacramento. This distinguishes campus policing from adjacent municipal citywide policing and argues against a Davis-city or Sacramento-city proxy."
+    },
+    {
+      "topic": "The Davis campus is not coterminous with Davis city and is not even single-county",
+      "finding": "Official UC Davis materials describe the main Davis campus as a 5,300-acre campus bordering the City of Davis, and environmental-planning materials describe the Davis campus as lying in Yolo and Solano Counties. That defeats both a Davis-place proxy and a Yolo-county proxy."
+    },
+    {
+      "topic": "UC Davis officially operates two campus locations while also having many off-campus facilities",
+      "finding": "Official Sacramento environmental-planning material says UC Davis operates two world-class campus locations: the 5,300-acre Davis campus and the 150-acre Sacramento campus. The same source also says UC Davis Health includes on-campus facilities in Davis and Sacramento as well as dozens of off-campus leased and owned facilities throughout the Sacramento region."
+    },
+    {
+      "topic": "The Sacramento campus is a bounded health-campus footprint, not Sacramento city or county",
+      "finding": "Official UC Davis Health locations and map materials describe the Sacramento campus as a 150-acre campus and provide a dedicated campus map for the hospital, cancer center, nursing and medical-school buildings, research buildings, parking structures, and related campus facilities. That supports a bounded health-campus component rather than a Sacramento city or county proxy."
+    },
+    {
+      "topic": "Official public safety and crime reporting is campus-centered, not whole-system geography",
+      "finding": "Official UC Davis public safety materials repeatedly separate Davis and Sacramento campus operations, and the Clery annual security report says its information applies to both the Davis and UCD Health campuses. Inference from those sources plus the single FBI roster row: CA0579700 is best understood as one UCDPD reporting row covering those campuses, not the entire statewide set of UC Davis laboratories, reserves, clinics, or extension sites."
+    },
+    {
+      "topic": "California law grants broader authority than the routine production geometry",
+      "finding": "California Education Code section 92600 allows University of California police authority on UC campuses and within one mile of their exterior boundaries, as well as on other grounds or properties owned, operated, controlled, or administered by the Regents. That legal authority is broader than the routine operational geometry described on UC Davis police pages and should not be converted into a blanket city, county, or one-mile buffer for production."
+    }
+  ],
+  "service_jurisdiction_footprint": {
+    "entity_type": "single university police department with a discontiguous two-campus operational footprint",
+    "is_multi_campus": true,
+    "is_multi_county": true,
+    "is_single_place_proxy_safe": false,
+    "is_single_county_proxy_safe": false,
+    "legal_backdrop": {
+      "authority_source": "California Education Code section 92600, incorporated through Penal Code section 830.2",
+      "operational_interpretation": "The statute gives UC police authority on UC campuses, within one mile of campus boundaries, and on other Regents property, but the operational UC Davis sources consistently frame ordinary policing and public-facing reporting around the Davis campus and the Sacramento campus rather than around all legally reachable geography."
+    },
+    "include": [
+      "the UC Davis Davis campus footprint, including its Davis-campus land in Yolo and Solano Counties",
+      "UC properties in the city of Davis that the official Davis patrol page says are patrolled by UC Davis Police",
+      "the UC Davis Sacramento / UC Davis Health campus shown in official campus-planning and campus-map materials",
+      "the mapped Sacramento campus facilities and directly associated campus properties served by the Sacramento patrol division"
+    ],
+    "exclude": [
+      "Davis city as a whole",
+      "Yolo County as a whole",
+      "Sacramento city as a whole",
+      "Sacramento County as a whole",
+      "all UC Davis off-campus clinics and leased facilities across the broader Sacramento region unless they are explicitly folded into a future official UCDPD custom geometry",
+      "the whole UC Davis institutional network, including remote research, reserve, or extension properties that are not part of the routine Davis or Sacramento patrol footprint",
+      "a blanket one-mile statutory halo around every campus boundary"
+    ],
+    "important_interpretation": "This is still a campus overlap row, but not a classic single-campus place-safe case. The defensible footprint is a custom multi-campus UC property footprint, not a broader university-system row and not a municipal/county substitute."
+  },
+  "proxy_assessment": {
+    "single_place_proxy": {
+      "defensible": false,
+      "why_not": "Davis place misses the Sacramento campus and also overstates the Davis component by turning a 5,300-acre campus-and-UC-property footprint into an entire city. Sacramento place fails in the opposite direction by dropping the Davis component. No single place captures the reported footprint."
+    },
+    "single_county_proxy": {
+      "defensible": false,
+      "why_not": "Yolo County misses the Solano portion of the Davis campus and misses Sacramento entirely. Sacramento County misses Davis entirely. The row is multi-county and discontiguous."
+    },
+    "broader_university_system_proxy": {
+      "defensible": false,
+      "why_not": "Official environmental-planning material shows UC Davis and UC Davis Health have additional off-campus facilities and clinics beyond the two campuses, but official police materials center the department on Davis and Sacramento campus patrol divisions. Treating the row as the whole UC Davis system would be an over-expansion."
+    },
+    "absorb_into_primary_jurisdiction": {
+      "defensible": false,
+      "why_not": "Absorbing the row into Davis PD, Sacramento PD, Yolo County, or Sacramento County would erase a real special-jurisdiction university police layer that official UC Davis materials keep operationally separate."
+    },
+    "keep_broad_overlap_forever": {
+      "defensible": false,
+      "why_not": "The row is not diffuse or statewide. Official materials support a real bounded, if discontiguous, campus-property footprint. Broad overlap is appropriate only as a temporary fallback until the custom geometry exists."
+    }
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a discontiguous UC Davis police footprint combining the Davis campus and directly served UC properties in and around Davis with the Sacramento UC Davis Health campus and directly associated mapped campus properties.",
+    "geometry_guidance": [
+      "Use official UC Davis campus-planning materials for the Davis campus footprint rather than Davis city or Yolo County.",
+      "Treat the Davis component as a multi-county campus footprint because official UC Davis planning materials place the Davis campus in Yolo and Solano Counties.",
+      "Use official UC Davis Health campus maps and campus-planning materials for the Sacramento component rather than Sacramento city or Sacramento County.",
+      "Do not inflate the footprint to all UC Davis or UC Davis Health off-campus clinics, reserves, or remote facilities without specific official evidence that those properties are part of the routine UCDPD reporting geometry.",
+      "Do not translate Education Code section 92600 into a blanket one-mile perimeter buffer in production absent official parcel-level or patrol-footprint evidence."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "fallback_why": [
+      "If production cannot yet represent a discontiguous two-campus university footprint, broad overlap is safer than a false Davis, Yolo, Sacramento, or countywide proxy.",
+      "The queue's existing Davis/Yolo anchor is an administrative roster anchor, not a faithful service-footprint geometry."
+    ],
+    "not_recommended": [
+      "localize_to_place",
+      "localize_to_county",
+      "absorb_into_primary_jurisdiction",
+      "localize_to_davis_only",
+      "localize_to_sacramento_only",
+      "localize_to_full_uc_davis_institutional_network",
+      "localize_to_one_mile_statutory_buffers"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_remain_broad_overlap_until_custom_footprint_exists": true,
+    "exact_recommended_production_disposition": "custom UC Davis multi-campus campus-property footprint covering the Davis campus and the Sacramento UC Davis Health campus; otherwise keep broad overlap"
+  },
+  "authoritative_sources_used": [
+    "https://police.ucdavis.edu/",
+    "https://police.ucdavis.edu/uc-davis-difference/our-team/davis",
+    "https://police.ucdavis.edu/uc-davis-difference/our-team/sacramento",
+    "https://police.ucdavis.edu/dashboard",
+    "https://police.ucdavis.edu/crime-safety-data",
+    "https://police.ucdavis.edu/careers",
+    "https://siss.ucdavis.edu/emergency-contact-information/about-law-enforcement",
+    "https://transportation.ucdavis.edu/gethere",
+    "https://environmentalplanning.ucdavis.edu/",
+    "https://environmentalplanning.ucdavis.edu/sacramento",
+    "https://health.ucdavis.edu/patients-visitors/locations/",
+    "https://health.ucdavis.edu/common/includes/shared/map/UC-Davis-Sacramento-campus-map.pdf",
+    "https://clery.ucdavis.edu/sites/g/files/dgvnsk1761/files/media/documents/ASFSR-UCD-2024vOct2024_0.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?article=1.&chapter=6.&division=9.&lawCode=EDC&part=57.&title=3.",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=830.2.",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/agency_rosters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/LEAIC-Crosswalk-ICPSR_35158/DS0001/35158-0001-Data.tsv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/docs/TRACKER.md"
+  ]
+}

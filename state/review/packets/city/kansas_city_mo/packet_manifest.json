@@ -1,0 +1,203 @@
+{
+  "city_key": "kansas_city_mo",
+  "contract": {
+    "city_key": "kansas_city_mo",
+    "city_name": "Kansas City, Missouri",
+    "geography": {
+      "bounds": {
+        "max_latitude": 39.3931,
+        "max_longitude": -94.356379,
+        "min_latitude": 38.824259,
+        "min_longitude": -94.772366
+      },
+      "jurisdiction_id": "29:municipal:place:2938000",
+      "state_fips": "29"
+    },
+    "mapping": {
+      "date_field": "reported_date",
+      "id_field": "offense_row_id",
+      "latitude_field": "latitude",
+      "longitude_field": "longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "eq",
+              "value": "09A"
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "in",
+              "values": [
+                "11A",
+                "11B",
+                "11C"
+              ]
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "rape"
+        },
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "eq",
+              "value": "120"
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "eq",
+              "value": "13A"
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "eq",
+              "value": "220"
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "in",
+              "values": [
+                "23A",
+                "23B",
+                "23C",
+                "23D",
+                "23E",
+                "23F",
+                "23G",
+                "23H"
+              ]
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "ibrs",
+              "op": "eq",
+              "value": "240"
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "kcpd_offense",
+              "op": "eq",
+              "value": "Unfounded"
+            }
+          ],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://data.kcmo.org/resource/isbe-v4d8.json",
+      "name": "KCPD Crime Data 2024",
+      "order": "reported_date, report_no",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "report_no || '|' || ibrs || '|' || offense as offense_row_id",
+        "report_no",
+        "reported_date",
+        "ibrs",
+        "description",
+        "offense as kcpd_offense",
+        "location.latitude as latitude",
+        "location.longitude as longitude"
+      ],
+      "source_url": "https://data.kcmo.org/Public-Safety/KCPD-Crime-Data-2024/isbe-v4d8",
+      "where": "reported_date between '2024-01-01T00:00:00' and '2025-01-01T00:00:00' and location is not null and ibrs is not null"
+    },
+    "sources_checked": [
+      "https://data.kcmo.org/api/views?category=Public%20Safety&limit=1000",
+      "https://data.kcmo.org/api/views/isbe-v4d8",
+      "https://data.kcmo.org/resource/isbe-v4d8.json",
+      "https://data.kcmo.org/api/views/gqy2-yvmn"
+    ],
+    "worker_judgment_notes": "Uses the official DataKC/KCPD 2024 Socrata endpoint with exact NIBRS/IBRS code rules. The 2024 endpoint is involvement-level, so the selected id_field is a Socrata-projected report_no|ibrs|offense key to collapse duplicate people on the same report/offense; raw rows should not be interpreted as totals. Rape maps only penetration-category NIBRS sex offenses 11A/11B/11C, excluding fondling and statutory rape. Bounds are the KCMO municipal block-group envelope from the repo crosswalk; the runner's spatial join remains authoritative.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 7,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 6,
+    "offense_rows": 7,
+    "rows_in_surface": 2451,
+    "share_admitted_rows": 7,
+    "share_sum_pass_all": true
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate15_generic_onboarding/gate15_generic_20260615",
+  "runtime": {
+    "city_key": "kansas_city_mo",
+    "input_tokens": null,
+    "output_tokens": null,
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 12.400150209010462,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

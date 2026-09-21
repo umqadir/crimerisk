@@ -1,0 +1,256 @@
+CrimeRisk Methodology - Applied Geographic Solutions
+Version Release 2025B
+
+================================================================================
+PURPOSE
+================================================================================
+
+CrimeRisk is intended to provide an assessment of the relative risk of seven
+major crime types and their summarization to the block group scale.
+
+Relative crime rates are very important in real estate applications, insurance
+underwriting, shopping center and stand-alone retail facilities.
+
+================================================================================
+BASE GEOGRAPHY
+================================================================================
+
+Current Year (2025) – Census Block
+Projection Year (2030) – Census Block Group
+
+================================================================================
+CONTENT
+================================================================================
+
+CrimeRisk is a census block and higher-level geographic database consisting of
+a series of standardized indexes for a range of serious crimes against both
+persons and property. It is derived from an extensive analysis of several years
+of crime reports from the vast majority of law enforcement jurisdictions
+nationwide.
+
+The crimes included in the database are the "Part 1" crimes and include murder,
+rape, robbery, assault, burglary, theft, and motor vehicle theft. These
+categories are the primary reporting categories used by the FBI in its Uniform
+Crime Report (UCR), with the exception of Arson, for which data is very
+inconsistently reported at the jurisdictional level.
+
+In accordance with the reporting procedures using in the UCR reports, aggregate
+indexes have been prepared for personal and property crimes separately, as well
+as a total index. While this provides a useful measure of the relative "overall"
+crime rate in an area, it must be recognized that these are unweighted indexes,
+in that a murder is weighted no more heavily than a purse snatching in the
+computation. For this reason, caution is advised when using any of the aggregate
+index values.
+
+In 2020, 5-Year Projections were added to the database.
+
+================================================================================
+VARIABLES
+================================================================================
+
+Total Crime
+  Personal Crime
+    Murder
+    Robbery
+    Rape
+    Assault
+  Property Crime
+    Burglary
+    Larceny
+    Motor Vehicle Theft
+
+================================================================================
+DATA SOURCES
+================================================================================
+
+Federal Bureau of Investigation, Uniform Crime Report, 2018-2024, Applied
+Geographic Solutions, most current Estimates and Projections.
+
+================================================================================
+DETAILED METHODOLOGY
+================================================================================
+
+The primary source of CrimeRisk is a careful compilation and analysis of the
+FBI Uniform Crime Report databases.
+
+On an annual basis, the FBI collects data from each of about 16,000 separate
+law enforcement jurisdictions at the city, county, and state levels and compiles
+these into its annual Uniform Crime Report (UCR). The latest national crime
+reports can be obtained from the FBI web site in Excel format. While useful,
+the UCR provides detailed data only for the largest cities, counties, and
+metropolitan areas. We are now using UCR data from 2018-2024.
+
+Also, some cities are now posting very detailed crime reports to their websites
+that are available for download. These data have specific locations which are
+useful for matching against specific block groups. If the data is detailed
+enough and is available for the last seven years, we use it alongside the FBI
+UCR data. Currently data for New York, Chicago, Boston, Philadelphia, Baltimore,
+Seattle, Austin and Mesa fit these criteria, and we are adding more with each
+data release.
+
+A considerable effort was made to correct a number of problems that are
+prevalent within the FBI databases, including:
+
+- The standardization of jurisdictional names: the FBI does not employ Census
+  bureau codes in its databases and the jurisdictional names contain numerous
+  typographical errors and format discrepancies which needed to be manually
+  corrected
+
+- Reporting by individual jurisdictions can be inconsistent from year to year,
+  in that data for some jurisdictions is missing for one or more years and
+  required handling
+
+- Reporting for some crime types is inconsistent between jurisdictions. The FBI
+  handles this by simply suppressing the statistics entirely for those areas.
+  This primarily affects the rape category for Illinois, where statistics are
+  suppressed for all but the largest jurisdictions. These missing values were
+  handled via the modeling process, in which rape estimates were prepared for
+  these jurisdictions by using a model which related rape incidence to other
+  crime types
+
+- The standardization of the database to account for jurisdictional overlaps.
+  For example, the California Highway Patrol has jurisdiction over only state
+  and interstate highways in urban areas.
+
+- Crime rates in general have been declining over the past several years, so it
+  was necessary to adjust the historical data to reflect current crime rates.
+
+Once this correction and standardization effort was completed, the database
+consisted of a time series of seven years of data covering:
+
+- All cities and towns which have their own police agency
+
+- All cities and towns where policing for the local jurisdiction is contracted
+  to a higher level agency but which tracks statistics separately (e.g. the city
+  of Thousand Oaks, California contracts with the Ventura County Sheriff's
+  Department for police services, but the incident reports are separately
+  compiled)
+
+- A record for each state which covers the population not covered by either of
+  the two cases above. This is normally a combination of County Sheriff (or
+  equivalent) and State level jurisdictions. For a very limited number of areas,
+  such as New York City, the local jurisdiction spans several counties.
+
+The initial models were undertaken using a subset of this database. In the
+smallest cities, a single murder will have a profound effect on the crime rate
+per 100,000 population that would severely distort the resulting models. A wide
+range of Census and current year demographic attributes were extracted from AGS'
+databases for the remaining areas (approximately 10,000 separate "jurisdictions").
+This database was then used as the primary modeling database and was used later
+for scaling purposes. Each of the seven crime types was modeled separately,
+using an initial range of about 100 socioeconomic characteristics taken from the
+Census and AGS' current year estimates.
+
+Under AGS' no "redlining" policy, no data variables were used that relate to
+race, ethnicity, ancestry or language spoken at home.
+
+The models constructed typically accounted for over 85% of the variance in crime
+rates at this "jurisdiction" level, although it should be noted that the results
+for property crimes were generally more reliable than for personal crimes.
+
+The results of these models were then applied to the block group level using the
+same demographic attributes compiled at the block group level. The resulting
+estimates were then scaled to match the master database of jurisdictions. The
+block groups within each jurisdiction were scaled to match the crime totals for
+that jurisdiction. For block groups outside of these areas, results were
+normalized to match the state totals minus the jurisdiction totals within each
+state.
+
+The final crime rate estimates were then weighted by population and aggregated
+to the national totals. The results were then converted to indexes relative to
+the national total.
+
+In 2020, 5-Year Projections were added to the database. Crime Rates are
+carefully trended forward at the locale, state and national level using the last
+seven years of the FBI UCR report. Like with the current year data, crime rates
+are then modelled by block group using socioeconomic characteristics, but these
+data are based on our 5-year projected demographic data. These estimates are
+scaled, balanced and normalized similar to the current year data before being
+converted to indexes relative to the projected national averages.
+
+================================================================================
+DEFINITIONS
+================================================================================
+
+Source: Federal Bureau of Investigation, Uniform Crime Report
+
+The Uniform Crime Reporting (UCR) Program divides offenses into two groups,
+Part I and Part II crimes. Each month, participating law enforcement agencies
+submit information on the number of Part I offenses that become known to them;
+those offenses cleared by arrest or exceptional means; and the age, sex, and
+race of persons arrested for each of the offenses. Contributors provide only
+arrest data for Part II offenses. The UCR Program collects data about Part I
+offenses in order to measure the level and scope of crime occurring throughout
+the Nation. The program's founders chose these offenses because they are serious
+crimes, they occur with regularity in all areas of the country, and they are
+likely to be reported to police.
+
+The Part I offenses are:
+
+CRIMINAL HOMICIDE
+-----------------
+a) Murder and nonnegligent manslaughter: the willful (nonnegligent) killing of
+   one human being by another. Deaths caused by negligence, attempts to kill,
+   assaults to kill, suicides, and accidental deaths are excluded. The program
+   classifies justifiable homicides separately and limits the definition to:
+   (1) the killing of a felon by a law enforcement officer in the line of duty;
+   or (2) the killing of a felon, during the commission of a felony, by a
+   private citizen.
+
+b) Manslaughter by negligence: the killing of another person through gross
+   negligence. Deaths of persons due to their own negligence, accidental deaths
+   not resulting from gross negligence, and traffic fatalities are not included
+   in the category Manslaughter by Negligence.
+
+RAPE
+----
+In December 2011, the FBI changed their 80-year old definition of rape. As
+approved, the UCR Program's definition of rape is "Penetration, no matter how
+slight, of the vagina or anus with any body part or object, or oral penetration
+by a sex organ of another person, without the consent of the victim." This
+broader definition allows for gender neutrality, the penetration of any bodily
+orifice, penetration by any object or body part, and offenses in which physical
+force is not involved.
+
+ROBBERY
+-------
+The taking or attempting to take anything of value from the care, custody, or
+control of a person or persons by force or threat of force or violence and/or
+by putting the victim in fear.
+
+AGGRAVATED ASSAULT
+------------------
+An unlawful attack by one person upon another for the purpose of inflicting
+severe or aggravated bodily injury. This type of assault usually is accompanied
+by the use of a weapon or by means likely to produce death or great bodily harm.
+Simple assaults are excluded.
+
+BURGLARY (breaking or entering)
+-------------------------------
+The unlawful entry of a structure to commit a felony or a theft. Attempted
+forcible entry is included.
+
+LARCENY-THEFT (except motor vehicle theft)
+------------------------------------------
+The unlawful taking, carrying, leading, or riding away of property from the
+possession or constructive possession of another. Examples are thefts of
+bicycles, motor vehicle parts and accessories, shoplifting, pocket-picking, or
+the stealing of any property or article that is not taken by force and violence
+or by fraud. Attempted larcenies are included. Embezzlement, confidence games,
+forgery, check fraud, etc., are excluded.
+
+MOTOR VEHICLE THEFT
+-------------------
+The theft or attempted theft of a motor vehicle. A motor vehicle is self-
+propelled and runs on land surface and not on rails. Motorboats, construction
+equipment, airplanes, and farming equipment are specifically excluded from this
+category.
+
+================================================================================
+FURTHER INFORMATION
+================================================================================
+
+Contact customer service at 877-944-4AGS or email support@appliedgeographic.com.
+
+Applied Geographic Solutions
+http://www.appliedgeographic.com

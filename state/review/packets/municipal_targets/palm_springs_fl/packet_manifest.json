@@ -1,0 +1,14 @@
+{
+  "case_key": "palm_springs_fl",
+  "target_id": "12:municipal:place:1254450",
+  "target_name": "Palm Springs village, FL",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/palm_springs_fl",
+  "review_goal": "Determine whether Palm Springs village, FL should retain a standalone municipal control row and whether the 2024 all-fill condition reflects broken continuity/publication, contract policing, county replacement, or target invalidity.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "sources.csv",
+    "research_findings.json",
+    "recommendation.csv"
+  ]
+}

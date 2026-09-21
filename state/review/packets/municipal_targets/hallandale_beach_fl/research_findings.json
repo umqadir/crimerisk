@@ -1,0 +1,111 @@
+{
+  "case_key": "hallandale_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1228452",
+  "jurisdiction_name": "Hallandale Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_live_city_police_publication_and_repo_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "As of March 24, 2026, Hallandale Beach operates a real city-run police department. The official city police page describes Hallandale Beach Police Department as the city's law-enforcement agency, the city staff directory lists a chief, deputy chief, and multiple captains, and the Police Department is shown as a 24-hour city department.",
+    "Hallandale Beach is not a Broward Sheriff's Office contract-policing city. The city's directory lists Fire Rescue - BSO Hallandale Beach as a separate department while also listing a standalone Police Department, which indicates the BSO contract is for fire rescue rather than citywide police replacement.",
+    "Hallandale Beach still has an active official local crime-publication surface. The current police page links to Crime Statistics and UCR Reports, and the city's document center exposes the full twelve-PDF 2024 Monthly Crime Incidents roster with incident-level HDPD cases inside Hallandale Beach.",
+    "Florida state agency surfaces still recognize Hallandale-specific police identity. FDLE's official agency registry lists Hallandale Beach Police Department with ORI FL0060400.",
+    "FDLE's legacy county-and-municipal offense publications support a real Hallandale-specific annual reporting row. FDLE 2020 lists Hallandale Beach Police Department with population 39,945 and total index crime 1,247, and FDLE 2021 retains the Hallandale Beach Police Department row with population 41,157 but blanks every offense field.",
+    "Florida's post-SRS public FIBRS offense workbook does not carry Hallandale Beach in any sheet from 2021 through 2025 Q2. In the repo, FL0060400 remains crosswalked exclusively to Hallandale Beach city, agency_master flags both SRS and NIBRS presence through 2024, agency_year_observations contains only SRS annual support through 2020 followed by zero-valued SRS placeholders from 2021 through 2024, and the FBI CDE review queue marks the agency as present_but_no_2024_observation.",
+    "The current all-fill condition is therefore not a contract-city continuity case and not an invalid municipal target. It is a live-city-police publication and repo continuity failure on FL0060400, and the city's twelve 2024 Monthly Crime Incidents PDFs are sufficient to support an offense-level local-publication repair."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Hallandale Beach maintains a current Police Department on its official departments site.",
+      "The city staff directory identifies current Hallandale Beach Police Department leadership and 24-hour department operations.",
+      "The same city directory separately identifies Fire Rescue - BSO Hallandale Beach, so the city's official presentation distinguishes BSO fire-rescue service from city police operations."
+    ],
+    "important_interpretation": "Hallandale Beach is a valid municipal police control object. The review is not about whether the place exists or whether Broward Sheriff replaced the city police function; it is about why public state and repo continuity collapsed after 2020-2021."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Hallandale Beach Police Department",
+    "active_city_police_department_found": true,
+    "bso_contract_policing_found": false,
+    "bso_role_identified": "city fire-rescue contract only, not primary police service",
+    "official_evidence": [
+      "The current city police page presents Hallandale Beach Police Department as the active city law-enforcement agency and links to its divisions, crime statistics, and UCR reports.",
+      "The city staff directory lists Hallandale Beach Police Department as a 24-hour department with Chief Michel Michel, Deputy Chief Terence Thouez, and multiple captains.",
+      "The broader city directory lists Fire Rescue - BSO Hallandale Beach separately from Police Department, which is inconsistent with a sheriff-policed contract-city structure."
+    ],
+    "important_clarification": "This is not a Broward contract-city case like Deerfield Beach or Oakland Park. Hallandale Beach still runs its own municipal police department, and the presence of BSO in city materials refers to fire rescue rather than primary law-enforcement service."
+  },
+  "official_reporting_evidence": {
+    "city_local_publication_surface": {
+      "summary": "Hallandale Beach continues to publish local police crime materials directly from the city police department.",
+      "details": [
+        "The current police page links to both UCR Reports and Crime Statistics.",
+        "The city's document center exposes the full twelve-PDF 2024 Monthly Crime Incidents roster.",
+        "Those 2024 Monthly Crime Incidents PDFs publish incident-level HDPD cases that can be summed into a packet-local annual offense extract for the seven V2 core offenses."
+      ],
+      "interpretation": "Even though FDLE's public post-2021 annual offense surfaces broke, Hallandale still has a real city-local public crime-reporting surface in 2024 and that surface is now operationalized into a usable annual local-publication extract."
+    },
+    "fdle_agency_identity_surface": {
+      "summary": "FDLE's official agency registry still lists Hallandale Beach Police Department with ORI FL0060400.",
+      "interpretation": "Florida continues to recognize a city-specific police agency identity for Hallandale Beach."
+    },
+    "fdle_legacy_publication_surface": {
+      "summary": "FDLE's official County and Municipal Offense Data reports treat Hallandale Beach Police Department as a municipal reporting row through the SRS era and into the 2021 transition report.",
+      "details": [
+        "FDLE 2020: Hallandale Beach Police Department, population 39,945, total index crime 1,247.",
+        "FDLE 2021: Hallandale Beach Police Department, population 41,157, retained as a row but with all offense fields blank."
+      ],
+      "interpretation": "The official state publication surface confirms a real Hallandale municipal police row through the transition year, even though 2021 became unusable."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "Inspection of FDLE's official FIBRS Offense Detail 2021-2025 Q2 workbook found no Hallandale Beach Police Department row in the 2021, 2022, 2023, 2024, or 2025 Q2 offense sheets.",
+      "interpretation": "The Hallandale-specific state annual offense row disappears from the public FIBRS publication layer after the transition break."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0060400 exclusively to 12:municipal:place:1228452 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0060400 as a local police department and flags both SRS and NIBRS source presence with years listed from 2018 through 2024.",
+    "observation_state": "agency_year_observations.parquet contains nonzero annual support for FL0060400 in 2018 (1,513), 2019 (1,422), and 2020 (1,247), then zero annual totals with months_reported 0.0 in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "agency_master says NIBRS presence exists through 2024, but the observation layer contains no NIBRS rows for FL0060400 and no usable post-2020 reported support.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Hallandale Beach offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, and dominant_reporting_regime structurally_missing_or_unreliable, forcing full fill.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Hallandale Beach in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1,489.0, total_reported_count 0.0, and priority_rank 1.",
+    "fbi_cde_review_state": "fbi_cde_source_review_queue.csv flags FL0060400 as present_but_no_2024_observation with official_is_nibrs false, which is consistent with a federal/state public continuity gap rather than a sheriff-primary service structure."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": true,
+    "official_local_granular_publication_exists": true,
+    "why": [
+      "Hallandale Beach has an active city-run police department today.",
+      "The city publishes Hallandale-specific police crime materials in 2024, so this is not a dead or synthetic target.",
+      "FDLE still recognizes Hallandale Beach Police Department as ORI FL0060400.",
+      "FDLE officially published Hallandale as a municipal offense row in 2020 and retained the row, blanked, in 2021."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Florida's public Hallandale annual offense publication path broke during or after the 2021 SRS-to-NIBRS transition.",
+      "The repo compounded the break by materializing only zero-valued annual placeholders from 2021 through 2024 and no NIBRS rows despite presence flags in agency_master.",
+      "Before the local-publication repair landed, the controls builder treated the city as structurally missing and fully filled it because no usable public annual state or federal row existed in 2024."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Hallandale Beach municipal control row 12:municipal:place:1228452.",
+      "Keep FL0060400 attached exclusively to Hallandale Beach rather than rerouting the city into Broward Sheriff or a contract-city note path.",
+      "Classify the current all-fill condition as a live-city-police state-publication and repo continuity failure on FL0060400.",
+      "Use FDLE County and Municipal Offense Data publications as the canonical pre-break state truth surface through the retained 2021 transition row.",
+      "Use the packet-local 2024 annual extract built from the city's twelve Monthly Crime Incidents PDFs as the direct offense-level local-publication repair.",
+      "Treat BURGLARY CONVEYANCE family rows as larceny rather than burglary per FDLE UCR guidance when maintaining the Hallandale extract."
+    ],
+    "best_recovery_surfaces_identified_now": [
+      "City of Hallandale Beach police Crime Statistics / Monthly Crime Incidents PDFs for post-2020 local incident-level recovery and 2024 annual extract construction.",
+      "FDLE County and Municipal Offense Data reports for pre-break historical state annual truth.",
+      "Potential later FDLE agency-level extract or FBI/FDLE reconciliation work to explain the agency_master source-presence flags versus missing public rows."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_live_city_police_and_state_publication_repo_continuity_failure",
+  "open_questions": [
+    "A later source-repair pass should explain why agency_master carries 2021-2024 NIBRS presence for FL0060400 while the public FDLE FIBRS workbook and repo observations provide no usable Hallandale row."
+  ]
+}

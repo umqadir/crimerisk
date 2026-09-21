@@ -1,0 +1,56 @@
+{
+  "city_key": "jacksonville_fl",
+  "city_name": "Jacksonville, Florida",
+  "year": 2024,
+  "source": {
+    "name": "JSO Transparency Portal - Public Transparency Data (NIBRS Incidents)",
+    "source_url": "https://transparency.jaxsheriff.org/",
+    "api_endpoint": "https://services3.arcgis.com/7C7xW0yv6W8spzhp/arcgis/rest/services/Public_Transparency_Data_View_10_03_2025/FeatureServer/0",
+    "portal_type": "arcgis_feature_service",
+    "select": ["OBJECTID", "cmnIncidentNbr", "Address", "ZipCode", "nibrsCode", "nibrsDescription", "VictimCount", "ReportDateTime", "IncidentDateTime"],
+    "where": "IncidentDateTime >= DATE '2024-01-01 00:00:00' AND IncidentDateTime < DATE '2025-01-01 00:00:00'",
+    "order": "IncidentDateTime ASC, OBJECTID ASC",
+    "page_size": 2000
+  },
+  "geography": {
+    "jurisdiction_id": "12:municipal:place:1235000",
+    "state_fips": "12",
+    "bounds": {
+      "min_latitude": 30.05,
+      "max_latitude": 30.64,
+      "min_longitude": -82.10,
+      "max_longitude": -81.27
+    }
+  },
+  "mapping": {
+    "id_field": "OBJECTID",
+    "id_fields": [],
+    "date_field": "IncidentDateTime",
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {"offense": "murder", "conditions": [{"field": "nibrsCode", "op": "in", "value": "", "values": ["09A"]}], "exclude_conditions": []},
+      {"offense": "robbery", "conditions": [{"field": "nibrsCode", "op": "in", "value": "", "values": ["120"]}], "exclude_conditions": []},
+      {"offense": "aggravated_assault", "conditions": [{"field": "nibrsCode", "op": "in", "value": "", "values": ["13A"]}], "exclude_conditions": []},
+      {"offense": "burglary", "conditions": [{"field": "nibrsCode", "op": "in", "value": "", "values": ["220"]}], "exclude_conditions": []},
+      {"offense": "larceny", "conditions": [{"field": "nibrsCode", "op": "in", "value": "", "values": ["23X", "23F"]}], "exclude_conditions": []},
+      {"offense": "motor_vehicle_theft", "conditions": [{"field": "nibrsCode", "op": "in", "value": "", "values": ["240"]}], "exclude_conditions": []}
+    ]
+  },
+  "worker_judgment_notes": "The Batch B scout's claimed source (an ArcGIS FeatureServer at services3.arcgis.com/dty2kHktVXHrqO8i/.../Crime_Incidents) was verified during onboarding to actually be the City of Cleveland, OH open-data crime layer (item owner opendataCLE, orgId dty2kHktVXHrqO8i) -- a misattribution, not a Jacksonville source; it coincidentally had a row count (87,563) close to a plausible Jacksonville figure and Ohio-statute StatDesc values (Aggravated Vehicular Assault, ORC 4511.19 OVI references) were the tell. That source was discarded entirely and not used for anything. The correct JSO source was located via JSO's actual public product: the JSO Transparency Portal (transparency.jaxsheriff.org, launched Aug 2024), whose 'Crime & Traffic Crash Maps' ArcGIS Experience Builder app (item fb4b0415d037410687a2b32a444e6bdf, owner CAU_Admin) embeds a 'NIBRS Incidents Map' web map (item e2294d49b43f4eb694d457600d33c053) whose operational layer resolves to this FeatureServer -- owned by the same CAU_Admin account as the app itself, confirming it is JSO's own hosted layer, not a third-party scrape. This layer has NO pre-joined census block-group/tract GEOID field (contra the scout's claim, which was based on the wrong Cleveland source) -- coordinates are point geometry only (EPSG:4326 via outSR=4326), so the standard spatial-join-to-TIGER-BG path is required like every other city, not a shortcut. Schema: OBJECTID, GlobalID, cmnIncidentNbr (JSO incident number), Address, ZipCode, nibrsCode, VictimCount (integer attribute, not a victim-multiplied row -- each row is already one offense/incident/nibrsCode combination), ReportDateTime, IncidentDateTime, nibrsDescription. Offense taxonomy is proper FBI NIBRS codes (38 distinct code/description pairs cover the full 74,609-row 2024 total exactly). Standard 6-offense NIBRS-code mapping used: 09A->murder (excludes 09B negligent manslaughter and 09C justifiable homicide, consistent with the repo's NYC/Chicago/St. Louis convention of only counting 09A), 120->robbery, 13A->aggravated_assault (excludes 13B simple assault and 13C intimidation), 220->burglary, 240->motor_vehicle_theft. Larceny is JSO's own two-code split of the NIBRS 23-series: 23X (general THEFT, JSO's non-granular catch-all for what NIBRS normally splits into 23A/B/C/D/E/G/H) plus 23F (THEFT FROM MOTOR VEHICLE, a standard larceny subtype, not vehicle theft) -- both map to larceny; no other 23-series codes exist in the 2024 feed. RAPE IS NOT MAPPED: the public feed contains zero forcible-rape/sex-offense NIBRS codes (no 11A/11B/11C/36B) across the full 2024 year -- only 36X (non-forcible sex offenses, 60 rows, out of frame) appears. This is a source omission (mirrors the Memphis MPD feed's documented sex-crime omission noted in the scout inventory), not a taxonomy judgment call, and is independently consistent with the repo's rape default-deny texture policy -- rape stays unadmitted for Jacksonville regardless. No separate JSO homicide dataset was needed or used: JSO's dedicated 'Jacksonville Homicide Data' page (opendata.jaxsheriff.org/Homicide/Data) is an aggregate annual committed/cleared clearance-rate table only (RadGrid summary by ReportYear/FibrsClassification/CommitCount/ClearanceCount), with no per-incident rows and no coordinates -- unusable as a location source. The main feed's 09A murder count (58 for 2024) is very close to the FBI/FDLE-preferred jurisdiction control (62, state_publication_annual, quality tier high) at a feed/control ratio of 0.94, so 09A from the main feed is used directly, matching the STL/NYC/Chicago pattern of sourcing murder from the primary NIBRS feed rather than a secondary source. All other mapped offenses reconcile tightly against state/controls/jurisdiction_controls_2024.parquet before any spatial join: robbery 732/720=1.017, burglary 3209/3202=1.002, aggravated_assault 3661/4549=0.805, larceny 20575/20339=1.012, motor_vehicle_theft 4012/4039=0.993 -- consistent with this being the correct, legitimate JSO source. Bounds are the raw TIGER/crosswalk-touching Jacksonville block-group envelope (553 BGs, minx/miny/maxx/maxy -82.049502,30.103748,-81.316712,30.586232) padded slightly. Contract is share-lane only per the standard generic-runner convention; the strict 10% reconciliation gate (aggravated_assault misses it at -19.5%) decides feed-total-candidate status per offense, not admission of this contract at all.",
+  "sources_checked": [
+    "https://services3.arcgis.com/dty2kHktVXHrqO8i/ArcGIS/rest/services/Crime_Incidents/FeatureServer/0?f=json",
+    "https://www.arcgis.com/sharing/rest/content/items/c749e34199c1425cbbc5959308658ec3?f=json",
+    "https://opendata.jaxsheriff.org/",
+    "https://opendata.jaxsheriff.org/Homicide/Data",
+    "https://transparency.jaxsheriff.org/",
+    "https://www.arcgis.com/sharing/rest/content/items/fb4b0415d037410687a2b32a444e6bdf/data?f=json",
+    "https://www.arcgis.com/sharing/rest/content/items/e2294d49b43f4eb694d457600d33c053/data?f=json",
+    "https://services3.arcgis.com/7C7xW0yv6W8spzhp/arcgis/rest/services/Public_Transparency_Data_View_10_03_2025/FeatureServer/0?f=json",
+    "https://services3.arcgis.com/7C7xW0yv6W8spzhp/arcgis/rest/services/Public_Transparency_Data_View_10_03_2025/FeatureServer/0/query",
+    "https://www.arcgis.com/sharing/rest/content/items/29a91fb9881e405e914c41ce07fc05f9?f=json",
+    "configs/local_resolution_overrides.csv",
+    "state/controls/jurisdiction_controls_2024.parquet",
+    "state/geometry/block_group_to_jurisdiction_crosswalk.parquet"
+  ]
+}

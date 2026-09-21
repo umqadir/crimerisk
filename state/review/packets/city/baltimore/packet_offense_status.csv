@@ -1,0 +1,8 @@
+offense,packet_status,production_ready,city_share_integration_status,recommended_source,counting_rule,reconciliation_quality,comparison_class,notes
+murder,candidate,no,blocked,legacy_srs,row_count_exact_description,exact,exact,Weekly-window reconciliation remains near-exact but keep murder blocked until the year-end homicide mismatch is explained.
+rape,review_complete,yes,offense_selective,legacy_srs,row_count_exact_description,exact,exact,Packet-local legacy loader reproduces the official weekly table exactly.
+robbery,review_complete,yes,offense_selective,legacy_srs,plain_robbery_series_only,exact,exact,Packet-local legacy loader uses only the plain ROBBERY series and lands within seven incidents of the official weekly table.
+aggravated_assault,review_complete,yes,offense_selective,legacy_srs,row_count_exact_description,exact,exact,Packet-local legacy loader lands within two incidents of the official weekly table.
+burglary,blocked,no,blocked,legacy_srs,row_count_exact_description,approximate,approximate,Still materially above the official weekly table after the packet-local loader.
+larceny,review_complete,yes,offense_selective,legacy_srs,unique_ccnumber_across_larceny_family,exact,exact,Family-level unique CCNumber loading lands within five matched incidents of the official weekly larceny total.
+motor_vehicle_theft,conditional,no,blocked,legacy_srs,row_count_exact_description,approximate,approximate,Close but still materially high against the official weekly table.

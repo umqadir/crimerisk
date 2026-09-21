@@ -1,0 +1,26 @@
+{
+  "city_key": "washington_dc",
+  "city_name": "Washington",
+  "jurisdiction_id": "11:municipal:place:1150000",
+  "state_abbr": "DC",
+  "priority_bucket": "second_wave",
+  "priority_rank": "10",
+  "basis": "Independent-city police jurisdiction with official 2024 incidents and exact year-end MPD reconciliation anchors for six promotable offense families.",
+  "notes": "Now live offense-selectively for murder, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft. Keep rape blocked because the public DC Sex Abuse category is not treated as the repo's rape offense.",
+  "source_name": "MPD Crime Incidents in 2024 plus MPD year-end crime summary anchors",
+  "source_url": "https://opendata.dc.gov/datasets/DCGIS::crime-incidents-in-2024 ; https://mpdc.dc.gov/dailycrime ; https://mpdc.dc.gov/page/mpd-annual-report-2024",
+  "portal_type": "arcgis_plus_official_year_end_summary",
+  "coverage_start_year": "2024",
+  "coverage_end_year": "2024",
+  "years_usable": "1",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high_with_source_block_groups_and_boundary_bg_loss_2024",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/washington_dc",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

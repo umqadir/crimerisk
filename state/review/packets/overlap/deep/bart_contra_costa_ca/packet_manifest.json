@@ -1,0 +1,20 @@
+{
+  "case_key": "bart_contra_costa_ca",
+  "ori": "CA0071800",
+  "agency_name_raw": "sf bart contra costa co",
+  "state_abbr": "CA",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/bart_contra_costa_ca",
+    "allowed_override_row": "CA0071800"
+  },
+  "review_goal": "Determine whether ORI CA0071800 is a distinct BART-related policing footprint, a county-tagged alias of the main BART system row CA0012100, or another kind of reporting slice, and specify the defensible production treatment.",
+  "bottom_line": "Treat CA0071800 as an active Contra Costa County reporting slice of the single BART Police Department, not as a separate county police agency and not as a dead/legacy alias. The defensible geometry is the Contra Costa subset of BART-owned, operated, or administered properties and any Contra Costa facilities BART officially polices under agreement, not Contra Costa County, not Pittsburg/Walnut Creek/Oakland, and not the full CA0012100 BART system footprint. Until that county-subset custom footprint exists, keep the row broad overlap."
+}

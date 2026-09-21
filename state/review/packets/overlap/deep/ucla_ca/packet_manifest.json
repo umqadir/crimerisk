@@ -1,0 +1,19 @@
+{
+  "case_key": "ucla_ca",
+  "ori": "CA0199700",
+  "agency_name_raw": "un of ca: los angeles",
+  "state_abbr": "CA",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "queue_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_localization_queue.parquet",
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/ucla_ca"
+  },
+  "bottom_line": "CA0199700 is not a Los Angeles city or county police row and not a simple Westwood-only campus polygon. Official UCLA and UCPD sources show a UCLA-specific, discontiguous patrol and reportable-property network centered on the Westwood campus but extending to Santa Monica medical facilities, university apartments, affiliated noncampus properties, and adjacent public property. Production should keep this row broad overlap until a custom UCLA property-network footprint exists."
+}

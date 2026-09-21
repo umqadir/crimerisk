@@ -1,0 +1,14 @@
+{
+  "case_key": "melbourne_fl",
+  "jurisdiction_id": "12:municipal:place:1243975",
+  "jurisdiction_name": "Melbourne city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/melbourne_fl",
+  "review_goal": "Determine whether Melbourne should retain a standalone municipal control row and whether the current full-fill condition reflects reporting continuity failure or an invalid municipal target/service-structure problem.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

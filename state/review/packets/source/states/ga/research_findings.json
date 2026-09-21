@@ -1,0 +1,389 @@
+{
+  "state_abbr": "GA",
+  "generated_on": "2026-03-22",
+  "packet_scope": "Georgia official-source reconciliation for V2 with emphasis on summary-continuity doctrine, mixed-source policy review, and the large zero-observation tail.",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ga/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ga/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/state_source_benchmark_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/top_partial_reporters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ga/supporting_issue_metrics.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ga/issue_bucket_summary.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "gbi_crime_statistics_database_page",
+      "source_name": "GBI Crime Statistics Database page",
+      "source_url": "https://gbi.georgia.gov/services/crime-statistics/gbi-crime-statistics-database",
+      "coverage_note": "GBI states the crime statistics database is not available at this time, says Georgia has participated since 1975, receives monthly crime and arrest reports from more than 600 agencies, and says GBI transitioned to full NIBRS reporting in October 2019.",
+      "packet_use": "Establishes that Georgia is a fully NIBRS state operationally, but the public agency-level database path is currently unavailable."
+    },
+    {
+      "source_id": "gbi_2024_crime_statistics_summary",
+      "source_name": "GBI 2024 Crime Statistics Summary",
+      "source_url": "https://gbi.georgia.gov/document/document/2024-crime-statistics-summary/download",
+      "coverage_note": "The report says 2024 UCR data are compiled directly from summary offense and arrest reports submitted by Georgia law enforcement agencies, do not include estimates, and additional compiled data can be requested for special-purpose reports.",
+      "packet_use": "Supports using Georgia public annual totals as a continuity benchmark rather than treating them as interchangeable with FBI explorer/master methodology."
+    },
+    {
+      "source_id": "gbi_2024_monthly_statistical_reports",
+      "source_name": "GBI 2024 monthly statistical reports",
+      "source_url": "https://gbi.georgia.gov/document/document/june-2024-statistical-report/download",
+      "coverage_note": "GBI publishes monthly statistical reports during 2024, indicating a live summary-style public continuity layer even after the 2019 operational transition to NIBRS.",
+      "packet_use": "Confirms Georgia still has a summary continuity publication lane for current-year QA."
+    }
+  ],
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "GA",
+      "official_oris": 662,
+      "official_nibrs_oris": 509,
+      "official_effective_nibrs_oris": 506,
+      "repo_master_matches": 661,
+      "mismatch_rows": 272,
+      "mismatch_weight": 0.0,
+      "official_nibrs_repo_no_nibrs": 116,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 271
+    },
+    "state_priority_context": [
+      {
+        "priority_rank": 1,
+        "offense": "larceny",
+        "repo_nibrs_observed_total_2024": 123683.0,
+        "repo_srs_observed_total_2024": 122891.0,
+        "fbi_cde_estimated_total_2024": 139462.0,
+        "bjs_ckle_count_2024": 148940.0,
+        "repo_srs_gap_below_fbi_cde": 16571.0,
+        "repo_nibrs_gap_below_bjs_ckle": 25257.0
+      },
+      {
+        "priority_rank": 2,
+        "offense": "aggravated_assault",
+        "repo_nibrs_observed_total_2024": 17092.0,
+        "repo_srs_observed_total_2024": 24006.0,
+        "fbi_cde_estimated_total_2024": 27494.0,
+        "bjs_ckle_count_2024": 28500.0,
+        "repo_srs_gap_below_fbi_cde": 3488.0,
+        "repo_nibrs_gap_below_bjs_ckle": 11408.0
+      },
+      {
+        "priority_rank": 3,
+        "offense": "motor_vehicle_theft",
+        "repo_nibrs_observed_total_2024": 20450.0,
+        "repo_srs_observed_total_2024": 22405.0,
+        "fbi_cde_estimated_total_2024": 25124.0,
+        "bjs_ckle_count_2024": 25520.0,
+        "repo_srs_gap_below_fbi_cde": 2719.0,
+        "repo_nibrs_gap_below_bjs_ckle": 5070.0
+      },
+      {
+        "priority_rank": 4,
+        "offense": "burglary",
+        "repo_nibrs_observed_total_2024": 18537.0,
+        "repo_srs_observed_total_2024": 21043.0,
+        "fbi_cde_estimated_total_2024": 22677.0,
+        "bjs_ckle_count_2024": 22580.0,
+        "repo_srs_gap_below_fbi_cde": 1634.0,
+        "repo_nibrs_gap_below_bjs_ckle": 4043.0
+      },
+      {
+        "priority_rank": 5,
+        "offense": "rape",
+        "repo_nibrs_observed_total_2024": 1826.0,
+        "repo_srs_observed_total_2024": 3231.0,
+        "fbi_cde_estimated_total_2024": 3598.0,
+        "bjs_ckle_count_2024": 3870.0,
+        "repo_srs_gap_below_fbi_cde": 367.0,
+        "repo_nibrs_gap_below_bjs_ckle": 2044.0
+      },
+      {
+        "priority_rank": 6,
+        "offense": "robbery",
+        "repo_nibrs_observed_total_2024": 4001.0,
+        "repo_srs_observed_total_2024": 3998.0,
+        "fbi_cde_estimated_total_2024": 4558.0,
+        "bjs_ckle_count_2024": 4740.0,
+        "repo_srs_gap_below_fbi_cde": 560.0,
+        "repo_nibrs_gap_below_bjs_ckle": 739.0
+      },
+      {
+        "priority_rank": 7,
+        "offense": "murder",
+        "repo_nibrs_observed_total_2024": 638.0,
+        "repo_srs_observed_total_2024": 706.0,
+        "fbi_cde_estimated_total_2024": 770.0,
+        "bjs_ckle_count_2024": 770.0,
+        "repo_srs_gap_below_fbi_cde": 64.0,
+        "repo_nibrs_gap_below_bjs_ckle": 132.0
+      }
+    ],
+    "mixed_source_support_concentration": {
+      "mixed_source_rows": 383,
+      "mixed_source_support_sum_2024": 196959.0,
+      "top_10_support_sum": 93787.0,
+      "top_25_support_sum": 122992.0,
+      "top_50_support_sum": 148912.0
+    },
+    "coverage_matched_srs_to_nibrs_ratios": {
+      "agencies_both_12m": 328,
+      "murder": 0.8994082840236687,
+      "rape": 0.5425421977264898,
+      "robbery": 1.0009686793671295,
+      "aggravated_assault": 0.7075665647094218,
+      "burglary": 0.873395026026605,
+      "larceny": 1.006792669866328,
+      "motor_vehicle_theft": 0.9005753326141676
+    },
+    "present_but_no_2024_observation_breakout": {
+      "total_rows": 271,
+      "official_effective_nibrs_rows": 116,
+      "non_nibrs_or_unknown_rows": 155,
+      "state_patrol_rows": 49
+    }
+  },
+  "issue_groups": [
+    {
+      "issue_id": "ga_public_official_path_is_summary_continuity_not_ready_agency_extract",
+      "issue_type": "broader_georgia_reporting_structure_or_continuity_issue",
+      "severity": "high",
+      "finding": "Georgia operationally transitioned to full NIBRS in October 2019, but the current public official path is still a summary-continuity publication layer. GBI says the database is unavailable, the 2024 annual summary is compiled directly from agency-submitted summary offense and arrest reports with no estimates, and monthly 2024 reports are still published.",
+      "statewide_evidence": {
+        "mixed_source_rows": 383,
+        "mixed_source_support_sum_2024": 196959.0,
+        "top_priority_offense_gaps": [
+          {
+            "offense": "larceny",
+            "priority_rank": 1,
+            "repo_srs_gap_below_fbi_cde": 16571.0,
+            "repo_nibrs_gap_below_bjs_ckle": 25257.0
+          },
+          {
+            "offense": "aggravated_assault",
+            "priority_rank": 2,
+            "repo_srs_gap_below_fbi_cde": 3488.0,
+            "repo_nibrs_gap_below_bjs_ckle": 11408.0
+          },
+          {
+            "offense": "motor_vehicle_theft",
+            "priority_rank": 3,
+            "repo_srs_gap_below_fbi_cde": 2719.0,
+            "repo_nibrs_gap_below_bjs_ckle": 5070.0
+          },
+          {
+            "offense": "burglary",
+            "priority_rank": 4,
+            "repo_srs_gap_below_fbi_cde": 1634.0,
+            "repo_nibrs_gap_below_bjs_ckle": 4043.0
+          }
+        ],
+        "coverage_matched_ratios": {
+          "larceny": 1.006792669866328,
+          "aggravated_assault": 0.7075665647094218,
+          "rape": 0.5425421977264898,
+          "robbery": 1.0009686793671295
+        },
+        "georgia_partial_reporters_in_top_partial_reporters_2024": 2
+      },
+      "why_it_matters": "The production-critical Georgia issue is not missing master coverage. It is that the repo currently sits on a very large mixed-source slice where official effective-NIBRS rows still prefer SRS annual continuity counts. That needs an official Georgia continuity audit before any source-policy switch.",
+      "recommended_next_action": "Use the GBI 2024 annual summary and monthly reports as the public continuity benchmark, then obtain a GBI special-purpose agency extract or equivalent agency-level official slice before changing source preference for the large mixed-source agencies.",
+      "representative_entities": [
+        "DeKalb County Police Department",
+        "Atlanta Police Department",
+        "Gwinnett County Police Department",
+        "Cobb County Police Department",
+        "Bibb County Sheriff's Office",
+        "Augusta-Richmond County Sheriff's Office"
+      ],
+      "doctrine_candidate": "If a state has fully transitioned operationally to NIBRS but still publishes direct summary continuity reports and the public agency-level database path is unavailable, treat the annual/monthly summary publications as the first official benchmark and do not override repo source policy from roster transition flags alone."
+    },
+    {
+      "issue_id": "ga_large_mixed_source_slice_is_source_policy_disagreement_not_reference_gap",
+      "issue_type": "source_policy_disagreement",
+      "severity": "high",
+      "finding": "Georgia has 383 official-effective-NIBRS rows where the repo already has both SRS and NIBRS for 2024 but still prefers SRS annual counts. These rows carry 196,959 preferred-support counts, and the top 10 rows alone carry 93,787.",
+      "statewide_evidence": {
+        "rows": 383,
+        "support_sum": 196959.0,
+        "top_10_support_sum": 93787.0,
+        "top_25_support_sum": 122992.0,
+        "top_row_examples": [
+          {
+            "ori9": "GA0440200",
+            "agency_name": "DeKalb County Police Department",
+            "repo_preferred_support_count_2024": 23961.0
+          },
+          {
+            "ori9": "GAAPD0000",
+            "agency_name": "Atlanta Police Department",
+            "repo_preferred_support_count_2024": 18047.0
+          },
+          {
+            "ori9": "GA0670200",
+            "agency_name": "Gwinnett County Police Department",
+            "repo_preferred_support_count_2024": 12360.0
+          },
+          {
+            "ori9": "GA0330200",
+            "agency_name": "Cobb County Police Department",
+            "repo_preferred_support_count_2024": 8065.0
+          },
+          {
+            "ori9": "GA0110000",
+            "agency_name": "Bibb County Sheriff's Office",
+            "repo_preferred_support_count_2024": 8020.0
+          },
+          {
+            "ori9": "GA1210000",
+            "agency_name": "Augusta-Richmond County Sheriff's Office",
+            "repo_preferred_support_count_2024": 7741.0
+          },
+          {
+            "ori9": "GA1060100",
+            "agency_name": "Columbus Police Department",
+            "repo_preferred_support_count_2024": 5709.0
+          },
+          {
+            "ori9": "GA0290100",
+            "agency_name": "Athens-Clarke County Police Department",
+            "repo_preferred_support_count_2024": 3481.0
+          }
+        ]
+      },
+      "why_it_matters": "This is the Georgia lane that can move statewide benchmark closure. It is concentrated in large local agencies, not tiny tail rows.",
+      "recommended_next_action": "Prioritize an agency-level official reconciliation for the top mixed-source rows before any repo-wide Georgia source-policy switch.",
+      "representative_entities": [
+        "DeKalb County Police Department",
+        "Atlanta Police Department",
+        "Gwinnett County Police Department",
+        "Cobb County Police Department",
+        "Columbus Police Department",
+        "Athens-Clarke County Police Department"
+      ],
+      "doctrine_candidate": "A high-support mixed-source slice is a source-policy lane, not a master/reference lane."
+    },
+    {
+      "issue_id": "ga_present_but_no_2024_observation_tail_is_large_but_zero_support",
+      "issue_type": "repo_missing_observation_problem",
+      "severity": "medium",
+      "finding": "Georgia has 271 master rows with no 2024 observation, including 116 rows that the official roster says were effective NIBRS by 2024. But all of these rows carry zero current repo support.",
+      "statewide_evidence": {
+        "total_rows": 271,
+        "official_effective_nibrs_rows": 116,
+        "non_nibrs_or_unknown_rows": 155,
+        "agency_type_breakout_official_effective_nibrs": {
+          "City": 65,
+          "County": 20,
+          "University or College": 13,
+          "Other": 13,
+          "Other State Agency": 5
+        },
+        "agency_type_breakout_other": {
+          "City": 70,
+          "State Police": 49,
+          "County": 19,
+          "University or College": 9,
+          "Other": 8
+        }
+      },
+      "why_it_matters": "This is a real completeness problem, but it is not the main benchmark driver today because the rows currently contribute no observed support. It should be handled after the mixed-source official reconciliation lane, not before it.",
+      "recommended_next_action": "Queue a bounded backfill and coverage review for the 116 official-start-by-2024 NIBRS rows once a Georgia agency-level official extract is available. Keep the remaining 155 non-NIBRS/unknown no-observation rows as monitor-only until a concrete 2024 source or reporting explanation appears.",
+      "representative_entities": [
+        "Newton Police Department",
+        "Nahunta Police Department",
+        "Georgia Military College",
+        "Banks County Sheriff's Office",
+        "Chatham County Board of Education",
+        "Athens Technical College"
+      ],
+      "doctrine_candidate": "When official start-by-target-year NIBRS rows have no repo observations, treat them as a bounded backfill lane before treating them as source-policy disagreements."
+    },
+    {
+      "issue_id": "ga_state_patrol_post_rows_are_reporting_structure_hold_rows",
+      "issue_type": "broader_georgia_reporting_structure_or_continuity_issue",
+      "severity": "medium",
+      "finding": "Forty-nine Georgia State Patrol post and headquarters rows sit in master with no 2024 observations, and none are official-effective-NIBRS in the validation roster.",
+      "statewide_evidence": {
+        "rows": 49,
+        "examples": [
+          {
+            "ori9": "GAGSP0000",
+            "agency_name": "Georgia State Patrol Headquarters"
+          },
+          {
+            "ori9": "GAGSP0100",
+            "agency_name": "State Patrol: Griffin"
+          },
+          {
+            "ori9": "GAGSP0200",
+            "agency_name": "State Patrol: La Grange"
+          },
+          {
+            "ori9": "GAGSP0300",
+            "agency_name": "State Patrol: Cartersville"
+          },
+          {
+            "ori9": "GAGSP0400",
+            "agency_name": "State Patrol: Villa Rica"
+          },
+          {
+            "ori9": "GAGSP0500",
+            "agency_name": "State Patrol: Dalton"
+          },
+          {
+            "ori9": "GAGSP0600",
+            "agency_name": "State Patrol: Gainesville"
+          },
+          {
+            "ori9": "GAGSP0700",
+            "agency_name": "State Patrol: Toccoa"
+          },
+          {
+            "ori9": "GAGSP0800",
+            "agency_name": "State Patrol: Madison"
+          },
+          {
+            "ori9": "GAGSP0900",
+            "agency_name": "State Patrol: Marietta"
+          }
+        ]
+      },
+      "why_it_matters": "These should not be mistaken for ordinary local missing-source rows. They are more likely state-structure/nonlocal rows that require separate treatment if they ever enter production.",
+      "recommended_next_action": "Keep Georgia State Patrol posts/headquarters out of the first Georgia backfill wave and review them only as a dedicated reporting-structure lane.",
+      "representative_entities": [
+        "Georgia State Patrol Headquarters",
+        "State Patrol: Griffin",
+        "State Patrol: Hapeville",
+        "State Patrol: Metropolitan Traffic Unit, Atlanta"
+      ],
+      "doctrine_candidate": "State-patrol post rows with no observations should be treated as reporting-structure rows, not ordinary local missing-observation rows."
+    },
+    {
+      "issue_id": "ga_single_missing_master_row_is_zero_support_stub",
+      "issue_type": "master_reference_omission",
+      "severity": "low",
+      "finding": "Georgia has one official roster row missing from repo master: Bacon County Schools. It has no 2024 repo support and the roster does not mark it NIBRS-effective by 2024.",
+      "statewide_evidence": {
+        "rows": 1,
+        "examples": [
+          {
+            "ori9": "GA0030300",
+            "agency_name": "Bacon County Schools",
+            "agency_type_name": "Other"
+          }
+        ]
+      },
+      "why_it_matters": "This is not a production-critical Georgia reference gap and should not be bulk-added just to make the roster and master match mechanically.",
+      "recommended_next_action": "Leave this row out of the production master until it surfaces with offense-bearing observations or a stronger official source need.",
+      "representative_entities": [
+        "Bacon County Schools"
+      ],
+      "doctrine_candidate": "A missing-master row with no observations is not by itself a production reference bug."
+    }
+  ]
+}

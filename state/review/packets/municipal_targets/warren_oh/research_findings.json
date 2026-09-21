@@ -1,0 +1,221 @@
+{
+  "case_key": "warren_oh",
+  "jurisdiction_id": "39:municipal:place:3980892",
+  "jurisdiction_name": "Warren city",
+  "state_abbr": "OH",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_2024_all_fill_as_reporting_continuity_gap_on_oh0780700",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Warren remains a real current municipal police jurisdiction. Official city police pages present an active Warren Police Department with Chief Eric J. Merkel, named operational divisions, current contact points, and city-branded public-safety services rather than a defunct or merged agency.",
+    "Current official governance and public-safety sources do not support a county-replacement theory. Ohio Attorney General directory entries list Warren Police Department and Trumbull County Sheriff's Office as separate agencies, and the sheriff's official road-division page says deputies provide law-enforcement services to 26 townships across Trumbull County rather than to Warren city as a replacement municipal police force.",
+    "Warren maintains official local police-reporting artifacts. The city keeps a live annual-report portal that says yearly citywide law-enforcement statistics are compiled into the Warren Police Department annual report, publicly links reports through 2023, and also maintains a live RAIDS Online crime-activity map.",
+    "Official local publication continuity extends through 2023 but not yet to a reviewed 2024 annual table. The 2023 Warren Police Department annual report publishes a UCR Part 1 table for 2021-2023, and the 2022 report publishes a UCR Part 1 table for 2020-2022. As reviewed on 2026-03-24, no public 2024 Warren Police Department annual report was located on the city's official annual-report page.",
+    "The official FBI 2024 agency roster still recognizes OH0780700 as Warren Police Department, agency type City, with is_nibrs true and nibrs_start_date 2008-02-01. Repo validation separately flags the agency as present_but_no_2024_observation, which supports a continuity failure on a live agency rather than target invalidity.",
+    "Repo evidence confirms the target is real but currently unsupported for 2024. The live crosswalk routes OH0780700 exclusively to Warren city, substantive jurisdiction observations exist through 2023, and the 2024 control layer collapses to zero-valued SRS placeholders with no reported support.",
+    "A second production risk also surfaced: Warren's official 2020-2023 city annual-report UCR Part 1 totals differ materially from the repo's federal/state-derived annual observations. For example, Warren's 2023 annual report lists aggravated assault 918 and robbery 58, while repo 2023 observations carry aggravated assault 93 on SRS summary, 78 on NIBRS rollup, and robbery 37 on both sources. That mismatch does not affect the keep-versus-drop decision, but it means automatic substitution is not yet methodologically safe."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Warren maintains a current Police Department section on the official city site.",
+      "The personnel directory lists a current chief's office, emergency services division, criminal investigations division, professional standards, records division, and traffic contacts.",
+      "The 2024 city audit describes Warren Police Department grants, equipment purchases, and police operations during 2024."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Warren Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The main city police page says the Warren Police Department continues to serve and protect the city's citizens and identifies a city police force of 70 men and women.",
+      "The divisions page describes uniformed patrol, criminal investigations, internal affairs, support operations, school resource officers, vehicle maintenance, and traffic functions inside Warren Police Department.",
+      "The Ohio Attorney General directory lists Warren Police Department separately from the Trumbull County Sheriff's Office.",
+      "The sheriff's road-division page says deputies serve 26 townships in Trumbull County, which is a county-township service statement rather than a Warren city replacement statement."
+    ],
+    "important_clarification": "This is not a county replacement, contract-policing, or merged/shared service-structure case. Warren city still presents as a normal city-police jurisdiction."
+  },
+  "official_reporting_evidence": {
+    "current_city_identity_and_activity": {
+      "summary": "Current city and state public materials support Warren Police Department as a live municipal agency.",
+      "details": [
+        "The official city police page names Chief Eric J. Merkel and lists direct city police contact points for emergency services, detectives, records, traffic, and command staff.",
+        "The official personnel directory lists current command and support personnel for the chief's office, patrol shifts, criminal investigations, professional standards, and records.",
+        "The 2024 city audit says Warren Police Department received ARPA, DOJ Bulletproof Vest Partnership, and Ohio Traffic Safety Office funding during 2024."
+      ],
+      "interpretation": "The agency itself is plainly live, so the Warren municipal target is not invalid."
+    },
+    "local_public_reporting_surface": {
+      "summary": "Warren continues to publish city-origin police-reporting artifacts locally.",
+      "details": [
+        "The annual-report page says yearly citywide law-enforcement statistics are compiled into the Warren Police Department annual report.",
+        "That same portal publicly links annual reports through 2023 and, as reviewed on 2026-03-24, does not expose a reviewed 2024 annual report.",
+        "The city also maintains a live RAIDS Online crime-activity map for recent Warren incidents."
+      ],
+      "interpretation": "Warren retains a local public-reporting surface, but the reviewed official annual publication path stops at 2023."
+    },
+    "official_city_annual_reports": {
+      "summary": "Warren's own annual reports provide an official local city-crime publication surface through 2023.",
+      "details": {
+        "2023_report_ucr_part_1": {
+          "years_covered": [
+            2021,
+            2022,
+            2023
+          ],
+          "published_values_2023": {
+            "murder": 10,
+            "rape": 43,
+            "robbery": 58,
+            "aggravated_assault": 918,
+            "burglary": 334,
+            "motor_vehicle_theft": 104,
+            "larceny": 733
+          }
+        },
+        "2022_report_ucr_part_1": {
+          "years_covered": [
+            2020,
+            2021,
+            2022
+          ],
+          "published_values_2020": {
+            "murder": 16,
+            "rape": 49,
+            "robbery": 56,
+            "aggravated_assault": 913,
+            "burglary": 346,
+            "motor_vehicle_theft": 83,
+            "larceny": 864
+          }
+        }
+      },
+      "interpretation": "Warren's local public annual-report continuity runs through 2023 and demonstrates that the city did not cease to publish crime information after 2020, even though the reviewed public 2024 annual table was not found."
+    },
+    "county_structure_check": {
+      "summary": "Official county materials point to a separate sheriff layer rather than a successor municipal-police structure.",
+      "details": [
+        "Ohio Attorney General separately lists Warren Police Department and Trumbull County Sheriff's Office in the statewide law-enforcement directory.",
+        "The sheriff road-division page says deputies patrol 637 square miles and provide services to 26 townships."
+      ],
+      "interpretation": "Trumbull County Sheriff is not the primary Warren city replacement service for this target."
+    },
+    "federal_roster_signal": {
+      "summary": "The official FBI 2024 roster still recognizes Warren Police Department as a live city agency.",
+      "details": {
+        "ori": "OH0780700",
+        "agency_name": "Warren Police Department",
+        "agency_type_name": "City",
+        "is_nibrs": true,
+        "nibrs_start_date": "2008-02-01"
+      },
+      "interpretation": "Federal agency identity remains intact. The current problem is continuity of usable annual counts, not agency disappearance."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes OH0780700 exclusively to 39:municipal:place:3980892 with relationship_type exclusive, weight 1.0, and review_status flagged_auto.",
+    "observation_state": [
+      {
+        "year": 2018,
+        "status": "reported",
+        "notes": "Repo carries substantive SRS summary and NIBRS annual observations for all queued offenses with 12 months reported."
+      },
+      {
+        "year": 2019,
+        "status": "reported",
+        "notes": "Repo carries substantive SRS summary and NIBRS annual observations for all queued offenses with 12 months reported."
+      },
+      {
+        "year": 2020,
+        "status": "reported_but_city_local_totals_are_much_higher",
+        "notes": "Repo carries positive SRS and NIBRS counts, but the city's 2022 annual report publishes much larger 2020 UCR Part 1 totals."
+      },
+      {
+        "year": 2021,
+        "status": "reported_but_city_local_totals_are_much_higher",
+        "notes": "Repo carries positive SRS and NIBRS counts, but Warren's 2023 annual report publishes much larger 2021 UCR Part 1 totals."
+      },
+      {
+        "year": 2022,
+        "status": "reported_but_city_local_totals_are_much_higher",
+        "notes": "Repo carries positive SRS and NIBRS counts, but Warren's 2023 annual report publishes much larger 2022 UCR Part 1 totals."
+      },
+      {
+        "year": 2023,
+        "status": "partial_reported_but_city_local_totals_are_much_higher",
+        "notes": "Repo carries 11-month SRS and NIBRS observations, but Warren's 2023 annual report still publishes substantially higher 2023 city totals."
+      },
+      {
+        "year": 2024,
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued SRS annual rows with 0 months reported and no materialized NIBRS annual observation."
+      }
+    ],
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every Warren 2024 review offense with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, and dominant_reporting_regime structurally_missing_or_unreliable.",
+    "review_queue_state": "municipal_target_review_queue.csv flags Warren city as high_impact_full_fill_place with full_fill_no_reported_support, total_fill_count about 990.73, reported_share_of_estimated 0.0, and priority_rank 1.",
+    "federal_repo_mismatch": "ori_source_validation_2024.csv flags OH0780700 as present_but_no_2024_observation with official_nibrs_started_by_2024_but_repo_no_nibrs.",
+    "important_local_vs_repo_mismatch": {
+      "2023_example": {
+        "official_city_annual_report": {
+          "aggravated_assault": 918,
+          "robbery": 58,
+          "rape": 43,
+          "burglary": 334,
+          "motor_vehicle_theft": 104,
+          "larceny": 733,
+          "murder": 10
+        },
+        "repo_srs_summary": {
+          "aggravated_assault": 93,
+          "robbery": 37,
+          "rape": 15,
+          "burglary": 219,
+          "motor_vehicle_theft": 83,
+          "larceny": 571,
+          "murder": 3
+        },
+        "repo_nibrs_rollup": {
+          "aggravated_assault": 78,
+          "robbery": 37,
+          "rape": 14,
+          "burglary": 219,
+          "motor_vehicle_theft": 67,
+          "larceny": 572,
+          "murder": 3
+        }
+      },
+      "interpretation": "The current repo carries Warren as a valid city agency, but its federal/state-derived counts are not interchangeable with Warren's own published annual-report totals."
+    }
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Warren still operates an active city police department with current command, patrol, investigations, records, and city-run services.",
+      "Trumbull County Sheriff remains a separate county layer serving townships rather than a Warren city replacement.",
+      "The official FBI 2024 roster still recognizes OH0780700 as Warren Police Department.",
+      "The target crosswalk is clean and exclusive to Warren city."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The current 2024 all-fill state is not caused by county replacement, merged/shared service, or target invalidity.",
+      "The reviewed evidence supports a 2024 reporting and publication continuity gap on OH0780700: the city remains active, the FBI still recognizes the agency, but the repo materializes only zero-valued 2024 SRS placeholders and no NIBRS annual row.",
+      "A separate methodological issue also exists because Warren's own annual-report totals for 2020-2023 do not match the repo's federal/state-derived counts, so even a local backfill cannot simply be dropped in without a reconciliation decision."
+    ],
+    "recommended_handling": [
+      "Retain Warren city as a standalone municipal control row.",
+      "Do not reroute Warren to Trumbull County Sheriff, county remainder, or a merged/shared-service treatment.",
+      "Classify the current 2024 all-fill state as a reporting and publication continuity failure on OH0780700.",
+      "Treat the repo's 2024 zero rows as placeholders rather than evidence that Warren lacked a city police department in 2024.",
+      "If production needs direct city-level repair, first obtain a reviewed 2024 Warren annual-report or records extract and then decide explicitly whether production should follow Warren's city-published annual-report totals or the lower federal/state-derived FBI-style series already in the repo."
+    ],
+    "exact_blocker": "A reviewed public 2024 Warren Police Department annual offense table was not located: the official annual-report portal currently exposes reports through 2023 only. Separately, Warren's official 2020-2023 annual-report UCR Part 1 tables are materially higher than the repo's federal/state-derived counts, including 2023 aggravated assault 918 on the city report versus 93 on repo SRS summary and 78 on repo NIBRS rollup. That leaves the keep-versus-drop question closed but the production repair lane blocked on two decisions: obtaining a direct 2024 city output and reconciling whether the product should follow Warren's local annual-report surface or the FBI-style federal/state-derived counts."
+  },
+  "likely_issue_class": "valid_target_with_2024_reporting_continuity_gap_and_local_vs_federal_count_mismatch",
+  "open_questions": [
+    "Did Warren publish a 2024 annual report or equivalent citywide offense table somewhere outside the reviewed official annual-report portal, or must 2024 be recovered through a direct records request?",
+    "If a 2024 local Warren table is obtained, should production adopt the city's annual-report series for 2020-2024, or preserve the lower federal/state-derived series for comparability and treat the city reports as a separate local-publication surface?"
+  ]
+}

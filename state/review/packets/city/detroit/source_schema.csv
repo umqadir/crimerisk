@@ -1,0 +1,14 @@
+source_feed,field_name,field_type,contract_role,notes
+rms_crime_incidents_2024,incident_entry_id,number,row_identifier,ArcGIS service row identifier.
+rms_crime_incidents_2024,report_number,text,incident_identifier,Common incident number; multiple offense-charge rows can share one report number.
+rms_crime_incidents_2024,offense_category,text,offense_family,Primary public offense family field.
+rms_crime_incidents_2024,offense_description,text,offense_detail,Public offense description used with state_offense_code for packet-local crosswalk work.
+rms_crime_incidents_2024,state_offense_code,text,offense_code,State offense code needed for Detroit packet-local offense gating.
+rms_crime_incidents_2024,incident_occurred_at,calendar_date,primary_date,Primary event timestamp for year filtering and reported-window extraction.
+rms_crime_incidents_2024,incident_year,number,derived_year,Explicit year field exposed by the public service.
+rms_crime_incidents_2024,nearest_intersection,text,address_proxy,Public privacy-generalized location descriptor.
+rms_crime_incidents_2024,census_block_2020_geoid,text,spatial_unit,Preferred primary packet geography when present because it directly pins the incident to a 2020 census block.
+rms_crime_incidents_2024,neighborhood,text,spatial_proxy,Useful coarse fallback geography.
+rms_crime_incidents_2024,police_precinct,text,police_geography,Useful operational geography for QA and fallback review.
+rms_crime_incidents_2024,latitude,number,spatial_coordinate,Generalized point coordinate aligned to the nearest-intersection privacy rule.
+rms_crime_incidents_2024,longitude,number,spatial_coordinate,Generalized point coordinate aligned to the nearest-intersection privacy rule.

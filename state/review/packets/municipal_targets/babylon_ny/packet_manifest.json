@@ -1,0 +1,14 @@
+{
+  "case_key": "babylon_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610304000",
+  "jurisdiction_name": "Babylon town",
+  "state_abbr": "NY",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/babylon_ny",
+  "review_goal": "Determine whether Babylon town, NY should retain a standalone municipal control row or whether the apparent Babylon town police row is a historical/service-structure artifact that should instead be handled through Suffolk County and village structure.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

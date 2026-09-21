@@ -1,0 +1,168 @@
+{
+  "case_key": "coconut_creek_fl",
+  "jurisdiction_id": "12:municipal:place:1213275",
+  "jurisdiction_name": "Coconut Creek city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_current_all_fill_as_post_2020_reporting_continuity_failure_on_fl0061100",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Coconut Creek remains a real incorporated municipal police target with an active city-run police department. The official city police page describes the Coconut Creek Police Department as a full-service, fully accredited agency, and the official accreditation page says the department has an authorized strength of 119 police officers and 44 civilian members serving approximately 60,000 residents.",
+    "The city's official police history page rejects any contract-policing or county-replacement interpretation. It says Coconut Creek established its own police force in 1969 and formally re-established the separate Coconut Creek Police Department on September 12, 2002.",
+    "FDLE's official 2020 County and Municipal Offense Report publishes Coconut Creek Police Department as a distinct Broward municipal row with population 58,803 and total index crime 750. FDLE's 2021 report retains Coconut Creek Police Department with population 57,871 but blanks every offense field.",
+    "FDLE's official incident-based reporting page says Florida's public FIBRS offense workbook covers the 2021-2024 and 2025 Q2 reporting cycles. Inspection of that workbook finds no Coconut Creek row in 2021, 2022, 2023, 2024, or 2025 Q2 even though other Broward agencies do appear.",
+    "The official FBI CDE 2024 roster snapshot in the repo still lists FL0061100 as Coconut Creek Police Department with agency type City, but marks is_nibrs false and provides no nibrs_start_date. That preserves the agency identity while confirming there is no usable 2024 NIBRS surface.",
+    "Repo artifacts align with a post-2020 continuity failure rather than target invalidity. The live crosswalk routes FL0061100 exclusively to Coconut Creek city; repo observations contain nonzero SRS annual totals in 2018-2020 and then zero-valued annual SRS placeholders in 2021-2024; and 2024 Coconut Creek controls are fully fill-backed with zero reported support."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Coconut Creek currently publishes a Police Department page and police service pages under its city directory.",
+      "The official accreditation page states that the Coconut Creek Police Department has 119 police officers and 44 civilian members serving approximately 60,000 residents.",
+      "The official department history page says the city established its own police force in 1969 and re-established a separate Coconut Creek Police Department in 2002."
+    ],
+    "important_interpretation": "Coconut Creek is a valid municipal control object. There is no evidence that Broward County Sheriff's Office, county remainder, or a contract-policing arrangement displaced the city's own police function."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Coconut Creek Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The official city police page describes the Coconut Creek Police Department as a full-service, fully accredited agency and presents the current chief and police services.",
+      "The official accreditation page states that the department has an authorized strength of 119 police officers and 44 civilian members.",
+      "The official history page says the city created its own police force in 1969 and formally established the separate Coconut Creek Police Department on September 12, 2002."
+    ],
+    "important_clarification": "This is not a Broward contract-policing case and not a county-remainder case. Coconut Creek continues to present and staff its own city police department."
+  },
+  "official_reporting_evidence": {
+    "current_agency_identity": {
+      "summary": "Current city and federal public materials still support Coconut Creek Police Department as a live municipal agency identity.",
+      "details": [
+        "The city publishes a current Coconut Creek Police Department page with active services, leadership, and department navigation.",
+        "The official city accreditation page states that the department has 119 police officers and 44 civilian members serving approximately 60,000 residents.",
+        "The repo's 2024 official FBI CDE roster pull lists FL0061100 as Coconut Creek Police Department, agency type City, with is_nibrs false."
+      ],
+      "interpretation": "The municipal agency itself remains real and current, so the target is not invalid."
+    },
+    "fdle_transition_context": {
+      "summary": "FDLE's annual reports page explains that Florida collected both summary and incident-based data during the post-2020 transition and that some agencies could not report until transition was complete.",
+      "interpretation": "Florida's statewide transition created a plausible path for Coconut Creek to retain a legacy annual identity through 2021 but disappear from usable public post-2020 offense reporting without the city ceasing to exist as a police jurisdiction."
+    },
+    "fdle_county_and_municipal_publication_surface": {
+      "summary": "FDLE's official county-and-municipal annual offense reports publish Coconut Creek as a real Broward municipal reporting row through 2020 and retain the row in 2021.",
+      "details": [
+        "FDLE 2020: Coconut Creek Police Department, population 58,803, total index crime 750.",
+        "FDLE 2021: Coconut Creek Police Department, population 57,871, row retained but all offense fields blank."
+      ],
+      "interpretation": "Florida's official annual reporting surface confirms a real Coconut Creek-specific reporting identity through the transition boundary."
+    },
+    "fdle_post_srs_fibrs_publication_check": {
+      "summary": "The official FDLE FIBRS offense-detail workbook does not surface Coconut Creek in any sheet from 2021 through 2025 Q2.",
+      "details": [
+        "Searches for Coconut Creek returned no rows in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets.",
+        "The same workbook does include other Broward agencies such as Miramar in 2021; Coral Springs, Davie, Miramar, Seminole Police Department, and Town of Southwest Ranches in 2022; Coral Springs, Davie, Fort Lauderdale, Miramar, and Town of Southwest Ranches in 2023; and Coral Springs, Davie, Fort Lauderdale, Hillsboro Beach, Miramar, Pembroke Pines, and Seminole Police Department in 2024."
+      ],
+      "interpretation": "The public Florida incident-based workbook is not missing Broward generally; it is missing Coconut Creek specifically."
+    },
+    "fbi_cde_roster_2024": {
+      "summary": "The repo's 2024 official FBI CDE roster pull still lists Coconut Creek Police Department as a City agency but marks it non-NIBRS.",
+      "details": {
+        "ori9": "FL0061100",
+        "agency_name": "Coconut Creek Police Department",
+        "agency_type_name": "City",
+        "is_nibrs": false,
+        "nibrs_start_date": null
+      },
+      "interpretation": "Federal roster continuity survives at the agency-identity level, but not as a live 2024 NIBRS reporting surface."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.csv routes FL0061100 exclusively to 12:municipal:place:1213275 with relationship_type exclusive and review_status auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0061100 as a local police department and records both SRS and NIBRS source-presence flags across 2018-2024, but latest_srs_part1_total is 0.0 and latest_nibrs_year is metadata-only rather than backed by usable public observations.",
+    "observation_state": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1116.0,
+        "months_reported": 12.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1092.0,
+        "months_reported": 12.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 750.0,
+        "months_reported": 1.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      }
+    ],
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Coconut Creek offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and current-year fill supplied entirely by historical estimators.",
+    "review_artifact_state": "municipal_target_review_queue.csv flags Coconut Creek as full_fill_no_reported_support with total_fill_count 1083.0 and total_reported_count 0.0, while fbi_cde_source_review_queue.csv separately flags FL0061100 as present_but_no_2024_observation."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "usable_official_state_annual_identity_supported_through_year": 2020,
+    "transitional_blank_row_year": 2021,
+    "why": [
+      "Coconut Creek has an active city police department in current official city materials.",
+      "FDLE's official county-and-municipal reports publish Coconut Creek as a distinct municipal reporting row in 2020 and retain the row in 2021.",
+      "The official FBI CDE roster still recognizes FL0061100 as a City agency even though it marks the agency non-NIBRS in 2024.",
+      "The repo crosswalk from FL0061100 to Coconut Creek city is exclusive and consistent with those official identity surfaces."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Coconut Creek remained a real city-police reporting identity through the end of the SRS publication lane and appears as a retained blank row in FDLE's 2021 annual county-and-municipal report.",
+      "That identity did not carry into a usable public post-2020 incident-based reporting surface: the FBI's 2024 roster marks FL0061100 non-NIBRS and FDLE's public FIBRS workbook omits Coconut Creek entirely.",
+      "The repo therefore falls back from real 2018-2020 annual support to zero-valued placeholders in 2021-2024 and fully fill-backed 2024 municipal controls."
+    ],
+    "best_available_override_surface_if_business_requires_city_level_2021_2024_support": {
+      "source": "Direct Coconut Creek Police Department or city records, or a direct FDLE/FBI agency extract keyed to FL0061100",
+      "why": "Current official city materials confirm an active city department, but the reviewed statewide public offense publications do not expose a usable annual Coconut Creek row after 2020.",
+      "limitations": [
+        "The reviewed city pages confirm the agency's current existence but do not publish a ready-made annual offense table equivalent to the old FDLE county-and-municipal reports.",
+        "The public FDLE FIBRS workbook contains no Coconut Creek row, and the official FBI 2024 roster marks the agency non-NIBRS."
+      ]
+    },
+    "recommended_handling": [
+      "Retain Coconut Creek city as a standalone municipal control row.",
+      "Do not reroute Coconut Creek to Broward Sheriff's Office, county remainder, or any contract-policing treatment.",
+      "Treat the current all-fill state as a post-2020 reporting continuity failure on FL0061100 rather than contract policing, county replacement, or target invalidity.",
+      "Use FDLE's county-and-municipal offense reports as the official statewide support surface through 2020 and treat the retained blank 2021 row as transition evidence.",
+      "If production requires observed counts after 2020, recover them through direct city records or a direct agency-level state or federal extract rather than deleting the municipal target."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_post_2020_reporting_continuity_failure",
+  "open_questions": [
+    "The keep-versus-drop decision is closed. The remaining implementation blocker is that no reviewed official public annual offense table exposes Coconut Creek counts for 2021-2024; recovery would require direct city records or a direct FDLE/FBI agency extract keyed to FL0061100."
+  ]
+}

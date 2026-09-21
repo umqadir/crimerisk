@@ -1,0 +1,32 @@
+source_feed,field_name,field_type,contract_role,notes
+legacy_srs,RowID,oid,row_identifier,ArcGIS system object id.
+legacy_srs,CCNumber,string,incident_identifier,Official dictionary says unique identifier but observed repeats show incident-level reuse across victim and subtype rows.
+legacy_srs,CrimeDateTime,date,primary_date,Use as event timestamp.
+legacy_srs,CrimeCode,string,offense_detail,Supports subtype logic for robbery and larceny.
+legacy_srs,Description,string,primary_offense_label,Primary public offense label used in packet-local crosswalk.
+legacy_srs,Latitude,string,spatial_coordinate,Coordinate stored as string.
+legacy_srs,Longitude,string,spatial_coordinate,Coordinate stored as string.
+legacy_srs,GeoLocation,string,spatial_coordinate_proxy,Lat/lon concatenation field.
+legacy_srs,Location,string,address_proxy,Human-readable address/general location.
+legacy_srs,Neighborhood,string,spatial_proxy,Useful fallback geography.
+legacy_srs,Post,string,police_geography,Useful fallback geography.
+legacy_srs,Old_District,string,police_geography,Legacy district field.
+legacy_srs,New_District,string,police_geography,Current district field.
+legacy_srs,PremiseType,string,context,Premise descriptor.
+legacy_srs,Total_Incidents,small_integer,count_field,Always 1 in inspected 2024 rows but still record the field contract.
+nibrs_group_a,RowID,oid,row_identifier,ArcGIS system object id.
+nibrs_group_a,CCNumber,string,incident_identifier,Same caveat as legacy feed.
+nibrs_group_a,CrimeDateTime,date,primary_date,Use as event timestamp.
+nibrs_group_a,CrimeCode,string,offense_detail,Supports more detailed NIBRS-like categorization.
+nibrs_group_a,Description,string,primary_offense_label,Public offense label.
+nibrs_group_a,Shooting,string,attribute_flag,Additional field not present in the legacy feed.
+nibrs_group_a,Latitude,string,spatial_coordinate,Coordinate stored as string.
+nibrs_group_a,Longitude,string,spatial_coordinate,Coordinate stored as string.
+nibrs_group_a,GeoLocation,string,spatial_coordinate_proxy,Lat/lon concatenation field.
+nibrs_group_a,Location,string,address_proxy,Human-readable address/general location.
+nibrs_group_a,Neighborhood,string,spatial_proxy,Useful fallback geography.
+nibrs_group_a,Post,string,police_geography,Useful fallback geography.
+nibrs_group_a,Old_District,string,police_geography,Legacy district field.
+nibrs_group_a,New_District,string,police_geography,Current district field.
+nibrs_group_a,PremiseType,string,context,Premise descriptor.
+nibrs_group_a,Total_Incidents,small_integer,count_field,Always 1 in inspected 2024 rows but still record the field contract.

@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,MPD Public Safety Incidents (Memphis Police Department NIBRS-coded incident feed),https://data.memphistn.gov/ (MPD_Public_Safety_Incidents ArcGIS hosted layer),ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

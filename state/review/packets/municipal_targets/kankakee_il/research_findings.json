@@ -1,0 +1,165 @@
+{
+  "case_key": "kankakee_il",
+  "jurisdiction_id": "17:municipal:place:1738934",
+  "jurisdiction_name": "Kankakee city",
+  "state_abbr": "IL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_classify_current_all_fill_as_illinois_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Kankakee remains a real current city-police jurisdiction. Official City of Kankakee sources maintain a live Kankakee Police Department page, a current chief page for Chief Christopher Kidwell, and departmental history/staffing material that describes a full municipal police structure rather than a defunct or merged service.",
+    "Official city governance materials show continuing city-level police reporting. The City's Public Safety Committee says it receives monthly reports from the police department and that each report includes a summary of incidents, operations, budget management, expenses, and training.",
+    "There is no official evidence that Kankakee County Sheriff replaced the city's police department. The sheriff's official patrol page describes a county patrol division serving rural and urban Kankakee County and county court functions, while the City simultaneously presents Kankakee Police Department as its own operating department.",
+    "Official Illinois State Police material directly contradicts the repo's zeroed 2021 carry-forward. Crime in Illinois 2021 still published a Kankakee city row with 2021 population 25,872, crime rate 510.2, and total offenses 1,039, which is incompatible with the repo's all-zero 2021 placeholder state for the six queued offenses.",
+    "The reviewed blocker is publication and reporting continuity, not target validity. The Illinois Crime in Illinois Online portal says that starting in 2023 agency data is published only after achieving NIBRS certification, and the mirrored FBI Crime Data Explorer 2024 roster still lists Kankakee Police Department as a City agency with is_nibrs false and no NIBRS start date. That combination explains why public state/federal post-2022 continuity is weak without implying that Kankakee ceased to be a city-police target.",
+    "A direct April 2026 browser-side check against the public Illinois Offense and Arrest Summary Report confirms the practical blocker: the portal still exposes IL0460200 - KANKAKEE in the agency selector, but when 2024 annual dates are submitted the selection is cleared and no report surface materializes. That behavior is consistent with certification-gated non-publication rather than with a retrievable 2024 annual agency extract."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Kankakee maintains a current Kankakee Police Department page inside the official city site.",
+      "The City maintains a current chief page for Chief Christopher Kidwell, whose biography says he joined Kankakee City Police in 1992 and rose through patrol, SWAT, K.A.M.E.G., and deputy chief roles before becoming chief.",
+      "The department history page describes a continuing municipal police organization with sworn staffing, investigations, juvenile, records, technology, and community-service functions."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Kankakee Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The city police page presents Kankakee Police Department as a live city department and routes visitors to departmental services, chief information, tips, and testing material.",
+      "The chief page presents Chief Christopher Kidwell as the current police chief and describes his long Kankakee City Police career.",
+      "The department history page describes a large sworn municipal police department and city-employed civilian staff.",
+      "The Public Safety Committee says the police department submits monthly reports summarizing incidents and operations.",
+      "The sheriff's patrol page describes a county patrol function rather than a contract-city or successor arrangement for Kankakee city."
+    ],
+    "important_clarification": "This review found no evidence that Kankakee city should be demoted to Kankakee County Sheriff primary service or treated as a merged/shared-policing municipality."
+  },
+  "official_reporting_evidence": {
+    "city_public_reporting_surface": {
+      "summary": "The City publicly states that police incident summaries are reviewed monthly through the Public Safety Committee.",
+      "details": [
+        "The committee says it receives monthly police department reports.",
+        "The committee says those reports include summaries of all incidents reported plus department operations, budget management, expenses, and training."
+      ],
+      "interpretation": "Kankakee appears to maintain a city-origin reporting surface even though a clean public 2024 annual extract was not located during this review."
+    },
+    "illinois_state_publication_continuity": {
+      "legacy_publication": {
+        "source": "Crime in Illinois 2021",
+        "summary": "Illinois State Police still published a Kankakee city row in the 2021 annual report.",
+        "published_2021_values": {
+          "population": 25872,
+          "crime_rate": 510.2,
+          "total_offenses": 1039
+        },
+        "why_it_matters": "The repo's 2021 zero placeholders are not a trustworthy read of Kankakee's actual 2021 city reporting."
+      },
+      "current_portal_rule": {
+        "summary": "Illinois says that starting in 2023 agency data is published only after achieving NIBRS certification.",
+        "direct_portal_check": {
+          "review_date": "2026-04-05",
+          "report_path": "https://ilucr.nibrs.com/Report/AgencySummaryReport",
+          "agency_tested": "IL0460200 - KANKAKEE",
+          "incident_start_date": "01/01/2024",
+          "incident_end_date": "12/31/2024",
+          "observed_behavior": "The public agency selector still exposes IL0460200 - KANKAKEE, but the selection is cleared on submit and no report iframe/materialized report surface is returned.",
+          "interpretation": "The public portal is not currently yielding a recoverable 2024 annual Kankakee extract even though the agency identity remains visible in the selector."
+        },
+        "interpretation": "Public statewide post-2022 continuity can disappear for uncertified agencies even when the local police department remains active."
+      }
+    },
+    "federal_roster_signal": {
+      "summary": "The mirrored FBI Crime Data Explorer 2024 roster still lists Kankakee Police Department as a City agency, but not as NIBRS.",
+      "details": {
+        "ori": "IL0460200",
+        "agency_name": "Kankakee Police Department",
+        "agency_type_name": "City",
+        "is_nibrs": false,
+        "nibrs_start_date": null
+      },
+      "interpretation": "Federal roster identity still exists for Kankakee PD. The issue is lack of public NIBRS continuity, not loss of agency identity."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes IL0460200 exclusively to 17:municipal:place:1738934 with relationship_type exclusive, weight 1.0, and resolution_source provisional_auto.",
+    "observation_state": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "status": "reported",
+        "notes": "Positive Kankakee city counts materialize across all six queued offenses."
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "status": "reported",
+        "notes": "Positive Kankakee city counts materialize across all six queued offenses."
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "status": "reported",
+        "notes": "Positive Kankakee city counts materialize across all six queued offenses."
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported even though Illinois State Police published a nonzero 2021 Kankakee city row."
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported."
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported during Illinois' certification-gated publication period."
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported and no materialized NIBRS annual observation."
+      }
+    ],
+    "current_control_state": "municipal_target_review_queue.csv flags Kankakee city as high_impact_full_fill_place with full_fill_no_reported_support, total_fill_count 1090.0, total_reported_count 0.0, and fill_share_of_estimated 1.0 across aggravated_assault, burglary, larceny, motor_vehicle_theft, rape, and robbery.",
+    "federal_repo_mismatch": "ori_source_validation_2024.csv flags IL0460200 as present in the official FBI roster but with repo_has_srs_2024 false, repo_has_nibrs_2024 false, repo_preferred_support_count_2024 0.0, and mismatch_reason no_2024_observation.",
+    "interpretation": "The repo is carrying a valid city agency on a clean exclusive crosswalk, but its post-2020 continuity is broken."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Kankakee still operates an active city police department.",
+      "The sheriff is a separate county patrol layer, not a successor city-police replacement.",
+      "The exclusive IL0460200 to Kankakee city crosswalk is straightforward and uncontested in reviewed materials.",
+      "Official Illinois State Police 2021 publication proves the zeroed continuity break is at least partly a source or ingestion failure rather than a bad target."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "This is not an invalid municipal target, a sheriff-primary replacement, or a merged/shared-service city-police dissolution.",
+      "The series appears to break during Illinois' SRS-to-NIBRS transition and then remains publicly weak because 2023-forward Illinois publication is certification-gated.",
+      "Kankakee's mirrored FBI 2024 roster status as a non-NIBRS city agency fits that publication failure pattern."
+    ],
+    "recommended_handling": [
+      "Retain Kankakee city as a standalone municipal control row.",
+      "Do not reroute IL0460200 into Kankakee County Sheriff or county remainder.",
+      "Treat the current all-fill state as an Illinois reporting/publication continuity failure on a valid municipal police target.",
+      "Use official Illinois State Police Crime in Illinois 2021 as a proven recovery surface for 2021 rather than trusting repo zeros.",
+      "For 2022-2024 repair, prefer direct City of Kankakee police monthly or annual reporting artifacts, direct city records output, or nonpublic ISP submission material over any assumption that the city lost its police department."
+    ],
+    "exact_blocker": "A production-usable public 2024 Kankakee Police Department annual offense table was not located during this review. Illinois' public portal says 2023-forward agency publication requires NIBRS certification, the mirrored FBI 2024 roster still marks IL0460200 as non-NIBRS, and a direct April 2026 portal submission against the public agency report path clears the Kankakee selector rather than materializing a 2024 report. The city indicates monthly police incident reports exist, but the underlying report documents were not directly retrievable from the public committee pages during this review. That leaves the service-structure question closed but the 2023-2024 count-recovery lane blocked on city-direct or nonpublic state submissions."
+  },
+  "likely_issue_class": "valid_target_with_illinois_reporting_and_publication_continuity_failure",
+  "open_questions": [
+    "A later repair pass should determine whether City of Kankakee committee packets, annual budget appendices, direct police records responses, or ISP back-office extracts can yield exact 2022-2024 city counts.",
+    "The target-validity question is closed with high confidence; only the count-recovery path remains open."
+  ]
+}

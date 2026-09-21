@@ -1,0 +1,166 @@
+{
+  "state_abbr": "MS",
+  "state_name": "Mississippi",
+  "source_name": "Mississippi Crime Insight / TOPS",
+  "source_base_url": "https://mscrimestats.dps.ms.gov",
+  "generated_at_utc": "2026-03-22T18:53:07+00:00",
+  "implementation_readiness": "packet_local_ready",
+  "primary_extraction_path": {
+    "surface": "dispview_csv_export",
+    "mechanics": {
+      "method": "POST",
+      "body": "",
+      "content_type": "application/x-csv",
+      "query_flags": {
+        "download": "yes",
+        "DownloadFormat": "CSV",
+        "CsvDataFormat": "CSV_MD"
+      },
+      "note": "A zero-length POST body is sufficient. GET is not required for export once the query string is assembled."
+    },
+    "statewide_property_totals": {
+      "report_id": 115,
+      "query": {
+        "MemberSelection_[Jurisdiction].[Jurisdiction Hierarchy]": "MS"
+      },
+      "measure_semantics": "Number of Crimes",
+      "year_column": "2024",
+      "2024_extracted_values": {
+        "all_property_crimes": "34,161",
+        "burglary": "4,422",
+        "larceny_theft": "20,820",
+        "motor_vehicle_theft": "2,907",
+        "robbery_duplicate": "377"
+      }
+    },
+    "statewide_violent_totals": {
+      "report_id": 105,
+      "query": {
+        "MemberSelection_[Jurisdiction].[Jurisdiction Hierarchy]": "MS"
+      },
+      "measure_semantics": "Number of Crimes",
+      "year_column": "2024",
+      "2024_extracted_values": {
+        "all_violent_crime": "4,541",
+        "murder": "123",
+        "non_consensual_sex_offenses": "914",
+        "robbery": "377",
+        "aggravated_assault": "3,127"
+      }
+    },
+    "agency_level_backfill": {
+      "property_report_id": 115,
+      "violent_report_id": 105,
+      "query_contract": {
+        "MemberSelection_[Jurisdiction].[Jurisdiction Hierarchy]": "ORI9 such as MS0240100"
+      },
+      "confirmed_example": {
+        "ori9": "MS0240100",
+        "agency_name": "Biloxi Police Department",
+        "property_2024": {
+          "all_property_crimes": "1,964",
+          "burglary": "77",
+          "larceny_theft": "1,442",
+          "motor_vehicle_theft": "89"
+        },
+        "violent_2024": {
+          "all_violent_crime": "197",
+          "murder": "3",
+          "non_consensual_sex_offenses": "42",
+          "robbery": "33",
+          "aggravated_assault": "119"
+        }
+      }
+    }
+  },
+  "validation_aids": {
+    "property_reporting_agencies": {
+      "report_id": 138,
+      "query": {
+        "MemberSelection_[Incident Date].[Incident Date Hierarchy]": "2024"
+      },
+      "note": "Name-based 2024 coverage report; includes rollups and Not Reporting labels."
+    },
+    "violent_reporting_agencies": {
+      "report_id": 167,
+      "query": {
+        "MemberSelection_[Incident Date].[Incident Date Hierarchy]": "2024"
+      },
+      "note": "Name-based 2024 coverage report; includes rollups and Not Reporting labels."
+    },
+    "property_monthly_incidents": {
+      "report_id": 139,
+      "query": {
+        "MemberSelection_[Incident Date].[Incident Date Hierarchy]": "2024",
+        "MemberSelection_[Jurisdiction].[Jurisdiction Hierarchy]": "MS"
+      },
+      "note": "Monthly Number of Incidents view for QA only."
+    },
+    "violent_monthly_incidents": {
+      "report_id": 168,
+      "query": {
+        "MemberSelection_[Incident Date].[Incident Date Hierarchy]": "2024",
+        "MemberSelection_[Jurisdiction].[Jurisdiction Hierarchy]": "MS"
+      },
+      "note": "Monthly Number of Incidents view for QA only."
+    }
+  },
+  "offense_mapping_for_v2": {
+    "murder": {
+      "report_id": 105,
+      "row_label": "Murder",
+      "year_column": "2024"
+    },
+    "robbery": {
+      "report_id": 105,
+      "row_label": "Robbery",
+      "year_column": "2024"
+    },
+    "aggravated_assault": {
+      "report_id": 105,
+      "row_label": "Aggravated Assault",
+      "year_column": "2024"
+    },
+    "burglary": {
+      "report_id": 115,
+      "row_label": "Burglary",
+      "year_column": "2024"
+    },
+    "larceny": {
+      "report_id": 115,
+      "row_label": "Larceny - Theft",
+      "year_column": "2024"
+    },
+    "motor_vehicle_theft": {
+      "report_id": 115,
+      "row_label": "Motor Vehicle Theft",
+      "year_column": "2024"
+    },
+    "rape": {
+      "status": "not_directly_named_in_minimal_path",
+      "closest_official_label": "Non-Consensual Sex Offenses",
+      "report_id": 105,
+      "row_label": "Non-Consensual Sex Offenses",
+      "year_column": "2024"
+    }
+  },
+  "caveats": [
+    "Use ReportId 105 and 115 for yearly offense totals. The monthly reports 168 and 139 use Number of Incidents and do not reconcile to yearly Number of Crimes totals.",
+    "The violent path exposes Non-Consensual Sex Offenses rather than a directly named rape row in the smallest stable export path.",
+    "Coverage reports 138 and 167 are name-based and include county rollups, Not Reporting labels, and DO NOT USE-style names elsewhere in the selector. They are useful for QA, not as the primary ORI join source.",
+    "Trend tables include partial 2025 and 2026 columns. Central extraction must explicitly select the 2024 column.",
+    "The public site notes that violent categories mix victim counts for murder, sex offenses, and aggravated assault with incident counts for robbery."
+  ],
+  "blockers": [
+    "Exact rape-only extraction is not confirmed from the smallest stable 2024 table-export path. The confirmed official export surface groups that category as Non-Consensual Sex Offenses."
+  ],
+  "probe_highlights": {
+    "property_trend_state_csv": "All Property Crimes=34,161; Burglary=4,422; Larceny - Theft=20,820; Motor Vehicle Theft=2,907; Robbery=377",
+    "violent_trend_state_csv": "All Violent Crime=4,541; Murder=123; Non-Consensual Sex Offenses=914; Robbery=377; Aggravated Assault=3,127",
+    "property_monthly_state_csv": "rows=13; summed_monthly_total=33304",
+    "violent_monthly_state_csv": "rows=13; summed_monthly_total=3756",
+    "property_trend_biloxi_csv": "All Property Crimes=1,964; Burglary=77; Larceny - Theft=1,442; Motor Vehicle Theft=89; Robbery=33",
+    "violent_trend_biloxi_csv": "All Violent Crime=197; Murder=3; Non-Consensual Sex Offenses=42; Robbery=33; Aggravated Assault=119"
+  },
+  "recommended_next_central_step": "Implement a Mississippi extractor that POSTs directly to ReportId 115 and 105 CSV exports with ORI-backed jurisdiction members, parses the quoted CSV metadata/header format, selects the 2024 column, and treats the monthly/coverage reports as QA-only side inputs."
+}

@@ -1,0 +1,2517 @@
+{
+  "case_key": "uta_ut",
+  "ori": "UT0184000",
+  "agency_name_raw": "Utah Transit Authority Police",
+  "state_abbr": "UT",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "UT0184000 now has a production-usable custom footprint built from the live official UTA GTFS feed, the official station-address inventory, the official non-LDS park-and-ride inventory, exact official UTA park-and-ride polygons, and exact official FrontRunner platform polygons where available.",
+  "doctrine_basis": {
+    "scope_rule": "Use a custom transit-network-and-facilities footprint rather than county or place polygons.",
+    "official_scope_evidence": {
+      "rider_support_url": "https://www.rideuta.com/Rider-Info/Rider-Support",
+      "statute_url": "https://le.utah.gov/xcode/Title17B/Chapter2A/C17B-2a-S802_2025110620251206.html",
+      "summary": "UTA police responsibility is tied to UTA vehicles, property, stations, facilities, parking lots, rail lines, and adjacent stop areas rather than member-county polygons."
+    }
+  },
+  "source_validation": {
+    "gtfs_feed_info": {
+      "feed_publisher_name": "Utah Transit Authority",
+      "feed_publisher_url": "http://www.rideuta.com",
+      "feed_lang": "en",
+      "feed_start_date": 20251123,
+      "feed_end_date": 20260411,
+      "feed_version": "2025 DEC_20260117"
+    },
+    "service_date_used": "2026-03-24",
+    "active_service_ids": [
+      "300.0.4",
+      "300.133.4",
+      "300.2524.4"
+    ],
+    "active_route_count": 90,
+    "active_route_type_counts": {
+      "0": 4,
+      "2": 1,
+      "3": 85
+    },
+    "active_trip_count": 5834,
+    "active_stop_count": 5497,
+    "active_shape_count": 206,
+    "official_station_inventory_rows": 104,
+    "station_match_methods": {
+      "matched_gtfs_station_stop_cluster_buffer_60m": 86,
+      "official_frontrunner_platform_polygon": 18
+    },
+    "official_non_lds_park_rows": 67,
+    "matched_park_polygon_rows": 67,
+    "park_polygon_service_feature_count": 158,
+    "park_polygon_match_uses_non_lds_inventory_only": true,
+    "lds_rows_excluded_from_html_inventory": 92
+  },
+  "geometry_components": {
+    "active_gtfs_route_buffer_m": {
+      "bus": 10.0,
+      "rail": 20.0
+    },
+    "active_gtfs_stop_buffer_m": 20.0,
+    "official_station_cluster_buffer_m": 60.0,
+    "station_component_logic": "Use exact official FrontRunner platform polygons for in-service FrontRunner stations. For all other official station-inventory rows, match the official station to active GTFS station stop coordinates and buffer the matched stop cluster by 60 m.",
+    "park_component_logic": "Use exact official UTA Park_and_Ride_Polygons features, but only for facilities present in the non-LDS sections of the official Park and Ride Lots page.",
+    "park_polygon_aliases_applied": {
+      "2700 W. Sugar Factory Road Station": "2700 W Sugar Factory Rd",
+      "4800 W. Old Bingham Hwy. Station": "4800 W Old Bingham Hwy",
+      "5600 W. Old Bingham Hwy. Station": "5600 W Old Bingham Hwy",
+      "Draper Towne Center": "Draper Town Center",
+      "Sandy Civic Station": "Sandy Civic Center",
+      "Brigham City Park and Ride": "Brigham City",
+      "River Trail Station*": "River Trail [except Sundays]",
+      "5600 W. Max Station": "5600 West MAX",
+      "3900 S. Wasatch Blvd.": "Olympus Cove",
+      "6200 S. Wasatch Blvd.": "6200 S Wasatch Blvd",
+      "6600 S. Union Park Ave.": "6600 S Union Park Ave",
+      "9400 S. Highland Dr.": "9400 S Highland Dr",
+      "Antelope Drive": "Antelope Dr",
+      "Hill AFB S. Gate": "Hill AFB - South Gate",
+      "Kimball Jct. Transit Center": "Kimball Junction Transit Center"
+    },
+    "station_aliases_applied": {
+      "Sandy Civic": [
+        "Sandy Civic Center Station",
+        "Sandy Civic Center"
+      ],
+      "Old Greek Town": [
+        "Old Greektown Station",
+        "Old Greektown"
+      ],
+      "Court House": [
+        "Courthouse Station",
+        "Courthouse"
+      ],
+      "South Campus": [
+        "University South Campus Station",
+        "U South Campus Station"
+      ],
+      "Medical Center": [
+        "University Medical Center",
+        "U Medical Center Station"
+      ],
+      "N. Temple Bridge/Guadalupe": [
+        "North Temple Bridge/Guadalupe"
+      ],
+      "1940 West North Temple": [
+        "1940 W. North Temple Station",
+        "1940. W North Temple Station"
+      ],
+      "400 South": [
+        "University Ave / 300 S",
+        "University Ave / 450 S"
+      ],
+      "Towne Centre Blvd": [
+        "Towne Centre Blvd Station"
+      ],
+      "Dee Events Center": [
+        "Dee Events Center Station"
+      ],
+      "McKay-Dee Hospital": [
+        "McKay-Dee Hospital Station"
+      ],
+      "South Jordan Parkway": [
+        "South Jordan Parkway Station"
+      ],
+      "Draper Town Center": [
+        "Draper Town Center Station"
+      ],
+      "Kimballs Lane": [
+        "Kimballs Lane Station"
+      ]
+    }
+  },
+  "service_area_result": {
+    "intersected_block_groups": 1225,
+    "intersected_county_fips": [
+      "003",
+      "005",
+      "011",
+      "029",
+      "035",
+      "043",
+      "045",
+      "049",
+      "057"
+    ],
+    "intersected_county_bg_counts": {
+      "003": 19,
+      "005": 1,
+      "011": 157,
+      "029": 3,
+      "035": 607,
+      "043": 3,
+      "045": 20,
+      "049": 278,
+      "057": 137
+    },
+    "dissolved_footprint_area_m2": 49531516.96223261,
+    "dissolved_footprint_area_acres": 12239.50439359986
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_49_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersection_area_total_m2": 49531516.962235264,
+    "intersection_area_total_acres": 12239.504393600515,
+    "output_row_count": 1225,
+    "weight_sum": 1.0,
+    "largest_block_group_geoid": "490351139061",
+    "largest_block_group_share": 0.01786517976531426,
+    "intersected_counties": {
+      "003": 19,
+      "005": 1,
+      "011": 157,
+      "029": 3,
+      "035": 607,
+      "043": 3,
+      "045": 20,
+      "049": 278,
+      "057": 137
+    }
+  },
+  "exact_source_urls": {
+    "gtfs_zip": "https://gtfsfeed.rideuta.com/GTFS.zip",
+    "station_addresses": "https://www.rideuta.com/Rider-Info/Station-Addresses",
+    "park_and_ride_page": "https://www.rideuta.com/Rider-Info/Park-and-Ride-Lots",
+    "park_and_ride_polygons": "https://maps.rideuta.com/server/rest/services/Hosted/Park_and_Ride_Polygons/FeatureServer/0",
+    "frontrunner_platform_polygons": "https://maps.rideuta.com/server/rest/services/Hosted/FrontRunnerStationsPlatformPolygons/FeatureServer/12",
+    "trax_station_points": "https://maps.rideuta.com/server/rest/services/Hosted/TRAX_Light_Rail_Stations/FeatureServer/0",
+    "frontrunner_station_points": "https://maps.rideuta.com/server/rest/services/Hosted/FrontRunnerStations/FeatureServer/0",
+    "rider_support": "https://www.rideuta.com/Rider-Info/Rider-Support",
+    "statute": "https://le.utah.gov/xcode/Title17B/Chapter2A/C17B-2a-S802_2025110620251206.html"
+  },
+  "residual_caveats": [
+    "UTA does not expose a public exact polygon layer for all non-FrontRunner station campuses. TRAX, S-Line, UVX, and Ogden Express station areas are therefore represented by 60 m buffers around the official-station inventory locations matched to active GTFS station stop clusters.",
+    "The active GTFS route component is a thin corridor proxy for vehicle-in-service geography, not a claim that UTA owns or controls the full roadway width along bus routes.",
+    "The official park-and-ride polygon layer includes LDS and other unsupported rows; this build explicitly restricts park polygons to facilities listed in the non-LDS sections of the official Park and Ride Lots page.",
+    "A few official facility labels differ across sources, such as 'Draper Towne Center' versus 'Draper Town Center' and 'River Trail Station*' versus 'River Trail [except Sundays]'; those cross-source aliases are recorded explicitly in this packet."
+  ],
+  "matching_diagnostics": {
+    "station_rows": [
+      {
+        "station_name": "Ogden Central",
+        "station_address": "2393 S. Wall Ave.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Roy",
+        "station_address": "4155 S. Sandridge Drive",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Clearfield",
+        "station_address": "1250 S. State St.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Layton",
+        "station_address": "150 S. Main St.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Farmington",
+        "station_address": "450 N. 850 W.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Woods Cross",
+        "station_address": "750 S. 800 W.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "North Temple",
+        "station_address": "480 W. 200 N.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "4862",
+          "4874",
+          "4876",
+          "4886",
+          "4948",
+          "5491",
+          "5492",
+          "5493",
+          "12988",
+          "13872",
+          "13907",
+          "14047",
+          "16503",
+          "16505",
+          "16506",
+          "17234",
+          "18241",
+          "18507",
+          "21929",
+          "23039",
+          "23040",
+          "23041",
+          "23042",
+          "23043",
+          "23044",
+          "23045",
+          "23046",
+          "23047",
+          "23048",
+          "23113",
+          "23166",
+          "23169",
+          "23170",
+          "23176",
+          "23307",
+          "23607",
+          "23628",
+          "23629",
+          "23630",
+          "23631",
+          "23632",
+          "23633",
+          "23634",
+          "23635",
+          "24044",
+          "24629",
+          "24630",
+          "24631",
+          "25002",
+          "25404"
+        ]
+      },
+      {
+        "station_name": "Salt Lake Central",
+        "station_address": "325 S. 600 W.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Murray Central",
+        "station_address": "140 W. Vine St.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "South Jordan",
+        "station_address": "10351 S. Jordan Gateway",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Draper",
+        "station_address": "12997 S. FrontRunner Blvd.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Lehi",
+        "station_address": "3101 N. Ashton Blvd.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "American Fork",
+        "station_address": "782 W. 200 S.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Vineyard",
+        "station_address": "130 E. Market St.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Orem Central",
+        "station_address": "1350 W. 900 S.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Provo Central",
+        "station_address": "701 S. Freedom Blvd.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Draper Town Center",
+        "station_address": "1131 E. Pioneer Road",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23322",
+          "23323",
+          "23525"
+        ]
+      },
+      {
+        "station_name": "Kimballs Lane",
+        "station_address": "11796 S. 700 E.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18433",
+          "18435",
+          "23064",
+          "23320",
+          "23321",
+          "24039"
+        ]
+      },
+      {
+        "station_name": "Crescent View",
+        "station_address": "361 E. 11400 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23318",
+          "23319"
+        ]
+      },
+      {
+        "station_name": "Sandy Civic",
+        "station_address": "115 E. Sego Lily Drive",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14699",
+          "18199",
+          "18403",
+          "18404",
+          "24802",
+          "24803",
+          "24807",
+          "24854"
+        ]
+      },
+      {
+        "station_name": "Sandy Expo",
+        "station_address": "9375 S. 150 E.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "21225",
+          "21226"
+        ]
+      },
+      {
+        "station_name": "Historic Sandy",
+        "station_address": "165 E. 9000 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "15007",
+          "18198",
+          "18312",
+          "18401",
+          "18402"
+        ]
+      },
+      {
+        "station_name": "Midvale Center",
+        "station_address": "95 W. 7720 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14874",
+          "14892",
+          "14893",
+          "14960",
+          "14966",
+          "14967",
+          "16790",
+          "17163",
+          "18039",
+          "18293",
+          "18294",
+          "18296",
+          "18397",
+          "18398",
+          "18399",
+          "18400",
+          "21185",
+          "23051",
+          "23894",
+          "25433",
+          "25434",
+          "25435",
+          "25436"
+        ]
+      },
+      {
+        "station_name": "Midvale Fort Union",
+        "station_address": "7250 S. 180 W.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "17163",
+          "18293",
+          "18294",
+          "18397",
+          "18398"
+        ]
+      },
+      {
+        "station_name": "Fashion Place West",
+        "station_address": "222 W. Winchester St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14901",
+          "15555",
+          "18196",
+          "18395",
+          "18396"
+        ]
+      },
+      {
+        "station_name": "Murray Central",
+        "station_address": "5144 S. Cottonwood St.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Murray North",
+        "station_address": "71 W. Fireclay Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "16922",
+          "18391",
+          "18392"
+        ]
+      },
+      {
+        "station_name": "Meadowbrook",
+        "station_address": "188 W. 3900 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "13802",
+          "13804",
+          "13805",
+          "13806",
+          "16698",
+          "16745",
+          "16746",
+          "18238",
+          "18389",
+          "18390",
+          "21860",
+          "24202",
+          "24446",
+          "24447"
+        ]
+      },
+      {
+        "station_name": "Millcreek",
+        "station_address": "210 W. 3300 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "12688",
+          "14203",
+          "14335",
+          "14352",
+          "14354",
+          "18271",
+          "18272",
+          "18274",
+          "18387",
+          "18388"
+        ]
+      },
+      {
+        "station_name": "Central Pointe",
+        "station_address": "221 W. 2100 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18145",
+          "18413",
+          "18414",
+          "22861",
+          "23565"
+        ]
+      },
+      {
+        "station_name": "Ballpark",
+        "station_address": "180 W. 1300 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18411",
+          "18412"
+        ]
+      },
+      {
+        "station_name": "900 South",
+        "station_address": "860 S. 200 W.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "20973",
+          "20982"
+        ]
+      },
+      {
+        "station_name": "600 South",
+        "station_address": "650 S. Main St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "25328",
+          "25329"
+        ]
+      },
+      {
+        "station_name": "Courthouse",
+        "station_address": "450 S. Main St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18254",
+          "18409",
+          "18410"
+        ]
+      },
+      {
+        "station_name": "Gallivan Plaza",
+        "station_address": "275 S. Main St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18376",
+          "18415"
+        ]
+      },
+      {
+        "station_name": "City Center",
+        "station_address": "55 S. Main St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "12043",
+          "12044",
+          "12046",
+          "12073",
+          "12078",
+          "12086",
+          "12098",
+          "12099",
+          "17291",
+          "17293",
+          "17295",
+          "17789",
+          "17790",
+          "17791",
+          "17792",
+          "18385",
+          "18386",
+          "18483",
+          "18865",
+          "21731",
+          "22631",
+          "22632",
+          "22840",
+          "23262",
+          "23263",
+          "23566",
+          "23593",
+          "23594",
+          "24284",
+          "24775"
+        ]
+      },
+      {
+        "station_name": "Temple Square",
+        "station_address": "155 W. South Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18407",
+          "18408"
+        ]
+      },
+      {
+        "station_name": "Arena",
+        "station_address": "350 W. South Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "15595",
+          "18405",
+          "18406",
+          "18513"
+        ]
+      },
+      {
+        "station_name": "Planetarium",
+        "station_address": "150 S. 400 W.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "21762",
+          "21800"
+        ]
+      },
+      {
+        "station_name": "Old Greek Town",
+        "station_address": "550 W. 200 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "21763",
+          "21801"
+        ]
+      },
+      {
+        "station_name": "Daybreak Parkway",
+        "station_address": "11405 S. Grandville Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22620",
+          "22639",
+          "22851",
+          "23019"
+        ]
+      },
+      {
+        "station_name": "South Jordan Parkway",
+        "station_address": "10605 S. Grandville Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22621",
+          "22622"
+        ]
+      },
+      {
+        "station_name": "5600 W. Old Bingham Hwy",
+        "station_address": "5651 W. Old Bingham Hwy",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22623",
+          "22624"
+        ]
+      },
+      {
+        "station_name": "4800 W. Old Bingham Hwy",
+        "station_address": "4773 W. Old Bingham Hwy",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22625",
+          "22626"
+        ]
+      },
+      {
+        "station_name": "Jordan Valley",
+        "station_address": "3400 W. 8600 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22627",
+          "22628",
+          "22853",
+          "22854",
+          "23828",
+          "24756"
+        ]
+      },
+      {
+        "station_name": "2700 W. Sugar Factory Rd.",
+        "station_address": "8351 S. 2700 W.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22629",
+          "22630"
+        ]
+      },
+      {
+        "station_name": "West Jordan City Center",
+        "station_address": "8021 S. Redwood Road",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22631",
+          "22632",
+          "22840"
+        ]
+      },
+      {
+        "station_name": "Historic Gardner",
+        "station_address": "1127 W. 7800 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22633",
+          "22634",
+          "23896",
+          "23899"
+        ]
+      },
+      {
+        "station_name": "Bingham Junction",
+        "station_address": "7387 S. Bingham Junction Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22635",
+          "22636",
+          "22855",
+          "23893",
+          "23894",
+          "25284"
+        ]
+      },
+      {
+        "station_name": "Court House",
+        "station_address": "450 S. Main St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18254",
+          "18409",
+          "18410"
+        ]
+      },
+      {
+        "station_name": "Library",
+        "station_address": "225 E. 400 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "10412",
+          "18269",
+          "18377",
+          "18378",
+          "18711",
+          "22388",
+          "23401"
+        ]
+      },
+      {
+        "station_name": "Trolley",
+        "station_address": "625 E. 400 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18261",
+          "18268",
+          "18379",
+          "18380"
+        ]
+      },
+      {
+        "station_name": "900 East",
+        "station_address": "875 E. 400 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14124",
+          "14235",
+          "14257",
+          "18262",
+          "18266",
+          "18381",
+          "18382"
+        ]
+      },
+      {
+        "station_name": "Stadium",
+        "station_address": "1349 E. 500 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "8132",
+          "13173",
+          "18383",
+          "18384",
+          "19176",
+          "24429",
+          "24985",
+          "24986"
+        ]
+      },
+      {
+        "station_name": "South Campus",
+        "station_address": "1790 E. South Campus Drive",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "2202",
+          "13014",
+          "15669",
+          "19166",
+          "19167",
+          "19176",
+          "19177",
+          "19178",
+          "21754",
+          "22923",
+          "23008",
+          "24429",
+          "24989",
+          "25015"
+        ]
+      },
+      {
+        "station_name": "Fort Douglas",
+        "station_address": "200 S. Mario Capecchi Drive",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "19168",
+          "19169",
+          "21939"
+        ]
+      },
+      {
+        "station_name": "Medical Center",
+        "station_address": "10 N. Mario Capecchi Drive",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "1022",
+          "12340",
+          "13815",
+          "13816",
+          "13825",
+          "13867",
+          "13868",
+          "18865",
+          "18866",
+          "19168",
+          "19169",
+          "19170",
+          "19171",
+          "20380",
+          "20381",
+          "21733"
+        ]
+      },
+      {
+        "station_name": "West Valley Central",
+        "station_address": "2750 W. Lehman Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14728",
+          "22287",
+          "22288",
+          "22289",
+          "22290",
+          "22291",
+          "22293",
+          "22294",
+          "22651",
+          "22652",
+          "24734"
+        ]
+      },
+      {
+        "station_name": "Decker Lake",
+        "station_address": "3070 S. Decker Lake Drive",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "15933",
+          "16531",
+          "17821",
+          "22649",
+          "22650"
+        ]
+      },
+      {
+        "station_name": "Redwood Junction",
+        "station_address": "1740 W. Research Way",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22647",
+          "22648",
+          "22889",
+          "23109"
+        ]
+      },
+      {
+        "station_name": "River Trail",
+        "station_address": "2340 S. 1070 W.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14818",
+          "21251",
+          "22645",
+          "22646"
+        ]
+      },
+      {
+        "station_name": "Arena Station",
+        "station_address": "350 W. South Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "15595",
+          "18405",
+          "18406",
+          "18513"
+        ]
+      },
+      {
+        "station_name": "N. Temple Bridge/Guadalupe",
+        "station_address": "500 W. North Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23039",
+          "23040"
+        ]
+      },
+      {
+        "station_name": "Jackson/Euclid",
+        "station_address": "820 W. North Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23041",
+          "23042"
+        ]
+      },
+      {
+        "station_name": "Fairpark",
+        "station_address": "1150 W. North Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23043",
+          "23044"
+        ]
+      },
+      {
+        "station_name": "Power",
+        "station_address": "1500 W. North Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23045",
+          "23046",
+          "23630"
+        ]
+      },
+      {
+        "station_name": "1940 West North Temple",
+        "station_address": "1940 W. North Temple",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23047",
+          "23048",
+          "23170",
+          "23307"
+        ]
+      },
+      {
+        "station_name": "Airport",
+        "station_address": "650 N. 3700 W.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23049",
+          "23050",
+          "24052"
+        ]
+      },
+      {
+        "station_name": "South Salt Lake City",
+        "station_address": "30 E. Central Pointe Place",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23566",
+          "23593",
+          "23594"
+        ]
+      },
+      {
+        "station_name": "300 East",
+        "station_address": "2245 S. 300 E.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23567"
+        ]
+      },
+      {
+        "station_name": "500 East",
+        "station_address": "2240 S. 500 E.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14152",
+          "23568"
+        ]
+      },
+      {
+        "station_name": "700 East",
+        "station_address": "2210 S. 700 E.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23320",
+          "23321",
+          "23569"
+        ]
+      },
+      {
+        "station_name": "Sugarmont",
+        "station_address": "2215 S. 900 E.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "14253",
+          "23553",
+          "23570"
+        ]
+      },
+      {
+        "station_name": "Fairmont",
+        "station_address": "2210 S. McClelland St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23571"
+        ]
+      },
+      {
+        "station_name": "Orem Central",
+        "station_address": "900 S. 1350 W.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "UVU",
+        "station_address": "701 W. 1200 S.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "2641",
+          "10412",
+          "10651",
+          "18706",
+          "21083",
+          "21086",
+          "22388",
+          "24077",
+          "24080",
+          "24924",
+          "24926",
+          "24978",
+          "24979"
+        ]
+      },
+      {
+        "station_name": "Lakeview",
+        "station_address": "390 W. University Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18702",
+          "19182",
+          "24051",
+          "24980",
+          "25043"
+        ]
+      },
+      {
+        "station_name": "Main Street",
+        "station_address": "10 E. University Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "3689",
+          "4978",
+          "5310",
+          "10583",
+          "10591",
+          "10911",
+          "10919",
+          "10924",
+          "10933",
+          "10968",
+          "10973",
+          "10975",
+          "12241",
+          "12566",
+          "12567",
+          "12568",
+          "18496",
+          "19142",
+          "20424",
+          "20895",
+          "21807",
+          "22686",
+          "23575",
+          "23585",
+          "23588",
+          "23589",
+          "24776",
+          "24794",
+          "24814",
+          "24982",
+          "25079",
+          "25329",
+          "25404"
+        ]
+      },
+      {
+        "station_name": "University Place",
+        "station_address": "570 E. University Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23424",
+          "25013",
+          "25017"
+        ]
+      },
+      {
+        "station_name": "2230 North",
+        "station_address": "2220 N. University Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "24984"
+        ]
+      },
+      {
+        "station_name": "BYU Stadium",
+        "station_address": "372 E. University Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "24985",
+          "24986"
+        ]
+      },
+      {
+        "station_name": "BYU North Campus",
+        "station_address": "716 E. University Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "24987",
+          "24988"
+        ]
+      },
+      {
+        "station_name": "BYU South Campus",
+        "station_address": "735 E. 900 N.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "24989",
+          "25015"
+        ]
+      },
+      {
+        "station_name": "Joaquin",
+        "station_address": "424 E. 700 N.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "24990"
+        ]
+      },
+      {
+        "station_name": "Academy Square",
+        "station_address": "592 N. University Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "25005"
+        ]
+      },
+      {
+        "station_name": "300 North",
+        "station_address": "298 N. University Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "22571",
+          "25006"
+        ]
+      },
+      {
+        "station_name": "Center Street",
+        "station_address": "12 S. University Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "1040",
+          "1059",
+          "1066",
+          "1067",
+          "1071",
+          "1926",
+          "2644",
+          "3689",
+          "4978",
+          "5060",
+          "5310",
+          "8352",
+          "8765",
+          "9247",
+          "9627",
+          "9694",
+          "10338",
+          "10339",
+          "10345",
+          "10396",
+          "10439",
+          "10447",
+          "10457",
+          "10460",
+          "10462",
+          "10467",
+          "10468",
+          "10506",
+          "10536",
+          "10537",
+          "10583",
+          "10591",
+          "10612",
+          "10622",
+          "10625",
+          "10632",
+          "10668",
+          "10700",
+          "10911",
+          "10919",
+          "10924",
+          "10933",
+          "10968",
+          "10973",
+          "10975",
+          "11540",
+          "11563",
+          "11566",
+          "11568",
+          "11571",
+          "11572",
+          "11574",
+          "11578",
+          "12241",
+          "12566",
+          "12567",
+          "12568",
+          "13005",
+          "13033",
+          "13182",
+          "13192",
+          "13848",
+          "13849",
+          "14214",
+          "14902",
+          "14905",
+          "14907",
+          "15132",
+          "15592",
+          "15598",
+          "15787",
+          "16466",
+          "18040",
+          "18041",
+          "18042",
+          "18044",
+          "18496",
+          "19134",
+          "19142",
+          "20424",
+          "20747",
+          "20895",
+          "21165",
+          "21543",
+          "21544",
+          "21545",
+          "21546",
+          "21635",
+          "21636",
+          "21766",
+          "21767",
+          "21768",
+          "21796",
+          "21807",
+          "22133",
+          "22215",
+          "22538",
+          "22539",
+          "22578",
+          "22653",
+          "22686",
+          "22985",
+          "23020",
+          "23080",
+          "23126",
+          "23127",
+          "23128",
+          "23233",
+          "23270",
+          "23303",
+          "23306",
+          "23536",
+          "23537",
+          "23575",
+          "23585",
+          "23588",
+          "23589",
+          "23923",
+          "23924",
+          "23925",
+          "23928",
+          "24709",
+          "24748",
+          "24749",
+          "24776",
+          "24794",
+          "24814",
+          "24982",
+          "25016",
+          "25027",
+          "25079",
+          "25329",
+          "25366",
+          "25374",
+          "25375",
+          "25404"
+        ]
+      },
+      {
+        "station_name": "400 South",
+        "station_address": "392 S. University Ave.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "10508",
+          "10512",
+          "10513",
+          "23318",
+          "23319"
+        ]
+      },
+      {
+        "station_name": "Towne Centre Blvd",
+        "station_address": "1272 S. Towne Centre Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "18641",
+          "21896"
+        ]
+      },
+      {
+        "station_name": "East Bay North",
+        "station_address": "172 E. East Bay Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "24993"
+        ]
+      },
+      {
+        "station_name": "East Bay South",
+        "station_address": "202 E. Lakeview Parkway",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "25008"
+        ]
+      },
+      {
+        "station_name": "Ogden Central Station",
+        "station_address": "2393 S. Wall Ave.",
+        "match_method": "official_frontrunner_platform_polygon",
+        "matched_stop_ids": []
+      },
+      {
+        "station_name": "Kiesel Avenue",
+        "station_address": "345 23rd St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "11540",
+          "11933"
+        ]
+      },
+      {
+        "station_name": "Washington Blvd",
+        "station_address": "2459 Washington Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "8546",
+          "8556",
+          "8608",
+          "8652",
+          "9004",
+          "9011",
+          "9247",
+          "9248",
+          "9249",
+          "9251",
+          "9252",
+          "9259",
+          "9297",
+          "9299",
+          "9300",
+          "9302",
+          "9305",
+          "9314",
+          "9316",
+          "9326",
+          "9883",
+          "10095",
+          "11234",
+          "11297",
+          "11490",
+          "11491",
+          "11492",
+          "11493",
+          "11495",
+          "11499",
+          "11500",
+          "11514",
+          "11515",
+          "11517",
+          "11524",
+          "11544",
+          "11546",
+          "11548",
+          "11550",
+          "11551",
+          "11552",
+          "11682",
+          "11685",
+          "11686",
+          "11687",
+          "11688",
+          "11689",
+          "11690",
+          "11691",
+          "11692",
+          "11694",
+          "11695",
+          "11713",
+          "11714",
+          "11715",
+          "11716",
+          "11717",
+          "11718",
+          "11719",
+          "11720",
+          "11721",
+          "11722",
+          "11723",
+          "11724",
+          "11725",
+          "11727",
+          "11728",
+          "11729",
+          "11731",
+          "11733",
+          "11799",
+          "12113",
+          "19010",
+          "20448",
+          "20932",
+          "22677",
+          "23270",
+          "23271",
+          "23303",
+          "23417",
+          "24114",
+          "24116",
+          "24185",
+          "24188",
+          "24189",
+          "24191",
+          "24232",
+          "24233",
+          "24234",
+          "24235",
+          "24551",
+          "24614",
+          "24616",
+          "24617",
+          "24686",
+          "24793",
+          "24880",
+          "24886",
+          "24887",
+          "24888",
+          "24946",
+          "24947",
+          "25175",
+          "25190"
+        ]
+      },
+      {
+        "station_name": "Jefferson Avenue",
+        "station_address": "575 25th St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23923",
+          "23924"
+        ]
+      },
+      {
+        "station_name": "Monroe Blvd",
+        "station_address": "790 25th St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "9051",
+          "9055",
+          "9061",
+          "11397",
+          "11401",
+          "11402",
+          "11403",
+          "11419",
+          "11421",
+          "11422",
+          "11447",
+          "11448",
+          "11802",
+          "11817",
+          "14885",
+          "18558",
+          "18561",
+          "18718",
+          "18719",
+          "18720",
+          "18721",
+          "18731",
+          "18732",
+          "18733",
+          "18734",
+          "18736",
+          "18737",
+          "18738",
+          "18739",
+          "18740",
+          "18741",
+          "18742",
+          "18743",
+          "18746",
+          "18747",
+          "18875",
+          "18876",
+          "18877",
+          "19012",
+          "19013",
+          "19162",
+          "19163",
+          "20450",
+          "20456",
+          "20792",
+          "20793",
+          "23925",
+          "23927",
+          "23928",
+          "23929",
+          "24200",
+          "24712"
+        ]
+      },
+      {
+        "station_name": "25th & Harrison",
+        "station_address": "1185 25th St.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "23536",
+          "23537"
+        ]
+      },
+      {
+        "station_name": "28th Street",
+        "station_address": "2775 Harrison Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "11563",
+          "11578"
+        ]
+      },
+      {
+        "station_name": "32nd Street",
+        "station_address": "3175 Harrison Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "11566",
+          "11568",
+          "11574"
+        ]
+      },
+      {
+        "station_name": "36th Street",
+        "station_address": "3575 Harrison Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "8352",
+          "11571",
+          "11572"
+        ]
+      },
+      {
+        "station_name": "Weber State Central",
+        "station_address": "1901 University Cir.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "25386",
+          "25388"
+        ]
+      },
+      {
+        "station_name": "Wildcat Village",
+        "station_address": "1300 Village Dr.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "25389",
+          "25390"
+        ]
+      },
+      {
+        "station_name": "Dee Events Center",
+        "station_address": "4444 Event Center Dr.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "25391",
+          "25392",
+          "25393"
+        ]
+      },
+      {
+        "station_name": "McKay-Dee Hospital",
+        "station_address": "4401 Harrison Blvd.",
+        "match_method": "matched_gtfs_station_stop_cluster_buffer_60m",
+        "matched_stop_ids": [
+          "21206"
+        ]
+      }
+    ],
+    "park_rows": [
+      {
+        "park_name": "2700 W. Sugar Factory Road Station",
+        "park_address": "8351 S. 2700 W.",
+        "park_city": "West Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "2700 W Sugar Factory Rd"
+        ],
+        "matched_objectids": [
+          123
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "4800 W. Old Bingham Hwy. Station",
+        "park_address": "4773 W. Old Bingham Hwy.",
+        "park_city": "West Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "4800 W Old Bingham Hwy"
+        ],
+        "matched_objectids": [
+          121
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "5600 W. Old Bingham Hwy. Station",
+        "park_address": "5651 W. Old Bingham Hwy.",
+        "park_city": "West Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "5600 W Old Bingham Hwy"
+        ],
+        "matched_objectids": [
+          120
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "American Fork Station",
+        "park_address": "782 W. 200 S.",
+        "park_city": "American Fork",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "American Fork"
+        ],
+        "matched_objectids": [
+          154
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Ballpark Station",
+        "park_address": "1300 S. 180 W.",
+        "park_city": "Salt Lake City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Ballpark"
+        ],
+        "matched_objectids": [
+          138
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Bingham Junction Station",
+        "park_address": "7387 S. Bingham Junction Blvd.",
+        "park_city": "Midvale",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Bingham Junction"
+        ],
+        "matched_objectids": [
+          126
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Clearfield Station",
+        "park_address": "1250 S. State St.",
+        "park_city": "Layton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Clearfield"
+        ],
+        "matched_objectids": [
+          146
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Draper Station",
+        "park_address": "12997 S. FrontRunner Blvd.",
+        "park_city": "Draper",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Draper"
+        ],
+        "matched_objectids": [
+          152
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Draper Towne Center",
+        "park_address": "1131 E. Pioneer Road",
+        "park_city": "Draper",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Draper Town Center"
+        ],
+        "matched_objectids": [
+          140
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Farmington Station",
+        "park_address": "450 N. 800 W.",
+        "park_city": "Farmington",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Farmington"
+        ],
+        "matched_objectids": [
+          148
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Historic Gardner Station",
+        "park_address": "1127 W. 7800 S.",
+        "park_city": "West Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Historic Gardner"
+        ],
+        "matched_objectids": [
+          125
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Historic Sandy Station",
+        "park_address": "165 E. 9000 S.",
+        "park_city": "Sandy",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Historic Sandy"
+        ],
+        "matched_objectids": [
+          130
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Jordan Valley Station",
+        "park_address": "3400 W. 8600 S.",
+        "park_city": "West Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Jordan Valley"
+        ],
+        "matched_objectids": [
+          122
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Lehi Station",
+        "park_address": "3101 N. Ashton Blvd.",
+        "park_city": "Lehi",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Lehi"
+        ],
+        "matched_objectids": [
+          153
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Meadowbrook Station",
+        "park_address": "188 W. 3900 S.",
+        "park_city": "Salt Lake City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Meadowbrook"
+        ],
+        "matched_objectids": [
+          135
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Midvale Center Station",
+        "park_address": "95 W. 7720 S.",
+        "park_city": "Midvale",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Midvale Center"
+        ],
+        "matched_objectids": [
+          131
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Midvale Fort Union Station",
+        "park_address": "7250 S. 180 W.",
+        "park_city": "Midvale",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Midvale Fort Union"
+        ],
+        "matched_objectids": [
+          162
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Millcreek Station",
+        "park_address": "210 W. 3300 S.",
+        "park_city": "South Salt Lake",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Millcreek"
+        ],
+        "matched_objectids": [
+          141
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Murray Central Station",
+        "park_address": "140 W. Vine St.",
+        "park_city": "Murray",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Murray Central"
+        ],
+        "matched_objectids": [
+          133,
+          150
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Murray North Station",
+        "park_address": "71 W. Fireclay Ave.",
+        "park_city": "Murray",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Murray North"
+        ],
+        "matched_objectids": [
+          134
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Ogden Central Station",
+        "park_address": "2393 Wall Ave.",
+        "park_city": "Ogden",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Ogden Central"
+        ],
+        "matched_objectids": [
+          144
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Orem Central Station",
+        "park_address": "1350 W. 900 S.",
+        "park_city": "Orem",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Orem Central"
+        ],
+        "matched_objectids": [
+          155
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Provo Central Station",
+        "park_address": "701 S. Freedom Blvd.",
+        "park_city": "Provo",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Provo Central"
+        ],
+        "matched_objectids": [
+          156
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Roy Station",
+        "park_address": "4155 S. Sandridge Drive",
+        "park_city": "Roy",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Roy"
+        ],
+        "matched_objectids": [
+          145
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Sandy Civic Station",
+        "park_address": "115 E. Sego Lily Drive",
+        "park_city": "Sandy",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Sandy Civic Center"
+        ],
+        "matched_objectids": [
+          129
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "South Jordan Parkway Station",
+        "park_address": "10605 S. Grandville Ave.",
+        "park_city": "South Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "South Jordan Parkway"
+        ],
+        "matched_objectids": [
+          119
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "South Jordan Station",
+        "park_address": "10351 S. Jordan Gateway",
+        "park_city": "South Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "South Jordan"
+        ],
+        "matched_objectids": [
+          151
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "West Jordan City Center Station",
+        "park_address": "8021 S. Redwood Road",
+        "park_city": "West Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "West Jordan City Center"
+        ],
+        "matched_objectids": [
+          124
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Woods Cross Station",
+        "park_address": "750 S. 800 W.",
+        "park_city": "Woods Cross",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "LDS Church - Woods Cross",
+          "Woods Cross"
+        ],
+        "matched_objectids": [
+          110,
+          149
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Brigham City Park and Ride",
+        "park_address": "950 S. Main St.",
+        "park_city": "Brigham City",
+        "match_method": "active_gtfs_stop_buffer_fallback",
+        "matched_polygon_names": [
+          "Main St @ 934 S   (Brigham City)"
+        ],
+        "matched_objectids": [],
+        "fallback_note": "Official park-and-ride page lists 950 S. Main St., Brigham City, but the official UTA polygon and point park-and-ride services omit this row; use the active GTFS stop at 934 S Main St in Brigham City as the nearest official operational point."
+      },
+      {
+        "park_name": "Central Pointe Station",
+        "park_address": "211 W. 2100 S.",
+        "park_city": "Salt Lake City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Central Pointe"
+        ],
+        "matched_objectids": [
+          136
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Crescent View Station",
+        "park_address": "361 E. 11400 S.",
+        "park_city": "Sandy",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Crescent View"
+        ],
+        "matched_objectids": [
+          128
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Daybreak Parkway",
+        "park_address": "11405 S. Grandville Ave.",
+        "park_city": "South Jordan",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Daybreak Parkway"
+        ],
+        "matched_objectids": [
+          118
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Decker Lake Station",
+        "park_address": "3070 S. Decker Lake Drive",
+        "park_city": "West Valley",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Decker Lake"
+        ],
+        "matched_objectids": [
+          137
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Fashion Place West Station",
+        "park_address": "222 W. Winchester St.",
+        "park_city": "Murray",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Fashion Place West"
+        ],
+        "matched_objectids": [
+          132
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Kimballs Lane Station",
+        "park_address": "11796 S. 700 E.",
+        "park_city": "Draper",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Kimballs Lane"
+        ],
+        "matched_objectids": [
+          127
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Layton Station",
+        "park_address": "150 S. Main St.",
+        "park_city": "Layton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Layton"
+        ],
+        "matched_objectids": [
+          147
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Millcreek Station",
+        "park_address": "210 W. 3300 S.",
+        "park_city": "Salt Lake City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Millcreek"
+        ],
+        "matched_objectids": [
+          141
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "River Trail Station*",
+        "park_address": "2340 S. 1070 W.",
+        "park_city": "West Valley",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "River Trail [except Sundays]"
+        ],
+        "matched_objectids": [
+          142
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Riverdale Park and Ride",
+        "park_address": "5212 Freeway Park Drive",
+        "park_city": "Riverdale",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Riverdale"
+        ],
+        "matched_objectids": [
+          12
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Salt Lake Central Station",
+        "park_address": "325 S. 600 W.",
+        "park_city": "Salt Lake City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Salt Lake Central"
+        ],
+        "matched_objectids": [
+          139,
+          163
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Vineyard Station",
+        "park_address": "130 E. Market St.",
+        "park_city": "Vineyard",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Vineyard"
+        ],
+        "matched_objectids": [
+          157
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "West Valley Central Station",
+        "park_address": "2750 W. Lehman Ave.",
+        "park_city": "West Valley",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "West Valley Central"
+        ],
+        "matched_objectids": [
+          143
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "3900 S. Wasatch Blvd.",
+        "park_address": "3880 S. Wasatch Blvd.",
+        "park_city": "East Millcreek",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Olympus Cove"
+        ],
+        "matched_objectids": [
+          2
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "5600 W. Max Station",
+        "park_address": "5551 W. 3500 S.",
+        "park_city": "West Valley",
+        "match_method": "active_gtfs_stop_buffer_fallback",
+        "matched_polygon_names": [
+          "3500 S / 5600 W (WB)",
+          "3500 S / 5600 W (EB)"
+        ],
+        "matched_objectids": [],
+        "fallback_note": "Official park-and-ride page lists 5551 W. 3500 S., West Valley, but the official UTA polygon and point park-and-ride services omit this row; use the paired active GTFS stops at 3500 S / 5600 W as the nearest official operational points."
+      },
+      {
+        "park_name": "6200 S. Wasatch Blvd.",
+        "park_address": "6520 S. Wasatch Blvd.",
+        "park_city": "Holladay",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "6200 S Wasatch Blvd"
+        ],
+        "matched_objectids": [
+          116
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "6600 S. Union Park Ave.",
+        "park_address": "950 E. 6600 S.",
+        "park_city": "Murray",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "6600 S Union Park Ave"
+        ],
+        "matched_objectids": [
+          159
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "9400 S. Highland Dr.",
+        "park_address": "2065 E. 9510 S.",
+        "park_city": "Sandy",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "9400 S Highland Dr"
+        ],
+        "matched_objectids": [
+          15
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Antelope Drive",
+        "park_address": "2280 N. Hobbs Creek Drive",
+        "park_city": "Layton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Antelope Dr"
+        ],
+        "matched_objectids": [
+          117
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Benson Grist Mill",
+        "park_address": "6750 N. Stansbury Parkway",
+        "park_city": "Stansbury Park",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Benson Grist Mill"
+        ],
+        "matched_objectids": [
+          17
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Big Cottonwood Canyon",
+        "park_address": "3863 E. Big Cottonwood Cyn Road",
+        "park_city": "Cottonwood Heights",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Big Cottonwood Canyon"
+        ],
+        "matched_objectids": [
+          1
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Draper Peaks",
+        "park_address": "12156 S. State St.",
+        "park_city": "Draper",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Draper Peaks"
+        ],
+        "matched_objectids": [
+          3
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Fruit Heights",
+        "park_address": "300 N. Country Way",
+        "park_city": "Fruit Heights",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Fruit Heights"
+        ],
+        "matched_objectids": [
+          4
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Hill AFB S. Gate",
+        "park_address": "385 W. 3000 N.",
+        "park_city": "Layton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Hill AFB - South Gate"
+        ],
+        "matched_objectids": [
+          6
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Jeremy Ranch",
+        "park_address": "3361 Rasmussen Road",
+        "park_city": "Park City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Jeremy Ranch"
+        ],
+        "matched_objectids": [
+          113
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Kaysville",
+        "park_address": "160 N. 600 W.",
+        "park_city": "Kaysville",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Kaysville"
+        ],
+        "matched_objectids": [
+          5
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Kimball Jct. Transit Center",
+        "park_address": "6506 Landmark Drive",
+        "park_city": "Park City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Kimball Junction Transit Center"
+        ],
+        "matched_objectids": [
+          10
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Layton Hills Mall",
+        "park_address": "425 W. Ring Road",
+        "park_city": "Layton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Layton Hills Mall"
+        ],
+        "matched_objectids": [
+          7
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Monarch Meadows Park",
+        "park_address": "13700 S. Monarch Meadows Parkway",
+        "park_city": "Riverton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Monarch Meadows Park"
+        ],
+        "matched_objectids": [
+          13
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Newgate Mall",
+        "park_address": "3615 Wall Ave.",
+        "park_city": "Ogden",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Newgate Mall"
+        ],
+        "matched_objectids": [
+          9
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "North Lehi",
+        "park_address": "2020 N. State St.",
+        "park_city": "Orem",
+        "match_method": "active_gtfs_stop_buffer_fallback",
+        "matched_polygon_names": [
+          "State St / 1950 N (NB)",
+          "State St / 1950 N (SB)"
+        ],
+        "matched_objectids": [],
+        "fallback_note": "Official park-and-ride page lists 2020 N. State St., Orem, but the official UTA polygon and point park-and-ride services omit this row; use the paired active GTFS stops at State St / 1950 N as the nearest official operational points."
+      },
+      {
+        "park_name": "North Tooele",
+        "park_address": "2450 N. State Route 36",
+        "park_city": "Tooele",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "North Tooele"
+        ],
+        "matched_objectids": [
+          8
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Oak Hills",
+        "park_address": "530 N. Eastside Drive",
+        "park_city": "Layton",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Oak Hills"
+        ],
+        "matched_objectids": [
+          115
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Riverdale",
+        "park_address": "5234 S. Freeway Park Drive",
+        "park_city": "Riverdale",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Riverdale"
+        ],
+        "matched_objectids": [
+          12
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "Rose Park",
+        "park_address": "974 N. 900 W.",
+        "park_city": "Salt Lake City",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "Rose Park"
+        ],
+        "matched_objectids": [
+          14
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "South Payson",
+        "park_address": "781 S. 1270 W.",
+        "park_city": "Payson",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "South Payson"
+        ],
+        "matched_objectids": [
+          11
+        ],
+        "fallback_note": ""
+      },
+      {
+        "park_name": "South Weber",
+        "park_address": "7750 S. Frontage Rd.",
+        "park_city": "South Weber",
+        "match_method": "official_park_polygon",
+        "matched_polygon_names": [
+          "South Weber"
+        ],
+        "matched_objectids": [
+          16
+        ],
+        "fallback_note": ""
+      }
+    ]
+  },
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/uta_ut/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/uta_ut/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/uta_ut/sources.csv"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "case_key": "atlanta_ga",
+  "jurisdiction_id": "13:municipal:place:1304000",
+  "jurisdiction_name": "Atlanta city",
+  "state_abbr": "GA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/municipal_targets/atlanta_ga",
+  "review_goal": "Determine whether Atlanta city supports a direct 2024 local-publication repair from the official APD year-end citywide report and whether the published citywide counts exclude the separate airport page.",
+  "reporting_ori9": "GAAPD0000",
+  "required_outputs": [
+    "packet_manifest.json",
+    "sources.csv",
+    "recommendation.csv",
+    "published_reference_extract.csv"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "case_key": "hammond_la",
+  "jurisdiction_id": "22:municipal:place:2232755",
+  "jurisdiction_name": "Hammond city",
+  "state_abbr": "LA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/hammond_la",
+  "review_goal": "Determine whether Hammond should retain a true separate municipal control row and whether the current all-fill state reflects reporting/publication continuity failure, sheriff replacement, target invalidity, or another structure issue.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

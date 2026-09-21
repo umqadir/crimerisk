@@ -1,0 +1,158 @@
+{
+  "city_key": "henderson_nv",
+  "contract": {
+    "city_key": "henderson_nv",
+    "city_name": "Henderson, Nevada",
+    "geography": {
+      "bounds": {
+        "max_latitude": 36.140308,
+        "max_longitude": -114.865151,
+        "min_latitude": 35.727082,
+        "min_longitude": -115.298033
+      },
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "state_fips": "32"
+    },
+    "mapping": {
+      "date_field": "OCCURRED_S",
+      "id_field": "OBJECTID",
+      "id_fields": [],
+      "latitude_field": "__arcgis_latitude",
+      "longitude_field": "__arcgis_longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "INC_PRIMAR",
+              "op": "in",
+              "value": "",
+              "values": [
+                "ROBBERY"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "INC_PRIMAR",
+              "op": "in",
+              "value": "",
+              "values": [
+                "BURGLARY"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "INC_PRIMAR",
+              "op": "in",
+              "value": "",
+              "values": [
+                "LARCENY/THEFT"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "INC_PRIMAR",
+              "op": "in",
+              "value": "",
+              "values": [
+                "MOTOR VEHICLE THEFT"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        },
+        {
+          "conditions": [
+            {
+              "field": "INC_PRIMAR",
+              "op": "in",
+              "value": "",
+              "values": [
+                "SEX ASSAULT"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "rape"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/16",
+      "name": "Henderson Police Department GIS - Crime Data 2024 (Open Data Portal)",
+      "order": "OCCURRED_S ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/datasets/HendersonNV::crime-data-2024",
+      "where": "OCCURRED_S >= DATE '2024-01-01 00:00:00' AND OCCURRED_S < DATE '2025-01-01 00:00:00'"
+    },
+    "sources_checked": [
+      "https://gis-hendersonnv.opendata.arcgis.com/datasets/HendersonNV::crime-data-2024",
+      "https://www.arcgis.com/sharing/rest/search?q=title:%22Crime+Data+2024%22+owner:HendersonNV_GIS&f=json",
+      "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/16?f=json",
+      "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/16/query",
+      "state/controls/jurisdiction_controls_2024.parquet",
+      "state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
+      "state/modeling/batch_b_preregistration_shares_2024.parquet",
+      "state/modeling/batch_b_preregistration_2024.json"
+    ],
+    "worker_judgment_notes": "Source identity was verified 2026-07-08 (evidence in scratchpad/batchb_reverify/) before this contract was written: the ArcGIS Sharing REST search for owner HendersonNV_GIS title 'Crime Data 2024' resolves item b87bc03d0ef7468fbad6c0b9ff51deab, a Feature Service whose service url is https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/16 (layer id 16, name 'Crime Data 2024', parent layer 'Public Safety') -- the city's own GIS domain, not a third-party host. A direct query against that layer with the 2024 date window returns exactly 6405 rows via returnCountOnly, matching the scout/reverify claim exactly. Raw pull (this run) confirms CITY field is 100% 'HENDERSON' and STATE is 100% 'NV' across all 6405 rows -- this is the Henderson PD footprint, not LVMPD (Las Vegas Metro covers unincorporated Clark County and Las Vegas proper, a separate jurisdiction_id from Henderson's own municipal place code 32:municipal:place:3231900 used here). Schema is only 10 fields (OBJECTID, EVENT__, CITY, STATE, BEAT, OCCURRED_END, PROC_DATE, INC_ADDRESS, INC_PRIMAR, OCCURRED_S) -- confirmed via the live layer metadata and a raw sample; there is no severity/degree/statute subfield anywhere in the schema. INC_PRIMAR category totals for 2024 (raw pull, sums to 6405 exactly): ASSAULT/BATTERY 3069, LARCENY/THEFT 1467, NARCOTICS 882, MOTOR VEHICLE THEFT 608, BURGLARY 268, ROBBERY 68, SEX ASSAULT 32, ARSON 11. MURDER IS NOT MAPPED: a 'HOMICIDE' unique-value class exists only in the layer's drawingInfo/legend symbology (a dead legend entry, likely inherited from a shared renderer template across the portal's yearly layers) -- zero rows carry INC_PRIMAR='HOMICIDE' in the 2024 data (confirmed both by the raw pull and by a server-side groupby(INC_PRIMAR) that sums to 6405 with only the 8 categories above). Henderson onboards without murder for this year; the per-offense admission model (not whole-dataset rejection) handles this, consistent with the repo's existing convention for feeds with a genuine source-side taxonomy gap (cf. Jacksonville/rape). AGGRAVATED_ASSAULT IS NOT MAPPED: ASSAULT/BATTERY (3069 rows, 47.9% of the whole feed) is the only assault bucket in this schema and there is no field anywhere (not INC_PRIMAR, not a hidden subfield -- the schema has only 10 fields total, enumerated above) that separates aggravated from simple assault. Per the batch's explicit caution, this bucket is excluded rather than mapped to aggravated_assault, since guessing would risk substantially inflating the aggravated_assault share with simple-assault rows. NARCOTICS (882) and ARSON (11) are excluded as outside the repo's 7-offense taxonomy. SEX ASSAULT (32 rows) is mapped to rape -- it is a specific category distinct from the portal's own stated broader 'Sex Offenses' framing text, and with only the same 10-field schema there is no further subfield to test for a forcible/non-forcible split; note rape texture_policy_allows('henderson_nv','rape') independently returns False in this repo's existing config (configs/), so rape will not contribute point texture regardless of this mapping -- mirrors the Jacksonville precedent where rape stayed unadmitted by policy. One row (SEX ASSAULT, EVENT__ 24-17101, OBJECTID 108598379) carries a corrupted sentinel coordinate (-37.495828, -117.845097 -- southern hemisphere, matching the ArcGIS item's own stated bounding-box minimum corner, i.e. a null/placeholder value baked into the service's extent metadata) and is correctly dropped by the contract's bounds filter; this is the only bad coordinate found in the full 6405-row pull (0 nulls, 6404/6405 in-bounds). FEED-VS-CONTROL RATIOS ARE LOW AND STRIKINGLY UNIFORM, WELL OUTSIDE THE STRICT 10% RECONCILIATION GATE (raw feed rows / state/controls/jurisdiction_controls_2024.parquet adjusted_count_ags_core, preferred_source cius_publication_annual, quality_tier high): burglary 268/778=0.344, larceny 1467/3870=0.379, motor_vehicle_theft 608/1245=0.488, rape 32/107=0.299, robbery 68/180=0.378. Every mapped offense sits at roughly a third to a half of its FBI/CIUS-published annual total -- a much larger and more uniform gap than any other batch-B city reconciled so far (Jacksonville's ratios were 0.805-1.017). The open-data item's own licensing text states this feed is preliminary Henderson PD data that 'may change when it gets reported to the FBI... after verification processes' and is explicitly NOT official UCR data, which is directionally consistent with a real gap but does not by itself explain a magnitude this large and this uniform across every offense type; no further diagnostic (e.g. comparing prior-year archive layers 6-17 in the same MapServer, which exist back to 2014) was run to isolate the mechanism, since that is beyond this checkpoint's scope -- flagging as the single largest open question for review rather than guessing. Because of this gap every offense fails reconciles_within_10pct and stays in the official_control/share_only lane exactly as the generic runner's own gate logic already enforces (no feed_total_candidate offenses). BG join: the block_group_to_jurisdiction_crosswalk touches 196 BGs for jurisdiction 32:municipal:place:3231900 (used for the spatial join here), versus the frozen batch_b_preregistration_shares_2024.parquet universe of 184 BGs for henderson_nv -- the same kind of predicted-universe-vs-crosswalk mismatch already seen for Jacksonville (549 vs its own crosswalk count) and treated the same way (off-universe leakage reported, not silently folded in). Geocode/BG match rate per admitted offense (matched_share_rows/raw_offense_rows): burglary 266/268=0.993, larceny 1464/1467=0.998, motor_vehicle_theft 606/608=0.997, rape 31/31=1.000 (32 raw minus the one dropped bad-sentinel row), robbery 67/68=0.985 -- all comfortably above the 0.80 MIN_MATCH_SHARE gate. Exact-point concentration QA (tripwire: share>=0.5%, n>=100, top-point count>=5) flags burglary (1.88%), larceny (11.89%), and motor_vehicle_theft (1.65%); robbery and rape are not flagged (too few located incidents to trip the n>=100 floor). The larceny flag is the one that matters: 174 of 1464 located larceny incidents (11.9%) share one exact point (36.061904, -115.031950), INC_ADDRESS '500 BLOCK MARKS ST'. Inspected directly: this is not a duplicate-row or station-house artifact -- it spans 10+ distinct EVENT__ incident numbers across dates from early January through late December 2024, i.e. a real, persistent, block-redacted-address hotspot (Henderson redacts to the 'XX00 block' level rather than exact address, so many distinct incidents on that block collapse to one representative point) sitting in the retail corridor near the Galleria at Sunset mall (same block cluster as nearby N Stephanie St / W Galleria Dr / W Sunset Rd addresses in the sample). Plausibly a large retail/big-box shoplifting generator, consistent with the repo's other flagged-but-plausible retail-hotspot points; reported per the 'report, don't whitelist' gate rather than accepted or excluded unilaterally. Bounds are the TIGER-2020/crosswalk-touching Henderson block-group envelope for 32:municipal:place:3231900 (196 BGs, minx/miny/maxx/maxy -115.288033,35.737082,-114.875151,36.130308) padded by 0.01 degree, mirroring the Jacksonville contract's bounds convention. Contract is share-lane only per the standard generic-runner convention; the strict 10% reconciliation gate (every mapped offense misses it, by a wide margin) decides feed-total-candidate status per offense, not admission of this contract at all -- and given the magnitude and uniformity of the gap, even share-lane admission should be treated as provisional pending resolution of the reconciliation-gap mechanism.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 5,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 0,
+    "offense_rows": 7,
+    "rows_in_surface": 449,
+    "share_admitted_rows": 5,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/16",
+    "city_key": "henderson_nv",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 250259,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_batch_b_henderson/gate17_batch_b_henderson_20260708_085806/raw/henderson_nv_raw.parquet",
+    "raw_cache_sha256": "ee8fce90ac797da1707d367b0aef60189cbfe8b23f2baa428c957bba5c2140ba",
+    "source_name": "Henderson Police Department GIS - Crime Data 2024 (Open Data Portal)",
+    "source_url": "https://gis-hendersonnv.opendata.arcgis.com/datasets/HendersonNV::crime-data-2024"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_batch_b_henderson/gate17_batch_b_henderson_20260708_085806",
+  "runtime": {
+    "city_key": "henderson_nv",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_batch_b_henderson/gate17_batch_b_henderson_20260708_085806/raw/henderson_nv_raw.parquet",
+    "raw_cache_sha256": "ee8fce90ac797da1707d367b0aef60189cbfe8b23f2baa428c957bba5c2140ba",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 5.599410749971867,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

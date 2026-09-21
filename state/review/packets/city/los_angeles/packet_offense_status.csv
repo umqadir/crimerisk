@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,no,blocked,mixed_methodology_official_release,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."
+rape,no,blocked,mixed_methodology_official_release,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."
+robbery,no,blocked,mixed_methodology_official_release,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."
+aggravated_assault,no,blocked,mixed_methodology_official_release,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."
+burglary,no,blocked,mixed_methodology_official_release,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."
+larceny,no,blocked,approximate_split_public_bucket,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."
+motor_vehicle_theft,no,blocked,mixed_methodology_official_release,"Neither the geocoded legacy feed, the non-spatial NIBRS feed, nor a simple cutover blend reconciles cleanly enough to support 2024 V2 city-share promotion."

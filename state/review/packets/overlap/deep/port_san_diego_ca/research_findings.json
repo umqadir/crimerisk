@@ -1,0 +1,122 @@
+{
+  "case_key": "port_san_diego_ca",
+  "ori": "CA0371500",
+  "agency_name_raw": "Port of San Diego Harbor Police",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "port_administrative_boundary_with_airport_bay_tidelands",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": true,
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Harbor Police is not a San Diego city police surrogate and not a San Diego County police surrogate. Official Port sources describe a special-jurisdiction police and marine-fire service operating within the territorial limits of the Port of San Diego, across five cities, on San Diego Bay, on Port tidelands, and at San Diego International Airport.",
+    "The Port's own public-safety materials explicitly cover three major operational classes: landside waterfront patrol across five cities, marine policing and firefighting across San Diego Bay, and airport patrol at San Diego International Airport. That alone defeats any single-place proxy and shows the row is a real multi-facility overlap layer.",
+    "Official Port facility pages show the footprint is not abstract. It includes at least the Port's working waterfront and secure maritime terminals, the two cruise terminals, marinas and anchorages, public waterfront parks, and the airport. Port materials specifically name Tenth Avenue Marine Terminal, National City Marine Terminal, B Street Cruise Terminal, Broadway Pier, Shelter Island guest docks and anchorage, and 23 public parks.",
+    "The San Diego Unified Port District Act is the controlling legal backdrop. It gives the district jurisdiction over navigable waters, tidelands, submerged lands, and other district lands within the territorial limits of the district, and it authorizes airport and heliport facilities, terminal buildings, roadways, parking areas, parks, small boat harbors, and marinas as district trust-land uses.",
+    "The decisive production fact is that the Port itself publishes an official Port Administrative Boundary feature layer described as the border of the geographic area under Port jurisdiction, control, or influence. That geometry is already the right class of source for overlap localization. It is more defensible than any county or place proxy and strong enough to move this case out of a vague future-custom note."
+  ],
+  "service_jurisdiction_footprint": {
+    "is_multi_city": true,
+    "is_multi_facility": true,
+    "includes_water_jurisdiction": true,
+    "includes_airport_component": true,
+    "legal_backdrop": {
+      "entity_type": "California special district and public benefit corporation created by state law",
+      "district_scope": "Port district tidelands submerged lands other district lands and Port-managed waterfront around San Diego Bay and the Imperial Beach oceanfront across the five member cities of Chula Vista Coronado Imperial Beach National City and San Diego",
+      "important_interpretation": "The production footprint should follow the Port's actual jurisdictional geometry and facility system, not all of San Diego County and not any one member city."
+    },
+    "explicitly_documented_operational_components": [
+      "San Diego Bay waters within the Port's territorial limits",
+      "Port tidelands and waterfront landside areas across five cities",
+      "San Diego International Airport / Lindbergh Field under Harbor Police service contract",
+      "waterfront parks and adjacent piers and boardwalks",
+      "marinas, anchorages, and moorings",
+      "shipyards",
+      "Tenth Avenue Marine Terminal",
+      "National City Marine Terminal / 24th Street Marine Terminal",
+      "B Street Cruise Terminal",
+      "Port Pavilion on Broadway Pier",
+      "Shelter Island guest docks and anchorage",
+      "Imperial Beach oceanfront / pier area within Port jurisdiction"
+    ]
+  },
+  "geometry_build_path": {
+    "primary_geometry_source": {
+      "source_name": "Port Administrative Boundary Feature Layer",
+      "service_item_url": "https://www.arcgis.com/home/item.html?id=4b9bb146e1df4cffa350c7a62f378225",
+      "layer_url": "https://services2.arcgis.com/kvy1JT30Izby5wgm/arcgis/rest/services/Port_Administrative_Boundary/FeatureServer/0",
+      "geojson_query_url": "https://services2.arcgis.com/kvy1JT30Izby5wgm/arcgis/rest/services/Port_Administrative_Boundary/FeatureServer/0/query?where=1%3D1&outFields=featureName%2CfeatureDescription&returnGeometry=true&outSR=4326&f=geojson",
+      "why_this_is_primary": "This is the Port's own GIS boundary for the geographic area under Port jurisdiction, control, or influence. It aligns directly with Harbor Police's stated territorial-limits footprint over bay waters, tidelands, waterfront facilities, and the airport component."
+    },
+    "supplemental_land_detail_source": {
+      "source_name": "Port Property Boundaries Feature Layer",
+      "service_item_url": "https://www.arcgis.com/home/item.html?id=677ac271e76e46aaaf72d0f2a26a2f1f",
+      "layer_url": "https://services2.arcgis.com/kvy1JT30Izby5wgm/ArcGIS/rest/services/Port_Property_Boundaries/FeatureServer/0",
+      "geojson_query_url": "https://services2.arcgis.com/kvy1JT30Izby5wgm/ArcGIS/rest/services/Port_Property_Boundaries/FeatureServer/0/query?where=1%3D1&outFields=featureName%2CAcres&returnGeometry=true&outSR=4326&f=geojson",
+      "why_this_is_supplemental": "This layer provides recorded Port asset polygons and is useful to QA or tighten land-side edges, but it should not replace the administrative boundary because Harbor Police also patrol San Diego Bay waters and other Port jurisdictional areas not captured cleanly by parcel-style land records alone."
+    }
+  },
+  "why_simple_proxies_fail": {
+    "single_place_proxy": [
+      "San Diego city is false because official Port materials place the Port across five member cities and because Harbor Police also cover National City terminals, Chula Vista and Coronado waterfront areas, Imperial Beach tidelands/oceanfront components, and the airport.",
+      "Any smaller member-city proxy such as National City, Coronado, Chula Vista, or Imperial Beach would miss the airport and the rest of the bayfront system."
+    ],
+    "single_county_proxy": [
+      "San Diego County is too broad. The official footprint is bounded to Port jurisdictional waters and properties, not countywide territory.",
+      "County localization would erase the special-jurisdiction nature of the row and imply Harbor Police patrol ordinary inland county space that Port sources do not support."
+    ],
+    "broad_overlap_hold": [
+      "A broad hold is no longer the best treatment because the Port itself now supplies an official custom geometry source in hosted GIS form.",
+      "Keeping the row broad despite an authoritative boundary would throw away real localization signal that is already available."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing CA0371500 into San Diego Police, National City Police, San Diego County Sheriff, or another primary would erase a real concurrent Port police layer tied to Port-controlled bayfront and airport geography.",
+      "Concurrent jurisdiction with local agencies does not make Harbor Police unreal; it means the row is a special overlap that should follow Port geography."
+    ]
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Use the official Port of San Diego administrative boundary as the production geometry for CA0371500, representing the Port's bay waters, tidelands, waterfront facilities, Imperial Beach oceanfront component, and San Diego International Airport service area; optionally QA land edges against the Port Property Boundaries layer.",
+    "geometry_guidance": [
+      "Use the Port Administrative Boundary FeatureServer layer 0 as the base custom footprint.",
+      "Preserve the airport component; do not trim it away just because airport governance moved to the Regional Airport Authority, because Harbor Police continue to provide law-enforcement services there under contract.",
+      "Preserve the bay-water and tidelands components; do not reduce the geometry to land parcels only.",
+      "Use the Port Property Boundaries FeatureServer only as a supplemental land-detail and QA source where parcel-level tightening helps.",
+      "Do not replace the custom footprint with San Diego city, San Diego County, or a single terminal or park."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "fallback_why": [
+      "If the production pipeline cannot ingest the official Port GIS boundary immediately, broad overlap is still safer than a false city or county proxy."
+    ],
+    "not_recommended": [
+      "localize_to_place",
+      "localize_to_county",
+      "absorb_into_primary_jurisdiction",
+      "airport_only_proxy",
+      "terminal_only_proxy",
+      "land_parcels_only_without_bay_waters"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": false,
+    "exact_recommended_production_disposition": "custom Port of San Diego footprint using the official Port Administrative Boundary geometry, with Port Property Boundaries as supplemental land-detail QA"
+  },
+  "authoritative_sources_used": [
+    "https://www.portofsandiego.org/public-safety/harbor-police",
+    "https://www.portofsandiego.org/public-safety/harbor-police-faq",
+    "https://www.portofsandiego.org/about-port-san-diego",
+    "https://www.portofsandiego.org/maritime/terminals",
+    "https://www.portofsandiego.org/visit-waterfront/see-and-do/parks",
+    "https://www.portofsandiego.org/coming-and-going/san-diego-international-airport",
+    "https://pantheonstorage.blob.core.windows.net/administration/San-Diego-Unified-Port-District-Act.pdf",
+    "https://www.portofsandiego.org/sites/default/files/media/images/2021/01/Port-of-San-Diego_Tidelands-Map_Digital-full.jpg",
+    "https://services2.arcgis.com/kvy1JT30Izby5wgm/arcgis/rest/services/Port_Administrative_Boundary/FeatureServer/0",
+    "https://services2.arcgis.com/kvy1JT30Izby5wgm/ArcGIS/rest/services/Port_Property_Boundaries/FeatureServer/0"
+  ]
+}

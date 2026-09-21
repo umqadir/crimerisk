@@ -1,0 +1,26 @@
+{
+  "city_key": "detroit",
+  "city_name": "Detroit",
+  "jurisdiction_id": "26:municipal:place:2622000",
+  "state_abbr": "MI",
+  "priority_bucket": "third_wave",
+  "priority_rank": "13",
+  "basis": "Large single-city police jurisdiction with an exact public 2024 ArcGIS incident service, explicit query endpoint, point geometry, 2020 census-block IDs, and an official 2024 year-end seven-offense table.",
+  "notes": "High-value reviewed city packet with strong public geography and a usable official annual anchor, but not a live city-share promotion lane under the current repo doctrine. The public feed is row-per-charge, the official anchors are partly victim-based or vehicle-based, and the incident-style candidates that remain semantically plausible still do not clear numerically.",
+  "source_name": "Detroit Crime Viewer plus RMS Crime Incidents 2024 service plus DPD 2024 year-end stats",
+  "source_url": "https://data.detroitmi.gov/pages/crime-viewer/ ; https://data.detroitmi.gov/datasets/detroitmi::rms-crime-incidents/about ; https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer ; https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer/0/query ; https://detroitmi.gov/sites/detroitmi.localhost/files/news/2025-01/2024YearEndStats_DraftV4.pdf",
+  "portal_type": "arcgis_feature_service_plus_official_year_end_pdf",
+  "coverage_start_year": "2024",
+  "coverage_end_year": "2024",
+  "years_usable": "1",
+  "recommended_disposition": "counts_usable_not_city_share_promotable",
+  "geocode_quality_tier": "medium_point_plus_census_block",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/detroit",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

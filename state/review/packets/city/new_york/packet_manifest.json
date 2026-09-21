@@ -1,0 +1,26 @@
+{
+  "city_key": "new_york",
+  "city_name": "New York",
+  "jurisdiction_id": "36:municipal:place:3651000",
+  "state_abbr": "NY",
+  "priority_bucket": "first_wave",
+  "priority_rank": "1",
+  "basis": "Largest municipal payoff in the country; the 2018-2024 dual-feed build is now working and the public year-end NYPD release gives a clean sanity-check anchor.",
+  "notes": "Keep improving the reconciliation and share behavior, but NYC is no longer blocked.",
+  "source_name": "NYPD Complaint Data Historic + Current feeds",
+  "source_url": "https://data.cityofnewyork.us/api/views/qgea-i56i/rows.csv?accessType=DOWNLOAD ; https://data.cityofnewyork.us/api/views/5uac-w243/rows.csv?accessType=DOWNLOAD",
+  "portal_type": "socrata_dual_feed",
+  "coverage_start_year": "2007",
+  "coverage_end_year": "2025",
+  "years_usable": "7",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/new_york",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

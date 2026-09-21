@@ -1,0 +1,192 @@
+{
+  "city_key": "cincinnati",
+  "contract": {
+    "city_key": "cincinnati",
+    "city_name": "Cincinnati, Ohio",
+    "geography": {
+      "bounds": {
+        "max_latitude": 39.26,
+        "max_longitude": -84.34,
+        "min_latitude": 39.04,
+        "min_longitude": -84.72
+      },
+      "jurisdiction_id": "39:municipal:place:3915000",
+      "state_fips": "39"
+    },
+    "mapping": {
+      "date_field": "datefrom",
+      "id_field": "row_id",
+      "latitude_field": "latitude_x",
+      "longitude_field": "longitude_x",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Violent"
+            },
+            {
+              "field": "stars_category",
+              "op": "eq",
+              "value": "Homicide"
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Violent"
+            },
+            {
+              "field": "stars_category",
+              "op": "eq",
+              "value": "Rape"
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "rape"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Violent"
+            },
+            {
+              "field": "stars_category",
+              "op": "eq",
+              "value": "Robbery"
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Violent"
+            },
+            {
+              "field": "stars_category",
+              "op": "in",
+              "values": [
+                "Agg Assault",
+                "Strangulation"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Property"
+            },
+            {
+              "field": "stars_category",
+              "op": "eq",
+              "value": "Burglary/BE"
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Property"
+            },
+            {
+              "field": "stars_category",
+              "op": "in",
+              "values": [
+                "Personal/Other Theft",
+                "Theft from Auto"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type",
+              "op": "eq",
+              "value": "Part 1 Property"
+            },
+            {
+              "field": "stars_category",
+              "op": "eq",
+              "value": "Auto Theft"
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://data.cincinnati-oh.gov/resource/7aqy-xrv9.json",
+      "name": "City of Cincinnati Open Data - Reported Crime (STARS Category Offenses) on or after 6/3/2024",
+      "order": "datefrom, incident_no",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        ":id as row_id",
+        "incident_no",
+        "datefrom",
+        "datereported",
+        "stars_category",
+        "type",
+        "latitude_x",
+        "longitude_x"
+      ],
+      "source_url": "https://data.cincinnati-oh.gov/safety/Reported-Crime-STARS-Category-Offenses-/7aqy-xrv9/about_data",
+      "where": "datefrom >= '2024-01-01T00:00:00' AND datefrom < '2025-01-01T00:00:00' AND latitude_x IS NOT NULL AND longitude_x IS NOT NULL"
+    },
+    "sources_checked": [
+      "https://data.cincinnati-oh.gov/safety/Reported-Crime-STARS-Category-Offenses-/7aqy-xrv9/about_data",
+      "https://data.cincinnati-oh.gov/resource/7aqy-xrv9.json",
+      "https://data.cincinnati-oh.gov/safety/Reported-Crime-STARS-Category-Offenses-before-6-3-/8xzn-kpn7/about_data",
+      "https://data.cincinnati-oh.gov/resource/8xzn-kpn7.json",
+      "https://data.cincinnati-oh.gov/api/views/7aqy-xrv9",
+      "https://data.cincinnati-oh.gov/api/views/8xzn-kpn7",
+      "repo read-only geometry check: state/geometry/block_group_to_jurisdiction_crosswalk.parquet and data/tiger_bg/tl_2020_39_bg.zip for 39:municipal:place:3915000"
+    ],
+    "worker_judgment_notes": "Use the post-transition Cincinnati STARS-category Socrata feed because it exposes granular STARS_Category values that map strictly to the seven canonical offenses and public latitude_x/longitude_x coordinates. Select Socrata :id as row_id because each row is a STARS offense and incident_no can repeat for multi-offense incidents. CPD transitioned RMS on 2024-06-03; the companion pre-transition feed 8xzn-kpn7 was checked but its 2024 ucr/offense fields are redacted to X and stars_category is only broad Part 1/Part 2, so it cannot be strictly mapped by the generic runner without bespoke logic. Treat this feed as a coordinate share candidate and not as annual official control totals.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 7,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 0,
+    "offense_rows": 7,
+    "rows_in_surface": 1270,
+    "share_admitted_rows": 7,
+    "share_sum_pass_all": true
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate15_generic_onboarding/gate15_generic_20260615",
+  "runtime": {
+    "city_key": "cincinnati",
+    "input_tokens": null,
+    "output_tokens": null,
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 2.4293630409956677,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

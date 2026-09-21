@@ -1,0 +1,177 @@
+{
+  "city_key": "san_francisco",
+  "recommended_source_contract": {
+    "dual_feed_still_right": true,
+    "cutover_rule": "Use historical feed rows with incident date < 2018-01-01 and current feed rows with incident date >= 2018-01-01.",
+    "why_dual_feed_is_still_required": [
+      "The historical dataset metadata still says the legacy CABLE feed was discontinued in May 2018 and points 2018+ users to the new Crime Data Warehouse-backed dataset.",
+      "The historical dataset still carries 43,733 rows dated 2018, so a hard 2018-01-01 cutover remains necessary to avoid overlap."
+    ],
+    "recommended_late_filters_for_reconciliation": {
+      "report_type_description_keep": [
+        "Initial",
+        "Coplogic Initial",
+        "Vehicle Initial"
+      ],
+      "dedupe_key": "incident_number + v2_offense",
+      "exclude_police_district": [
+        "Out of SF"
+      ],
+      "manual_exclusions": [
+        "Homicide subcategory Manslaughter",
+        "Homicide subcategory Homicide - Excusable",
+        "Motor Vehicle Theft description Vehicle, Recovered, Stolen outside SF"
+      ],
+      "manual_additions_2025": [
+        {
+          "incident_code": "05032",
+          "incident_description": "Burglary, Hotel Room, Att. Forcible Entry",
+          "v2_offense": "burglary",
+          "observed_rows_2025": 4
+        },
+        {
+          "incident_code": "06210",
+          "incident_description": "Theft, Motorcycle Strip, Att.",
+          "v2_offense": "larceny",
+          "observed_rows_2025": 2
+        },
+        {
+          "incident_code": "10145",
+          "incident_description": "Theft, Short Change, >$950",
+          "v2_offense": "larceny",
+          "observed_rows_2025": 2
+        }
+      ]
+    },
+    "validated_selective_boundary": {
+      "promote_offenses": [
+        "robbery",
+        "aggravated_assault",
+        "burglary",
+        "larceny",
+        "motor_vehicle_theft"
+      ],
+      "blocked_offenses": [
+        "murder",
+        "rape"
+      ],
+      "reference_source_name": "SFPD Crime Report December 2025",
+      "reference_source_url": "https://www.sanfranciscopolice.org/sites/default/files/2026-02/SFPD%20Crime%20Report%20December%202025.pdf"
+    },
+    "remaining_limitations_after_hardening": [
+      "Current-feed coordinates are privacy-snapped to nearby intersections, with a documented snapping-method change on 2024-04-24.",
+      "Rows that remain missing coordinates should not be block-group allocated without a city-level residual policy.",
+      "Larceny is promotable now, but it still loses 1,790 allocable rows in revised 2024 and 1,184 allocable rows in 2025 because coordinates are missing.",
+      "Murder and rape remain public-data-limit offenses even after hardening."
+    ],
+    "builder_support_required": [
+      "Repo-level offense-selective support for San Francisco.",
+      "An SF-specific builder implementation of the dual-feed cutover, late-feed hardening rules, and three 2025 packet-local additions documented here.",
+      "A policy for retaining or dropping unallocable residual rows instead of silently forcing them into block groups."
+    ]
+  },
+  "datasets": [
+    {
+      "dataset_id": "tmnf-yvry",
+      "name": "Police Department Incident Reports: Historical 2003 to May 2018",
+      "source_url": "https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-Historical-20/tmnf-yvry",
+      "download_url": "https://data.sfgov.org/api/views/tmnf-yvry/rows.csv?accessType=DOWNLOAD",
+      "resource_url": "https://data.sfgov.org/resource/tmnf-yvry.csv",
+      "coverage_start": "2003-01-01",
+      "coverage_end": "2018-05-15",
+      "rows_updated_at": "2025-06-20T20:13:54+00:00",
+      "role": "historical feed"
+    },
+    {
+      "dataset_id": "wg3w-h783",
+      "name": "Police Department Incident Reports: 2018 to Present",
+      "source_url": "https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Presen/wg3w-h783",
+      "download_url": "https://data.sfgov.org/api/views/wg3w-h783/rows.csv?accessType=DOWNLOAD",
+      "resource_url": "https://data.sfgov.org/resource/wg3w-h783.csv",
+      "coverage_start": "2018-01-01",
+      "coverage_end": "2026-03-24",
+      "rows_updated_at": "2026-03-24T16:58:51+00:00",
+      "role": "current feed"
+    },
+    {
+      "dataset_id": "ci9u-8awy",
+      "name": "Reference: Police Department Incident Code Crosswalk",
+      "source_url": "https://data.sfgov.org/Public-Safety/Reference-Police-Department-Incident-Code-Crosswal/ci9u-8awy",
+      "download_url": "https://data.sfgov.org/resource/ci9u-8awy.csv",
+      "role": "late-feed incident code reference"
+    }
+  ],
+  "query_snapshot": {
+    "historical_overlap_query": "https://data.sfgov.org/resource/tmnf-yvry.csv?$select=date_extract_y(date)%20as%20year,count(*)&$group=year&$order=year",
+    "late_feed_2024_query": "https://data.sfgov.org/resource/wg3w-h783.csv?$select=incident_id,incident_number,incident_code,incident_category,incident_subcategory,incident_description,report_type_description,police_district,latitude,longitude&$where=incident_year=%272024%27&$limit=250000",
+    "late_feed_2025_query": "https://data.sfgov.org/resource/wg3w-h783.csv?$select=incident_id,incident_number,incident_code,incident_category,incident_subcategory,incident_description,report_type_description,police_district,latitude,longitude&$where=incident_year=%272025%27&$limit=250000",
+    "late_feed_2024_report_type_query": "https://data.sfgov.org/resource/wg3w-h783.csv?$select=report_type_description,count(*)&$where=incident_year=%272024%27&$group=report_type_description&$order=count(*)%20DESC",
+    "late_feed_2025_report_type_query": "https://data.sfgov.org/resource/wg3w-h783.csv?$select=report_type_description,count(*)&$where=incident_year=%272025%27&$group=report_type_description&$order=count(*)%20DESC"
+  },
+  "spatial_metrics": {
+    "historical_2017_rows": 145025,
+    "historical_2017_coordinate_rows": 145025,
+    "late_2024_rows": 110048,
+    "late_2024_geocoded_rows": 103679,
+    "late_2024_geocoded_share_pct": 94.213,
+    "late_2024_out_of_sf_rows": 4480,
+    "late_2025_rows": 94846,
+    "late_2025_geocoded_rows": 90424,
+    "late_2025_geocoded_share_pct": 95.338,
+    "late_2025_out_of_sf_rows": 3174
+  },
+  "report_type_distribution": {
+    "2024": [
+      {
+        "report_type_description": "Initial",
+        "count": 67822
+      },
+      {
+        "report_type_description": "Coplogic Initial",
+        "count": 16531
+      },
+      {
+        "report_type_description": "Initial Supplement",
+        "count": 10003
+      },
+      {
+        "report_type_description": "Vehicle Initial",
+        "count": 8637
+      },
+      {
+        "report_type_description": "Vehicle Supplement",
+        "count": 5581
+      },
+      {
+        "report_type_description": "Coplogic Supplement",
+        "count": 1474
+      }
+    ],
+    "2025": [
+      {
+        "report_type_description": "Initial",
+        "count": 62421
+      },
+      {
+        "report_type_description": "Coplogic Initial",
+        "count": 13981
+      },
+      {
+        "report_type_description": "Initial Supplement",
+        "count": 9120
+      },
+      {
+        "report_type_description": "Vehicle Initial",
+        "count": 5094
+      },
+      {
+        "report_type_description": "Vehicle Supplement",
+        "count": 3250
+      },
+      {
+        "report_type_description": "Coplogic Supplement",
+        "count": 971
+      }
+    ]
+  }
+}

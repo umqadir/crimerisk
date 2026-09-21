@@ -1,0 +1,21 @@
+state_fips,county_fips,county_geoid,county_name,reviewer_note,remainder_exposure_before_displacement,remainder_exposure_after_displacement,remainder_exposure_retained_share,reporting_remainder_agency_mass_2024,source_artifact
+40,113,40113,Osage County,concurrent_jurisdiction_unresolved,21641.89629720236,0.0,0.0,274.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+27,087,27087,Mahnomen County,concurrent_jurisdiction_unresolved,5411.0,0.0,0.0,72.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+49,013,49013,Duchesne County,concurrent_jurisdiction_unresolved,11824.714357308309,0.9999999999997836,8.456863902016626e-05,178.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+31,173,31173,Thurston County,concurrent_jurisdiction_unresolved,6558.388632872504,2.0110075247582673,0.0003066313445773,19.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+16,061,16061,Lewis County,concurrent_jurisdiction_unresolved,3533.0,42.0,0.0118879139541466,10.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+30,035,30035,Glacier County,concurrent_jurisdiction_unresolved,10600.478486699025,671.4784866990258,0.06334416767522,21.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+30,003,30003,Big Horn County,concurrent_jurisdiction_unresolved,9005.441105261218,812.0557841603012,0.0901739042728153,117.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+04,001,04001,Apache County,concurrent_jurisdiction_unresolved,55752.49028212199,7202.490282121984,0.1291868801855401,126.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+30,047,30047,Lake County,concurrent_jurisdiction_unresolved,21684.225508409483,3319.9999999999995,0.1531066903317552,267.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+46,071,46071,Jackson County,concurrent_jurisdiction_unresolved,2218.835345490905,424.8353454909053,0.1914677203760303,16.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+35,031,35031,McKinley County,concurrent_jurisdiction_unresolved,49986.81557469451,10569.04338983184,0.2114366212034188,239.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+38,079,38079,Rolette County,concurrent_jurisdiction_unresolved,9223.661127536212,2121.822091357073,0.2300412018631744,19.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+30,085,30085,Roosevelt County,concurrent_jurisdiction_unresolved,7671.641635887721,1938.0,0.2526186821519518,67.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+46,109,46109,Roberts County,concurrent_jurisdiction_unresolved,6857.435614891307,1806.4555843388016,0.2634301925366943,21.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+16,069,16069,Nez Perce County,concurrent_jurisdiction_unresolved,6748.9774794186305,1915.9774794186303,0.2838915206431651,42.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+55,078,55078,Menominee County,concurrent_jurisdiction_unresolved,4255.0,1222.9999999999998,0.2874265569917743,10.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+38,005,38005,Benson County,concurrent_jurisdiction_unresolved,5964.0,2302.0,0.3859825620389001,10.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+30,005,30005,Blaine County,concurrent_jurisdiction_unresolved,5763.487885001115,2518.487885001114,0.4369728774055759,12.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+04,017,04017,Navajo County,concurrent_jurisdiction_unresolved,66652.50338760736,30363.39742110183,0.4555477420634626,229.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv
+36,053,36053,Madison County,concurrent_jurisdiction_unresolved,39370.45853120499,18233.406134291225,0.4631240481956654,112.0,analysis_scratch/stage2_fix_batch/displacement_county_concentration.csv

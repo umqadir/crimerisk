@@ -1,0 +1,560 @@
+{
+  "case_key": "portland_port_or",
+  "ori": "OR0260300",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "OR0260300 should use a discontiguous custom Port of Portland property-system footprint built from the official Port of Portland Properties polygon layer, not Portland, Multnomah County, a three-county district polygon, or a PDX-only proxy.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "custom_system_property_footprint",
+    "primary_geometry_source": {
+      "source_name": "Port of Portland Properties FeatureServer layer 25 GeoJSON query",
+      "source_url": "https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/Public_Map_Layers/FeatureServer/25/query?where=1%3D1&outFields=OBJECTID_1%2CSITECITY%2COWNER1%2CSITEADDR&returnGeometry=true&f=geojson",
+      "layer_name": "Port of Portland Properties",
+      "why_this_is_primary": "The Port's own ArcGIS layer is already a curated system-property polygon inventory. It is the exact current build path identified for OR0260300 and is stronger than any county, place, or district proxy."
+    },
+    "inclusion_rule": "Retain the full official Port of Portland Properties layer and dissolve it to a single discontiguous footprint. Do not subset the layer to owner strings only, because the official layer intentionally contains leased terminal parcels, on-airport hangar or condo parcels, and a few other embedded Port-system parcels that are part of the Port property system shown on current Port pages.",
+    "official_current_portfolio_support": [
+      "Current Port pages confirm the live portfolio includes PDX, Hillsboro Airport, Troutdale Airport, marine terminals, air cargo, business parks, and the Innovation Campus at Terminal 2.",
+      "Current Rivergate, Swan Island, Gresham Vista, TRIP, Cascade Station, Terminal 4, Terminal 5, and Terminal 6 pages align with the major parcel clusters in the official layer.",
+      "Port-hosted overview PDFs support additional named assets such as West Hayden Island and the Government, Lemon, and McGuire island complex."
+    ],
+    "explicit_exclusions": [
+      "Portland city proxy",
+      "Multnomah County proxy",
+      "three-county port district polygon",
+      "PDX-only footprint",
+      "manual owner-string trimming of the official property layer"
+    ]
+  },
+  "source_validation": {
+    "property_layer": {
+      "feature_count": 757,
+      "geometry_types": {
+        "Polygon": 743,
+        "MultiPolygon": 14
+      },
+      "valid_geometries_before_repair": 755,
+      "invalid_geometries_before_repair": 2,
+      "sitecity_counts": {
+        "AIRPORT STATION": 1,
+        "FAIRVIEW": 3,
+        "GRESHAM": 4,
+        "HILLSBORO": 177,
+        "PORTLAND": 507,
+        "TROUTDALE": 65
+      }
+    },
+    "current_port_pages_checked": [
+      {
+        "source_name": "ArcGIS Map Viewer surface for Public_Map_Layers FeatureServer",
+        "source_url": "https://www.arcgis.com/apps/mapviewer/index.html?source=sd&url=https%3A%2F%2Fservices.arcgis.com%2FquVN97tn06YNGj9s%2FArcGIS%2Frest%2Fservices%2FPublic_Map_Layers%2FFeatureServer",
+        "access_status": "200_OK",
+        "role_in_packet": "Live map-backed QA surface"
+      },
+      {
+        "source_name": "About",
+        "source_url": "https://www.portofportland.com/About",
+        "access_status": "200_OK",
+        "role_in_packet": "Current portfolio scope QA"
+      },
+      {
+        "source_name": "Business Parks",
+        "source_url": "https://www.portofportland.com/Commercial",
+        "access_status": "200_OK",
+        "role_in_packet": "Current industrial-property QA"
+      },
+      {
+        "source_name": "Marine Cargo",
+        "source_url": "https://www.portofportland.com/Marine",
+        "access_status": "200_OK",
+        "role_in_packet": "Current marine-system QA"
+      },
+      {
+        "source_name": "Portland International Airport",
+        "source_url": "https://www.portofportland.com/PortlandAirport",
+        "access_status": "200_OK",
+        "role_in_packet": "Current PDX QA"
+      },
+      {
+        "source_name": "Air Cargo",
+        "source_url": "https://www.portofportland.com/AirCargo",
+        "access_status": "200_OK",
+        "role_in_packet": "Current cargo-property QA"
+      },
+      {
+        "source_name": "Hillsboro Airport",
+        "source_url": "https://www.portofportland.com/HIO",
+        "access_status": "200_OK",
+        "role_in_packet": "Current airport QA"
+      },
+      {
+        "source_name": "Troutdale Airport",
+        "source_url": "https://www.portofportland.com/TTD",
+        "access_status": "200_OK",
+        "role_in_packet": "Current airport QA"
+      },
+      {
+        "source_name": "Terminal 4",
+        "source_url": "https://www.portofportland.com/Terminal4",
+        "access_status": "200_OK",
+        "role_in_packet": "Current terminal QA"
+      },
+      {
+        "source_name": "Terminal 5",
+        "source_url": "https://www.portofportland.com/Terminal5",
+        "access_status": "200_OK",
+        "role_in_packet": "Current terminal QA"
+      },
+      {
+        "source_name": "Terminal 6",
+        "source_url": "https://www.portofportland.com/Terminal6",
+        "access_status": "200_OK",
+        "role_in_packet": "Current terminal QA"
+      },
+      {
+        "source_name": "Rivergate Industrial District",
+        "source_url": "https://www.portofportland.com/rivergate",
+        "access_status": "200_OK",
+        "role_in_packet": "Current business-park QA"
+      },
+      {
+        "source_name": "Swan Island Industrial Park",
+        "source_url": "https://www.portofportland.com/SwanIsland",
+        "access_status": "200_OK",
+        "role_in_packet": "Current business-park QA"
+      },
+      {
+        "source_name": "Portland International Center/Cascade Station",
+        "source_url": "https://www.portofportland.com/cascadestation",
+        "access_status": "200_OK",
+        "role_in_packet": "Current business-park QA"
+      },
+      {
+        "source_name": "Troutdale Reynolds Industrial Park",
+        "source_url": "https://www.portofportland.com/trip",
+        "access_status": "200_OK",
+        "role_in_packet": "Current business-park QA"
+      },
+      {
+        "source_name": "Gresham Vista Business Park",
+        "source_url": "https://www.portofportland.com/greshamvista",
+        "access_status": "200_OK",
+        "role_in_packet": "Current business-park QA"
+      },
+      {
+        "source_name": "Innovation Campus",
+        "source_url": "https://www.portofportland.com/masstimber",
+        "access_status": "200_OK",
+        "role_in_packet": "Current Terminal 2 QA"
+      }
+    ],
+    "named_asset_qa": [
+      {
+        "asset_class": "PDX and air cargo",
+        "support_urls": [
+          "https://www.portofportland.com/PortlandAirport",
+          "https://www.portofportland.com/AirCargo"
+        ],
+        "interpretation": "The official layer contains the dominant PDX/Airport Way/Alderwood/Cornfoot system and associated air cargo parcels."
+      },
+      {
+        "asset_class": "Hillsboro Airport",
+        "support_urls": [
+          "https://www.portofportland.com/HIO"
+        ],
+        "interpretation": "The official layer contains the Hillsboro airport campus, including Port-owned, leased, and embedded hangar or aviation parcels."
+      },
+      {
+        "asset_class": "Troutdale Airport and TRIP",
+        "support_urls": [
+          "https://www.portofportland.com/TTD",
+          "https://www.portofportland.com/trip"
+        ],
+        "interpretation": "The official layer contains the Troutdale airport campus and adjacent Troutdale Reynolds Industrial Park property system."
+      },
+      {
+        "asset_class": "Marine terminals and Rivergate",
+        "support_urls": [
+          "https://www.portofportland.com/Marine",
+          "https://www.portofportland.com/Terminal4",
+          "https://www.portofportland.com/Terminal5",
+          "https://www.portofportland.com/Terminal6",
+          "https://www.portofportland.com/rivergate"
+        ],
+        "interpretation": "The official layer contains the active terminal and Rivergate industrial parcels, including leased operations."
+      },
+      {
+        "asset_class": "Other business and industrial properties",
+        "support_urls": [
+          "https://www.portofportland.com/SwanIsland",
+          "https://www.portofportland.com/cascadestation",
+          "https://www.portofportland.com/greshamvista",
+          "https://www.portofportland.com/masstimber"
+        ],
+        "interpretation": "The official layer matches current Port pages for Swan Island, Portland International Center/Cascade Station, Gresham Vista, and the Innovation Campus at Terminal 2."
+      },
+      {
+        "asset_class": "Other named Port assets not surfaced on current landing pages",
+        "support_urls": [
+          "https://cdn.portofportland.com/pdfs/Prp_Portfolio.pdf",
+          "https://cdn.portofportland.com/pdfs/Miti_Gvrnmnt_Is.pdf"
+        ],
+        "interpretation": "Port-hosted PDFs support retaining named assets such as West Hayden Island and the Government, Lemon, and McGuire island complex that are already present in the official layer."
+      }
+    ]
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "geometry_method": "Repair invalid source geometries, dissolve the full official property layer into a discontiguous union, intersect that union with 2020 Oregon TIGER block groups, and convert intersection areas to normalized shares.",
+    "why_this_is_defensible": [
+      "The Port itself curates the exact parcel system in a dedicated Port of Portland Properties layer.",
+      "Current Port pages corroborate the major operational asset classes expected in the footprint: airports, terminals, air cargo, business parks, and industrial districts.",
+      "Dissolving the official layer removes about 97.75 acres of overlap or duplicate accounting from the raw parcel rows before share generation."
+    ],
+    "why_all_rows_are_retained": [
+      "The official layer name indicates the polygons are all part of the Port property system, not a generic regional parcel pull.",
+      "The non-Port owner rows are concentrated in Hillsboro airport hangar or condo parcels plus a very small number of embedded industrial or blank-owner slivers already curated inside the layer.",
+      "Current Port pages explicitly describe leased terminal operations and airport business activity, so trimming the layer to Port-owned-only strings would understate the real Port property system."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_41_bg.zip",
+    "intersected_counties": [
+      {
+        "county_fips": "051",
+        "county_name": "Multnomah",
+        "block_groups": 13
+      },
+      {
+        "county_fips": "067",
+        "county_name": "Washington",
+        "block_groups": 10
+      }
+    ],
+    "intersected_block_groups": 23,
+    "intersection_area_total_m2": 40288957.180114016,
+    "intersection_area_total_acres": 9955.618132906364,
+    "weight_sum_exact": 1.0,
+    "weight_sum_rounded_csv": 0.9999999999999983,
+    "largest_block_group_geoid": "410510073001",
+    "largest_block_group_share": 0.3304631436748274,
+    "county_share_summary": [
+      {
+        "county_fips": "051",
+        "county_name": "Multnomah",
+        "share_sum": 0.900177587662915,
+        "area_acres": 8961.824314572825
+      },
+      {
+        "county_fips": "067",
+        "county_name": "Washington",
+        "share_sum": 0.099822412337085,
+        "area_acres": 993.7938183335393
+      }
+    ]
+  },
+  "qa_checks": {
+    "all_rows_retained_from_official_layer": true,
+    "raw_polygon_rows": 757,
+    "layer_union_component_count": 124,
+    "raw_polygon_area_total_acres": 10015.391372328122,
+    "dissolved_union_area_total_acres": 9955.61813290635,
+    "overlap_removed_acres": 59.77323942177302,
+    "non_port_rows_retained_count": 102,
+    "non_port_rows_retained_area_acres_raw": 436.7856845542023,
+    "city_owner_summary": [
+      {
+        "sitecity": "AIRPORT STATION",
+        "port_like_rows": 1,
+        "non_port_rows": 0,
+        "port_like_area_acres_raw": 4.814989765256732,
+        "non_port_area_acres_raw": 0.0
+      },
+      {
+        "sitecity": "FAIRVIEW",
+        "port_like_rows": 3,
+        "non_port_rows": 0,
+        "port_like_area_acres_raw": 156.3264446472947,
+        "non_port_area_acres_raw": 0.0
+      },
+      {
+        "sitecity": "GRESHAM",
+        "port_like_rows": 4,
+        "non_port_rows": 0,
+        "port_like_area_acres_raw": 105.6248084684616,
+        "non_port_area_acres_raw": 0.0
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "port_like_rows": 79,
+        "non_port_rows": 98,
+        "port_like_area_acres_raw": 575.5701537814984,
+        "non_port_area_acres_raw": 418.2236645520374
+      },
+      {
+        "sitecity": "PORTLAND",
+        "port_like_rows": 503,
+        "non_port_rows": 4,
+        "port_like_area_acres_raw": 8152.428185731978,
+        "non_port_area_acres_raw": 18.56202000216496
+      },
+      {
+        "sitecity": "TROUTDALE",
+        "port_like_rows": 65,
+        "non_port_rows": 0,
+        "port_like_area_acres_raw": 583.8411053794309,
+        "non_port_area_acres_raw": 0.0
+      }
+    ],
+    "non_port_examples": [
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "AMOAH-KUSI CHRIS",
+        "area_acres_raw": 0.022433747140932048
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "AMOAH-KUSI CHRIS",
+        "area_acres_raw": 0.02245050615801794
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "AXEL NEIL JEFFERY",
+        "area_acres_raw": 0.02828756289566815
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "B-27 HANGAR LLC",
+        "area_acres_raw": 0.026881886139359677
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "BEEBE DAVID V &",
+        "area_acres_raw": 0.022932325141651028
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "BENUA DANIEL R &",
+        "area_acres_raw": 0.06769702851959529
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "BRABANDT CALIN WILLIAM",
+        "area_acres_raw": 0.022441964074681797
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "CASPER BRYAN KEITH &",
+        "area_acres_raw": 0.02447621086472505
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "CATTELL MARK D",
+        "area_acres_raw": 0.022935216726340565
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "CHAREST ROBERT D",
+        "area_acres_raw": 0.0690255831711135
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "CHEETAH AVIATION LLC",
+        "area_acres_raw": 0.022462920080592134
+      },
+      {
+        "sitecity": "HILLSBORO",
+        "siteaddr": "2955 NE CORNELL RD",
+        "owner1": "CHILDRESS JOHN A &",
+        "area_acres_raw": 0.024475976759292035
+      }
+    ],
+    "largest_union_components": [
+      {
+        "rank": 1,
+        "component_id": 60,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "7000 WI/ NE AIRPORT WAY",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 2834.5718299028804
+      },
+      {
+        "rank": 2,
+        "component_id": 98,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "14500 NE SANDY BEACH CAMPGROUND",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 1634.3465896879134
+      },
+      {
+        "rank": 3,
+        "component_id": 3,
+        "representative_sitecity": "HILLSBORO",
+        "representative_siteaddr": "3425 NE CORNELL RD",
+        "representative_owner1": "HILLSBORO AIRPORT CELL TOWER",
+        "component_area_acres": 722.9867773806787
+      },
+      {
+        "rank": 4,
+        "component_id": 75,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "LEVY CODE 390",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 530.7658178366963
+      },
+      {
+        "rank": 5,
+        "component_id": 50,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "7101-8101 N MARINE DR",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 454.19864958233404
+      },
+      {
+        "rank": 6,
+        "component_id": 48,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "N MARINE DR",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 281.5733568850738
+      },
+      {
+        "rank": 7,
+        "component_id": 51,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "14601-14621 N BYBEE LAKE CT",
+        "representative_owner1": "PORT OF PORTLAND(LEASED",
+        "component_area_acres": 272.7127134312293
+      },
+      {
+        "rank": 8,
+        "component_id": 118,
+        "representative_sitecity": "TROUTDALE",
+        "representative_siteaddr": "NE/ NW GRAHAM RD",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 249.09430363160777
+      },
+      {
+        "rank": 9,
+        "component_id": 116,
+        "representative_sitecity": "TROUTDALE",
+        "representative_siteaddr": "1220 NW PERIMETER WAY",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 243.57215248069716
+      },
+      {
+        "rank": 10,
+        "component_id": 18,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "11020 N LOMBARD ST",
+        "representative_owner1": "PORT OF PORTLAND(LEASED",
+        "component_area_acres": 228.19127463540693
+      },
+      {
+        "rank": 11,
+        "component_id": 23,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "14300-14340 N LOMBARD ST",
+        "representative_owner1": "PORT OF PORTLAND(LEASED",
+        "component_area_acres": 218.50976211764228
+      },
+      {
+        "rank": 12,
+        "component_id": 94,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "LEMON ISLAND",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 193.0693099922859
+      },
+      {
+        "rank": 13,
+        "component_id": 30,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "15550 WI/ N LOMBARD ST",
+        "representative_owner1": "PORT OF PORTLAND(LEASED",
+        "component_area_acres": 183.32565048358504
+      },
+      {
+        "rank": 14,
+        "component_id": 95,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "MC GUIRE ISLAND",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 164.6254015306191
+      },
+      {
+        "rank": 15,
+        "component_id": 88,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "NE ALDERWOOD RD",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 160.94011808791268
+      },
+      {
+        "rank": 16,
+        "component_id": 121,
+        "representative_sitecity": "TROUTDALE",
+        "representative_siteaddr": "NW SUNDIAL RD",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 155.44539854267867
+      },
+      {
+        "rank": 17,
+        "component_id": 53,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "LEVY CODE 390",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 154.7483602439314
+      },
+      {
+        "rank": 18,
+        "component_id": 24,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "13035 N RIVERGATE BLVD",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 106.22458829351835
+      },
+      {
+        "rank": 19,
+        "component_id": 73,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "10799 N EXPO RD",
+        "representative_owner1": "THE PORT OF PORTLAND",
+        "component_area_acres": 98.14046302597825
+      },
+      {
+        "rank": 20,
+        "component_id": 71,
+        "representative_sitecity": "PORTLAND",
+        "representative_siteaddr": "2432 NE MARINE DR",
+        "representative_owner1": "PORT OF PORTLAND",
+        "component_area_acres": 73.55967500398637
+      }
+    ],
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_after_csv_rounding": true
+  },
+  "residual_caveats": [
+    "This is a property-system footprint, not a legal district boundary and not a claims-made map of every place Port police may exercise authority outside Port property.",
+    "Some supporting named-asset QA outside the current landing pages relies on Port-hosted PDFs rather than newer standalone web pages, but those assets are already present in the current official property layer.",
+    "The ArcGIS layer contains a small amount of overlapping parcel accounting; the production build removes that by dissolving the union before block-group allocation."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/portland_port_or/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/portland_port_or/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/portland_port_or/sources.csv"
+  }
+}

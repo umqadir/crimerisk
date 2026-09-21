@@ -1,0 +1,14 @@
+{
+  "case_key": "macon_bibb_ga",
+  "jurisdiction_id": "13:municipal:place:1349008",
+  "jurisdiction_name": "Macon-Bibb County",
+  "state_abbr": "GA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/macon_bibb_ga",
+  "review_goal": "Determine whether Macon-Bibb County should retain a standalone municipal control row and whether Bibb County Sheriff reporting should anchor that consolidated primary jurisdiction.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

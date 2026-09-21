@@ -1,0 +1,26 @@
+{
+  "builder": "_build_dallas_surface",
+  "city_key": "dallas",
+  "city_name": "Dallas",
+  "contract": "Gate-1 pilot: official totals lane plus incident share lane.",
+  "incident_feed_total_policy": "share_only_unless_strict_reconciliation_clears",
+  "jurisdiction_id": "48:municipal:place:4819000",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/dallas",
+  "raw_cache_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/inputs/gap_closing_pilot/gate1_pilot_20260615",
+  "run_id": "gate1_pilot_20260615",
+  "source_name": "Police Incidents - Dallas OpenData",
+  "source_url": "https://www.dallasopendata.com/Public-Safety/Police-Incidents/qv6i-rri7",
+  "worker_runtime": {
+    "city_key": "dallas",
+    "input_tokens": null,
+    "model": "",
+    "output_tokens": null,
+    "run_id": "gate1_pilot_20260615",
+    "status": "completed",
+    "token_note": "No LLM tokens: deterministic Python city builder.",
+    "total_tokens": null,
+    "wall_seconds": 13.142095875009545,
+    "worker_id": "local_deterministic_dallas",
+    "worker_type": "local_deterministic_builder"
+  }
+}

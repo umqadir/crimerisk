@@ -1,0 +1,14 @@
+{
+  "case_key": "crowley_la",
+  "jurisdiction_id": "22:municipal:place:2218650",
+  "jurisdiction_name": "Crowley city",
+  "state_abbr": "LA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/crowley_la",
+  "review_goal": "Determine whether Crowley city, Louisiana is a valid municipal police target with a reporting continuity failure, an Acadia Parish replacement, a merged or shared service structure, or an invalid target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

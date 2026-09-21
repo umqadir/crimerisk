@@ -1,0 +1,23 @@
+metric_group,metric_name,metric_value,metric_note
+statewide_validation,official_oris,579,New Jersey official roster rows in validation summary
+statewide_validation,official_nibrs_oris,402,New Jersey roster rows flagged official NIBRS
+statewide_validation,official_effective_nibrs_oris_2024,378,New Jersey roster rows effective in NIBRS by 2024
+statewide_validation,repo_master_matches,579,Official roster rows already present in repo master
+statewide_validation,missing_in_repo_master,0,Official roster rows absent from repo master
+statewide_validation,present_but_no_2024_observation,61,Rows present in repo master with no 2024 SRS or NIBRS observation
+statewide_validation,official_nibrs_repo_no_nibrs,40,Official NIBRS roster rows with no repo NIBRS observation regardless of effective year
+statewide_validation,official_effective_nibrs_repo_no_nibrs,16,Official 2024-effective NIBRS rows with no repo NIBRS observation
+statewide_validation,official_effective_nibrs_repo_no_nibrs_with_srs,2,Official 2024-effective NIBRS rows that still have sparse repo SRS support
+statewide_validation,official_effective_nibrs_repo_no_nibrs_no_obs,14,Official 2024-effective NIBRS rows with no repo SRS or NIBRS observation
+statewide_validation,mixed_source_2024_rows,361,Rows marked mixed source in the official-vs-repo validation
+source_structure,agencies_both_12m_srs_vs_nibrs,342,New Jersey agencies with both 12-month SRS and NIBRS in the ratio table
+source_structure,ratio_larceny_srs_to_nibrs,0.986579,Coverage-matched SRS to NIBRS larceny ratio
+source_structure,ratio_burglary_srs_to_nibrs,0.958345,Coverage-matched SRS to NIBRS burglary ratio
+source_structure,ratio_robbery_srs_to_nibrs,0.992896,Coverage-matched SRS to NIBRS robbery ratio
+source_structure,ratio_aggravated_assault_srs_to_nibrs,0.895249,Coverage-matched SRS to NIBRS aggravated assault ratio
+source_structure,ratio_rape_srs_to_nibrs,0.799841,Coverage-matched SRS to NIBRS rape ratio
+source_structure,ratio_murder_srs_to_nibrs,0.951220,Coverage-matched SRS to NIBRS murder ratio
+source_structure,nj_top_partial_reporters_2024,1,New Jersey rows appearing in top_partial_reporters_2024.csv
+coverage,prosecutor_rows_without_2024_observation,20,County prosecutor rows present in master but missing 2024 observations
+coverage,county_sheriff_rows_without_2024_observation,13,County sheriff rows present in master but missing 2024 observations
+coverage,city_rows_without_2024_observation,19,City rows present in master but missing 2024 observations

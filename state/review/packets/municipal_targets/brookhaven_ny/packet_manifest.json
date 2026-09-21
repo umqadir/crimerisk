@@ -1,0 +1,14 @@
+{
+  "case_key": "brookhaven_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610310000",
+  "jurisdiction_name": "Brookhaven town",
+  "state_abbr": "NY",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/brookhaven_ny",
+  "review_goal": "Determine whether Brookhaven town should receive a separate municipal control row or whether Suffolk County and village service structure means the town-level target is not a real annual policing jurisdiction.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

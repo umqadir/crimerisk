@@ -1,0 +1,153 @@
+{
+  "city_key": "memphis_tn",
+  "city_name": "Memphis, Tennessee",
+  "geography": {
+    "bounds": {
+      "max_latitude": 35.443,
+      "max_longitude": -89.587,
+      "min_latitude": 34.944,
+      "min_longitude": -90.36
+    },
+    "jurisdiction_id": "47:municipal:place:4748000",
+    "state_fips": "47"
+  },
+  "mapping": {
+    "date_field": "Offense_Datetime",
+    "id_field": "Crime_ID",
+    "id_fields": [
+      "Crime_ID",
+      "UCR_Incident_Code"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "UCR_Incident_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "UCR_Incident_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "UCR_Incident_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "UCR_Incident_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "UCR_Incident_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "field": "UCR_Incident_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://services2.arcgis.com/saWmpKJIUAjyyNVc/arcgis/rest/services/MPD_Public_Safety_Incidents/FeatureServer/0",
+    "name": "MPD Public Safety Incidents (Memphis Police Department NIBRS-coded incident feed)",
+    "order": "ObjectId ASC",
+    "page_size": 2000,
+    "portal_type": "arcgis_feature_service",
+    "select": [
+      "Crime_ID",
+      "Offense_Datetime",
+      "Reported_Datetime",
+      "Agency_Crime_ID",
+      "UCR_Incident_Code",
+      "UCR_Category",
+      "UCR_Description",
+      "Street_Address",
+      "City",
+      "State",
+      "ZIP_Code",
+      "Ward",
+      "Precinct",
+      "Source_ObjectID",
+      "ObjectId"
+    ],
+    "source_url": "https://data.memphistn.gov/ (MPD_Public_Safety_Incidents ArcGIS hosted layer)",
+    "where": "Offense_Datetime >= DATE '2024-01-01 00:00:00' AND Offense_Datetime < DATE '2025-01-01 00:00:00' AND City = 'MEMPHIS'"
+  },
+  "sources_checked": [
+    "https://services2.arcgis.com/saWmpKJIUAjyyNVc/arcgis/rest/services/MPD_Public_Safety_Incidents/FeatureServer/0?f=json",
+    "https://services2.arcgis.com/saWmpKJIUAjyyNVc/arcgis/rest/services/MPD_Public_Safety_Incidents/FeatureServer/0/query",
+    "state/controls/jurisdiction_controls_2024.parquet",
+    "state/observations/agency_year_observations.parquet",
+    "state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
+    "state/modeling/batch_b_preregistration_2024.json"
+  ],
+  "worker_judgment_notes": "Source is the Memphis Police Department's public 'MPD_Public_Safety_Incidents' ArcGIS hosted feature layer (identity-verified 2026-07-08, City field domain confirms 213,091/213,896 2024 rows are City=='MEMPHIS' after trimming/case-normalizing, with the remainder being small leakage into CORDOVA (648, an unincorporated Shelby County community often mailed as Memphis), ARLINGTON (37), BARTLETT (18), null (98), GERMANTOWN/LAKELAND (1 each), and a 'MEMPHPIS' typo (2) plus an 8-row leading-space ' MEMPHIS' variant -- all excluded by the exact City='MEMPHIS' server-side where-clause filter). Schema exposes true NIBRS incident codes directly in UCR_Incident_Code (56 distinct codes covering the full 213,896-row 2024 total exactly, cross-checked against the separate UCR_Description field which is 1:1 with UCR_Incident_Code) -- standard 6-offense NIBRS-code mapping used: 09A->murder (excludes 09B negligent manslaughter, 09C justifiable homicide, and a locally-added 09D 'NEGL VEHICULAR MSLTR' vehicular-manslaughter code, none of which are 09A), 120->robbery, 13A->aggravated_assault (excludes 13B simple assault and 13C intimidation), 220->burglary, 240->motor_vehicle_theft, and larceny is the full standard NIBRS 23A-H series (23A pocket-picking, 23B purse-snatching, 23C shoplifting, 23D theft from building, 23E theft from coin-op machine, 23F theft from motor vehicle, 23G theft of MV parts/accessories, 23H all other larceny). RAPE IS NOT MAPPED: zero 11A/11B/11C (or any 36-series) codes appear anywhere in the full distinct UCR_Incident_Code list for this layer across all years, not just 2024 -- this is a total source omission of sex offenses (matches the pre-registration brief's documented expectation and the same accepted DC/Denver/Jacksonville pattern), not a taxonomy judgment call; rape stays unadmitted for Memphis regardless, consistent with repo rape default-deny texture policy. CRITICAL DATA-QUALITY FINDING -- duplicate rows from a view fan-out, fixed by the dedup key, not a taxonomy problem: this FeatureServer is a hosted ArcGIS VIEW (isView=true/isUpdatableView=true per its service metadata), and empirically ~45-55% of offense rows are exact duplicates of another row sharing the same (Crime_ID, UCR_Incident_Code, Offense_Datetime, Reported_Datetime, Street_Address, Latitude, Longitude) but with a DIFFERENT ObjectId and Source_ObjectID (verified by pulling all 474 raw 09A/murder rows and finding only 241 distinct Crime_IDs, with per-Crime_ID row-multiplicity of 1/2/3 and, for 136 of 241 groups, byte-identical content across every field except ObjectId/Source_ObjectID -- almost certainly an underlying multi-snapshot/export-batch union in the hosted view, not real repeat charges). Deduping on (Crime_ID, UCR_Incident_Code) -- which correctly collapses these exact-content duplicate export copies while still preserving legitimately distinct offenses within the same incident (e.g. a burglary row and a separate larceny row sharing one Crime_ID are NOT collapsed) -- was validated against official controls (state/controls/jurisdiction_controls_2024.parquet, TNMPD0000, cius_publication_annual, 12/12 months reported, quality_tier high, and independently corroborated by reported_count_nibrs matching reported_count_cius almost exactly for every offense, so this is not a masked-reporting-gap situation on the controls side): after City filter + this dedup, murder 241/249=0.968, robbery 2151/2138=1.006, burglary 5444/5616=0.969, larceny 27511/26978=1.020, motor_vehicle_theft 9789/9711=1.008 -- all five reconcile within ~3.2%, which is strong independent confirmation the duplicate-row hypothesis and dedup key are correct (before this fix, undeduped feed-vs-control ratios ran a uniform and misleading ~1.85-1.97x high across every one of these five offenses). AGGRAVATED ASSAULT IS FLAGGED, NOT FORCE-RECONCILED: even after the identical dedup, aggravated_assault comes out to 7454 against a control of 12522 (ratio 0.595, a genuine ~40% shortfall, not a duplication artifact -- the same per-Crime_ID multiplicity distribution as murder/robbery/burglary/larceny/MVT was confirmed present in the 13A rows, ruling out under-deduping as the cause). The most plausible mechanism, not verified against an official MPD statement and reported here as a flagged ambiguity rather than a guess baked into the mapping: many public-facing municipal crime-incident maps (including some noted elsewhere in this repo's source inventory) redact or omit domestic-violence-flagged incidents from the public feed to protect victim location privacy, and aggravated assault is disproportionately composed of domestic-violence incidents relative to murder/robbery/burglary/larceny/MVT -- this would produce exactly the selective ~40% aggravated-assault-only shortfall observed here with no comparable effect on the other five mapped offenses. This is left as an open, reported gap; aggravated_assault is not force-adjusted or excluded from the mapping, and the strict 10% reconciliation gate will fail it on the merits (real, not a mapping bug). Bounds are the raw TIGER/crosswalk-touching Memphis block-group envelope (546 BGs) padded by ~0.05 degrees. Contract is share-lane only per the standard generic-runner convention; the strict 10% reconciliation gate decides feed-total-candidate status per offense, not admission of this contract at all.",
+  "year": 2024
+}

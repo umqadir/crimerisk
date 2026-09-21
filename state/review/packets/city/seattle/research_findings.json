@@ -1,0 +1,139 @@
+{
+  "city_key": "seattle",
+  "city_name": "Seattle",
+  "jurisdiction_id": "53:municipal:place:5363000",
+  "analysis_date": "2026-03-22",
+  "source_contract": {
+    "recommended_source_name": "SPD Crime Data: 2008-Present",
+    "recommended_source_url": "https://data.seattle.gov/api/views/tazs-3rd5/rows.csv?accessType=DOWNLOAD",
+    "metadata_url": "https://data.seattle.gov/api/views/tazs-3rd5.json",
+    "publisher": "SPD",
+    "portal_type": "Socrata",
+    "created_at_utc": "2020-02-14T17:57:12+00:00",
+    "rows_updated_at_utc": "2026-03-22T15:28:54+00:00",
+    "view_last_modified_utc": "2026-03-22T15:04:19+00:00",
+    "download_count": 36151,
+    "view_count": 101244,
+    "live_row_count_local_csv": 1522758,
+    "local_raw_csv_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/city-incidents/seattle/seattle_download.csv",
+    "local_minimal_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/city-incidents/seattle/seattle_minimal_snapshot_2018_2024.parquet",
+    "dedupe_key": "Offense ID",
+    "dedupe_result_2018_2024": {
+      "rows": 598464,
+      "unique_offense_id": 598464,
+      "duplicate_rows": 0
+    },
+    "official_description_summary": "Seattle publishes finalized UCR-approved reports only and updates the feed daily. The current live contract exposes Offense Date, Report DateTime, NIBRS offense fields, blurred coordinates, Beat, Precinct, Sector, Neighborhood, Reporting Area, and Block Address."
+  },
+  "schema_drift": {
+    "code_refresh_leads": [
+      "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/code/02_load_crime_data.R",
+      "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/code/05_harmonize_data.R",
+      "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/code/05_harmonise_data.R",
+      "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/crime_categories/categories_Seattle.csv"
+    ],
+    "observed_change": "The older CODE refresh loader used offense_start_date_time and offense_end_date_time midpoint logic. The current live Socrata contract no longer exposes those fields; it now exposes a single Offense Date plus Report DateTime.",
+    "implication": "Do not port the historical midpoint logic verbatim into V2. The current Seattle V2 logic using Offense Date with Report DateTime fallback matches the live schema."
+  },
+  "offense_contract": {
+    "recommended_basis": "NIBRS_offense_code",
+    "observed_live_core_codes_2018_2024": [
+      "09A",
+      "11A",
+      "120",
+      "13A",
+      "220",
+      "23A",
+      "23B",
+      "23C",
+      "23D",
+      "23E",
+      "23F",
+      "23G",
+      "23H",
+      "240"
+    ],
+    "historical_or_supported_but_unobserved_codes": [
+      "12A",
+      "12B",
+      "22A",
+      "22B",
+      "22U",
+      "23U"
+    ],
+    "recommended_crosswalk_file": "offense_crosswalk.csv",
+    "judgment": "Direct code mapping is the right Seattle V2 offense contract. There is no evidence that offense_sub_category adds value over NIBRS_offense_code for the core offenses."
+  },
+  "spatial_contract": {
+    "recommended_notes_file": "spatial_contract_notes.json",
+    "summary": "Use reported lat/lon first. For invalid or redacted coordinates, Beat is the operative public fallback. Reporting Area and Block Address are redacted on nearly all serious rows, so they are not valid primary fallbacks.",
+    "critical_blocker": "The current Seattle minimal parquet drops Beat, Precinct, Sector, Neighborhood, Reporting Area, and Block Address. The raw CSV has the needed proxy fields, but the current V2 share builder cannot use them without an expanded Seattle cache contract or a full-CSV re-read."
+  },
+  "published_reconciliation": {
+    "reference_source_name": "WASPC Crime in Washington 2024",
+    "reference_source_url": "https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf",
+    "agency_table_page": 292,
+    "counting_rule_page": 14,
+    "exact_comparable_offenses": [
+      "robbery",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "approximate_comparisons": [
+      "murder",
+      "rape",
+      "aggravated_assault"
+    ],
+    "rows_blocked_by_redaction_for_final_share_counts": [
+      "murder",
+      "rape",
+      "aggravated_assault"
+    ],
+    "summary_file": "reconciliation_summary.csv",
+    "published_extract_file": "published_reference_extract.csv",
+    "key_findings": [
+      "Mapped 2024 robbery is 1716 versus WASPC 1717. The remaining final-share gap is 138 rows and is driven by invalid coordinates plus block-group boundary loss.",
+      "Mapped 2024 burglary, larceny, and motor vehicle theft are within 0.6% of WASPC before spatial loss, which is strong evidence the offense crosswalk is correct for property offenses.",
+      "Mapped 2024 aggravated assault is 3334 versus WASPC 3952 and mapped 2024 rape is 332 versus WASPC 315. Those comparisons are only approximate because WASPC uses crimes-against-person counting rules while the SPD open feed is offense-row based and lacks victim-level detail.",
+      "Final-share counts for murder and rape are unusable without a proxy spatial fallback because public coordinates are effectively fully redacted."
+    ]
+  },
+  "judgment": {
+    "production_ready": "no",
+    "reconciliation_status": "exact_for_property_and_robbery_counts_approximate_for_person_counts_redaction_block_on_final_shares",
+    "city_share_integration_status": "blocked_pending_beat_aware_seattle_cache_or_full_csv_read",
+    "why_not_ready": [
+      "The current Seattle V2 cache contract discards Beat and related proxy fields that are required to recover redacted serious rows.",
+      "Murder, rape, and a material share of aggravated assault cannot be block-group assigned from the current minimal parquet.",
+      "The public official reconciliation can be bounded cleanly, but not fully closed, for person offenses without victim-level official extracts or restricted-location data."
+    ],
+    "minimum_change_to_unblock": [
+      "Preserve Beat in the Seattle cache or re-read the full Seattle CSV inside the Seattle share builder.",
+      "Use the official Current_Beats polygon layer keyed on Beat for invalid-coordinate rows.",
+      "Leave the remaining 126 serious rows as unresolved public-feed tail unless a restricted-location source is approved."
+    ]
+  },
+  "promotable_findings": [
+    {
+      "category": "gating",
+      "finding": "Do not mark a city production-ready if its minimal city-incidents cache strips the only public proxy geography needed to recover redacted serious crimes.",
+      "evidence_from_seattle": "Seattle raw CSV has Beat, but the current minimal parquet drops Beat, Neighborhood, Reporting Area, Precinct, Sector, and Block Address."
+    },
+    {
+      "category": "source_selection",
+      "finding": "For cities publishing NIBRS-coded incidents plus official annual agency tables, property-offense reconciliation can be exact even when person-offense reconciliation is only approximate.",
+      "evidence_from_seattle": "Seattle burglary, larceny, motor vehicle theft, and robbery mapped counts are near the WASPC 2024 agency table before spatial loss; murder, rape, and aggravated assault are affected by crimes-against-person counting rules and redaction."
+    },
+    {
+      "category": "qa",
+      "finding": "Explicitly measure whether redacted rows retain a stable proxy geography before discarding the source. A city can be publicly recoverable even with redacted coordinates if Beat or an equivalent field survives.",
+      "evidence_from_seattle": "7644 of 7770 invalid serious rows still retain Beat, while Reporting Area and Block Address are redacted and should not drive the fallback design."
+    },
+    {
+      "category": "doctrine",
+      "finding": "Seattle demonstrates a repeatable doctrine: use reported lat/lon first, then official police-beat polygons keyed on retained Beat, and treat remaining rows with no beat as the bounded public-feed tail.",
+      "evidence_from_seattle": "126 serious 2018-2024 rows have no usable lat/lon, Beat, or usable Neighborhood and therefore define the unresolved public tail."
+    }
+  ]
+}

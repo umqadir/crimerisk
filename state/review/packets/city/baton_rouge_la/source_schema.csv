@@ -1,0 +1,11 @@
+column,dtype
+:id,object
+incident_number,object
+charge_id,object
+charge_date,object
+attempted_committed,object
+statute_category,object
+nibrs_code,object
+offense_description,object
+latitude,object
+longitude,object

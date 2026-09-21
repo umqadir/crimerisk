@@ -1,0 +1,133 @@
+{
+  "city_key": "omaha_ne",
+  "contract": {
+    "city_key": "omaha_ne",
+    "city_name": "Omaha, Nebraska",
+    "geography": {
+      "bounds": {
+        "max_latitude": 41.403198,
+        "max_longitude": -95.861141,
+        "min_latitude": 41.180504,
+        "min_longitude": -96.361244
+      },
+      "jurisdiction_id": "31:municipal:place:3137000",
+      "state_fips": "31"
+    },
+    "mapping": {
+      "date_field": "dteMidpoint",
+      "id_field": "PK",
+      "id_fields": [],
+      "latitude_field": "__arcgis_latitude",
+      "longitude_field": "__arcgis_longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "NIBRSCategory",
+              "op": "eq",
+              "value": "Robbery",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSCategory",
+              "op": "eq",
+              "value": "Burglary/Breaking & Entering",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSCategory",
+              "op": "eq",
+              "value": "Larceny/Theft Offenses",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSCategory",
+              "op": "eq",
+              "value": "Motor Vehicle Theft",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://services1.arcgis.com/tIBLyYZX96jUntYm/arcgis/rest/services/Omaha_Police_Incident_Data_(View)/FeatureServer/0",
+      "name": "Omaha Police Incident Data (DCGIS Open Data Portal)",
+      "order": "dteMidpoint ASC, PK ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "PK",
+        "RB",
+        "dteMidpoint",
+        "NIBRSCategory",
+        "LatBlock",
+        "LonBlock"
+      ],
+      "source_url": "https://data-dogis.opendata.arcgis.com/datasets/omaha%3A%3Aomaha-police-incident-data-1",
+      "where": "dteMidpoint >= TIMESTAMP '2024-01-01 00:00:00' AND dteMidpoint < TIMESTAMP '2025-01-01 00:00:00'"
+    },
+    "sources_checked": [
+      "https://police.cityofomaha.org/crime-information/incident-data-download",
+      "https://data-dogis.opendata.arcgis.com/datasets/omaha%3A%3Aomaha-police-incident-data-1",
+      "https://data.dogis.org/datasets/omaha::omaha-police-incident-data-1/explore",
+      "https://www.arcgis.com/sharing/rest/content/items/15ef780ba6d84414a34c5c89a6500572?f=json",
+      "https://services1.arcgis.com/tIBLyYZX96jUntYm/arcgis/rest/services/Omaha_Police_Incident_Data_(View)/FeatureServer?f=json",
+      "https://services1.arcgis.com/tIBLyYZX96jUntYm/arcgis/rest/services/Omaha_Police_Incident_Data_(View)/FeatureServer/0?f=json",
+      "https://services1.arcgis.com/tIBLyYZX96jUntYm/arcgis/rest/services/Omaha_Police_Incident_Data_(View)/FeatureServer/0/query"
+    ],
+    "worker_judgment_notes": "Selected the official DCGIS ArcGIS Feature Service item titled Omaha Police Incident Data because the ArcGIS item metadata identifies it as publicly available crime incident data curated by the Omaha Police Department and the layer is directly runnable with PK, RB, dteMidpoint, NIBRSCategory, point geometry, LatBlock, and LonBlock. This is a share-lane contract only; raw feed category counts are not promoted as Omaha annual totals. Offense mapping is partial: Robbery, Burglary/Breaking & Entering, Larceny/Theft Offenses, and Motor Vehicle Theft are exact source categories for canonical robbery, burglary, larceny, and motor_vehicle_theft. Homicide Offenses is not mapped because it is broader than murder-only; Assault Offenses is not mapped because the published field does not separate aggravated assault from simple assault; rape/sex offense categories were not available in the inspected 2024 NIBRSCategory values. PK is the stable row identity used for 2024 QA, dteMidpoint is the event date, ArcGIS geometry is used for spatial join coordinates, and NIBRSCategory is used for offense classification. Jurisdiction_id and state_fips come from jurisdiction_controls_2024 for Omaha city, Nebraska. Bounds combine the local TIGER/block-group crosswalk envelope for jurisdiction 31:municipal:place:3137000 with the official layer extent, padded so the runner can retain points for the municipal block-group spatial join.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 4,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 4,
+    "offense_rows": 7,
+    "rows_in_surface": 1268,
+    "share_admitted_rows": 4,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://services1.arcgis.com/tIBLyYZX96jUntYm/arcgis/rest/services/Omaha_Police_Incident_Data_(View)/FeatureServer/0",
+    "city_key": "omaha_ne",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 1069618,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/omaha_ne_raw.parquet",
+    "raw_cache_sha256": "db22de4cb7ec4fbf5431184b39e438804fe403bf4c6bf0db7829c80521be71a4",
+    "source_name": "Omaha Police Incident Data (DCGIS Open Data Portal)",
+    "source_url": "https://data-dogis.opendata.arcgis.com/datasets/omaha%3A%3Aomaha-police-incident-data-1"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final",
+  "runtime": {
+    "city_key": "omaha_ne",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/omaha_ne_raw.parquet",
+    "raw_cache_sha256": "db22de4cb7ec4fbf5431184b39e438804fe403bf4c6bf0db7829c80521be71a4",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 6.550077624997357,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

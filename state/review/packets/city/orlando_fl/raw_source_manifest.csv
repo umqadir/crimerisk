@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+orlando_fl,City of Orlando OPD Cases Viewing,https://orl.maps.arcgis.com/apps/dashboards/eae3bde08de34ea0b7c2a637b255b48b,https://gis.orlando.gov/server/rest/services/OPD_Cases_Viewing/FeatureServer/0,arcgis_feature_service,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/orlando_fl_raw.parquet,1477075,69c3a2fda42c32b630dd3b1859cd7a1603349c90d9c00c74257794556821fb1b

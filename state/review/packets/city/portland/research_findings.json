@@ -1,0 +1,154 @@
+{
+  "city_key": "portland",
+  "city_name": "Portland",
+  "jurisdiction_id": "41:municipal:place:4159000",
+  "state_abbr": "OR",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "counts_usable_not_city_share_promotable",
+    "packet_status": "research_complete",
+    "city_share_integration_status": "do_not_promote_public_geometry_censored",
+    "reconciliation_status": "public_export_contract_validated_block_level_generalized_and_selectively_suppressed"
+  },
+  "official_sources": {
+    "incident_surface": [
+      "https://www.portland.gov/police/open-data/reported-crime-data",
+      "https://public.tableau.com/views/MonthlyReportedCrimeStatistics/MonthlyStatistics?:showVizHome=no",
+      "https://public.tableau.com/views/MonthlyReportedCrimeStatistics/DownloadOpenData?:showVizHome=no",
+      "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2026.csv?:showVizHome=no"
+    ],
+    "aggregate_anchors": [
+      "https://public.tableau.com/views/MonthlyReportedCrimeStatistics/MonthlyStatistics?:showVizHome=no",
+      "https://www.portland.gov/police/chiefs-office/documents/2024-police-annual-report-long-form/download"
+    ]
+  },
+  "source_contract_findings": {
+    "public_2024_incidents_available": true,
+    "documented_download_contract": true,
+    "live_yearly_export_validated": true,
+    "live_yearly_export_year_observed": 2025,
+    "exact_live_year_file_url_observed": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2026.csv?:showVizHome=no",
+    "prior_year_live_download_validated": 2025,
+    "documented_download_steps": [
+      "Open the Download Data tab in the Monthly Reported Crime Statistics report",
+      "Choose the data year icon",
+      "Wait 30-45 seconds for compilation",
+      "Open or Save As the file"
+    ],
+    "documented_update_cadence": "each year is updated monthly to account for updates on prior cases",
+    "documented_location_fields": [
+      "Address",
+      "Open Data X/Y",
+      "Open Data Lat/Lon",
+      "Neighborhood",
+      "Council District"
+    ],
+    "documented_offense_fields": [
+      "Crime Against",
+      "Offense Category",
+      "Offense Type",
+      "Custom Crime Against",
+      "Custom Crime Category",
+      "Offense Count"
+    ],
+    "validated_live_yearly_export_columns": [
+      "Address",
+      "CaseNumber",
+      "CouncilDistrict",
+      "CrimeAgainst",
+      "CustomCrimeAgainst",
+      "CustomCrimeCategory",
+      "Neighborhood",
+      "OccurDate",
+      "OccurTime",
+      "OffenseCategory",
+      "OffenseCount",
+      "OffenseType",
+      "OpenDataLat",
+      "OpenDataLon",
+      "OpenDataX",
+      "OpenDataY",
+      "ReportDate",
+      "ReportMonthYear"
+    ],
+    "spatial_fields_present": [
+      "100-block address",
+      "Open Data X/Y",
+      "Open Data Lat/Lon",
+      "Neighborhood",
+      "Council District"
+    ],
+    "geometry_semantics": [
+      "Address is provided only to the 100-block level",
+      "Address-based incidents are mapped to the block midpoint",
+      "Intersection incidents are mapped to the intersection centroid",
+      "Sensitive cases may omit case number and specific location information entirely"
+    ],
+    "observed_live_year_geocode_loss_rate": 0.104,
+    "observed_live_year_geocode_loss_by_repo_offense": {
+      "murder": 0.0,
+      "rape": 1.0,
+      "robbery": 0.07,
+      "aggravated_assault": 0.41,
+      "burglary": 0.019,
+      "larceny": 0.017,
+      "motor_vehicle_theft": 0.007
+    },
+    "notes": [
+      "Portland publicly exposes reported-crime downloads through the PPB open-data page and a dedicated Tableau Download Data tab rather than only image dashboards.",
+      "The yearly export contract is now validated against a live downloadable yearly file, not just documentation.",
+      "The live yearly export carries offense/date fields sufficient for seven-offense reported-year aggregation from the yearly CSV itself.",
+      "The public spatial contract is generalized to block midpoint or intersection centroid and is selectively suppressed for sensitive offenses.",
+      "That makes Portland usable for public annual counts and likely control-style reconciliation, but not offense-selective city-share promotion under the repo's current spatial doctrine."
+    ]
+  },
+  "crosswalk_outlook": {
+    "likely_first_pass_offenses": [
+      "murder",
+      "rape",
+      "robbery",
+      "aggravated_assault",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "review_dependent_offenses": [
+      "murder",
+      "rape",
+      "robbery",
+      "aggravated_assault"
+    ],
+    "notes": [
+      "The validated yearly CSV exposes direct offense types and date fields for all seven repo offense families, so reported-year count aggregation is feasible from the public export.",
+      "The documented taxonomy is richer than a single category field because it includes OffenseType, OffenseCategory, CrimeAgainst, Custom Crime Category, and OffenseCount.",
+      "The blocker is not offense/date availability anymore; it is that the public geometry is generalized and selectively absent, which breaks offense-selective within-city share truth."
+    ]
+  },
+  "reconciliation_anchor": {
+    "usable": true,
+    "sources": [
+      "PPB Monthly Reported Crime Statistics / NIBRS Statistics dashboard",
+      "Portland Police Bureau 2024 Annual Report"
+    ],
+    "notes": [
+      "The validated yearly CSV appears sufficient to build seven-offense reported-year feed totals by ReportDate or ReportMonthYear.",
+      "The public NIBRS Statistics dashboard is the stronger public standards-aligned annual anchor for seven-offense reconciliation.",
+      "The 2024 annual report is useful context but is not a clean seven-offense anchor by itself because its public narrative uses broader custom groupings in key places.",
+      "Those public annual surfaces would still be plausible local_publication annual control anchors if the public geometry remains too coarse for city-share use."
+    ]
+  },
+  "judgment": {
+    "production_ready": "no",
+    "why_not_ready": [
+      "The public export generalizes locations to 100-block addresses and block-midpoint or intersection-centroid points rather than precise incident points.",
+      "The public contract selectively suppresses geometry for sensitive offenses; in the observed live yearly export rape has no public location fields and aggravated assault has heavy public geocode loss.",
+      "The packet therefore fails the repo's offense-selective city-share truth requirements even though the yearly count surface is usable."
+    ],
+    "minimum_change_to_unblock": [
+      "A more precise or less suppressed incident surface would be required for city-share promotion; more packet work on the current public export alone does not fix the geometry censoring.",
+      "If the city-share bar is relaxed for a different product tier, decide explicitly whether generalized block-level geometry and offense-selective suppression are acceptable there.",
+      "For count or control use, extract the seven-offense reported-year totals from the yearly CSV and reconcile them to the standards-aligned public dashboard anchor."
+    ]
+  }
+}

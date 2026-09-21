@@ -1,0 +1,127 @@
+{
+  "case_key": "hammond_la",
+  "jurisdiction_id": "22:municipal:place:2232755",
+  "jurisdiction_name": "Hammond city",
+  "state_abbr": "LA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_classify_post_2022_zero_support_as_publication_continuity_failure_keep_estimator_fallback",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Hammond remains a real standalone municipal policing surface. Official City of Hammond materials still publish a police-division site structure and a municipal fire-and-police civil-service surface, which is inconsistent with sheriff replacement or a fake municipal target.",
+    "The Tangipahoa Parish Sheriff's Office is not a replacement Hammond policing surface. TPSO's own official 2025 news release describes collaboration with the Hammond Police Department, confirming separate active parish and city agencies.",
+    "The repo crosswalk is structurally clean rather than suspicious. LA0530100 maps exclusively to 22:municipal:place:2232755 with no competing routed local-police row.",
+    "Repo continuity is real through 2022 and then breaks hard. The canonical Hammond agency row carries positive annual totals in every year 2018-2022, then collapses to zero-count rows with months_reported = 0 in 2023 and 2024.",
+    "The public publication trail also breaks after 2021. Hammond Police Department has an official city-hosted UCR / Crime Stats PDF through 2021, but this packet did not locate a later official 2022-2024 Hammond city offense table on the city site.",
+    "Louisiana's official 2023 crime report still lists Hammond P.D. in the Tangipahoa LIBRS participation roster, but the public PDF does not yield a recoverable Hammond city offense row in the published agency tables. That reads as public publication failure or omission, not as agency disappearance.",
+    "The current 2024 all-fill state is therefore best classified as a valid-target continuity/publication failure on LA0530100. It is not evidence of sheriff takeover, target invalidity, or a routing geometry mistake."
+  ],
+  "governance_structure": {
+    "municipal_status": "valid_incorporated_city_with_municipal_police_structure",
+    "official_basis": [
+      "The City of Hammond maintains an official police-division site structure with current police-division pages.",
+      "The city maintains a Hammond Municipal Fire and Police Civil Service surface governing the city's classified fire and police service."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Hammond Police Department",
+    "active_city_police_department_found": true,
+    "sheriff_replacement_found": false,
+    "official_evidence": [
+      "Official Hammond city materials continue to present a municipal police division.",
+      "TPSO's own official news publication describes collaboration with Hammond Police Department rather than exclusive sheriff provision of city policing.",
+      "The 2024 FBI CDE roster lists Hammond Police Department as a city agency and Tangipahoa Parish Sheriff's Office as a separate county agency."
+    ],
+    "important_clarification": "Tangipahoa Parish also contains sheriff and university policing layers, but nothing in the reviewed official sources suggests those layers displaced Hammond Police Department as the city's primary municipal police surface."
+  },
+  "official_publication_path": {
+    "historical_city_surface": {
+      "source": "Hammond Police Department UCR 2017-2021 PDF on the official city site",
+      "role": "best proof of historical city-run annual crime publication continuity",
+      "why_it_matters": "This shows Hammond was not a phantom municipal target and that the city itself previously published annual HPD offense summaries."
+    },
+    "post_2021_city_surface": {
+      "status": "not_located",
+      "search_result": "No official Hammond city 2022-2024 annual crime-stat PDF, open-data feed, or equivalent current offense table was located during this packet review.",
+      "interpretation": "The local public publication surface appears to have gone dark or become non-discoverable after 2021."
+    },
+    "state_surface": {
+      "source": "Crime in Louisiana 2023 public annual report",
+      "finding": "Hammond P.D. appears in the Tangipahoa LIBRS participation roster, but the public PDF does not expose a recoverable Hammond agency offense row in the city and offense tables reviewed for this packet.",
+      "interpretation": "Louisiana's public annual report confirms agency continuity but does not provide a usable Hammond city annual backfill table."
+    }
+  },
+  "repo_internal_evidence": {
+    "crosswalk_status": {
+      "ori9": "LA0530100",
+      "mapping": "exclusive_to_hammond_city",
+      "evidence": "agency_to_jurisdiction_crosswalk.csv routes LA0530100 only to 22:municipal:place:2232755."
+    },
+    "historical_observation_totals": {
+      "2018": 2423.0,
+      "2019": 1945.0,
+      "2020": 1362.0,
+      "2021": 1481.0,
+      "2022": 1629.0,
+      "2023": 0.0,
+      "2024": 0.0
+    },
+    "2023_2024_agency_observation_status": {
+      "ori9": "LA0530100",
+      "source": "srs_return_a_annual",
+      "source_origin": "srs",
+      "raw_data_source": "kaplan_openicpsr_srs_return_a",
+      "counts": "seven zero-count annual rows in each of 2023 and 2024",
+      "months_reported": 0.0,
+      "quality_interpretation": "The live Hammond row behaves like a structurally missing continuity stub rather than a real observed no-crime year."
+    },
+    "2024_control_status": {
+      "estimate_source": "trend_log_linear",
+      "usable_history_years": 4,
+      "last_usable_year": 2022,
+      "reported_count_preferred_total": 0.0,
+      "current_live_adjusted_total": 1228.1234894647248,
+      "offense_level_fill": {
+        "aggravated_assault": 239.35485942930745,
+        "burglary": 63.10683899593281,
+        "larceny": 854.6160468127944,
+        "motor_vehicle_theft": 56.21664615265566,
+        "murder": 2.3936451372328893,
+        "rape": 4.779851071829778,
+        "robbery": 7.65560186497181
+      }
+    },
+    "review_queue_status": {
+      "lane": "high_impact_full_fill_place",
+      "suspect_reason": "full_fill_no_reported_support",
+      "surfaced_offense_count": 5,
+      "surfaced_total_fill_count": 1220.949993255662,
+      "surfaced_total_reported_count": 0.0
+    }
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "deeper_routing_problem_found": false,
+    "best_issue_class": "valid_target_with_post_2022_continuity_and_publication_failure",
+    "why": [
+      "Official city governance and police-division materials show a continuing Hammond municipal police structure.",
+      "Official sheriff materials confirm collaboration with Hammond Police Department rather than sheriff replacement of the city's policing function.",
+      "The live crosswalk maps a single Hammond police row directly into the Hammond municipal target.",
+      "Observed repo history is positive through 2022 and only then collapses to zero, which is the signature of a continuity/publication break rather than an invalid target."
+    ],
+    "recommended_handling": [
+      "Retain Hammond city as a true standalone municipal control row.",
+      "Do not reroute Hammond into Tangipahoa Parish Sheriff's Office, county remainder, or another service-structure override.",
+      "Classify the 2023-2024 zero-support / 2024 all-fill condition as a continuity-publication failure on LA0530100.",
+      "For current production handling, allow the estimator-backed 2024 Hammond row to remain only as an explicit fallback because no primary official public 2023-2024 Hammond offense table was located.",
+      "If a later backfill effort is funded, target direct Hammond Police Department records or a non-public Louisiana LIBRS agency extract rather than pursuing a sheriff-replacement theory."
+    ]
+  },
+  "blockers_or_followups": [
+    "No official Hammond city 2022-2024 annual crime-stat release or open-data offense table was located on the city site during this review.",
+    "The official Louisiana annual report confirms Hammond P.D. participation but does not provide a recoverable public agency offense row for Hammond, so the state public path is not a plug-and-play backfill surface.",
+    "This packet closes the service-structure question with high confidence, but a full official post-2022 Hammond crime backfill still requires either direct city records or a stronger Louisiana agency-level extract than the public annual PDF."
+  ]
+}

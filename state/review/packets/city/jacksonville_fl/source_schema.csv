@@ -1,0 +1,12 @@
+column,dtype
+OBJECTID,int64
+cmnIncidentNbr,object
+Address,object
+ZipCode,object
+nibrsCode,object
+nibrsDescription,object
+VictimCount,int64
+ReportDateTime,int64
+IncidentDateTime,int64
+__arcgis_longitude,float64
+__arcgis_latitude,float64

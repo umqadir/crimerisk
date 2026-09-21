@@ -1,0 +1,7 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""nibrsCode"", ""op"": ""in"", ""value"": """", ""values"": [""09A""]}]",[]
+robbery,"[{""field"": ""nibrsCode"", ""op"": ""in"", ""value"": """", ""values"": [""120""]}]",[]
+aggravated_assault,"[{""field"": ""nibrsCode"", ""op"": ""in"", ""value"": """", ""values"": [""13A""]}]",[]
+burglary,"[{""field"": ""nibrsCode"", ""op"": ""in"", ""value"": """", ""values"": [""220""]}]",[]
+larceny,"[{""field"": ""nibrsCode"", ""op"": ""in"", ""value"": """", ""values"": [""23X"", ""23F""]}]",[]
+motor_vehicle_theft,"[{""field"": ""nibrsCode"", ""op"": ""in"", ""value"": """", ""values"": [""240""]}]",[]

@@ -1,0 +1,155 @@
+{
+  "case_key": "bart_contra_costa_ca",
+  "ori": "CA0071800",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "CA0071800 should use the Contra Costa County slice of the established official BART system-property footprint, not Contra Costa County government geography and not the full CA0012100 system footprint.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "contra_costa_clipped_subset_of_custom_system_property_footprint",
+    "county_slice": {
+      "state_fips": "06",
+      "county_fips": "013",
+      "county_name": "Contra Costa County",
+      "selection_rule": "retain only block groups whose GEOID starts with 06013"
+    },
+    "official_scope_support": {
+      "source_url": "https://www.bart.gov/about/police/howto/faq",
+      "summary": "BART Police describes routine investigations on BART property and within the BART District; for CA0071800 the settled production geometry is the Contra Costa slice of that BART property/system footprint."
+    },
+    "explicit_exclusions": [
+      "Contra Costa County as a blanket county polygon",
+      "full CA0012100 BART system footprint without county clipping",
+      "BART board district boundaries",
+      "city proxies such as Walnut Creek, Richmond, Concord, or Pittsburg",
+      "fabricated parking-lot or yard polygons not present in the supplied official geometry"
+    ]
+  },
+  "source_validation": {
+    "upstream_system_geometry_packet": {
+      "upstream_case_key": "bart_ca",
+      "upstream_ori": "CA0012100",
+      "upstream_analysis_date": "2026-03-24",
+      "upstream_row_count": 354,
+      "upstream_intersected_county_fips_sorted": [
+        "001",
+        "013",
+        "075",
+        "081",
+        "085"
+      ],
+      "contra_costa_subset_row_count": 87,
+      "contra_costa_system_share_before_renormalization": 0.277426203350072
+    },
+    "gtfs": {
+      "documentation_page_url": "https://www.bart.gov/schedules/developers/gtfs",
+      "permalink_url": "https://www.bart.gov/dev/schedules/google_transit.zip",
+      "permalink_initial_status": 307,
+      "permalink_redirect_url": "https://www.bart.gov/sites/default/files/2026-02/google_transit_20260112-20260807_v04.zip",
+      "permalink_final_url": "https://www.bart.gov/sites/default/files/2026-02/google_transit_20260112-20260807_v04.zip",
+      "permalink_final_status": 200,
+      "feed_info": {
+        "feed_publisher_name": "Bay Area Rapid Transit",
+        "feed_publisher_url": "http://www.bart.gov",
+        "feed_start_date": "20260112",
+        "feed_end_date": "20260807",
+        "feed_version": "72"
+      },
+      "gtfs_counts": {
+        "routes_txt_rows": 14,
+        "trips_txt_rows": 2701,
+        "stops_txt_rows": 287,
+        "station_rows_location_type_1": 50,
+        "entrance_rows_location_type_2": 132
+      },
+      "interpretation": "GTFS confirms the current public BART service network and station-stop inventory and is suitable as a stable QA/support source behind the stronger KMZ geometry."
+    },
+    "kmz": {
+      "catalog_page_url": "https://www.bart.gov/schedules/developers/geo",
+      "kmz_url": "https://www.bart.gov/sites/default/files/2025-12/BART-Stations-tracks-entrances-121025.kmz_.zip",
+      "kmz_status": 200,
+      "kmz_last_modified": "Wed, 10 Dec 2025 17:36:22 GMT",
+      "layers": {
+        "Station Entrance": {
+          "row_count": 132,
+          "unique_parent_station_groups": 50
+        },
+        "BART Station": {
+          "row_count": 53,
+          "unique_station_names": 52,
+          "duplicate_station_names": {
+            "eBART Transfer": 2
+          }
+        },
+        "BART Track Centerline": {
+          "row_count": 1,
+          "geometry_type": "MultiLineString",
+          "parts": 96,
+          "length_km": 211.87644833714882
+        }
+      },
+      "interpretation": "The KMZ is the authoritative exact geometry source in this packet because it explicitly carries station entrances and the full track centerline, which are more specific than GTFS stop points alone."
+    },
+    "local_tiger_geometry": {
+      "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_06_bg.zip",
+      "county_clip_rule": "block_group_geoid starts with 06013"
+    }
+  },
+  "build_method": {
+    "method_summary": "Start from the validated CA0012100 BART system custom footprint built from official GTFS plus official stations-tracks-entrances KMZ geometry. Keep only Contra Costa County block groups, then renormalize those retained shares to 1.0 for the CA0071800 reporting slice.",
+    "area_crs": "EPSG:5070",
+    "inherited_system_geometry": {
+      "track_buffer_m": 20,
+      "station_complex_method": "For each of the 50 official entrance groups, take the convex hull of all official entrance points plus the nearest official BART Station centroid, then buffer that hull by 45 meters in EPSG:5070.",
+      "extra_station_assets": {
+        "method": "Buffer unmatched official KMZ station centroids by 75 meters so they are not dropped as zero-area point assets.",
+        "asset_names": [
+          "Coliseum/Airport Connector",
+          "eBART Transfer"
+        ]
+      }
+    },
+    "county_clip_step": "Use local 2020 California TIGER block groups as the share target geometry and retain only intersections whose block-group GEOID indicates Contra Costa County (06013).",
+    "why_this_is_defensible": [
+      "The county slice is taken from the already-validated official BART property/system footprint rather than from county government geography.",
+      "Selecting only Contra Costa block groups produces the settled CA0071800 reporting slice without inventing any new non-official transit geometry.",
+      "Renormalizing the retained shares preserves the relative distribution of official BART property area inside Contra Costa while ensuring the packet sums to 1.0 for production use."
+    ],
+    "omissions_by_design": [
+      "No Contra Costa County blanket polygon is used.",
+      "No board-district geometry is used.",
+      "No off-property mutual-aid or statewide peace-officer area is modeled."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_06_bg.zip",
+    "county_slice_fips": "013",
+    "county_slice_name": "Contra Costa County",
+    "output_row_count": 87,
+    "intersection_area_total_m2": 2405035.554320677,
+    "intersection_area_total_acres": 594.2972280925064,
+    "contra_costa_system_share_before_renormalization": 0.277426203350072,
+    "weight_sum_exact": 1.0,
+    "weight_sum_rounded_csv": 1.0,
+    "largest_block_group_geoid": "060133552021",
+    "largest_block_group_share": 0.0885620635030783
+  },
+  "qa_checks": {
+    "all_rows_are_contra_costa": true,
+    "all_rows_have_state_fips_06": true,
+    "all_rows_have_target_ori": true,
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_after_csv_rounding": true
+  },
+  "residual_caveats": [
+    "This remains a conservative BART property footprint limited to the official track, station, and entrance geometry inherited from the CA0012100 system build; it does not attempt to infer parking parcels or maintenance yards from non-supplied sources.",
+    "The county slice is block-group based. If BART later publishes parcel-grade property polygons tagged by county or facility, the packet should be regenerated from those exact surfaces rather than from the current buffered line-and-point footprint.",
+    "CA0071800 should be understood as a reporting slice of the single BART Police system, not as an independent county police department."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bart_contra_costa_ca/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bart_contra_costa_ca/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bart_contra_costa_ca/sources.csv"
+  }
+}

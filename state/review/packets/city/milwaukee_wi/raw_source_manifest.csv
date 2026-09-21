@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+milwaukee_wi,City of Milwaukee NIBRS Crime Data (Historical),https://data.milwaukee.gov/dataset/wibrarchive,https://data.milwaukee.gov/datastore/dump/395db729-a30a-4e53-ab66-faeb5e1899c8?format=csv,csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/milwaukee_wi_raw.parquet,24583911,5c1788a860aad5fd7397abfa56925284d411eda2e5c2220ffc1a8cdaedd0fc45

@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,admission_mode,share_lane_disposition,total_lane_disposition
+baton_rouge_la,aggravated_assault,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+baton_rouge_la,burglary,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+baton_rouge_la,larceny,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+baton_rouge_la,motor_vehicle_theft,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+baton_rouge_la,murder,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+baton_rouge_la,rape,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+baton_rouge_la,robbery,True,False,True,pass_share_only,share_only,admit_share_only,official_control

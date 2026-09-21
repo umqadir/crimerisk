@@ -1,0 +1,150 @@
+{
+  "case_key": "lauderdale_lakes_fl",
+  "jurisdiction_id": "12:municipal:place:1239525",
+  "jurisdiction_name": "Lauderdale Lakes city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_for_bso_contract_city_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Lauderdale Lakes is a real incorporated Broward municipality, but the City does not currently operate a city-run police department. The City's FY2026 adopted budget says Broward Sheriff's Office serves as the City's primary law-enforcement agency, BSO District 4 delivers service under a renewable contract, the agreement was renewed effective May 5, 2025, and approximately 50 positions are contracted for dedicated police services.",
+    "The same budget states Lauderdale Lakes became one of the first municipalities to contract with BSO for police and code-compliance services in 1978. The operational policing shift therefore happened decades before the current reporting break, so later Lauderdale Lakes-specific state and federal reporting identities are not just pre-contract legacy noise.",
+    "FDLE's official County and Municipal Offense Report 2020A still publishes a substantive Lauderdale Lakes PD row with population 36,527 and total index crime 1,057. FDLE's 2021 report retains the Lauderdale Lakes PD row with population 36,647 but blanks every offense field.",
+    "FDLE's official FIBRS offense workbook does not publish Lauderdale Lakes in any annual sheet from 2021 through 2025 Q2 even though multiple Broward municipal peers do appear. That is the clearest state-publication break after the retained-but-blank 2021 row.",
+    "The official FBI CDE 2024 agency roster still lists FL0061700 as Lauderdale Lakes Police Department with agency type City, but marks is_nibrs as false and provides no nibrs_start_date. Federal roster continuity therefore persists at the agency-identity level, but not as a usable 2024 NIBRS observation.",
+    "Repo evidence matches that diagnosis. The live crosswalk routes FL0061700 exclusively to Lauderdale Lakes city; agency_year_observations carries nonzero SRS annual totals in 2018-2020 and only zero-valued SRS placeholders in 2021-2024; 2024 jurisdiction controls are fully fill-backed with zero reported support; and the municipal review queue flags the target as high_impact_full_fill_place with total_fill_count 1272.0 and total_reported_count 0.0."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_current_bso_contract_policing",
+    "official_basis": [
+      "Lauderdale Lakes is a valid incorporated city government.",
+      "The City currently receives primary general-policing services from Broward Sheriff's Office under a renewable municipal contract.",
+      "The City budget still treats police services as a distinct city-funded contract line item rather than generic county remainder coverage."
+    ],
+    "important_interpretation": "Lauderdale Lakes is not a fake place row or a dissolved municipal target. It is a valid municipality whose citywide policing is currently delivered under a long-running BSO contract."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Broward Sheriff's Office District 4 under city contract",
+    "active_city_police_department_found": false,
+    "city_specific_contract_policing_surface_found": true,
+    "official_evidence": [
+      "The FY2026 city budget states that BSO serves as the City's primary law-enforcement agency.",
+      "The same budget says BSO District 4 delivers law-enforcement services under a renewable contract, with service standards, staffing levels, investigative responsibilities, and reporting structure defined by agreement.",
+      "The budget says the City renewed its agreement with BSO effective May 5, 2025 to continue essential public-safety services.",
+      "The budget says the City first contracted with BSO for police and code-compliance services in 1978 and that approximately 50 positions are contracted to provide dedicated police services to the area."
+    ],
+    "service_structure_interpretation": "Lauderdale Lakes is sheriff-policed operationally, but through a city-specific contract arrangement rather than a clean transfer into generic Broward County remainder. The absence of a current city-run department does not invalidate the municipal policing object."
+  },
+  "official_reporting_evidence": {
+    "fdle_legacy_publication_surface": {
+      "summary": "FDLE's official county-and-municipal offense publications treat Lauderdale Lakes PD as a distinct Broward municipal reporting row through 2020 and keep the row visible in 2021.",
+      "details": [
+        "FDLE 2020: Lauderdale Lakes PD, population 36,527, total index crime 1,057.",
+        "FDLE 2021: Lauderdale Lakes PD, population 36,647, row retained but all offense fields blank."
+      ],
+      "interpretation": "Florida's own publication surface confirms a real Lauderdale Lakes-specific annual reporting identity well after the 1978 shift to contract policing."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The official FDLE FIBRS workbook for 2021 through 2025 Q2 contains no Lauderdale Lakes row in any annual sheet.",
+      "supporting_context": [
+        "2021 Broward agencies present: Miramar Police Department, Seminole Police Department.",
+        "2022 Broward agencies present: Coral Springs Police Department, Davie Police Department, Miramar Police Department, Seminole Police Department, Town of Southwest Ranches.",
+        "2023 Broward agencies present: Coral Springs Police Department, Davie Police Department, Fort Lauderdale Police Department, Miramar Police Department, Town of Southwest Ranches.",
+        "2024 Broward agencies present: Coral Springs Police Department, Davie Police Department, Fort Lauderdale Police Department, Hillsboro Beach Police Department, Miramar Police Department, Pembroke Pines Police Department, Seminole Police Department.",
+        "2025 Q2 Broward agencies present: Coral Springs Police Department, Fort Lauderdale Police Department, Miramar Police Department, Pembroke Pines Police Department, Seminole Police Department."
+      ],
+      "interpretation": "The FIBRS workbook is not missing Broward generally; it is missing Lauderdale Lakes specifically. That points to a Lauderdale Lakes continuity/publication failure rather than a whole-county publication absence."
+    },
+    "fbi_cde_agency_roster": {
+      "summary": "The official FBI CDE 2024 agency roster still lists FL0061700 as Lauderdale Lakes Police Department in Broward County with agency type City.",
+      "details": {
+        "ori9": "FL0061700",
+        "agency_name": "Lauderdale Lakes Police Department",
+        "agency_type_name": "City",
+        "is_nibrs": false,
+        "nibrs_start_date": null
+      },
+      "interpretation": "Federal roster continuity remains real at the agency-identity level, but the roster does not support a live 2024 NIBRS observation for Lauderdale Lakes."
+    }
+  },
+  "repo_continuity_evidence": {
+    "crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0061700 exclusively to 12:municipal:place:1239525 with relationship_type exclusive.",
+    "agency_master_state": "agency_master.parquet classifies FL0061700 as local_police and flags both SRS and NIBRS presence across 2018-2024, with latest_nibrs_year 2024 and population_latest_nibrs 36,784 even though no public NIBRS observation row is recovered.",
+    "observation_pattern": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1521.0,
+        "months_reported": 12.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1294.0,
+        "months_reported": 12.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1057.0,
+        "months_reported": 1.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      }
+    ],
+    "important_mismatch": "agency_master claims 2018-2024 NIBRS presence for FL0061700, but the official FBI 2024 roster marks the agency as non-NIBRS, the public FDLE FIBRS workbook contains no Lauderdale Lakes row, and repo observations contain no NIBRS rows. That is a continuity/metadata problem, not evidence that Lauderdale Lakes is the wrong municipal target.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Lauderdale Lakes offense control row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, and dominant_reporting_regime structurally_missing_or_unreliable.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Lauderdale Lakes in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1272.0, total_reported_count 0.0, and priority_rank 8."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Lauderdale Lakes remains a valid incorporated city with a city-funded BSO contract-policing structure.",
+      "FDLE officially published Lauderdale Lakes as a distinct municipal offense row through 2020 and retained the row in 2021 even after decades of BSO contract policing.",
+      "The official FBI 2024 roster still recognizes Lauderdale Lakes Police Department as a city agency identity.",
+      "The live repo crosswalk from FL0061700 to Lauderdale Lakes city matches those official identity surfaces."
+    ],
+    "most_likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+    "likely_explanation_for_current_all_fill_state": [
+      "Lauderdale Lakes retained a real city-specific reporting identity under FL0061700 despite the long-running BSO contract model.",
+      "That identity remained visible in FDLE's legacy county-and-municipal offense reports through 2020 and as a blank retained row in 2021, but it did not carry into the public FDLE FIBRS offense workbook.",
+      "The FBI's 2024 roster still recognizes the city agency but does not mark it as NIBRS, leaving the repo with no usable 2024 reported support and full fill-backed controls."
+    ],
+    "recommended_handling": [
+      "Retain Lauderdale Lakes city as a standalone municipal control row.",
+      "Do not drop Lauderdale Lakes into a generic Broward County sheriff remainder or treat the target as invalid simply because BSO is the current operational police provider.",
+      "Classify the current all-fill state as a contract-city reporting and publication continuity failure on FL0061700 after the Florida SRS-to-NIBRS transition.",
+      "Use FDLE county-and-municipal offense reports as the official state truth surface through 2021, with 2021 treated as retained-but-unusable transition evidence.",
+      "If post-break override work becomes necessary, pursue Lauderdale Lakes-specific BSO District 4 contract reporting, city-held BSO contract performance materials, or direct FDLE agency-level extracts rather than rerouting the city structurally."
+    ]
+  },
+  "likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The keep-versus-drop decision is closed. The remaining implementation question is whether any post-2020 Lauderdale Lakes annual counts can be reconstructed from BSO District 4 contract reporting, direct FDLE extracts, or another official local surface."
+  ]
+}

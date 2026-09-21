@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,admission_mode,share_lane_disposition,total_lane_disposition
+atlanta_ga,aggravated_assault,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+atlanta_ga,burglary,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+atlanta_ga,larceny,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+atlanta_ga,motor_vehicle_theft,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+atlanta_ga,murder,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+atlanta_ga,rape,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+atlanta_ga,robbery,True,False,True,pass_share_only,share_only,admit_share_only,official_control

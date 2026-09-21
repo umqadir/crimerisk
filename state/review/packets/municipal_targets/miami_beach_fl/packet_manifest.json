@@ -1,0 +1,14 @@
+{
+  "case_key": "miami_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1245025",
+  "jurisdiction_name": "Miami Beach city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/miami_beach_fl",
+  "review_goal": "Determine whether Miami Beach should retain a standalone municipal control row and explain why the current 2024 target is fully filled despite an active city police department.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

@@ -1,0 +1,76 @@
+{
+  "city_key": "chicago",
+  "city_name": "Chicago",
+  "jurisdiction_id": "17:municipal:place:1714000",
+  "analysis_date": "2026-03-22",
+  "source_contract": {
+    "recommended_source_name": "Chicago Crimes 2001 to Present",
+    "recommended_source_url": "https://data.cityofchicago.org/api/views/ijzp-q8t2/rows.csv?accessType=DOWNLOAD",
+    "portal_type": "socrata",
+    "coverage_start_year": "2001",
+    "coverage_end_year": "2025",
+    "years_usable": "25",
+    "geocode_quality_tier": "high",
+    "recommended_disposition": "ready_now"
+  },
+  "published_reconciliation": {
+    "latest_reconciled_year": 2024,
+    "reconciliation_summary_file": "reconciliation_summary.csv",
+    "packet_local_summary_generated_from": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/city_reconciliation/chicago_reconciliation.csv",
+    "latest_year_offense_notes": [
+      {
+        "offense": "aggravated_assault",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 17088,
+        "pct_diff_final_vs_published": NaN
+      },
+      {
+        "offense": "burglary",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 7604,
+        "pct_diff_final_vs_published": NaN
+      },
+      {
+        "offense": "larceny",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 58980,
+        "pct_diff_final_vs_published": NaN
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 21961,
+        "pct_diff_final_vs_published": NaN
+      },
+      {
+        "offense": "murder",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 593,
+        "pct_diff_final_vs_published": NaN
+      },
+      {
+        "offense": "rape",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 1840,
+        "pct_diff_final_vs_published": NaN
+      },
+      {
+        "offense": "robbery",
+        "published_comparison_quality": NaN,
+        "published_count": NaN,
+        "final_share_count": 9071,
+        "pct_diff_final_vs_published": NaN
+      }
+    ]
+  },
+  "judgment": {
+    "recommended_disposition": "ready_now",
+    "note": "Packet-local research summary generated from the active central city source inventory and stored reconciliation artifact."
+  }
+}

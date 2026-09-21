@@ -1,0 +1,14 @@
+{
+  "case_key": "downey_ca",
+  "jurisdiction_id": "06:municipal:place:0619766",
+  "jurisdiction_name": "Downey city",
+  "state_abbr": "CA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/downey_ca",
+  "review_goal": "Determine whether Downey city should retain a standalone municipal control row or whether the current all-fill state reflects an invalid municipal target or service-structure problem.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

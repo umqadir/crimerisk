@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,Louisville Metro KY - Gun Violence Data,https://data.lojic.org/datasets/louisville-metro-ky-gun-violence-data,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

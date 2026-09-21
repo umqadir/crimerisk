@@ -1,0 +1,199 @@
+{
+  "case_key": "palm_springs_fl",
+  "target_id": "12:municipal:place:1254450",
+  "target_name": "Palm Springs village, FL",
+  "review_date": "2026-03-24",
+  "question": "Should Palm Springs village, FL keep a standalone municipal control row, and what is the most likely explanation for the current all-fill state?",
+  "verdict": {
+    "keep_standalone_municipal_control_row": true,
+    "confidence": "high",
+    "decision_reason": "Official village and FDLE materials show that Palm Springs still operates a real municipal police department. FDLE published Palm Springs-specific offense counts through 2020, retained the Palm Springs row but blanked it in 2021, and the current FDLE FIBRS workbook omits Palm Springs entirely for 2021-2025 Q3. That pattern fits broken state/federal continuity or publication, not contract policing, county replacement, or target invalidity."
+  },
+  "operational_context": {
+    "current_policing_model": "Standalone village police department.",
+    "standalone_municipal_police_department_today": true,
+    "contract_policing_today": false,
+    "county_replacement_today": false,
+    "key_nuance": "Older official and historical materials use the 'Palm Springs Public Safety' label, while current village and FDLE materials use 'Palm Springs Police Department'. The evidence supports a naming/alias shift within the same municipal law-enforcement function, not a transfer to the sheriff."
+  },
+  "reporting_identity_continuity": {
+    "historical_reporting_identity": "Palm Springs-specific municipal reporting identity tied to ORI FL0502700.",
+    "last_confirmed_state_published_year_with_populated_row": 2020,
+    "transition_year_breakpoint": 2021,
+    "current_official_identity_signals": [
+      "FDLE's March 24, 2026 Police Department Directory still lists Palm Springs Police Department.",
+      "The FBI CDE 2024 Florida roster still carries FL0502700 as Palm Springs Police Department, agency type City, with is_nibrs false."
+    ],
+    "current_publication_state": "FDLE kept the Palm Springs municipal row but blanked it in the 2021 County and Municipal Offense Report, and Palm Springs is absent from the current FDLE FIBRS offense workbook across 2021-2025 Q3 sheets."
+  },
+  "most_likely_explanation_for_all_fill": {
+    "label": "state_federal_reporting_continuity_or_publication_failure",
+    "confidence": "high",
+    "summary": "Palm Springs appears to be a valid municipal target whose public reporting continuity broke at Florida's 2021 transition point. The village still operates a municipal police department and FDLE still recognizes the agency, but Palm Springs-specific annual offense publication disappears after a blank 2021 row.",
+    "why_not_contract_policing_or_target_invalidity": [
+      "Current village materials show an active Palm Springs Police Department with village budgeted staffing, records operations, and police command structure.",
+      "FDLE's current police directory lists Palm Springs Police Department and a chief of police.",
+      "The FBI CDE 2024 roster still lists FL0502700 as Palm Springs Police Department rather than showing a sheriff-contracted replacement identity.",
+      "Repo crosswalking to Palm Springs village is exclusive and historically supported by real Palm Springs-specific counts through 2020."
+    ]
+  },
+  "evidence": [
+    {
+      "source_id": "village_police_oct2024",
+      "finding": "The village currently presents an active Palm Springs Police Department with patrol, investigations, support services, communications, and records functions.",
+      "details": "The October 2024 official department sheet identifies the Palm Springs Police Department at 230 Cypress Lane and shows a staffed municipal command and division structure.",
+      "supports": [
+        "standalone_municipal_policing_today",
+        "not_county_replacement"
+      ]
+    },
+    {
+      "source_id": "village_departments_police",
+      "finding": "The official village website maintains a dedicated Police section with divisions and police-records links.",
+      "details": "Village Departments lists Police with Administration, Investigations, Patrol, Support Services, police-report request links, and crime-prevention resources.",
+      "supports": [
+        "active_village_police_presence"
+      ]
+    },
+    {
+      "source_id": "village_support_services",
+      "finding": "The village still runs a police records unit inside the police department.",
+      "details": "Support Services states that the Records Unit is located in the Police Department lobby at 230 Cypress Lane and handles police-record requests.",
+      "supports": [
+        "active_village_police_presence",
+        "best_local_records_path"
+      ]
+    },
+    {
+      "source_id": "village_budget_fy2025",
+      "finding": "The FY2025 village budget treats policing as a village department rather than a sheriff contract.",
+      "details": "The budget says the Palm Springs Police Department provides law-enforcement and investigative response within the village and budgets 78 full-time positions, including a chief, assistant chief, captains, lieutenants, sergeants, police officers, detectives, records staff, and emergency communications staff.",
+      "supports": [
+        "standalone_municipal_policing_today",
+        "not_contract_policing"
+      ]
+    },
+    {
+      "source_id": "village_acfr_2024",
+      "finding": "The FY2024 ACFR embeds police in the village's own governmental structure.",
+      "details": "The official organizational chart shows a Police Chief in the village hierarchy, and the report includes a Police Officers Pension Plan for village police officers.",
+      "supports": [
+        "standalone_municipal_policing_today",
+        "village_employed_police_function"
+      ]
+    },
+    {
+      "source_id": "village_acfr_2022",
+      "finding": "Older official village materials used the Public Safety label for the same law-enforcement function.",
+      "details": "The FY2022 ACFR listed Tom Ceccarelli as Public Safety Director, which helps explain why legacy crosswalks and external rosters may still use Palm Springs Public Safety Department naming.",
+      "supports": [
+        "legacy_alias_explanation"
+      ]
+    },
+    {
+      "source_id": "fdle_police_directory_2026",
+      "finding": "FDLE still recognizes Palm Springs as an active police department in 2026.",
+      "details": "FDLE's March 24, 2026 Police Department Directory lists Palm Springs Police Department, Chief Rolando Silva, 230 Cypress Lane, Palm Springs, FL 33461.",
+      "supports": [
+        "agency_identity_continues",
+        "not_bad_target"
+      ]
+    },
+    {
+      "source_id": "fdle_offense_2020",
+      "finding": "FDLE published a fully populated Palm Springs municipal offense row in 2020.",
+      "details": "The 2020 County and Municipal Offense Report shows Palm Springs Police Department with population 23,867 and total index crime 1,072.",
+      "supports": [
+        "real_municipal_reporting_surface",
+        "continuity_through_2020"
+      ]
+    },
+    {
+      "source_id": "fdle_offense_2021",
+      "finding": "FDLE retained the Palm Springs row in 2021 but blanked the offense fields.",
+      "details": "The 2021 County and Municipal Offense Report shows Palm Springs Police Department with population 26,904 and offense/rate fields shown as '--'.",
+      "supports": [
+        "transition_break_occurs_2021",
+        "row_not_cleanly_retired"
+      ]
+    },
+    {
+      "source_id": "fdle_fibrs_q3_2025",
+      "finding": "Palm Springs is absent from the current official FDLE FIBRS offense workbook.",
+      "details": "Direct inspection of the workbook linked from FDLE's FIBRS page found no Palm Springs row on the 2021, 2022, 2023, 2024, or 2025 Q3 sheets.",
+      "supports": [
+        "nibrs_era_publication_gap"
+      ]
+    },
+    {
+      "source_id": "fbi_cde_roster_2024_repo",
+      "finding": "The FBI CDE 2024 roster still carries FL0502700 as Palm Springs Police Department but not as an active NIBRS reporter.",
+      "details": "The official roster extract lists Palm Springs Police Department, agency type City, county PALM BEACH, is_nibrs false.",
+      "supports": [
+        "agency_identity_continues",
+        "federal_non_nibrs_signal"
+      ]
+    },
+    {
+      "source_id": "repo_observations",
+      "finding": "Repo observations align with the official publication break rather than with a bad geometry target.",
+      "details": "Agency-year observations show real Palm Springs counts in 2018, 2019, and 2020, then zero-count annual summary rows in 2021, 2022, 2023, and 2024.",
+      "supports": [
+        "repo_matches_publication_break"
+      ]
+    },
+    {
+      "source_id": "repo_crosswalk",
+      "finding": "The live crosswalk already routes FL0502700 exclusively to Palm Springs village.",
+      "details": "There is no conflicting county-remainder or alternate place routing in the active crosswalk.",
+      "supports": [
+        "keep_row_routing"
+      ]
+    },
+    {
+      "source_id": "repo_controls",
+      "finding": "The 2024 village controls are fully filled because the last usable history year is 2020.",
+      "details": "All 2024 offense rows for Palm Springs village have reported_count_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, last_usable_year 2020, and current-year fill from hist_median.",
+      "supports": [
+        "all_fill_explanation"
+      ]
+    }
+  ],
+  "repo_state": {
+    "crosswalk_state": "FL0502700 routes exclusively to 12:municipal:place:1254450 in the live crosswalk.",
+    "observation_state": "The repo carries real Palm Springs annual summary counts in 2018-2020, then zero-count annual summary rows from 2021 through 2024.",
+    "control_state_2024": "Palm Springs village is fully fill-backed in 2024, with dominant regime structurally_missing_or_unreliable, last usable year 2020, and history-median fill on the offense rows currently driving the packet queue.",
+    "implication": "The repo already points at the correct municipal target. The failure is on continuity/publication of the Palm Springs-specific offense stream after 2020."
+  },
+  "best_backfill_or_override_surfaces": {
+    "primary_surface": {
+      "name": "Village of Palm Springs police records / direct public-records request path",
+      "reference": "https://vpsfl.justfoia.com/publicportal/home/newrequest",
+      "why_it_matters": "This is the clearest official local path to recover post-2020 Palm Springs-specific police counts because public state and federal offense publications no longer emit a usable Palm Springs annual offense row."
+    },
+    "secondary_surface": {
+      "name": "FDLE County and Municipal Offense Reports plus FDLE/FIBRS and FBI CDE continuity surfaces",
+      "why_it_matters": "These official state and federal surfaces establish the last published Palm Springs-specific counts, the blank 2021 row, the subsequent FIBRS omission, and the continuing FL0502700 agency identity."
+    }
+  },
+  "production_recommendation": {
+    "disposition": "keep",
+    "label": "keep_valid_municipal_control_row_continuity_failure",
+    "action": "Retain the standalone municipal control row for 12:municipal:place:1254450 and classify the current all-fill condition as a continuity/publication failure on FL0502700 rather than a target-invalidity or sheriff-replacement case.",
+    "rationale": "Palm Springs remains an active village-run police jurisdiction. Official state and village sources support a real Palm Springs-specific reporting identity through 2020, a blank retained state row in 2021, and continued agency identity afterward despite missing published offense counts.",
+    "suggested_follow_on": [
+      "Preserve both Palm Springs Police Department and Palm Springs Public Safety Department as historical aliases when tracing the agency.",
+      "Use direct Palm Springs police-records requests if post-2020 Palm Springs-specific annual counts are required for override work.",
+      "Do not demote the municipal target to county remainder or treat it as contract-policed absent new official evidence."
+    ]
+  },
+  "open_blockers": [
+    "No public official Palm Springs-specific annual offense table for 2022-2025 was found on village, FDLE, or FBI public surfaces.",
+    "Public sources do not reveal whether Palm Springs stopped submitting post-2020 offense detail entirely, failed state/federal validation, or remained internally counted but unpublished after the SRS-to-FIBRS transition.",
+    "Because current village publications confirm the department exists but do not publish a full six-offense annual table, any production override after 2020 would likely require direct records retrieval rather than simple state-source ingestion."
+  ],
+  "inference_notes": [
+    "The diagnosis of continuity/publication failure is an inference from official sources. No located official source explicitly says why Palm Springs disappeared from the published FIBRS offense workbook.",
+    "The legacy Public Safety versus Police naming drift is real in official materials, but the evidence supports it only as a possible contributing continuity complication, not as proof of agency replacement."
+  ]
+}

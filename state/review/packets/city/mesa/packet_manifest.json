@@ -1,0 +1,26 @@
+{
+  "city_key": "mesa",
+  "city_name": "Mesa",
+  "jurisdiction_id": "04:municipal:place:0446000",
+  "state_abbr": "AZ",
+  "priority_bucket": "second_wave",
+  "priority_rank": "7",
+  "basis": "Second-wave offense-selective city with a validated current-feed contract and packet-approved counting rules for robbery, burglary, larceny, and motor_vehicle_theft.",
+  "notes": "Now live offense-selectively off the 2020-present feed for 2024-first use. Keep murder and rape blocked on location redaction and aggravated_assault blocked on the victim-count gap.",
+  "source_name": "Mesa Police incidents 2020-present",
+  "source_url": "https://data.mesaaz.gov/resource/hpbg-2wph.csv?$select=crime_id,crime_type,report_date,report_year,occurred_date,verified,address,city,state,nibrs_code,nibrs_description,crime_against,offense_type,location&$where=report_year=%272024%27&$limit=60000",
+  "portal_type": "socrata_csv",
+  "coverage_start_year": "2020",
+  "coverage_end_year": "2025",
+  "years_usable": "6",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "medium",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/mesa",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

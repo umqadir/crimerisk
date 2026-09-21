@@ -1,0 +1,91 @@
+{
+  "case_key": "orlando_fl",
+  "jurisdiction_id": "12:municipal:place:1253000",
+  "jurisdiction_name": "Orlando city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Orlando plainly operates a real Orlando Police Department. Official city pages describe OPD as the city's police department, with headquarters, records services, patrol divisions, investigations, and airport division functions.",
+    "Official FDLE county-and-municipal offense publications list Orlando Police Department as a normal municipal law-enforcement row in the Florida publication surface, which is consistent with Orlando being a valid primary local police jurisdiction rather than a fake municipal target.",
+    "The repo crosswalk already routes FL0480400 exclusively to Orlando city, and the observation history shows large positive Orlando SRS totals through 2022 with zeros only in 2021, 2023, and 2024. That pattern is inconsistent with target invalidity and consistent with a source/continuity or extraction failure.",
+    "Because OPD is an active city police department with obvious current operations and public-records services, the 2024 full-fill Orlando target should not be interpreted as evidence against the municipal row itself."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Orlando maintains an Orlando Police Department with official department pages, headquarters, records services, and public contact channels.",
+      "The department's own official page describes patrol, investigations, and specialized divisions serving the city."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Orlando Police Department",
+    "active_city_police_department_found": true,
+    "official_evidence": [
+      "The OPD department page describes the agency as Orlando's police department focused on the safety of residents, visitors, and businesses.",
+      "The official city records pages route incident records and background checks through OPD headquarters."
+    ]
+  },
+  "repo_continuity_evidence": {
+    "crosswalk_state": "FL0480400 is currently routed exclusively to 12:municipal:place:1253000",
+    "observation_pattern": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "total_count": 16085.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "total_count": 16257.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "total_count": 13682.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "total_count": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "total_count": 15114.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "total_count": 0.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "total_count": 0.0
+      }
+    ],
+    "interpretation": "A live city police department plus a broken/nonmonotonic reporting series indicates continuity or ingestion failure, not a bad target."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Orlando is a standard city-police case with an active official police department.",
+      "Official Florida publication surfaces and city materials both treat OPD as the municipal policing entity.",
+      "The repo's fill condition is therefore a source-continuity problem, not a target-validity problem."
+    ],
+    "recommended_handling": [
+      "Retain Orlando city as a true municipal control row.",
+      "Do not drop or demote the Orlando municipal target because of the current full-fill condition.",
+      "Treat the zero 2023-2024 row state on FL0480400 as a continuity/audit problem requiring source repair or publication-surface backstop, not as evidence that Orlando lacks a valid municipal policing surface."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The packet closes the target-validity question but does not yet identify why the Orlando source row is zero in 2023 and 2024 while the official department is obviously active. That remains a bounded source-repair task."
+  ]
+}

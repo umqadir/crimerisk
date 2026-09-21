@@ -1,0 +1,14 @@
+{
+  "case_key": "fort_myers_fl",
+  "jurisdiction_id": "12:municipal:place:1224125",
+  "jurisdiction_name": "Fort Myers city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/fort_myers_fl",
+  "review_goal": "Determine whether Fort Myers should retain a standalone municipal control row or whether the current full-fill condition reflects an invalid municipal target, sheriff-primary service structure, contract policing, or another non-standalone policing arrangement.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

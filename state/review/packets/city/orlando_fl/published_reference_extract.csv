@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,aggravated_assault,1616.0,srs_return_a_annual,unknown
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,burglary,1431.0,srs_return_a_annual,unknown
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,larceny,10413.0,srs_return_a_annual,unknown
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,motor_vehicle_theft,1238.5,srs_return_a_annual,unknown
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,murder,31.5,srs_return_a_annual,unknown
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,rape,202.0,srs_return_a_annual,unknown
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,robbery,521.5,srs_return_a_annual,unknown

@@ -1,0 +1,16 @@
+{
+  "admitted_rows": 7,
+  "duplicate_surface_key_rows": 0,
+  "feed_total_candidate_rows": 6,
+  "mapped_part1_rows": 20107,
+  "matched_part1_rows": 19992,
+  "min_coordinate_present_share": 0.9797297297297297,
+  "min_in_jurisdiction_share_of_mapped": 0.972972972972973,
+  "null_island_count": 0,
+  "offense_rows": 7,
+  "raw_year_total_2024": 64484,
+  "rows_in_surface": 1628,
+  "share_admitted_rows": 7,
+  "share_sum_pass_all": true,
+  "top_coordinate_pileup_rows": 86
+}

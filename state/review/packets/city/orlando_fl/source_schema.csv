@@ -1,0 +1,10 @@
+column,dtype
+OBJECTID,int64
+CaseNumber,object
+CaseDate,int64
+CaseType,object
+GISCaseType,object
+NeighborhoodName,object
+ORI,object
+__arcgis_longitude,float64
+__arcgis_latitude,float64

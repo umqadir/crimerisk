@@ -1,0 +1,522 @@
+{
+  "state_abbr": "NY",
+  "generated_on": "2026-03-22",
+  "packet_scope": "New York official-source reconciliation for V2 with emphasis on whether 2024 mismatches represent real source-policy problems, master/reference gaps, statewide continuity issues, or low-value zero-observation tails.",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ny/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ny/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/state_source_benchmark_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/top_partial_reporters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_quarterly_pattern_candidates_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ny/issue_bucket_summary.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ny/supporting_issue_metrics.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ny/source_recommendations.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "ny_dcjs_crime_reporting_home",
+      "source_name": "NY DCJS Crime Reporting Home",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/ojsa/crimereporting/",
+      "coverage_note": "DCJS says New York agencies use one of two reporting systems, UCR or IBR, and that DCJS compiles both into New York's official crime statistics.",
+      "packet_use": "Primary doctrine source showing NY is a mixed UCR/IBR state rather than a NIBRS-only transition state."
+    },
+    {
+      "source_id": "ny_dcjs_ucr_page",
+      "source_name": "NY DCJS UCR Page",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/ojsa/crimereporting/ucr.htm",
+      "coverage_note": "DCJS says agencies submit monthly crime reports, DCJS reviews them for completeness and accuracy, and summary reporting remains an active submission path in 2024.",
+      "packet_use": "Confirms UCR summary reporting remains an active official source in 2024."
+    },
+    {
+      "source_id": "ny_dcjs_greenbook",
+      "source_name": "NY DCJS Greenbook",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/ojsa/greenbook.html",
+      "coverage_note": "DCJS says UCR and IBR are both official sources of crime statistics and the Greenbook provides preliminary outside-NYC index crime using those monthly submissions.",
+      "packet_use": "Confirms a mixed-source official monthly publication path remains active in 2024."
+    },
+    {
+      "source_id": "ny_dcjs_2024_reporting_timeline",
+      "source_name": "NY DCJS 2024 Crime Reporting Timeline",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/ojsa/crimereporting/2024%20-%20External%20Crime%20Reporting%20Timeline%20for%20LEAs.pdf",
+      "coverage_note": "The November 2024 agency review process says IBR submitted data are converted to UCR/summary format for the statewide review report.",
+      "packet_use": "Strong evidence that roster-effective NIBRS status alone is not enough to force a 2024 production source switch in NY."
+    },
+    {
+      "source_id": "ny_dcjs_2024_return_a_memo",
+      "source_name": "NY DCJS July 2024 Return A Change Memo",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/ojsa/crimereporting/Reporting%20Alert%20-%20Changes%20to%20the%20Return%20A%20-%2007_2024.pdf",
+      "coverage_note": "DCJS revised the UCR Return A effective August 1, 2024, showing the summary path was still live in the target year.",
+      "packet_use": "Additional evidence against treating NY as if summary reporting had already ended in 2024."
+    },
+    {
+      "source_id": "ny_dcjs_statistics_page",
+      "source_name": "NY DCJS Statistics Page",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/ojsa/stats.htm",
+      "coverage_note": "DCJS exposes index crime by reporting agency as current partial-year and full-year historical data, plus county rate data through the Open Data Portal.",
+      "packet_use": "Best current public reconciliation surface if the seven-row source-policy lane gets a second-pass audit."
+    },
+    {
+      "source_id": "ny_dcjs_publications",
+      "source_name": "NY DCJS Publications Page",
+      "source_url": "https://www.criminaljustice.ny.gov/crimnet/pubs.htm",
+      "coverage_note": "The latest final statewide crime report posted publicly is 2023, not 2024.",
+      "packet_use": "Shows there is no simple final-2024 statewide bulletin to replace repo inputs directly."
+    }
+  ],
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "NY",
+      "official_oris": 537,
+      "official_nibrs_oris": 223,
+      "official_effective_nibrs_oris": 207,
+      "repo_master_matches": 536,
+      "mismatch_rows": 88,
+      "mismatch_weight": 881.0,
+      "official_nibrs_repo_no_nibrs": 16,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 80
+    },
+    "priority_offense_context": [
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "larceny",
+        "repo_nibrs_observed_total_2024": 231678.0,
+        "repo_srs_observed_total_2024": 267047.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 284648,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 301600.0,
+        "bjs_ckle_rate_2024": 1518.2,
+        "repo_srs_minus_fbi_cde": -17601.0,
+        "repo_nibrs_minus_bjs_ckle": -69922.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 17601.0,
+        "repo_nibrs_gap_below_bjs_ckle": 69922.0,
+        "gap_priority_score": 87523.0,
+        "priority_rank": 4
+      },
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "aggravated_assault",
+        "repo_nibrs_observed_total_2024": 44115.0,
+        "repo_srs_observed_total_2024": 49714.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 51580,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 50790.0,
+        "bjs_ckle_rate_2024": 255.7,
+        "repo_srs_minus_fbi_cde": -1866.0,
+        "repo_nibrs_minus_bjs_ckle": -6675.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 1866.0,
+        "repo_nibrs_gap_below_bjs_ckle": 6675.0,
+        "gap_priority_score": 8541.0,
+        "priority_rank": 31
+      },
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "burglary",
+        "repo_nibrs_observed_total_2024": 20560.0,
+        "repo_srs_observed_total_2024": 25514.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 27142,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 26910.0,
+        "bjs_ckle_rate_2024": 135.5,
+        "repo_srs_minus_fbi_cde": -1628.0,
+        "repo_nibrs_minus_bjs_ckle": -6350.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 1628.0,
+        "repo_nibrs_gap_below_bjs_ckle": 6350.0,
+        "gap_priority_score": 7978.0,
+        "priority_rank": 33
+      },
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "motor_vehicle_theft",
+        "repo_nibrs_observed_total_2024": 23963.0,
+        "repo_srs_observed_total_2024": 28801.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 29837,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 30390.0,
+        "bjs_ckle_rate_2024": 153.0,
+        "repo_srs_minus_fbi_cde": -1036.0,
+        "repo_nibrs_minus_bjs_ckle": -6427.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 1036.0,
+        "repo_nibrs_gap_below_bjs_ckle": 6427.0,
+        "gap_priority_score": 7463.0,
+        "priority_rank": 38
+      },
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "rape",
+        "repo_nibrs_observed_total_2024": 2017.0,
+        "repo_srs_observed_total_2024": 3476.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 4313,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 4090.0,
+        "bjs_ckle_rate_2024": 20.6,
+        "repo_srs_minus_fbi_cde": -837.0,
+        "repo_nibrs_minus_bjs_ckle": -2073.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 837.0,
+        "repo_nibrs_gap_below_bjs_ckle": 2073.0,
+        "gap_priority_score": 2910.0,
+        "priority_rank": 81
+      },
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "robbery",
+        "repo_nibrs_observed_total_2024": 17604.0,
+        "repo_srs_observed_total_2024": 18701.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 19094,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 18920.0,
+        "bjs_ckle_rate_2024": 95.3,
+        "repo_srs_minus_fbi_cde": -393.0,
+        "repo_nibrs_minus_bjs_ckle": -1316.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 393.0,
+        "repo_nibrs_gap_below_bjs_ckle": 1316.0,
+        "gap_priority_score": 1709.0,
+        "priority_rank": 105
+      },
+      {
+        "state_fips": 36,
+        "state_abbr": "NY",
+        "offense": "murder",
+        "repo_nibrs_observed_total_2024": 451.0,
+        "repo_srs_observed_total_2024": 518.0,
+        "year": 2024,
+        "fbi_cde_estimated_total_2024": 541,
+        "population": 19867248,
+        "state_name": "New York",
+        "bjs_ckle_count_2024": 540.0,
+        "bjs_ckle_rate_2024": 2.7,
+        "repo_srs_minus_fbi_cde": -23.0,
+        "repo_nibrs_minus_bjs_ckle": -89.0,
+        "bjs_state_estimate_suppressed": false,
+        "repo_srs_gap_below_fbi_cde": 23.0,
+        "repo_nibrs_gap_below_bjs_ckle": 89.0,
+        "gap_priority_score": 112.0,
+        "priority_rank": 245
+      }
+    ],
+    "queue_summary": {
+      "queue_rows": 7,
+      "queue_rows_all_source_policy": true,
+      "queue_support_sum": 881.0,
+      "queue_support_equals_state_mismatch_weight": true,
+      "review_lane_counts": {
+        "official_nibrs_repo_no_nibrs": 7
+      },
+      "issue_bucket_counts": {
+        "master_reference_omission": 1,
+        "source_policy_disagreement": 7,
+        "statewide_reporting_structure_or_continuity_issue": 190,
+        "present_but_missing_2024_observation": 80
+      }
+    },
+    "source_structure_checks": {
+      "ny_top_partial_reporters_2024": 5,
+      "ny_quarterly_pattern_candidates_2024": 0,
+      "agencies_both_12m_srs_vs_nibrs": 176,
+      "coverage_matched_srs_to_nibrs_ratios": {
+        "murder": 0.9698924731182796,
+        "rape": 0.7005235602094241,
+        "robbery": 1.000056834327934,
+        "aggravated_assault": 0.9708455452962824,
+        "burglary": 0.9754831952775398,
+        "larceny": 1.0008292701988075,
+        "motor_vehicle_theft": 0.9304378256474064
+      },
+      "interpretation": "Coverage-matched SRS and NIBRS are already near parity in NY for murder, robbery, aggravated assault, burglary, and larceny; rape diverges more sharply and motor vehicle theft moderately. That points away from a broad statewide source failure and toward narrower offense-mapping or agency-transition differences."
+    }
+  },
+  "issue_groups": [
+    {
+      "issue_id": "ny_source_policy_disagreement_is_narrow_and_actionable",
+      "issue_type": "source_policy_disagreement",
+      "severity": "high",
+      "finding": "NY's actionable 2024 source gap is narrow: seven official-effective-NIBRS rows still use SRS in repo, and they account for all current mismatch weight.",
+      "statewide_evidence": {
+        "affected_rows": 7,
+        "support_sum": 881.0,
+        "queue_support_equals_state_mismatch_weight": true,
+        "examples": [
+          {
+            "priority_rank": null,
+            "ori9": "NY0330500",
+            "agency_name": "Syracuse Regional Airport Authority",
+            "agency_type_name": "Other",
+            "repo_preferred_support_count_2024": 27.0,
+            "official_nibrs_start_date": "2023-04-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0333000",
+            "agency_name": "Marcellus Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 8.0,
+            "official_nibrs_start_date": "2024-01-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0333100",
+            "agency_name": "Liverpool Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 18.0,
+            "official_nibrs_start_date": "2023-12-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0335000",
+            "agency_name": "Camillus Town and Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 202.0,
+            "official_nibrs_start_date": "2023-12-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0410100",
+            "agency_name": "Rensselaer City Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 119.0,
+            "official_nibrs_start_date": "2023-08-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0514000",
+            "agency_name": "Westhampton Beach Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 17.0,
+            "official_nibrs_start_date": "2024-06-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0515800",
+            "agency_name": "Southampton Town Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 490.0,
+            "official_nibrs_start_date": "2024-05-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs"
+          }
+        ]
+      },
+      "why_it_matters": "These are the only NY rows that can plausibly move benchmark closure right now, but the packet does not support a blind source flip because the official NY public structure is mixed UCR/IBR.",
+      "recommended_next_action": "Keep SRS for production until a direct official 2024 IBR/NIBRS extract is found, and queue a targeted second-pass audit for the top three rows first.",
+      "doctrine_candidate": "In states with an active mixed UCR/IBR monthly official pipeline, roster-effective NIBRS status alone should not force a production source switch."
+    },
+    {
+      "issue_id": "ny_is_not_a_statewide_replacement_lane",
+      "issue_type": "statewide_reporting_structure_or_continuity_issue",
+      "severity": "medium",
+      "finding": "New York's 2024 public official structure is a live mixed UCR/IBR system, not a Florida-style missing-official-source state.",
+      "statewide_evidence": {
+        "mixed_source_2024_rows": 190,
+        "official_source_signals": [
+          "DCJS Crime Reporting says agencies use UCR or IBR and DCJS compiles both as official statistics.",
+          "Greenbook says UCR and IBR are official sources for counties and jurisdictions.",
+          "The 2024 reporting timeline says IBR data are converted to UCR/summary format for the November 2024 review report.",
+          "The July 2024 memo shows the UCR Return A path was still being revised in the target year."
+        ]
+      },
+      "why_it_matters": "This prevents overreaction. NY should not be routed into a bespoke statewide source-replacement project just because the FBI roster shows many effective-NIBRS agencies.",
+      "recommended_next_action": "Keep NY in the standard mixed-state doctrine and use DCJS public dashboards/open data only for targeted reconciliation or future backfill confirmation.",
+      "doctrine_candidate": "Mixed-source states with active UCR summary submissions and explicit IBR-to-summary conversion should stay on the mixed-state doctrine unless a cleaner direct official incident feed is actually available."
+    },
+    {
+      "issue_id": "ny_present_but_no_2024_observation_tail_is_low_value_context",
+      "issue_type": "present_but_missing_2024_observation",
+      "severity": "medium",
+      "finding": "NY has an 80-row present-in-master but missing-2024-observation tail, but it currently contributes zero mismatch support.",
+      "statewide_evidence": {
+        "affected_rows": 80,
+        "effective_nibrs_true_rows": 9,
+        "by_agency_type": {
+          "County": 2,
+          "City": 52,
+          "Other": 9,
+          "Tribal": 1,
+          "Other State Agency": 12,
+          "University or College": 3,
+          "State Police": 1
+        },
+        "examples": [
+          {
+            "priority_rank": null,
+            "ori9": "NY0012000",
+            "agency_name": "Green Island Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0015500",
+            "agency_name": "State Park: Statewide",
+            "agency_type_name": "Other State Agency",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0020000",
+            "agency_name": "Allegany County Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2024-09-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs|no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0022100",
+            "agency_name": "Belmont Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2025-06-01",
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0022200",
+            "agency_name": "Andover Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2025-07-01",
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0022300",
+            "agency_name": "Angelica Village  Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0025600",
+            "agency_name": "Willing Town Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2025-07-01",
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0042600",
+            "agency_name": "Cattaraugus Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0049000",
+            "agency_name": "State Park: Allegany Region",
+            "agency_type_name": "Other State Agency",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0052200",
+            "agency_name": "Port Byron Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0052600",
+            "agency_name": "Moravia Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "no_2024_observation"
+          },
+          {
+            "priority_rank": null,
+            "ori9": "NY0072200",
+            "agency_name": "Horseheads Village Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2022-12-01",
+            "mismatch_reason": "official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs|no_2024_observation"
+          }
+        ]
+      },
+      "why_it_matters": "These rows are mostly small local or special-jurisdiction entities. They should not distract from the seven benchmark-bearing source-policy disagreements.",
+      "recommended_next_action": "Monitor only. Queue the nine effective-NIBRS zero-observation rows for later manual/source review if a concrete public 2024 feed is identified.",
+      "doctrine_candidate": "When a no-observation tail carries zero benchmark weight, treat it as a monitored coverage tail rather than a first-pass production blocker."
+    },
+    {
+      "issue_id": "ny_missing_master_inventory_is_not_actionable",
+      "issue_type": "master_reference_omission",
+      "severity": "low",
+      "finding": "NY has only one missing-master row in current validation and it has no 2024 repo support.",
+      "statewide_evidence": {
+        "affected_rows": 1,
+        "support_sum": 0.0,
+        "examples": [
+          {
+            "priority_rank": null,
+            "ori9": "NY0017500",
+            "agency_name": "State University of New York: Albany (Plaza)",
+            "agency_type_name": "University or College",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": NaN,
+            "mismatch_reason": "missing_in_repo_master"
+          }
+        ]
+      },
+      "why_it_matters": "Unlike CA, NY does not have a meaningful support-bearing master/reference omission lane in 2024.",
+      "recommended_next_action": "Do not add the row from roster presence alone. Revisit only if real 2024 observations or a documented official source path appear.",
+      "doctrine_candidate": "Roster-only master omissions with zero support and no effective-NIBRS signal are context, not production actions."
+    }
+  ],
+  "actionable_summary": {
+    "implement_now": [],
+    "queue_next": [
+      "Targeted official-source audit for Southampton Town Police Department, Camillus Town and Village Police Department, and Rensselaer City Police Department."
+    ],
+    "monitor_only": [
+      "80 present-in-master zero-observation rows, including the 9 effective-NIBRS rows.",
+      "The lone SUNY Albany (Plaza) missing-master row."
+    ]
+  }
+}

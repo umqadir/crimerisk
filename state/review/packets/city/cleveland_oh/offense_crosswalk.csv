@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""Homicide"", ""values"": []}, {""field"": ""StatDesc"", ""op"": ""contains"", ""value"": ""Murder"", ""values"": []}]","[{""field"": ""StatDesc"", ""op"": ""contains"", ""value"": ""Negligence"", ""values"": []}]"
+rape,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""Rape"", ""values"": []}]",[]
+robbery,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""Robbery"", ""values"": []}]",[]
+aggravated_assault,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""Fel Assault"", ""values"": []}]","[{""field"": ""StatDesc"", ""op"": ""regex"", ""value"": ""Homicide|Vehicular"", ""values"": []}]"
+burglary,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""Burglary"", ""values"": []}]",[]
+larceny,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""Theft"", ""values"": []}]",[]
+motor_vehicle_theft,"[{""field"": ""UCRdesc"", ""op"": ""eq"", ""value"": ""GTMV"", ""values"": []}]",[]

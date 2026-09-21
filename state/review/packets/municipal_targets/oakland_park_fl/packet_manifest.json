@@ -1,0 +1,14 @@
+{
+  "case_key": "oakland_park_fl",
+  "jurisdiction_id": "12:municipal:place:1250575",
+  "jurisdiction_name": "Oakland Park city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/oakland_park_fl",
+  "review_goal": "Determine whether Oakland Park should retain a standalone municipal control row and whether the current full-fill condition reflects an invalid municipal target/service-structure problem or broken reporting continuity under the city's Broward Sheriff's Office contract-policing model.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

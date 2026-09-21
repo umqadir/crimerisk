@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,no,hold_pending_exact_murder_anchor,approximate,"Criminal homicide alone lands nearly exact, but the public PPD homicide comparator appears to include justifiable homicide."
+rape,no,blocked,blocked,"The public incident feed runs about 10 percent above the official PPD year-end table in both 2023 and 2024."
+robbery,no,blocked,blocked,"The public incident feed is materially above the official PPD year-end table in both 2023 and 2024."
+aggravated_assault,yes,offense_selective,strong,"Direct UCR-style mapping reconciles tightly enough for offense-selective live use."
+burglary,yes,offense_selective,exact,"Direct UCR-style mapping reconciles essentially exactly in both 2023 and 2024."
+larceny,no,blocked,blocked,"The public incident feed is materially above the official PPD year-end table in both 2023 and 2024."
+motor_vehicle_theft,no,blocked,approximate,"Direct category mapping exists, but the feed runs materially below the official PPD year-end table in both 2023 and 2024."

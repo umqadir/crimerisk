@@ -1,0 +1,168 @@
+{
+  "case_key": "quincy_il",
+  "jurisdiction_id": "17:municipal:place:1762367",
+  "jurisdiction_name": "Quincy city",
+  "state_abbr": "IL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_backfill_2024_from_official_quincy_police_department_annual_report",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Quincy remains a real municipal police jurisdiction. The official Quincy Police Department annual-report page and 2026 organizational chart show an active standalone city police department led by Chief Adam Yates with patrol, investigations, administrative services, and records functions.",
+    "Repo geography and agency matching are clean. IL0010300 crosswalks exclusively to 17:municipal:place:1762367, so Quincy city is the correct municipal target and not an Adams County remainder or alias problem.",
+    "Official Quincy Police Department publications show reporting continuity after the repo series collapses. The department published official annual reports for 2022, 2023, and 2024 with Quincy-specific UCR counts, which means the city target remained live even when the repo reverted to zero-valued placeholders.",
+    "The official 2024 Quincy Police Department annual report is directly usable for production repair. It reports 2024 Quincy counts of homicide 0, criminal sexual assault 46, robbery 4, aggravated assault/battery 28, burglary 61, theft 141, and motor vehicle theft 126, with a major index total of 581.",
+    "The most plausible continuity-failure explanation is transition plus local technology disruption rather than invalid target geometry. Illinois State Police's public annual Crime in Illinois archive currently stops at 2021 while the state UCR program documents post-2021 NIBRS transition activity, and Quincy Police Department's 2022 annual report says the city suffered a crippling cyber incident in May 2022 that caused ongoing technology issues.",
+    "Official federal signals support Quincy as a live city agency, not a defunct one. The mirrored FBI Crime Data Explorer 2024 roster lists Quincy Police Department as a City agency with is_nibrs true and nibrs_start_date 2021-01-01, while repo validation explicitly flags IL0010300 as an official NIBRS agency with no repo 2024 observation."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_standalone_city_police_department",
+    "official_basis": [
+      "The official Quincy Police Department annual-report page identifies the department as Quincy Police Department at 530 Broadway, Quincy, Illinois, under Chief Adam Yates.",
+      "The official 2026 organizational chart shows a chief, deputy chiefs, patrol, investigations, administrative services, and records staffing consistent with a full municipal police department.",
+      "Nothing in the reviewed official materials suggests Quincy has shifted primary citywide policing to Adams County Sheriff or another replacement structure."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Quincy Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The official Quincy Police Department site maintains current annual-report and department-information pages.",
+      "The official 2026 organizational chart shows a normal city-police command and operating structure.",
+      "The official annual reports repeatedly describe Quincy Police Department as compiling city crime statistics for required reporting and self-reporting purposes."
+    ],
+    "important_clarification": "Adams County Sheriff's Office remains a separate county law-enforcement surface. The reviewed evidence supports Quincy Police Department as the primary citywide municipal policing entity inside Quincy city."
+  },
+  "official_reporting_evidence": {
+    "usable_local_official_2024_surface": {
+      "source": "Quincy Police Department 2024 Annual Report Update 09/23/25",
+      "summary": "The department's official 2024 annual report provides explicit Quincy city UCR offense totals for the seven major crimes.",
+      "tracked_offense_counts": {
+        "murder": 0,
+        "rape_or_criminal_sexual_assault": 46,
+        "robbery": 4,
+        "aggravated_assault_or_battery": 28,
+        "burglary": 61,
+        "larceny_or_theft": 141,
+        "motor_vehicle_theft": 126
+      },
+      "why_it_matters": "This closes the 2024 production question directly: Quincy does not need to stay all-fill if local official counts are acceptable for municipal override use."
+    },
+    "local_continuity_before_2024": {
+      "summary": "Quincy Police Department also published official annual reports for 2022 and 2023, demonstrating city-specific reporting continuity after 2021.",
+      "important_context": [
+        "The 2022 annual report says the city suffered a crippling cyber incident in May 2022 and that the department continued dealing with resulting technology issues.",
+        "The 2023 annual report says the department was still working through technology-related issues while publishing 2023 crime totals."
+      ],
+      "interpretation": "The city kept compiling local crime statistics after the state/federal transition window, but technology disruption likely interfered with external continuity or repo ingestion."
+    },
+    "state_publication_context": {
+      "summary": "Illinois State Police's legacy public annual Crime in Illinois archive currently stops at 2021, while the broader crime-reporting page documents a post-2021 NIBRS transition environment.",
+      "details": [
+        "The Crime in Illinois publications page currently lists CII editions through 2021.",
+        "The ISP crime-reporting page says agencies using summary reporting verified 2021 Crime in Illinois data separately and notes that the FBI no longer accepted summary data.",
+        "The same state program page now emphasizes NIBRS transition resources, NIBRS training, and 2023-2024 incident-submission issues and compliance topics."
+      ],
+      "interpretation": "Illinois's public statewide annual publication path no longer supplies a simple post-2021 Quincy city row, which helps explain why repo continuity broke if it still depended on older state/federal annual surfaces."
+    },
+    "federal_roster_signal": {
+      "summary": "The mirrored FBI Crime Data Explorer 2024 roster lists Quincy Police Department as a City agency with is_nibrs true and nibrs_start_date 2021-01-01.",
+      "interpretation": "Federal agency identity did not disappear. Quincy remained a live recognized city agency even though the repo failed to materialize post-2021 NIBRS observations."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes IL0010300 exclusively to 17:municipal:place:1762367 with relationship_type exclusive, weight 1.0, and no overlap ambiguity.",
+    "observation_state": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "status": "reported",
+        "notes": "Full-year Quincy summary counts present."
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "status": "reported",
+        "notes": "Full-year Quincy summary counts present."
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "status": "reported",
+        "notes": "Full-year Quincy summary counts present."
+      },
+      {
+        "year": 2021,
+        "source": "nibrs_incident_annual and srs_return_a_annual",
+        "status": "partial_reporting",
+        "notes": "Quincy carries real 10-month counts rather than zeros."
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported despite an official Quincy annual report for 2022."
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported despite an official Quincy annual report for 2023."
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "status": "zero_placeholder",
+        "notes": "Repo carries only zero-valued rows with 0 months reported despite an official Quincy annual report for 2024 and official FBI roster presence."
+      }
+    ],
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every Quincy 2024 offense row with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and hist_median estimation.",
+    "review_queue_state": "municipal_target_review_queue.parquet ranks Quincy city first in the municipal target review queue with high_impact_full_fill_place, suspect_reason full_fill_no_reported_support, total_fill_count 1452.0, total_reported_count 0.0, and fill_share_of_estimated 1.0 across aggravated_assault, burglary, larceny, motor_vehicle_theft, rape, and robbery.",
+    "federal_repo_mismatch": "ori_source_validation_2024.csv flags IL0010300 as present in the official FBI roster with official_effective_nibrs_2024 true but repo_has_nibrs_2024 false and repo_preferred_support_count_2024 0.0.",
+    "interpretation": "The repo is not looking at a fake city target. It is missing post-2021 Quincy support on a valid municipal agency, likely because Illinois public annual publication changed and Quincy also experienced local technology disruption after the May 2022 cyber incident."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": true,
+    "why": [
+      "Quincy still operates an active standalone municipal police department.",
+      "The agency-to-jurisdiction crosswalk is exclusive and unambiguous.",
+      "Official Quincy Police Department publications provide explicit 2024 city offense totals.",
+      "Official federal roster evidence still recognizes Quincy Police Department as a live city NIBRS agency."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Illinois's public annual Crime in Illinois pathway no longer provides a simple post-2021 place-level Quincy row, so older public-summary ingestion logic stopped carrying Quincy forward.",
+      "Quincy also reported a crippling May 2022 cyber incident and ongoing technology issues, which likely contributed to external continuity problems during the transition period.",
+      "The repo then fell back to zero-valued placeholder summary rows for 2022-2024 and never materialized the official NIBRS path indicated by the FBI roster."
+    ],
+    "recommended_handling": [
+      "Retain Quincy city as a standalone municipal control row.",
+      "Do not reroute Quincy to Adams County Sheriff, county remainder, or any county-replacement service structure.",
+      "Classify the current all-fill state as a reporting/publication and repo-ingestion continuity failure on IL0010300, not as target invalidity.",
+      "Backfill 2024 Quincy from the official Quincy Police Department 2024 annual report using the city's explicit UCR counts.",
+      "If business requirements later require repair of 2022 and 2023, review Quincy Police Department's official annual reports for those years rather than trusting the current repo zero placeholders."
+    ],
+    "production_backfill_notes": {
+      "2024_mapping_guidance": [
+        "Map criminal sexual assault to the pipeline's rape field.",
+        "Map theft to the pipeline's larceny field.",
+        "Map aggravated assault/battery to aggravated_assault."
+      ],
+      "2024_tracked_counts": {
+        "aggravated_assault": 28,
+        "burglary": 61,
+        "larceny": 141,
+        "motor_vehicle_theft": 126,
+        "rape": 46,
+        "robbery": 4
+      }
+    }
+  },
+  "likely_issue_class": "valid_target_with_repo_and_publication_continuity_failure_but_usable_official_local_backfill",
+  "open_questions": [
+    "The 2024 keep-versus-drop decision is closed. If a later repair pass wants to overwrite 2022-2023 zeros, it should reconcile revisions across Quincy Police Department annual-report vintages before writing those earlier years."
+  ]
+}

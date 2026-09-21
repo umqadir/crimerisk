@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Methods — CrimeRisk</title>
+<meta name="description" content="How the CrimeRisk neighborhood crime index is built, in plain language." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="doc">
+  <p class="topbar"><a href="index.html">&larr; Map</a><a href="download.html">Download</a><a href="attribution.html">Sources</a></p>
+
+  <h1>Methods</h1>
+  <p class="lede">What the numbers on the map mean, where they come from, and what they cannot tell you.</p>
+
+  <h2>What this map shows</h2>
+  <p>Every neighborhood in the 48 contiguous states and the District of Columbia gets a score for
+  seven crimes the FBI counts: murder, rape, robbery, aggravated assault, burglary, larceny/theft
+  and motor vehicle theft. <strong>100 is the national average.</strong> 200 means twice the
+  national average, 50 means half. The score describes a place. It is not anyone's chance of
+  being a victim.</p>
+
+  <h2>Two measures</h2>
+  <p><strong>Crime exposure</strong> divides recorded offenses by what each crime happens to:
+  the people present for assault and robbery, homes and businesses for burglary, parked and
+  commuting vehicles for car theft. A downtown block with 40 residents and 30,000 daily visitors
+  is measured against the 30,000.</p>
+  <p><strong>Per resident</strong> divides the same offenses by the people who live there. It
+  answers a different question, and it gives very high scores to commercial districts, campuses
+  and transit hubs where few people sleep. Both measures are scaled so 100 is the U.S. average.</p>
+
+  <h2>Year and geography</h2>
+  <p>Estimates are for 2025, on 2020 census boundaries. Most crimes are published for census
+  block groups, areas of roughly 600 to 3,000 residents. Murder and rape are published for census
+  tracts only: a single year holds too few of them to say anything about an area as small as a
+  block group. Zoomed out, the map shows tracts, then county averages.</p>
+
+  <h2>Where the numbers come from</h2>
+  <p>Police agencies report offense totals to the FBI. Those totals cover a whole city or county,
+  not a neighborhood. We spread each agency's total across the neighborhoods it patrols using what
+  is known to draw each kind of crime &mdash; residents, workers, shops, bars, schools, parking,
+  roads &mdash; and we calibrate that against the cities that publish incident-level data. Where an
+  agency did not report a full year, its total is estimated from its own history and from
+  comparable agencies in the same state.</p>
+  <p>Each area's card says which of those two paths produced most of the number it is showing.</p>
+
+  <h2>How certain this is</h2>
+  <p>Most block-group values rest on modeled distribution rather than on incidents counted in that
+  block. Read broad patterns; treat a difference of a few points between neighboring blocks as
+  noise. We build an uncertainty range internally, but in held-out testing it covered the truth
+  less often than it claimed to, so this edition publishes no range and no reliability rating
+  rather than one you cannot rely on.</p>
+
+  <h2>Six limits</h2>
+  <ol>
+    <li>Only crime reported to and recorded by police appears here. A great deal of crime is never reported.</li>
+    <li>Agencies differ in how they classify offenses and how completely they report them.</li>
+    <li>Neighborhood values are modeled shares of agency totals, not counts of incidents.</li>
+    <li>Murder and rape exist at tract level only; there is no block-group value to show.</li>
+    <li>Boundaries are 2020 census geographies, which is not how people describe neighborhoods.</li>
+    <li>A high score for a park, campus, prison or industrial area usually reflects few residents
+      or many visitors rather than danger to a household. Those areas can be marked on the map.</li>
+  </ol>
+
+  <h2>Updates and citation</h2>
+  <p>One edition per data year. Cite as: CrimeRisk <span id="edition-year">2025</span> neighborhood
+  crime index, block group and tract, 48 states and DC. Data and license:
+  <a href="download.html">download page</a>.</p>
+
+  <h2>Technical methods</h2>
+  <p>The full specification &mdash; temporal kernels, hierarchical agency estimation, the
+  three-expert allocation mixture and its weights, denominator construction, special-use
+  classification, reconciliation to national offense anchors and the validation tables &mdash; is
+  published separately in the project's technical documentation:
+  <code>docs/METHODOLOGY.md</code>, <code>docs/FIELDS.md</code> and
+  <code>docs/EVALUATION.md</code>. Field-level definitions for every published column are also in
+  <a href="downloads/fields_block_group.csv">fields_block_group.csv</a> and
+  <a href="downloads/fields_tract.csv">fields_tract.csv</a>.</p>
+
+  <p class="meta" id="edition-line"></p>
+</main>
+<script>
+fetch("data/manifest.json").then(function (r) { return r.json(); }).then(function (m) {
+  document.getElementById("edition-line").textContent = m.copy.provenance_line;
+  document.getElementById("edition-year").textContent = m.data_year;
+}).catch(function () {});
+</script>
+</body>
+</html>

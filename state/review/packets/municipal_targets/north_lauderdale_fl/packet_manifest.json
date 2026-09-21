@@ -1,0 +1,14 @@
+{
+  "case_key": "north_lauderdale_fl",
+  "jurisdiction_id": "12:municipal:place:1249425",
+  "jurisdiction_name": "North Lauderdale city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/north_lauderdale_fl",
+  "review_goal": "Determine whether North Lauderdale is a valid municipal police target with a Florida transition/publication failure, a sheriff/contract-policing structure, or an invalid municipal target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

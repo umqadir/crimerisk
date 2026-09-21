@@ -1,0 +1,14 @@
+{
+  "case_key": "gulfport_ms",
+  "jurisdiction_id": "28:municipal:place:2829700",
+  "jurisdiction_name": "Gulfport city",
+  "state_abbr": "MS",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/gulfport_ms",
+  "review_goal": "Determine whether Gulfport should retain a standalone municipal control row or whether the current all-fill state reflects an invalid municipal target or service-structure problem.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

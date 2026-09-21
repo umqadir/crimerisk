@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,aggravated_assault,5776.0,cius_publication_annual,high
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,burglary,2175.0,cius_publication_annual,high
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,larceny,7034.0,cius_publication_annual,high
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,motor_vehicle_theft,5926.0,cius_publication_annual,high
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,murder,134.0,cius_publication_annual,high
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,rape,382.0,cius_publication_annual,high
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,robbery,1727.0,cius_publication_annual,high

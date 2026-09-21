@@ -1,0 +1,14 @@
+{
+  "case_key": "yaphank_ny",
+  "jurisdiction_id": "36:municipal:place:3683426",
+  "jurisdiction_name": "Yaphank CDP",
+  "state_abbr": "NY",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/yaphank_ny",
+  "review_goal": "Determine whether Yaphank should ever receive a standalone municipal control row given its CDP status, Brookhaven location, and absence of a live crosswalked policing row.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "analysis_date": "2026-07-03",
+  "city_key": "st_louis_mo",
+  "city_name": "St. Louis",
+  "jurisdiction_id": "29:municipal:place:2965000",
+  "offense_mapping": [
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Aggravated Assault",
+      "source_value": "13A",
+      "v2_offense": "aggravated_assault"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Burglary/Breaking and Entering",
+      "source_value": "220",
+      "v2_offense": "burglary"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Pocket-picking",
+      "source_value": "23A",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Purse-snatching",
+      "source_value": "23B",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Shoplifting",
+      "source_value": "23C",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Theft From Building",
+      "source_value": "23D",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Theft From Coin-Operated Machine or Device",
+      "source_value": "23E",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Theft From Motor Vehicle",
+      "source_value": "23F",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Theft From Motor Vehicle Parts/Accessories",
+      "source_value": "23G",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "All Other Larceny",
+      "source_value": "23H",
+      "v2_offense": "larceny"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Motor Vehicle Theft",
+      "source_value": "240",
+      "v2_offense": "motor_vehicle_theft"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Murder and Nonnegligent Manslaughter",
+      "source_value": "09A",
+      "v2_offense": "murder"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Rape",
+      "source_value": "11A",
+      "v2_offense": "rape"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Sodomy",
+      "source_value": "11B",
+      "v2_offense": "rape"
+    },
+    {
+      "counting_basis": "public_monthly_incident_offense_location_dedupe",
+      "include_in_v2": "yes",
+      "notes": "Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.",
+      "source_field": "NIBRS",
+      "source_label": "Robbery",
+      "source_value": "120",
+      "v2_offense": "robbery"
+    }
+  ],
+  "qa": {
+    "admitted_rows": 7,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 6,
+    "mapped_part1_rows": 20107,
+    "matched_part1_rows": 19992,
+    "min_coordinate_present_share": 0.9797297297297297,
+    "min_in_jurisdiction_share_of_mapped": 0.972972972972973,
+    "null_island_count": 0,
+    "offense_rows": 7,
+    "raw_year_total_2024": 64484,
+    "rows_in_surface": 1628,
+    "share_admitted_rows": 7,
+    "share_sum_pass_all": true,
+    "top_coordinate_pileup_rows": 86
+  },
+  "reconciliation": [
+    {
+      "admission_mode": "share_only",
+      "matched_share_rows": 2482,
+      "offense": "aggravated_assault",
+      "official_total": 2788,
+      "raw_offense_rows": 2509,
+      "reconciles_within_10pct": false,
+      "reconciliation_relative_delta": 0.10007173601147776
+    },
+    {
+      "admission_mode": "feed_total_candidate",
+      "matched_share_rows": 2145,
+      "offense": "burglary",
+      "official_total": 2273,
+      "raw_offense_rows": 2148,
+      "reconciles_within_10pct": true,
+      "reconciliation_relative_delta": 0.05499340079190497
+    },
+    {
+      "admission_mode": "feed_total_candidate",
+      "matched_share_rows": 10203,
+      "offense": "larceny",
+      "official_total": 9462,
+      "raw_offense_rows": 10248,
+      "reconciles_within_10pct": true,
+      "reconciliation_relative_delta": 0.08306911857958148
+    },
+    {
+      "admission_mode": "feed_total_candidate",
+      "matched_share_rows": 4164,
+      "offense": "motor_vehicle_theft",
+      "official_total": 4090,
+      "raw_offense_rows": 4191,
+      "reconciles_within_10pct": true,
+      "reconciliation_relative_delta": 0.02469437652811736
+    },
+    {
+      "admission_mode": "feed_total_candidate",
+      "matched_share_rows": 149,
+      "offense": "murder",
+      "official_total": 150,
+      "raw_offense_rows": 149,
+      "reconciles_within_10pct": true,
+      "reconciliation_relative_delta": 0.006666666666666667
+    },
+    {
+      "admission_mode": "feed_total_candidate",
+      "matched_share_rows": 144,
+      "offense": "rape",
+      "official_total": 161,
+      "raw_offense_rows": 148,
+      "reconciles_within_10pct": true,
+      "reconciliation_relative_delta": 0.08074534161490683
+    },
+    {
+      "admission_mode": "feed_total_candidate",
+      "matched_share_rows": 705,
+      "offense": "robbery",
+      "official_total": 692,
+      "raw_offense_rows": 714,
+      "reconciles_within_10pct": true,
+      "reconciliation_relative_delta": 0.031791907514450865
+    }
+  ],
+  "source_contract": {
+    "coverage_years": [
+      2024
+    ],
+    "portal_type": "slmpd_monthly_csv",
+    "raw_source_manifest": "raw_source_manifest.csv",
+    "source_name": "SLMPD NIBRS Crime Files",
+    "source_url": "https://www.slmpd.org/stats/"
+  },
+  "worker_judgment_notes": "Selected the official SLMPD monthly NIBRS CSV files because they expose IncidentDate, IncidentNum, NIBRS/NIBRSCategory, direct Latitude/Longitude, and all seven Part-I offense families for 2024. NIBRS mapping follows the project FBI guide: 09A murder; 11A/11B/11C rape; 120 robbery; 13A aggravated assault; 220 burglary; 23A-23H larceny; 240 motor vehicle theft. The public monthly files re-emit supplemented incidents; a VictimNum-inclusive identity was audited and rejected after producing >30% overcounts on multiple offenses. The stable public identity is IncidentNum plus NIBRS/offense/location/coordinates. Incident rows are admitted as share-only; annual totals stay in the official control lane unless the strict 10% reconciliation gate clears."
+}

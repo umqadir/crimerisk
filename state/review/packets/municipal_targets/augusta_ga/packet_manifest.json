@@ -1,0 +1,18 @@
+{
+  "case_key": "augusta_ga",
+  "jurisdiction_id": "13:municipal:place:1304204",
+  "jurisdiction_name": "Augusta-Richmond County consolidated government (balance)",
+  "state_abbr": "GA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/augusta_ga",
+  "focus_rows": [
+    "13:municipal:cousub:1324590168",
+    "13:municipal:place:1304204"
+  ],
+  "review_goal": "Determine the correct municipal-target handling for Augusta's current split rows and decide whether Augusta should be represented by a single consolidated primary local row, two rows, or a custom-treatment structure with rerouted sheriff, police, and marshal agencies.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

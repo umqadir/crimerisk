@@ -1,0 +1,26 @@
+{
+  "city_key": "nashville",
+  "city_name": "Nashville",
+  "jurisdiction_id": "47:municipal:place:4752006",
+  "state_abbr": "TN",
+  "priority_bucket": "third_wave",
+  "priority_rank": "14",
+  "basis": "Large consolidated-city jurisdiction with public UCR incident dashboards, explicit download instructions, a pinned Tableau view contract, a validated workbook-level Map crosstab export, and official 2024 seven-offense crime-analysis reporting.",
+  "notes": "Useful official-count and packet-research surface, but no longer a clean city-share promotion lane under the repo bar: the validated whole-view bulk export rounds latitude/longitude too coarsely, and the precise mark-level export does not scale as a canonical bulk contract.",
+  "source_name": "MNPD UCR incidents dashboard plus crime-statistics reports",
+  "source_url": "https://www.nashville.gov/departments/police/data-dashboard/ucr-incidents-map ; https://www.nashville.gov/departments/police/download-police-dashboard-data ; https://policepublicdata.nashville.gov/t/Police/views/UCRPartICounts_16286288901850/IncidentsMap ; https://www.nashville.gov/departments/police/news-and-reports/crime-statistics ; https://www.nashville.gov/sites/default/files/2025-12/CJP-Criminal-Justice-Trends-2024.pdf?ct=1765199758",
+  "portal_type": "tableau_plus_official_crime_statistics_reports",
+  "coverage_start_year": "2020",
+  "coverage_end_year": "2026",
+  "years_usable": "7",
+  "recommended_disposition": "counts_usable_not_city_share_promotable",
+  "geocode_quality_tier": "mixed_mark_precise_bulk_rounded",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/nashville",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

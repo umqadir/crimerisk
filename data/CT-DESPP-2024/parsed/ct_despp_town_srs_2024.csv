@@ -1,0 +1,540 @@
+reporting_unit,town,year,source_offense,offense,count,definition_basis
+CTSP00100,Andover,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00100,Andover,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00100,Andover,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00100,Andover,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00100,Andover,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00100,Andover,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00100,Andover,2024,Robbery,robbery,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,Larceny_Theft Offenses Total,larceny,8,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00300,Ashford,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,Larceny_Theft Offenses Total,larceny,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00500,Barkhamsted,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,Larceny_Theft Offenses Total,larceny,8,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00600,Beacon Falls,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,Larceny_Theft Offenses Total,larceny,10,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP00800,Bethany,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01000,Bethlehem,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,Larceny_Theft Offenses Total,larceny,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01200,Bolton,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01300,Bozrah,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,Larceny_Theft Offenses Total,larceny,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01600,Bridgewater,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,Aggravated Assault,aggravated_assault,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,Burglary/Breaking & Entering,burglary,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,Larceny_Theft Offenses Total,larceny,21,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP01900,Brooklyn,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,Larceny_Theft Offenses Total,larceny,12,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,Motor Vehicle Theft,motor_vehicle_theft,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,All Rape,rape,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02000,Burlington,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02100,Canaan,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,Aggravated Assault,aggravated_assault,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,Larceny_Theft Offenses Total,larceny,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,Motor Vehicle Theft,motor_vehicle_theft,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02200,Canterbury,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02400,Chaplin,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02600,Chester,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,Burglary/Breaking & Entering,burglary,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,Larceny_Theft Offenses Total,larceny,23,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,Motor Vehicle Theft,motor_vehicle_theft,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,All Rape,rape,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02800,Colchester,2024,Robbery,robbery,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP02900,Colebrook,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03000,Columbia,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,Larceny_Theft Offenses Total,larceny,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03100,Cornwall,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,Murder and Nonnegligent Manslaughter,murder,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03600,Deep River,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03800,Durham,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP03900,Eastford,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,Burglary/Breaking & Entering,burglary,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04000,East Granby,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,Larceny_Theft Offenses Total,larceny,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04100,East Haddam,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,Burglary/Breaking & Entering,burglary,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,Larceny_Theft Offenses Total,larceny,31,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,Motor Vehicle Theft,motor_vehicle_theft,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP04800,Ellington,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,Burglary/Breaking & Entering,burglary,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,Larceny_Theft Offenses Total,larceny,13,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,Motor Vehicle Theft,motor_vehicle_theft,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05000,Essex,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,Larceny_Theft Offenses Total,larceny,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05300,Franklin,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05500,Goshen,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,Aggravated Assault,aggravated_assault,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,Larceny_Theft Offenses Total,larceny,16,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,Motor Vehicle Theft,motor_vehicle_theft,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP05800,Griswold,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,Larceny_Theft Offenses Total,larceny,11,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,Motor Vehicle Theft,motor_vehicle_theft,8,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06100,Haddam,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06300,Hampton,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06500,Hartland,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,Aggravated Assault,aggravated_assault,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,Larceny_Theft Offenses Total,larceny,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,Murder and Nonnegligent Manslaughter,murder,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06600,Harwinton,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,Larceny_Theft Offenses Total,larceny,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06700,Hebron,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06800,Kent,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,Aggravated Assault,aggravated_assault,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,Burglary/Breaking & Entering,burglary,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,Larceny_Theft Offenses Total,larceny,64,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,Motor Vehicle Theft,motor_vehicle_theft,14,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,All Rape,rape,10,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP06900,Killingly,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,Larceny_Theft Offenses Total,larceny,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07000,Killingworth,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,Motor Vehicle Theft,motor_vehicle_theft,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07100,Lebanon,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,Larceny_Theft Offenses Total,larceny,114,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07300,Lisbon,2024,Robbery,robbery,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,Aggravated Assault,aggravated_assault,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,Burglary/Breaking & Entering,burglary,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,Larceny_Theft Offenses Total,larceny,23,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07400,Litchfield,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,Larceny_Theft Offenses Total,larceny,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07500,Lyme,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,Burglary/Breaking & Entering,burglary,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,Larceny_Theft Offenses Total,larceny,32,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,All Rape,rape,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07800,Mansfield,2024,Robbery,robbery,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,Larceny_Theft Offenses Total,larceny,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP07900,Marlborough,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,Larceny_Theft Offenses Total,larceny,12,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08200,Middlefield,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP08700,Morris,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,Larceny_Theft Offenses Total,larceny,16,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,Motor Vehicle Theft,motor_vehicle_theft,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09100,New Fairfield,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,Larceny_Theft Offenses Total,larceny,10,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09200,New Hartford,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP09800,Norfolk,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,Larceny_Theft Offenses Total,larceny,10,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10000,North Canaan,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,Larceny_Theft Offenses Total,larceny,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10200,North Stonington,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,Larceny_Theft Offenses Total,larceny,11,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,Motor Vehicle Theft,motor_vehicle_theft,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10500,Old Lyme,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,Larceny_Theft Offenses Total,larceny,17,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,Murder and Nonnegligent Manslaughter,murder,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP10800,Oxford,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,Larceny_Theft Offenses Total,larceny,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11200,Pomfret,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,Motor Vehicle Theft,motor_vehicle_theft,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11400,Preston,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,Burglary/Breaking & Entering,burglary,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,Larceny_Theft Offenses Total,larceny,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP11500,Prospect,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,Larceny_Theft Offenses Total,larceny,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12000,Roxbury,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,Larceny_Theft Offenses Total,larceny,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,Motor Vehicle Theft,motor_vehicle_theft,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12100,Salem,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,Larceny_Theft Offenses Total,larceny,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12200,Salisbury,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12300,Scotland,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12500,Sharon,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12700,Sherman,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,Burglary/Breaking & Entering,burglary,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,Larceny_Theft Offenses Total,larceny,12,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,Motor Vehicle Theft,motor_vehicle_theft,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP12900,Somers,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,Burglary/Breaking & Entering,burglary,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,Larceny_Theft Offenses Total,larceny,88,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,Motor Vehicle Theft,motor_vehicle_theft,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13000,Southbury,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,Larceny_Theft Offenses Total,larceny,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13300,Sprague,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,Burglary/Breaking & Entering,burglary,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,Larceny_Theft Offenses Total,larceny,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,Motor Vehicle Theft,motor_vehicle_theft,10,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13400,Stafford,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,Aggravated Assault,aggravated_assault,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,Burglary/Breaking & Entering,burglary,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,Larceny_Theft Offenses Total,larceny,6,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP13600,Sterling,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,Aggravated Assault,aggravated_assault,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,Larceny_Theft Offenses Total,larceny,14,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,Motor Vehicle Theft,motor_vehicle_theft,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,All Rape,rape,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14100,Thompson,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,Burglary/Breaking & Entering,burglary,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,Larceny_Theft Offenses Total,larceny,18,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,Motor Vehicle Theft,motor_vehicle_theft,8,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14200,Tolland,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,Burglary/Breaking & Entering,burglary,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,Larceny_Theft Offenses Total,larceny,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,Motor Vehicle Theft,motor_vehicle_theft,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14500,Union,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,Larceny_Theft Offenses Total,larceny,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,Murder and Nonnegligent Manslaughter,murder,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14700,Voluntown,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,Larceny_Theft Offenses Total,larceny,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP14900,Warren,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,Burglary/Breaking & Entering,burglary,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,Larceny_Theft Offenses Total,larceny,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,Motor Vehicle Theft,motor_vehicle_theft,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15000,Washington,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,Larceny_Theft Offenses Total,larceny,12,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,Motor Vehicle Theft,motor_vehicle_theft,7,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP15400,Westbrook,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,Larceny_Theft Offenses Total,larceny,14,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,Motor Vehicle Theft,motor_vehicle_theft,4,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16000,Willington,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,Larceny_Theft Offenses Total,larceny,10,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,Motor Vehicle Theft,motor_vehicle_theft,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,All Rape,rape,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16300,Windham,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,Aggravated Assault,aggravated_assault,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,Burglary/Breaking & Entering,burglary,3,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,Larceny_Theft Offenses Total,larceny,20,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,Motor Vehicle Theft,motor_vehicle_theft,9,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,All Rape,rape,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16800,Woodbury,2024,Robbery,robbery,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,Aggravated Assault,aggravated_assault,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,Burglary/Breaking & Entering,burglary,2,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,Larceny_Theft Offenses Total,larceny,5,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,Motor Vehicle Theft,motor_vehicle_theft,1,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,Murder and Nonnegligent Manslaughter,murder,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,All Rape,rape,0,CT Crime Insight offense-category count; CSP town jurisdiction member
+CTSP16900,Woodstock,2024,Robbery,robbery,1,CT Crime Insight offense-category count; CSP town jurisdiction member

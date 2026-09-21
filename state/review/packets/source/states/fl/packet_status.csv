@@ -1,0 +1,2 @@
+state_abbr,packet_status,current_owner,production_input_ready,notes
+FL,completed,codex,true,Florida packet now includes the staged FDLE 2024 extract plus an explicit ingestion contract and spotcheck reconciliation

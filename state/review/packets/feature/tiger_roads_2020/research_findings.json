@@ -1,0 +1,121 @@
+{
+  "packet": "tiger_roads_2020",
+  "generated_at": "2026-03-22T15:43:46-0400",
+  "scope": "Diagnosis only. No shared code or central docs changed.",
+  "inputs": {
+    "manifest_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_roads/download_manifest_2020.json",
+    "log_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/logs/tiger_roads_pull.log",
+    "roads_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_roads",
+    "state_out_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/roads/state_block_groups",
+    "bg_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg"
+  },
+  "snapshot": {
+    "manifest_rows": 702,
+    "downloaded_rows": 682,
+    "failed_permanent_rows": 19,
+    "failed_transient_rows": 1,
+    "http_403_rows": 19,
+    "http_429_rows": 1,
+    "expected_counties_from_bg": 3221,
+    "zip_files_present": 876,
+    "state_parquets_present": [
+      "02",
+      "04",
+      "05",
+      "06",
+      "08",
+      "09",
+      "10",
+      "11",
+      "12",
+      "13",
+      "15",
+      "16",
+      "17",
+      "18"
+    ],
+    "manifest_states_started": [
+      "01",
+      "02",
+      "05",
+      "06",
+      "08",
+      "09",
+      "10",
+      "12",
+      "13",
+      "15",
+      "16",
+      "17",
+      "18",
+      "19"
+    ],
+    "manifest_row_share_of_expected_counties": 0.217945,
+    "zip_file_share_of_expected_counties": 0.271965,
+    "state_parquet_share_of_bg_states": 0.269231,
+    "combined_national_parquet_exists": false
+  },
+  "live_process_observations": {
+    "active_command": "uv run python scripts/pull_tiger_roads.py --failed-only --download-sleep-seconds 2.0 --max-download-attempts 8 --retry-max-sleep-seconds 3600",
+    "manifest_growth_check": {
+      "start_rows": 655,
+      "end_rows": 663,
+      "seconds": 20,
+      "interpretation": "the current job was still advancing during diagnosis rather than being fully stuck"
+    }
+  },
+  "key_findings": [
+    "The TIGER pull is incomplete primarily because the national crawl is not finished. By the snapshot time it had only reached state 19 in the manifest, while the project expects 52 BG state files and 3,221 county-equivalent roads ZIPs.",
+    "The current recovery command is mislabeled operationally: scripts/pull_tiger_roads.py --failed-only does not restrict work to failed rows. Counties that are absent from the manifest still download if no valid ZIP exists, so the live job is continuing the national crawl rather than only retrying failures.",
+    "download_manifest_2020.json is not an inventory of local coverage. Cached valid ZIPs are skipped before download_tiger_roads_zip() is called, so those counties never get manifest rows. Arizona (04) and DC (11) already have complete local ZIP coverage and completed state parquets while the manifest still shows zero rows for both.",
+    "The log file state/logs/tiger_roads_pull.log is stale/truncated and not suitable for progress monitoring. It stops at '[15/52] 18: ensuring 92 TIGER county roads zips...' even though the manifest and local ZIP directory had advanced beyond that point during diagnosis.",
+    "The current blocker for a usable national V2 roads/access family is the missing final concat step, not total absence of intermediate work. data/roads/block_group_road_metrics.parquet does not exist, and the script only writes that national parquet after the full state loop completes.",
+    "The remaining manifest failures are a small tail of 19 HTTP 403 rows and 1 HTTP 429 row on valid Census URLs, not evidence that TIGER 2020 roads files are broadly missing. A direct HEAD probe to https://www2.census.gov/geo/tiger/TIGER2020/ROADS/tl_2020_08003_roads.zip returned HTTP 200 on 2026-03-22, so at least part of the current failed_permanent set is actually retryable."
+  ],
+  "why_the_pull_looks_more_incomplete_than_it_is": [
+    "Manifest rows undercount the local cache because cached ZIPs do not backfill the manifest.",
+    "The top-level log file is not the live progress source.",
+    "The failed-only run name implies a narrow retry pass, but the script logic continues unseen counties too."
+  ],
+  "why_the_pull_is_still_truly_incomplete": [
+    "Only 876 of 3,221 expected county-equivalent TIGER roads ZIPs were present locally at snapshot time.",
+    "Only 14 of 52 BG states had completed state parquet outputs.",
+    "The national parquet expected by the V2 model surface was absent."
+  ],
+  "recommended_path": {
+    "decision": "Stay on TIGER 2020 for V2 and finish from the existing cache. Do not switch sources immediately.",
+    "why": [
+      "The current feature code already maps TIGER MTFCC and RTTYP into the desired drivable and limited-access outputs.",
+      "Most of the remaining problem is operational completion and bookkeeping, not a bad source choice.",
+      "A source switch to OSM or Overture would require new download, schema, and class/access mapping work before parity with the current feature family."
+    ],
+    "next_steps": [
+      "Treat the current live run as a moving crawl, not a failed-only recovery. If its manifest row count keeps increasing, let it finish the current bounded state batch; if row counts stop moving for a meaningful interval, stop it and resume with explicit --states batches.",
+      "Before the next recovery pass, rebuild an inventory from the existing validated ZIP cache so progress tracking reflects actual local coverage instead of only manifest rows.",
+      "Resume the remaining national pull in explicit state batches starting from the current frontier instead of one long all-state run. One to three states per invocation is the pragmatic retry unit.",
+      "After each successful state batch, keep the state parquet as the checkpoint and concatenate completed state parquets into the national roads parquet rather than waiting for a single monolithic run to reach the final print statement.",
+      "Treat the current 403 rows as retryable until a fresh low-rate probe returns a true 404 or repeated failures after cooldown."
+    ],
+    "not_recommended_now": [
+      "Do not narrow V2 to a partial-national roads family if national consistency is required.",
+      "Do not replace TIGER immediately with a different source unless bounded state-batch retries still fail materially after reusing the existing cache."
+    ],
+    "fallback_sources_if_tiger_remains_unreliable": [
+      {
+        "source": "Overture Maps transportation segments",
+        "fit": "Best semantic fallback if explicit access restrictions matter.",
+        "tradeoff": "Meaningful rework. New ingest, new class mapping, and new aggregation logic would be required."
+      },
+      {
+        "source": "OpenStreetMap state extracts via Geofabrik",
+        "fit": "Operationally simpler downloads than 3,221 county ZIP requests.",
+        "tradeoff": "Still needs a new ingest path and has weaker direct comparability to the current TIGER limited-access features."
+      }
+    ]
+  },
+  "external_source_links": [
+    "https://www2.census.gov/geo/tiger/TIGER2020/ROADS/",
+    "https://docs.overturemaps.org/schema/concepts/by-theme/transportation/roads/",
+    "https://download.geofabrik.de/north-america/us.html"
+  ]
+}

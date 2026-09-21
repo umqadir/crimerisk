@@ -1,0 +1,231 @@
+{
+  "case_key": "brunswick_ga",
+  "jurisdiction_id": "13:municipal:place:1311560",
+  "jurisdiction_name": "Brunswick city",
+  "state_abbr": "GA",
+  "review_date": "2026-03-24",
+  "source": {
+    "source_name": "Crime Statistics | Brunswick GA",
+    "source_url": "https://www.brunswickga.org/police/page/crime-statistics",
+    "publisher": "City of Brunswick",
+    "publisher_subunit": "Brunswick Police Department",
+    "retrieval_note": "Direct Playwright and curl access hit Cloudflare bot protection on 2026-03-24. The official page content was successfully inspected through the web fetch path.",
+    "source_scope": "Official city police webpage publishing Brunswick-specific UCR Part 1 crime tables by year.",
+    "definition_lines": {
+      "ucr_program": "L141-L143",
+      "local_usage_statement": "L144-L146"
+    },
+    "definition_summary": [
+      "The page states that the FBI Uniform Crime Reporting Program is the underlying reporting frame.",
+      "The page states that UCR Part 1 crime statistics are the measurement Brunswick Police uses most often to gauge progress in reducing crime in the city."
+    ],
+    "observed_date_coverage": {
+      "full_monthly_tables": [
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024,
+        2025
+      ],
+      "partial_or_shell_sections": [
+        2026
+      ],
+      "extra_summary_blocks": [
+        "Yearly UCR Totals-2019",
+        "Yearly UCR Totals-2020"
+      ],
+      "coverage_note": "The current page visibly carries full monthly tables from 2019 through 2025, a 2026 shell section, and separate yearly summary blocks for 2019 and 2020."
+    }
+  },
+  "recommended_use": {
+    "status": "recommended_for_targeted_2023_2024_repair",
+    "recommended_exact_v2_offenses": [
+      "murder",
+      "rape",
+      "robbery",
+      "aggravated_assault",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "why_recommended": [
+      "The page is an official City of Brunswick police statistics surface rather than a third-party mirror.",
+      "For 2022, the page's seven core counts match the repo's existing Brunswick `GA0630100` annual observation counts exactly, which strongly supports label continuity into 2023 and 2024.",
+      "For 2023 and 2024, the page publishes city-specific monthly rows for every core offense needed for targeted repair."
+    ],
+    "why_not_archive_grade_full_series": [
+      "The page has internal inconsistencies outside the narrow 2023-2024 repair target, including conflicting prior-year totals in the 2024 section and separate 2019-2020 yearly summary blocks that do not agree with the monthly-table values.",
+      "Because Georgia's public GBI agency-level download surface is unavailable, this city page is best treated as a targeted repair surface rather than a sole historical rewrite source."
+    ]
+  },
+  "offense_mapping": [
+    {
+      "published_label": "Homicide",
+      "comparison_target_v2_offense": "murder",
+      "comparison_quality": "exact",
+      "basis": "Direct UCR Part 1 homicide label on city page; 2022 page total 3 matches repo 2022 Brunswick murder count 3."
+    },
+    {
+      "published_label": "Rape",
+      "comparison_target_v2_offense": "rape",
+      "comparison_quality": "exact",
+      "basis": "Direct UCR Part 1 rape label on city page; 2022 page total 16 matches repo 2022 Brunswick rape count 16."
+    },
+    {
+      "published_label": "Robbery",
+      "comparison_target_v2_offense": "robbery",
+      "comparison_quality": "exact",
+      "basis": "Direct parent robbery row on city page; 2022 page total 58 matches repo 2022 Brunswick robbery count 58."
+    },
+    {
+      "published_label": "Robbery - Firearm",
+      "comparison_target_v2_offense": "robbery",
+      "comparison_quality": "published_subslice",
+      "basis": "Useful robbery subtype context only. These rows partition the robbery parent row and are not standalone V2 offenses."
+    },
+    {
+      "published_label": "Robbery - Knife",
+      "comparison_target_v2_offense": "robbery",
+      "comparison_quality": "published_subslice",
+      "basis": "Useful robbery subtype context only. These rows partition the robbery parent row and are not standalone V2 offenses."
+    },
+    {
+      "published_label": "Robbery - Other",
+      "comparison_target_v2_offense": "robbery",
+      "comparison_quality": "published_subslice",
+      "basis": "Useful robbery subtype context only. These rows partition the robbery parent row and are not standalone V2 offenses."
+    },
+    {
+      "published_label": "Robbery - Strong Arm",
+      "comparison_target_v2_offense": "robbery",
+      "comparison_quality": "published_subslice",
+      "basis": "Useful robbery subtype context only. These rows partition the robbery parent row and are not standalone V2 offenses."
+    },
+    {
+      "published_label": "Assaults",
+      "comparison_target_v2_offense": null,
+      "comparison_quality": "broader_than_target",
+      "basis": "Broader assault family on the page that contains aggravated and simple assault subtotals."
+    },
+    {
+      "published_label": "Aggravated Subtotal",
+      "comparison_target_v2_offense": "aggravated_assault",
+      "comparison_quality": "exact",
+      "basis": "Direct nested aggravated assault subtotal on city page; 2022 page total 127 matches repo 2022 Brunswick aggravated assault count 127."
+    },
+    {
+      "published_label": "Simple Assaults Subtotal",
+      "comparison_target_v2_offense": null,
+      "comparison_quality": "not_in_v2_core",
+      "basis": "Published city subtotal, but simple assault is outside the V2 core offense frame."
+    },
+    {
+      "published_label": "Burglary",
+      "comparison_target_v2_offense": "burglary",
+      "comparison_quality": "exact",
+      "basis": "Direct city row; 2022 page total 108 matches repo 2022 Brunswick burglary count 108."
+    },
+    {
+      "published_label": "Larceny",
+      "comparison_target_v2_offense": "larceny",
+      "comparison_quality": "exact",
+      "basis": "Direct city row; 2022 page total 647 matches repo 2022 Brunswick larceny count 647. For 2023, the page's annual total 328 is consistent with the public page text already captured in the packet, even though the visible monthly cells on the fetched page do not sum cleanly."
+    },
+    {
+      "published_label": "Vehicle Theft",
+      "comparison_target_v2_offense": "motor_vehicle_theft",
+      "comparison_quality": "exact",
+      "basis": "Direct city row; 2022 page total 56 matches repo 2022 Brunswick motor vehicle theft count 56."
+    },
+    {
+      "published_label": "Arson",
+      "comparison_target_v2_offense": null,
+      "comparison_quality": "not_in_v2_core",
+      "basis": "Published on page but outside the V2 core offense frame."
+    },
+    {
+      "published_label": "TOTAL",
+      "comparison_target_v2_offense": null,
+      "comparison_quality": "context_only",
+      "basis": "Useful page context only, not promotable as a single V2 offense."
+    }
+  ],
+  "validation": {
+    "repo_alignment_anchor_year": 2022,
+    "repo_alignment_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/observations/agency_year_observations.parquet",
+    "repo_alignment_matches": [
+      {
+        "offense": "murder",
+        "page_2022": 3,
+        "repo_2022": 3
+      },
+      {
+        "offense": "rape",
+        "page_2022": 16,
+        "repo_2022": 16
+      },
+      {
+        "offense": "robbery",
+        "page_2022": 58,
+        "repo_2022": 58
+      },
+      {
+        "offense": "aggravated_assault",
+        "page_2022": 127,
+        "repo_2022": 127
+      },
+      {
+        "offense": "burglary",
+        "page_2022": 108,
+        "repo_2022": 108
+      },
+      {
+        "offense": "larceny",
+        "page_2022": 647,
+        "repo_2022": 647
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "page_2022": 56,
+        "repo_2022": 56
+      }
+    ],
+    "internal_consistency_notes": [
+      "The 2024 homicide row at L593 displays annual total 5 even though the visible monthly cells sum to 4.",
+      "The 2024 simple-assault subtotal row at L602 displays annual total 351 even though the visible monthly cells sum to 350.",
+      "The 2024 section's prior-year comparison row at L608 lists 2023 February total 88 and annual total 1126, while the 2023 monthly table total row at L627 shows February 84 and annual total 1127.",
+      "The 2023 larceny row at L624 shows monthly values that do not sum to the row's displayed total 328 in the fetched page text. The page text already cited in the packet and the row total itself support using 328 as the stronger annual target, but the monthly cells should be treated cautiously.",
+      "The 2019-2020 yearly summary blocks at L693-L705 and L726-L738 do not agree with the corresponding monthly table totals, so the page should not be treated as a clean archive-grade full-series source without additional reconciliation."
+    ]
+  },
+  "target_2023_2024_core_counts": {
+    "2024": {
+      "murder": 5,
+      "rape": 9,
+      "robbery": 26,
+      "aggravated_assault": 106,
+      "burglary": 88,
+      "larceny": 412,
+      "motor_vehicle_theft": 66
+    },
+    "2023": {
+      "murder": 3,
+      "rape": 9,
+      "robbery": 51,
+      "aggravated_assault": 131,
+      "burglary": 94,
+      "larceny": 328,
+      "motor_vehicle_theft": 57
+    }
+  },
+  "source_line_references": {
+    "scope_and_definition": "L141-L146",
+    "2024_table": "L591-L607",
+    "2023_table": "L611-L627",
+    "2022_anchor_table": "L631-L647",
+    "2020_yearly_summary_block": "L693-L705",
+    "2019_yearly_summary_block": "L726-L738"
+  }
+}

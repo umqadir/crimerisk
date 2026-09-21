@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+columbus_oh,LexisNexis Community Crime Map - Columbus Division of Police incidents,https://www.columbus.gov/Services/Public-Safety/Find-a-Police-Report/Find-Reports,https://communitycrimemap.com/api/v1/search/load-data,csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/columbus_oh_raw.parquet,,

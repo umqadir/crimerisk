@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,aggravated_assault,1762.0,cius_publication_annual,high
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,burglary,1362.0,cius_publication_annual,high
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,larceny,10049.0,cius_publication_annual,high
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,motor_vehicle_theft,2349.0,cius_publication_annual,high
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,murder,25.0,cius_publication_annual,high
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,rape,176.0,cius_publication_annual,high
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,robbery,423.0,cius_publication_annual,high

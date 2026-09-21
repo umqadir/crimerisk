@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,state_abbr,priority_bucket,priority_rank,packet_status,current_owner,production_ready,city_share_integration_status,reconciliation_status,notes
+chicago,Chicago,17:municipal:place:1714000,IL,first_wave,2,review_complete,codex,yes,live,citywide_path_retained_2023_public_reconciliation_complete,"Chicago remains a live citywide path. The canonical builder and stored annual-report reconciliation stay strong enough for production use, while rape and aggravated_assault remain approximate published comparisons rather than exact one-to-one lines."

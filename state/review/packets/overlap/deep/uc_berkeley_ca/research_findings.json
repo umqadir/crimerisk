@@ -1,0 +1,129 @@
+{
+  "case_key": "uc_berkeley_ca",
+  "ori": "CA0019700",
+  "agency_name_raw": "un of ca: berkeley",
+  "state_abbr": "CA",
+  "question": "What is the most defensible production treatment for CA0019700, University of California Berkeley Police: bounded campus footprint, city/county proxy, broader university-system row, or broad overlap until a custom footprint exists?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "campus",
+    "footprint_type": "discontiguous_campus_and_associated_university_properties",
+    "confidence": 0.97
+  },
+  "provider_distinction": {
+    "ucpd_berkeley_role": "UCPD Berkeley is the UC Berkeley campus police department with primary responsibility for campus property and associated university properties served by UC Berkeley.",
+    "city_and_neighboring_police_role": "UC Berkeley's official safety and jurisdiction pages say Berkeley Police Department takes off-campus incidents on city property and adjacent neighborhoods, while UCPD collaborates with Berkeley and neighboring city departments when incidents cross jurisdictions.",
+    "overlap_implication": "This row represents a real campus-special-jurisdiction overlap tied to UC Berkeley properties, not a substitute for Berkeley city policing and not a generic university-system layer."
+  },
+  "verified_findings": [
+    {
+      "topic": "California law creates statewide peace-officer status but anchors primary duty to UC property geography",
+      "finding": "Education Code Section 92600 authorizes UC police on UC campuses, within one mile of campus exterior boundaries, and on other grounds or properties owned, operated, controlled, or administered by the Regents. Penal Code Section 830.2 makes UC police peace officers anywhere in the state, but says their primary duty remains enforcement within the Education Code 92600 area."
+    },
+    {
+      "topic": "Operational responsibility is narrower than a blanket one-mile city halo",
+      "finding": "Berkeley's own jurisdiction and safety pages say UCPD has primary responsibility on campus and associated university properties, while Berkeley Police takes reports for incidents off campus on city property and adjacent neighborhoods. For production localization, the routine footprint should therefore follow UC Berkeley properties rather than a default one-mile campus buffer."
+    },
+    {
+      "topic": "Official Berkeley sources distinguish campus-owned geography from adjacent city-policing geography",
+      "finding": "The UCPD jurisdiction page states UCPD has primary law-enforcement jurisdiction on campus and associated university properties, explicitly says Berkeley Police takes incidents occurring off campus, and further notes that most non-university properties like fraternities, sororities, and some cooperative housing belong to local law enforcement rather than UCPD."
+    },
+    {
+      "topic": "UCPD also has primary responsibility for some noncontiguous Berkeley properties",
+      "finding": "The same UCPD jurisdiction page specifically carves out four Berkeley-area cooperative properties where UCPD does have primary responsibility: Cloyne Court, Fenwick-Weavers, Rochdale Village, and The Convent. That confirms the ordinary footprint is not just the contiguous central campus polygon."
+    },
+    {
+      "topic": "Official UC Berkeley administration materials describe a multicity service footprint",
+      "finding": "UC Berkeley's Administration Division annual report says UCPD Berkeley has primary law-enforcement jurisdiction on the Berkeley campus and associated university properties in Albany, Berkeley, Emeryville, Kensington, Oakland, and Richmond. This defeats any simple Berkeley-place proxy and shows the row is not coterminous with one municipality."
+    },
+    {
+      "topic": "Official campus map materials show the printed campus map is incomplete for the full policing footprint",
+      "finding": "UC Berkeley's official map page says the Berkeley Campus includes Campus Park, Hill Campus, Clark Kerr Campus, and other university-owned properties in the city environs, and also warns that off-campus locations may be included in the building list but not on campus maps. The printable campus map is therefore useful for the core campus geometry, but not sufficient by itself for the full policing footprint."
+    },
+    {
+      "topic": "Official Berkeley property sources verify non-Berkeley associated properties",
+      "finding": "UC Berkeley Housing identifies University Village as family student housing in Albany, and Richmond Field Station describes itself as UC Berkeley's campus for applied research across 175 acres. Those official property pages independently confirm that the Berkeley UCPD row reaches beyond the City of Berkeley."
+    },
+    {
+      "topic": "Official local-government sources verify that part of the named Berkeley footprint lies outside Alameda County",
+      "finding": "The City of Richmond says Richmond is in Contra Costa County, and Contra Costa County's Kensington page treats Kensington as a county-governed community. Because Berkeley's own UCPD annual report names Richmond and Kensington among associated university-property cities, an Alameda County proxy would understate the official footprint."
+    },
+    {
+      "topic": "This is not a broader UC-system or Lawrence Berkeley Lab row",
+      "finding": "The official sources consistently describe UCPD Berkeley and UC Berkeley properties, not a systemwide University of California police layer. Local repo evidence also separates other UC campus police rows and carries a distinct Lawrence Berkeley Lab police row, so this case should stay scoped to Berkeley-served UC Berkeley properties."
+    }
+  ],
+  "exact_service_footprint_for_production": {
+    "type": "custom discontiguous UC Berkeley campus-and-associated-properties footprint",
+    "include": [
+      "the official Berkeley campus core shown on UC Berkeley's campus map materials, including Campus Park, Hill Campus, and Clark Kerr Campus",
+      "other UC Berkeley-owned or operated Berkeley properties that the official map page says fall within the Berkeley Campus and surrounding city environs",
+      "associated UC Berkeley properties that Berkeley's Administration Division says UCPD Berkeley serves in Albany, Berkeley, Emeryville, Kensington, Oakland, and Richmond",
+      "University Village family-student-housing property in Albany",
+      "Richmond Field Station in Richmond",
+      "the specific noncampus cooperative properties where UCPD says it has primary responsibility: Cloyne Court, Fenwick-Weavers, Rochdale Village, and The Convent"
+    ],
+    "exclude": [
+      "Berkeley city as a whole",
+      "Alameda County as a whole",
+      "generic off-campus Berkeley neighborhoods and city property bordering campus where Berkeley Police is the primary responder",
+      "non-university properties such as fraternities, sororities, and cooperative housing that UCPD says are ordinarily handled by local law enforcement",
+      "a blanket one-mile perimeter halo around the campus",
+      "a broader University of California system footprint",
+      "automatic inclusion of Lawrence Berkeley National Laboratory or other separately tracked UC special-jurisdiction rows without a separate row-merger decision"
+    ],
+    "legal_basis": "Education Code Section 92600 defines the UC police authority area by campus and Regents-controlled property, and Penal Code Section 830.2 keeps the officer's primary duty tied to that Education Code geography. Berkeley's own operational pages then narrow ordinary responsibility to campus and associated university properties rather than all surrounding city territory.",
+    "implementation_note": "Build a discontiguous property-based footprint from official UC Berkeley campus-map geometry plus parcel/building-level UC Berkeley properties in the named cities Berkeley identifies for UCPD Berkeley. The central campus PDF is only one component; do not substitute Berkeley city, Alameda County, or a one-mile halo when the custom geometry is not yet available."
+  },
+  "proxy_assessment": {
+    "single_place_berkeley": {
+      "defensible": false,
+      "why_not": "Berkeley's own annual-report language says the footprint includes associated university properties in Albany, Emeryville, Oakland, Kensington, and Richmond in addition to Berkeley. A Berkeley-place proxy would omit real, officially named service geography."
+    },
+    "single_county_alameda": {
+      "defensible": false,
+      "why_not": "Berkeley's own annual report names Richmond and Kensington among UCPD Berkeley's associated-property cities, and official local-government pages place those communities in Contra Costa County. Alameda County is therefore too narrow."
+    },
+    "blanket_statutory_one_mile_halo": {
+      "defensible": false,
+      "why_not": "Education Code 92600 provides legal authority within one mile of campus boundaries, but Berkeley's own operational materials say Berkeley Police takes ordinary off-campus incidents while UCPD is responsible for campus and associated university properties. Using a blanket one-mile polygon would overstate routine production geography."
+    },
+    "broader_uc_system_row": {
+      "defensible": false,
+      "why_not": "The official sources are Berkeley-specific, and the repo separately tracks other UC campus police rows. This row should not be inflated into a systemwide UC layer."
+    },
+    "absorb_into_primary_jurisdiction": {
+      "defensible": false,
+      "why_not": "Absorbing the row into Berkeley Police or neighboring locals would erase a real concurrent campus special-jurisdiction layer that Berkeley and California law both treat as distinct."
+    }
+  },
+  "repo_evidence": {
+    "queue_context": "The live overlap queue row for CA0019700 still labeled the case likely_proxy_ok with a Berkeley place anchor, which is too optimistic once Berkeley's own multicity footprint sources are reviewed.",
+    "compare_run_divergence": [
+      "One repo compare run localized CA0019700 to Berkeley city from the campus map alone.",
+      "Another repo compare run shifted to Alameda County after noticing Albany and Emeryville.",
+      "The official Richmond and Kensington evidence closes that disagreement by showing both place and Alameda County proxies are still too small."
+    ],
+    "separate_special_jurisdiction_rows": "The repo already carries separate rows for other UC campus agencies and a separate Lawrence Berkeley Lab police row, which supports keeping this packet narrowly scoped to UCPD Berkeley's own property footprint."
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "campus",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "discontiguous_campus_and_associated_university_properties",
+    "geometry_sources": [
+      "https://ucpd.berkeley.edu/topics/jurisdiction",
+      "https://ucpd.berkeley.edu/safety/enhancing-safety-campus-and-community",
+      "https://vca.berkeley.edu/annual-reports/2022-vca-annual-report/milestones-and-goals-vca-department-2023/2022-vca-annual-9",
+      "https://www.berkeley.edu/map/",
+      "https://www.berkeley.edu/wp-content/uploads/2025/06/campus-map-20250609.pdf",
+      "https://housing.berkeley.edu/explore-housing-options/family-student-housing-university-village/",
+      "https://rfs.berkeley.edu/",
+      "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=EDC&sectionNum=92600.",
+      "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=830.2.",
+      "https://www.ci.richmond.ca.us/112/History-of-Richmond",
+      "https://www.contracosta.ca.gov/4433/Kensington"
+    ],
+    "implementation_note": "Production should localize CA0019700 only when it can support a discontiguous UC Berkeley property footprint. Until that custom geometry exists, keep the row broad overlap rather than fabricating Berkeley-city, Alameda-County, or one-mile-halo precision."
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "case_key": "north_miami_fl",
+  "jurisdiction_id": "12:municipal:place:1249450",
+  "jurisdiction_name": "North Miami city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/north_miami_fl",
+  "review_goal": "Determine whether North Miami should retain a standalone municipal control row and whether the current full-fill condition reflects a real city-police continuity failure or an invalid municipal/service-structure target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

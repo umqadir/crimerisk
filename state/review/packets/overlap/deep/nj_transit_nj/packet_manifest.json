@@ -1,0 +1,14 @@
+{
+  "case_key": "nj_transit_nj",
+  "ori": "NJ0073200",
+  "agency_name_raw": "NJ Transit Police",
+  "state_abbr": "NJ",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/nj_transit_nj",
+  "required_artifacts": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "question": "Determine the defensible production handling for ORI NJ0073200 (NJ Transit Police): custom NJ TRANSIT system footprint, county/place proxy, absorb-into-primary, or broad-overlap retention pending custom geometry."
+}

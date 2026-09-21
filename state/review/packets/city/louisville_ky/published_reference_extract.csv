@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,aggravated_assault,3565.0,srs_return_a_annual,high
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,burglary,3084.0,srs_return_a_annual,high
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,larceny,14604.0,nibrs_srs_equivalent_annual,high
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,motor_vehicle_theft,5306.0,srs_return_a_annual,high
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,murder,147.0,srs_return_a_annual,high
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,rape,208.0,srs_return_a_annual,high
+louisville_ky,"Louisville, Kentucky",21:municipal:place:2148000,robbery,868.0,srs_return_a_annual,high

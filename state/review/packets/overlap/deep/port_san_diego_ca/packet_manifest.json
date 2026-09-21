@@ -1,0 +1,14 @@
+{
+  "case_key": "port_san_diego_ca",
+  "ori": "CA0371500",
+  "agency_name_raw": "Port of San Diego Harbor Police",
+  "state_abbr": "CA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/port_san_diego_ca",
+  "review_goal": "Determine the defensible production handling for CA0371500 Port of San Diego Harbor Police and whether the correct outcome is a county/place proxy, a broad overlap hold, or a custom footprint tied to the Port's real policing geography.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "state_abbr": "GA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ga",
+  "priority_rows": 7,
+  "queue_rows": 655,
+  "required_outputs": [
+    "packet_status.csv",
+    "research_findings.json",
+    "source_recommendations.csv"
+  ]
+}

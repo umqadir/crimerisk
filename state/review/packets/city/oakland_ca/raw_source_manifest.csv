@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+oakland_ca,Oakland Police Department CrimeWatch Data (Socrata ppgh-7dqv),https://data.oaklandca.gov/Public-Safety/CrimeWatch-Data/ppgh-7dqv,https://data.oaklandca.gov/resource/ppgh-7dqv.json,socrata,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_batch_b_oakland/gate17_batch_b_oakland_20260708_090135/raw/oakland_ca_raw.parquet,1293721,5484a523f29eda02e2a302b48d18befc3a23438f628b2029832e0bf1ed639fc8

@@ -1,0 +1,18 @@
+{
+  "case_key": "uc_davis_ca",
+  "ori": "CA0579700",
+  "agency_name_raw": "un of ca: davis",
+  "state_abbr": "CA",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/uc_davis_ca"
+  },
+  "bottom_line": "Treat CA0579700 as a custom discontiguous UC Davis police footprint, not as Davis city, Yolo County, Sacramento County, or the whole UC Davis institutional system. The most defensible production geometry is the Davis campus and directly served UC properties in and around Davis plus the Sacramento UC Davis Health campus and directly associated mapped campus properties; until that custom multi-campus geometry exists, the row should remain broad overlap."
+}

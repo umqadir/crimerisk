@@ -1,0 +1,15 @@
+column,dtype
+OBJECTID,int64
+GlobalID,object
+CaseNum,object
+OccurredFrom,int64
+iOccYr,int64
+NIBRSClassCode,object
+NIBRSClassCodeDesc,object
+NIBRSClassDesc,object
+CAIU_ClassType,object
+PublicData,object
+Latitude,float64
+Longitude,float64
+__arcgis_longitude,float64
+__arcgis_latitude,float64

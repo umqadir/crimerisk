@@ -1,0 +1,9 @@
+source_field,source_value,source_label,v2_offense,include_in_v2,counting_basis,2024_rows,2024_victims,notes
+OFFENSE_CATEGORY_ID,murder,Murder,murder,yes,victim_sum,62,66,"Direct Denver homicide category; count victims because the official crime-information page says person crimes include all victims."
+OFFENSE_CATEGORY_ID,robbery,Robbery,robbery,yes,row_count,1195,1195,"Direct Denver robbery category."
+OFFENSE_CATEGORY_ID,aggravated-assault,Aggravated Assault,aggravated_assault,yes,victim_sum,2689,3549,"Direct Denver aggravated-assault category; count victims because the official crime-information page says person crimes include all victims."
+OFFENSE_CATEGORY_ID,burglary,Burglary,burglary,yes,row_count,4920,4920,"Direct Denver burglary category."
+OFFENSE_CATEGORY_ID,larceny,Larceny,larceny,yes,row_count,10860,10860,"Direct Denver larceny category."
+OFFENSE_CATEGORY_ID,auto-theft,Auto Theft,motor_vehicle_theft,yes,row_count,8654,8654,"Direct Denver auto-theft category; this is the repo's motor_vehicle_theft anchor."
+OFFENSE_CATEGORY_ID,rape,No repo-compatible rape category,rape,no,blocked,0,0,"The public surface has sex-related categories, but none are a repo-compatible rape bucket."
+OFFENSE_CATEGORY_ID,theft-from-motor-vehicle,Theft From Motor Vehicle,none,no,exclude,8920,8920,"Keep this separate from repo larceny and repo motor_vehicle_theft."

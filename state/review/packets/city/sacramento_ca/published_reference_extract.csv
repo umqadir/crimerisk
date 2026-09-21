@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,aggravated_assault,2737.0,srs_return_a_annual,high
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,burglary,2326.0,srs_return_a_annual,high
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,larceny,8406.0,srs_return_a_annual,high
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,motor_vehicle_theft,2684.0,srs_return_a_annual,high
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,murder,45.0,srs_return_a_annual,high
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,rape,182.0,srs_return_a_annual,high
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,robbery,1012.0,srs_return_a_annual,high

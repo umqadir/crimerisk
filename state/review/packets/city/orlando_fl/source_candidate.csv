@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+orlando_fl,"Orlando, Florida",12:municipal:place:1253000,City of Orlando OPD Cases Viewing,https://orl.maps.arcgis.com/apps/dashboards/eae3bde08de34ea0b7c2a637b255b48b,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

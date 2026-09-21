@@ -1,0 +1,346 @@
+{
+  "state_abbr": "TX",
+  "generated_on": "2026-03-22",
+  "packet_scope": "Texas official-source reconciliation for V2 with emphasis on distinguishing narrow actionable reference gaps from broader but lower-priority institutional/nonlocal background mismatches.",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/tx/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/tx/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/state_source_benchmark_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/reference/agency_master.parquet"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/tx/issue_bucket_summary.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/tx/supporting_issue_metrics.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "tx_dps_ucr_overview",
+      "source_name": "Texas DPS Uniform Crime Reporting Program Overview",
+      "source_url": "https://www.dps.texas.gov/section/crime-records/uniform-crime-reporting-program-ucr-overview",
+      "coverage_note": "Texas DPS says House Bill 4879 made monthly NIBRS submission mandatory as of September 1, 2023 and links the public Crime in Texas portal.",
+      "packet_use": "Confirms Texas has an official state-level NIBRS program and public portal, but does not by itself require replacing the repo's publication-style 2024 statewide source lane."
+    },
+    {
+      "source_id": "tx_dps_ucr_program",
+      "source_name": "Texas Uniform Crime Reporting Program",
+      "source_url": "https://www.dps.texas.gov/section/crime-records/texas-uniform-crime-reporting-program",
+      "coverage_note": "Texas DPS says IBR/TIBRS data is converted to summary for inclusion in the Texas Crime Report.",
+      "packet_use": "Supports keeping publication-style summary comparability as a legitimate official lane in Texas even though the state's collection system is incident-based."
+    },
+    {
+      "source_id": "tx_dps_nibrs_training_portal_note",
+      "source_name": "Texas DPS NIBRS training slide deck",
+      "source_url": "https://www.dps.texas.gov/administration/crime_records/conferences/2023/conference_nibrs_08242023.pdf",
+      "coverage_note": "Texas DPS says the Crime in Texas portal is updated as agencies submit data and splits reports between NIBRS, Summary, and Texas-mandated reports.",
+      "packet_use": "Confirms Texas maintains parallel public summary and NIBRS reporting surfaces, which matches the repo's mixed-source reality better than a simplistic official-NIBRS-equals-prefer-NIBRS rule."
+    },
+    {
+      "source_id": "fbi_cde_roster_validation_local",
+      "source_name": "Local 2024 FBI CDE roster validation",
+      "source_url": "https://api.usa.gov/crime/fbi/cde/agency/byStateAbbr/TX",
+      "coverage_note": "Local 2024 pulls provide ORI/name/type/current NIBRS status and start dates; effective-year logic is required before using them for 2024 audits.",
+      "packet_use": "Primary official audit surface for identifying TX reference omissions and official NIBRS start-by-2024 rows."
+    }
+  ],
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "TX",
+      "official_oris": 1721,
+      "official_nibrs_oris": 1690,
+      "official_effective_nibrs_oris": 1536,
+      "repo_master_matches": 1598,
+      "mismatch_rows": 550,
+      "mismatch_weight": 131.0,
+      "official_nibrs_repo_no_nibrs": 363,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 424
+    },
+    "queue_summary": {
+      "queue_rows": 7,
+      "review_lane_counts": {
+        "missing_in_repo_master": 4,
+        "official_nibrs_repo_no_nibrs": 3
+      },
+      "issue_type_counts": {
+        "reference_enrichment_omission": 4,
+        "bounded_source_policy_or_backfill_review": 3
+      },
+      "support_sum_by_issue_type": {
+        "reference_enrichment_omission": 128,
+        "bounded_source_policy_or_backfill_review": 3
+      }
+    },
+    "benchmark_alignment_2024": [
+      {
+        "offense": "aggravated_assault",
+        "repo_srs_pct_diff_vs_fbi_cde": 0.002007,
+        "repo_nibrs_pct_diff_vs_bjs": -0.188002
+      },
+      {
+        "offense": "larceny",
+        "repo_srs_pct_diff_vs_fbi_cde": -0.003831,
+        "repo_nibrs_pct_diff_vs_bjs": -0.019462
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "repo_srs_pct_diff_vs_fbi_cde": -0.000416,
+        "repo_nibrs_pct_diff_vs_bjs": -0.083618
+      },
+      {
+        "offense": "rape",
+        "repo_srs_pct_diff_vs_fbi_cde": -0.004792,
+        "repo_nibrs_pct_diff_vs_bjs": -0.297995
+      },
+      {
+        "offense": "burglary",
+        "repo_srs_pct_diff_vs_fbi_cde": 0.000686,
+        "repo_nibrs_pct_diff_vs_bjs": -0.018522
+      },
+      {
+        "offense": "robbery",
+        "repo_srs_pct_diff_vs_fbi_cde": -0.001661,
+        "repo_nibrs_pct_diff_vs_bjs": -0.008192
+      },
+      {
+        "offense": "murder",
+        "repo_srs_pct_diff_vs_fbi_cde": -0.001238,
+        "repo_nibrs_pct_diff_vs_bjs": -0.072393
+      }
+    ],
+    "mixed_source_context": {
+      "mixed_source_2024_rows": 1158,
+      "agencies_both_12m_srs_and_nibrs": 947,
+      "statewide_ratio_srs_to_nibrs_for_agencies_both_12m": {
+        "murder": 0.93605,
+        "rape": 0.744278,
+        "robbery": 1.001144,
+        "aggravated_assault": 0.821403,
+        "burglary": 0.931669,
+        "larceny": 1.011261,
+        "motor_vehicle_theft": 0.932789
+      }
+    }
+  },
+  "issue_groups": [
+    {
+      "issue_id": "tx_statewide_2024_lane_is_not_a_florida_style_source_replacement_problem",
+      "issue_type": "statewide_reporting_structure_or_continuity_context",
+      "severity": "high_context_low_immediate_change",
+      "finding": "Texas is heavily mixed-source in 2024, but the repo's SRS-observed statewide totals already sit very close to FBI publication-style totals for all seven benchmark offenses. The official Texas state program also explicitly preserves a summary/publication lane by converting incident-based reporting into summary outputs for Texas Crime Report style reporting.",
+      "statewide_evidence": {
+        "mixed_source_2024_rows": 1158,
+        "agencies_both_12m_srs_and_nibrs": 947,
+        "repo_srs_vs_fbi_cde_max_abs_pct_diff": 0.004792,
+        "repo_srs_vs_fbi_cde_offense_examples": [
+          {
+            "offense": "aggravated_assault",
+            "repo_srs_observed_total_2024": 84883.0,
+            "fbi_cde_estimated_total_2024": 84713.0
+          },
+          {
+            "offense": "larceny",
+            "repo_srs_observed_total_2024": 444364.0,
+            "fbi_cde_estimated_total_2024": 446073.0
+          },
+          {
+            "offense": "rape",
+            "repo_srs_observed_total_2024": 15575.0,
+            "fbi_cde_estimated_total_2024": 15650.0
+          }
+        ]
+      },
+      "why_it_matters": "This is the key doctrine for Texas. The roster's official NIBRS status is useful for auditing gaps, but it is not evidence that the statewide 2024 production lane should flip away from the current publication-like SRS path.",
+      "recommended_next_action": "Keep the current Texas statewide SRS-first / publication-style lane for 2024 controls. Use official NIBRS status as an audit and backfill signal, not as a blanket source-policy override.",
+      "representative_entities": [
+        "Houston Police Department",
+        "San Antonio Police Department",
+        "Dallas Police Department",
+        "Austin Police Department",
+        "Harris County Sheriff's Office"
+      ],
+      "doctrine_candidate": "When a state's repo SRS totals already track official publication totals closely and the state explicitly maintains a summary/publication surface alongside NIBRS collection, treat roster NIBRS status as audit context rather than as a direct statewide source-policy switch."
+    },
+    {
+      "issue_id": "tx_live_university_nibrs_rows_are_reference_enrichment_omissions",
+      "issue_type": "master_reference_omission",
+      "severity": "high",
+      "finding": "Texas has four immediately actionable university rows with live repo NIBRS 2024 support that are classified in the queue as missing_in_repo_master. In practice, these ORIs already exist in agency_master as skeletal NIBRS-only rows with null names/county/place and manual_review_flag=true.",
+      "statewide_evidence": {
+        "rows": 4,
+        "support_sum": 128,
+        "all_have_live_repo_nibrs": true,
+        "all_exist_as_skeletal_rows_in_agency_master": true,
+        "examples": [
+          {
+            "ori9": "TX227289E",
+            "agency_name": "Austin Community College District",
+            "repo_preferred_support_count_2024": 73.0,
+            "counties": "TRAVIS"
+          },
+          {
+            "ori9": "TX220029E",
+            "agency_name": "Southwestern Baptist Theological Seminary",
+            "repo_preferred_support_count_2024": 33.0,
+            "counties": "TARRANT"
+          },
+          {
+            "ori9": "TX014019E",
+            "agency_name": "University of Mary Hardin-Baylor",
+            "repo_preferred_support_count_2024": 16.0,
+            "counties": "BELL"
+          },
+          {
+            "ori9": "TX057829E",
+            "agency_name": "Dallas Baptist University",
+            "repo_preferred_support_count_2024": 6.0,
+            "counties": "DALLAS"
+          }
+        ]
+      },
+      "why_it_matters": "These are the cleanest implement-now Texas fixes because the data already exists in the repo. The only missing piece is a proper reference/master enrichment so those observations land cleanly in downstream entity logic.",
+      "recommended_next_action": "Enrich these four skeletal agency_master rows from the official roster and keep the current repo NIBRS annual support attached to them. Do not describe this as a new-source policy change.",
+      "representative_entities": [
+        "Austin Community College District",
+        "Southwestern Baptist Theological Seminary",
+        "University of Mary Hardin-Baylor",
+        "Dallas Baptist University"
+      ],
+      "doctrine_candidate": "If an ORI already has live repo NIBRS support and exists only as a null/skeletal agency_master row, classify the fix as reference enrichment rather than a new master-addition or source-policy problem."
+    },
+    {
+      "issue_id": "tx_priority_source_policy_disagreements_are_tiny_and_should_be_bounded",
+      "issue_type": "source_policy_disagreement",
+      "severity": "medium",
+      "finding": "The priority TX queue contains only three official-effective-NIBRS rows where the repo still uses SRS annual support: Hallsville ISD, Centerpoint ISD, and Wharton ISD. Each currently contributes only one offense-bearing 2024 support count.",
+      "statewide_evidence": {
+        "priority_rows": 3,
+        "support_sum": 3,
+        "official_nibrs_repo_no_nibrs_statewide": 363,
+        "priority_examples": [
+          {
+            "ori9": "TX1021300",
+            "agency_name": "Independent School District: Hallsville",
+            "repo_preferred_source_any_offense_2024": "srs_return_a_annual",
+            "repo_preferred_support_count_2024": 1.0
+          },
+          {
+            "ori9": "TX1330800",
+            "agency_name": "Independent School District: Centerpoint",
+            "repo_preferred_source_any_offense_2024": "srs_return_a_annual",
+            "repo_preferred_support_count_2024": 1.0
+          },
+          {
+            "ori9": "TX2410900",
+            "agency_name": "Independent School District: Wharton",
+            "repo_preferred_source_any_offense_2024": "srs_return_a_annual",
+            "repo_preferred_support_count_2024": 1.0
+          }
+        ]
+      },
+      "why_it_matters": "These are real disagreements, but they are tiny and should not drive Texas-wide doctrine. They are a bounded micro-lane for backfill or validation, not evidence that the whole state should flip to roster-led NIBRS preference.",
+      "recommended_next_action": "Queue a narrow official-source spot check for these three ISD rows. If a clean state-public or FBI-public NIBRS extract is available, backfill them; otherwise keep the existing SRS annual support until a real replacement path is verified.",
+      "representative_entities": [
+        "Independent School District: Hallsville",
+        "Independent School District: Centerpoint",
+        "Independent School District: Wharton"
+      ],
+      "doctrine_candidate": "If official-effective-NIBRS versus repo-SRS disagreement is tiny, bounded, and low-support, handle it as a narrow backfill lane before considering any broader source-policy change."
+    },
+    {
+      "issue_id": "tx_large_zero_support_background_is_context_not_immediate_input_change",
+      "issue_type": "rows_present_in_master_but_missing_2024_observations",
+      "severity": "medium_context",
+      "finding": "Texas has a large background of official-effective-NIBRS rows with no 2024 repo observation, but the vast majority are low-support institutional or special-jurisdiction entities rather than benchmark-driving local departments. Most of the effective-NIBRS no-observation rows entered in 2023 or 2024, especially constables, independent school districts, fire marshals, and small city departments.",
+      "statewide_evidence": {
+        "present_but_no_2024_observation_total": 424,
+        "present_but_no_2024_observation_effective_nibrs": 355,
+        "present_but_no_2024_observation_by_agency_type": {
+          "Other": 320,
+          "City": 75,
+          "County": 15,
+          "University or College": 13,
+          "State Police": 1
+        },
+        "effective_nibrs_no_obs_start_year_heavy_points": {
+          "2023_other": 201,
+          "2024_other": 76,
+          "2024_city": 10
+        },
+        "representative_entities": [
+          "Angelina College",
+          "Independent School District: Hudson",
+          "Rogers Police Department",
+          "Alvin Community College",
+          "San Felipe Police Department"
+        ]
+      },
+      "why_it_matters": "This is a real background queue, but it is not the same as Florida's statewide benchmark-closure problem. Most of these rows have no observed repo support yet, so they should be triaged by likely value and data availability rather than treated as immediate production mismatches.",
+      "recommended_next_action": "Keep this as a second-pass Texas backfill/zero-report distinction queue. Prioritize older-start local city/county/university rows before the much larger constable/ISD tail, and do not let this background queue obscure the four live reference enrichments.",
+      "representative_entities": [
+        "Angelina College",
+        "Texarkana College",
+        "Alvin Community College",
+        "Rogers Police Department",
+        "San Felipe Police Department"
+      ],
+      "doctrine_candidate": "For states with large zero-support official-effective-NIBRS tails, separate benchmark-driving local agencies from institutional/special-jurisdiction background rows before escalating source work."
+    },
+    {
+      "issue_id": "tx_zero_support_missing_master_rows_should_not_be_bulk_added",
+      "issue_type": "master_reference_omission_context",
+      "severity": "low_immediate_high_doctrine",
+      "finding": "Texas has 123 rows flagged as missing_in_repo_master, but 119 of them have zero 2024 repo support. Only nine are official-effective-NIBRS, and five of those also have zero support. Several are skeletal special jurisdictions or very small local entities rather than obvious benchmark-bearing omissions.",
+      "statewide_evidence": {
+        "missing_in_repo_master_total": 123,
+        "missing_in_repo_master_support_gt_zero": 4,
+        "missing_in_repo_master_effective_nibrs_support_gt_zero": 4,
+        "missing_in_repo_master_effective_nibrs_zero_support_examples": [
+          {
+            "ori9": "TX034210X",
+            "agency_name": "Atlanta Fire Department"
+          },
+          {
+            "ori9": "TX129239E",
+            "agency_name": "Southwestern Christian College"
+          },
+          {
+            "ori9": "TX165013A",
+            "agency_name": "County Attorney: Midland"
+          },
+          {
+            "ori9": "TX227279E",
+            "agency_name": "St. Edwards University"
+          },
+          {
+            "ori9": "TX227409E",
+            "agency_name": "Concordia University"
+          }
+        ]
+      },
+      "why_it_matters": "Texas follows the same doctrine as CA/FL here: official roster presence by itself is not enough to justify bulk master additions when there is no offense-bearing 2024 repo support.",
+      "recommended_next_action": "Do not bulk-add the zero-support TX missing-master tail. Only enrich or add rows once they have either live repo observations or a clean validated public-source path that is actually needed for production.",
+      "representative_entities": [
+        "Atlanta Fire Department",
+        "Southwestern Christian College",
+        "County Attorney: Midland",
+        "St. Edwards University",
+        "Concordia University"
+      ],
+      "doctrine_candidate": "Do not bulk-add zero-support roster-only entities to master just because they appear in the official roster. Require either live repo observations or a validated production source path."
+    }
+  ],
+  "actionable_vs_context": {
+    "actionable_now": [
+      "Reference-enrich the four live university ORIs already carrying repo NIBRS support.",
+      "Run a bounded three-row spot check on the ISD official-NIBRS-versus-repo-SRS disagreements."
+    ],
+    "context_only_for_now": [
+      "Keep the statewide Texas 2024 SRS-first publication lane unchanged.",
+      "Keep the 355 effective-NIBRS no-observation rows as a second-pass backfill/zero-report queue.",
+      "Do not bulk-add the 119 zero-support missing-master rows."
+    ]
+  }
+}

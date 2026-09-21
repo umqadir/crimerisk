@@ -1,0 +1,3 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""Crime_Type"", ""op"": ""eq"", ""value"": ""Homicide"", ""values"": []}]",[]
+aggravated_assault,"[{""field"": ""Crime_Type"", ""op"": ""eq"", ""value"": ""Non-Fatal Shooting"", ""values"": []}, {""field"": ""Cause"", ""op"": ""eq"", ""value"": ""Gun Shot Wound"", ""values"": []}]",[]

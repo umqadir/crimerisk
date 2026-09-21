@@ -1,0 +1,361 @@
+{
+  "state_abbr": "FL",
+  "generated_on": "2026-03-22",
+  "packet_scope": "Florida official-source reconciliation for V2 with emphasis on statewide reporting structure and benchmark closure",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/raw/FIBRS_Offense_Detail_2021-2025_Q3.xlsx",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/state_source_benchmark_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/top_partial_reporters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_quarterly_pattern_candidates_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/supporting_issue_metrics.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/official_fibrs_spotcheck_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/official_fibrs_spotcheck_2024_reconciled.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/fdle_fibrs_2024_workbook_schema.json",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/fdle_fibrs_2024_ingestion_contract.json",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/parsed/fdle_fibrs_2024_offense_period_extract.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "fdle_ucr_landing",
+      "source_name": "FDLE Uniform Crime Reports landing page",
+      "source_url": "https://www.fdle.state.fl.us/CJAB/UCR",
+      "coverage_note": "FDLE says UCR records with summary and detailed information are issued yearly and still publishes a July 2023 summary guide manual and report forms.",
+      "packet_use": "Shows Florida still maintains summary reporting artifacts, but does not make this the best current-year source for 2024."
+    },
+    {
+      "source_id": "fdle_fibrs_landing",
+      "source_name": "FDLE Florida Incident-Based Reporting System landing page",
+      "source_url": "https://www.fdle.state.fl.us/cjab/fibrs",
+      "coverage_note": "FDLE says the FIBRS visualization contains submissions for the 2021-2025 Q3 reporting cycles and provides an Excel download.",
+      "packet_use": "Primary current official-source path for 2024 Florida incident-based data."
+    },
+    {
+      "source_id": "fdle_fibrs_workbook",
+      "source_name": "FDLE FIBRS Offense Detail workbook",
+      "source_url": "https://www.fdle.state.fl.us/getContentAsset/d7a9c200-43fd-4a08-8f39-fe9382115a42/73aabf56-e6e5-4330-95a3-5f2a270a1d2b/FIBRS_Offense_Detail_2021-2025_Q3.xlsx?language=en",
+      "coverage_note": "Workbook includes a 2024 sheet with Quarters Reported and quarter-level columns.",
+      "packet_use": "Confirms Florida public current-year official source is quarter-based rather than month-based."
+    },
+    {
+      "source_id": "fdle_transition_news_2022",
+      "source_name": "FDLE 2022 transition news release",
+      "source_url": "https://www.fdle.state.fl.us/news/2022/november/florida-crime-rate-drops-for-record-50-year-low",
+      "coverage_note": "FDLE said only 239 agencies covering 57.5 percent of population submitted 2021 summary stats because agencies were transitioning to FIBRS, and said incident-based stats would be published quarterly.",
+      "packet_use": "Supports treating Florida benchmark gaps as transition and coverage problems rather than a missing-ORI-only problem."
+    },
+    {
+      "source_id": "fdle_ucr_summary_manual_jul2023",
+      "source_name": "FDLE UCR Summary Guide Manual July 2023",
+      "source_url": "https://www.fdle.state.fl.us/getContentAsset/6755ee1e-aa49-4437-b8f1-c2e831c23fd5/73aabf56-e6e5-4330-95a3-5f2a270a1d2b/UCR-Summary-Guide-Manual-JUL2023.pdf?language=en",
+      "coverage_note": "Florida still maintained summary reporting guidance during the transition period.",
+      "packet_use": "Confirms coexistence of summary and FIBRS structures, which is important for source-policy handling."
+    }
+  ],
+  "workbook_staging_summary": {
+    "local_workbook_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/raw/FIBRS_Offense_Detail_2021-2025_Q3.xlsx",
+    "selected_worksheet": "FIBRS Offense 2024",
+    "agency_row_count": 177,
+    "normalized_extract_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/parsed/fdle_fibrs_2024_offense_period_extract.csv",
+    "normalized_extract_row_count": 33276,
+    "quarters_reported_distribution": {
+      "1": 3,
+      "2": 10,
+      "3": 6,
+      "4": 158
+    },
+    "schema_artifact_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/fdle_fibrs_2024_workbook_schema.json",
+    "schema_notes": [
+      "Rows 1-3 are headers and row 4 is the first agency row.",
+      "Columns 1-4 hold county, agency name, population estimate, and quarters reported.",
+      "Columns 5-10 hold YTD plus annual-rate summary groups for violent, property, and other crime.",
+      "Columns 11-232 hold 37 six-column offense blocks with Q1-Q4, YTD, and annual rate.",
+      "The workbook has no ORI field, so joins must be county-aware and alias-aware."
+    ]
+  },
+  "integration_contract": {
+    "contract_artifact_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/fdle_fibrs_2024_ingestion_contract.json",
+    "contract_grain": "Use the staged extract as one row per agency x offense/group x period, with period in Q1-Q4 or YTD.",
+    "required_join_keys": [
+      "county",
+      "agency_name_normalized"
+    ],
+    "join_caveats": [
+      "No ORI values appear in the workbook.",
+      "FDLE regional-office rows require county plus city alias logic.",
+      "College and campus rows may require suffix alias handling.",
+      "Some validation rows remain genuine workbook absences even after alias handling."
+    ],
+    "spotcheck_reconciliation_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/official_fibrs_spotcheck_2024_reconciled.csv",
+    "spotcheck_reconciliation_summary": {
+      "matched_same_workbook_row": 14,
+      "matched_new_from_normalized_extract": 3,
+      "not_found_in_workbook": 12
+    }
+  },
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "FL",
+      "official_oris": 833,
+      "official_nibrs_oris": 230,
+      "official_effective_nibrs_oris": 187,
+      "repo_master_matches": 688,
+      "mismatch_rows": 549,
+      "mismatch_weight": 0,
+      "official_nibrs_repo_no_nibrs": 29,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 404
+    },
+    "present_but_no_2024_observation_top_stems": {
+      "Florida Game Commission": 67,
+      "Division of Alcoholic Beverages and Tobacco": 67,
+      "Department of Corrections, Office of the Inspector General": 67,
+      "Highway Patrol": 11,
+      "Department of Law Enforcement": 6,
+      "High Springs Police Department": 1,
+      "Groveland Police Department": 1,
+      "Howey-In-the-Hills Police Department": 1,
+      "Mascotte Police Department": 1,
+      "Mount Dora Police Department": 1
+    },
+    "missing_in_repo_master_top_stems": {
+      "Department of Agriculture and Consumer Services, Office of Agricultural Law Enforcement": 67,
+      "Department of Environmental Protection, Law Enforcement": 67,
+      "Florida State College at Jacksonville": 1,
+      "Bay County District Schools": 1,
+      "Broward County Schools": 1,
+      "Florida Gaming Control Commission": 1,
+      "Marion County School Board": 1,
+      "Orange County Public Schools": 1,
+      "Westlake Police Department": 1,
+      "Loxatachee Groves Police Department": 1
+    }
+  },
+  "issue_groups": [
+    {
+      "issue_id": "fl_2024_official_source_is_quarter_based_fibrs_not_current_srs",
+      "issue_type": "broader_florida_reporting_structure_or_continuity_issue",
+      "severity": "high",
+      "finding": "Florida should not be treated as a normal 2024 SRS reconciliation state. The current official public source is FDLE FIBRS, and the public workbook is quarter-based rather than month-based.",
+      "statewide_evidence": {
+        "priority_offense_gaps": [
+          {
+            "offense": "larceny",
+            "repo_srs_gap_below_fbi_cde": 96280,
+            "repo_nibrs_gap_below_bjs_ckle": 180926,
+            "priority_rank": 1
+          },
+          {
+            "offense": "aggravated_assault",
+            "repo_srs_gap_below_fbi_cde": 13102,
+            "repo_nibrs_gap_below_bjs_ckle": 42368,
+            "priority_rank": 6
+          },
+          {
+            "offense": "burglary",
+            "repo_srs_gap_below_fbi_cde": 12255,
+            "repo_nibrs_gap_below_bjs_ckle": 33078,
+            "priority_rank": 7
+          },
+          {
+            "offense": "motor_vehicle_theft",
+            "repo_srs_gap_below_fbi_cde": 9829,
+            "repo_nibrs_gap_below_bjs_ckle": 28321,
+            "priority_rank": 11
+          },
+          {
+            "offense": "robbery",
+            "repo_srs_gap_below_fbi_cde": 2748,
+            "repo_nibrs_gap_below_bjs_ckle": 8165,
+            "priority_rank": 25
+          },
+          {
+            "offense": "rape",
+            "repo_srs_gap_below_fbi_cde": 2252,
+            "repo_nibrs_gap_below_bjs_ckle": 5381,
+            "priority_rank": 36
+          },
+          {
+            "offense": "murder",
+            "repo_srs_gap_below_fbi_cde": 314,
+            "repo_nibrs_gap_below_bjs_ckle": 837,
+            "priority_rank": 129
+          }
+        ],
+        "mixed_source_2024_rows": 155,
+        "florida_partial_reporters_in_top_partial_reporters_2024": 12,
+        "florida_srs_quarterly_pattern_candidates_2024": 20,
+        "agencies_both_12m_srs_vs_nibrs": 119,
+        "coverage_matched_srs_to_nibrs_ratios": {
+          "murder": 0.909931,
+          "rape": 0.826531,
+          "robbery": 1.007409,
+          "aggravated_assault": 0.828614,
+          "burglary": 0.994343,
+          "larceny": 1.011414,
+          "motor_vehicle_theft": 0.938777
+        },
+        "negative_checks": {
+          "nibrs_local_oris_missing_in_srs_2024": 0,
+          "srs_monthly_vs_annual_mismatches_2024": 0
+        }
+      },
+      "why_it_matters": "The statewide benchmark deficits are large across every priority offense, but the agencies that have both full-year SRS and NIBRS look broadly aligned. That points to coverage and transition continuity, not a statewide offense mapping bug.",
+      "recommended_next_action": "Implement a Florida-specific 2024 FDLE FIBRS ingestion lane using the FIBRS workbook as the current official source, and make Florida QA quarter-aware. Do not spend the next pass chasing more 2024 Florida SRS annual PDFs.",
+      "representative_entities": [
+        "Tallahassee Police Department",
+        "Fort Lauderdale Police Department",
+        "Clearwater Police Department",
+        "Cape Coral Police Department",
+        "Largo Police Department"
+      ],
+      "doctrine_candidate": "If a state public source has an active incident-based workbook for the target year and its summary annual path is frozen before the target year, route the state to a state-level reporting-structure lane instead of ORI-by-ORI SRS review. If the official workbook is quarter-based, QA should not require monthly completeness by default."
+    },
+    {
+      "issue_id": "fl_repo_missing_observations_are_concentrated_in_start_by_2024_nibrs_rows",
+      "issue_type": "repo_missing_observation_problem",
+      "severity": "high",
+      "finding": "Florida has a concrete backfill lane: 404 rostered rows are present in the repo master with no 2024 observation, including 29 agencies that the official validation marks as effective NIBRS by 2024 but with no repo NIBRS output.",
+      "statewide_evidence": {
+        "present_but_no_2024_observation_total": 404,
+        "present_but_no_2024_observation_by_agency_type": {
+          "Other State Agency": 219,
+          "City": 136,
+          "County": 20,
+          "Other": 12,
+          "State Police": 11,
+          "University or College": 6
+        },
+        "official_nibrs_started_by_2024_but_repo_no_nibrs": 29,
+        "fdle_workbook_name_spotcheck_matches": 14,
+        "fdle_workbook_name_spotcheck_file": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl/official_fibrs_spotcheck_2024.csv"
+      },
+      "why_it_matters": "This is the part of Florida that is directly implementable without doctrine changes: a bounded set of official 2024 NIBRS agencies exists, and at least 14 already match cleanly into the public FDLE 2024 workbook by normalized name.",
+      "recommended_next_action": "Backfill the 29 official start-by-2024 NIBRS agencies first from the FDLE 2024 FIBRS workbook or its underlying extraction path, then separately review the remaining local and county present-but-no-observation rows for true zero-reporting versus missing ingestion.",
+      "representative_entities": [
+        "High Springs Police Department",
+        "Miami Beach Police Department",
+        "Fort Myers Police Department",
+        "Pasco County Sheriff's Office",
+        "Palm Beach Gardens Police Department",
+        "Tallahassee Community College"
+      ],
+      "doctrine_candidate": "When the validation roster says official NIBRS start-by-target-year and repo has no NIBRS, treat the row as a backfill lane before treating it as a policy disagreement."
+    },
+    {
+      "issue_id": "fl_missing_master_inventory_is_mostly_roster_stub_policy_not_production_data",
+      "issue_type": "source_policy_disagreement",
+      "severity": "medium",
+      "finding": "Florida's missing-master inventory is dominated by county-suffixed roster stubs rather than benchmark-bearing local agencies. Most of these rows should not be bulk-added to the production master just because they appear in the official roster extract.",
+      "statewide_evidence": {
+        "missing_in_repo_master_total": 145,
+        "missing_in_repo_master_by_agency_type": {
+          "Other State Agency": 135,
+          "Other": 5,
+          "City": 4,
+          "University or College": 1
+        },
+        "suffix_patterns": {
+          "A00X": 67,
+          "A20X": 67,
+          "1000": 2,
+          "4300": 1,
+          "1400": 1,
+          "3600": 1,
+          "3800": 1,
+          "3000": 1,
+          "570X": 1,
+          "580X": 1,
+          "250X": 1,
+          "260X": 1
+        },
+        "dominant_stub_groups": {
+          "Department of Agriculture and Consumer Services, Office of Agricultural Law Enforcement": 67,
+          "Department of Environmental Protection, Law Enforcement": 67,
+          "Florida State College at Jacksonville": 1,
+          "Bay County District Schools": 1,
+          "Broward County Schools": 1
+        },
+        "non_stub_exception_rows": [
+          {
+            "ori9": "FL0164300",
+            "agency_name": "Florida State College at Jacksonville",
+            "agency_type_name": "University or College"
+          },
+          {
+            "ori9": "FL0031400",
+            "agency_name": "Bay County District Schools",
+            "agency_type_name": "Other"
+          },
+          {
+            "ori9": "FL0063600",
+            "agency_name": "Broward County Schools",
+            "agency_type_name": "Other"
+          },
+          {
+            "ori9": "FL0373800",
+            "agency_name": "Florida Gaming Control Commission",
+            "agency_type_name": "Other State Agency"
+          },
+          {
+            "ori9": "FL0421000",
+            "agency_name": "Marion County School Board",
+            "agency_type_name": "Other"
+          },
+          {
+            "ori9": "FL0483000",
+            "agency_name": "Orange County Public Schools",
+            "agency_type_name": "Other"
+          },
+          {
+            "ori9": "FL050570X",
+            "agency_name": "Westlake Police Department",
+            "agency_type_name": "City"
+          },
+          {
+            "ori9": "FL050580X",
+            "agency_name": "Loxatachee Groves Police Department",
+            "agency_type_name": "City"
+          },
+          {
+            "ori9": "FL0591000",
+            "agency_name": "Sanford Airport",
+            "agency_type_name": "Other"
+          },
+          {
+            "ori9": "FL064250X",
+            "agency_name": "Deltona Police Department",
+            "agency_type_name": "City"
+          },
+          {
+            "ori9": "FL064260X",
+            "agency_name": "DeBary Police Department",
+            "agency_type_name": "City"
+          }
+        ]
+      },
+      "why_it_matters": "Adding all 145 missing-master rows would mostly expand Florida county stub coverage for Agriculture and DEP law-enforcement placeholders without closing the statewide benchmark gap.",
+      "recommended_next_action": "Hold the 134 Agriculture and DEP county stubs out of bulk master expansion unless they show offense-bearing 2024 observations. Review the 11 non-stub exceptions one by one for true master additions or naming/ORI crosswalk fixes.",
+      "representative_entities": [
+        "Department of Agriculture and Consumer Services county stub ORIs ending A00X",
+        "Department of Environmental Protection county stub ORIs ending A20X",
+        "Florida State College at Jacksonville",
+        "Deltona Police Department",
+        "DeBary Police Department",
+        "Florida Gaming Control Commission"
+      ],
+      "doctrine_candidate": "When a state roster emits county-specific pseudo-ORIs with repeating suffix patterns and no associated offense-bearing evidence, classify them as a policy-review lane rather than as automatic missing-master defects."
+    }
+  ],
+  "promotion_candidates_for_central_tracker": [
+    "If a state public source has an active incident-based workbook for the target year and its summary annual path is frozen before the target year, route the state to a state-level reporting-structure lane instead of ORI-by-ORI SRS review. If the official workbook is quarter-based, QA should not require monthly completeness by default.",
+    "When the validation roster says official NIBRS start-by-target-year and repo has no NIBRS, treat the row as a backfill lane before treating it as a policy disagreement.",
+    "When a state roster emits county-specific pseudo-ORIs with repeating suffix patterns and no associated offense-bearing evidence, classify them as a policy-review lane rather than as automatic missing-master defects."
+  ]
+}

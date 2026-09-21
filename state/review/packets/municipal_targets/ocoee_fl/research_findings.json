@@ -1,0 +1,106 @@
+{
+  "case_key": "ocoee_fl",
+  "jurisdiction_id": "12:municipal:place:1251075",
+  "jurisdiction_name": "Ocoee city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_classify_current_all_fill_as_official_publication_continuity_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Ocoee is a real current city-police jurisdiction. The City's police records page routes public-records requests through the Ocoee Police Department and lists a staffed records section, while the City's accreditation page says the department was reaccredited on October 23, 2025.",
+    "Official Florida legacy reporting treated Ocoee as a normal municipal police row. FDLE's 2020 County and Municipal Offense Report lists Ocoee Police Department with population 49,781 and total index crime 1,263, with offense counts that exactly match the repo's 2020 Ocoee panel.",
+    "FDLE's 2021 County and Municipal Offense Report still retained Ocoee Police Department as a named Orange County municipal row, but every offense cell is blank. That means Ocoee's city-specific reporting identity still existed on the official surface in 2021 even though the transition-year publication became unusable.",
+    "The public post-SRS Florida path does not currently provide an Ocoee annual offense row. Inspection of the official FDLE FIBRS Offense Detail workbook found no Ocoee row in the 2021, 2022, 2023, 2024, or 2025 Q3 sheets, and the repo's normalized 2024 extract of the official workbook also contains no Ocoee row.",
+    "The federal public roster points in the same direction. A live March 24, 2026 query to the FBI Crime Data Explorer agency roster endpoint for Florida returned FL0480300 Ocoee Police Department as a City agency with is_nibrs false and no nibrs_start_date, so the official federal public surface still recognizes the agency but does not show it as an incident-based participant.",
+    "Repo behavior should therefore not be read as contract policing, county replacement, or target invalidity. FL0480300 is crosswalked exclusively to Ocoee city, the city still has an active police department, and the current all-fill state is best explained as an official-publication continuity break after the last usable 2020 statewide row, with an unusable retained row in 2021 and no public FDLE/FBI incident-based backfill for 2024."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Ocoee maintains Ocoee Police Department records and public-records workflows as a city department function.",
+      "The City's accreditation page presents Ocoee Police Department as an active department and documents reaccreditation on October 23, 2025.",
+      "Nothing in the reviewed official city or state materials suggests that Ocoee has shifted to Orange County Sheriff contract policing or lost its city-police identity."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Ocoee Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The public-records page says the Ocoee Police Department is committed to making information available to the public and lists an Ocoee Records Section at 646 Ocoee Commerce Parkway.",
+      "The records page describes a staffed Records Division that maintains police reports and serves citizens, governmental agencies, businesses, and internal staff.",
+      "The accreditation page states that Ocoee Police Department is accredited and lists reaccreditation dates in 2019, 2022, and 2025."
+    ],
+    "important_clarification": "Orange County Sheriff's Office is not the reviewed primary general-policing replacement for Ocoee city. The official materials reviewed here support a continuing Ocoee Police Department rather than sheriff-primary city service."
+  },
+  "official_reporting_evidence": {
+    "fdle_legacy_publication_surface": {
+      "summary": "FDLE's official 2020 County and Municipal Offense Report publishes Ocoee Police Department as a normal Orange County municipal row.",
+      "details": [
+        "FDLE 2020: Ocoee Police Department, population 49,781, total index crime 1,263.",
+        "FDLE 2020 offense counts: murder 1, rape 15, robbery 16, aggravated assault 100, burglary 130, larceny 927, motor vehicle theft 74."
+      ],
+      "interpretation": "Florida's last fully usable pre-transition statewide municipal surface clearly supports Ocoee as a real city-specific police reporting identity."
+    },
+    "fdle_transition_year_surface": {
+      "summary": "FDLE's official 2021 County and Municipal Offense Report retains Ocoee Police Department as a named municipal row with population 48,202 but shows dashes in every offense field.",
+      "interpretation": "Ocoee's official municipal reporting identity still existed on the Florida publication surface in 2021, but the transition-year row is unusable for offense totals."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "Inspection of the official FDLE FIBRS Offense Detail workbook found no Ocoee row in the 2021, 2022, 2023, 2024, or 2025 Q3 offense sheets.",
+      "interpretation": "There is no public FDLE incident-based Ocoee row available right now to backfill 2024.",
+      "supporting_internal_check": "The repo's normalized extract of the official 2024 workbook contains no Ocoee agency row."
+    },
+    "fbi_current_agency_roster_signal": {
+      "summary": "A live March 24, 2026 query to the official FBI Crime Data Explorer Florida agency roster endpoint returns FL0480300 Ocoee Police Department as a City agency with is_nibrs false and no nibrs_start_date.",
+      "interpretation": "The federal public roster still recognizes Ocoee Police Department as a real city agency, but it does not show Ocoee as an incident-based participant. That matches the absence of any public FDLE FIBRS row."
+    },
+    "best_local_backfill_surface_if_business_requires_post_2020_city_counts": {
+      "source": "Ocoee Police Department records section / public-records process",
+      "summary": "The City's police records page shows an active records section and public-records workflow that can produce police reports and area calls-for-service reports.",
+      "why_it_matters": "If business requirements later demand 2021-2024 Ocoee-specific counts, the strongest official recovery path visible now is direct city police records rather than the current public FDLE or FBI annual publication surfaces.",
+      "limitations": [
+        "This is not a ready-made statewide annual offense publication.",
+        "Using it would require direct records retrieval, offense mapping, and annual aggregation.",
+        "The packet closes the keep versus drop question and the publication-continuity diagnosis, not the mechanics of a local override build."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.csv routes FL0480300 exclusively to 12:municipal:place:1251075 with relationship_type exclusive, weight 1.0, review_status auto, and source lane local_full.",
+    "agency_master_state": "agency_master.parquet classifies FL0480300 as a local police department and flags both SRS and NIBRS presence from 2018 through 2024, with latest_nibrs_year 2024. That conflicts with the official FBI roster query returning is_nibrs false and no nibrs_start_date.",
+    "observation_state": "agency_year_observations.parquet carries substantive srs_return_a_annual totals in 2018, 2019, and 2020, then only zero-valued srs_return_a_annual placeholder rows in 2021, 2022, 2023, and 2024, with no NIBRS rows materialized at all.",
+    "critical_alignment_check": "The repo's 2020 Ocoee offense counts exactly match FDLE's official 2020 Ocoee municipal row, which confirms that the ORI mapping and city identity were correct before the continuity break.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all seven 2024 Ocoee offense rows preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, estimate_source hist_median, and full current-year fill.",
+    "review_queue_state": "municipal_target_review_queue.csv places Ocoee in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, six flagged offense rows, total_fill_count 1474.0, total_reported_count 0.0, fill_share_of_estimated 1.0, and priority_rank 2."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Ocoee still operates a real city police department.",
+      "FDLE's official statewide municipal publication surface clearly supported Ocoee through 2020 and retained the named city row in 2021.",
+      "The live FBI public roster still recognizes FL0480300 as Ocoee Police Department rather than replacing it with Orange County Sheriff.",
+      "The current problem is that public state and federal incident-based surfaces do not provide a usable post-2020 Ocoee annual row, not that the municipal target is fake or obsolete."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Florida's public publication continuity for Ocoee broke during the SRS-to-FIBRS transition: the city row was retained but blank in 2021 and then disappears from the public FIBRS offense workbook.",
+      "The official FBI roster's current is_nibrs false signal explains why the public incident-based path does not furnish a 2024 Ocoee row.",
+      "The repo compounds the issue by carrying zero-valued SRS placeholders for 2021-2024 and by overstating NIBRS availability for FL0480300 in agency_master."
+    ],
+    "recommended_handling": [
+      "Retain Ocoee city as a standalone municipal control row.",
+      "Do not reroute Ocoee into Orange County Sheriff's Office, county remainder, or a contract-policing structure.",
+      "Classify the current all-fill state as an official-publication continuity gap after the last usable 2020 municipal row, not as a target invalidity case.",
+      "Treat the 2021 retained blank row as evidence that the city-specific reporting identity persisted into the transition year even though the publication became unusable.",
+      "If post-2020 city-specific counts are later required, pursue direct Ocoee Police Department records or another city-origin surface rather than expecting a clean public FDLE or FBI annual backfill for 2024."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_official_publication_continuity_gap_and_no_public_nibrs_backfill",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining implementation question is whether any later production pass should build a direct city-records override for 2021-2024, because the public FDLE and FBI surfaces reviewed here do not currently provide usable annual Ocoee counts."
+  ]
+}

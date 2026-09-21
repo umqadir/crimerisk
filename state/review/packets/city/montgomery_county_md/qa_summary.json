@@ -1,0 +1,30 @@
+{
+  "admission_status": "reject",
+  "admitted_offense_rows": 0,
+  "city_key": "montgomery_county_md",
+  "city_name": "Montgomery County, MD",
+  "jurisdiction_id": "24:county:24031",
+  "min_geocode_match_share": 0.8,
+  "offense_rows": 7,
+  "official_total_present_all": false,
+  "rows_in_surface": 2026,
+  "run_id": "gate1_pilot_20260615",
+  "schema_pass": true,
+  "share_geography_pass_all": false,
+  "share_sum_pass_all": true,
+  "strict_reconciliation_tolerance": 0.1,
+  "validation_case_type": "suburban_county_validation_case",
+  "worker_runtime": {
+    "city_key": "montgomery_county_md",
+    "input_tokens": null,
+    "model": "",
+    "output_tokens": null,
+    "run_id": "gate1_pilot_20260615",
+    "status": "completed",
+    "token_note": "No LLM tokens: deterministic Python city builder.",
+    "total_tokens": null,
+    "wall_seconds": 2.7856436250003753,
+    "worker_id": "local_deterministic_montgomery_county_md",
+    "worker_type": "local_deterministic_builder"
+  }
+}

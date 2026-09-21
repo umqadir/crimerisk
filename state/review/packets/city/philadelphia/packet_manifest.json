@@ -1,0 +1,26 @@
+{
+  "city_key": "philadelphia",
+  "city_name": "Philadelphia",
+  "jurisdiction_id": "42:municipal:cousub:4210160000",
+  "state_abbr": "PA",
+  "priority_bucket": "second_wave",
+  "priority_rank": "8",
+  "basis": "Large city police jurisdiction with a stable public incident feed, direct coordinates on most rows, and a packet-validated official reconciliation anchor.",
+  "notes": "Now live offense-selectively for aggravated_assault and burglary. Keep murder pending a clean criminal-homicide-only public anchor and keep rape, robbery, larceny, and motor_vehicle_theft blocked by stable reconciliation gaps.",
+  "source_name": "City of Philadelphia Crime Incidents / incidents_part1_part2",
+  "source_url": "https://opendataphilly.org/datasets/crime-incidents/ ; https://phl.carto.com/api/v2/sql",
+  "portal_type": "opendataphilly_plus_carto_sql_api",
+  "coverage_start_year": "2006",
+  "coverage_end_year": "2026",
+  "years_usable": "19",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high_with_4.2pct_xy_missing_2024",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/philadelphia",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "case_key": "dfw_tx",
+  "ori": "TX2203600",
+  "agency_name_raw": "dallas-fort worth int ap",
+  "state_abbr": "TX",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/dfw_tx"
+  },
+  "review_goal": "Determine the defensible overlap treatment for ORI TX2203600 and whether Dallas-Fort Worth International Airport Police should be handled as a custom airport/authority footprint, a county/place proxy, or an absorb-into-primary outcome.",
+  "bottom_line": "Treat TX2203600 as a custom DFW airport-property footprint. The defensible production geometry is the Dallas Fort Worth International Airport campus and airport operational facilities inside airport boundaries, not Dallas city, not Fort Worth city, not Dallas County, not Tarrant County, and not an absorb-into-primary outcome."
+}

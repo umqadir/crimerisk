@@ -1,0 +1,196 @@
+{
+  "city_key": "baton_rouge_la",
+  "contract": {
+    "city_key": "baton_rouge_la",
+    "city_name": "Baton Rouge, Louisiana",
+    "geography": {
+      "bounds": {
+        "max_latitude": 30.592014,
+        "max_longitude": -90.963248,
+        "min_latitude": 30.312469,
+        "min_longitude": -91.284735
+      },
+      "jurisdiction_id": "22:municipal:place:2205000",
+      "state_fips": "22"
+    },
+    "mapping": {
+      "date_field": "charge_date",
+      "id_field": ":id",
+      "id_fields": [],
+      "latitude_field": "latitude",
+      "longitude_field": "longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "09A"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "11A",
+                "11B",
+                "11C"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "rape"
+        },
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "120"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "13A"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "220"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "23A",
+                "23B",
+                "23C",
+                "23D",
+                "23E",
+                "23F",
+                "23G",
+                "23H"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "nibrs_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "240"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://data.brla.gov/resource/pbin-pcm7.json",
+      "name": "Baton Rouge Police Crime Incidents",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        ":id",
+        "incident_number",
+        "charge_id",
+        "charge_date",
+        "attempted_committed",
+        "statute_category",
+        "nibrs_code",
+        "offense_description",
+        "latitude",
+        "longitude"
+      ],
+      "source_url": "https://data.brla.gov/Public-Safety/Baton-Rouge-Police-Crime-Incidents/pbin-pcm7",
+      "where": "charge_date >= '2024-01-01T00:00:00' AND charge_date < '2025-01-01T00:00:00' AND latitude IS NOT NULL AND longitude IS NOT NULL"
+    },
+    "sources_checked": [
+      "https://www.brla.gov/2910/Open-Data-BR",
+      "https://catalog.data.gov/dataset/baton-rouge-police-crime-incidents",
+      "https://data.brla.gov/Public-Safety/Baton-Rouge-Police-Crime-Incidents/pbin-pcm7",
+      "https://data.brla.gov/api/views/pbin-pcm7",
+      "https://data.brla.gov/api/views/pbin-pcm7/columns.json",
+      "https://data.brla.gov/resource/pbin-pcm7.json",
+      "https://dev.socrata.com/foundry/data.brla.gov/pbin-pcm7"
+    ],
+    "worker_judgment_notes": "Selected the official Open Data BR Socrata incident feed because it is a runnable public API with event date, NIBRS offense code and description, Socrata row identity, and latitude/longitude point fields. This contract is share-lane only: rows are BRPD charge/offense records, not FBI annual counting units, and raw feed counts should not be promoted as annual totals. Socrata :id is used as the stable row identity because charge_id is not unique for repeated charge rows. The date field is charge_date; geography fields are latitude and longitude; offense mapping uses NIBRS codes rather than statute_category because local categories mix Part I and non-Part I offenses. Rape mapping follows the repo's SRS-equivalent 11A/11B/11C convention, but the point-coordinate subset appears highly incomplete for sexual assault because many such rows suppress coordinates; rape shares should therefore be treated as partial if admitted at all. Bounds come from the local 2020 TIGER block groups joined through state/geometry/block_group_to_jurisdiction_crosswalk.parquet for jurisdiction 22:municipal:place:2205000, and the runner will spatially join points to municipal block groups.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 7,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 0,
+    "offense_rows": 7,
+    "rows_in_surface": 970,
+    "share_admitted_rows": 7,
+    "share_sum_pass_all": true
+  },
+  "raw_source": {
+    "api_endpoint": "https://data.brla.gov/resource/pbin-pcm7.json",
+    "city_key": "baton_rouge_la",
+    "portal_type": "socrata",
+    "raw_cache_bytes": 1853441,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/baton_rouge_la_raw.parquet",
+    "raw_cache_sha256": "2a209624aac44c52320fef03aa5d24b33a7b8dca88f96f2ba01eba065f3b89ae",
+    "source_name": "Baton Rouge Police Crime Incidents",
+    "source_url": "https://data.brla.gov/Public-Safety/Baton-Rouge-Police-Crime-Incidents/pbin-pcm7"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final",
+  "runtime": {
+    "city_key": "baton_rouge_la",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/baton_rouge_la_raw.parquet",
+    "raw_cache_sha256": "2a209624aac44c52320fef03aa5d24b33a7b8dca88f96f2ba01eba065f3b89ae",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 6.636956958012888,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

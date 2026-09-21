@@ -1,0 +1,14 @@
+{
+  "case_key": "mwaa_va",
+  "ori": "VAMWA0000",
+  "agency_name_raw": "Metropolitan Washington Airports Authority Police",
+  "state_abbr": "VA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/mwaa_va",
+  "review_goal": "Determine the defensible production handling for ORI VAMWA0000 and whether Metropolitan Washington Airports Authority Police should be treated as a custom MWAA airport-and-roadway authority footprint, a county/place proxy, or an absorb-into-primary outcome.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

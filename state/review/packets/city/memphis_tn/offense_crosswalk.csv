@@ -1,0 +1,7 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""UCR_Incident_Code"", ""op"": ""in"", ""value"": """", ""values"": [""09A""]}]",[]
+robbery,"[{""field"": ""UCR_Incident_Code"", ""op"": ""in"", ""value"": """", ""values"": [""120""]}]",[]
+aggravated_assault,"[{""field"": ""UCR_Incident_Code"", ""op"": ""in"", ""value"": """", ""values"": [""13A""]}]",[]
+burglary,"[{""field"": ""UCR_Incident_Code"", ""op"": ""in"", ""value"": """", ""values"": [""220""]}]",[]
+larceny,"[{""field"": ""UCR_Incident_Code"", ""op"": ""in"", ""value"": """", ""values"": [""23A"", ""23B"", ""23C"", ""23D"", ""23E"", ""23F"", ""23G"", ""23H""]}]",[]
+motor_vehicle_theft,"[{""field"": ""UCR_Incident_Code"", ""op"": ""in"", ""value"": """", ""values"": [""240""]}]",[]

@@ -1,0 +1,14 @@
+{
+  "case_key": "hartsfield_jackson_ga",
+  "ori": "GA0602400",
+  "agency_name_raw": "hrtsfld-jcksn atl int ap",
+  "state_abbr": "GA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/hartsfield_jackson_ga",
+  "review_goal": "Determine the defensible production handling for Hartsfield-Jackson Atlanta International Airport policing and whether the correct outcome is a custom airport footprint, absorb-into-primary treatment, or another overlap class.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

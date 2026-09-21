@@ -1,0 +1,124 @@
+{
+  "case_key": "augusta_ga",
+  "jurisdiction_id": "13:municipal:place:1304204",
+  "jurisdiction_name": "Augusta-Richmond County consolidated government (balance)",
+  "state_abbr": "GA",
+  "review_date": "2026-03-24",
+  "focus_rows": [
+    {
+      "jurisdiction_id": "13:municipal:cousub:1324590168",
+      "jurisdiction_name": "Augusta CCD"
+    },
+    {
+      "jurisdiction_id": "13:municipal:place:1304204",
+      "jurisdiction_name": "Augusta-Richmond County consolidated government (balance)"
+    }
+  ],
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "drop_augusta_ccd_keep_augusta_richmond_balance_as_single_consolidated_primary_row_route_sheriff_and_legacy_police_here_and_treat_marshal_as_specialized_nonprimary_overlap",
+    "confidence": "medium"
+  },
+  "core_findings": [
+    "Augusta-Richmond County is a real consolidated city-county government, not an ordinary city plus county pair. Augusta's charter created a reorganized government in Richmond County with both county and municipal powers effective January 1, 1996.",
+    "The charter also makes the Richmond County sheriff the chief law-enforcement officer of Richmond County and explicitly describes the consolidated government as using the former Augusta Police Department together with sheriff resources after consolidation. That is strong official evidence that the ordinary city police function was absorbed into the sheriff-led consolidated structure.",
+    "Official Augusta-Richmond County pages show the sheriff and marshal as separate elected/appointed local offices. The sheriff page describes broad law-enforcement responsibilities, while the marshal page describes a narrower mix of civil process, ordinance enforcement, court security, government-building security, and airport law-enforcement duties.",
+    "Augusta University Police is a separate specialized police layer with jurisdiction on university property, which confirms that Augusta has multiple overlapping public-safety agencies without implying multiple ordinary municipal control objects.",
+    "Official Census geography makes the key row split clear. In Georgia, CCDs are statistical units with no legal function, and Augusta CCD is only one of four CCDs in Richmond County. By contrast, the Augusta-Richmond County balance place is the official municipal geography representing the consolidated government outside other incorporated places.",
+    "Repo evidence shows that the live crime-reporting surface is the sheriff, not the CCD-linked police or the balance-linked marshal. GA1210000 carries active 2018-2024 SRS and NIBRS totals, while GA1210100, GA1210200, and GA1210700 are zero throughout the panel in repo observations.",
+    "The current split is therefore methodologically wrong in two ways at once: Augusta CCD is not a governmental control unit, and the only live consolidated reporting agency is still sitting outside municipal routing in state nonmunicipal remainder."
+  ],
+  "governance_structure": {
+    "municipal_status": "consolidated_city_county_primary_jurisdiction_with_separate_incorporated_carveouts",
+    "official_basis": [
+      "Augusta's charter referendum language created the Augusta-Richmond County Commission-Council to administer a reorganized government in Richmond County with both county and municipal powers.",
+      "The Census Georgia geography guide says Richmond County is served by the consolidated government of Augusta-Richmond County and is not a separate functioning county government.",
+      "The same Census guide says Georgia CCDs have no legal function and that balance places represent the portion of consolidated cities outside other incorporated places."
+    ],
+    "important_interpretation": "Within the current row set, the balance place is the only row that maps to a real Augusta-Richmond municipal government object. Augusta CCD is only a statistical subdivision and cannot be the annual local police control target."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Richmond County Sheriff's Office / Augusta-Richmond County Sheriff's Office",
+    "supporting_specialized_entities": [
+      "Richmond County Marshal's Office",
+      "Augusta University Police Department"
+    ],
+    "official_evidence": [
+      "The charter states that the sheriff of Richmond County is the chief law-enforcement officer of Richmond County.",
+      "The sheriff page lists broad primary responsibilities: maintaining peace and order, enforcing federal, state, and local laws, investigating crimes, housing inmates, and providing court services.",
+      "The marshal page lists specialized responsibilities centered on civil process, ordinance enforcement, court and government-building security, and law-enforcement duties at Augusta Regional Airport.",
+      "The Augusta University Police page states that the department maintains jurisdiction on all Augusta University property."
+    ],
+    "separate_current_general_city_police_department_officially_visible": false,
+    "likely_reporting_continuity": "legacy Augusta and Richmond County police identifiers are historical or dormant aliases; the sheriff is the active consolidated reporting surface"
+  },
+  "geography_structure": {
+    "candidate_row_assessment": [
+      {
+        "jurisdiction_id": "13:municipal:cousub:1324590168",
+        "jurisdiction_name": "Augusta CCD",
+        "is_methodologically_real_annual_local_control_object": false,
+        "why_not": [
+          "Georgia CCDs are statistical county subdivisions with no legal function.",
+          "Richmond County has four CCDs, so Augusta CCD is only one subdivision of the county and cannot represent the consolidated government.",
+          "Routing Augusta's primary law-enforcement agencies to a CCD invents a municipal control object that official government and Census sources do not recognize."
+        ]
+      },
+      {
+        "jurisdiction_id": "13:municipal:place:1304204",
+        "jurisdiction_name": "Augusta-Richmond County consolidated government (balance)",
+        "is_methodologically_real_annual_local_control_object": true,
+        "why": [
+          "The balance place is an official place geography for the Augusta-Richmond consolidated government outside other incorporated places.",
+          "That matches the repo's need for one primary Augusta municipal row while leaving separate municipalities such as Blythe and Hephzibah outside the main Augusta row."
+        ]
+      }
+    ],
+    "population_evidence": {
+      "augusta_ccd_2020_population": 140467,
+      "augusta_richmond_balance_2020_population": 202081,
+      "augusta_richmond_consolidated_city_2020_population": 206607,
+      "important_interpretation": "The balance place is near the full consolidated population, while Augusta CCD is only one statistical component of Richmond County."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": {
+      "GA1210000": "exclusive to 13:state_nonmunicipal_remainder",
+      "GA1210100": "exclusive to 13:municipal:cousub:1324590168",
+      "GA1210200": "exclusive to 13:municipal:cousub:1324590168",
+      "GA1210700": "exclusive to 13:municipal:place:1304204"
+    },
+    "current_observation_state": {
+      "GA1210000": "active SRS and NIBRS totals from 2018 through 2024, including 7741 SRS total and 7291 NIBRS total in 2024",
+      "GA1210100": "zero in every repo panel year 2018-2024",
+      "GA1210200": "zero in every repo panel year 2018-2024",
+      "GA1210700": "zero in every repo panel year 2018-2024"
+    },
+    "interpretation": "The repo is currently anchoring municipal routing on dead or nonprimary agency rows while leaving the only live consolidated crime-reporting agency outside municipal handling."
+  },
+  "production_interpretation": {
+    "single_primary_local_row_defensible": true,
+    "primary_row_to_keep": "13:municipal:place:1304204",
+    "row_to_drop": "13:municipal:cousub:1324590168",
+    "why": [
+      "Augusta-Richmond County is a real consolidated local government and needs one consolidated primary municipal row.",
+      "Augusta CCD is not a legal government unit and cannot be defended as the municipal target.",
+      "The balance place is the real Augusta municipal geography inside the current reference layer.",
+      "The active law-enforcement surface is the sheriff, not the current CCD-linked police aliases or the balance-linked marshal row."
+    ],
+    "recommended_handling": [
+      "Drop Augusta CCD 13:municipal:cousub:1324590168 from the municipal target set.",
+      "Retain Augusta-Richmond County consolidated government (balance) 13:municipal:place:1304204 as the single consolidated primary local row.",
+      "Reroute GA1210000 Augusta-Richmond County Sheriff's Office into 13:municipal:place:1304204 as a consolidated-primary-jurisdiction exception instead of leaving it in state nonmunicipal remainder.",
+      "Reroute GA1210100 Augusta and GA1210200 Richmond Co. Police Dept to the same balance row only if the repo still needs them as dormant continuity aliases; they should not support or preserve a separate CCD target.",
+      "Remove GA1210700 Richmond County Marshal from exclusive ordinary local-full routing. If it stays in the reference layer, treat it as a specialized overlap or support agency associated with court, civil-process, ordinance, security, and airport functions rather than as a primary municipal-control driver.",
+      "Keep Augusta University Police and other campus agencies in overlap handling, not in the primary municipal row.",
+      "Keep separate municipal handling for Blythe and Hephzibah outside the main Augusta balance row."
+    ]
+  },
+  "likely_issue_class": "invalid_ccd_split_plus_broken_consolidated_sheriff_routing",
+  "open_questions": [
+    "If the production system later supports a dedicated consolidated-city target type, Augusta-Richmond County consolidated government could be modeled even more directly. Within the current row set, however, the balance place is the correct row to keep because separate incorporated places remain outside Augusta's primary municipal object.",
+    "The exact implementation mechanics for GA1210700 depend on whether the repo has a stable nonprimary overlap lane for marshals or airport-limited agencies. The keep/remove question for the current split rows is still closed even if that routing detail needs a small follow-up implementation decision."
+  ]
+}

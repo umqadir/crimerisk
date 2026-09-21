@@ -1,0 +1,26 @@
+{
+  "city_key": "seattle",
+  "city_name": "Seattle",
+  "jurisdiction_id": "53:municipal:place:5363000",
+  "state_abbr": "WA",
+  "priority_bucket": "first_wave",
+  "priority_rank": "4",
+  "basis": "AGS-seed city with strong public NIBRS-coded incidents, official annual WASPC counts, and a working Beat-aware fallback path.",
+  "notes": "Seattle is now ready offense-selectively. Keep murder rape robbery burglary larceny and motor_vehicle_theft live and leave aggravated_assault blocked as a methodological public-data limit rather than a remaining spatial bug.",
+  "source_name": "Seattle SPD Crime Data 2008 to Present",
+  "source_url": "https://data.seattle.gov/api/views/tazs-3rd5/rows.csv?accessType=DOWNLOAD",
+  "portal_type": "socrata",
+  "coverage_start_year": "2008",
+  "coverage_end_year": "2025",
+  "years_usable": "18",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/seattle",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

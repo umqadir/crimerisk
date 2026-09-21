@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,aggravated_assault,2600.0,cius_publication_annual,high
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,burglary,2604.0,cius_publication_annual,high
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,larceny,10947.0,cius_publication_annual,high
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,motor_vehicle_theft,3399.0,cius_publication_annual,high
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,murder,38.0,cius_publication_annual,high
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,rape,498.0,cius_publication_annual,high
+colorado_springs_co,"Colorado Springs, Colorado",08:municipal:place:0816000,robbery,381.0,cius_publication_annual,high

@@ -1,0 +1,169 @@
+{
+  "city_key": "colorado_springs_co",
+  "contract": {
+    "city_key": "colorado_springs_co",
+    "city_name": "Colorado Springs, Colorado",
+    "geography": {
+      "bounds": {
+        "max_latitude": 39.139917,
+        "max_longitude": -104.467313,
+        "min_latitude": 38.557791,
+        "min_longitude": -105.082529
+      },
+      "jurisdiction_id": "08:municipal:place:0816000",
+      "state_fips": "08"
+    },
+    "mapping": {
+      "date_field": "occurredfromdate",
+      "id_field": ":id",
+      "id_fields": [],
+      "latitude_field": "latitude",
+      "longitude_field": "longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "crimecode",
+              "op": "eq",
+              "value": "09A",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crimecode",
+              "op": "eq",
+              "value": "120",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crimecode",
+              "op": "eq",
+              "value": "13A",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crimecode",
+              "op": "eq",
+              "value": "220",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crimecode",
+              "op": "in",
+              "value": "",
+              "values": [
+                "23A",
+                "23B",
+                "23C",
+                "23D",
+                "23E",
+                "23F",
+                "23G",
+                "23H"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crimecode",
+              "op": "eq",
+              "value": "240",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://policedata.coloradosprings.gov/resource/bc88-hemr.json",
+      "name": "Colorado Springs Police Department Open Data Crime Level Data",
+      "order": "occurredfromdate ASC, :id ASC",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        ":id",
+        "casenumber",
+        "occurredfromdate",
+        "reporteddate",
+        "crimecode",
+        "crimecodedescription",
+        "nciccode",
+        "nciccodedescription",
+        "location_point.latitude as latitude",
+        "location_point.longitude as longitude"
+      ],
+      "source_url": "https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr",
+      "where": "occurredfromdate >= '2024-01-01T00:00:00' AND occurredfromdate < '2025-01-01T00:00:00' AND location_point IS NOT NULL"
+    },
+    "sources_checked": [
+      "https://policedata.coloradosprings.gov/Crime/Colorado-Springs-Crime-Map/ar6u-b83m",
+      "https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr",
+      "https://policedata.coloradosprings.gov/api/views/ar6u-b83m",
+      "https://policedata.coloradosprings.gov/api/views/bc88-hemr",
+      "https://policedata.coloradosprings.gov/resource/bc88-hemr.json?$limit=3",
+      "https://policedata.coloradosprings.gov/resource/bc88-hemr.json?$select=:id,casenumber,crimecode&$where=occurredfromdate%20%3E=%20%272024-01-01T00:00:00%27%20AND%20occurredfromdate%20%3C%20%272025-01-01T00:00:00%27&$limit=3"
+    ],
+    "worker_judgment_notes": "Selected the official Colorado Springs Police Department Socrata Crime Level Data table behind the public Crime Map because it has offense-level rows, occurred date, Socrata system row identity (:id), NIBRS-style crimecode/crimecodedescription fields, and point coordinates exposed from location_point as latitude/longitude aliases. This is share-lane only: CSPD explicitly warns the dataset does not apply the same counting rules as official CBI/FBI reporting, and local controls show the official totals should remain authoritative. The 2024 feed has defensible NIBRS-style mappings for 09A murder, 120 robbery, 13A aggravated assault, 220 burglary, 23A-23H larceny, and 240 motor vehicle theft. I did not include rape because targeted 2024 checks found no 11A/11B/11C/11D or rape/sex-offense rows in this public point feed, likely reflecting public-release suppression or omission; the runner should reject the no-data rape lane rather than infer it from unrelated categories. Bounds come from the repo's Colorado Springs municipal block-group crosswalk plus local TIGER 2020 block group geometry, padded by 0.01 degrees, and the runner will still spatially join to municipal block groups.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 6,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 2,
+    "offense_rows": 7,
+    "rows_in_surface": 1408,
+    "share_admitted_rows": 6,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://policedata.coloradosprings.gov/resource/bc88-hemr.json",
+    "city_key": "colorado_springs_co",
+    "portal_type": "socrata",
+    "raw_cache_bytes": 2023643,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/colorado_springs_co_raw.parquet",
+    "raw_cache_sha256": "aa6f62e24315a26cef24f8cd2dd7f45171e796b4185a3af507944eae7894ac0b",
+    "source_name": "Colorado Springs Police Department Open Data Crime Level Data",
+    "source_url": "https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final",
+  "runtime": {
+    "city_key": "colorado_springs_co",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/colorado_springs_co_raw.parquet",
+    "raw_cache_sha256": "aa6f62e24315a26cef24f8cd2dd7f45171e796b4185a3af507944eae7894ac0b",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 6.284807207994163,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

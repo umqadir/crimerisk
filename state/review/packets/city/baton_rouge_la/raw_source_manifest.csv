@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+baton_rouge_la,Baton Rouge Police Crime Incidents,https://data.brla.gov/Public-Safety/Baton-Rouge-Police-Crime-Incidents/pbin-pcm7,https://data.brla.gov/resource/pbin-pcm7.json,socrata,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/baton_rouge_la_raw.parquet,1853441,2a209624aac44c52320fef03aa5d24b33a7b8dca88f96f2ba01eba065f3b89ae

@@ -1,0 +1,933 @@
+{
+  "state_abbr": "CA",
+  "generated_at": "2026-03-22",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca",
+  "input_files": {
+    "state_priority_rows": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca/state_priority_rows.csv",
+    "source_review_queue": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca/source_review_queue.csv",
+    "local_official_validation_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024"
+  },
+  "state_priority_context": [
+    {
+      "priority_rank": 2,
+      "offense": "larceny",
+      "repo_nibrs_observed_total_2024": 349718.0,
+      "repo_srs_observed_total_2024": 494995.0,
+      "fbi_cde_estimated_total_2024": 530422.0,
+      "bjs_ckle_count_2024": 546430.0,
+      "repo_srs_gap_below_fbi_cde": 35427.0,
+      "repo_nibrs_gap_below_bjs_ckle": 196712.0
+    },
+    {
+      "priority_rank": 3,
+      "offense": "motor_vehicle_theft",
+      "repo_nibrs_observed_total_2024": 89486.0,
+      "repo_srs_observed_total_2024": 146064.0,
+      "fbi_cde_estimated_total_2024": 168564.0,
+      "bjs_ckle_count_2024": 169600.0,
+      "repo_srs_gap_below_fbi_cde": 22500.0,
+      "repo_nibrs_gap_below_bjs_ckle": 80114.0
+    },
+    {
+      "priority_rank": 5,
+      "offense": "aggravated_assault",
+      "repo_nibrs_observed_total_2024": 76138.0,
+      "repo_srs_observed_total_2024": 125361.0,
+      "fbi_cde_estimated_total_2024": 128480.0,
+      "bjs_ckle_count_2024": 131310.0,
+      "repo_srs_gap_below_fbi_cde": 3119.0,
+      "repo_nibrs_gap_below_bjs_ckle": 55172.0
+    },
+    {
+      "priority_rank": 9,
+      "offense": "burglary",
+      "repo_nibrs_observed_total_2024": 76093.0,
+      "repo_srs_observed_total_2024": 120040.0,
+      "fbi_cde_estimated_total_2024": 120573.0,
+      "bjs_ckle_count_2024": 117430.0,
+      "repo_srs_gap_below_fbi_cde": 533.0,
+      "repo_nibrs_gap_below_bjs_ckle": 41337.0
+    },
+    {
+      "priority_rank": 20,
+      "offense": "robbery",
+      "repo_nibrs_observed_total_2024": 29588.0,
+      "repo_srs_observed_total_2024": 45577.0,
+      "fbi_cde_estimated_total_2024": 46943.0,
+      "bjs_ckle_count_2024": 42410.0,
+      "repo_srs_gap_below_fbi_cde": 1366.0,
+      "repo_nibrs_gap_below_bjs_ckle": 12822.0
+    },
+    {
+      "priority_rank": 28,
+      "offense": "rape",
+      "repo_nibrs_observed_total_2024": 7101.0,
+      "repo_srs_observed_total_2024": 13775.0,
+      "fbi_cde_estimated_total_2024": 14436.0,
+      "bjs_ckle_count_2024": 16100.0,
+      "repo_srs_gap_below_fbi_cde": 661.0,
+      "repo_nibrs_gap_below_bjs_ckle": 8999.0
+    },
+    {
+      "priority_rank": 149,
+      "offense": "murder",
+      "repo_nibrs_observed_total_2024": 981.0,
+      "repo_srs_observed_total_2024": 1646.0,
+      "fbi_cde_estimated_total_2024": 1782.0,
+      "bjs_ckle_count_2024": 1640.0,
+      "repo_srs_gap_below_fbi_cde": 136.0,
+      "repo_nibrs_gap_below_bjs_ckle": 659.0
+    }
+  ],
+  "queue_summary": {
+    "queue_rows": 224,
+    "review_lane_counts": {
+      "missing_in_repo_master": 158,
+      "official_nibrs_repo_no_nibrs": 1,
+      "present_but_no_2024_observation": 65
+    },
+    "issue_type_counts": {
+      "master_reference_omission": 109,
+      "source_policy_disagreement": 1,
+      "coverage_reporting_regime_difference": 114
+    },
+    "support_sum_by_issue_type": {
+      "master_reference_omission": 9092,
+      "source_policy_disagreement": 28,
+      "coverage_reporting_regime_difference": 0
+    }
+  },
+  "priority_findings": [
+    {
+      "finding_id": "ca_chp_area_offices_are_definite_master_omissions",
+      "issue_type": "master_reference_omission",
+      "rows": 91,
+      "support_sum": 8519,
+      "what_it_means": "These CHP area-office ORIs already have usable 2024 repo NIBRS observations, so the blocker is the missing master/reference row, not source availability.",
+      "next_action": "Implement a CHP area-office master patch first, then rerun California coverage checks.",
+      "examples": [
+        {
+          "priority_rank": 1,
+          "ori9": "CA0349950",
+          "agency_name": "Highway Patrol: North Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 1543.0
+        },
+        {
+          "priority_rank": 3,
+          "ori9": "CA0349952",
+          "agency_name": "Highway Patrol: South Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 700.0
+        },
+        {
+          "priority_rank": 5,
+          "ori9": "CA0079920",
+          "agency_name": "Highway Patrol: Contra Costa Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 444.0
+        },
+        {
+          "priority_rank": 7,
+          "ori9": "CA0019970",
+          "agency_name": "Highway Patrol: Oakland Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 438.0
+        },
+        {
+          "priority_rank": 10,
+          "ori9": "CA0509965",
+          "agency_name": "Highway Patrol: Modesto Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 357.0
+        },
+        {
+          "priority_rank": 12,
+          "ori9": "CA0399965",
+          "agency_name": "Highway Patrol: Stockton Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 314.0
+        }
+      ]
+    },
+    {
+      "finding_id": "ca_other_master_omissions_with_existing_repo_nibrs_are_small_but_real",
+      "issue_type": "master_reference_omission",
+      "rows": 5,
+      "support_sum": 432,
+      "what_it_means": "A small set of non-CHP California ORIs also have live repo NIBRS observations but are absent from master.",
+      "next_action": "Add these ORIs in the same master patch as the CHP area offices.",
+      "examples": [
+        {
+          "priority_rank": 11,
+          "ori9": "CA028090X",
+          "agency_name": "American Canyon Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 324.0
+        },
+        {
+          "priority_rank": 66,
+          "ori9": "CA0341201",
+          "agency_name": "California State Parks: Gold Fields",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 44.0
+        },
+        {
+          "priority_rank": 82,
+          "ori9": "CA010015M",
+          "agency_name": "Coalinga State Hospital",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 31.0
+        },
+        {
+          "priority_rank": 101,
+          "ori9": "CA040015M",
+          "agency_name": "Atascadero State Hospital",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 19.0
+        },
+        {
+          "priority_rank": 106,
+          "ori9": "CA028100X",
+          "agency_name": "Yountville Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 14.0
+        }
+      ]
+    },
+    {
+      "finding_id": "ca_zero_observation_chp_rows_need_coverage_review_not_blind_adds",
+      "issue_type": "coverage_reporting_regime_difference",
+      "rows": 43,
+      "support_sum": 0,
+      "what_it_means": "These CHP ORIs are official NIBRS in the roster but have no 2024 repo observations, so the mismatch could be zero reporting, consolidated reporting, or a missing feed.",
+      "next_action": "Queue a second-pass CHP coverage review after the area-office master patch. Do not auto-add these rows to master from roster status alone.",
+      "examples": [
+        {
+          "priority_rank": 327,
+          "ori9": "CA0019916",
+          "agency_name": "Highway Patrol: Golden Gate Investigative Services Unit",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 328,
+          "ori9": "CA0019947",
+          "agency_name": "Highway Patrol: Nimitz Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 329,
+          "ori9": "CA0019991",
+          "agency_name": "Highway Patrol: Mission Grade Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 338,
+          "ori9": "CA0159912",
+          "agency_name": "Highway Patrol: Kern County Auto Theft Task Force",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 339,
+          "ori9": "CA0159924",
+          "agency_name": "Highway Patrol: Grapevine Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 340,
+          "ori9": "CA0159930",
+          "agency_name": "Highway Patrol: Mojave Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 354,
+          "ori9": "CA0199941",
+          "agency_name": "Highway Patrol: Castaic Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 355,
+          "ori9": "CA0199945",
+          "agency_name": "Highway Patrol: Antelope Valley Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    },
+    {
+      "finding_id": "ca_porterville_developmental_center_is_the_only_true_policy_dispute_in_packet",
+      "issue_type": "source_policy_disagreement",
+      "rows": 1,
+      "support_sum": 28,
+      "what_it_means": "The official roster says the ORI is NIBRS-effective, but repo still prefers SRS and has no repo NIBRS observation.",
+      "next_action": "Queue a targeted source audit for this single ORI before changing California policy.",
+      "examples": [
+        {
+          "priority_rank": 85,
+          "ori9": "CA0541200",
+          "agency_name": "Porterville Developmental Center",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 28.0
+        }
+      ]
+    }
+  ],
+  "issue_clusters": [
+    {
+      "issue_type": "master_reference_omission",
+      "issue_subtype": "chp_area_office_master_gap_with_repo_nibrs",
+      "row_count": 91,
+      "support_sum": 8519,
+      "min_priority_rank": 1,
+      "meaning": "Repo already has 2024 observations under the ORI, so the mismatch is a master/reference gap rather than a source gap.",
+      "recommended_master_action": "add_to_master_now",
+      "recommended_source_action": "keep_current_nibrs_incident_annual",
+      "recommended_next_step": "Add this ORI to the California state-law-enforcement master roster and relink the existing 2024 repo NIBRS annual observations.",
+      "top_examples": [
+        {
+          "priority_rank": 1,
+          "ori9": "CA0349950",
+          "agency_name": "Highway Patrol: North Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 1543.0
+        },
+        {
+          "priority_rank": 3,
+          "ori9": "CA0349952",
+          "agency_name": "Highway Patrol: South Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 700.0
+        },
+        {
+          "priority_rank": 5,
+          "ori9": "CA0079920",
+          "agency_name": "Highway Patrol: Contra Costa Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 444.0
+        },
+        {
+          "priority_rank": 7,
+          "ori9": "CA0019970",
+          "agency_name": "Highway Patrol: Oakland Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 438.0
+        },
+        {
+          "priority_rank": 10,
+          "ori9": "CA0509965",
+          "agency_name": "Highway Patrol: Modesto Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 357.0
+        },
+        {
+          "priority_rank": 12,
+          "ori9": "CA0399965",
+          "agency_name": "Highway Patrol: Stockton Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 314.0
+        },
+        {
+          "priority_rank": 13,
+          "ori9": "CA0549980",
+          "agency_name": "Highway Patrol: Visalia Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 312.0
+        },
+        {
+          "priority_rank": 18,
+          "ori9": "CA0179951",
+          "agency_name": "Highway Patrol: Clear Lake Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 216.0
+        }
+      ]
+    },
+    {
+      "issue_type": "master_reference_omission",
+      "issue_subtype": "non_chp_master_gap_with_repo_nibrs",
+      "row_count": 5,
+      "support_sum": 432,
+      "min_priority_rank": 11,
+      "meaning": "Repo already has 2024 observations under the ORI, so the mismatch is a master/reference gap rather than a source gap.",
+      "recommended_master_action": "add_to_master_now",
+      "recommended_source_action": "keep_current_nibrs_incident_annual",
+      "recommended_next_step": "Add this ORI to the master roster and relink the existing 2024 repo NIBRS annual observations already present for the ORI.",
+      "top_examples": [
+        {
+          "priority_rank": 11,
+          "ori9": "CA028090X",
+          "agency_name": "American Canyon Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 324.0
+        },
+        {
+          "priority_rank": 66,
+          "ori9": "CA0341201",
+          "agency_name": "California State Parks: Gold Fields",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 44.0
+        },
+        {
+          "priority_rank": 82,
+          "ori9": "CA010015M",
+          "agency_name": "Coalinga State Hospital",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 31.0
+        },
+        {
+          "priority_rank": 101,
+          "ori9": "CA040015M",
+          "agency_name": "Atascadero State Hospital",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 19.0
+        },
+        {
+          "priority_rank": 106,
+          "ori9": "CA028100X",
+          "agency_name": "Yountville Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 14.0
+        }
+      ]
+    },
+    {
+      "issue_type": "master_reference_omission",
+      "issue_subtype": "chp_specialty_master_gap_with_repo_nibrs",
+      "row_count": 13,
+      "support_sum": 141,
+      "min_priority_rank": 75,
+      "meaning": "Repo already has 2024 observations under the ORI, so the mismatch is a master/reference gap rather than a source gap.",
+      "recommended_master_action": "add_to_master_after_unique_ori_check",
+      "recommended_source_action": "keep_current_nibrs_incident_annual",
+      "recommended_next_step": "Run a quick uniqueness check against existing CHP master entities, then add this ORI because repo already carries 2024 NIBRS observations.",
+      "top_examples": [
+        {
+          "priority_rank": 75,
+          "ori9": "CA0199910",
+          "agency_name": "Highway Patrol: Southern Investigative Services Unit",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 36.0
+        },
+        {
+          "priority_rank": 83,
+          "ori9": "CA0349917",
+          "agency_name": "Highway Patrol: Capitol Protection Section",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 31.0
+        },
+        {
+          "priority_rank": 90,
+          "ori9": "CA0379908",
+          "agency_name": "Highway Patrol: Border Investigative Services Unit",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 26.0
+        },
+        {
+          "priority_rank": 99,
+          "ori9": "CA0349901",
+          "agency_name": "Highway Patrol: Valley Division",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 20.0
+        },
+        {
+          "priority_rank": 123,
+          "ori9": "CA0459901",
+          "agency_name": "Highway Patrol: Northern Division",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 7.0
+        },
+        {
+          "priority_rank": 127,
+          "ori9": "CA0199901",
+          "agency_name": "Highway Patrol: Southern Division",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 6.0
+        },
+        {
+          "priority_rank": 132,
+          "ori9": "CA0109901",
+          "agency_name": "Highway Patrol: Central Division",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 4.0
+        },
+        {
+          "priority_rank": 135,
+          "ori9": "CA0489901",
+          "agency_name": "Highway Patrol: Golden Gate Division",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 4.0
+        }
+      ]
+    },
+    {
+      "issue_type": "source_policy_disagreement",
+      "issue_subtype": "official_nibrs_repo_srs_only",
+      "row_count": 1,
+      "support_sum": 28,
+      "min_priority_rank": 85,
+      "meaning": "Official roster status and repo source policy disagree for the same ORI.",
+      "recommended_master_action": "no_master_change_from_packet",
+      "recommended_source_action": "queue_targeted_nibrs_audit_before_switch",
+      "recommended_next_step": "Audit whether a concrete 2024 official NIBRS incident feed exists for this ORI. Switch policy only after confirming source availability.",
+      "top_examples": [
+        {
+          "priority_rank": 85,
+          "ori9": "CA0541200",
+          "agency_name": "Porterville Developmental Center",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 28.0
+        }
+      ]
+    },
+    {
+      "issue_type": "coverage_reporting_regime_difference",
+      "issue_subtype": "chp_official_nibrs_zero_repo_obs_missing_master",
+      "row_count": 43,
+      "support_sum": 0,
+      "min_priority_rank": 327,
+      "meaning": "Official roster status exists, but repo has zero 2024 observations, so the next step is coverage verification rather than an automatic patch.",
+      "recommended_master_action": "hold_master_until_coverage_verified",
+      "recommended_source_action": "no_source_change_until_2024_obs_found",
+      "recommended_next_step": "Queue a secondary coverage review to determine whether this ORI has a separate 2024 reporting stream, zero-report status, or consolidated reporting.",
+      "top_examples": [
+        {
+          "priority_rank": 327,
+          "ori9": "CA0019916",
+          "agency_name": "Highway Patrol: Golden Gate Investigative Services Unit",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 328,
+          "ori9": "CA0019947",
+          "agency_name": "Highway Patrol: Nimitz Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 329,
+          "ori9": "CA0019991",
+          "agency_name": "Highway Patrol: Mission Grade Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 338,
+          "ori9": "CA0159912",
+          "agency_name": "Highway Patrol: Kern County Auto Theft Task Force",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 339,
+          "ori9": "CA0159924",
+          "agency_name": "Highway Patrol: Grapevine Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 340,
+          "ori9": "CA0159930",
+          "agency_name": "Highway Patrol: Mojave Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 354,
+          "ori9": "CA0199941",
+          "agency_name": "Highway Patrol: Castaic Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 355,
+          "ori9": "CA0199945",
+          "agency_name": "Highway Patrol: Antelope Valley Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    },
+    {
+      "issue_type": "coverage_reporting_regime_difference",
+      "issue_subtype": "official_false_zero_repo_obs_present_in_master",
+      "row_count": 34,
+      "support_sum": 0,
+      "min_priority_rank": 330,
+      "meaning": "Official roster status exists, but repo has zero 2024 observations, so the next step is coverage verification rather than an automatic patch.",
+      "recommended_master_action": "keep_master_as_is",
+      "recommended_source_action": "no_v2_source_change",
+      "recommended_next_step": "No 2024 source action from this packet. Treat as a non-reporting or uncovered row unless a new 2024 source appears.",
+      "top_examples": [
+        {
+          "priority_rank": 330,
+          "ori9": "CA0040100",
+          "agency_name": "Biggs Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 337,
+          "ori9": "CA0150100",
+          "agency_name": "Arvin Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 342,
+          "ori9": "CA0190D0X",
+          "agency_name": "La Habra Heights Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 343,
+          "ori9": "CA0190X0X",
+          "agency_name": "Westlake Village Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 344,
+          "ori9": "CA0191H0X",
+          "agency_name": "West Hollywood Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 345,
+          "ori9": "CA0191N00",
+          "agency_name": "Baldwin Park Unified School District",
+          "agency_type_name": "Other",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 346,
+          "ori9": "CA0191R0X",
+          "agency_name": "Santa Clarita Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 347,
+          "ori9": "CA0191W0X",
+          "agency_name": "Diamond Bar Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    },
+    {
+      "issue_type": "coverage_reporting_regime_difference",
+      "issue_subtype": "official_nibrs_zero_repo_obs_present_in_master",
+      "row_count": 31,
+      "support_sum": 0,
+      "min_priority_rank": 331,
+      "meaning": "Official roster status exists, but repo has zero 2024 observations, so the next step is coverage verification rather than an automatic patch.",
+      "recommended_master_action": "keep_master_as_is",
+      "recommended_source_action": "no_source_change_until_2024_obs_found",
+      "recommended_next_step": "Keep the master row unchanged. Revisit only if a concrete 2024 source appears or zero-report treatment needs explicit policy.",
+      "top_examples": [
+        {
+          "priority_rank": 331,
+          "ori9": "CA0041200",
+          "agency_name": "California Department of Forestry and Fire Protection: Butte",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 332,
+          "ori9": "CA0050600",
+          "agency_name": "California Department of Forestry and Fire Protection: Tuolumne-Calaveras",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 333,
+          "ori9": "CA0090300",
+          "agency_name": "California Department of Forestry and Fire Protection: Amador-El Dorado",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 334,
+          "ori9": "CA0101900",
+          "agency_name": "California Department of Forestry and Fire Protection, Fresno-Kings",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 335,
+          "ori9": "CA0102600",
+          "agency_name": "California Department of Forestry and Fire Protection: Southern Region",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 336,
+          "ori9": "CA0121600",
+          "agency_name": "California Department of Forestry and Fire Protection: Humboldt",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 341,
+          "ori9": "CA0180500",
+          "agency_name": "California Department of Forestry and Fire Protection: Lassen-Modoc",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 357,
+          "ori9": "CA0220100",
+          "agency_name": "California Department of Forestry and Fire Protection: Madera-Mariposa-Merced",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    },
+    {
+      "issue_type": "coverage_reporting_regime_difference",
+      "issue_subtype": "non_chp_official_nibrs_zero_repo_obs_missing_master",
+      "row_count": 5,
+      "support_sum": 0,
+      "min_priority_rank": 351,
+      "meaning": "Official roster status exists, but repo has zero 2024 observations, so the next step is coverage verification rather than an automatic patch.",
+      "recommended_master_action": "hold_master_until_coverage_verified",
+      "recommended_source_action": "no_source_change_until_2024_obs_found",
+      "recommended_next_step": "Queue a secondary coverage review to determine whether this ORI has a separate 2024 reporting stream, zero-report status, or consolidated reporting.",
+      "top_examples": [
+        {
+          "priority_rank": 351,
+          "ori9": "CA0198800",
+          "agency_name": "Los Angeles Port Police",
+          "agency_type_name": "Other",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 362,
+          "ori9": "CA028130X",
+          "agency_name": "Napa Special Investigations Bureau",
+          "agency_type_name": "Other",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 414,
+          "ori9": "CA043380X",
+          "agency_name": "San Francisco Bay Area Rapid Transit: Santa Clara County",
+          "agency_type_name": "Other",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 425,
+          "ori9": "CA0481500",
+          "agency_name": "California State Polytechnic University: Solano",
+          "agency_type_name": "University or College",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 435,
+          "ori9": "CADI0990X",
+          "agency_name": "La Jolla Tribal",
+          "agency_type_name": "Tribal",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    },
+    {
+      "issue_type": "coverage_reporting_regime_difference",
+      "issue_subtype": "official_false_zero_repo_obs_missing_master",
+      "row_count": 1,
+      "support_sum": 0,
+      "min_priority_rank": 409,
+      "meaning": "Official roster status exists, but repo has zero 2024 observations, so the next step is coverage verification rather than an automatic patch.",
+      "recommended_master_action": "leave_out_of_master",
+      "recommended_source_action": "no_v2_source_change",
+      "recommended_next_step": "Do not add from this packet. The ORI has no official 2024 NIBRS status and no repo observations to anchor a master entry.",
+      "top_examples": [
+        {
+          "priority_rank": 409,
+          "ori9": "CA038090X",
+          "agency_name": "San Francisco International Airport",
+          "agency_type_name": "Other",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    }
+  ],
+  "doctrine_candidates": [
+    {
+      "slug": "state_law_enforcement_area_offices_with_repo_obs_should_be_master_entities",
+      "statement": "When a state-law-enforcement area office has its own ORI and repo already carries 2024 observations, treat it as a first-class master entity rather than folding it into a parent state police row.",
+      "supporting_rows": 91,
+      "california_examples": [
+        {
+          "priority_rank": 1,
+          "ori9": "CA0349950",
+          "agency_name": "Highway Patrol: North Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 1543.0
+        },
+        {
+          "priority_rank": 3,
+          "ori9": "CA0349952",
+          "agency_name": "Highway Patrol: South Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 700.0
+        },
+        {
+          "priority_rank": 5,
+          "ori9": "CA0079920",
+          "agency_name": "Highway Patrol: Contra Costa Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 444.0
+        },
+        {
+          "priority_rank": 7,
+          "ori9": "CA0019970",
+          "agency_name": "Highway Patrol: Oakland Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 438.0
+        },
+        {
+          "priority_rank": 10,
+          "ori9": "CA0509965",
+          "agency_name": "Highway Patrol: Modesto Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 357.0
+        },
+        {
+          "priority_rank": 12,
+          "ori9": "CA0399965",
+          "agency_name": "Highway Patrol: Stockton Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 314.0
+        }
+      ]
+    },
+    {
+      "slug": "missing_master_with_repo_nibrs_is_reference_gap",
+      "statement": "When repo_has_nibrs_2024 is already true and the official roster also marks the ORI as NIBRS, treat the mismatch as a reference/master omission first.",
+      "supporting_rows": 109,
+      "california_examples": [
+        {
+          "priority_rank": 1,
+          "ori9": "CA0349950",
+          "agency_name": "Highway Patrol: North Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 1543.0
+        },
+        {
+          "priority_rank": 3,
+          "ori9": "CA0349952",
+          "agency_name": "Highway Patrol: South Sacramento Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 700.0
+        },
+        {
+          "priority_rank": 5,
+          "ori9": "CA0079920",
+          "agency_name": "Highway Patrol: Contra Costa Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 444.0
+        },
+        {
+          "priority_rank": 7,
+          "ori9": "CA0019970",
+          "agency_name": "Highway Patrol: Oakland Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 438.0
+        },
+        {
+          "priority_rank": 10,
+          "ori9": "CA0509965",
+          "agency_name": "Highway Patrol: Modesto Area Office",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 357.0
+        },
+        {
+          "priority_rank": 11,
+          "ori9": "CA028090X",
+          "agency_name": "American Canyon Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 324.0
+        }
+      ]
+    },
+    {
+      "slug": "official_nibrs_plus_zero_repo_obs_requires_coverage_verification",
+      "statement": "Do not auto-add or auto-switch official NIBRS ORIs when repo has zero 2024 observations. First determine whether the ORI reports separately, reports zero incidents, or is consolidated into another reporting unit.",
+      "supporting_rows": 79,
+      "california_examples": [
+        {
+          "priority_rank": 327,
+          "ori9": "CA0019916",
+          "agency_name": "Highway Patrol: Golden Gate Investigative Services Unit",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 328,
+          "ori9": "CA0019947",
+          "agency_name": "Highway Patrol: Nimitz Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 329,
+          "ori9": "CA0019991",
+          "agency_name": "Highway Patrol: Mission Grade Commercial Vehicle Enforcement Facility",
+          "agency_type_name": "State Police",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 331,
+          "ori9": "CA0041200",
+          "agency_name": "California Department of Forestry and Fire Protection: Butte",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 332,
+          "ori9": "CA0050600",
+          "agency_name": "California Department of Forestry and Fire Protection: Tuolumne-Calaveras",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        },
+        {
+          "priority_rank": 333,
+          "ori9": "CA0090300",
+          "agency_name": "California Department of Forestry and Fire Protection: Amador-El Dorado",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 0.0
+        }
+      ]
+    },
+    {
+      "slug": "official_nibrs_flag_alone_should_not_force_policy_switch",
+      "statement": "Official roster NIBRS status alone is not enough to replace an existing repo SRS source when repo has no confirmed 2024 NIBRS incident feed.",
+      "supporting_rows": 1,
+      "california_examples": [
+        {
+          "priority_rank": 85,
+          "ori9": "CA0541200",
+          "agency_name": "Porterville Developmental Center",
+          "agency_type_name": "Other State Agency",
+          "repo_preferred_support_count_2024": 28.0
+        }
+      ]
+    }
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca/source_recommendations.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca/issue_bucket_summary.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca/reference_master_omission_patch.csv"
+  ]
+}

@@ -1,0 +1,101 @@
+source_key,dataset_id,dataset_name,position,column_name,field_name,data_type
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,1,DR_NO,dr_no,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,2,Date Rptd,date_rptd,calendar_date
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,3,DATE OCC,date_occ,calendar_date
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,4,TIME OCC,time_occ,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,5,AREA ,area,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,6,AREA NAME,area_name,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,7,Rpt Dist No,rpt_dist_no,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,8,Part 1-2,part_1_2,number
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,9,Crm Cd,crm_cd,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,10,Crm Cd Desc,crm_cd_desc,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,11,Mocodes,mocodes,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,12,Vict Age,vict_age,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,13,Vict Sex,vict_sex,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,14,Vict Descent,vict_descent,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,15,Premis Cd,premis_cd,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,16,Premis Desc,premis_desc,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,17,Weapon Used Cd,weapon_used_cd,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,18,Weapon Desc,weapon_desc,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,19,Status,status,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,20,Status Desc,status_desc,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,21,Crm Cd 1,crm_cd_1,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,22,Crm Cd 2,crm_cd_2,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,23,Crm Cd 3,crm_cd_3,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,24,Crm Cd 4,crm_cd_4,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,25,LOCATION,location,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,26,Cross Street,cross_street,text
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,27,LAT,lat,number
+legacy_2010_2019,63jg-8b9z,Crime Data from 2010 to 2019,28,LON,lon,number
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,1,DR_NO,dr_no,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,2,Date Rptd,date_rptd,calendar_date
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,3,DATE OCC,date_occ,calendar_date
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,4,TIME OCC,time_occ,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,5,AREA,area,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,6,AREA NAME,area_name,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,7,Rpt Dist No,rpt_dist_no,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,8,Part 1-2,part_1_2,number
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,9,Crm Cd,crm_cd,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,10,Crm Cd Desc,crm_cd_desc,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,11,Mocodes,mocodes,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,12,Vict Age,vict_age,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,13,Vict Sex,vict_sex,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,14,Vict Descent,vict_descent,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,15,Premis Cd,premis_cd,number
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,16,Premis Desc,premis_desc,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,17,Weapon Used Cd,weapon_used_cd,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,18,Weapon Desc,weapon_desc,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,19,Status,status,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,20,Status Desc,status_desc,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,21,Crm Cd 1,crm_cd_1,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,22,Crm Cd 2,crm_cd_2,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,23,Crm Cd 3,crm_cd_3,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,24,Crm Cd 4,crm_cd_4,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,25,LOCATION,location,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,26,Cross Street,cross_street,text
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,27,LAT,lat,number
+legacy_2020_2024,2nrs-mtv8,Crime Data from 2020 to 2024,28,LON,lon,number
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,1,CaseNo,caseno,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,2,UniqueNIBRNo,uniquenibrno,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,3,Date Rptd,date_rptd,calendar_date
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,4,Date OCC,date_occ,calendar_date
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,5,Time OCC,time_occ,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,6,AREA,area,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,7,AREA NAME,area_name,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,8,RPT Dist No,rpt_dist_no,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,9,TotalOffenseCount,totaloffensecount,number
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,10,Group,group,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,11,NIBR Code,nibr_code,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,12,NIBR Description,nibr_description,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,13,Crime Against,crime_against,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,14,Premise Cd,premis_cd,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,15,Premise Desc,premis_desc,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,16,Weapon Used Cd,weapon_used_cd,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,17,Weapon Desc,weapon_desc,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,18,Status,status,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,19,Status Desc,status_desc,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,20,TotalVictimCount,totalvictimcount,number
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,21,Victim Shot,victim_shot,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,22,Domestic Violence Crime,domestic_violence_crime,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,23,Hate Crime,hate_crime,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,24,Gang-related Crime,gang_related_crime,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,25,Transit-related Crime,transit_related_crime,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,26,Homeless-Victim Crime,homeless_victim_crime,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,27,Homeless-Suspect Crime,homeless_suspect_crime,text
+nibrs_offenses,y8y3-fqfu,LAPD NIBRS Offenses Dataset 2024 to 2025,28,Homeless-Arrestee Crime,homeless_arrestee_crime,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,1,CaseNo,caseno,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,2,UniqueVictimNo,uniquevictimno,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,3,Date Rptd,date_rptd,calendar_date
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,4,Date OCC,date_occ,calendar_date
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,5,Time OCC,time_occ,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,6,AREA,area,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,7,AREA NAME,area_name,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,8,RPT Dist No,rpt_dist_no,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,9,TotalVictimCount,totalvictimcount,number
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,10,Vict Age,vict_age,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,11,Vict Sex,vict_sex,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,12,Vict Descent,vict_descent,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,13,Victim Type,victim_type,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,14,Victim Shot,victim_shot,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,15,Status,status,text
+nibrs_victims,gqf2-vm2j,LAPD NIBRS Victims Dataset,16,Status Desc,status_desc,text

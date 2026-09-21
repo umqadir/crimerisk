@@ -1,0 +1,6 @@
+city_key,offense,policy,reason
+*,rape,deny,"Rape point locations are pervasively masked to precinct station houses (NYPD: 9,932 located rapes on exactly 77 precinct points) or coded to hospital exam/report locations (Chicago/Tucson top rape points all hospitals). Default-deny direct rape point texture; allow only audit-verified-clean cities. Denied pairs contribute no located share evidence and the posterior falls to the model prior (geocoding audit 2026-07-05 findings.md rape masking scan)."
+charlotte,rape,allow,"Verified-clean rape texture: 182 located rapes over 173 distinct points, diffuse, no masking (geocoding audit 2026-07-05 findings.md)."
+kansas_city,rape,allow,"Verified-clean rape texture: 563 located rapes over 245 distinct points, diffuse, no masking (geocoding audit 2026-07-05 findings.md)."
+st_louis,rape,allow,"Verified-clean rape texture: 405 located rapes over 214 distinct points, diffuse; one facility concentration below threshold at 8700 Riverview Blvd, real address (geocoding audit 2026-07-05 findings.md)."
+milwaukee,rape,allow,"Verified-clean rape texture: 346 located rapes over 334 distinct points, diffuse, no masking (geocoding audit 2026-07-05 findings.md)."

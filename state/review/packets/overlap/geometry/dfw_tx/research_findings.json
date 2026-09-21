@@ -1,0 +1,77 @@
+{
+  "case_key": "dfw_tx",
+  "ori": "TX2203600",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "The official DFW ArcGIS Boundary/AIRPORTBOUNDARY layer is usable as the production custom footprint for TX2203600.",
+  "source_validation": {
+    "arcgis_service_item_id": "357c18bba9f346678d716c1c3e73fd64",
+    "arcgis_service_owner": "bmann_dfw",
+    "arcgis_service_title": "Boundary",
+    "arcgis_service_access": "public",
+    "arcgis_service_url": "https://services8.arcgis.com/0J6dOvmb0GFDZ7sY/arcgis/rest/services/Boundary/FeatureServer",
+    "arcgis_layer_url": "https://services8.arcgis.com/0J6dOvmb0GFDZ7sY/arcgis/rest/services/Boundary/FeatureServer/0",
+    "arcgis_layer_name": "AIRPORTBOUNDARY",
+    "layer_feature_count": 56,
+    "layer_geometry_types": {
+      "Polygon": 54,
+      "MultiPolygon": 2
+    },
+    "layer_attributes_consistency": {
+      "FAALOCID": [
+        "DFW"
+      ],
+      "IATACODE": [
+        "DFW"
+      ],
+      "ICAOCODE": [
+        "DFW"
+      ],
+      "STATUS": [
+        "Operational"
+      ],
+      "AIRPORTFAC": [
+        "AD"
+      ],
+      "OPERATIO": [
+        "CIVIL"
+      ],
+      "OWNER": [
+        "B"
+      ]
+    },
+    "published_acres_crosscheck": {
+      "boundary_acres_field_sum": 17182.97893335,
+      "official_published_acres_reference": 17183,
+      "difference_acres": -0.021066649998829234,
+      "interpretation": "The ArcGIS boundary acreage is effectively identical to DFW's published 17,183-acre campus, which strongly indicates this is the full airport property footprint rather than a partial operational subset."
+    },
+    "scope_crosscheck": {
+      "intersected_block_groups": 23,
+      "intersected_counties": {
+        "113": 11,
+        "439": 12
+      },
+      "interpretation": "The footprint intersects only Dallas County (113) and Tarrant County (439) block groups, matching the official two-county DFW campus description from the existing review packet."
+    }
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_48_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersection_area_total_m2": 69555175.23712522,
+    "intersection_area_total_acres": 17187.45810998536,
+    "output_row_count": 23,
+    "weight_sum": 1.0,
+    "largest_block_group_geoid": "484399800001",
+    "largest_block_group_share": 0.600357669121403
+  },
+  "residual_caveats": [
+    "The layer encodes airport boundary/property polygons, not a separately surveyed police beat. It is still the correct production geometry because the prior DFW review packet and official DFW rules localize routine police scope to the airport campus and operational facilities inside airport boundaries.",
+    "The service is a multipart footprint with 56 source features and 60 union parts. That is acceptable for production, but future official geometry changes at the ArcGIS service would require regenerating the shares.",
+    "This footprint should not be read as mutual-aid or off-property jurisdiction outside airport boundaries."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/dfw_tx/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/dfw_tx/research_findings.json"
+  }
+}

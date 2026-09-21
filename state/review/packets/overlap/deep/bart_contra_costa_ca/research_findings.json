@@ -1,0 +1,143 @@
+{
+  "case_key": "bart_contra_costa_ca",
+  "ori": "CA0071800",
+  "agency_name_raw": "sf bart contra costa co",
+  "review_date": "2026-03-24",
+  "question": "Is CA0071800 a distinct Contra Costa transit-police footprint, a county-tagged alias of the main BART system row CA0012100, or another kind of BART reporting slice, and what is the defensible production treatment?",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "bart_contra_costa_county_subset_of_bart_system_properties_and_agreement_facilities",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": false,
+    "confidence": 0.95
+  },
+  "core_findings": [
+    "Official BART police and system materials describe one BART Police Department serving the BART District and the transit system, not a stand-alone Contra Costa County police department.",
+    "Current official BART police reporting shows both a Systemwide section and a separate Contra Costa County section inside the same Bay Area Rapid Transit Police Department monthly report. That makes CA0071800 best understood as an active county reporting slice within one department.",
+    "Official FBI public tables and the repo's 2024 FBI-derived roster both show county-tagged BART rows, including Contra Costa. This is longstanding administrative/reporting structure, not evidence of an ordinary county police agency.",
+    "Contra Costa County's Pittsburg/Bay Point BART Station DEIR says the County Sheriff serves Bay Point, Pittsburg Police serves Pittsburg, and BART provides police services to the BART station; it also states BART police is responsible for security and law enforcement on BART-owned properties. That directly defeats Contra Costa County and city/place proxies.",
+    "California Penal Code Section 830.33 and Public Utilities Code Section 99170 tie BART policing to district-owned, operated, or administered property and to facilities where BART owes policing responsibilities under agreement. The legal geography is property-based, not general county territory.",
+    "CA0071800 is therefore not a distinct county police department and not a pure dead alias of CA0012100. It is an active county-tagged reporting slice of the same BART Police Department, and its defensible per-ORI geometry is the Contra Costa subset of BART-policed properties."
+  ],
+  "identity_and_status": {
+    "is_active": true,
+    "is_legacy": false,
+    "entity_type": "special_jurisdiction transit police reporting slice",
+    "provider_identity": "Bay Area Rapid Transit Police Department",
+    "best_classification": "active county reporting slice of the single BART Police Department",
+    "not_supported_classifications": [
+      "distinct Contra Costa County police department",
+      "ordinary countywide special district patrol geometry",
+      "dead or legacy alias with no current reporting activity"
+    ]
+  },
+  "relation_to_ca0012100": {
+    "related_ori": "CA0012100",
+    "relationship_verdict": "CA0071800 and CA0012100 belong to the same BART Police Department/provider family, but CA0071800 is not best treated as a full duplicate of CA0012100's systemwide conceptual footprint.",
+    "is_distinct_department_from_ca0012100": false,
+    "is_pure_duplicate_alias_of_ca0012100": false,
+    "why_not_pure_duplicate_alias": [
+      "Official BART monthly reporting publishes separate Contra Costa County performance pages within one department.",
+      "Official/public and repo roster materials carry separate county-tagged BART reporting rows with their own totals."
+    ],
+    "should_inherit_full_ca0012100_geometry": false,
+    "production_interpretation": "Merge CA0071800 with CA0012100 at the provider-identity level only. If production resolves ORIs individually, CA0071800 should map to the Contra Costa subset of BART system properties rather than to the full system footprint used conceptually for the broader BART case."
+  },
+  "evidence_of_active_county_slice_status": {
+    "current_bart_reporting": "The January 2026 BART Police monthly report is issued by the single Bay Area Rapid Transit Police Department, includes a Systemwide section, and separately includes a 'Contra Costa County' performance review page.",
+    "official_public_tables": [
+      "The FBI 2019 California employee table lists 'San Francisco Bay Area Rapid Transit' with 'Contra Costa County' as a unit/office row.",
+      "The FBI 2018 California hate-crime table shows San Francisco Bay Area Rapid Transit split into Alameda County, Contra Costa County, and Santa Clara Transit District lines."
+    ],
+    "repo_current_activity": "The repo's 2024 FBI-derived roster and validation layer mark CA0071800 active with a 2024-12-01 NIBRS start date and a nonzero annual total, confirming this is not merely a stale historical residue."
+  },
+  "service_jurisdiction_footprint": {
+    "is_single_county_police_agency": false,
+    "is_single_place_police_agency": false,
+    "is_county_clipped_property_footprint": true,
+    "is_network_geometry": true,
+    "legal_backdrop": {
+      "peace_officer_scope": "Penal Code Section 830.33 gives BART officers peace-officer status when their primary duty is enforcing the law in or about district-owned, operated, or administered property and when performing necessary duties involving district patrons, employees, and properties.",
+      "transit_property_scope": "Public Utilities Code Section 99170 governs conduct on transit-district property, facilities, and vehicles and on facilities where BART owes policing responsibilities to a local government under an operations-and-maintenance or similar interagency agreement.",
+      "important_interpretation": "The correct geography is BART property and agreement-policed facilities. For CA0071800, that geography should be clipped to the Contra Costa slice reflected by the reporting row rather than expanded to the whole county."
+    },
+    "explicitly_documented_contra_costa_examples": [
+      "The current BART police zone map shows multiple Contra Costa stations and beats extending across the Contra Costa portion of the BART network.",
+      "Contra Costa County's Pittsburg/Bay Point station materials assign BART police to the station and BART-owned property while assigning surrounding non-BART areas to County Sheriff or Pittsburg Police."
+    ],
+    "implementation_interpretation": "The defensible production target is a Contra Costa-only subset of BART-owned, operated, or administered rail-system properties and any Contra Costa facilities or vehicles BART officially polices under agreement."
+  },
+  "why_simple_proxies_fail": {
+    "contra_costa_county_polygon": [
+      "Contra Costa County is too broad because BART police do not patrol ordinary county territory; county/public materials show Sheriff and city police cover surrounding non-BART territory.",
+      "Contra Costa County is also too imprecise because the operative footprint is BART property, stations, parking, guideway, and agreement-policed facilities."
+    ],
+    "single_place_proxy": [
+      "No single city works. Current official BART mapping shows the Contra Costa slice reaches multiple stations and beats from west county through the Antioch extension.",
+      "Pittsburg/Bay Point is only one station-area example and cannot stand in for Richmond, El Cerrito del Norte, Lafayette, Walnut Creek, Concord, Pleasant Hill/Contra Costa Centre, North Concord/Martinez, Pittsburg/Bay Point, Pittsburg Center, or Antioch."
+    ],
+    "oakland_anchor_proxy": [
+      "Repo validation reuses Oakland as an administrative anchor for multiple BART county-tagged rows. That is a heuristic artifact, not evidence that CA0071800 belongs in Oakland."
+    ],
+    "full_bart_system_footprint": [
+      "Using the full CA0012100-style BART system footprint for CA0071800 would overstate this row because official BART and FBI materials show Contra Costa as a slice inside the larger department, not the entirety of the system's reporting geography.",
+      "A row-specific production treatment should honor the county slice while still keeping the underlying provider identity tied to one BART department."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing CA0071800 into Contra Costa County Sheriff, Pittsburg Police, Walnut Creek Police, Oakland, or another local primary would erase a real special-jurisdiction BART overlap layer.",
+      "Concurrent local jurisdiction around stations is evidence of overlap, not a reason to pretend the BART slice is unreal."
+    ]
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a Contra Costa-clipped BART footprint consisting of BART-owned, operated, or administered properties and vehicles within Contra Costa County: the active Contra Costa rail/guideway segment, stations, station parking and rider-access facilities, other district properties in the county, and any Contra Costa facilities or vehicles BART officially polices under interagency agreement.",
+    "geometry_guidance": [
+      "Use official BART system and police materials as the semantic basis for the footprint.",
+      "Clip the footprint to the Contra Costa portion of the BART system rather than using the entire served county polygon or the entire multi-county BART system.",
+      "Include the Contra Costa stations and right-of-way reflected in the current official BART network and police zone materials, including the current eastern extension to Antioch.",
+      "Do not substitute Pittsburg/Bay Point, Walnut Creek, Richmond, Oakland, or any other single place proxy.",
+      "Do not substitute Contra Costa County as a polygon proxy.",
+      "If production only maintains one conceptual BART provider object, CA0071800 should merge to that provider identity only after clipping geometry to the Contra Costa subset; otherwise keep broad overlap until the county-slice custom geometry exists."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "not_recommended": [
+      "localize_to_contra_costa_county",
+      "localize_to_pittsburg",
+      "localize_to_walnut_creek",
+      "localize_to_oakland",
+      "localize_to_full_ca0012100_bart_system_footprint",
+      "absorb_into_primary_jurisdiction"
+    ]
+  },
+  "final_verdict": {
+    "is_active": true,
+    "is_legacy": false,
+    "is_distinct_department_from_ca0012100": false,
+    "is_pure_duplicate_alias_of_ca0012100": false,
+    "is_active_county_reporting_slice_of_same_bart_department": true,
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_inherit_full_ca0012100_geometry": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": true,
+    "exact_recommended_production_disposition": "custom Contra Costa subset of BART system-and-district-property footprint; otherwise keep broad overlap"
+  },
+  "authoritative_sources_used": [
+    "https://www.bart.gov/about",
+    "https://www.bart.gov/about/police",
+    "https://www.bart.gov/about/police/zones",
+    "https://www.bart.gov/sites/default/files/docs/BPD%20Strategic%20Plan%20Draft%202023%20-%202027%20-%20FINAL.pdf",
+    "https://www.bart.gov/sites/default/files/docs/BART%20Police%20AR%2010_16_17.pdf",
+    "https://www.bart.gov/sites/default/files/2026-02/2026-01%20Chief%27s%20Monthly%20Report.pdf",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PEN&sectionNum=830.33.",
+    "https://leginfo.legislature.ca.gov/faces/codes_displaySection.xhtml?lawCode=PUC&sectionNum=99170.",
+    "https://ucr.fbi.gov/crime-in-the-u.s/2019/crime-in-the-u.s.-2019/tables/table-81/table-81-state-cuts/california.xls",
+    "https://ucr.fbi.gov/hate-crime/2018/tables/table-13-state-cuts/california.xls",
+    "https://www.contracosta.ca.gov/DocumentCenter/View/52195/DRAFT-Recirculated-EIR-PDF---Large-File"
+  ],
+  "local_repo_evidence_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/agency_rosters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv"
+  ]
+}

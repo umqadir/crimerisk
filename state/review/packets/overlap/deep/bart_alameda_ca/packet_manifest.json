@@ -1,0 +1,19 @@
+{
+  "case_key": "bart_alameda_ca",
+  "ori": "CA0012100",
+  "agency_name_raw": "sf bart: alameda county",
+  "state_abbr": "CA",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/bart_alameda_ca"
+  },
+  "review_goal": "Determine the defensible production handling for ORI CA0012100 and whether the BART policing row should be localized to Alameda County, Oakland, another county/place proxy, or a custom BART transit-system footprint.",
+  "bottom_line": "Treat CA0012100 as a custom BART system-and-property overlap, not Alameda County and not Oakland. The county-tagged ORI name is an administrative roster slice of a multi-county transit police system. Until production supports a custom BART footprint, keep the row broad overlap rather than collapsing it to a false county or place proxy."
+}

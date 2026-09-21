@@ -1,0 +1,134 @@
+{
+  "city_key": "milwaukee_wi",
+  "city_name": "Milwaukee, Wisconsin",
+  "geography": {
+    "bounds": {
+      "max_latitude": 43.223123,
+      "max_longitude": -87.851251,
+      "min_latitude": 42.918823,
+      "min_longitude": -88.105191
+    },
+    "jurisdiction_id": "55:municipal:place:5553000",
+    "state_fips": "55"
+  },
+  "mapping": {
+    "date_field": "Incident_Date",
+    "id_field": "Incident_Number",
+    "id_fields": [],
+    "latitude_field": "Address_Latitude",
+    "longitude_field": "Address_Longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)09A(;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)11[ABC](;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)120(;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)13A(;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)220(;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)240(;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense_All",
+            "op": "regex",
+            "value": "(^|;)23[A-H](;|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://data.milwaukee.gov/datastore/dump/395db729-a30a-4e53-ab66-faeb5e1899c8?format=csv",
+    "name": "City of Milwaukee NIBRS Crime Data (Historical)",
+    "order": "",
+    "page_size": 50000,
+    "portal_type": "csv",
+    "select": [
+      "Incident_Number",
+      "Incident_Date",
+      "Offense_All",
+      "Address_Longitude",
+      "Address_Latitude",
+      "Police_District"
+    ],
+    "source_url": "https://data.milwaukee.gov/dataset/wibrarchive",
+    "where": ""
+  },
+  "sources_checked": [
+    "https://data.milwaukee.gov/dataset/wibrarchive",
+    "https://data.milwaukee.gov/api/3/action/package_show?id=wibrarchive",
+    "https://data.milwaukee.gov/datastore/dump/395db729-a30a-4e53-ab66-faeb5e1899c8?format=csv",
+    "https://data.milwaukee.gov/dataset/wibr",
+    "https://city.milwaukee.gov/police/Information-Services/Crime-Maps-and-Statistics",
+    "https://www2.census.gov/geo/tiger/TIGER2020/BG/tl_2020_55_bg.zip"
+  ],
+  "worker_judgment_notes": "Official City of Milwaukee historical NIBRS feed selected because it is the first official reusable feed found with incident date, NIBRS offense code list, stable Incident_Number, and address latitude/longitude. The CKAN resource download redirects through S3 in a way that returned 403 to urllib/pandas during this review, so api_endpoint uses the official CKAN datastore CSV dump for the same resource. This is a share-lane contract only: raw feed row counts are not annual totals. Offense_All is an incident-level semicolon-delimited list of NIBRS codes, not one row per offense; when an incident contains multiple canonical codes the generic runner will assign it to the first matching rule in this contract, so totals are not promoted and the surface should be used only for spatial shares. Rape maps NIBRS 11A/11B/11C and excludes fondling 11D. Jurisdiction and state_fips come from jurisdiction_controls_2024.parquet; bounds come from local Milwaukee place block groups in the TIGER/crosswalk data with a small margin. Fields used: Incident_Number identity, Incident_Date date, Address_Latitude/Address_Longitude geography, Offense_All offense mapping.",
+  "year": 2024
+}

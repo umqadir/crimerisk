@@ -1,0 +1,126 @@
+{
+  "case_key": "ucla_ca",
+  "ori": "CA0199700",
+  "agency_name_raw": "un of ca: los angeles",
+  "state_abbr": "CA",
+  "question": "What is the most defensible production footprint for CA0199700, UN OF CA LOS ANGELES: bounded Westwood campus footprint, larger Los Angeles city/county proxy, broad overlap, or another campus-specific treatment?",
+  "bottom_line": {
+    "recommended_exact_footprint": "custom UCLA discontiguous property-and-adjacent-public-property network",
+    "recommended_current_production_treatment": "keep_broad_overlap_until_custom_footprint_exists",
+    "overlap_subtype_final": "campus",
+    "confidence": 0.96
+  },
+  "local_repo_evidence": {
+    "queue_row_summary": "The overlap queue classifies CA0199700 as a campus geometry row with Los Angeles County and Los Angeles place anchors, which is a useful starting heuristic but not a closed footprint decision.",
+    "queue_row_fields": {
+      "county_fips": "037",
+      "place_fips": "44000",
+      "overlap_subtype": "campus",
+      "geometry_hint": "campus_or_university_footprint",
+      "likely_proxy_ok": true
+    },
+    "repo_implication": "Official UCLA evidence defeats the Los Angeles place proxy and also shows that a single bounded Westwood campus polygon is incomplete. The row needs a UCLA-specific network footprint or a broad-overlap hold."
+  },
+  "provider_distinction": {
+    "ucpd_role": "UCLA PD is the UCLA campus police agency, not a broader University of California system police row. Its official patrol page lists the main UCLA campus, UCLA and Santa Monica medical centers, university apartment housing, Westwood Village, fraternity and sorority rows, and specific lead-officer assignments for Ronald Reagan UCLA Medical Center, University Apartments North, University Apartments South, and Santa Monica-UCLA Medical Center and Orthopedic Hospital.",
+    "lapd_lasd_smpd_role": "Local agencies remain real overlapping providers. UCLA project documents state that UCPD has concurrent jurisdiction with LAPD within one mile of University-owned property in the Westwood area, while an off-campus UCLA Health project in the Hawthorne area is under LASD jurisdiction. UCLA PD also reports mutual-aid relationships with LAPD, LASD, and Santa Monica Police.",
+    "overlap_implication": "This is a UCLA-specific overlap layer tied to UCLA-owned, operated, or affiliated geography plus adjacent public property, not a citywide or countywide local-primary layer and not a generic one-mile halo around all UCLA interests."
+  },
+  "verified_findings": [
+    {
+      "topic": "California legal baseline for UC police",
+      "finding": "Education Code Section 92600 authorizes University of California police officers to act on UC campuses and within one mile of each campus boundary, on other grounds or properties owned, operated, controlled, or administered by the Regents, and as otherwise provided by Penal Code Section 830.2. Penal Code Section 830.2 confirms UC police are peace officers statewide, but says their primary duty remains enforcement within the Education Code area. This is an authority rule, not a production instruction to use all of Los Angeles or a blanket one-mile buffer."
+    },
+    {
+      "topic": "Official UCPD patrol footprint is broader than the main Westwood campus",
+      "finding": "UCLA PD's Patrol Division page says patrol areas include the main UCLA campus, medical centers on the UCLA campus and in Santa Monica, on-campus residential communities and adjacent communities, university apartment housing, Westwood Village, and fraternity and sorority rows. The same page lists dedicated lead-officer assignments for Ronald Reagan UCLA Medical Center, University Apartments North, University Apartments South, and Santa Monica-UCLA Medical Center and Orthopedic Hospital."
+    },
+    {
+      "topic": "Official UCLA property geography is discontiguous",
+      "finding": "The official UCLA campus map places the main campus, Center for Health Sciences, Ronald Reagan UCLA Medical Center, police station, and several university residential properties in Westwood. UCLA Housing pages separately identify University Apartments North near campus and University Apartments South complexes several miles south of campus, including Palms, Mar Vista, Venice, Sawtelle, and Miracle Mile locations. UCLA Health separately identifies the Santa Monica medical campus at 1250 16th Street in Santa Monica."
+    },
+    {
+      "topic": "Official Clery guidance narrows adjacent geography to affiliated properties and adjacent public property",
+      "finding": "UCLA's Campus Security Authorities page says reportable locations are on-campus property, noncampus property that is off campus but on affiliated property such as fraternities and sororities, and public property consisting of streets and sidewalks adjacent to on-campus property. The same page gives examples that Wilshire Center and University Apartments South are reportable, Hilgard Avenue sidewalk next to Parking Structure 2 is reportable, and a private off-campus apartment in the Westwood area is not reportable due to location."
+    },
+    {
+      "topic": "UCPD service to off-campus people does not convert all off-campus geography into UCPD footprint",
+      "finding": "UCLA PD's Filing a Report page says crimes on campus or University-owned property should be reported to UCPD and will be handled there, but off-campus crimes involving UCLA students or staff may be taken by UCPD and then forwarded to the appropriate law-enforcement agency. That confirms support to the campus community is not the same thing as primary geographic jurisdiction over surrounding private neighborhoods."
+    },
+    {
+      "topic": "Official UCLA planning materials distinguish adjacent UCLA-owned Westwood projects from other off-campus projects",
+      "finding": "The official 901 Levering Student Housing project document says the UCLA-owned site adjacent to campus falls within the zone where UCPD and LAPD concurrently provide police protection. By contrast, the official UCLA Health Sports Medicine Institute project document says that while UCPD has primary responsibility on campus, that off-campus project site is within LASD jurisdiction. This defeats any assumption that all UCLA-owned or UCLA-branded properties across the region belong inside a single routine UCPD production polygon."
+    }
+  ],
+  "classification": {
+    "is_classic_single_polygon_campus": false,
+    "is_broader_uc_system_row": false,
+    "is_custom_discontiguous_campus_network": true,
+    "is_single_county_proxy_acceptable": false,
+    "is_single_place_proxy_acceptable": false
+  },
+  "exact_service_footprint_for_production": {
+    "type": "custom UCLA discontiguous property-and-adjacent-public-property network",
+    "include": [
+      "the main UCLA Westwood campus and its mapped academic, medical, residential, and operational facilities",
+      "the Center for Health Sciences, Ronald Reagan UCLA Medical Center, and related Westwood medical properties on the UCLA campus",
+      "University Apartments North and other UCLA-affiliated residential properties near the campus in Westwood",
+      "University Apartments South and other UCLA-affiliated housing complexes that UCLA identifies as university apartments in West Los Angeles, Palms, Mar Vista, Venice, Sawtelle, and similar off-campus locations served by the UCLA housing system",
+      "the UCLA Santa Monica medical campus and Orthopedic Hospital footprint that UCLA PD names as a patrol area and lead-officer assignment",
+      "UCLA-affiliated noncampus properties that UCLA treats as reportable or routinely patrolled, including fraternity and sorority properties and other named affiliated properties such as Wilshire Center where official UCLA guidance treats the site as reportable geography",
+      "public streets and sidewalks immediately adjacent to the on-campus or affiliated UCLA properties that UCLA Clery guidance treats as public-property geography"
+    ],
+    "exclude": [
+      "Los Angeles city as a place proxy",
+      "Los Angeles County as a county proxy",
+      "a single bounded Westwood campus polygon that omits Santa Monica medical facilities and south-campus university housing",
+      "generic private apartments or commercial parcels in Westwood Village or the surrounding neighborhood that are not UCLA-affiliated property or immediately adjacent public property",
+      "a blanket one-mile buffer around every UCLA property",
+      "off-campus UCLA projects that official UCLA planning documents place under another local agency's primary jurisdiction, such as the Hawthorne-area Sports Medicine Institute project under LASD",
+      "a broader University of California systemwide footprint"
+    ],
+    "legal_basis": "Education Code Section 92600 and Penal Code Section 830.2 define UC police authority, while UCLA's own patrol, Clery, housing, health, campus-map, and project-planning materials identify which UCLA properties and adjacent public spaces are actually part of the UCLA policing layer.",
+    "implementation_note": "If custom geometry is built, compose it from official UCLA campus, medical-campus, housing, and affiliated-property locations rather than from Los Angeles place or county boundaries. The legal one-mile language should be treated as authority context, not as a default geometry generator."
+  },
+  "proxy_assessment": {
+    "bounded_westwood_campus_only": {
+      "defensible": false,
+      "why_not": "Official UCLA PD patrol coverage explicitly includes Santa Monica medical facilities, University Apartments South, university apartment housing, Westwood Village, and fraternity and sorority rows. A Westwood-only polygon would undercount real UCLA-policed geography."
+    },
+    "single_place_proxy_los_angeles": {
+      "defensible": false,
+      "why_not": "The official UCLA footprint extends outside the Los Angeles city place to Santa Monica medical facilities and university housing geography that is not coterminous with the Los Angeles place boundary. The queue's Los Angeles place anchor is therefore an incomplete and misleading proxy."
+    },
+    "single_county_proxy_los_angeles": {
+      "defensible": false,
+      "why_not": "Los Angeles County technically contains the known UCLA components, but it is orders of magnitude broader than the actual UCLA policing layer and would falsely absorb vast LAPD, LASD, Santa Monica, and other local-primary territory."
+    },
+    "broader_university_system_row": {
+      "defensible": false,
+      "why_not": "This ORI is UCLA-specific. Official UCPD materials describe a UCLA campus police department serving UCLA campuses, medical centers, housing, and affiliated properties, not the full University of California system."
+    },
+    "absorb_into_primary_local_agencies": {
+      "defensible": false,
+      "why_not": "Official UCLA, UCLA Health, housing, and project materials confirm a real UCLA policing layer that overlaps with LAPD, LASD, and Santa Monica rather than disappearing into them."
+    }
+  },
+  "recommended_production_disposition": {
+    "exact_footprint_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a Los Angeles County-focused but discontiguous UCLA footprint consisting of the Westwood campus core, Westwood medical facilities, university housing north and south of campus, the Santa Monica medical campus and orthopedic hospital, affiliated Greek / noncampus properties, and the immediately adjacent public-property segments recognized by UCLA's Clery geography.",
+    "current_system_recommendation": "keep_broad_overlap",
+    "why_not_localize_now": [
+      "A Westwood-only campus polygon is materially incomplete.",
+      "A Los Angeles city or county proxy is materially overbroad.",
+      "The correct geometry requires parcel- and property-level assembly across multiple UCLA-operated clusters and selected adjacent public streets."
+    ],
+    "not_recommended": [
+      "localize_to_place",
+      "localize_to_county",
+      "localize_to_bounded_main_campus_only",
+      "absorb_into_primary_jurisdiction",
+      "use_blanket_one_mile_buffer",
+      "treat_as_broader_uc_system_row"
+    ],
+    "confidence": 0.96
+  }
+}

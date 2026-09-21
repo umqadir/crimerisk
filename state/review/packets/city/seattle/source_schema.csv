@@ -1,0 +1,20 @@
+field_name,api_field_name,data_type,local_csv_present,minimal_parquet_present,description,non_null,nunique,placeholder_counts,sample_value
+Report Number,report_number,text,yes,yes,"Primary key/UID for the overall report. One report can contain multiple offenses, as denoted by the Offense ID.",1522758,1342970,,2015-904475
+Report DateTime,report_date_time,calendar_date,yes,no,Date and time the offense(s) was reported. (Can differ from date of occurrence),1522758,1271760,,07/10/2015 10:15:00 AM
+Offense ID,offense_id,text,yes,yes,Distinct identifier to denote when there are multiple offenses associated with a single report.,1522758,1522756,,7661149893
+Offense Date,offense_date,calendar_date,yes,yes,Date of Offense is the Offense start date and if null then Event Start Date.,1522758,912939,,07/10/2015 06:00:00 AM
+NIBRS Group AB,nibrs_group_a_b,text,yes,no,Corresponding offense group.,1522758,3,-:1624,A
+NIBRS Crime Against Category,nibrs_crime_against_category,text,yes,no,Corresponding offense crime against category.,1522758,6,-:1624,PROPERTY
+Offense Sub Category,offense_sub_category,text,yes,yes,Categorization of Offense Codes (NIBRS Codes) into Sub Categories for reporting. Data Driven refers to these as Offense.,1522758,31,UNKNOWN:1624,LARCENY-THEFT
+Shooting Type Group,shooting_type_group,text,yes,no,"Shots Fired Event statistic only, other event statistics not included. Used to identify shots fired records.",1522758,4,-:1512856,-
+Block Address,block_address,text,yes,no,Offense(s) address location blurred to the one hundred block.,1522758,36346,REDACTED:220469; -:171735; UNKNOWN:4,10XX BLOCK OF 6TH AVE S
+Latitude,latitude,text,yes,yes,Offense(s) spatial coordinate blurred to the one hundred block.,1522758,49888,REDACTED:220469; -1.0:171840,47.59365795
+Longitude,longitude,text,yes,yes,Offense(s) spatial coordinate blurred to the one hundred block.,1522758,113647,REDACTED:220469; -1.0:171840,-122.325967747023
+Beat,beat,text,yes,no,Designated police sector boundary where offense(s) occurred.,1522758,54,-:10786; OOJ:127,K2
+Precinct,precinct,text,yes,no,Designated police precinct boundary where offense(s) occurred.,1522758,7,-:9412; OOJ:5259,West
+Sector,sector,text,yes,no,Designated police sector boundary where offense(s) occurred.,1522758,20,-:10776; OOJ:129,K
+Neighborhood,neighborhood,text,yes,no,Designated Micro-Community Policing Plans (MCPP) boundary where offense(s) occurred.,1522758,62,-:744254; OOJ:19; UNKNOWN:5599,-
+Reporting Area,reporting_area,text,yes,no,Geographic reporting area of the Report Location from Mark43.,1522758,10769,REDACTED:220469; -:9051; OOJ:9,6921
+Offense Category,offense_category,text,yes,yes,"Grouping of Offense Sub Categories for reporting. These include Violent, Property. Data Driven refers to these as Offense Category.",1522758,3,,PROPERTY CRIME
+NIBRS Offense Code Description,nibrs_offense_code_description,text,yes,yes,NIBRS Offense code description,1522758,65,-:1624,All Other Larceny
+NIBRS_offense_code,nibrs_offense_code,text,yes,yes,Reported NIBRS offense code,1522758,65,-:1624,23H

@@ -1,0 +1,187 @@
+{
+  "city_key": "austin",
+  "city_name": "Austin",
+  "jurisdiction_id": "48:municipal:place:4805000",
+  "review_date": "2026-03-24",
+  "raw_snapshot": {
+    "downloaded_locally": false,
+    "preferred_download_url": "https://data.austintexas.gov/api/views/fdj4-gpfu/rows.csv?accessType=DOWNLOAD",
+    "api_base_url": "https://data.austintexas.gov/resource/fdj4-gpfu.csv",
+    "example_count_query_2024": "https://data.austintexas.gov/resource/fdj4-gpfu.csv?$select=count(*)%20as%20rows_2024&$where=occ_date%20between%20%222024-01-01T00:00:00%22%20and%20%222024-12-31T23:59:59%22",
+    "example_year_histogram_query": "https://data.austintexas.gov/resource/fdj4-gpfu.csv?$select=date_trunc_y(occ_date)%20as%20year,count(*)%20as%20row_count&$group=year&$order=year%20desc",
+    "note": "Packet review used live Socrata queries and metadata rather than storing a local raw snapshot."
+  },
+  "recommended_base_source": {
+    "source_name": "Austin APD Crime Reports",
+    "dataset_id": "fdj4-gpfu",
+    "portal_type": "socrata",
+    "source_url": "https://data.austintexas.gov/api/views/fdj4-gpfu/rows.csv?accessType=DOWNLOAD",
+    "api_url": "https://data.austintexas.gov/resource/fdj4-gpfu.csv",
+    "status": "recommended_for_exact_selective_path_closed",
+    "why_best": [
+      "Single live public feed with 2003 to present coverage.",
+      "Source carries census_block_group directly, which is stronger for V2 block-group allocation than the old geocoding path.",
+      "incident_report_number is unique in the live metadata and in the 2024 extract count."
+    ],
+    "live_contract": {
+      "coverage_start_year": 2003,
+      "coverage_end_year": 2026,
+      "latest_occ_date": "2026-03-21",
+      "latest_clearance_date": "2026-03-22",
+      "update_frequency": "weekly per dataset description",
+      "total_rows_metadata": 2629147,
+      "rows_2024": 86267,
+      "rows_2025": 88677,
+      "rows_2026_ytd": 17322,
+      "publication_date_utc": "2024-09-06T18:50:58+00:00",
+      "rows_updated_at_utc": "2026-03-23T13:12:40+00:00",
+      "view_last_modified_utc": "2026-03-23T12:12:20+00:00"
+    },
+    "inventory_entry_assessment": {
+      "existing_source_candidate_still_correct": false,
+      "correct_fields": [
+        "incident_report_number",
+        "crime_type",
+        "ucr_code",
+        "family_violence",
+        "occ_date_time",
+        "occ_date",
+        "location_type",
+        "ucr_category",
+        "category_description",
+        "census_block_group"
+      ],
+      "stale_claims": [
+        "latitude present",
+        "longitude present",
+        "address present"
+      ],
+      "notes": [
+        "The current public CSV and resource API expose 19 fields and no public lat lon or address column.",
+        "The source candidate row was stale on location-field claims but still pointed to the correct base dataset."
+      ]
+    }
+  },
+  "integration_recommendation": {
+    "full_city_status": "keep_non_production",
+    "clean_exact_selective_promotion_now": [
+      "robbery",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "approximate_only": [
+      "rape"
+    ],
+    "blocked_in_exact_path": [
+      "murder",
+      "aggravated_assault"
+    ],
+    "aggravated_assault_exact_path_decision": {
+      "candidate_rule": "ucr_category = 13A or ucr_category is null and ucr_code in 903 909 911 2013",
+      "candidate_matches_counts": true,
+      "exact_use_allowed": false,
+      "reason": "APD's published Chief's Monthly Report lookup classifies 0903 0909 0911 and 2013 under 13B Simple Assault, while APD's aggravated-assault family uses separate 0402 through 0411 codes."
+    }
+  },
+  "source_block_group_contract": {
+    "primary_assignment_field": "census_block_group",
+    "normalization_rule": "prepend Texas state FIPS 48 to the 10-digit local block group code",
+    "rows_with_block_group_2024": 85681,
+    "rows_with_block_group_share_2024": 0.9932,
+    "rows_with_block_group_and_austin_membership_2024": 85622,
+    "rows_without_austin_membership_2024": 59,
+    "exact_v2_rows_with_block_group_2024": 35693,
+    "exact_v2_rows_without_block_group_2024": 153,
+    "exact_v2_rows_without_austin_membership_2024": 14,
+    "integration_rule": [
+      "Use source block groups as the Austin spatial contract.",
+      "Normalize to full 12-digit GEOIDs before joining the jurisdiction crosswalk.",
+      "Do not attempt coordinate or address geocoding because those fields are no longer public."
+    ]
+  },
+  "supporting_sources": [
+    {
+      "source_name": "APD Quarterly Update Data and Backup Materials",
+      "source_url": "https://services.austintexas.gov/edims/document.cfm?id=448925",
+      "role": "official_reconciliation_reference",
+      "status": "recommended_for_exact_reconciliation",
+      "why_use": [
+        "April 7, 2025 backup materials publish Austin's full-year 2024 TXDPS Uniform Crime Report System offense counts.",
+        "These counts anchor the 2024 exact offense-selective decision."
+      ]
+    },
+    {
+      "source_name": "APD Quarterly Update Data and Backup Materials",
+      "source_url": "https://services.austintexas.gov/edims/document.cfm?id=454220",
+      "role": "current_period_reconciliation_reference",
+      "status": "recommended_for_exact_reconciliation",
+      "why_use": [
+        "July 7, 2025 backup materials publish Jan-May 2025 TXDPS Uniform Crime Report System offense counts.",
+        "This keeps the Austin recommendation current rather than frozen at 2024."
+      ]
+    },
+    {
+      "source_name": "APD Quarterly Update Data and Backup Materials",
+      "source_url": "https://services.austintexas.gov/edims/document.cfm?id=465197",
+      "role": "current_period_reconciliation_reference",
+      "status": "recommended_for_exact_reconciliation",
+      "why_use": [
+        "January 5, 2026 backup materials publish Jan-Nov 2025 TXDPS Uniform Crime Report System offense counts.",
+        "This confirms that the exact-ready offense set remains stable into the latest currently published Austin period."
+      ]
+    },
+    {
+      "source_name": "APD Chief's Monthly Report - March 2024",
+      "source_url": "https://www.austintexas.gov/sites/default/files/files/Police/Reports/Chief_Monthly/2024/04152024_Chief%27s%20Monthly%20Report%20-%20Mar%202024.pdf",
+      "role": "official_code_lookup_reference",
+      "status": "decisive_blocker_source",
+      "why_use": [
+        "Publishes APD's NIBRS/UCR lookup table mapping APD offense codes into 13A and 13B families.",
+        "Shows that 0903 0909 0911 and 2013 belong to 13B Simple Assault, not 13A Aggravated Assault."
+      ]
+    },
+    {
+      "source_name": "APD Reported Crimes CrimeViewer ArcGIS service",
+      "source_url": "https://maps.austintexas.gov/gis/rest/APDCrimeViewer/APD_Reported_Crimes/MapServer",
+      "role": "supporting_public_sanity_check",
+      "status": "supporting_only",
+      "why_not_primary": [
+        "Separate offense layers omit rape entirely.",
+        "Counts differ from both the Socrata base feed and official TXDPS UCR tables.",
+        "Likely curated for public map display rather than a full auditable incident contract."
+      ]
+    }
+  ],
+  "local_etl_reuse": {
+    "reusable_files": [
+      {
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/code/02_load_crime_data.R",
+        "line_hint": "Austin block around lines 30 to 159",
+        "purpose": "historical Austin loader and legacy offense fallback logic"
+      },
+      {
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/code/05_harmonize_data.R",
+        "line_hint": "Austin block around lines 20 to 27",
+        "purpose": "historical Austin harmonization to final city output"
+      },
+      {
+        "path": "/Users/uzairqadir/Projects/data-projects/national/crime-open-database-2025-refresh/crime_categories/location_types_austin.csv",
+        "purpose": "legacy Austin location type normalization lookup"
+      }
+    ],
+    "stale_assumptions": [
+      "Old loader expected public latitude longitude and address fields that are no longer in the live contract.",
+      "Legacy aggravated assault fallback logic is now contradicted for exact use by APD's published 13A versus 13B lookup table.",
+      "Legacy location type lookup misses live strings and should be re-diffed before any reuse."
+    ]
+  },
+  "loader_implementation_notes": [
+    "Build Austin against the live schema fields occ_date incident_report_number ucr_category ucr_code location_type and census_block_group.",
+    "Dedupe or key the feed by incident_report_number and treat the source as highest-offense incident grain rather than all-offense incident grain.",
+    "Promote only the direct UCR-category mappings for robbery burglary larceny and motor_vehicle_theft in the clean exact-selective path.",
+    "Keep rape approximate only because the published Austin references are Sexual Assault, not a strict V2 rape series.",
+    "Keep murder blocked under the direct contract because the exact public mapping remains materially low.",
+    "Do not backfill aggravated_assault from 903 909 911 or 2013 in production because APD's own lookup classifies those codes as 13B Simple Assault rather than 13A."
+  ]
+}

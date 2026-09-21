@@ -1,0 +1,103 @@
+{
+  "case_key": "daytona_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1216525",
+  "jurisdiction_name": "Daytona Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Daytona Beach plainly operates a real Daytona Beach Police Department. The City's official police pages describe DBPD as the law-enforcement agency for the City of Daytona Beach, and the FY2025-2026 adopted budget contains a full Police Department section with a police chief, organizational chart, 335 budgeted positions, and 206 police-officer positions.",
+    "Florida's official county-and-municipal offense publications treat Daytona Beach Police Department as a normal municipal agency row, not as a sheriff-contract or invalid-place case. FDLE's 2020 report lists Daytona Beach Police Department with 2,870 index crimes, and FDLE's 2021 report again lists Daytona Beach Police Department with 2,874 index crimes.",
+    "The repo's current Daytona Beach failure is therefore not target invalidity. The live crosswalk routes FL0640100 exclusively to Daytona Beach city, agency_master classifies FL0640100 as a local police department, and the all-fill state arises because the observation history currently carries only zero-valued preferred support for 2024.",
+    "Repo continuity is broken and internally inconsistent. agency_year_observations only materializes SRS annual rows for FL0640100, with positive totals in 2018, 2019, 2020, and 2022 but zeros in 2021, 2023, and 2024, even though FDLE's official 2021 publication shows nonzero Daytona Beach counts and agency_master says NIBRS presence exists through 2024.",
+    "FDLE's post-SRS FIBRS offense workbook for 2021 through 2025 Q2 does not publish a Daytona Beach Police Department row. Combined with the nonzero 2021 county-and-municipal report and the obviously active current DBPD, that points to a state-publication or ingestion continuity problem after the SRS-to-NIBRS transition, not to a fake or obsolete municipal target.",
+    "If a manual override is needed before statewide continuity is repaired, the strongest official local backfill route is Daytona Beach Police Department's own CompStat and crime-grid/public-records surface. DBPD says it uses a computerized database to map criminal activity in real time, and its records page explicitly offers crime grids through the official public-records process."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Daytona Beach maintains a dedicated Police Department as part of city government.",
+      "The City's official police pages state that DBPD is the law-enforcement agency for the City of Daytona Beach.",
+      "The FY2025-2026 adopted city budget includes a full standalone Police Department section with city-funded staffing and expenditures."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Daytona Beach Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The City says DBPD has served as the law-enforcement agency for Daytona Beach since consolidation in 1926.",
+      "The City's About DBPD page says roughly 400 people make up the department, including approximately 250 full-time officers, 50 part-time officers, 75 special-events officers, and 30 civilian employees.",
+      "The FY2025-2026 adopted budget describes DBPD's public-safety role, shows a police-chief-led organizational chart, and budgets 335 total positions including 206 police officers."
+    ],
+    "important_clarification": "This is a standard city-police case. Volusia County Sheriff's Office does not displace Daytona Beach Police Department as the primary municipal policing entity for Daytona Beach city."
+  },
+  "official_reporting_evidence": {
+    "fdle_state_publication_surface": {
+      "summary": "FDLE's official county-and-municipal offense reports for both 2020 and 2021 publish Daytona Beach Police Department as a normal municipal agency row with substantive offense counts.",
+      "details": [
+        "FDLE 2020: Daytona Beach Police Department, population 73,703, total index crime 2,870.",
+        "FDLE 2021: Daytona Beach Police Department, population 74,113, total index crime 2,874."
+      ],
+      "interpretation": "Florida's own official annual publication surface confirms that Daytona Beach is a valid municipal police target."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The official FDLE FIBRS offense workbook for 2021 through 2025 Q2 does not contain a Daytona Beach Police Department row.",
+      "interpretation": "The absence of Daytona Beach from the post-SRS workbook, despite the active city police department and the nonzero 2021 county-and-municipal row, points to publication or ingestion continuity failure after the SRS-to-NIBRS transition."
+    },
+    "best_local_backfill_surface_found": {
+      "source": "Daytona Beach Police Department CompStat and crime-grid/public-records surface",
+      "summary": "DBPD says it uses a computerized database to map criminal activity, detect patterns, and identify hot spots in real time, and its records page says public-records requests may include crime grids.",
+      "why_it_matters": "This is the clearest official local evidence that city-specific crime totals still exist in a maintained DBPD records system even though the statewide post-2021 publication path appears broken.",
+      "limitations": [
+        "It is not a ready-made statewide annual six-offense publication.",
+        "A production override would require extraction and annual aggregation from local police records or crime grids.",
+        "The packet resolves target validity, not the exact mechanics of a later override."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0640100 exclusively to 12:municipal:place:1216525 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0640100 as a local police department with both SRS and NIBRS presence flags and years listed through 2024.",
+    "observation_state": "agency_year_observations.parquet currently materializes only srs_return_a_annual rows for FL0640100, with annual_part1_total values 4122 in 2018, 3627 in 2019, 2870 in 2020, 0 in 2021, 2779 in 2022, 0 in 2023, and 0 in 2024.",
+    "important_mismatch": "agency_master says FL0640100 has NIBRS presence through 2024, but agency_year_observations provides no NIBRS rows for the agency and incorrectly shows a zero 2021 SRS annual row despite FDLE's official 2021 publication showing 2,874 Daytona Beach index crimes.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Daytona Beach offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill from trend_log_linear.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Daytona Beach in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 3483.385507, and total_reported_count 0.0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": true,
+    "why": [
+      "Daytona Beach has an active, city-run police department.",
+      "FDLE's official county-and-municipal offense reports publish Daytona Beach Police Department as a standard municipal row with substantive counts.",
+      "The repo's zero state conflicts with official 2021 FDLE data and therefore reflects continuity or ingestion failure rather than target invalidity."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The production pipeline is relying on a broken or incomplete post-2020 reporting path for FL0640100.",
+      "At minimum, the repo dropped or failed to preserve the official nonzero 2021 Daytona Beach municipal row that FDLE published.",
+      "The absence of Daytona Beach from the official post-SRS FIBRS workbook suggests that statewide publication continuity also became unstable after the transition, leaving the control builder with zeros in 2024 and forcing all-fill estimates."
+    ],
+    "best_available_override_surface_if_business_requires_city_level_estimate": {
+      "source": "Daytona Beach Police Department CompStat / crime-grid records via the City's official public-records channel",
+      "why": "DBPD explicitly maintains a crime-mapping and pattern-detection database and offers crime grids through official records requests, making this the most likely city-owned source for reconstructing post-break annual city offense totals.",
+      "limitations": [
+        "This would be a bespoke local override rather than a drop-in statewide publication source.",
+        "The records would need offense mapping and annual aggregation work before use in the standard control pipeline."
+      ]
+    },
+    "recommended_handling": [
+      "Retain Daytona Beach city as a true standalone municipal control row.",
+      "Do not drop or demote the Daytona Beach municipal target.",
+      "Treat the current all-fill condition as a reporting continuity and publication-ingestion failure on FL0640100.",
+      "Use FDLE's county-and-municipal offense reports as the official state truth surface through 2021, and if a short-term override is needed, use DBPD's CompStat/crime-grid records as the most likely official local backfill route."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The packet resolves the keep/drop decision. A later source-repair task should determine exactly why FDLE's 2021 municipal row did not survive into repo observations and whether Daytona Beach's post-2021 incidents can be recovered from FDLE FIBRS extracts, direct DBPD records, or both."
+  ]
+}

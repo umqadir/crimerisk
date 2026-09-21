@@ -1,0 +1,14 @@
+{
+  "case_key": "opa_locka_fl",
+  "jurisdiction_id": "12:municipal:place:1251650",
+  "jurisdiction_name": "Opa-locka city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/opa_locka_fl",
+  "review_goal": "Determine whether Opa-locka should retain a standalone municipal control row and whether the current all-fill condition reflects broken continuity/publication, contract policing, county replacement, or target invalidity.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

@@ -1,0 +1,235 @@
+source_feed,include_in_v2,incident_category,incident_subcategory,incident_description,normalized_category,NIBRS_Offense_Code,NIBRS_Offense_Type,v2_offense,mapping_quality,mapping_basis,crosswalk_note,observed_rows_2024
+late_2018_present,yes,Assault,Aggravated Assault,Assault or Attempted Murder Upon Gov't Officers,ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, On Police Off., W/ Other Weapon",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,40
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, On Police Officer, W/ Force",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,36
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, On Police Officer, W/ Knife",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, W/ Force",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,752
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, W/ Gun",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,313
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, W/ Knife",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,370
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, W/ Machine Gun",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, W/ Other Weapon",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,1039
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Aggravated, W/ Semi Auto",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Att. Homicide, W/ Force",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,6
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Att. Homicide, W/ Gun",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,50
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Att. Homicide, W/ Knife",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,36
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Att. Homicide, W/ Other Weapon",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,12
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Att. Mayhem, W/ Knife",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Mayhem, W/ Force",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,14
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Mayhem, W/ Knife",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, Mayhem, W/ Other Weapon",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Assault,Aggravated Assault,"Assault, W/ Caustic Chemical to Injure or Disfigure",ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,54
+late_2018_present,no,Assault,Aggravated Assault,"Firearm, Discharging At An Inhabited Dwelling",ASSAULT,520,520 Weapon Law Violations,,excluded,legacy_categories_sf_desc_join,,10
+late_2018_present,no,Assault,Aggravated Assault,"Firearm, Discharging at Occupied Bldg, Vehicle, or Aircraft",ASSAULT,520,520 Weapon Law Violations,,excluded,legacy_categories_sf_desc_join,,14
+late_2018_present,no,Assault,Aggravated Assault,"Firearm, Discharging at Unoccupied Bldg, Vehicle or Aircraft",ASSAULT,520,520 Weapon Law Violations,,excluded,legacy_categories_sf_desc_join,,20
+late_2018_present,no,Assault,Aggravated Assault,"Firearm, Discharging in Grossly Negligent Manner",ASSAULT,520,520 Weapon Law Violations,,excluded,legacy_categories_sf_desc_join,,58
+late_2018_present,no,Assault,Aggravated Assault,"Firearm, Negligent Discharge",ASSAULT,520,520 Weapon Law Violations,,excluded,legacy_categories_sf_desc_join,,3
+late_2018_present,no,Assault,Aggravated Assault,Shooting into Inhabited Dwelling or Occupied Vehicle,ASSAULT,520,520 Weapon Law Violations,,excluded,legacy_categories_sf_desc_join,,66
+late_2018_present,no,Assault,Simple Assault,"Assault, Non-Aggravated",ASSAULT,13B,13B Simple Assault,,excluded,legacy_categories_sf_desc_join,,95
+late_2018_present,no,Assault,Simple Assault,"Assault, Non-Aggravated, Att.",ASSAULT,13B,13B Simple Assault,,excluded,legacy_categories_sf_desc_join,,47
+late_2018_present,no,Assault,Simple Assault,Battery,ASSAULT,13B,13B Simple Assault,,excluded,legacy_categories_sf_desc_join,,4276
+late_2018_present,yes,Assault,Simple Assault,Battery with Serious Injuries,ASSAULT,13A,13A Aggravated Assault,aggravated_assault,exact,legacy_categories_sf_desc_join,,210
+late_2018_present,no,Assault,Simple Assault,"Battery, Of A Police Officer",ASSAULT,13B,13B Simple Assault,,excluded,legacy_categories_sf_desc_join,,122
+late_2018_present,no,Assault,Simple Assault,"Battery, Sexual",ASSAULT,11D,11D Fondling,,excluded,legacy_categories_sf_desc_join,,132
+late_2018_present,no,Assault,Simple Assault,"Battery, former Spouse or Dating Relationship",ASSAULT,13B,13B Simple Assault,,excluded,legacy_categories_sf_desc_join,,311
+late_2018_present,no,Assault,Simple Assault,False Imprisonment,ASSAULT,100,100 Kidnapping/Abduction,,excluded,legacy_categories_sf_desc_join,,137
+late_2018_present,no,Assault,Simple Assault,"Sexual Assault, Administering Drug to Commit",ASSAULT,11D,11D Fondling,,excluded,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Safe,  Store",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,20
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Safe,  Warehouse",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Store, Att. Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,81
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Store, Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,433
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Store, Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,399
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Warehouse Under Constr, Forcible Entry",BURGLARY,,,,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Warehouse, Att. Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,16
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Warehouse, Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,63
+late_2018_present,yes,Burglary,Burglary - Commercial,"Burglary, Warehouse, Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,21
+late_2018_present,yes,Burglary,Burglary - Hot Prowl,"Burglary, Hot Prowl, Att. Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,78
+late_2018_present,yes,Burglary,Burglary - Hot Prowl,"Burglary, Hot Prowl, Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,262
+late_2018_present,yes,Burglary,Burglary - Hot Prowl,"Burglary, Hot Prowl, Unlawful Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,289
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Non-residential, Att. Forcible",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,75
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Non-residential, Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,508
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Non-residential, Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,227
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Other Bldg. Under Constr., Att. Forcible",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Other Bldg. Under Constr., Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,39
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Other Bldg. Under Constr., Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,23
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Other Bldg., Att. Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,114
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Other Bldg., Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,678
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Other Bldg., Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,741
+late_2018_present,yes,Burglary,Burglary - Other,"Burglary, Safe, Other",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,15
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Apartment House, Att. Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,54
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Apartment House, Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,325
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Apartment House, Unlawful Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,504
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Apt Under Constr., Att. Forcible",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Apt Under Constr., Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,17
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Apt Under Constr., Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,10
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Flat Under Constr., Att. Forcible",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Flat Under Constr., Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,8
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Flat Under Constr., Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Flat, Att. Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Flat, Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,25
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Flat, Unlawful Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,25
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Hotel Room, Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Hotel Room, Unlawful Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,44
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Hotel Under Constr., Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Hotel Under Constr., Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Residence Under Constr, Att. Forcible",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,11
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Residence Under Constr, Forcible Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,147
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Residence Under Constr, Unlawful Entry",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,66
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Residence, Att. Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,133
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Residence, Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,371
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Residence, Unlawful Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,365
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Safe,  Residence",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Safe, Apartment",BURGLARY,22B,22B Non-residential Burglary/Breaking & Entering,burglary,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Homicide,Homicide,Homicide,HOMICIDE,09A,09A Murder and Nonnegligent Manslaughter,murder,exact,late_homicide_subcategory_override,Use only Homicide subcategory for murder; CompStat publishes homicide victims rather than incident rows.,4
+late_2018_present,yes,Homicide,Homicide,"Homicide, Drive-by",HOMICIDE,,,murder,exact,late_homicide_subcategory_override,Use only Homicide subcategory for murder; CompStat publishes homicide victims rather than incident rows.,1
+late_2018_present,yes,Homicide,Homicide,"Homicide, W/ Gun",HOMICIDE,09A,09A Murder and Nonnegligent Manslaughter,murder,exact,late_homicide_subcategory_override,Use only Homicide subcategory for murder; CompStat publishes homicide victims rather than incident rows.,17
+late_2018_present,yes,Homicide,Homicide,"Homicide, W/ Other Weapon",HOMICIDE,09A,09A Murder and Nonnegligent Manslaughter,murder,exact,late_homicide_subcategory_override,Use only Homicide subcategory for murder; CompStat publishes homicide victims rather than incident rows.,1
+late_2018_present,yes,Homicide,Homicide,"Homicide, W/ Sharp Object",HOMICIDE,09A,09A Murder and Nonnegligent Manslaughter,murder,exact,late_homicide_subcategory_override,Use only Homicide subcategory for murder; CompStat publishes homicide victims rather than incident rows.,2
+late_2018_present,no,Homicide,Homicide - Excusable,"Homicide, Excusable, W/ Sharp Object",HOMICIDE,,,,excluded,manual_exclusion,Exclude manslaughter and excusable homicide from V2 murder.,1
+late_2018_present,no,Homicide,Manslaughter,"Manslaughter, Accidental, W/ Other Weapon",HOMICIDE,,,,excluded,manual_exclusion,Exclude manslaughter and excusable homicide from V2 murder.,1
+late_2018_present,no,Homicide,Manslaughter,"Manslaughter, Vehicular",HOMICIDE,09A,09A Murder and Nonnegligent Manslaughter,,excluded,manual_exclusion,Exclude manslaughter and excusable homicide from V2 murder.,17
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Motorcycle Strip, $200-$950",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Motorcycle Strip, >$950",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Vehicle Strip, $200-$950",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,21
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Vehicle Strip, $50-$200",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,11
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Vehicle Strip, <$50",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,6
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Vehicle Strip, >$950",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,283
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Vehicle Strip, Attempted",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,14
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Locked Vehicle, $200-$950",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,712
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Locked Vehicle, $50-$200",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,269
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Locked Vehicle, <$50",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,238
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Locked Vehicle, >$950",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,6255
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Locked Vehicle, Att.",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,141
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Unlocked Vehicle, $200-$950",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,116
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Unlocked Vehicle, $50-$200",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,81
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Unlocked Vehicle, <$50",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,80
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Unlocked Vehicle, >$950",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,2064
+late_2018_present,yes,Larceny Theft,Larceny - From Vehicle,"Theft, From Unlocked Vehicle, Att.",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,18
+late_2018_present,yes,Larceny Theft,Larceny Theft - Bicycle,"Theft, Bicycle, $200-$950",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,97
+late_2018_present,yes,Larceny Theft,Larceny Theft - Bicycle,"Theft, Bicycle, $50-$200",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,15
+late_2018_present,yes,Larceny Theft,Larceny Theft - Bicycle,"Theft, Bicycle, <$50, no serial number",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Larceny Theft,Larceny Theft - Bicycle,"Theft, Bicycle, <$50, serial number known",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Larceny Theft,Larceny Theft - Bicycle,"Theft, Bicycle, >$950",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,227
+late_2018_present,yes,Larceny Theft,Larceny Theft - Bicycle,"Theft, Bicycle, Att.",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,12
+late_2018_present,yes,Larceny Theft,Larceny Theft - From Building,"Theft, From Building, $200-$950",LARCENY/THEFT,23D,23D Theft From Building,larceny,exact,legacy_categories_sf_desc_join,,494
+late_2018_present,yes,Larceny Theft,Larceny Theft - From Building,"Theft, From Building, $50-$200",LARCENY/THEFT,23D,23D Theft From Building,larceny,exact,legacy_categories_sf_desc_join,,319
+late_2018_present,yes,Larceny Theft,Larceny Theft - From Building,"Theft, From Building, <$50",LARCENY/THEFT,23D,23D Theft From Building,larceny,exact,legacy_categories_sf_desc_join,,228
+late_2018_present,yes,Larceny Theft,Larceny Theft - From Building,"Theft, From Building, >$950",LARCENY/THEFT,23D,23D Theft From Building,larceny,exact,legacy_categories_sf_desc_join,,617
+late_2018_present,yes,Larceny Theft,Larceny Theft - From Building,"Theft, From Building, Att.",LARCENY/THEFT,23D,23D Theft From Building,larceny,exact,legacy_categories_sf_desc_join,,21
+late_2018_present,no,Larceny Theft,Larceny Theft - Other,Embezzlement from Dependent or Elder Adult by Caretaker,LARCENY/THEFT,270,270 Embezzlement,,excluded,legacy_categories_sf_desc_join,,38
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"License Plate or Tab, Theft of",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,85
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,Theft from Merchant or Library,LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,36
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,Theft of Animals (general),LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,26
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,Theft of Checks or Credit Cards,LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,45
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,Theft of Computers or Cell Phones,LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,49
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft of Other Property, Att.",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,18
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft of Telecommunication Services, incl. Clone Phone",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,Theft of Utility Services,LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,17
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, By Prostitute, $200-$400",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, By Prostitute, <$50",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Drunk Roll, $200-$950",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Drunk Roll, >$950",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, From Person, $200-$950 (other than Pickpocket)",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,229
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, From Person, $50-$200 (other than Pickpocket)",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,103
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, From Person, <$50 (other than Pickpocket)",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,79
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, From Person, >$950 (other than Pickpocket)",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,409
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, From Person, Att. (other than Pickpocket)",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,8
+late_2018_present,no,Larceny Theft,Larceny Theft - Other,"Theft, Grand, by Fiduciary, >$950 in 12 months",LARCENY/THEFT,270,270 Embezzlement,,excluded,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Grand, of Firearm",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,21
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Lost Property, Grand",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,75
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Lost Property, Petty",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,206
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Other Property, $200-$950",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,282
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Other Property, $50-$200",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,3600
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Other Property, <$50",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,141
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Other Property, >$950",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,2762
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Petty, with Prior Conviction",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,no,Larceny Theft,Larceny Theft - Other,"Trade Secrets, Theft or Unauthorized Copying",LARCENY/THEFT,270,270 Embezzlement,,excluded,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny Theft - Pickpocket,"Theft, Pickpocket, $200-$950",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,163
+late_2018_present,yes,Larceny Theft,Larceny Theft - Pickpocket,"Theft, Pickpocket, $50-$200",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,98
+late_2018_present,yes,Larceny Theft,Larceny Theft - Pickpocket,"Theft, Pickpocket, <$50",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,45
+late_2018_present,yes,Larceny Theft,Larceny Theft - Pickpocket,"Theft, Pickpocket, >$950",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,138
+late_2018_present,yes,Larceny Theft,Larceny Theft - Pickpocket,"Theft, Pickpocket, Attempted",LARCENY/THEFT,23A,23A Pocket-picking,larceny,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Larceny Theft,Larceny Theft - Purse Snatch,"Theft, Purse Snatch, $200-$950",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Larceny Theft,Larceny Theft - Purse Snatch,"Theft, Purse Snatch, $50-$200",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Larceny Theft,Larceny Theft - Purse Snatch,"Theft, Purse Snatch, >$950",LARCENY/THEFT,23B,23B Purse-snatching,larceny,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Larceny Theft,Larceny Theft - Shoplifting,"Theft, Shoplifting, $200-$950",LARCENY/THEFT,23C,23C Shoplifting,larceny,exact,legacy_categories_sf_desc_join,,1201
+late_2018_present,yes,Larceny Theft,Larceny Theft - Shoplifting,"Theft, Shoplifting, $50-$200",LARCENY/THEFT,23C,23C Shoplifting,larceny,exact,legacy_categories_sf_desc_join,,587
+late_2018_present,yes,Larceny Theft,Larceny Theft - Shoplifting,"Theft, Shoplifting, <$50",LARCENY/THEFT,23C,23C Shoplifting,larceny,exact,legacy_categories_sf_desc_join,,737
+late_2018_present,yes,Larceny Theft,Larceny Theft - Shoplifting,"Theft, Shoplifting, >$950",LARCENY/THEFT,23C,23C Shoplifting,larceny,exact,legacy_categories_sf_desc_join,,784
+late_2018_present,yes,Larceny Theft,Larceny Theft - Shoplifting,"Theft, Shoplifting, Att.",LARCENY/THEFT,23C,23C Shoplifting,larceny,exact,legacy_categories_sf_desc_join,,100
+late_2018_present,yes,Larceny Theft,Theft From Vehicle,"Burglary, Vehicle (Arrest made)",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,126
+late_2018_present,yes,Larceny Theft,Theft From Vehicle,"Burglary, Vehicle, Att. (Arrest made)",LARCENY/THEFT,23F,23F Theft From Motor Vehicle (except Theft of Motor Vehicle Parts or Accessories),larceny,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Larceny Theft,Theft From Vehicle,"License Plate, Stolen",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,legacy_categories_sf_desc_join,,1834
+late_2018_present,no,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Recovered, Stolen outside SF",VEHICLE THEFT,99Z,99Z Non-Criminal Matters,,excluded,manual_exclusion,Exclude recovered vehicles stolen outside San Francisco from in-city motor-vehicle-theft totals.,729
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Stolen & Recovered",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,732
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Stolen, Auto",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,3791
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Stolen, Mobile Home or House Trailer",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,27
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Stolen, Motorcycle",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,552
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Stolen, Other Vehicle",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,580
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft,"Vehicle, Stolen, Truck",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,543
+late_2018_present,yes,Motor Vehicle Theft,Motor Vehicle Theft (Attempted),"Vehicle, Stolen, Attempted",VEHICLE THEFT,240,240 Motor Vehicle Theft,motor_vehicle_theft,exact,legacy_categories_sf_desc_join,,294
+late_2018_present,yes,Rape,Rape,"Oral Copulation, Unlawful (Adult Victim)",RAPE,11D,11D Fondling,rape,approximate,late_rape_category_override,Live rape-category records include penetrative/attempted sex offenses that the legacy crosswalk under-classifies.,3
+late_2018_present,yes,Rape,Rape,"Penetration, Forced, with Object",RAPE,11C,11C Sexual Assault With An Object,rape,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Rape,Rape,"Rape, Forcible, W/ Force",RAPE,11A,11A Rape (except Statutory Rape),rape,exact,legacy_categories_sf_desc_join,,10
+late_2018_present,yes,Rape,Rape,"Rape, Spousal",RAPE,11A,11A Rape (except Statutory Rape),rape,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Rape,Rape,Sodomy (Adult Victim),RAPE,11B,11B Sodomy,rape,exact,legacy_categories_sf_desc_join,,8
+late_2018_present,yes,Rape,Rape - Attempted,"Rape, Assault To, W/ Force",RAPE,11A,11A Rape (except Statutory Rape),rape,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Rape,Rape - Attempted,"Rape, Att., W/ Force",RAPE,11A,11A Rape (except Statutory Rape),rape,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Robbery,Robbery - Carjacking,Carjacking with Bodily Force,ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,45
+late_2018_present,yes,Robbery,Robbery - Carjacking,Carjacking with a Dangerous Weapon,ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,11
+late_2018_present,yes,Robbery,Robbery - Carjacking,Carjacking with a Gun,ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,73
+late_2018_present,yes,Robbery,Robbery - Carjacking,Carjacking with a Knife,ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,8
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Bank, W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Bank, W/ Other Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,8
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Chain Store, W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Chain Store, W/ Gun",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Chain Store, W/ Knife",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Chain Store, W/ Other Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Comm. Establ. With Other Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Comm. Establ., W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Att., Service Station, W/ Gun",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Bank, W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Bank, W/ Gun",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Bank, W/ Knife",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Bank, W/ Other Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,4
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Chain Store, W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,42
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Chain Store, W/ Gun",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,14
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Chain Store, W/ Knife",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Chain Store, W/ Other Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,19
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Comml. Establ. W/ A Knife",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Comml. Establ. W/ Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,10
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Comml. Establ., W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,36
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Comml. Establ., W/ Gun",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,19
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Residence, W/ Force",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Residence, W/ Gun",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,16
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Residence, W/ Knife",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Residence, W/ Other Weapon",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Service Station W/ Other Weapon",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Service Station, W/ Force",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Commercial,"Robbery, Service Station, W/ Gun",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Robbery,Robbery - Commercial,"Shoplifting, Force against Agent",ROBBERY,12B,12B Commercial Robbery,robbery,exact,legacy_categories_sf_desc_join,,248
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery,  ATM, Force, Att.",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,3
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery,  ATM, Force.",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,13
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery,  ATM, Gun",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery,  ATM, Knife",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery,  ATM, Other Weapon",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery,  ATM, Other Weapon, Att.",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,1
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, Att., W/ Force",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,96
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, Att., W/ Gun",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,28
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, Att., W/ Knife",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,20
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, Att., W/ Other Weapon",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,19
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, W/ Force",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,695
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, W/ Gun",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,231
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, W/ Knife",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,111
+late_2018_present,yes,Robbery,Robbery - Other,"Robbery, W/ Other Weapon",ROBBERY,12U,12U Other Robbery,robbery,exact,legacy_categories_sf_desc_join,,109
+late_2018_present,yes,Robbery,Robbery - Residential,"Robbery, Att., Residence, W/ Gun",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,2
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Att., Street or Public Place, W/ Force",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,34
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Att., Street or Public Place, W/ Gun",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,18
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Att., Street or Public Place, W/ Knife",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,5
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Att., Street or Public Place, W/ Other Weapon",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,7
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Street or Public Place, W/ Force",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,257
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Street or Public Place, W/ Gun",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,85
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Street or Public Place, W/ Knife",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,30
+late_2018_present,yes,Robbery,Robbery - Street,"Robbery, Street or Public Place, W/ Other Weapon",ROBBERY,12A,12A Personal Robbery,robbery,exact,legacy_categories_sf_desc_join,,38
+late_2018_present,yes,Burglary,Burglary - Residential,"Burglary, Hotel Room, Att. Forcible Entry",BURGLARY,22A,22A Residential Burglary/Breaking & Entering,burglary,exact,manual_2025_burglary_attempt_override,"Late 2025 residential burglary attempt missing from the legacy join; packet-local override keeps hotel-room attempt treatment aligned with the surrounding hotel-room burglary rows.",
+late_2018_present,yes,Larceny Theft,Larceny - Auto Parts,"Theft, Motorcycle Strip, Att.",LARCENY/THEFT,23G,23G Theft of Motor Vehicle Parts or Accessories,larceny,exact,manual_2025_larceny_attempt_override,"Late 2025 auto-parts attempt row missing from the legacy join; packet-local override keeps attempted motorcycle stripping inside larceny.",
+late_2018_present,yes,Larceny Theft,Larceny Theft - Other,"Theft, Short Change, >$950",LARCENY/THEFT,23H,23H All Other Larceny,larceny,exact,manual_2025_larceny_short_change_override,"Late 2025 short-change description missing from the legacy join; packet-local override keeps it inside all-other larceny.",

@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+new_orleans_la,Data.NOLA.gov Calls for Service 2024,https://data.nola.gov/Public-Safety-and-Preparedness/Calls-for-Service-2024/2zcj-b6ts,https://data.nola.gov/resource/2zcj-b6ts.json,socrata,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/new_orleans_la_raw.parquet,18072586,0560374cc770f920d48b3410b0d5da3566821031f877209780a225fe42586912

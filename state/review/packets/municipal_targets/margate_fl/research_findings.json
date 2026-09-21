@@ -1,0 +1,118 @@
+{
+  "case_key": "margate_fl",
+  "jurisdiction_id": "12:municipal:place:1243125",
+  "jurisdiction_name": "Margate city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_live_city_police_publication_and_repo_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Margate is a real incorporated Broward municipality, and the City currently operates a real city-run police department. The official city police pages say Margate was incorporated on May 30, 1955, identify Michael Palma as Chief of Police sworn in on September 19, 2024, and describe the Margate Police Department as a 24-hour, full-service law-enforcement agency with 148 members.",
+    "Margate is not a Broward Sheriff's Office contract-policing case. Current city materials present a standalone Margate Police Department with its own headquarters, command staff, and police public-records path rather than citywide sheriff replacement.",
+    "FDLE's official legacy offense publications support a real Margate-specific annual reporting identity through the transition period. The 2020 County and Municipal Offense Report lists Margate Police Department with population 59,351 and total index crime 780, while the 2021 report retains the Margate Police Department row with population 58,714 but blanks every offense field.",
+    "FDLE's official post-SRS public FIBRS workbook does not publish Margate at all. Inspection of the FIBRS Offense Detail 2021-2025 Q2 workbook found no Margate row in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets.",
+    "The FBI Crime Data Explorer roster still carries Margate's city agency identity. A live March 24, 2026 query to the official Florida roster endpoint returned Margate Police Department under ORI FL0062100 in Broward County with agency_type_name City, is_nibrs false, and nibrs_start_date null.",
+    "Repo evidence matches a valid city-police target with broken continuity rather than bad routing. The live crosswalk routes FL0062100 exclusively to Margate city; agency_master classifies FL0062100 as a local police department with SRS and NIBRS presence flags through 2024; agency_year_observations shows positive annual totals in 2018, 2019, and 2020 followed only by zero-valued annual rows in 2021-2024; and jurisdiction_controls_2024 fully fills every 2024 Margate offense row from history."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Margate maintains a current standalone Police Department on its official site.",
+      "The city's Office of the Chief page identifies a current chief, police headquarters, 24-hour operations, and a police public-records request path.",
+      "The city's police About Us page describes the department as a full-service law-enforcement agency with 148 members."
+    ],
+    "important_interpretation": "Margate is a valid municipal policing object. Nothing in the reviewed official city, FDLE, FBI, or repo materials supports treating Margate as a fake place row, a Broward Sheriff contract city, or county remainder."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Margate Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The official police site presents a standalone Margate Police Department with its own headquarters at 5790 Margate Boulevard.",
+      "The Office of the Chief page says Michael Palma was sworn in as Police Chief on September 19, 2024 and lists the department as operating 24 hours a day, 7 days a week.",
+      "The police About Us page says the department has 148 members and is a full-service law-enforcement agency.",
+      "The same city page provides a police public-records request path through the department, which is incompatible with sheriff-primary citywide policing."
+    ],
+    "important_clarification": "This is not a Broward contract-city case like Deerfield Beach, Oakland Park, or Tamarac. Margate currently operates its own municipal police department."
+  },
+  "official_reporting_evidence": {
+    "city_current_policing_surface": {
+      "summary": "Current official city materials show an active Margate Police Department with city leadership, headquarters, 24-hour operations, and police-records/public-records functions.",
+      "details": [
+        "The Office of the Chief page says Michael Palma was sworn in as Police Chief on September 19, 2024.",
+        "The same page lists the Police Department as a 24-hour city department with headquarters at 5790 Margate Boulevard.",
+        "The police About Us page says the department has 148 members and is a full-service law-enforcement agency."
+      ],
+      "interpretation": "Margate currently has a live city-run police department, not sheriff-primary replacement."
+    },
+    "fdle_legacy_publication_surface": {
+      "summary": "FDLE's official county-and-municipal offense reports treat Margate Police Department as a real municipal reporting row through the 2021 transition report.",
+      "details": [
+        "FDLE 2020: Margate Police Department, population 59,351, total index crime 780, with offense counts of murder 0, rape 6, robbery 34, aggravated assault 65, burglary 54, larceny 548, and motor vehicle theft 73.",
+        "FDLE 2021: Margate Police Department, population 58,714, retained as a named Broward municipal row but all offense fields published as '--'."
+      ],
+      "interpretation": "Florida's own legacy annual publication confirms a real Margate-specific police reporting identity through the transition year even though 2021 is unusable for counts."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "Inspection of the official FDLE FIBRS Offense Detail 2021-2025 Q2 workbook found no Margate row in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets.",
+      "interpretation": "No public FDLE incident-based annual Margate row is available after the legacy county-and-municipal publication path breaks."
+    },
+    "fbi_cde_roster_check": {
+      "summary": "A live March 24, 2026 query to the official FBI Crime Data Explorer Florida agency roster endpoint returned Margate Police Department under ORI FL0062100 in Broward County as a City agency with is_nibrs false and nibrs_start_date null.",
+      "interpretation": "The federal roster still recognizes Margate's city agency identity, but it does not show Margate as a public NIBRS participant."
+    },
+    "best_local_backfill_surface_if_business_requires_post_2020_city_counts": {
+      "source": "Margate Police Department public-records request path",
+      "summary": "The official Office of the Chief page provides a dedicated police public-records request route through the department.",
+      "why_it_matters": "If business later requires post-2020 Margate-specific counts, the clearest official recovery path visible now is direct city police records rather than the current FDLE or FBI public annual publication surfaces.",
+      "limitations": [
+        "I did not find a ready-made public annual Margate crime report, citywide offense dashboard, or downloadable annual offense table on the reviewed official city pages.",
+        "A later override would likely require direct records retrieval, offense mapping, and annual aggregation.",
+        "This packet resolves the keep-versus-drop question and continuity diagnosis, not the mechanics of a local override build."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0062100 exclusively to 12:municipal:place:1243125 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0062100 as a local police department and flags both SRS and NIBRS source presence from 2018 through 2024, with latest_srs_year 2024, latest_srs_part1_total 0.0, latest_nibrs_year 2024, population_latest_nibrs 59449.0, and nibrs_max_months_reported 0.0.",
+    "observation_state": "agency_year_observations.parquet carries substantive annual support for FL0062100 in 2018 (1,095), 2019 (1,034), and 2020 (780), then only zero-valued srs_return_a_annual rows in 2021, 2022, 2023, and 2024, with no NIBRS rows materialized at all.",
+    "important_mismatch": "agency_master says NIBRS presence exists through 2024, but the official FBI roster marks Margate non-NIBRS, the official FDLE FIBRS workbook contains no Margate row, and the observation layer contains no NIBRS rows for FL0062100.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Margate control row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, estimate_source hist_median, and current_year_fill_count values of 61 aggravated assault, 99 burglary, 731 larceny, 101 motor vehicle theft, 1 murder, 6 rape, and 34 robbery.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Margate in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1032.0, total_reported_count 0.0, and priority_rank 7.",
+    "fbi_cde_review_state": "fbi_cde_source_review_queue.csv flags FL0062100 as present_but_no_2024_observation with official_is_nibrs false, which aligns with a public continuity break rather than invalid municipal routing."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "why": [
+      "Margate has an active city-run police department today.",
+      "FDLE's official statewide municipal publication surface clearly supported Margate through 2020 and retained the named city row in 2021.",
+      "The live FBI public roster still recognizes FL0062100 as Margate Police Department rather than replacing it with Broward Sheriff.",
+      "The current problem is that public state and federal incident-based surfaces do not provide a usable post-2020 Margate annual row, not that the municipal target is fake or obsolete."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Florida's public publication continuity for Margate broke during the SRS-to-FIBRS transition: the city row was retained but blank in 2021 and then disappears from the public FIBRS offense workbook.",
+      "The official FBI roster's current is_nibrs false signal explains why the public incident-based federal path does not furnish a 2024 Margate row.",
+      "The repo compounds the problem by carrying zero-valued SRS placeholders for 2021-2024 and by overstating NIBRS availability for FL0062100 in agency_master."
+    ],
+    "recommended_handling": [
+      "Retain Margate city as a standalone municipal control row.",
+      "Keep FL0062100 attached exclusively to Margate rather than rerouting the city into Broward Sheriff, county remainder, or a contract-policing note path.",
+      "Classify the current all-fill condition as a live-city-police state-publication and repo continuity failure on FL0062100.",
+      "Treat the retained but blank 2021 FDLE row as evidence that Margate's city-specific reporting identity persisted into the transition year even though the publication became unusable.",
+      "If post-2020 city-specific counts are later required, pursue direct Margate Police Department records through the city's police public-records route rather than expecting a clean public FDLE or FBI annual backfill for 2024."
+    ],
+    "best_recovery_surfaces_identified_now": [
+      "FDLE County and Municipal Offense reports for pre-break annual state truth through the retained 2021 transition row.",
+      "Margate Police Department's police public-records request path for any later direct city-level recovery.",
+      "A later FDLE or FBI source-repair pass to reconcile agency_master's NIBRS presence flags against the missing public FDLE/FBI rows."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_live_city_police_and_state_publication_repo_continuity_failure",
+  "open_questions": [
+    "The keep-versus-drop decision is closed. The remaining blocker is that I did not find a ready-made public annual Margate offense report or citywide crime dashboard on the reviewed official city pages; any post-2020 override would require direct police records retrieval or another city-held statistical output."
+  ]
+}

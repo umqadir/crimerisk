@@ -1,0 +1,261 @@
+{
+  "case_key": "hartsfield_ga",
+  "ori": "GA0602400",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "GA0602400 should use a near-exact ATL airport-campus footprint built from official ATL Airfield, Surface Transportation, and Buildings ArcGIS polygons, validated and closed on the Clayton side with City of Atlanta airport parcels.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "airport_property_or_operational_campus_footprint",
+    "official_scope_support": {
+      "source_url": "https://www.atl.com/",
+      "summary": "ATL is the City of Atlanta's airport campus, so the production overlap should track airport property/operations surfaces rather than Atlanta city limits or a county proxy."
+    },
+    "explicit_exclusions": [
+      "Atlanta city limits",
+      "Fulton County-only or Clayton County-only proxy",
+      "all parcels in Clayton appraisal area 333",
+      "airport-adjacent Airport South Parkway warehouse parcels not owned by the City of Atlanta",
+      "off-property mutual-aid area"
+    ]
+  },
+  "source_validation": {
+    "atl_arcgis": {
+      "airfield_service_url": "https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Airfield/FeatureServer",
+      "surface_service_url": "https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Surface_Transportation/FeatureServer",
+      "buildings_service_url": "https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Buildings/FeatureServer",
+      "airfield_service_item_id": "8af8dd0743184ab7ad0025cb885b48b3",
+      "surface_service_item_id": "be67a8899f114afd819e18091abf4a1a",
+      "buildings_service_item_id": "c84d45ef14a944ffacb5b166213194e5",
+      "layer_summary": [
+        {
+          "service_group": "airfield",
+          "layer_id": 5,
+          "layer_name": "Apron",
+          "feature_count": 7,
+          "area_acres": 190.76758756560562
+        },
+        {
+          "service_group": "airfield",
+          "layer_id": 6,
+          "layer_name": "DeicingArea",
+          "feature_count": 5,
+          "area_acres": 23.823622794601683
+        },
+        {
+          "service_group": "airfield",
+          "layer_id": 7,
+          "layer_name": "Infield",
+          "feature_count": 137,
+          "area_acres": 789.4824709120461
+        },
+        {
+          "service_group": "airfield",
+          "layer_id": 9,
+          "layer_name": "MovementArea",
+          "feature_count": 2,
+          "area_acres": 1472.1402538985028
+        },
+        {
+          "service_group": "airfield",
+          "layer_id": 10,
+          "layer_name": "RunwaySafetyAreaBoundary",
+          "feature_count": 10,
+          "area_acres": 1306.778256835428
+        },
+        {
+          "service_group": "airfield",
+          "layer_id": 11,
+          "layer_name": "RW_TW_SafetyZoneMerge",
+          "feature_count": 1,
+          "area_acres": 1539.5374643562768
+        },
+        {
+          "service_group": "airfield",
+          "layer_id": 14,
+          "layer_name": "AirOperationsArea",
+          "feature_count": 2,
+          "area_acres": 2280.7756603362086
+        },
+        {
+          "service_group": "buildings",
+          "layer_id": 0,
+          "layer_name": "Bridges",
+          "feature_count": 187,
+          "area_acres": 92.914571780258
+        },
+        {
+          "service_group": "buildings",
+          "layer_id": 1,
+          "layer_name": "FireStations",
+          "feature_count": 6,
+          "area_acres": 2.672771240484644
+        },
+        {
+          "service_group": "buildings",
+          "layer_id": 2,
+          "layer_name": "NonCOABuildings",
+          "feature_count": 371,
+          "area_acres": 114.26330352848882
+        },
+        {
+          "service_group": "buildings",
+          "layer_id": 3,
+          "layer_name": "Building",
+          "feature_count": 106,
+          "area_acres": 179.13883906931744
+        },
+        {
+          "service_group": "surface",
+          "layer_id": 0,
+          "layer_name": "ParkingLot",
+          "feature_count": 178,
+          "area_acres": 703.9100235349276
+        },
+        {
+          "service_group": "surface",
+          "layer_id": 2,
+          "layer_name": "RoadSegment",
+          "feature_count": 5710,
+          "area_acres": 3234.530466719972
+        }
+      ],
+      "interpretation": "The ATL ArcGIS organization publishes airport-specific polygon layers for airfield operations, parking, roads, buildings, and bridge structures. Those official surfaces provide the primary operational geometry for the campus."
+    },
+    "clayton_parcels": {
+      "parcel_layer_url": "https://gis.claytoncountyga.gov/server/rest/services/TaxAssessor/Parcels/MapServer/0",
+      "selected_city_owned_parcel_count": 60,
+      "selected_city_owned_parcel_union_acres": 3491.4575968932177,
+      "selected_site_address_top_counts": {
+        "ATLANTA INTL AIRPORT": 18,
+        "0 ATLANTA INTL AIRPORT": 3,
+        "0 FOREST PKWY": 2,
+        "4690 SULLIVAN RD": 2,
+        "0 SULLIVAN RD": 2,
+        "4500 ASR RD": 2,
+        "0 RIVERDALE RD": 1,
+        "2200 M H JACKSON SERVICE RD": 1,
+        "1775 M H JACKSON SERVICE RD": 1,
+        "1500 M H JACKSON SERVICE RD": 1,
+        "1800 CENTRAL CARGO CIR": 1,
+        "0 LESLIE DR": 1
+      },
+      "rejected_non_city_airport_address_parcel_count": 9,
+      "rejected_non_city_airport_address_parcel_total_acres": 56.90463307715396,
+      "rejected_noncontiguous_city_owned_candidate_count": 3,
+      "rejected_noncontiguous_city_owned_candidate_total_acres": 8.003767821128024,
+      "rejected_non_city_airport_address_examples": [
+        {
+          "PARCELID": "13087D C003",
+          "OWNERNME": "AMB US LOGISTICS FUND LP % PROLOGISTIC-TAX ON",
+          "SITEADDRES": "690 AIRPORT SOUTH PKWY",
+          "LANDUSED": "Warehouse Distribution",
+          "area_acres": 8.214437109887193
+        },
+        {
+          "PARCELID": "13086C C002",
+          "OWNERNME": "AMB US LOGISTICS FUND LP % PROLOGISTIC-TAX ON",
+          "SITEADDRES": "561 AIRPORT SOUTH PKWY",
+          "LANDUSED": "Warehouse Distribution",
+          "area_acres": 7.318263782155343
+        },
+        {
+          "PARCELID": "13087D D002",
+          "OWNERNME": "AMB US LOGISTICS FUND LP % PROLOGISTIC-TAX ON",
+          "SITEADDRES": "635 AIRPORT SOUTH PKWY",
+          "LANDUSED": "Warehouse Distribution",
+          "area_acres": 7.112487320167669
+        },
+        {
+          "PARCELID": "13086C B006",
+          "OWNERNME": "AMB US LOGISTICS FUND LP % PROLOGISTIC-TAX ON",
+          "SITEADDRES": "540 AIRPORT SOUTH PKWY",
+          "LANDUSED": "Warehouse Distribution",
+          "area_acres": 6.426862393396856
+        },
+        {
+          "PARCELID": "13087D E001",
+          "OWNERNME": "AMB US LOGISTICS FUND LP % PROLOGISTIC-TAX ON",
+          "SITEADDRES": "640 AIRPORT SOUTH PKWY",
+          "LANDUSED": "Warehouse Distribution",
+          "area_acres": 6.209329521821083
+        }
+      ],
+      "interpretation": "Clayton parcel QA is used conservatively: only City of Atlanta-owned parcels within 200 m of the official ATL footprint and within the contiguous airport-campus parcel component are added. Airport-address parcels held by private warehouse owners and non-contiguous City of Atlanta edge parcels are recorded and excluded rather than silently swept into the footprint."
+    },
+    "published_acres_crosscheck": {
+      "official_reference_acres": 4700.0,
+      "final_footprint_acres": 4680.951259062841,
+      "difference_acres": -19.048740937158982,
+      "difference_pct": -0.004052923603650847,
+      "interpretation": "The final footprint sits close to ATL's widely published ~4,700-acre campus size, which is consistent with a production-usable near-exact airport footprint built from operational geometry rather than a single legal boundary polygon."
+    }
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "seed_geometry": "Union the official ATL Airfield polygon layers (Apron, DeicingArea, Infield, MovementArea, RunwaySafetyAreaBoundary, RW_TW_SafetyZoneMerge, AirOperationsArea) with official ATL ParkingLot, Building, NonCOABuildings, and FireStations polygons.",
+    "parcel_fill": "Add Clayton parcels only where OWNERNME resolves to City of Atlanta, the parcel lies within 200 m of the official ATL seed geometry, and it belongs to the contiguous parcel component anchored on seed-touching airport parcels.",
+    "roadway_fill": "Clip official ATL RoadSegment and Bridges polygons to a 120 m buffer around the contiguous parcel-backed campus so airport roadway structures are retained without importing the broader metro street network.",
+    "why_this_is_defensible": [
+      "The official ATL GIS surfaces are stronger than passenger-facing maps because they encode operational polygons directly.",
+      "City-owned Clayton parcels close gaps on the south/cargo side while filtering out nearby non-airport industrial properties that happen to share the airport appraisal area.",
+      "Road and bridge polygons must be clipped because the raw services spill well beyond the airport, but clipped segments are still official ATL geometry rather than inferred buffers."
+    ],
+    "omissions_by_design": [
+      "No non-City Airport South Parkway warehouse parcels are included.",
+      "No attempt is made to fabricate a single legal property-boundary polygon that ATL does not publish publicly.",
+      "No off-property police authority or mutual-aid geography is modeled."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_13_bg.zip",
+    "intersected_block_groups": 21,
+    "intersected_county_fips_sorted": [
+      "063",
+      "121"
+    ],
+    "intersection_area_total_m2": 18943137.665679824,
+    "intersection_area_total_acres": 4680.951259062841,
+    "weight_sum_exact": 0.9999999999999999,
+    "weight_sum_rounded_csv": 1.0000000000000009,
+    "largest_block_group_geoid": "130639800001",
+    "largest_block_group_share": 0.6989756640938238,
+    "county_share_summary": [
+      {
+        "county_fips": "063",
+        "share_sum": 0.8216899085507927,
+        "area_acres": 3846.290411990063
+      },
+      {
+        "county_fips": "121",
+        "share_sum": 0.17831009144920726,
+        "area_acres": 834.6608470727771
+      }
+    ]
+  },
+  "qa_checks": {
+    "airfield_union_acres": 2461.1744092155445,
+    "support_union_acres": 943.7578870306046,
+    "seed_union_acres": 3347.651224089511,
+    "seed_plus_city_owned_clayton_parcels_acres": 4468.190348218573,
+    "parcel_contiguity_buffer_m": 120,
+    "road_clip_buffer_m": 120,
+    "road_clip_union_acres": 322.0441611741626,
+    "bridge_clip_union_acres": 28.495602029662603,
+    "final_union_acres": 4680.951259062841,
+    "counties_match_expected_airport_span": true,
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_after_csv_rounding": true
+  },
+  "residual_caveats": [
+    "This remains a near-exact footprint because ATL does not appear to publish one public whole-property legal-boundary polygon.",
+    "Clayton parcel QA improves the south/cargo side, but no comparable public Fulton parcel layer was folded in here; the northern side relies on official ATL operational geometry.",
+    "If ATL later publishes a single airport-boundary parcel or campus polygon, this packet should be regenerated from that authoritative surface."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/hartsfield_ga/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/hartsfield_ga/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/hartsfield_ga/sources.csv"
+  }
+}

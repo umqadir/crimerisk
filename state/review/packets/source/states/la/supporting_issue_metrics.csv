@@ -1,0 +1,34 @@
+metric_group,metric_name,metric_value,metric_note
+statewide_validation,official_oris,233,Louisiana official roster rows in validation summary
+statewide_validation,official_nibrs_oris,174,Louisiana roster rows flagged official NIBRS
+statewide_validation,official_effective_nibrs_oris_2024,173,Louisiana roster rows effective in NIBRS by 2024 using start-date logic
+statewide_validation,repo_master_matches,232,Official roster rows already matched to repo master
+statewide_validation,mismatch_rows,99,Louisiana validation rows with any mismatch
+statewide_validation,mismatch_weight,0.0,Mismatch rows carry zero current benchmark weight in the source-review queue
+statewide_validation,mixed_source_2024_rows,133,Official-effective-NIBRS Louisiana rows where repo still has both SRS and NIBRS and prefers SRS annual
+statewide_validation,mixed_source_support_sum_2024,96822.0,Total preferred-support weight in the Louisiana mixed-source continuity lane
+statewide_validation,present_but_no_2024_observation,98,Rows present in repo master but missing 2024 observations
+statewide_validation,official_nibrs_started_by_2024_but_repo_no_nibrs,39,Official-effective-NIBRS rows with no repo 2024 NIBRS observations
+statewide_validation,missing_in_repo_master,1,Official roster rows absent from repo master
+public_official_surface,crimeinla_homepage_reporting_parish_agencies_2024_02_23,57,Crime in LA home page says 57 of 64 Louisiana parishes were reporting LIBRS as of 2024-02-23
+public_official_surface,crimeinla_homepage_reporting_city_other_agencies_2024_02_23,242,"Crime in LA home page says 242 of 284 city, municipal, university, and other agencies were reporting LIBRS as of 2024-02-23"
+public_official_surface,crimeinla_homepage_total_reporting_agencies_2024_02_23,299,"Derived from 57 parish agencies plus 242 city, municipal, university, and other agencies on the Crime in LA home page"
+public_official_surface,latest_public_crime_report_year_located,2023,Latest public Crime in Louisiana report located on official Louisiana sites is the 2023 annual report released on 2025-05-01
+public_official_surface,crime_in_louisiana_2023_librs_certified_agencies,265,Crime in Louisiana 2023 says 265 LIBRS-certified agencies in 2023
+public_official_surface,crime_in_louisiana_2023_population_covered,3423421,"Crime in Louisiana 2023 says participating agencies covered population 3,423,421"
+public_official_surface,crime_in_louisiana_2023_population_coverage_share_vs_2024_population,0.744587775733295,Population covered in the 2023 public report relative to the 2024 benchmark population
+public_official_surface,louisiana_legislative_audit_2022_reporting_nibrs_agencies,256,Louisiana Legislative Auditor says about 256 of 374 local agencies reported NIBRS data to the FBI in 2022
+public_official_surface,louisiana_legislative_audit_2022_smaller_agencies_reporting_through_other_rms,109,Louisiana Legislative Auditor says 109 smaller municipal agencies reported through another agency RMS in 2022
+source_structure,la_top_partial_reporters_2024,2,Louisiana rows appearing in top_partial_reporters_2024.csv
+source_structure,la_srs_quarterly_pattern_candidates_2024,0,Louisiana rows appearing in srs_quarterly_pattern_candidates_2024.csv
+source_structure,agencies_both_12m_srs_vs_nibrs,123,Louisiana agencies with both full-year SRS and NIBRS in the ratio table
+source_structure,ratio_murder_srs_to_nibrs,0.8984126984126984,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_rape_srs_to_nibrs,0.6873385012919897,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_robbery_srs_to_nibrs,1.000848896434635,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_aggravated_assault_srs_to_nibrs,0.8268160217243721,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_burglary_srs_to_nibrs,0.9351488576044311,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_larceny_srs_to_nibrs,1.0102684879886952,Coverage-matched SRS to NIBRS ratio
+source_structure,ratio_motor_vehicle_theft_srs_to_nibrs,0.8670589808746824,Coverage-matched SRS to NIBRS ratio
+policy,top_10_mixed_source_support_sum,50129.0,Top 10 Louisiana mixed-source rows by preferred support
+policy,top_25_mixed_source_support_sum,73461.0,Top 25 Louisiana mixed-source rows by preferred support
+policy,empty_source_review_queue_rows,0,Current Louisiana source_review_queue.csv is empty because no mismatch rows carry benchmark weight

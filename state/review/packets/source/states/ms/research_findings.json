@@ -1,0 +1,490 @@
+{
+  "state_abbr": "MS",
+  "generated_on": "2026-03-22",
+  "packet_scope": "Mississippi official-source reconciliation for V2 with emphasis on whether 2024 Mississippi is best handled as a statewide replacement state, a narrow exception state, a master/reference omission state, or a reporting-structure lane.",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/priority_transition_mismatches_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/effective_nibrs_backfill_candidates.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/missing_master_review_candidates.csv"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/supporting_issue_metrics.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/issue_bucket_summary.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/source_recommendations.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/effective_nibrs_backfill_candidates.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms/missing_master_review_candidates.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "mississippi_crime_insight_repository",
+      "source_name": "Mississippi Crime Insight repository page",
+      "source_url": "https://www.nibrs.dps.ms.gov/node/49",
+      "coverage_note": "Mississippi NIBRS states that Mississippi Crime Insight is the certified state-level repository, that production-site monthly submissions are uploaded there by certified agencies, and that those production submissions are exposed publicly through TOPS.",
+      "packet_use": "Primary evidence that Mississippi already operates an official current-year incident repository rather than relying only on FBI-side public surfaces."
+    },
+    {
+      "source_id": "mississippi_repository_documentation",
+      "source_name": "Mississippi NIBRS manuals and repository documentation page",
+      "source_url": "https://www.nibrs.dps.ms.gov/node/15",
+      "coverage_note": "Mississippi says agencies must use Mississippi repository documentation for state submissions and that the repository implements the current FBI NIBRS technical specification and user manual.",
+      "packet_use": "Supports treating Mississippi Crime Insight/TOPS as an official incident-based source, not an unofficial derivative dashboard."
+    },
+    {
+      "source_id": "mississippi_property_crime_pdf_2024",
+      "source_name": "Mississippi Crime Insight property-crime 2024 PDF",
+      "source_url": "https://mscrimestats.dps.ms.gov/tops/report/property-crimes/mississippi/2024/pdf",
+      "coverage_note": "The public 2024 PDF reports Property Crimes 2024 for Mississippi with total property crimes 34,150 and offense totals including robbery 377, burglary 4,422, larceny/theft 20,812, and motor vehicle theft 2,907.",
+      "packet_use": "Usable public statewide reconciliation surface for the property-crime family and evidence that Mississippi publishes target-year totals directly from TOPS."
+    },
+    {
+      "source_id": "mississippi_violent_crime_pdf_2024",
+      "source_name": "Mississippi Crime Insight violent-crime 2024 PDF",
+      "source_url": "https://mscrimestats.dps.ms.gov/tops/report/violent-crimes/mississippi/2024/pdf",
+      "coverage_note": "The public 2024 PDF reports total violent crimes 4,535 and offense totals for murder 124, non-consensual sex offenses 913, robbery 377, and aggravated assault 3,121, while warning that not all agencies are currently reporting.",
+      "packet_use": "Confirms Mississippi publishes target-year violent-crime totals from the same official repository, but under Mississippi-specific groupings."
+    },
+    {
+      "source_id": "mississippi_certified_agencies_pdf",
+      "source_name": "Mississippi NIBRS certified agencies list",
+      "source_url": "https://www.nibrs.dps.ms.gov/sites/nibrs/files/php/Certified%20List%2010-28-2025.pdf",
+      "coverage_note": "State certification list for agencies certified as of 2025-10-28, including state police, universities, community colleges, and other state-special entities.",
+      "packet_use": "Useful for distinguishing true 2024 omissions from future-dated or state-special inventory that should remain outside the live 2024 packet doctrine."
+    }
+  ],
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "MS",
+      "official_oris": 307,
+      "official_nibrs_oris": 223,
+      "official_effective_nibrs_oris": 179,
+      "repo_master_matches": 281,
+      "mismatch_rows": 169,
+      "mismatch_weight": 0.0,
+      "official_nibrs_repo_no_nibrs": 41,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 143
+    },
+    "priority_offense_context": [
+      {
+        "offense": "larceny",
+        "priority_rank": 12,
+        "repo_srs_gap_below_fbi_cde": 13510.0,
+        "repo_nibrs_gap_below_bjs_ckle": 21088.0,
+        "gap_priority_score": 34598.0
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "priority_rank": 60,
+        "repo_srs_gap_below_fbi_cde": 1960.0,
+        "repo_nibrs_gap_below_bjs_ckle": 3045.0,
+        "gap_priority_score": 5005.0
+      },
+      {
+        "offense": "burglary",
+        "priority_rank": 76,
+        "repo_srs_gap_below_fbi_cde": 3106.0,
+        "repo_nibrs_gap_below_bjs_ckle": 0.0,
+        "gap_priority_score": 3106.0
+      },
+      {
+        "offense": "aggravated_assault",
+        "priority_rank": 98,
+        "repo_srs_gap_below_fbi_cde": 2090.0,
+        "repo_nibrs_gap_below_bjs_ckle": 0.0,
+        "gap_priority_score": 2090.0
+      },
+      {
+        "offense": "robbery",
+        "priority_rank": 132,
+        "repo_srs_gap_below_fbi_cde": 252.0,
+        "repo_nibrs_gap_below_bjs_ckle": 799.0,
+        "gap_priority_score": 1051.0
+      },
+      {
+        "offense": "rape",
+        "priority_rank": 139,
+        "repo_srs_gap_below_fbi_cde": 368.0,
+        "repo_nibrs_gap_below_bjs_ckle": 597.0,
+        "gap_priority_score": 965.0
+      },
+      {
+        "offense": "murder",
+        "priority_rank": 212,
+        "repo_srs_gap_below_fbi_cde": 101.0,
+        "repo_nibrs_gap_below_bjs_ckle": 190.0,
+        "gap_priority_score": 291.0
+      }
+    ],
+    "aligned_mixed_source_summary": {
+      "aligned_rows": 138,
+      "aligned_mixed_source_rows": 138,
+      "aligned_repo_preferred_source_counts": {
+        "srs_return_a_annual": 138
+      },
+      "aligned_repo_preferred_support_total_2024": 24922.0
+    },
+    "effective_nibrs_zero_observation_summary": {
+      "rows_present_in_master": 40,
+      "agency_type_mix": "City:19; University or College:9; County:6; State Police:6",
+      "sample_oris": [
+        "MS0240200",
+        "MS0240100",
+        "MS0430100",
+        "MS0300200",
+        "MS0240800",
+        "MS0610900",
+        "MS0340300",
+        "MS0680300",
+        "MS0170600",
+        "MS0680400",
+        "MS0730400",
+        "MS0810200",
+        "MS0690300",
+        "MS0680100",
+        "MS0730300"
+      ]
+    },
+    "missing_master_summary": {
+      "true_current_year_rows": 1,
+      "future_or_special_hold_rows": 25
+    },
+    "official_public_2024_totals": {
+      "violent_crime_total": 4535,
+      "murder": 124,
+      "non_consensual_sex_offenses": 913,
+      "robbery": 377,
+      "aggravated_assault": 3121,
+      "property_crime_total": 34150,
+      "burglary": 4422,
+      "larceny": 20812,
+      "motor_vehicle_theft": 2907
+    },
+    "coverage_matched_srs_to_nibrs_ratios_2024": {
+      "murder": 0.8584070796460177,
+      "rape": 0.7815126050420168,
+      "robbery": 1.0,
+      "aggravated_assault": 0.7955027577428935,
+      "burglary": 0.9570354457572504,
+      "larceny": 1.0056221136470116,
+      "motor_vehicle_theft": 0.902265659706797
+    },
+    "lane_decision": {
+      "statewide_replacement_state": true,
+      "narrow_exception_state": false,
+      "master_reference_omission_state": false,
+      "different_reporting_structure_lane": true,
+      "decision_note": "Mississippi should be classified first as a different reporting-structure lane because the public official surface is live and current-year but organized as state report families; operationally, that doctrine implies a statewide replacement extractor."
+    }
+  },
+  "issue_groups": [
+    {
+      "issue_id": "ms_reporting_structure_lane_with_live_state_repository",
+      "issue_type": "broader_mississippi_reporting_structure_or_continuity_issue",
+      "severity": "high",
+      "finding": "Mississippi is not best understood as a stale-SRS cleanup problem. The state already runs Mississippi Crime Insight as a certified state repository and publishes 2024 crime totals through TOPS, but the public surface is organized as Mississippi-specific report families rather than a clean FBI-style agency workbook.",
+      "statewide_evidence": {
+        "official_transition_summary_2024": {
+          "state_abbr": "MS",
+          "official_oris": 307,
+          "official_nibrs_oris": 223,
+          "official_effective_nibrs_oris": 179,
+          "repo_master_matches": 281,
+          "mismatch_rows": 169,
+          "mismatch_weight": 0.0,
+          "official_nibrs_repo_no_nibrs": 41,
+          "repo_nibrs_official_false": 0,
+          "no_2024_observation": 143
+        },
+        "priority_offense_context": [
+          {
+            "offense": "larceny",
+            "priority_rank": 12,
+            "repo_srs_gap_below_fbi_cde": 13510.0,
+            "repo_nibrs_gap_below_bjs_ckle": 21088.0,
+            "gap_priority_score": 34598.0
+          },
+          {
+            "offense": "motor_vehicle_theft",
+            "priority_rank": 60,
+            "repo_srs_gap_below_fbi_cde": 1960.0,
+            "repo_nibrs_gap_below_bjs_ckle": 3045.0,
+            "gap_priority_score": 5005.0
+          },
+          {
+            "offense": "burglary",
+            "priority_rank": 76,
+            "repo_srs_gap_below_fbi_cde": 3106.0,
+            "repo_nibrs_gap_below_bjs_ckle": 0.0,
+            "gap_priority_score": 3106.0
+          },
+          {
+            "offense": "aggravated_assault",
+            "priority_rank": 98,
+            "repo_srs_gap_below_fbi_cde": 2090.0,
+            "repo_nibrs_gap_below_bjs_ckle": 0.0,
+            "gap_priority_score": 2090.0
+          },
+          {
+            "offense": "robbery",
+            "priority_rank": 132,
+            "repo_srs_gap_below_fbi_cde": 252.0,
+            "repo_nibrs_gap_below_bjs_ckle": 799.0,
+            "gap_priority_score": 1051.0
+          },
+          {
+            "offense": "rape",
+            "priority_rank": 139,
+            "repo_srs_gap_below_fbi_cde": 368.0,
+            "repo_nibrs_gap_below_bjs_ckle": 597.0,
+            "gap_priority_score": 965.0
+          },
+          {
+            "offense": "murder",
+            "priority_rank": 212,
+            "repo_srs_gap_below_fbi_cde": 101.0,
+            "repo_nibrs_gap_below_bjs_ckle": 190.0,
+            "gap_priority_score": 291.0
+          }
+        ],
+        "coverage_matched_srs_to_nibrs_ratios_2024": {
+          "murder": 0.8584070796460177,
+          "rape": 0.7815126050420168,
+          "robbery": 1.0,
+          "aggravated_assault": 0.7955027577428935,
+          "burglary": 0.9570354457572504,
+          "larceny": 1.0056221136470116,
+          "motor_vehicle_theft": 0.902265659706797
+        },
+        "official_public_2024_totals": {
+          "violent_crime_total": 4535,
+          "murder": 124,
+          "non_consensual_sex_offenses": 913,
+          "robbery": 377,
+          "aggravated_assault": 3121,
+          "property_crime_total": 34150,
+          "burglary": 4422,
+          "larceny": 20812,
+          "motor_vehicle_theft": 2907
+        },
+        "public_structure_note": "TOPS is target-year usable, but the public violent surface groups sex crimes as non-consensual sex offenses and the property surface is broader than the FBI Part I set, so Mississippi needs a state-specific extractor and offense crosswalk."
+      },
+      "why_it_matters": "The official state source already exists and the statewide gaps are too large to treat as a handful of row-level exceptions. The production problem is source doctrine and extraction, not just one or two missing ORIs.",
+      "recommended_next_action": "Build the Mississippi Crime Insight/TOPS extractor first, then use it for statewide reconciliation and agency-level backfill.",
+      "representative_entities": [
+        "Biloxi Police Department",
+        "Gulfport Police Department",
+        "Hattiesburg Police Department",
+        "Mississippi Highway Patrol: Troop D",
+        "Jackson State University"
+      ],
+      "doctrine_candidate": "different_reporting_structure_lane_with_statewide_replacement_path"
+    },
+    {
+      "issue_id": "ms_mixed_source_slice_is_policy_not_exception",
+      "issue_type": "source_policy_disagreement",
+      "severity": "high",
+      "finding": "There are 138 aligned Mississippi agencies already present in master and showing both repo SRS and repo NIBRS support, but every one of them still resolves to srs_return_a_annual as the preferred source.",
+      "statewide_evidence": {
+        "aligned_rows": 138,
+        "aligned_mixed_source_rows": 138,
+        "aligned_repo_preferred_source_counts": {
+          "srs_return_a_annual": 138
+        },
+        "aligned_repo_preferred_support_total_2024": 24922.0,
+        "top_examples": [
+          {
+            "ori9": "MS0180100",
+            "agency_name": "Hattiesburg Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 1781.0,
+            "official_nibrs_start_date": "2018-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0410100",
+            "agency_name": "Tupelo Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 1567.0,
+            "official_nibrs_start_date": "2020-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0170100",
+            "agency_name": "Southaven Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 1340.0,
+            "official_nibrs_start_date": "2019-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0300300",
+            "agency_name": "Pascagoula Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 1115.0,
+            "official_nibrs_start_date": "2020-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0750100",
+            "agency_name": "Vicksburg Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 876.0,
+            "official_nibrs_start_date": "2020-11-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0340200",
+            "agency_name": "Laurel Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 819.0,
+            "official_nibrs_start_date": "2020-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0170200",
+            "agency_name": "Olive Branch Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 735.0,
+            "official_nibrs_start_date": "2019-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly|structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "MS0360100",
+            "agency_name": "Oxford Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 545.0,
+            "official_nibrs_start_date": "2019-08-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0240000",
+            "agency_name": "Harrison County Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 539.0,
+            "official_nibrs_start_date": "2015-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "MS0530100",
+            "agency_name": "Starkville Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 537.0,
+            "official_nibrs_start_date": "2018-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly|structurally_missing_or_unreliable"
+          }
+        ]
+      },
+      "why_it_matters": "If Mississippi gets promoted to an official state extractor, this entire slice should move in one policy change rather than via ORI-by-ORI exception handling.",
+      "recommended_next_action": "After the TOPS extractor exists, flip Mississippi source preference from SRS-first to official state incident-source first for the aligned mixed-source slice.",
+      "representative_entities": [
+        "Hattiesburg Police Department",
+        "Tupelo Police Department",
+        "Southaven Police Department",
+        "Pascagoula Police Department",
+        "Vicksburg Police Department",
+        "Laurel Police Department"
+      ],
+      "doctrine_candidate": "statewide_source_policy_flip_after_extractor"
+    },
+    {
+      "issue_id": "ms_effective_nibrs_zero_obs_is_bounded_backfill_lane",
+      "issue_type": "repo_missing_observation_problem",
+      "severity": "medium",
+      "finding": "Forty official-effective-by-2024 Mississippi rows are already in master but carry no repo 2024 observations. This includes city, county, university, and Mississippi Highway Patrol troop rows.",
+      "statewide_evidence": {
+        "backfill_rows": 40,
+        "agency_type_mix": "City:19; University or College:9; County:6; State Police:6",
+        "sample_oris": [
+          "MS0240200",
+          "MS0240100",
+          "MS0430100",
+          "MS0300200",
+          "MS0240800",
+          "MS0610900",
+          "MS0340300",
+          "MS0680300",
+          "MS0170600",
+          "MS0680400",
+          "MS0730400",
+          "MS0810200"
+        ]
+      },
+      "why_it_matters": "These rows are a clean bounded production lane once the Mississippi official extractor exists; they should not remain a lingering zero-observation tail.",
+      "recommended_next_action": "Use TOPS extracts to backfill Biloxi, Gulfport, Ocean Springs, Adams County, Brookhaven, and the Mississippi Highway Patrol troop ORIs first.",
+      "representative_entities": [
+        "Gulfport Police Department",
+        "Biloxi Police Department",
+        "Brookhaven Police Department",
+        "Ocean Springs Police Department",
+        "D'Iberville Police Department",
+        "Puckett Police Department",
+        "Sandersville Police Department",
+        "Sumner Police Department"
+      ],
+      "doctrine_candidate": "bounded_state_source_backfill_lane"
+    },
+    {
+      "issue_id": "ms_true_master_omission_is_only_louin",
+      "issue_type": "master_reference_omission",
+      "severity": "medium",
+      "finding": "The current Mississippi missing-master inventory is mostly future-dated or state-special expansion inventory. Only Louin Police Department looks like a true current-year omission needing master review for 2024.",
+      "statewide_evidence": {
+        "true_missing_master_rows": 1,
+        "hold_rows": 25,
+        "true_missing_master_oris": [
+          "MS0310300"
+        ],
+        "hold_examples": [
+          "MS024510X",
+          "MS018500X",
+          "MS0253700",
+          "MS0253600",
+          "MS006090X",
+          "MS0540800",
+          "MS0241700",
+          "MS0430400",
+          "MS0420600",
+          "MS0181100"
+        ]
+      },
+      "why_it_matters": "This keeps Mississippi from being misclassified as a master-omission state. The missing-master tail should stay narrow and targeted.",
+      "recommended_next_action": "Queue Louin Police Department for unique-ORI review and hold the remaining future-dated or state-special inventory out of master until they surface with real 2024 production data.",
+      "representative_entities": [
+        "Louin Police Department"
+      ],
+      "doctrine_candidate": "narrow_targeted_master_addition_only"
+    }
+  ],
+  "top_doctrine_candidates": [
+    {
+      "rank": 1,
+      "doctrine_candidate": "different_reporting_structure_lane_with_statewide_replacement_path",
+      "recommended_status": "adopt",
+      "why": "Best fit to the official Mississippi public surface and the statewide mismatch pattern."
+    },
+    {
+      "rank": 2,
+      "doctrine_candidate": "bounded_state_source_backfill_lane_after_extractor",
+      "recommended_status": "adopt",
+      "why": "Forty effective-NIBRS zero-observation rows are a clean second implementation lane."
+    },
+    {
+      "rank": 3,
+      "doctrine_candidate": "single_true_master_omission_then_hold_the_rest",
+      "recommended_status": "adopt",
+      "why": "Only Louin looks like a real 2024 omission; the rest are future/state-special inventory."
+    },
+    {
+      "rank": 4,
+      "doctrine_candidate": "narrow_exception_state",
+      "recommended_status": "reject",
+      "why": "Mississippi\u2019s problem is statewide source structure, not a tiny exception tail."
+    }
+  ]
+}

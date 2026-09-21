@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,validation_case_type,production_ready,city_share_integration_status,run_id
+charlotte,Charlotte,37:municipal:place:3712000,municipal_validation_case,partial,pilot_share_only,gate1_pilot_20260615

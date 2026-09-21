@@ -1,0 +1,19 @@
+{
+  "case_key": "uta_ut",
+  "ori": "UT0184000",
+  "agency_name_raw": "Utah Transit Authority",
+  "state_abbr": "UT",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/uta_ut",
+    "status_row_file": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/packet_status_summary.csv"
+  },
+  "bottom_line": "Use a custom UTA transit-network-and-properties footprint. Do not proxy UT0184000 to Salt Lake County, a single place, or a general county/place service-area surrogate."
+}

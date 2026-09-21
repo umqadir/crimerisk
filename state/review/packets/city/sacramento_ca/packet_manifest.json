@@ -1,0 +1,144 @@
+{
+  "city_key": "sacramento_ca",
+  "contract": {
+    "city_key": "sacramento_ca",
+    "city_name": "Sacramento, California",
+    "geography": {
+      "bounds": {
+        "max_latitude": 38.685603,
+        "max_longitude": -121.36274,
+        "min_latitude": 38.437894,
+        "min_longitude": -121.56012
+      },
+      "jurisdiction_id": "06:municipal:place:0664000",
+      "state_fips": "06"
+    },
+    "mapping": {
+      "date_field": "Occurrence_Date_PT",
+      "id_field": "Record_ID",
+      "id_fields": [
+        "Record_ID",
+        "OBJECTID"
+      ],
+      "latitude_field": "__arcgis_latitude",
+      "longitude_field": "__arcgis_longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "Offense_Code",
+              "op": "eq",
+              "value": "120",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "Offense_Code",
+              "op": "eq",
+              "value": "220",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "Offense_Code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "23A",
+                "23B",
+                "23C",
+                "23D",
+                "23E",
+                "23F",
+                "23G",
+                "23H"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "Offense_Code",
+              "op": "eq",
+              "value": "240",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/Sacramento_Report_Data_2024/FeatureServer/0",
+      "name": "City of Sacramento Police Department RMS Report Data 2024",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Record_ID",
+        "Occurrence_Date_PT",
+        "Offense_Code",
+        "Offense_Ext",
+        "Offense_Category"
+      ],
+      "source_url": "https://data.cityofsacramento.org/datasets/eddc9729d09e4c7f92794d2ae1d99da4_0/about",
+      "where": "Offense_Code IN ('120','220','23A','23B','23C','23D','23E','23F','23G','23H','240')"
+    },
+    "sources_checked": [
+      "https://www.cityofsacramento.gov/police/crime-and-safety/dispatch-and-crime-data-portal",
+      "https://data.cityofsacramento.org/datasets/eddc9729d09e4c7f92794d2ae1d99da4_0/about",
+      "https://www.arcgis.com/sharing/rest/content/items/eddc9729d09e4c7f92794d2ae1d99da4?f=json",
+      "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/Sacramento_Report_Data_2024/FeatureServer/0?f=pjson",
+      "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/Sacramento_Report_Data_2024/FeatureServer/0/query?f=json&where=1%3D1&outFields=Offense_Category&returnDistinctValues=true",
+      "https://www2.census.gov/geo/tiger/TIGER2020/PLACE/tl_2020_06_place.zip"
+    ],
+    "worker_judgment_notes": "Selected the official City of Sacramento ArcGIS FeatureServer for 2024 RMS crime report data because it has a layer OBJECTID, agency Record_ID, occurrence date string, NIBRS-style Offense_Code, category, and point geometry returned by ArcGIS. This is a share-lane-only contract: the where clause intentionally limits ingestion to robbery, burglary, larceny, and motor vehicle theft codes with high point-coordinate availability in sampled/paginated checks, and raw feed counts must not be promoted as annual totals. Murder (09A), rape (11A), and aggravated assault (13A) are intentionally omitted because the official feed has substantial geographic suppression or missing point geometry for those categories; the City notes confidential/sensitive reports can have limited or withheld location information. Identity uses Record_ID plus OBJECTID because Record_ID alone had a duplicate in the selected mapped-code subset. Dates use Occurrence_Date_PT; geography uses ArcGIS geometry exposed by the runner as __arcgis_latitude and __arcgis_longitude. Jurisdiction_id and state_fips came from state/controls/jurisdiction_controls_2024.parquet for Sacramento city; the bounding box came from the local TIGER 2020 California place polygon for GEOID 0664000 and is broad enough for the runner's later municipal block-group spatial join.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 4,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 4,
+    "offense_rows": 7,
+    "rows_in_surface": 1304,
+    "share_admitted_rows": 4,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://services5.arcgis.com/54falWtcpty3V47Z/arcgis/rest/services/Sacramento_Report_Data_2024/FeatureServer/0",
+    "city_key": "sacramento_ca",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 437500,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/sacramento_ca_raw.parquet",
+    "raw_cache_sha256": "cb5e1445de85ebb3d12f292a081bc3d3b3b9d4f3abf4c3ab1bcae4dad8162fa0",
+    "source_name": "City of Sacramento Police Department RMS Report Data 2024",
+    "source_url": "https://data.cityofsacramento.org/datasets/eddc9729d09e4c7f92794d2ae1d99da4_0/about"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final",
+  "runtime": {
+    "city_key": "sacramento_ca",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/sacramento_ca_raw.parquet",
+    "raw_cache_sha256": "cb5e1445de85ebb3d12f292a081bc3d3b3b9d4f3abf4c3ab1bcae4dad8162fa0",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 4.515344249986811,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

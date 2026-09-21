@@ -1,0 +1,111 @@
+{
+  "case_key": "dania_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1216335",
+  "jurisdiction_name": "Dania Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_contract_city_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Dania Beach is a real incorporated Florida city, but it has not been a city-run police department for decades. The City's FY 2017 financial statements say Dania Beach police officers became Broward Sheriff's Office employees effective October 1, 1988 under an August 30, 1988 service agreement, and the current BSO Dania Beach district page says the city is still served through a contractual agreement with BSO.",
+    "The current policing model is therefore contract policing through Broward Sheriff's Office rather than county-remainder replacement or target invalidity. As of March 24, 2026, BSO publicly maintains a Dania Beach district with a city-specific budget and staffing complement rather than generic unlocalized sheriff coverage.",
+    "Official state and federal materials still support a real Dania-specific reporting identity. FDLE's ATMS registry still lists the legacy identity 'Dania Police Department (FL0060100)', while the FBI CDE 2024 Florida roster lists 'Dania Beach Police Department' with the same ORI FL0060100 as a City agency.",
+    "Florida's official county-and-municipal offense publications support a real Dania-specific annual reporting row through the 2021 transition year. FDLE's 2020 report publishes Dania Beach Police Department with population 32,215 and total index crime 1,226, and FDLE's 2021 report retains the Dania Beach Police Department row with population 31,837 but blanks every offense cell.",
+    "FDLE's public post-SRS FIBRS offense workbook does not carry the Dania row forward. Inspection of the repo's official FDLE workbook copy found no Dania or FL0060100 row in any 2021, 2022, 2023, 2024, or 2025 Q3 offense sheet.",
+    "Repo evidence matches a continuity/publication collapse rather than a bad municipal target. The live crosswalk routes FL0060100 exclusively to Dania Beach city, agency_year_observations shows substantive SRS rows in 2018-2020 and zero rows in 2021-2024, and the 2024 municipal controls fully fill every offense because preferred reported support is zero."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_longstanding_bso_contract_policing",
+    "official_basis": [
+      "Dania Beach is an incorporated city government, not an unincorporated Broward County remainder.",
+      "The City's own financial statements document that police services moved to Broward Sheriff's Office effective October 1, 1988 under a service agreement.",
+      "The current BSO Dania Beach district page confirms that Dania Beach is still served through a contractual agreement with Broward Sheriff's Office."
+    ],
+    "important_interpretation": "Dania Beach is a valid municipal control object whose policing is delivered through a contract-city sheriff district. The keep/drop decision turns on whether a real city-specific reporting identity exists, not on whether the city currently runs its own municipal police department."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Broward Sheriff's Office Dania Beach district under contractual agreement with the city",
+    "standalone_city_police_department_today": false,
+    "city_specific_contract_policing_surface_found": true,
+    "historical_transition": {
+      "effective_date": "1988-10-01",
+      "change": "Dania Beach police officers became Broward Sheriff's Office employees under the city-sheriff service agreement."
+    },
+    "official_evidence": [
+      "The BSO Dania Beach district page says Dania Beach is served through a contractual agreement between BSO and the city.",
+      "That page describes a Dania Beach-specific annual operating budget of about $19.5 million and 94 positions.",
+      "The City's FY 2017 financial statements say Dania Beach police officers became Broward Sheriff's Office employees effective October 1, 1988."
+    ],
+    "service_structure_interpretation": "Dania Beach is operationally sheriff-policed, but through a city-specific contract district and legacy municipal ORI/reporting identity rather than through a simple Broward County sheriff remainder."
+  },
+  "official_reporting_evidence": {
+    "identity_surfaces": {
+      "fdle_registry_identity": {
+        "agency_name": "Dania Police Department",
+        "ori9": "FL0060100",
+        "summary": "FDLE's current ATMS registry retains FL0060100 as a listed agency identity under the legacy name 'Dania Police Department'."
+      },
+      "fbi_cde_roster_2024": {
+        "agency_name": "Dania Beach Police Department",
+        "ori9": "FL0060100",
+        "agency_type": "City",
+        "is_nibrs": false,
+        "summary": "The FBI CDE 2024 roster continues to publish FL0060100 as a city agency identity even though no 2024 offense observation is present."
+      },
+      "identity_interpretation": "The naming surface varies between 'Dania Police Department' and 'Dania Beach Police Department', but the official ORI identity FL0060100 persists across state and federal roster surfaces."
+    },
+    "fdle_county_and_municipal_reports": {
+      "summary": "FDLE's county-and-municipal annual offense publications support a real Dania-specific row through the transition year.",
+      "details": [
+        "FDLE 2020: Dania Beach Police Department, population 32,215, total index crime 1,226.",
+        "FDLE 2021: Dania Beach Police Department, population 31,837, row retained with all offense fields blank."
+      ],
+      "interpretation": "Florida officially published Dania Beach as a distinct municipal reporting row long after the 1988 BSO service conversion, which means contract policing did not erase the municipal reporting object."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The public FDLE FIBRS offense workbook does not publish a Dania or FL0060100 row in any 2021-2025 Q3 annual sheet checked.",
+      "supported_years": {
+        "named_row_with_counts": "through 2020",
+        "named_row_retained_but_blank": "2021",
+        "public_fibrs_offense_row_present": "not found in 2021, 2022, 2023, 2024, or 2025 Q3"
+      },
+      "interpretation": "The official public offense publication surface breaks after the retained blank 2021 row rather than showing a clean replacement by Broward County sheriff county-remainder reporting."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0060100 exclusively to 12:municipal:place:1216335 with review_status auto and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0060100 as a local_police agency with source_presence_srs and source_presence_nibrs both true, srs_years and nibrs_years listed through 2024, latest_srs_year 2024, latest_nibrs_year 2024, and population_latest_nibrs 32593.",
+    "observation_state": "agency_year_observations.parquet shows substantive annual SRS counts in 2018 (1,419), 2019 (1,227), and 2020 (1,226), then zero annual rows with months_reported 0.0 in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "agency_master still advertises source presence through 2024 while the observation layer is completely zero after 2020. That mismatch is consistent with broken continuity/publication handling on a real agency identity rather than a bad Dania place mapping.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every Dania Beach offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Dania Beach in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1260.0, total_reported_count 0.0, and priority_rank 9."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Dania Beach is a valid incorporated city with a longstanding city-specific BSO contract-policing district.",
+      "Official state and federal roster surfaces still recognize FL0060100 as a Dania municipal agency identity.",
+      "FDLE's county-and-municipal offense publications provide Dania-specific annual offense support through 2020 and retain the named row as a blank transition marker in 2021.",
+      "The live repo crosswalk from FL0060100 to Dania Beach city is exclusive and matches that historical municipal reporting surface."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The Dania-specific municipal row remained officially visible through FDLE's 2021 county-and-municipal publication but did not carry into the public FIBRS offense workbook.",
+      "The FBI CDE roster still lists FL0060100 in 2024, which shows identity persistence without corresponding observed offense data.",
+      "Because the Dania municipal ORI remained attached to the city in reference while post-2020 public offense continuity disappeared, the 2024 controls treated the city as structurally missing and filled every offense."
+    ],
+    "recommended_handling": [
+      "Retain Dania Beach city as a standalone municipal control row.",
+      "Do not drop Dania Beach into a generic Broward County sheriff remainder or mark the target invalid solely because policing is delivered by BSO under contract.",
+      "Treat the current all-fill state as a contract-city reporting continuity/publication failure centered on FL0060100 after the 2021 SRS-to-FIBRS transition.",
+      "Use FDLE county-and-municipal offense reports as the official state truth surface through 2021, with 2021 interpreted as a retained-but-blank transition marker.",
+      "If later override work is required, prioritize Dania-specific BSO district contract materials or city-held contract-performance records because the public FDLE FIBRS offense workbook does not publish Dania-specific offense rows after 2021."
+    ]
+  },
+  "likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining implementation question is whether any post-2021 Dania-specific annual counts can be recovered from BSO district reporting, city contract materials, or another official non-FDLE public surface."
+  ]
+}

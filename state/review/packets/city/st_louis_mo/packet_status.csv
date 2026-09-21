@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,state_abbr,priority_bucket,priority_rank,packet_status,current_owner,production_ready,city_share_integration_status,reconciliation_status,notes
+st_louis_mo,St. Louis,29:municipal:place:2965000,MO,second_wave,12.5,review_complete,codex,yes,offense_selective,2024_cius_reconciliation_complete_six_total_candidate_one_share_only,Official SLMPD monthly 2024 NIBRS CSV feed is live and direct-geocoded; all seven offenses admitted for share-lane use.

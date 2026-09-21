@@ -1,0 +1,26 @@
+{
+  "city_key": "baltimore",
+  "city_name": "Baltimore",
+  "jurisdiction_id": "24:municipal:place:2404000",
+  "state_abbr": "MD",
+  "priority_bucket": "second_wave",
+  "priority_rank": "8",
+  "basis": "Large independent-city overlay candidate with official geocoded legacy SRS incidents and packet-validated offense-specific counting rules.",
+  "notes": "Now live offense-selectively for rape, robbery, aggravated_assault, and larceny under the packet-validated 2024 legacy-SRS window through 2024-12-28. Keep murder blocked on the unresolved year-end homicide mismatch, burglary blocked on the persistent public-count overrun, and motor_vehicle_theft blocked on the remaining annual reconciliation gap.",
+  "source_name": "Baltimore legacy SRS Part 1 feed + Baltimore NIBRS Group A companion feed",
+  "source_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Part1_Crime_Beta/FeatureServer/0 ; https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/NIBRS_GroupA_Crime_Data/FeatureServer/0",
+  "portal_type": "arcgis_dual_feed",
+  "coverage_start_year": "2011",
+  "coverage_end_year": "2025",
+  "years_usable": "14",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/baltimore",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

@@ -1,0 +1,20 @@
+normalizer_id,offense,leg,surface_column,weight,provisional,note
+person_ens_v1,murder,landscan_night,landscan_night_pop,0.9,true,PROVISIONAL - 16 feeds / 17 cells / noise floor 45% of TVD / LOO weight stability 0.50; E3 supports the DIRECTION (nighttime-weighted) but not these exact weights. Do not tune per cell; replace only by a new versioned file after a wider murder corpus.
+person_ens_v1,murder,landscan_day,landscan_day_pop,0.0,true,PROVISIONAL - see the landscan_night row.
+person_ens_v1,murder,daytime_jobs,daytime_population_jobs_proxy,0.1,true,PROVISIONAL - see the landscan_night row.
+person_ens_v1,rape,landscan_night,landscan_night_pop,0.7,true,PROVISIONAL - 10 feeds / 14 cells / noise floor 54% of TVD; rape is suppressed or ungeocoded in most public feeds. Direction only.
+person_ens_v1,rape,landscan_day,landscan_day_pop,0.1,true,PROVISIONAL - see the landscan_night row.
+person_ens_v1,rape,daytime_jobs,daytime_population_jobs_proxy,0.2,true,PROVISIONAL - see the landscan_night row.
+person_ens_v1,robbery,landscan_night,landscan_night_pop,0.7,false,E3 leave-one-source-out over 19 feeds / 40 cells; 5.4% held-out TVD gain vs the deployed hard max (boot p 0.999).
+person_ens_v1,robbery,landscan_day,landscan_day_pop,0.3,false,E3 leave-one-source-out; the only adopted mix with zero weight on the jobs leg - see the coverage-repair rule in the contract.
+person_ens_v1,robbery,daytime_jobs,daytime_population_jobs_proxy,0.0,false,E3 leave-one-source-out.
+person_ens_v1,aggravated_assault,landscan_night,landscan_night_pop,0.7,false,E3 leave-one-source-out over 18 feeds / 40 cells; 10.6% held-out TVD gain vs the deployed hard max (boot p 1.0).
+person_ens_v1,aggravated_assault,landscan_day,landscan_day_pop,0.1,false,E3 leave-one-source-out.
+person_ens_v1,aggravated_assault,daytime_jobs,daytime_population_jobs_proxy,0.2,false,E3 leave-one-source-out.
+person_ens_v1,larceny,landscan_night,landscan_night_pop,0.4,false,E3 leave-one-source-out over 20 feeds / 44 cells; 6.0% held-out TVD gain vs the deployed hard max. This is the PERSON leg of larceny_opp_v1 - larceny's published normalizer is the hybrid below.
+person_ens_v1,larceny,landscan_day,landscan_day_pop,0.3,false,E3 leave-one-source-out.
+person_ens_v1,larceny,daytime_jobs,daytime_population_jobs_proxy,0.3,false,E3 leave-one-source-out.
+larceny_opp_v1,larceny,person_ensemble,person_ens_v1_larceny,0.5,false,"E3 stage 4 - 4-way convex simplex over person / destination POI / retail jobs / vehicles selected leave-one-source-out; 20.0% held-out TVD gain over person-only (boot p 1.0, 95% of feeds win) and residual pseudo-R2 0.317 -> 0.078. Survives dropping the CAD feeds / the LASD block / Los Angeles."
+larceny_opp_v1,larceny,destination_poi,destination_poi_total,0.3,false,E3 stage 4. Overture consumer-destination POI count rescaled to the person ensemble's reference-universe total before mixing - see the contract on dimensional coherence.
+larceny_opp_v1,larceny,retail_jobs,lodes_retail_jobs,0.2,false,E3 stage 4. LODES CNS07 retail jobs rescaled to the person ensemble's reference-universe total before mixing.
+larceny_opp_v1,larceny,vehicles,vehicle_exposure_2024,0.0,false,E3 stage 4 TESTED AND REJECTED - the vehicle leg took weight 0.0 in the pooled selection and in 19 of 20 leave-one-source-out folds. Carried at zero so the rejection is on the record.

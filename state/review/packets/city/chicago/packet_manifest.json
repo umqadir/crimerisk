@@ -1,0 +1,26 @@
+{
+  "city_key": "chicago",
+  "city_name": "Chicago",
+  "jurisdiction_id": "17:municipal:place:1714000",
+  "state_abbr": "IL",
+  "priority_bucket": "first_wave",
+  "priority_rank": "2",
+  "basis": "Single stable feed, direct coordinates, mature offense/location crosswalks, and long history.",
+  "notes": "Strong second city. Store and review annual-report reconciliation before scaling further.",
+  "source_name": "Chicago Crimes 2001 to Present",
+  "source_url": "https://data.cityofchicago.org/api/views/ijzp-q8t2/rows.csv?accessType=DOWNLOAD",
+  "portal_type": "socrata",
+  "coverage_start_year": "2001",
+  "coverage_end_year": "2025",
+  "years_usable": "25",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/chicago",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

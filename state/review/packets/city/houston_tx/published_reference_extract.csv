@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+houston_tx,"Houston, Texas",48:municipal:place:4835000,aggravated_assault,18260.0,cius_publication_annual,high
+houston_tx,"Houston, Texas",48:municipal:place:4835000,burglary,14953.0,cius_publication_annual,high
+houston_tx,"Houston, Texas",48:municipal:place:4835000,larceny,68315.0,cius_publication_annual,high
+houston_tx,"Houston, Texas",48:municipal:place:4835000,motor_vehicle_theft,16304.0,cius_publication_annual,high
+houston_tx,"Houston, Texas",48:municipal:place:4835000,murder,320.0,cius_publication_annual,high
+houston_tx,"Houston, Texas",48:municipal:place:4835000,rape,1693.0,cius_publication_annual,high
+houston_tx,"Houston, Texas",48:municipal:place:4835000,robbery,6355.0,cius_publication_annual,high

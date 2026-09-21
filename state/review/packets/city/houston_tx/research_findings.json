@@ -1,0 +1,174 @@
+{
+  "city_key": "houston_tx",
+  "city_name": "Houston, Texas",
+  "geography": {
+    "bounds": {
+      "max_latitude": 30.217214,
+      "max_longitude": -94.929271,
+      "min_latitude": 29.457305,
+      "min_longitude": -96.010733
+    },
+    "jurisdiction_id": "48:municipal:place:4835000",
+    "state_fips": "48"
+  },
+  "mapping": {
+    "date_field": "HPD_Occurrence_Date",
+    "id_field": "HPD_Incident",
+    "id_fields": [
+      "HPD_Incident",
+      "HPD_NIBRS_Class"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "field": "HPD_NIBRS_Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/HPD_NIBRS_Yearly_Cases/FeatureServer/0",
+    "name": "HPD NIBRS Yearly Cases (Houston Police Department NIBRS-coded incident feed, published by Houston Information Technology Services)",
+    "order": "OBJECTID ASC",
+    "page_size": 2000,
+    "portal_type": "arcgis_feature_service",
+    "select": [
+      "OBJECTID",
+      "HPD_Incident",
+      "HPD_Occurrence_Date",
+      "HPD_Occurrence_Hour",
+      "HPD_NIBRS_Class",
+      "HPD_NIBRSDescription",
+      "HPD_Offense_Count",
+      "HPD_Beat",
+      "HPD_Premise",
+      "HPD_Block_Range",
+      "HPD_StreetName",
+      "HPD_Street_Type",
+      "HPD_Suffix",
+      "HPD_City",
+      "HPD_ZIP_Code",
+      "Longitude",
+      "Latitude",
+      "COUNCIL_DISTRICT",
+      "Address"
+    ],
+    "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm (HPD_NIBRS_Yearly_Cases ArcGIS hosted layer)",
+    "where": "HPD_Occurrence_Date >= DATE '2024-01-01 00:00:00' AND HPD_Occurrence_Date < DATE '2025-01-01 00:00:00' AND HPD_City IN ('HOUSTON', ' HOUSTON', 'HOUSTON,', 'HOUSTON, TX')"
+  },
+  "sources_checked": [
+    "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/HPD_NIBRS_Yearly_Cases/FeatureServer/0?f=json",
+    "https://services.arcgis.com/NummVBqZSIJKUeVR/arcgis/rest/services/HPD_NIBRS_Yearly_Cases/FeatureServer/0/query",
+    "state/controls/jurisdiction_controls_2024.parquet",
+    "state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
+    "state/modeling/batch_c_preregistration_2024.json",
+    "docs/FBI-DATA-GUIDE.md",
+    "docs/STATE.md (Batch C pre-registration section)"
+  ],
+  "worker_judgment_notes": "Source is the Houston Police Department's public 'HPD_NIBRS_Yearly_Cases' ArcGIS hosted feature layer (item 493390fd87b743e8866e37a993b43c5f, owner MyCityHouston, layer 0 = 2024; identity pre-verified by scout, re-confirmed here 2026-07-09 directly against the live FeatureServer metadata -- title 'HPD_NIBRS_2024', copyrightText 'Houston Police Department (HPD), Houston Information Technology Services (HITS)', isView not set i.e. a real hosted feature layer, not a fan-out view). Layer holds 250,169 total 2024 rows spanning HPD_Occurrence_Date 2024-01-01 to 2024-12-31 exactly (a static year-end snapshot, confirmed via min/max date server-side aggregate). CITY FILTER, CORRECTED FROM THE SCOUT'S FIGURE: a server-side groupBy(HPD_City) shows 'HOUSTON' proper (including trivial whitespace/punctuation variants ' HOUSTON' x1, 'HOUSTON,' x1, 'HOUSTON, TX' x2) totals 248,372 rows, plus 141 other distinct HPD_City values covering Harris-County-area suburbs/annotation garbage (HARRIS CO 896, FORT BEND CO 49, LAPORTE 49, MISSOURI CITY 48, PASADENA 43, single-character/date/zip data-entry noise, etc., summing to 1,746 non-Houston rows) and one all-null/blank row. The scout's reported 248,423/250,169 figure over-included 'SOUTH HOUSTON' (51 rows, HPD_ZIP_Code 77587, HPD_Beat 'OOJ') -- South Houston, TX is a separate incorporated municipality southeast of Houston with its own city government (not a Houston neighborhood; analogous to Memphis batch's CORDOVA over-inclusion risk), and is correctly EXCLUDED here. The where-clause literal city list (HPD_City IN ('HOUSTON', ' HOUSTON', 'HOUSTON,', 'HOUSTON, TX')) reproduces the exact 248,372-row figure server-side (verified by direct count query with the full where-clause including the 2024 date bound). NO DEDUPLICATION NEEDED -- CONTRAST WITH MEMPHIS: unlike Memphis's MPD hosted view (isView=true, ~45-55% exact-duplicate rows from an underlying export-batch union), this Houston layer is a genuine hosted feature layer (isView not set) and empirically clean: for every one of the six exact-reconciled offense codes tested (09A murder, 120 robbery, 13A aggravated assault, 220 burglary, 240 motor vehicle theft, and 23F theft-from-vehicle as the largest larceny subcode), grouping Houston-filtered rows by HPD_Incident within that single offense code yields a MAXIMUM multiplicity of 1 -- i.e. zero repeat (HPD_Incident, HPD_NIBRS_Class) pairs anywhere in the tested codes, so this is a real one-row-per-offense-occurrence feed at the reporting-crime level (the id_fields key [HPD_Incident, HPD_NIBRS_Class] is still declared per the schema's dedup convention as a safety net, but empirically drops zero rows). A separate HPD_Offense_Count field exists (241,577 rows count=1; 6,774 rows count=2-14, reflecting multi-victim same-offense same-incident collapsing) but is NOT summed here -- following the same row-count convention used for every other Batch B/C city contract (share computation operates on row counts, not victim counts), and because summing it would double the burglary/aggravated-assault reconciliation gaps described below without a clear justification for departing from the established convention. RAPE MAPPING DEVIATES FROM THE TASK BRIEF'S SHORTHAND, FOLLOWING THE REPO'S DOCUMENTED STANDARD INSTEAD: the task brief said 'map 11A' for rape, but docs/FBI-DATA-GUIDE.md (canonical for FBI mechanics per repo convention) states explicitly that 'UCR rape since 2013 = NIBRS 11A (rape) + 11B (sodomy) + 11C (sexual assault with an object)... Not NIBRS code 11A alone. Mapping only sex offenses-rape undercounts UCR-definition rape by ~25%' -- and Aurora's already-integrated Batch B contract used exactly this three-code mapping. Empirically for Houston: 11A alone = 826 rows (ratio 826/1693 official = 0.488, a 51% undercount, far worse than the doc's general 25% warning); 11A+11B+11C = 826+698+5 = 1,529 rows (ratio 1529/1693 = 0.903, inside the strict 10% band); adding 11D (forcible fondling, 616 rows, a distinct NIBRS sex-offense category not part of the revised rape definition) would overshoot to 2,145/1693=1.267. The three-code mapping (11A+11B+11C) is used here as the canonical, source-agnostic UCR rape definition, not a fitted choice -- both the raw 11A-only and the 11A+11B+11C numbers are reported here for transparency; this is flagged as a deviation from the literal task-brief wording for the supervisor's review, though it matches the repo's own documented standard and precedent. Regardless of which cut is used, rape stays subject to the repo's existing rape default-deny texture policy downstream (not evaluated by this worker). RECONCILIATION AGAINST OFFICIAL CONTROLS (state/controls/jurisdiction_controls_2024.parquet, jurisdiction 48:municipal:place:4835000, preferred_source cius_publication_annual, quality_tier high, 12/12 months reported, adjusted_count_ags_core): murder 303/320=0.947 (within 10%), robbery 6383/6355=1.0044 (within 10%), larceny (23A-H sum) 68842/68315=1.0077 (within 10%), motor_vehicle_theft 15974/16304=0.9798 (within 10%), rape (11A+11B+11C) 1529/1693=0.903 (within 10%, see rape note above). TWO OFFENSES MISS THE STRICT 10% RECONCILIATION GATE, FLAGGED BUT NOT EXCLUDED (no evidence found of a non-neutral omission mechanism, unlike Memphis's aggravated-assault domestic-violence hypothesis or Henderson's structural RMS-export undercount): burglary 13331/14953=0.8915 (10.85% shortfall -- HPD_NIBRS_Class 220 is a single flat category with no attempted/completed or force/no-force subcode split found in SubGroup_Description/NIBRS_Group/GroupCode to explain the gap); aggravated_assault 15410/18260=0.8440 (15.6% shortfall -- HPD_NIBRS_Class 13A is likewise a single flat 'Assault Offenses' category with no further subcode; no domestic-violence-specific field exists in this schema to test the same redaction hypothesis raised for Memphis, so this is reported as an open, unexplained gap rather than attributed to a mechanism). Per the generic runner's own gate logic these two offenses simply fall into the official_control/share_only lane rather than feed_total_candidate -- share-lane admission itself is not blocked by a reconciliation-gate miss, and this worker is not unilaterally excluding either offense absent stronger evidence of a spatially non-neutral omission (unlike the Memphis/Henderson precedents where a specific mechanism was identified). COORDINATES: the layer's native SR is Texas State Plane South Central, US feet (wkid 102740/2278); pulled via outSR=4326 per the runner's standard arcgis_feature_service path, which reprojects geometry x/y into __arcgis_longitude/__arcgis_latitude. The layer also carries native Latitude/Longitude attribute fields that are numerically identical (verified on a 5-row sample) to the outSR=4326 reprojected geometry to 6 decimal places -- both represent the same underlying block-centroid anonymization (one point per HPD_Block_Range/street, i.e. per hundred-block, matching the scout's documented granularity and the Memphis-class coordinate-quality precedent). Coordinate coverage within the Houston filter: 248,355/248,372 rows have non-null Latitude/Longitude (17 nulls, 99.99% coverage). Bounds are the raw TIGER/crosswalk-touching Houston block-group envelope (2,450 BGs via block_group_to_jurisdiction_crosswalk.parquet for jurisdiction 48:municipal:place:4835000; substantially larger than the 1,587-BG pre-registration eb_jurisdiction universe, matching the same touching-vs-dominant-assignment pattern already documented for Jacksonville/Henderson in Batch B) padded by 0.05 degrees, mirroring the Memphis contract's bounds convention. Contract is share-lane only per the standard generic-runner convention; the strict 10% reconciliation gate decides feed-total-candidate status per offense, not admission of this contract at all.",
+  "year": 2024
+}

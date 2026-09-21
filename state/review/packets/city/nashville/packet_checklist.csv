@@ -1,0 +1,7 @@
+step_order,step_name,required_output
+1,source_research,"Confirm the live source contract, schema, coverage years, and whether an existing local ETL already solves part of the city."
+2,raw_snapshot,Pull or identify the raw source snapshot and record the exact path or query used.
+3,offense_crosswalk,Define a city-to-V2 offense crosswalk and record any approximate or excluded mappings.
+4,spatial_contract,Determine how incidents can be assigned to block groups and flag any redaction or proxy requirements.
+5,published_reconciliation,Reconcile the city-year totals against a public published source and explain any remaining divergence.
+6,packet_handoff,"Summarize whether the packet is production-ready, blocked, or needs integration work."

@@ -1,0 +1,26 @@
+{
+  "builder": "_build_charlotte_surface",
+  "city_key": "charlotte",
+  "city_name": "Charlotte",
+  "contract": "Gate-1 pilot: official totals lane plus incident share lane.",
+  "incident_feed_total_policy": "share_only_unless_strict_reconciliation_clears",
+  "jurisdiction_id": "37:municipal:place:3712000",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/charlotte",
+  "raw_cache_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/inputs/gap_closing_pilot/gate1_pilot_20260615",
+  "run_id": "gate1_pilot_20260615",
+  "source_name": "CMPD Incidents",
+  "source_url": "https://data.charlottenc.gov/datasets/charlotte::cmpd-incidents-1/about",
+  "worker_runtime": {
+    "city_key": "charlotte",
+    "input_tokens": null,
+    "model": "",
+    "output_tokens": null,
+    "run_id": "gate1_pilot_20260615",
+    "status": "completed",
+    "token_note": "No LLM tokens: deterministic Python city builder.",
+    "total_tokens": null,
+    "wall_seconds": 40.7910231660062,
+    "worker_id": "local_deterministic_charlotte",
+    "worker_type": "local_deterministic_builder"
+  }
+}

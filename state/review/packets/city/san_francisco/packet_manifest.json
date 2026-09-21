@@ -1,0 +1,26 @@
+{
+  "city_key": "san_francisco",
+  "city_name": "San Francisco",
+  "jurisdiction_id": "06:municipal:place:0667000",
+  "state_abbr": "CA",
+  "priority_bucket": "first_wave",
+  "priority_rank": "5",
+  "basis": "Existing local dual-feed ETL now supports a live offense-selective path, though public rape and homicide remain blocked.",
+  "notes": "Keep SF blocked city-wide but live offense-selectively for robbery aggravated_assault burglary larceny and motor_vehicle_theft; murder and rape remain blocked by public-data limits.",
+  "source_name": "SFPD incidents early + late feeds",
+  "source_url": "https://data.sfgov.org/api/views/tmnf-yvry/rows.csv?accessType=DOWNLOAD ; https://data.sfgov.org/api/views/wg3w-h783/rows.csv?accessType=DOWNLOAD",
+  "portal_type": "socrata_dual_feed",
+  "coverage_start_year": "2003",
+  "coverage_end_year": "2025",
+  "years_usable": "23",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/san_francisco",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

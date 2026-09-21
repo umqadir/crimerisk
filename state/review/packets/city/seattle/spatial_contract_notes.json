@@ -1,0 +1,123 @@
+{
+  "city_key": "seattle",
+  "analysis_window_years": [
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "primary_contract": {
+    "method": "Use reported Latitude/Longitude from SPD open data when both values are within Seattle bounds used by the current V2 implementation: latitude 47.45-47.78 and longitude -122.46 to -122.20. Then spatially join to Washington 2020 block groups filtered to jurisdiction_id 53:municipal:place:5363000.",
+    "quality_tier": "reported_latlon"
+  },
+  "redaction_evidence": {
+    "live_source_fields": {
+      "Latitude": "REDACTED:220469 overall; -1.0:171840 overall",
+      "Longitude": "REDACTED:220469 overall; -1.0:171840 overall",
+      "Block Address": "REDACTED:220469 overall",
+      "Reporting Area": "REDACTED:220469 overall"
+    },
+    "serious_offense_proxy_coverage_2018_2024": {
+      "mapped_serious_total": 23771,
+      "invalid_serious_total": 7770,
+      "reporting_area_available": 47,
+      "beat_available": 7644,
+      "neighborhood_available_excluding_unknown": 7486,
+      "beat_and_neighborhood_available": 7486,
+      "beat_only_available": 158,
+      "neighborhood_only_available": 0,
+      "none_of_beat_or_neighborhood": 126,
+      "block_address_available": 9
+    }
+  },
+  "recommended_fallback_hierarchy": [
+    {
+      "priority": 1,
+      "incident_field": "Beat",
+      "join_target": "Seattle Police Department Beats (Web Mercator)",
+      "join_url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/Current_Beats/FeatureServer/0",
+      "incident_join_field": "Beat",
+      "polygon_join_field": "beat",
+      "supporting_polygon_fields": [
+        "first_precinct",
+        "sector"
+      ],
+      "coverage_on_invalid_serious_rows": 7644,
+      "coverage_share_on_invalid_serious_rows": 0.9837837837837838,
+      "observed_join_value_mismatch": [
+        "OOJ"
+      ],
+      "notes": "This is the only practical fallback for redacted homicide/rape/aggravated-assault rows. The live incident Beat domain matches the official beat layer except for OOJ."
+    },
+    {
+      "priority": 2,
+      "incident_field": "Neighborhood",
+      "join_target": "Seattle Police Department Micro Community Policing Plans (Web Mercator)",
+      "join_url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/MCPPs_WebMerc/FeatureServer/0",
+      "incident_join_field": "Neighborhood",
+      "polygon_join_field": "neighborhood",
+      "supporting_polygon_fields": [
+        "precinct"
+      ],
+      "coverage_on_invalid_serious_rows": 7486,
+      "coverage_share_on_invalid_serious_rows": 0.9634491634491635,
+      "notes": "Neighborhood values match the official MCPP layer exactly, but this does not rescue any serious rows beyond the Beat fallback once UNKNOWN is treated as unusable."
+    },
+    {
+      "priority": 3,
+      "incident_field": "Reporting Area",
+      "join_target": "Community Reporting Areas",
+      "join_url": "https://services.arcgis.com/ZOyb2t4B0UYuYNYH/arcgis/rest/services/CITYPLAN_CRA/FeatureServer/43",
+      "incident_join_field": "Reporting Area",
+      "polygon_join_field": "CRA_NO",
+      "supporting_polygon_fields": [
+        "DISPLAY_NAME",
+        "WATER"
+      ],
+      "coverage_on_invalid_serious_rows": 47,
+      "coverage_share_on_invalid_serious_rows": 0.0060490355212355215,
+      "notes": "Do not use as the primary redaction fallback. Seattle redacts Reporting Area on almost all serious rows, so CRA only matters for edge QA or future schema changes."
+    }
+  ],
+  "blocked_tail": {
+    "rows_without_usable_latlon_or_beat_or_neighborhood": 126,
+    "available_fields_on_tail": {
+      "Precinct": 3,
+      "Sector": 1,
+      "Reporting Area": 0,
+      "Block Address": 1
+    },
+    "notes": "These rows define the bounded public tail. They cannot be assigned below sector or precinct granularity from the public feed and should remain unassigned unless a restricted-location source or separate official beat assignment export is approved."
+  },
+  "current_v2_contract": {
+    "minimal_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/city-incidents/seattle/seattle_minimal_snapshot_2018_2024.parquet",
+    "status": "implemented",
+    "required_minimal_cache_fields": [
+      "offense_id",
+      "offense_date",
+      "report_datetime",
+      "nibrs_offense_code",
+      "nibrs_offense_code_description",
+      "offense_category",
+      "offense_sub_category",
+      "block_address",
+      "beat",
+      "precinct",
+      "sector",
+      "neighborhood",
+      "reporting_area",
+      "latitude",
+      "longitude"
+    ],
+    "impact": "The current Seattle loader and share builder retain Beat and related proxy fields in the minimal cache, so beat-aware recovery can run from cache without re-reading the full CSV during normal operation."
+  },
+  "loader_builder_caveats": {
+    "dedupe_rule": "Deduplicate on Offense ID before year filtering and offense mapping.",
+    "date_rule": "Use Offense Date as the primary incident date and fall back to Report DateTime when Offense Date is null. Do not reintroduce the historical midpoint logic from older Seattle loaders because the live feed no longer exposes offense start and end timestamps.",
+    "assignment_rule": "Use reported latitude and longitude first when both values fall within Seattle bounds. For unresolved rows, use Beat overlap weights when Beat is nonblank and not OOJ. Neighborhood can support QA but should not be treated as an independent second assignment layer because it does not rescue rows beyond Beat.",
+    "tail_rule": "Rows with no valid lat or lon and no recoverable Beat remain the bounded public tail. Do not force-assign them from Precinct, Sector, Reporting Area, or Block Address."
+  }
+}

@@ -1,0 +1,2 @@
+ori,source_jurisdiction_id,target_jurisdiction_id,state_fips,state_abbr,jurisdiction_name,geo_type,geoid,source_note
+PA0021B00,42:statewide_overlap_layer,42:municipal:cousub:4200360272,42,PA,Pine township,cousub,4200360272,Northern Regional Police Department serves Pine Township; the FBI service-population residual had been left on the statewide overlap layer and the township's block groups fell into the statewide remainder.

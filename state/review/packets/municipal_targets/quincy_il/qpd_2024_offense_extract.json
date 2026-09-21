@@ -1,0 +1,142 @@
+{
+  "case_key": "quincy_il",
+  "jurisdiction_id": "17:municipal:place:1762367",
+  "jurisdiction_name": "Quincy city",
+  "state_abbr": "IL",
+  "extracted_on": "2026-03-24",
+  "source_document": {
+    "title": "2024 Annual Report Update 09/23/25",
+    "agency": "Quincy Police Department",
+    "source_url": "https://www.quincypolicedepartment.com/wp-content/uploads/2025/09/2024-Annual-Report-Update-09_23_25.pdf",
+    "local_pdf_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/quincy_il/2024_annual_report_source.pdf",
+    "pdf_creation_date": "2025-09-23T13:55:14-04:00",
+    "pdf_modified_date": "2025-09-23T13:55:30-04:00"
+  },
+  "verification": {
+    "report_scope_year": 2024,
+    "report_scope_note": "The chief's message states this is the department's 2024 Annual Report and that statistics are kept by calendar year with 2024 compared against 2023.",
+    "ucr_definition_note": "Section Two says the report focuses on seven major UCR crimes: Murder, Criminal Sexual Assault, Aggravated Assault/Battery, Robbery, Burglary, Theft, and Motor Vehicle Theft.",
+    "counting_rule_note": "The report says murder, sexual assault, and aggravated assault/battery are victim-counted offenses, while robbery, burglary, larceny, and motor vehicle theft are incident-counted offenses."
+  },
+  "official_row_level_counts": [
+    {
+      "report_offense_label": "Criminal Homicide",
+      "count_2024": 0,
+      "count_2023": 3,
+      "v2_offense": "murder",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": false,
+      "source_section": "4.3.1 Violent Crime",
+      "source_pages": "11-12",
+      "mapping_note": "Maps cleanly to V2 murder, but murder is not one of the six current municipal-target review offenses."
+    },
+    {
+      "report_offense_label": "Forcible Rape",
+      "count_2024": 46,
+      "count_2023": 47,
+      "v2_offense": "rape",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": true,
+      "source_section": "4.3.1 Violent Crime",
+      "source_pages": "11-12",
+      "mapping_note": "Section Two defines this major-crime bucket as Criminal Sexual Assault, while Section 4.3.1 labels the row Forcible Rape with the same 46 count. Treat as the local rape-equivalent field for V2."
+    },
+    {
+      "report_offense_label": "Robbery",
+      "count_2024": 4,
+      "count_2023": 2,
+      "v2_offense": "robbery",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": true,
+      "source_section": "4.3.1 Violent Crime",
+      "source_pages": "11-12",
+      "mapping_note": "Direct label match."
+    },
+    {
+      "report_offense_label": "Aggravated Battery/Assault",
+      "count_2024": 28,
+      "count_2023": 42,
+      "v2_offense": "aggravated_assault",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": true,
+      "source_section": "4.3.1 Violent Crime",
+      "source_pages": "11-12",
+      "mapping_note": "Maps to V2 aggravated_assault, with Illinois-style battery/assault wording preserved from the source report."
+    },
+    {
+      "report_offense_label": "Burglaries",
+      "count_2024": 61,
+      "count_2023": 75,
+      "v2_offense": "burglary",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": true,
+      "source_section": "4.3.2 Property Crime",
+      "source_pages": "12",
+      "mapping_note": "Direct offense match aside from plural label."
+    },
+    {
+      "report_offense_label": "Thefts",
+      "count_2024": 141,
+      "count_2023": 427,
+      "v2_offense": "larceny",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": true,
+      "source_section": "4.3.2 Property Crime",
+      "source_pages": "12",
+      "mapping_note": "Section Two defines the seven-major-crime property bucket as Theft and explains that UCR incident counting applies to larceny. Treat the published Thefts row as the local larceny-equivalent field for V2."
+    },
+    {
+      "report_offense_label": "Motor Vehicle Thefts",
+      "count_2024": 126,
+      "count_2023": 93,
+      "v2_offense": "motor_vehicle_theft",
+      "maps_cleanly_to_v2": true,
+      "in_v2_six_offense_review_queue": true,
+      "source_section": "4.3.2 Property Crime",
+      "source_pages": "12",
+      "mapping_note": "Direct offense match aside from plural label."
+    }
+  ],
+  "published_totals_and_checks": {
+    "published_totals": {
+      "violent_crime_total_2024": 79,
+      "violent_crime_total_2023": 94,
+      "property_crime_total_2024": 502,
+      "property_crime_total_2023": 743,
+      "major_index_crime_total_2024": 581,
+      "major_index_crime_total_2023": 837
+    },
+    "derived_checks": {
+      "violent_row_sum_2024_from_printed_component_rows": 78,
+      "violent_row_sum_2023_from_printed_component_rows": 94,
+      "seven_major_crime_row_sum_2024": 406,
+      "seven_major_crime_row_sum_2023": 689,
+      "property_row_sum_with_extra_categories_2024": 502,
+      "property_row_sum_with_extra_categories_2023": 743
+    },
+    "issues": [
+      "The published Violent Crime Total for 2024 is 79, but the printed violent component rows sum to 78 (0 homicide + 46 forcible rape + 4 robbery + 28 aggravated battery/assault).",
+      "The published Property Crime Total includes Criminal Damage and Arson in addition to Burglaries, Thefts, and Motor Vehicle Thefts.",
+      "The published Major Index Crime Total therefore does not equal the seven major crimes defined in Section Two and should not be used as a V2 offense aggregate."
+    ]
+  },
+  "mapping_assessment": {
+    "usable_for_v2_row_level_backfill": true,
+    "preferred_backfill_fields": {
+      "aggravated_assault": 28,
+      "burglary": 61,
+      "larceny": 141,
+      "motor_vehicle_theft": 126,
+      "rape": 46,
+      "robbery": 4
+    },
+    "additional_clean_mapping_not_in_six_offense_queue": {
+      "murder": 0
+    },
+    "do_not_backfill_from_published_totals": [
+      "violent_crime_total",
+      "property_crime_total",
+      "major_index_crime_total"
+    ]
+  }
+}

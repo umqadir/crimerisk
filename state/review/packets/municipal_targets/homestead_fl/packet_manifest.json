@@ -1,0 +1,14 @@
+{
+  "case_key": "homestead_fl",
+  "jurisdiction_id": "12:municipal:place:1232275",
+  "jurisdiction_name": "Homestead city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/homestead_fl",
+  "review_goal": "Determine whether Homestead should retain a standalone municipal control row and explain whether the current 2024 all-fill state reflects an invalid municipal target/service-structure problem or a real Homestead Police Department reporting continuity gap.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

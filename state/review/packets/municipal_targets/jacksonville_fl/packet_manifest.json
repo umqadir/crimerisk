@@ -1,0 +1,14 @@
+{
+  "case_key": "jacksonville_fl",
+  "jurisdiction_id": "12:municipal:place:1235000",
+  "jurisdiction_name": "Jacksonville city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/jacksonville_fl",
+  "review_goal": "Determine whether Jacksonville should retain a true separate municipal control row versus a service-structure exception or other reroute.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

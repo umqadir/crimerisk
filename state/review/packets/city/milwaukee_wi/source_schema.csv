@@ -1,0 +1,7 @@
+column,dtype
+Incident_Number,object
+Incident_Date,object
+Offense_All,object
+Address_Longitude,float64
+Address_Latitude,float64
+Police_District,object

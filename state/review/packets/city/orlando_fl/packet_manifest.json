@@ -1,0 +1,189 @@
+{
+  "city_key": "orlando_fl",
+  "contract": {
+    "city_key": "orlando_fl",
+    "city_name": "Orlando, Florida",
+    "geography": {
+      "bounds": {
+        "max_latitude": 28.615088,
+        "max_longitude": -81.10729,
+        "min_latitude": 28.348042,
+        "min_longitude": -81.50789
+      },
+      "jurisdiction_id": "12:municipal:place:1253000",
+      "state_fips": "12"
+    },
+    "mapping": {
+      "date_field": "CaseDate",
+      "id_field": "OBJECTID",
+      "id_fields": [],
+      "latitude_field": "__arcgis_latitude",
+      "longitude_field": "__arcgis_longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "GISCaseType",
+              "op": "in",
+              "value": "",
+              "values": [
+                "Homicide"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "GISCaseType",
+              "op": "in",
+              "value": "",
+              "values": [
+                "Armed Robbery",
+                "Carjacking",
+                "Commercial Robbery",
+                "Home Invasion Robbery",
+                "Person Robbery"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "GISCaseType",
+              "op": "in",
+              "value": "",
+              "values": [
+                "Aggravated Assault",
+                "Aggravated Battery",
+                "Attempted Homicide"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "GISCaseType",
+              "op": "in",
+              "value": "",
+              "values": [
+                "Commercial Burglary",
+                "Residential Burglary"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "GISCaseType",
+              "op": "in",
+              "value": "",
+              "values": [
+                "Distraction Theft",
+                "Grand Theft",
+                "Petit Theft",
+                "Pickpocket Theft",
+                "Stolen Boat",
+                "Stolen Tag",
+                "Vehicle Burglary"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "GISCaseType",
+              "op": "in",
+              "value": "",
+              "values": [
+                "Attempted Motor Vehicle Theft",
+                "Motor Vehicle Theft"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://gis.orlando.gov/server/rest/services/OPD_Cases_Viewing/FeatureServer/0",
+      "name": "City of Orlando OPD Cases Viewing",
+      "order": "CaseDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "CaseNumber",
+        "CaseDate",
+        "CaseType",
+        "GISCaseType",
+        "NeighborhoodName",
+        "ORI"
+      ],
+      "source_url": "https://orl.maps.arcgis.com/apps/dashboards/eae3bde08de34ea0b7c2a637b255b48b",
+      "where": "CaseDate >= DATE '2024-01-01 00:00:00' AND CaseDate < DATE '2025-01-01 00:00:00' AND ORI = 'FL0480400'"
+    },
+    "sources_checked": [
+      "https://www.orlando.gov/Public-Safety/OPD/OPD-Records-Open-Data",
+      "https://orl.maps.arcgis.com/apps/dashboards/eae3bde08de34ea0b7c2a637b255b48b",
+      "https://www.arcgis.com/sharing/rest/content/items/eae3bde08de34ea0b7c2a637b255b48b?f=json",
+      "https://www.arcgis.com/sharing/rest/content/items/eae3bde08de34ea0b7c2a637b255b48b/data?f=json",
+      "https://www.arcgis.com/sharing/rest/content/items/4e602dad3bab4e538518df340d309c93?f=json",
+      "https://www.arcgis.com/sharing/rest/content/items/4e602dad3bab4e538518df340d309c93/data?f=json",
+      "https://gis.orlando.gov/server/rest/services/OPD_Cases_Viewing/FeatureServer/0?f=json",
+      "https://gis.orlando.gov/server/rest/services/OPD_Cases_Viewing/FeatureServer/0/query",
+      "https://services5.arcgis.com/mMuoPCaIYD4wEgDl/arcgis/rest/services/OPD_Case_Type_Description_Table/FeatureServer/0?f=json",
+      "https://services5.arcgis.com/mMuoPCaIYD4wEgDl/arcgis/rest/services/OPD_Case_Type_Description_Table/FeatureServer/0/query",
+      "https://services5.arcgis.com/mMuoPCaIYD4wEgDl/arcgis/rest/services/OrlandoPoliticalCityLimits/FeatureServer/0/query",
+      "https://api.us.socrata.com/api/catalog/v1?domains=data.cityoforlando.net&search_context=data.cityoforlando.net&search=OPD&limit=50"
+    ],
+    "worker_judgment_notes": "Official City of Orlando OPD Records & Open Data links the public Crime & Cases Dashboard; the dashboard web map resolves to the public OPD_Cases_Viewing FeatureServer point layer with OBJECTID, CaseNumber, CaseDate, CaseType/GISCaseType, NeighborhoodName, ORI, and point geometry. The contract is share-lane only: raw feed rows are not promoted as annual totals. jurisdiction_id/state_fips come from state/controls/jurisdiction_controls_2024.parquet for Orlando city. Bounds use the local TIGER/crosswalk Orlando municipal block-group extent so the runner can spatially join municipal block groups; the official Orlando city-limits layer was also checked and is slightly narrower eastward. Offense mapping is strict and offense-selective: Homicide maps to murder while Vehicular Homicide is excluded; robbery uses OPD robbery/carjacking categories; aggravated_assault uses Aggravated Assault, Aggravated Battery, and Attempted Homicide while simple Assault, Battery, Battery on LEO/Firefighter, weapons, and shooting-at-structure categories are excluded; burglary excludes Vehicle Burglary, which is treated as larceny; larceny excludes fraud, identity theft, embezzlement, recovered/found/lost property, and dealing-in-stolen-property noise; motor_vehicle_theft includes completed and attempted motor vehicle theft but excludes recovered stolen vehicles. No defendable rape/sex-offense category was exposed in the public GISCaseType list or definition table, so rape is intentionally omitted. ArcGIS JSON date values are epoch milliseconds; CaseDate is the source date field, and an ingestion runner should normalize ArcGIS date fields accordingly.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 6,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 1,
+    "offense_rows": 7,
+    "rows_in_surface": 828,
+    "share_admitted_rows": 6,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://gis.orlando.gov/server/rest/services/OPD_Cases_Viewing/FeatureServer/0",
+    "city_key": "orlando_fl",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 1477075,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/orlando_fl_raw.parquet",
+    "raw_cache_sha256": "69c3a2fda42c32b630dd3b1859cd7a1603349c90d9c00c74257794556821fb1b",
+    "source_name": "City of Orlando OPD Cases Viewing",
+    "source_url": "https://orl.maps.arcgis.com/apps/dashboards/eae3bde08de34ea0b7c2a637b255b48b"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617",
+  "runtime": {
+    "city_key": "orlando_fl",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/orlando_fl_raw.parquet",
+    "raw_cache_sha256": "69c3a2fda42c32b630dd3b1859cd7a1603349c90d9c00c74257794556821fb1b",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 21.2244427499827,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

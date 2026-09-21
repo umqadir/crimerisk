@@ -1,0 +1,14 @@
+{
+  "case_key": "quincy_il",
+  "jurisdiction_id": "17:municipal:place:1762367",
+  "jurisdiction_name": "Quincy city",
+  "state_abbr": "IL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/quincy_il",
+  "review_goal": "Determine whether Quincy city should retain a standalone municipal control row and whether the current all-fill state reflects county replacement, target invalidity, or a reporting/publication continuity problem.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

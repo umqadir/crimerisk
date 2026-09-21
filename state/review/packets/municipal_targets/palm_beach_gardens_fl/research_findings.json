@@ -1,0 +1,156 @@
+{
+  "case_key": "palm_beach_gardens_fl",
+  "jurisdiction_id": "12:municipal:place:1254075",
+  "jurisdiction_name": "Palm Beach Gardens city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_state_publication_support_landed",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Palm Beach Gardens is a real city-run policing object, not a sheriff-contract placeholder. The City's FY2024 annual financial report says Palm Beach Gardens provides a full range of services including police and fire protection, lists Dominick Pape as Chief of Police, and the City's official police annual report shows a current Palm Beach Gardens Police Department organization chart and a Patrol Operations Bureau that provides patrol services 24 hours a day, 7 days a week.",
+    "The City continues to publish Palm Beach Gardens-specific local police activity. The 2024 police annual report shows 143,965 calls for service, 33,257 incidents, and a city crime series through 2024 with 1,154 crimes in 2024, which is incompatible with any theory that the city no longer has its own functioning police department.",
+    "Official Florida state reporting still supports a real Palm Beach Gardens agency identity. FDLE's 2020 County and Municipal Offense Report lists Palm Beach Gardens Police Department as a distinct Palm Beach municipal row with population 56,709 and index-crime counts of murder 1, rape 8, robbery 14, aggravated assault 42, burglary 86, larceny 871, and motor vehicle theft 42.",
+    "The transition-era identity change is specific and knowable rather than vague. The official FBI CDE roster entry for FL0502600 identifies Palm Beach Gardens Police Department as a City NIBRS agency with start date 2022-01-01. The official FDLE FIBRS workbook has no Palm Beach Gardens row on the 2021 sheet, then publishes Palm Beach Gardens Police Department rows in 2022, 2023, and 2024, with one quarter reported in 2022 and four quarters reported in both 2023 and 2024.",
+    "The earlier repo all-fill state was therefore a continuity/ingestion failure, not a bad target. FL0502600 is exclusively crosswalked to Palm Beach Gardens city, jurisdiction_master does not mark the city as contracted, and agency_master already flags both SRS and NIBRS presence through 2024. The live repo has since landed Palm Beach Gardens under state_publication_annual support for 2024, so this packet should now be read as closed keep/drop evidence plus historical context on the transition-era gap."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City's FY2024 annual financial report says Palm Beach Gardens provides police protection as one of its own municipal services.",
+      "The same FY2024 annual financial report lists Dominick Pape as Chief of Police in the City's principal officials section.",
+      "The Police Department's 2024 annual report shows a current department organization chart with field operations and administrative/investigations divisions.",
+      "The Police Department's patrol bureau description says patrol services are provided 24 hours a day, 7 days a week."
+    ],
+    "important_interpretation": "Palm Beach Gardens is a valid standalone municipal policing target. The official city materials do not describe a sheriff-contracted or county-replaced general-policing structure."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Palm Beach Gardens Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The City's police homepage is an official Palm Beach Gardens Police Department page with city-operated police reports, crime maps, and recruiting links.",
+      "The 2024 police annual report shows a city police organization chart and states that the Patrol Operations Bureau provides patrol services 24 hours a day, 7 days a week.",
+      "The 2024 police annual report publishes Palm Beach Gardens-specific calls for service, incidents, and city crime totals through 2024.",
+      "Palm Beach County Sheriff's Office lists its own patrol districts and sheriff-served contract communities on the official communities page, but Palm Beach Gardens is not presented there as a sheriff-primary municipal district."
+    ],
+    "important_clarification": "Palm Beach County Sheriff's Office remains a separate county law-enforcement layer. The record reviewed here supports Palm Beach Gardens Police Department as the city's general-policing authority."
+  },
+  "transition_era_change_in_reporting_identity": {
+    "pre_transition_surface": "FDLE county-and-municipal annual offense reporting through 2020",
+    "post_transition_surface": "FDLE FIBRS annual workbook plus FBI CDE roster starting 2022",
+    "official_transition_story": [
+      "FDLE's 2020 county-and-municipal offense report still publishes Palm Beach Gardens Police Department as a normal municipal row.",
+      "The official FBI CDE roster gives FL0502600 an official NIBRS start date of 2022-01-01.",
+      "The official FDLE FIBRS workbook has no Palm Beach Gardens row on the 2021 sheet, which is consistent with the 2022 official start date.",
+      "Palm Beach Gardens then appears on the 2022, 2023, and 2024 FDLE FIBRS sheets under the same city-specific agency identity."
+    ],
+    "interpretation": "This is a concrete SRS-to-FIBRS identity transition, not evidence that Palm Beach Gardens stopped being a real municipal police agency."
+  },
+  "official_reporting_evidence": {
+    "fdle_2020_county_and_municipal_surface": {
+      "summary": "FDLE's official 2020 county-and-municipal offense report publishes Palm Beach Gardens Police Department as a normal Palm Beach County municipal agency row.",
+      "details": [
+        "Population 56,709.",
+        "Total index crime 1,064.",
+        "Murder 1, rape 8, robbery 14, aggravated assault 42, burglary 86, larceny 871, motor vehicle theft 42."
+      ],
+      "interpretation": "The pre-transition Florida annual publication clearly treats Palm Beach Gardens as a real standalone city police reporting surface."
+    },
+    "fbi_cde_roster_surface": {
+      "summary": "The official FBI roster entry for FL0502600 identifies Palm Beach Gardens Police Department as a City NIBRS agency.",
+      "ori9": "FL0502600",
+      "agency_name": "Palm Beach Gardens Police Department",
+      "agency_type_name": "City",
+      "official_nibrs_start_date": "2022-01-01",
+      "interpretation": "The federal roster confirms that Palm Beach Gardens retained a distinct official agency identity in the post-transition period."
+    },
+    "fdle_fibrs_surface": {
+      "summary": "FDLE's official FIBRS workbook continues the Palm Beach Gardens-specific reporting identity after the 2020 SRS publication path ends.",
+      "by_year": {
+        "2021": {
+          "row_present": false,
+          "interpretation": "No Palm Beach Gardens row appears on the 2021 FIBRS sheet, which matches the FBI roster's official NIBRS start date of 2022-01-01."
+        },
+        "2022": {
+          "row_present": true,
+          "quarters_reported": 1,
+          "population": 60675,
+          "violent_ytd": 9,
+          "property_ytd": 228,
+          "other_ytd": 195
+        },
+        "2023": {
+          "row_present": true,
+          "quarters_reported": 4,
+          "population": 61517,
+          "violent_ytd": 58,
+          "property_ytd": 1224,
+          "other_ytd": 1110
+        },
+        "2024": {
+          "row_present": true,
+          "quarters_reported": 4,
+          "population": 62469,
+          "violent_ytd": 63,
+          "property_ytd": 1055,
+          "other_ytd": 1041
+        },
+        "2025_q3": {
+          "row_present": true,
+          "quarters_reported": 1,
+          "population": 62469,
+          "violent_ytd": 13,
+          "property_ytd": 131,
+          "other_ytd": 221
+        }
+      },
+      "interpretation": "Florida's post-transition public workbook supports a real Palm Beach Gardens-specific identity from 2022 forward, with usable annual state rows already available for 2022-2024."
+    },
+    "local_city_publication_surface": {
+      "summary": "The City police annual report publishes city-specific crime and workload metrics through 2024.",
+      "details": [
+        "2024 calls for service 143,965.",
+        "2024 incidents 33,257.",
+        "Crime series shows 2021 crimes 1,021; 2022 crimes 1,096; 2023 crimes 1,275; 2024 crimes 1,154."
+      ],
+      "interpretation": "Even outside the state pipeline, the City continues to publish Palm Beach Gardens-specific police statistics, which reinforces that the target is real and currently active."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.csv routes FL0502600 exclusively to 12:municipal:place:1254075 with relationship_type exclusive and resolution_source provisional_auto.",
+    "jurisdiction_master_state": "jurisdiction_master.csv shows Palm Beach Gardens city with is_contracted_place = False and agency_count = 1.",
+    "agency_master_state": "agency_master.parquet classifies FL0502600 as local_police with both SRS and NIBRS presence flags, srs_years and nibrs_years spanning 2018-2024, and latest_nibrs_year 2024.",
+    "observation_state": "agency_year_observations.parquet contains usable annual SRS rows in 2018, 2019, and 2020, then only zero-count srs_return_a_annual rows in 2021, 2022, 2023, and 2024, with no NIBRS rows present at all.",
+    "validated_state_packet_alignment": "official_fibrs_spotcheck_2024_reconciled.csv already matches FL0502600 to the official 2024 FDLE Palm Beach Gardens Police Department workbook row by county_normalized_name, with four quarters reported and annual totals of violent 63, property 1055, and other 1041.",
+    "current_control_state": "jurisdiction_controls_2024.parquet now shows Palm Beach Gardens 2024 offense controls preferred from state_publication_annual with direct reported support and current_year_fill_count 0.0.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Palm Beach Gardens in high_impact_full_fill_place with total_fill_count 1383.0, total_estimated_count 1383.0, total_reported_count 0.0, and suspect_reason full_fill_no_reported_support."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Palm Beach Gardens operates a current official city police department with its own chief, organization chart, patrol bureau, and city-specific activity publication.",
+      "Official Florida pre-transition and post-transition crime-reporting surfaces both recognize Palm Beach Gardens Police Department as a separate agency identity.",
+      "The FBI CDE roster gives a specific NIBRS start date of 2022-01-01, which explains why the post-transition public evidence should be looked for on the FIBRS workbook rather than on a fictional 2021 municipal annual row.",
+      "The repo crosswalk already points the correct ORI exclusively at Palm Beach Gardens city, so the target geometry and agency routing are fundamentally right."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The earlier repo state had not yet ingested the official FDLE FIBRS Palm Beach Gardens rows that exist for 2022, 2023, and 2024.",
+      "That 2024 continuity gap has now been resolved through landed state_publication_annual support.",
+      "The 2021 gap is still best interpreted as a real transition-year no-row condition for this agency under the official state/federal surfaces, not as evidence that the municipality itself is invalid."
+    ],
+    "recommended_handling": [
+      "Retain Palm Beach Gardens city as a standalone municipal control row.",
+      "Do not demote Palm Beach Gardens to Palm Beach County Sheriff's Office service structure or to county remainder.",
+      "Record the keep/drop decision as closed and the 2024 official-state support as already landed.",
+      "Treat 2021 as a transition-era no-row year unless the pipeline deliberately chooses to build a separate local override from city police materials or direct records.",
+      "Treat the present 2024 full-fill condition as a repo continuity/ingestion failure on a valid municipal target, not as contract policing, county replacement, or public-publication disappearance."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_2024_state_publication_support_landed",
+  "open_questions": [
+    "The keep/drop decision is closed and the 2024 official-state support is already landed. The only remaining optional follow-through is whether 2021 should remain an explicit transition-year gap or be supplemented later by a bespoke local override if business requirements demand an annual Palm Beach Gardens-specific series for that year."
+  ]
+}

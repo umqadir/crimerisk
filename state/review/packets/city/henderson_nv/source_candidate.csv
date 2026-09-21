@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,Henderson Police Department GIS - Crime Data 2024 (Open Data Portal),https://gis-hendersonnv.opendata.arcgis.com/datasets/HendersonNV::crime-data-2024,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

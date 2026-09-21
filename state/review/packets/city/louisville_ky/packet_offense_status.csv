@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,admission_mode,share_lane_disposition,total_lane_disposition
+louisville_ky,aggravated_assault,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+louisville_ky,burglary,False,False,False,reject,rejected,reject_share,official_control
+louisville_ky,larceny,False,False,False,reject,rejected,reject_share,official_control
+louisville_ky,motor_vehicle_theft,False,False,False,reject,rejected,reject_share,official_control
+louisville_ky,murder,True,True,True,pass_share_only,feed_total_candidate,admit_share_only,feed_total_candidate
+louisville_ky,rape,False,False,False,reject,rejected,reject_share,official_control
+louisville_ky,robbery,False,False,False,reject,rejected,reject_share,official_control

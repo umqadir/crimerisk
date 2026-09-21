@@ -1,0 +1,117 @@
+{
+  "case_key": "port_authority_nynj",
+  "ori": [
+    "NJNYPOA00",
+    "NY0300300"
+  ],
+  "agency_name_raw": "Port Authority of NY/NJ",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "multistate_authority_system_footprint",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": false,
+    "confidence": "high"
+  },
+  "core_findings": [
+    "The Port Authority of New York and New Jersey is a bi-state public authority created by compact, and its Port District covers about 1,500 square miles across portions of New York and New Jersey rather than any single municipality or county.",
+    "Official Port Authority materials describe the agency's transportation system as a distributed, multi-facility network that includes interstate bridges and tunnels, the PATH rail system, bus terminals, airports, marine terminals, and the World Trade Center campus.",
+    "Official Port Authority Police Department procurement material states that PAPD is a 2,000+ member transportation security and counterterrorism police department headquartered in Jersey City with command operations at most Port Authority facilities, explicitly naming the region's three major airports, Hudson River crossings, ports, the World Trade Center, PATH Police Command, the Central Police Desk, and the Port Authority and George Washington Bridge bus terminals.",
+    "That same official PAPD material states the police force operates transportation agencies out of two states and that some police commands expand over two states, with crime reporting divided by both state and municipality. This is incompatible with any single county or single place proxy.",
+    "The legally defined Port District is also too broad for production localization. It describes the authority's interstate district, not a patrol geometry equivalent to all places within seventeen counties. The operationally defensible footprint is the union of Port Authority-operated facilities and campuses across the two states."
+  ],
+  "service_jurisdiction_footprint": {
+    "is_truly_multistate": true,
+    "is_multi_facility": true,
+    "legal_backdrop": {
+      "entity_type": "bi-state public authority created by interstate compact",
+      "port_district_scope": "about 1,500 square miles across portions of New York and New Jersey, including over 200 municipalities and all or part of seventeen counties",
+      "important_interpretation": "The Port District defines the public authority's interstate district and legal frame; it should not be used as the production patrol polygon for PAPD."
+    },
+    "minimum_explicitly_documented_operational_components": [
+      "John F. Kennedy International Airport",
+      "LaGuardia Airport",
+      "Newark Liberty International Airport",
+      "George Washington Bridge",
+      "Bayonne Bridge",
+      "Goethals Bridge",
+      "Outerbridge Crossing",
+      "Lincoln Tunnel",
+      "Holland Tunnel",
+      "PATH system and PATH Police Command",
+      "Port Authority Bus Terminal",
+      "George Washington Bridge Bus Station / bus terminal command",
+      "Port Newark",
+      "Elizabeth-Port Authority Marine Terminal",
+      "Port Jersey-Port Authority Marine Terminal",
+      "Howland Hook Marine Terminal",
+      "Greenville Yard-Port Authority Marine Terminal",
+      "World Trade Center campus",
+      "Central Police Desk"
+    ],
+    "wider_system_context_from_official_port_authority_materials": [
+      "New York Stewart International Airport",
+      "Teterboro Airport",
+      "trans-Hudson ferry service",
+      "waterfront development and industrial development facilities"
+    ]
+  },
+  "why_simple_proxies_fail": {
+    "single_place_proxy": [
+      "No single place captures the bi-state facility system. New York City or Manhattan would miss Newark-side airports, ports, and bridge/tunnel infrastructure. Newark or Jersey City would miss the World Trade Center, LaGuardia, JFK, and New York-side facilities.",
+      "The PAPD record is a systemwide authority-police row, not a single-airport or single-terminal municipal subagency."
+    ],
+    "single_county_proxy": [
+      "No single county captures the operational footprint. The named facilities span multiple counties in both New York and New Jersey.",
+      "The official PAPD procurement document expressly says some police commands expand over two states and that reporting must be divided by both state and municipality."
+    ],
+    "full_port_district_polygon": [
+      "Using the entire Port District would be too broad because PAPD does not patrol every ordinary place within all seventeen counties.",
+      "Official PAPD operational material ties police command geography to Port Authority facilities and commands, not to general municipal territory throughout the district."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing the row into New York City, Newark, Jersey City, or any other local primary would erase a real special-jurisdiction overlap layer that follows Port Authority facilities across both states.",
+      "Concurrent local jurisdiction does not make the authority police layer unreal; it means the correct class is overlap with a custom authority-system footprint."
+    ]
+  },
+  "ori_specific_interpretation": {
+    "NJNYPOA00": "Treat as the main Port Authority police system row requiring custom multistate authority-footprint localization.",
+    "NY0300300": "Treat as the same Port Authority system for production-handling purposes rather than as a separate place-based local agency. The queue context indicates this is a lower-quality fallback/alias expression of the same authority case."
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a bi-state Port Authority authority-system footprint anchored to Port Authority-operated transportation and campus facilities rather than to any county, place, or the entire Port District.",
+    "geometry_guidance": [
+      "Use a union of Port Authority facility polygons / authoritative facility geometry where available.",
+      "At minimum include the explicitly documented named airports, PATH facilities, bridges and tunnels, bus terminals, port and marine-terminal facilities, and the World Trade Center campus.",
+      "Do not collapse the case to a single county or municipality.",
+      "Do not use the full 1,500-square-mile Port District as the production service footprint."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "fallback_why": [
+      "If custom multistate authority footprints are not yet supported in production, broad overlap is safer than a false place or county localization.",
+      "A false local proxy would create misleading geographic precision and misallocate a very high-impact special-jurisdiction row."
+    ],
+    "not_recommended": [
+      "absorb_into_primary_jurisdiction",
+      "localize_to_place",
+      "localize_to_county",
+      "localize_to_full_port_district_polygon"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "is_true_multistate_overlap": true,
+    "exact_recommended_production_disposition": "custom multistate authority-system footprint; otherwise keep broad overlap"
+  },
+  "authoritative_sources_used": [
+    "https://www.panynj.gov/content/dam/corporate/budgets-pdfs/2025-Budget-Book.pdf",
+    "https://www.panynj.gov/content/dam/port-authority/pdfs/goods-and-services-pdfs/RFPQDOC_6000000799.pdf",
+    "https://www.panynj.gov/content/dam/corporate/consolidated-bonds-%26-notes-pdfs/port-authority-OS-series-251.pdf",
+    "https://www.papdrecruit.com/pages/welcome",
+    "https://www.nj.gov/oag/dcj/pdfs/criminal_law_digest-orginal.pdf"
+  ]
+}

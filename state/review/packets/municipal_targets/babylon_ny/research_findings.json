@@ -1,0 +1,143 @@
+{
+  "case_key": "babylon_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610304000",
+  "jurisdiction_name": "Babylon town",
+  "state_abbr": "NY",
+  "review_date": "2026-03-24",
+  "question": "Should 36:municipal:cousub:3610304000 (Babylon town, NY) keep a standalone town-level municipal control row?",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "drop_municipal_control_row_36_municipal_cousub_3610304000_use_suffolk_county_and_village_structure",
+    "confidence": "high"
+  },
+  "determination": {
+    "answer": "No. Babylon town should not keep a standalone town-level municipal control row.",
+    "why": [
+      "The Town of Babylon's own history states that the Town of Babylon Police Department was dissolved and merged into the Suffolk County Police Department effective January 1, 1960.",
+      "Current official town materials list Public Safety functions such as code enforcement, park rangers, bay constables, fire marshal, and emergency management, but do not list a general town police department.",
+      "Official Suffolk County materials state that the Suffolk County Police Department provides all police services for the five western towns, including Babylon, and the Suffolk County Police First Precinct says it covers the Town of Babylon.",
+      "Babylon town is not a single undivided policing unit: the town contains three incorporated villages, and official village sources show Amityville has its own police department while Babylon Village and Lindenhurst do not present standalone village police departments."
+    ]
+  },
+  "official_structure_findings": {
+    "town_government_status": "town_with_no_current_general_police_department",
+    "historical_police_status": {
+      "historical_department_existed": true,
+      "official_history": "The Town of Babylon Police Department was started in 1947 and was dissolved and merged into the Suffolk County Police Department which started January 1, 1960."
+    },
+    "current_town_public_safety_functions": [
+      "Code Enforcement investigates Town code violations, works closely with local police and other government agencies, and can issue summonses.",
+      "Park Rangers are NYS peace officers responsible for maintaining order within Town parks and recreational facilities.",
+      "Bay Constables are NYS peace officers who patrol the Great South Bay and Town beaches and facilities.",
+      "The Town directory lists Public Safety, Fire Marshal's Office, and Emergency Management, but not a Town Police Department."
+    ],
+    "county_policing_status": {
+      "county_role": "primary_general_law_enforcement_layer",
+      "official_basis": [
+        "Suffolk County says the Police Department provides all police services for the Suffolk County Police District, comprised of the five western towns including Babylon.",
+        "The Suffolk County Police First Precinct says it proudly covers the Town of Babylon."
+      ]
+    }
+  },
+  "village_structure_findings": {
+    "incorporated_villages_in_town": [
+      "Amityville",
+      "Babylon",
+      "Lindenhurst"
+    ],
+    "other_incorporated_villages": [],
+    "amityville": {
+      "general_police_department_found": true,
+      "official_basis": [
+        "The Village of Amityville has an official Police Department page with its own department phone number.",
+        "The page names a Chief of Police and notes that cell-phone 911 calls connect first to the Suffolk County Police Department before transfer."
+      ],
+      "role_in_structure": "separate incorporated-village police jurisdiction within Babylon town"
+    },
+    "babylon_village": {
+      "general_police_department_found": false,
+      "official_basis": [
+        "The Village of Babylon departments and contact pages direct emergencies to 911 and route quality-of-life matters such as blocked driveways, hydrants, and barking dogs to Code Enforcement.",
+        "The official village pages present code, court, building, sanitation, and fire functions, but no village police department."
+      ],
+      "role_in_structure": "appears county-policed for general law enforcement, with village code/fire/local-government functions"
+    },
+    "lindenhurst": {
+      "general_police_department_found": false,
+      "official_basis": [
+        "The Village of Lindenhurst contact page lists Police Emergency 911 rather than a village police department.",
+        "The Village states that its Public Safety Officers work with the Suffolk County Police Department to provide an additional layer of safety."
+      ],
+      "role_in_structure": "appears county-policed for general law enforcement, with village public-safety and code/fire functions"
+    }
+  },
+  "service_structure_interpretation": {
+    "unincorporated_town_area": "served for general policing by Suffolk County Police Department",
+    "amityville_village": "retains its own incorporated-village police department",
+    "babylon_village": "does not show a village police department; official materials point residents to 911 and code enforcement",
+    "lindenhurst_village": "does not show a village police department; official materials point residents to 911 and local public-safety officers working with Suffolk County Police",
+    "town_public_safety_units": "specialized peace-officer and enforcement functions only; not a replacement for a general police department"
+  },
+  "repo_evidence": {
+    "queue_row": {
+      "status": "service_structure_suspect",
+      "geo_type": "cousub",
+      "offense_count": 6,
+      "total_fill_count": 4535.449057141323,
+      "reported_count": 0.0,
+      "reported_share_of_estimated": 0.0
+    },
+    "crosswalk": {
+      "agency_id": "NY0510200",
+      "current_routing": "exclusive to 36:municipal:cousub:3610304000 with weight 1.0",
+      "match_type": "provisional_auto"
+    },
+    "agency_master": {
+      "agency_id": "NY0510200",
+      "raw_name": "babylon town",
+      "agency_type": "local_police",
+      "srs_and_nibrs_presence_through_2024": true
+    },
+    "annual_observations": {
+      "agency_id": "NY0510200",
+      "years_reviewed": [
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023,
+        2024
+      ],
+      "finding": "Every listed Part I offense row for every reviewed year has count 0.0 and months_reported 0.0."
+    },
+    "current_controls_2024": {
+      "finding": "All Babylon town offense rows have reported_count_preferred 0.0 and require current-year fill.",
+      "fill_examples": {
+        "aggravated_assault": 484.9129080910052,
+        "burglary": 487.6644871841485,
+        "larceny": 2506.476933669383,
+        "motor_vehicle_theft": 881.9869429461908,
+        "murder": 11.429636217880254,
+        "rape": 33.230609737375455,
+        "robbery": 141.1771758719824
+      }
+    }
+  },
+  "production_interpretation": {
+    "keep_standalone_town_row": false,
+    "drop_in_favor_of_county_village_structure": true,
+    "hold_for_more_custom_treatment": false,
+    "rationale": [
+      "Babylon town no longer operates a general police department and has not since January 1, 1960.",
+      "The official current town role is limited public safety and code/park/bay enforcement, not townwide criminal-law policing.",
+      "Suffolk County Police is the correct general-law-enforcement layer for the townwide police district surface.",
+      "Amityville is the only incorporated village in Babylon town that clearly maintains its own police department; Babylon Village and Lindenhurst do not.",
+      "The federal Babylon-town ORI does not produce usable reported counts and appears to be a stale metadata artifact rather than a valid current municipal policing surface."
+    ],
+    "implementation_note": "Drop the standalone Babylon town municipal control row and rely on Suffolk County plus village structure. Do not preserve a synthetic Babylon-town police row merely because NY0510200 still exists in federal metadata."
+  },
+  "open_questions": [
+    "No open question blocks the row decision. Any downstream allocation work between Suffolk County-policed areas and Amityville village should be handled within the county/village structure rather than by keeping a Babylon town police control row."
+  ]
+}

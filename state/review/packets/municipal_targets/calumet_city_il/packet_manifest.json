@@ -1,0 +1,16 @@
+{
+  "case_key": "calumet_city_il",
+  "jurisdiction_id": "17:municipal:place:1710487",
+  "jurisdiction_name": "Calumet City city",
+  "state_abbr": "IL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/municipal_targets/calumet_city_il",
+  "review_goal": "Determine whether Calumet City supports a direct 2024 official-state repair from the Illinois Crime in Illinois NIBRS agency summary report and whether the current all-fill state reflects reporting continuity failure rather than a service-structure problem.",
+  "reporting_ori9": "IL0161700",
+  "required_outputs": [
+    "packet_manifest.json",
+    "sources.csv",
+    "research_findings.json",
+    "recommendation.csv",
+    "published_reference_extract.csv"
+  ]
+}

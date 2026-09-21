@@ -1,0 +1,117 @@
+{
+  "case_key": "ut_austin_tx",
+  "ori": "TX2270500",
+  "agency_name_raw": "univ of tx: austin",
+  "state_abbr": "TX",
+  "question": "What is the defensible overlap treatment for TX2270500, University of Texas at Austin Police Department: bounded campus/property footprint, Austin or Travis proxy, broader UT Austin system row, or broad overlap until a custom footprint exists?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "campus",
+    "footprint_type": "multi_site_ut_austin_campus_and_formally_mapped_near_campus_patrol_footprint",
+    "confidence": 0.96
+  },
+  "provider_distinction": {
+    "utpd_role": "UTPD is UT Austin's campus police department. Current official UT Austin and UT System sources describe it as patrolling UT Austin's local campus areas, coordinating with nearby agencies, and serving a defined set of Austin-area UT sites rather than all city or county territory.",
+    "austin_apd_travis_role": "Austin Police Department and Travis County remain the ordinary local law-enforcement providers outside UTPD's defined campus/property footprint. UT Austin's own materials describe APD as the jurisdiction west of campus, note an MOU for cooperation and assistance, and say separate campuses outside the Austin area and most non-campus properties rely on local law enforcement.",
+    "overlap_implication": "This row should be modeled as a real UT Austin special-jurisdiction overlap tied to current UTPD-jurisdiction sites and any current officially mapped near-campus patrol district, not as Austin city, Travis County, or the broader UT Austin property portfolio."
+  },
+  "verified_findings": [
+    {
+      "topic": "Current official UTPD patrol list is Austin-site specific",
+      "finding": "UTPD's Authority and Jurisdiction page says the department is responsible for patrolling five named Austin-area sites: Main Campus, J.J. Pickle Research Campus, Brackenridge tract, Paisano Ranch, and Bee Caves Research Center. That is a bounded multi-site campus/property description, not a citywide or countywide police geography."
+    },
+    {
+      "topic": "Current UT Austin emergency plan explicitly marks only some campuses as within UTPD jurisdiction",
+      "finding": "UT Austin's 2025 Emergency Operations Plan says the university includes multiple campuses and that only campuses marked with an asterisk are within UTPD jurisdiction. The starred list includes Main Campus, J.J. Pickle Research Center, Brackenridge Tract, Paisano Ranch, and Bee Caves Research Center, while other UT Austin sites including the Lady Bird Johnson Wildflower Center, Dell Pediatric Research Institute, and Montopolis Research Center are not marked as within UTPD jurisdiction."
+    },
+    {
+      "topic": "Official UT Austin emergency planning distinguishes Austin UTPD response from other UT Austin campuses",
+      "finding": "The same 2025 Emergency Operations Plan states that UT Austin responds to emergencies occurring on most campuses located in Austin, while other campuses rely on local city or county first responder departments for initial responses. That closes the broader-university-system question: TX2270500 is not a systemwide UT Austin row spanning Port Aransas, Round Top, Houston, Midland, Los Angeles, or New York."
+    },
+    {
+      "topic": "Current annual security reporting limits routine UTPD patrol to the Austin area",
+      "finding": "UT Austin's 2025 Annual Security and Fire Safety Report says that although UTPD's jurisdiction extends to all University property, it does not regularly patrol or post officers at locations outside the Austin area; separate campuses outside Austin and most University-owned non-campus properties are served by local law enforcement for 911 and crime monitoring."
+    },
+    {
+      "topic": "UT Austin officially distinguishes UTPD's footprint from Austin PD geography",
+      "finding": "The same 2025 security report says UTPD has an MOU with the Austin Police Department covering communication of criminal activity and requests for investigative assistance, and UTPD's public dashboard page says areas west of campus are in Austin Police Department jurisdiction even though UTPD often responds in support. That is direct official evidence against turning support or concurrent activity into an Austin-wide proxy."
+    },
+    {
+      "topic": "UT System policy shows why legal jurisdiction alone is too broad for production geometry",
+      "finding": "UT System Policy UTS 160 says U. T. System commissioned peace officers have primary jurisdiction in all counties where UT property is owned or controlled, but it separately requires each institution chief of police to identify the department's principal law-enforcement focus within that primary jurisdiction. For production, the relevant geometry is UTPD's actual Austin patrol focus, not the full abstract county-based legal jurisdiction."
+    },
+    {
+      "topic": "UTPD's near-campus patrol activity exists but still does not justify a city proxy",
+      "finding": "A 2024 UT System audit says UTPD patrols all local UT Austin campus areas and patrols West Campus. A current UTPD dashboard page still states that areas west of campus are in APD jurisdiction. Together, these sources support including only formally mapped current near-campus patrol districts if they are available from official UTPD materials; they do not support using Austin city as a substitute."
+    },
+    {
+      "topic": "Older UTPD planning material confirms a specifically bounded West Campus initiative rather than generic Austin coverage",
+      "finding": "UTPD's 2021-2026 Strategic Plan describes a provisional West Campus District 7 with stated boundaries from the main campus border along Guadalupe Street to Rio Grande Street, between 27th Street and Martin Luther King Jr. Boulevard. Because that is an older planning document and current 2025 sources still place the area in APD jurisdiction, it should be treated as evidence of a bounded near-campus overlap zone rather than a reason to inflate the row to citywide Austin."
+    }
+  ],
+  "exact_service_footprint_for_production": {
+    "type": "custom current UT Austin UTPD footprint",
+    "include": [
+      "the current UT Austin sites that official 2025 university materials identify as within UTPD jurisdiction: Main Campus, J.J. Pickle Research Center, Brackenridge Tract, Paisano Ranch, and Bee Caves Research Center",
+      "UT-controlled property and operational areas within those UTPD-jurisdiction sites",
+      "only any formally mapped current near-campus UTPD patrol zone that can be tied to an official UTPD district or dispatch map, such as a current West Campus district if a current authoritative polygon is available",
+      "any clearly documented streets or immediately adjacent segments that official UTPD or UT System legal materials explicitly place inside the active campus-policing footprint"
+    ],
+    "exclude": [
+      "Austin city as a place proxy",
+      "Travis County as a county proxy",
+      "all UT Austin campuses outside the Austin area",
+      "all UT Austin Austin-based sites not currently marked as within UTPD jurisdiction, including the unstarred Austin sites listed in the 2025 Emergency Operations Plan unless newer official UTPD materials clearly add them",
+      "generic APD west-of-campus territory that lacks a current official UTPD patrol-boundary source",
+      "the broader UT System or all counties where any UT property exists"
+    ],
+    "legal_backdrop": "UT System Policy UTS 160 summarizes Texas Education Code Section 51.203 by giving UT commissioned peace officers county-based primary jurisdiction wherever UT property is owned or controlled, but it separately directs each institution chief to define the department's principal law-enforcement focus and to coordinate with other local agencies sharing jurisdiction. UT Austin's own 2025 security and emergency-planning documents then narrow the practical footprint to current Austin-area UTPD sites and cooperative overlap with APD/TCSO.",
+    "implementation_note": "Build a custom multi-polygon UT Austin geometry around the currently identified UTPD-jurisdiction sites. Add near-campus overlap districts only where a current official UTPD district/service-area map provides an actual boundary. If that custom geometry is not yet available, broad overlap is safer than forcing Austin or Travis County."
+  },
+  "proxy_assessment": {
+    "custom_current_utpd_site_footprint": {
+      "defensible": true,
+      "why": "The official 2025 UTPD, UT Austin, and UT System materials all support a bounded, Austin-area UTPD footprint tied to named campuses and current patrol focus."
+    },
+    "broader_ut_austin_or_ut_system_row": {
+      "defensible": false,
+      "why_not": "Current UT Austin materials say other campuses rely on local city or county responders and that UTPD does not regularly patrol or post officers outside the Austin area."
+    },
+    "single_place_proxy_austin": {
+      "defensible": false,
+      "why_not": "Austin is materially overbroad. Official 2025 university materials show that UTPD covers only specific Austin-area sites and not even every Austin-based UT site. APD remains the jurisdiction west of campus and throughout the rest of the city."
+    },
+    "single_county_proxy_travis": {
+      "defensible": false,
+      "why_not": "Travis County is even broader than Austin and does not track UTPD's actual service footprint. Current official materials instead describe named UT sites plus cooperative overlap with local agencies."
+    },
+    "absorb_into_austin_pd_or_travis_primary": {
+      "defensible": false,
+      "why_not": "Absorbing TX2270500 into Austin or Travis would erase a real UT Austin police layer that UT Austin and UT System documents treat as a distinct agency with its own patrol focus, staffing, MOUs, and campus responsibilities."
+    }
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "campus",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "multi_site_ut_austin_campus_and_formally_mapped_near_campus_patrol_footprint",
+    "geometry_sources": [
+      "https://police.utexas.edu/about/authority",
+      "https://compliance.utexas.edu/sites/default/files/documents/ASFSR%202025%20final.pdf",
+      "https://emergencymanagement.utexas.edu/sites/default/files/documents/Emergency%20Operations%20Plan_2025_SIGNED_Final.pdf",
+      "https://police.utexas.edu/records-reports/interactive-transparency-dashboards",
+      "https://www.utsystem.edu/sites/policy-library/policies/uts-160-jurisdiction-of-commissioned-peace-officers",
+      "https://utsystem.edu/sites/default/files/documents/ut-system-reports/2024/utaus-university-of-texas-at-austin-police-department-report/utaus-university-of-texas-at-austin-police-department-report.pdf",
+      "https://police.utexas.edu/sites/default/files/UTPD%202021-2026%20Strategic%20Plan%202021%20Edition.pdf"
+    ],
+    "implementation_note": "Localize TX2270500 to a custom UT Austin UTPD footprint based on the current official UTPD-jurisdiction sites and any current official near-campus patrol polygons. If those custom geometries are not yet built, keep the row in broad overlap rather than collapsing it to Austin or Travis County.",
+    "production_ready": true
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": true,
+    "exact_recommended_production_disposition": "custom UT Austin UTPD footprint covering the university sites currently identified as within UTPD jurisdiction and only any formally mapped current near-campus patrol zones; otherwise keep broad overlap"
+  }
+}

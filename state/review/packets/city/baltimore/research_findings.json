@@ -1,0 +1,256 @@
+{
+  "city_key": "baltimore",
+  "city_name": "Baltimore",
+  "jurisdiction_id": "24:municipal:place:2404000",
+  "analysis_date": "2026-03-24",
+  "official_source_inventory": [
+    {
+      "source_name": "Baltimore Police Department Open Data landing page",
+      "source_url": "https://www.baltimorepolice.org/crime-stats/open-data",
+      "role": "official narrative contract",
+      "key_findings": [
+        "Official BPD page points users to the Part 1 Crime dataset, arrests, 911 calls, and executive summary documents.",
+        "The page still warns that Part 1 Crime Incident Reports provided by Open Data Baltimore were impacted starting in May 2021 after the RMS transition."
+      ]
+    },
+    {
+      "source_name": "Part 1 Crime Data (Legacy SRS)",
+      "source_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Part1_Crime_Beta/FeatureServer/0",
+      "item_metadata_url": "https://www.arcgis.com/sharing/rest/content/items/e0992dddbbf64231976d5d57763ec4f5?f=json",
+      "role": "primary city-overlay candidate for SRS-style Baltimore incidents",
+      "key_findings": [
+        "Official city-owned ArcGIS Feature Service with accessInformation set to City of Baltimore / Baltimore City Police Department.",
+        "Item metadata says the dataset contains crime data up to 12/31/2024 under the Summary Reporting System.",
+        "Observed operational year coverage is 2011-2024, with scattered pre-2011 noise rows that should not be treated as reliable coverage."
+      ]
+    },
+    {
+      "source_name": "NIBRS Group A Crime Data",
+      "source_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/NIBRS_GroupA_Crime_Data/FeatureServer/0",
+      "item_metadata_url": "https://www.arcgis.com/sharing/rest/content/items/204beefe92a645d79fdf0969957bbdf8?f=json",
+      "role": "official companion feed and future-facing research surface",
+      "key_findings": [
+        "Official city-owned ArcGIS Feature Service with coverage starting 1/1/2022 through present.",
+        "Item metadata says the way BPD collects and reports data changed effective 1/1/2025, but the public NIBRS feed already backfills 2022-2024, creating an overlapping official contract rather than a clean cutover."
+      ]
+    },
+    {
+      "source_name": "Baltimore Police Department Executive Summary week ending 12/28/2024",
+      "source_url": "https://www.arcgis.com/sharing/rest/content/items/af47f490708049148128fb53f9123eca/data",
+      "item_metadata_url": "https://www.arcgis.com/sharing/rest/content/items/af47f490708049148128fb53f9123eca?f=json",
+      "role": "official published reconciliation anchor",
+      "key_findings": [
+        "Official city-owned PDF with citywide seven-day, twenty-eight-day, and year-to-date counts by offense.",
+        "Provides a stronger audit surface than validating the feed against itself."
+      ]
+    },
+    {
+      "source_name": "Baltimore Police Department 2024 year-end release",
+      "source_url": "https://www.baltimorepolice.org/news/baltimore-police-department-releases-2024-year-end-crime-report-and-key-highlights",
+      "role": "official annual public reference",
+      "key_findings": [
+        "Official BPD press release dated 2025-01-01 reports 2024 homicides of 201 and non-fatal shootings of 414.",
+        "These final annual counts do not fully match the current legacy feed snapshot, which still reports 199 homicides and 415 shootings for full-year 2024."
+      ]
+    }
+  ],
+  "source_contract": {
+    "recommended_source_name": "Baltimore legacy SRS Part 1 feed",
+    "recommended_source_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Part1_Crime_Beta/FeatureServer/0",
+    "companion_source_name": "Baltimore NIBRS Group A Crime Data",
+    "companion_source_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/NIBRS_GroupA_Crime_Data/FeatureServer/0",
+    "portal_type": "arcgis_dual_feed",
+    "coverage_start_year": "2011",
+    "coverage_end_year": "2025",
+    "years_usable_for_current_panel": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+    ],
+    "geocode_quality_tier": "high",
+    "recommended_disposition": "ready_now",
+    "recommended_reason": "Baltimore is now ready for a bounded 2024 offense-selective overlay under the legacy SRS feed. The packet-local loader reproduces the reviewed weekly reconciliation window cleanly for rape, robbery, aggravated_assault, and larceny, while murder, burglary, and motor_vehicle_theft remain blocked for explicit public-contract reasons."
+  },
+  "raw_snapshot": {
+    "legacy_item_metadata_url": "https://www.arcgis.com/sharing/rest/content/items/e0992dddbbf64231976d5d57763ec4f5?f=json",
+    "legacy_schema_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/Part1_Crime_Beta/FeatureServer/0?f=pjson",
+    "legacy_2024_reconciliation_query_window": "CrimeDateTime >= DATE '2024-01-01 00:00:00' AND CrimeDateTime < DATE '2024-12-29 00:00:00'",
+    "nibrs_item_metadata_url": "https://www.arcgis.com/sharing/rest/content/items/204beefe92a645d79fdf0969957bbdf8?f=json",
+    "nibrs_schema_url": "https://services1.arcgis.com/UWYHeuuJISiGmgXx/arcgis/rest/services/NIBRS_GroupA_Crime_Data/FeatureServer/0?f=pjson",
+    "published_reference_url": "https://www.arcgis.com/sharing/rest/content/items/af47f490708049148128fb53f9123eca/data",
+    "annual_reference_url": "https://www.baltimorepolice.org/news/baltimore-police-department-releases-2024-year-end-crime-report-and-key-highlights"
+  },
+  "schema_findings": {
+    "legacy_fields": [
+      "RowID",
+      "CCNumber",
+      "CrimeDateTime",
+      "CrimeCode",
+      "Description",
+      "Inside_Outside",
+      "Weapon",
+      "Post",
+      "Gender",
+      "Age",
+      "Race",
+      "Ethnicity",
+      "Location",
+      "Old_District",
+      "New_District",
+      "Neighborhood",
+      "Latitude",
+      "Longitude",
+      "GeoLocation",
+      "PremiseType",
+      "Total_Incidents"
+    ],
+    "nibrs_fields": [
+      "RowID",
+      "CCNumber",
+      "CrimeDateTime",
+      "CrimeCode",
+      "Description",
+      "Inside_Outside",
+      "Weapon",
+      "Shooting",
+      "Post",
+      "Gender",
+      "Age",
+      "Race",
+      "Ethnicity",
+      "Location",
+      "Old_District",
+      "New_District",
+      "Neighborhood",
+      "Latitude",
+      "Longitude",
+      "GeoLocation",
+      "PremiseType",
+      "Total_Incidents"
+    ],
+    "dedupe_key_candidate": "CCNumber",
+    "dedupe_key_findings": [
+      "Official data dictionary describes CCNumber as a unique identifier for the record.",
+      "Observed public rows repeat CCNumber across subtype rows and multiple victim rows, so CCNumber is usable as an incident identifier but not as a globally correct row-level dedupe key."
+    ],
+    "overlap_findings": [
+      "Legacy SRS feed and NIBRS Group A feed both publish 2022-2024 rows.",
+      "The feeds are not directly interchangeable because the legacy feed behaves like a summary-style SRS publication surface while the NIBRS feed reflects multi-offense NIBRS-style reporting."
+    ]
+  },
+  "spatial_contract": {
+    "primary_assignment_path": "Use Latitude and Longitude from the official city feed and spatially join to block groups.",
+    "geocode_summary": {
+      "legacy_2024_rows_through_2024_12_28": 44058,
+      "legacy_2024_rows_with_coordinates": 43990,
+      "legacy_2024_coordinate_share": 0.998456580416269,
+      "nibrs_2024_rows_through_2024_12_28": 57597,
+      "nibrs_2024_rows_with_coordinates": 57573,
+      "nibrs_2024_coordinate_share": 0.9995833116301197
+    },
+    "address_or_proxy_fields": [
+      "Location",
+      "Neighborhood",
+      "Post",
+      "Old_District",
+      "New_District"
+    ],
+    "spatial_risk": "low",
+    "spatial_note": "Baltimore is not blocked on geography. The problem is offense counting and public-contract continuity, not coordinate availability."
+  },
+  "offense_mapping": {
+    "murder": {
+      "source_feed": "legacy_srs",
+      "rule": "Description = HOMICIDE",
+      "mapping_quality": "direct",
+      "note": "Official weekly PDF aligns exactly on the mapped row count before the small geocode loss."
+    },
+    "rape": {
+      "source_feed": "legacy_srs",
+      "rule": "Description = RAPE",
+      "mapping_quality": "direct",
+      "note": "Direct mapping and exact weekly-PDF match."
+    },
+    "robbery": {
+      "source_feed": "legacy_srs",
+      "rule": "Use only Description = ROBBERY. Do not add ROBBERY - COMMERCIAL or ROBBERY - CARJACKING because those subtype rows duplicate CCNumbers already represented in the total robbery series.",
+      "mapping_quality": "packet_local_rule_required",
+      "note": "Naive summation of all robbery-like descriptions overstates robbery badly."
+    },
+    "aggravated_assault": {
+      "source_feed": "legacy_srs",
+      "rule": "Description = AGG. ASSAULT",
+      "mapping_quality": "direct",
+      "note": "Near-exact weekly-PDF match."
+    },
+    "burglary": {
+      "source_feed": "legacy_srs",
+      "rule": "Description = BURGLARY",
+      "mapping_quality": "direct_but_mismatched",
+      "note": "Still materially above the official weekly PDF. Keep blocked."
+    },
+    "larceny": {
+      "source_feed": "legacy_srs",
+      "rule": "Count unique CCNumber across the family {LARCENY, LARCENY FROM AUTO}. Raw row counts overstate the larceny total because subtype rows and repeated rows coexist in the public feed.",
+      "mapping_quality": "packet_local_rule_required",
+      "note": "Under the family-level unique-CCNumber rule the weekly-PDF gap collapses to one geocoded incident."
+    },
+    "motor_vehicle_theft": {
+      "source_feed": "legacy_srs",
+      "rule": "Description = AUTO THEFT",
+      "mapping_quality": "direct_but_mismatched",
+      "note": "Close but not exact against the official weekly PDF."
+    },
+    "nibrs_group_a_note": "The official NIBRS Group A feed is valuable context but not the recommended production overlay object for AGS-style summary alignment. Public NIBRS rows are multi-offense and not hierarchy-comparable to the city’s published SRS-style annual summaries without additional Baltimore-specific aggregation logic."
+  },
+  "published_reconciliation": {
+    "latest_reconciled_year": 2024,
+    "latest_reconciled_window": "through week ending 2024-12-28",
+    "reconciliation_summary_file": "reconciliation_summary.csv",
+    "published_reference_extract_file": "published_reference_extract.csv",
+    "headline_findings": [
+      "Legacy SRS packet-local contract matches the official weekly executive summary closely for murder, rape, robbery, aggravated_assault, and larceny.",
+      "Burglary remains materially high and motor_vehicle_theft remains modestly high.",
+      "The legacy feed does not fully align to the official January 1, 2025 year-end public release: the public year-end release reports 201 homicides and 414 non-fatal shootings for 2024, while the current full-year legacy feed snapshot reports 199 homicides and 415 shootings."
+    ]
+  },
+  "judgment": {
+    "packet_recommended_disposition": "ready_now",
+    "city_wide_onboarding_supported": false,
+    "offense_selective_onboarding_supported": true,
+    "offense_selective_ready_now": true,
+    "offense_selective_candidate_offenses": [
+      "rape",
+      "robbery",
+      "aggravated_assault",
+      "larceny"
+    ],
+    "conditional_candidate_offenses": [
+      "motor_vehicle_theft"
+    ],
+    "blocked_offenses": [
+      "murder",
+      "burglary"
+    ],
+    "production_readiness": "offense_selective_ready",
+    "minimum_unblock_change": "Keep the current packet-local legacy loader, preserve the bounded 2024 weekly-window contract, and resolve the remaining homicide and motor_vehicle_theft annual-public mismatches before broadening the live offense set."
+  },
+  "blockers": [
+    {
+      "blocker": "split_official_contract",
+      "detail": "Baltimore publishes both a legacy SRS feed through 2024-12-31 and a NIBRS Group A feed starting 2022-01-01. The overlap is official, not hypothetical."
+    },
+    {
+      "blocker": "stale_transition_warning",
+      "detail": "The official BPD Open Data page still warns that Open Baltimore Part 1 Incident Reports were impacted beginning in May 2021 after the RMS transition."
+    },
+    {
+      "blocker": "full_year_public_reconciliation_not_exact",
+      "detail": "The current full-year legacy feed does not exactly match the official 2024 year-end homicide and shooting counts."
+    }
+  ]
+}

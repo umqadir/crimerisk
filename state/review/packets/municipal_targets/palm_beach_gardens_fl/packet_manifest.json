@@ -1,0 +1,14 @@
+{
+  "case_key": "palm_beach_gardens_fl",
+  "jurisdiction_id": "12:municipal:place:1254075",
+  "jurisdiction_name": "Palm Beach Gardens city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/palm_beach_gardens_fl",
+  "review_goal": "Determine whether Palm Beach Gardens should retain a standalone municipal control row and whether the current all-fill condition reflects broken continuity/publication, contract policing, county replacement, or an invalid municipal target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

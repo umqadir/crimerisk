@@ -1,0 +1,14 @@
+{
+  "case_key": "panama_city_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1254725",
+  "jurisdiction_name": "Panama City Beach city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/panama_city_beach_fl",
+  "review_goal": "Determine whether Panama City Beach should retain a standalone municipal control row and whether the current full-fill condition reflects a Florida post-2021 publication/continuity failure for a real city police target, Bay County replacement, contract policing, or target invalidity.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

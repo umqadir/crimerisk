@@ -1,0 +1,8 @@
+offense,n_bg_pred_universe,truth_total_in_universe,truth_total_outside_universe,tvd,band_lo,band_hi,band_center,in_band,beats_band,low_confidence_band
+murder,354,61.0,0.0,0.83176,0.67904,0.78652,0.73278,False,False,False
+rape,354,215.0,0.0,0.60767,0.60089,0.66773,0.63431,True,False,True
+robbery,354,2594.0,0.0,0.31308,0.41018,0.44622,0.4282,False,True,False
+aggravated_assault,354,2597.0,0.0,0.25761,0.32064,0.36668,0.34366,False,True,False
+burglary,354,3221.0,0.0,0.30911,0.31377,0.36709,0.34043,False,True,False
+larceny,354,15133.0,1.0,0.21068,0.29758,0.35714,0.32736,False,True,False
+motor_vehicle_theft,354,9966.0,0.0,0.19647,0.29073,0.33873,0.31473,False,True,False

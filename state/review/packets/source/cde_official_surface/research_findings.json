@@ -1,0 +1,225 @@
+{
+  "packet_name": "cde_official_surface",
+  "generated_on": "2026-03-22",
+  "scope": "Live FBI CDE / Documents & Downloads / public-data surface survey plus BJS NIBRS estimate materials and the user-identified Princeton and ICPSR explanatory references, with practical implications for V2 source lanes.",
+  "local_evidence": {
+    "cde_about_methodologies_snapshot": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/cde_official_surface/live_about_methodologies.yaml",
+    "cde_downloads_snapshot": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/cde_official_surface/live_downloads.yaml",
+    "princeton_snapshot": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/cde_official_surface/live_princeton_ucr_nibrs.yaml",
+    "icpsr_snapshot": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/cde_official_surface/live_icpsr_series57.yaml",
+    "local_roster_pull": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/agency_rosters_2024.csv",
+    "participation_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/ucr-participation-1960-2024.csv"
+  },
+  "sources_surveyed": [
+    {
+      "id": "fbi_cde_about",
+      "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/about#methodologies",
+      "role": "Official methodology guardrail for differences between publication tables and CDE/open-data style surfaces."
+    },
+    {
+      "id": "fbi_cde_downloads",
+      "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads",
+      "role": "Official catalog of current downloadable FBI surfaces: CIUS annual reports, state NIBRS data, master files, SRS estimated crimes, participation, NIBRS estimation tables."
+    },
+    {
+      "id": "fbi_cde_roster_api",
+      "url": "https://api.usa.gov/crime/fbi/cde/agency/byStateAbbr/{STATE_ABBR}",
+      "role": "Official machine-readable agency roster and participation metadata."
+    },
+    {
+      "id": "bjs_nibrs_estimation_program",
+      "url": "https://bjs.ojp.gov/nibrs-estimation-program",
+      "role": "Official explanation of the post-2021 NIBRS estimate family."
+    },
+    {
+      "id": "bjs_nibrs_estimates_api",
+      "url": "https://bjs.ojp.gov/national-incident-based-reporting-system-nibrs-national-estimates-api",
+      "role": "Official machine-readable BJS estimate surface, including current and archive endpoints."
+    },
+    {
+      "id": "bjs_ckle_2024",
+      "url": "https://bjs.ojp.gov/document/ckle24.pdf",
+      "role": "Official publication rendering of the current BJS estimate series."
+    },
+    {
+      "id": "bjs_learcat",
+      "url": "https://learcat.bjs.ojp.gov",
+      "role": "Official secondary analytic tool using NIBRS with its own coverage/definition rules."
+    },
+    {
+      "id": "princeton_ucr_nibrs",
+      "url": "https://libguides.princeton.edu/crime/UCR-NIBRS",
+      "role": "Secondary explanatory map of UCR/NIBRS families and commonly used derivative files."
+    },
+    {
+      "id": "icpsr_series_57",
+      "url": "https://www.icpsr.umich.edu/web/ICPSR/series/57",
+      "role": "Secondary archival taxonomy of UCR components and legacy series structure."
+    }
+  ],
+  "top_findings": [
+    {
+      "id": "official_surfaces_are_not_one_methodology",
+      "finding": "The official FBI/BJS ecosystem is not a single interchangeable crime surface. V2 has to classify each input lane before selecting a source.",
+      "practical_implication": "Do not talk about 'using CDE' as if that were one dataset. Use publication tables, raw/open-data/master, roster/participation metadata, and BJS estimate surfaces only for their intended lane."
+    },
+    {
+      "id": "publication_vs_open_data_is_the_primary_official_split",
+      "finding": "The live FBI CDE methodology page explicitly states that annual publication tables can differ from CDE/explorer/open-data style surfaces because publication tables apply internal quality-review criteria, while master/open-data style releases keep all reported data in file.",
+      "practical_implication": "V2 should treat publication-style annual controls and raw reported-universe engineering as separate official lanes. Differences between them are not automatically data corruption."
+    },
+    {
+      "id": "dynamic_explorer_is_not_the_same_as_downloadable_annual_inputs",
+      "finding": "CDE Explorer and the Data Discovery Tool are dynamic, timestamped query surfaces. They are useful for lookups and anomaly checks, but they are not the clean annual-control surface.",
+      "practical_implication": "Use Explorer/DDT for monitoring and reconciliation, then source annual controls from CIUS annual bundles or estimate APIs/downloads."
+    },
+    {
+      "id": "roster_and_participation_are_metadata_lanes",
+      "finding": "The official roster API and participation downloads are crucial, but they are metadata/coverage surfaces rather than crime-total surfaces.",
+      "practical_implication": "Use roster for ORI validation and effective-year NIBRS auditing; use participation for state-year coverage context; do not treat either as the crime input."
+    },
+    {
+      "id": "bjs_nibrs_estimates_are_a_distinct_estimate_family",
+      "finding": "BJS/FBI NIBRS estimates for 2021+ are a separate estimate family from the older SRS-derived FBI estimated-crime series.",
+      "practical_implication": "V2 must decide deliberately whether a lane wants reported counts, legacy FBI estimated counts, or BJS/FBI NIBRS estimates. These are not interchangeable controls."
+    },
+    {
+      "id": "secondary_sources_are_for_context_not_authority",
+      "finding": "Princeton and ICPSR are useful because they map the ecosystem and archival component structure clearly, but they should not outrank the official FBI/BJS surfaces when selecting numeric inputs.",
+      "practical_implication": "Use them to understand where files come from and what families exist; then go back to the official surface for actual ingestion."
+    }
+  ],
+  "v2_lane_map": {
+    "fbi_publication_style_annual_controls": {
+      "preferred_surfaces": [
+        "cde_cius_annual_reports",
+        "fbi_historical_ucr_publications"
+      ],
+      "avoid_surfaces": [
+        "cde_crime_explorer",
+        "cde_data_discovery_tool",
+        "cde_nibrs_state_downloads",
+        "cde_master_file_downloads_annual"
+      ],
+      "reason": "This keeps the lane inside the FBI publication-table methodology."
+    },
+    "raw_incident_or_master_engineering": {
+      "preferred_surfaces": [
+        "cde_nibrs_state_downloads",
+        "cde_master_file_downloads_annual"
+      ],
+      "avoid_surfaces": [
+        "cde_cius_annual_reports",
+        "bjs_ckle_publication"
+      ],
+      "reason": "This lane wants the full reported universe or incident-level detail, not publication-screened totals or estimate outputs."
+    },
+    "agency_roster_and_transition_audit": {
+      "preferred_surfaces": [
+        "cde_agency_roster_api",
+        "cde_participation_data"
+      ],
+      "avoid_surfaces": [
+        "cde_cius_annual_reports",
+        "cde_crime_explorer"
+      ],
+      "reason": "Roster/participation surfaces answer metadata and coverage questions, not annual crime totals."
+    },
+    "official_nibrs_estimate_benchmarks": {
+      "preferred_surfaces": [
+        "bjs_nibrs_national_estimates_api",
+        "bjs_ckle_publication",
+        "cde_nibrs_estimation_tables"
+      ],
+      "avoid_surfaces": [
+        "cde_srs_estimated_crimes",
+        "cde_nibrs_state_downloads"
+      ],
+      "reason": "The estimate lane has its own methodology, revision behavior, and reliability/suppression logic."
+    },
+    "official_dynamic_monitoring_and_reconciliation": {
+      "preferred_surfaces": [
+        "cde_crime_explorer",
+        "cde_data_discovery_tool",
+        "bjs_learcat"
+      ],
+      "avoid_surfaces": [],
+      "reason": "These tools are best for triage and contextual comparisons, not for canonical annual inputs."
+    }
+  },
+  "methodology_difference_hotspots": [
+    {
+      "difference_id": "publication_vs_master",
+      "surface_a": "cde_cius_annual_reports",
+      "surface_b": "cde_master_file_downloads_annual",
+      "why_it_happens": "Publication tables apply internal quality-review and completeness rules; master/open-data style files keep all reported data in file.",
+      "what_to_do_in_v2": "Never label these differences as errors until the lane has been matched."
+    },
+    {
+      "difference_id": "publication_vs_explorer",
+      "surface_a": "cde_cius_annual_reports",
+      "surface_b": "cde_crime_explorer",
+      "why_it_happens": "Explorer is dynamic, timestamped, and can summarize violent/property data differently while annual publications are static bundles.",
+      "what_to_do_in_v2": "Use Explorer to investigate, not to replace the annual control table."
+    },
+    {
+      "difference_id": "roster_vs_effective_year",
+      "surface_a": "cde_agency_roster_api",
+      "surface_b": "year_specific_reporting_policy",
+      "why_it_happens": "Raw is_nibrs is current status; year-specific policy depends on whether nibrs_start_date is effective in the target year.",
+      "what_to_do_in_v2": "Compute an effective-year flag before source-selection or mismatch scoring."
+    },
+    {
+      "difference_id": "legacy_fbi_estimates_vs_bjs_estimates",
+      "surface_a": "cde_srs_estimated_crimes",
+      "surface_b": "bjs_nibrs_national_estimates_api",
+      "why_it_happens": "The older series is SRS-derived; the newer series is a NIBRS-based estimate system using weighting/imputation with revision and suppression logic.",
+      "what_to_do_in_v2": "Keep them separate unless an explicit bridge rule is documented."
+    },
+    {
+      "difference_id": "cde_vs_learcat",
+      "surface_a": "cde_crime_explorer",
+      "surface_b": "bjs_learcat",
+      "why_it_happens": "LEARCAT uses full-reporter-state coverage rules and some offense definitions that differ from CDE.",
+      "what_to_do_in_v2": "Treat LEARCAT as secondary analytic context only."
+    }
+  ],
+  "doctrine_candidates_for_tracker": [
+    {
+      "id": "classify_the_official_lane_before_picking_the_source",
+      "statement": "Before using any FBI/BJS source, classify the lane as publication table, raw/open-data/master, roster/participation metadata, dynamic monitoring, or BJS NIBRS estimate. Source choice happens after lane classification, not before."
+    },
+    {
+      "id": "publication_tables_and_open_data_are_both_official_but_not_interchangeable",
+      "statement": "Treat FBI publication tables and CDE/master/open-data surfaces as separate official methodologies. Differences between them are expected unless the question has been converted into the same lane."
+    },
+    {
+      "id": "dynamic_cde_tools_are_for_monitoring_and_reconciliation_not_canonical_inputs",
+      "statement": "Use CDE Explorer and the Data Discovery Tool for monitoring, lookups, and reconciliation. Use downloadable annual bundles or documented estimate APIs for canonical V2 inputs."
+    },
+    {
+      "id": "roster_and_participation_are_metadata_not_crime_input",
+      "statement": "Use the public CDE roster for ORI metadata and effective-year NIBRS auditing; use participation data for state-year coverage context. Neither should be treated as the crime-total input."
+    },
+    {
+      "id": "legacy_fbi_estimates_and_bjs_nibrs_estimates_must_remain_separate",
+      "statement": "Keep legacy FBI SRS estimated-crime series and BJS/FBI NIBRS estimate series separate unless a bridge rule is explicitly documented."
+    },
+    {
+      "id": "secondary_guides_are_context_only",
+      "statement": "Use Princeton and ICPSR to understand the UCR/NIBRS ecosystem and archival component structure, but do not let them outrank the official FBI/BJS source surface when selecting inputs."
+    }
+  ],
+  "unresolved_or_follow_up_items": [
+    {
+      "id": "downloadable_file_list_capture",
+      "issue": "The live downloads page requires selection interaction to expose exact file members for each bundle.",
+      "practical_next_step": "If needed later, capture bundle member lists or filenames for the specific CIUS/NIBRS/master datasets V2 actually ingests."
+    },
+    {
+      "id": "api_endpoint_lane_specificity",
+      "issue": "The Crime Data API documentation should be inventoried endpoint-by-endpoint only when V2 is ready to replace a concrete lane with an API pull.",
+      "practical_next_step": "Avoid treating 'the API' as one source; map endpoints to the same lane taxonomy used in this packet."
+    }
+  ]
+}

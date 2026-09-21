@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>CrimeRisk — neighborhood crime compared with the U.S.</title>
+<meta name="description" content="Police-recorded crime for every U.S. neighborhood, compared with the national average. Seven offences, census block group and tract." />
+<link rel="stylesheet" href="vendor/maplibre-gl.css" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="shell">
+  <aside class="sidebar" id="sidebar" data-collapsed="false">
+    <div class="masthead">
+      <div>
+        <h1><a href="index.html" style="color:inherit;text-decoration:none" title="Reset to the national view">CrimeRisk</a></h1>
+        <p>Police-recorded crime, 2025. 100 = U.S. average.</p>
+      </div>
+      <button class="sheet-toggle" id="sheet-toggle" aria-expanded="true" aria-controls="sidebar">Details</button>
+    </div>
+
+    <div class="panel">
+      <h2><label for="q">Find a place</label></h2>
+      <form class="search-row" id="search-form" role="search">
+        <input id="q" type="search" placeholder="Address, city or ZIP"
+               autocomplete="off" role="combobox" aria-expanded="false"
+               aria-controls="results" aria-autocomplete="list" />
+        <button type="submit">Search</button>
+      </form>
+      <ul class="results" id="results" role="listbox" aria-label="Search results"></ul>
+      <p class="search-note" id="search-note"></p>
+    </div>
+
+    <div class="panel">
+      <h2 id="crime-label">Crime</h2>
+      <div class="choices" id="crimes" role="group" aria-labelledby="crime-label"></div>
+    </div>
+
+    <div class="panel">
+      <h2 id="measure-label">Measure</h2>
+      <div class="choices" id="measures" role="group" aria-labelledby="measure-label"></div>
+      <p class="subcopy" id="subcopy"></p>
+    </div>
+
+    <div class="panel">
+      <h2>Legend</h2>
+      <p class="legend-head">100 = U.S. average</p>
+      <ul class="legend" id="legend"></ul>
+      <label class="toggle"><input type="checkbox" id="special-toggle" /> Mark parks, campuses and other special-use areas</label>
+    </div>
+
+    <div class="foot">
+      <nav>
+        <a href="methods.html">Methods</a>
+        <a href="download.html">Download</a>
+        <a href="attribution.html">Sources</a>
+      </nav>
+      <div id="edition"></div>
+    </div>
+  </aside>
+
+  <div class="map-wrap">
+    <div id="map" role="region" tabindex="0"
+         aria-label="Map of crime exposure by neighborhood. Use the search box or the list on the download page to reach individual areas."></div>
+    <div class="map-note" id="map-note" hidden></div>
+    <div class="hover-chip" id="hover"></div>
+    <div class="map-error" id="map-error">
+      <div>
+        <p><strong>The map data could not be loaded.</strong></p>
+        <p>The same numbers are available as CSV and Parquet on the
+          <a href="download.html">download page</a>.</p>
+      </div>
+    </div>
+
+    <section class="card" id="card" tabindex="-1" aria-live="polite" aria-label="Selected area"></section>
+    <section class="compare" id="compare" tabindex="-1" aria-label="Compare two places"></section>
+  </div>
+</div>
+
+<script src="vendor/pmtiles.js"></script>
+<script src="vendor/maplibre-gl.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

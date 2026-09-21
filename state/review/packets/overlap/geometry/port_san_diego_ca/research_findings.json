@@ -1,0 +1,131 @@
+{
+  "case_key": "port_san_diego_ca",
+  "ori": "CA0371500",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "CA0371500 should use the official Port Administrative Boundary as the production custom footprint; San Diego city and San Diego County proxies are wrong, and the Port Property Boundaries layer is QA-only.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "official_port_administrative_boundary",
+    "official_scope_support": {
+      "faq_url": "https://www.portofsandiego.org/public-safety/harbor-police-faq",
+      "summary": "The Harbor Police FAQ says the department provides police and marine fire-fighting services within the territorial limits of the Port of San Diego, specifically including Lindbergh Field, San Diego Bay, and tidelands, and that airport law-enforcement service continues under contract."
+    },
+    "explicit_exclusions": [
+      "San Diego city proxy",
+      "San Diego County proxy",
+      "five-city union proxy",
+      "Port Property Boundaries as the primary geometry",
+      "off-property mutual-aid or generalized peace-officer authority outside Port geography"
+    ]
+  },
+  "source_validation": {
+    "administrative_boundary_layer": {
+      "arcgis_service_item_id": "4b9bb146e1df4cffa350c7a62f378225",
+      "arcgis_layer_url": "https://services2.arcgis.com/kvy1JT30Izby5wgm/arcgis/rest/services/Port_Administrative_Boundary/FeatureServer/0",
+      "arcgis_layer_name": "Port Administrative Boundary",
+      "feature_count_query": 1,
+      "feature_count_downloaded": 1,
+      "feature_name_values": [
+        "Port of San Diego"
+      ],
+      "feature_description_values": [
+        "San Diego Unified Port District Administrative Boundary"
+      ],
+      "geometry_types": {
+        "MultiPolygon": 1
+      },
+      "source_spatial_reference_wkid": 2230,
+      "source_shape_area_acres": 14132.229840306474,
+      "equal_area_acres_epsg_5070": 14131.650191304961,
+      "source_vs_equal_area_acres_difference": -0.5796490015127347,
+      "source_geometry_valid_before_repair": false,
+      "source_geometry_validity_reason": "Nested shells[-117.184285739255 32.7282822514259]",
+      "repaired_union_parts": 14,
+      "description_summary": "Layer metadata says the data represents the administrative area for the Port of San Diego / San Diego Unified Port District and explicitly says it is not a real-property boundary."
+    },
+    "property_boundary_qa_layer": {
+      "arcgis_service_item_id": "677ac271e76e46aaaf72d0f2a26a2f1f",
+      "arcgis_layer_url": "https://services2.arcgis.com/kvy1JT30Izby5wgm/ArcGIS/rest/services/Port_Property_Boundaries/FeatureServer/0",
+      "arcgis_layer_name": "Port Property Boundaries",
+      "feature_count_downloaded": 1199,
+      "geometry_types": {
+        "Polygon": 1158,
+        "MultiPolygon": 41
+      },
+      "invalid_feature_count_before_repair": 4,
+      "invalid_feature_examples": [
+        {
+          "OBJECTID": 8896,
+          "featureName": "019-044",
+          "reason": "Nested shells[-117.157720152121 32.7034485418737]"
+        },
+        {
+          "OBJECTID": 9169,
+          "featureName": "001-013",
+          "reason": "Ring Self-intersection[-117.23449682441 32.7099539978229]"
+        },
+        {
+          "OBJECTID": 9533,
+          "featureName": "018-133",
+          "reason": "Nested shells[-117.17328917854 32.715176560527]"
+        },
+        {
+          "OBJECTID": 9600,
+          "featureName": "018-009",
+          "reason": "Nested shells[-117.172926566675 32.7180904595793]"
+        }
+      ],
+      "equal_area_acres_epsg_5070": 14137.820523935043,
+      "qa_difference_vs_admin_boundary": {
+        "admin_minus_property_acres": 18.395164793984137,
+        "property_minus_admin_acres": 24.56549742402615,
+        "admin_minus_property_pct_of_admin": 0.0013016996985463498,
+        "property_minus_admin_pct_of_admin": 0.0017383318360895328
+      },
+      "interpretation": "After validity repair, the parcel-style property layer broadly matches the administrative boundary but differs by only small edge slivers in both directions, so it is appropriate for QA and not for replacing the official jurisdictional footprint."
+    },
+    "district_support": {
+      "port_act_url": "https://pantheonstorage.blob.core.windows.net/administration/San-Diego-Unified-Port-District-Act.pdf",
+      "summary": "The San Diego Unified Port District Act establishes the district and says the district area includes San Diego, Chula Vista, Coronado, National City, and Imperial Beach, with district police-power jurisdiction over granted tidelands and related lands."
+    }
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_06_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersected_counties": [
+      {
+        "county_fips": "073",
+        "share_sum": 1.0,
+        "area_acres": 14131.650191304996
+      }
+    ],
+    "intersected_county_fips_sorted": [
+      "073"
+    ],
+    "intersected_block_groups": 42,
+    "intersection_area_total_m2": 57188759.33579281,
+    "intersection_area_total_acres": 14131.650191304994,
+    "weight_sum_exact": 1.0000000000000002,
+    "weight_sum_csv": 1.0,
+    "largest_block_group_geoid": "060730099021",
+    "largest_block_group_share": 0.203045966161926
+  },
+  "qa_checks": {
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_in_csv": true,
+    "tiger_intersection_nonempty": true,
+    "property_layer_used_for_qa_only": true
+  },
+  "residual_caveats": [
+    "The official administrative boundary source geometry is public and production-usable, but its single source feature is not OGC-valid as delivered; the build repairs that documented nested-shell defect with make_valid before intersection.",
+    "The Port Property Boundaries layer is not a substitute for the production footprint. It is parcel-style QA support and also includes four invalid source polygons that required repair before comparison.",
+    "This packet models the Port's territorial footprint documented by the Port and Harbor Police. It should not be read as broader off-property mutual-aid authority outside Port geography."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/port_san_diego_ca/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/port_san_diego_ca/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/port_san_diego_ca/sources.csv"
+  }
+}

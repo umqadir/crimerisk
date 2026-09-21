@@ -1,0 +1,8 @@
+# Generated/fetched build artifacts. All large generated output (GeoJSONSeq,
+# PMTiles, lookup shards, download package, staged site) goes to the tiles root
+# outside the repo; see frontend/build/crschema.py.
+tmp/
+public/*.pmtiles
+public/snapshot.json
+__pycache__/
+*.pyc

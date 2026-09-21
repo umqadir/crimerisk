@@ -1,0 +1,223 @@
+{
+  "city_key": "new_orleans_la",
+  "contract": {
+    "city_key": "new_orleans_la",
+    "city_name": "New Orleans, Louisiana",
+    "geography": {
+      "bounds": {
+        "max_latitude": 30.19866,
+        "max_longitude": -89.625053,
+        "min_latitude": 29.866661,
+        "min_longitude": -90.140074
+      },
+      "jurisdiction_id": "22:municipal:place:2255000",
+      "state_fips": "22"
+    },
+    "mapping": {
+      "date_field": "timecreate",
+      "id_field": "nopd_item",
+      "id_fields": [],
+      "latitude_field": "latitude",
+      "longitude_field": "longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "type_",
+              "op": "in",
+              "value": "",
+              "values": [
+                "30",
+                "30C",
+                "30S",
+                "MURDERST"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type_",
+              "op": "in",
+              "value": "",
+              "values": [
+                "27-64",
+                "27-64J",
+                "27-65",
+                "27-65J",
+                "64",
+                "64G",
+                "64J",
+                "64K",
+                "65",
+                "65J",
+                "65P",
+                "ROB",
+                "ROBCJ",
+                "ROBW"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type_",
+              "op": "in",
+              "value": "",
+              "values": [
+                "27-30",
+                "34",
+                "34C",
+                "34D",
+                "34S",
+                "37",
+                "37D",
+                "ASLTWP"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type_",
+              "op": "in",
+              "value": "",
+              "values": [
+                "27-62",
+                "60",
+                "60D",
+                "62",
+                "62B",
+                "62D",
+                "62R",
+                "BURGC",
+                "BURGOC",
+                "BURGR"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type_",
+              "op": "in",
+              "value": "",
+              "values": [
+                "27-67",
+                "27-67C",
+                "67",
+                "67B",
+                "67C",
+                "67D",
+                "67S",
+                "SHOP",
+                "THEFT"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "type_",
+              "op": "in",
+              "value": "",
+              "values": [
+                "27-67A",
+                "67A",
+                "VEHSTO"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://data.nola.gov/resource/2zcj-b6ts.json",
+      "name": "Data.NOLA.gov Calls for Service 2024",
+      "order": "timecreate,nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "timedispatch",
+        "timearrive",
+        "timeclosed",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location.latitude as latitude",
+        "location.longitude as longitude"
+      ],
+      "source_url": "https://data.nola.gov/Public-Safety-and-Preparedness/Calls-for-Service-2024/2zcj-b6ts",
+      "where": "timecreate between \"2024-01-01T00:00:00\" and \"2025-01-01T00:00:00\" AND location.latitude between 29.866661 and 30.198660 AND location.longitude between -90.140074 and -89.625053"
+    },
+    "sources_checked": [
+      "https://data.nola.gov/Public-Safety-and-Preparedness/Calls-for-Service-2024/2zcj-b6ts",
+      "https://data.nola.gov/api/views/2zcj-b6ts",
+      "https://data.nola.gov/resource/2zcj-b6ts.json?$limit=3",
+      "https://data.nola.gov/resource/r6b2-hfba.json?$select=uid,name,url,api_endpoint,row_count,last_data_updated_date,description&$where=upper(name)%20like%20%22%25ELECTRONIC%20POLICE%20REPORT%25%22&$order=name%20desc&$limit=100",
+      "https://nopdnews.com/transparency/policing-data/",
+      "https://data.nola.gov/Public-Safety-and-Preparedness/Electronic-Police-Report-2024/c5iy-ew8n",
+      "https://data.nola.gov/api/views/c5iy-ew8n"
+    ],
+    "worker_judgment_notes": "Selected the official Data.NOLA.gov/NOPD Calls for Service 2024 Socrata feed because it exposes a stable call identifier (nopd_item), event date (timecreate), offense signal code/text (type_/typetext), and Socrata point coordinates via location.latitude/location.longitude. The 2024 Electronic Police Report feed was checked and has richer charge/report fields but no point geometry, so it is not suitable for generic city-share onboarding. This is a share-lane-only contract: CFS records are CAD/preliminary incident events, can be reclassified, and must not be promoted as annual offense totals. The where clause removes zero/redacted/out-of-city coordinates before download, and the runner still spatially joins to the municipal block groups. Rape is intentionally omitted because the official CFS metadata says sex-offense coordinates are removed/redacted, and the observed rape signal rows resolve to 0/0 rather than usable city points. Aggravated assault is limited to aggravated battery/aggravated assault/assault-with-weapon and attempted murder signal codes; simple assault, simple battery, accidental shooting, generic shooting/stabbing, weapons possession, alarms, vehicle burglary, fraud, embezzlement, identity theft, recovery-only vehicle events, unauthorized use, and property-only noise are excluded. Burglary excludes vehicle burglary and alarm-only categories. Larceny excludes fraud/embezzlement/identity-theft categories. New Orleans jurisdiction_id and state_fips came from state/controls/jurisdiction_controls_2024.parquet; bounds came from the repo block_group_to_jurisdiction_crosswalk joined to Louisiana 2020 TIGER block groups for jurisdiction 22:municipal:place:2255000.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 6,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 1,
+    "offense_rows": 7,
+    "rows_in_surface": 1930,
+    "share_admitted_rows": 6,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://data.nola.gov/resource/2zcj-b6ts.json",
+    "city_key": "new_orleans_la",
+    "portal_type": "socrata",
+    "raw_cache_bytes": 18072586,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/new_orleans_la_raw.parquet",
+    "raw_cache_sha256": "0560374cc770f920d48b3410b0d5da3566821031f877209780a225fe42586912",
+    "source_name": "Data.NOLA.gov Calls for Service 2024",
+    "source_url": "https://data.nola.gov/Public-Safety-and-Preparedness/Calls-for-Service-2024/2zcj-b6ts"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617",
+  "runtime": {
+    "city_key": "new_orleans_la",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/new_orleans_la_raw.parquet",
+    "raw_cache_sha256": "0560374cc770f920d48b3410b0d5da3566821031f877209780a225fe42586912",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 61.63235200001509,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

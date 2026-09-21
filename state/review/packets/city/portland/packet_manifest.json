@@ -1,0 +1,26 @@
+{
+  "city_key": "portland",
+  "city_name": "Portland",
+  "jurisdiction_id": "41:municipal:place:4159000",
+  "state_abbr": "OR",
+  "priority_bucket": "third_wave",
+  "priority_rank": "15",
+  "basis": "Large city police jurisdiction with an official open-data landing page, a live Tableau year-download contract, generalized block-level geometry, and a standards-aligned NIBRS statistics dashboard.",
+  "notes": "Validated public incident contract, but do not promote for city-share use: the yearly export generalizes locations to block midpoint or intersection centroid and selectively suppresses geometry on sensitive offenses, including complete public location loss on rape in the observed live yearly file.",
+  "source_name": "PPB reported crime open data plus Tableau year downloads plus 2024 annual report",
+  "source_url": "https://www.portland.gov/police/open-data/reported-crime-data ; https://public.tableau.com/views/MonthlyReportedCrimeStatistics/MonthlyStatistics?:showVizHome=no ; https://public.tableau.com/views/MonthlyReportedCrimeStatistics/DownloadOpenData?:showVizHome=no ; https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2026.csv?:showVizHome=no ; https://www.portland.gov/police/chiefs-office/documents/2024-police-annual-report-long-form/download",
+  "portal_type": "tableau_dashboard_plus_year_download_tab_plus_annual_report",
+  "coverage_start_year": "2015",
+  "coverage_end_year": "2026",
+  "years_usable": "12",
+  "recommended_disposition": "counts_usable_not_city_share_promotable",
+  "geocode_quality_tier": "medium_generalized_block_midpoint_or_intersection_centroid_with_sensitive_suppression",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/portland",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

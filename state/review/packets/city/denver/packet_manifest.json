@@ -1,0 +1,26 @@
+{
+  "city_key": "denver",
+  "city_name": "Denver",
+  "jurisdiction_id": "08:municipal:place:0820000",
+  "state_abbr": "CO",
+  "priority_bucket": "second_wave",
+  "priority_rank": "11",
+  "basis": "Large single-city police jurisdiction with an official NIBRS-based public incident service, direct coordinates, and official crime-information dashboard/archive anchors.",
+  "notes": "Now live offense-selectively for murder, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft. Keep rape blocked because the public Denver surface has no repo-compatible rape bucket, and reconcile person crimes on VICTIM_COUNT rather than raw row count.",
+  "source_name": "Denver Crime feature service plus Denver crime-information dashboard/archive anchors",
+  "source_url": "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_CRIME_OFFENSES_P/FeatureServer/324 ; https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Police-Department/Crime-Information ; https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime",
+  "portal_type": "arcgis_feature_service_plus_dashboard",
+  "coverage_start_year": "2021",
+  "coverage_end_year": "2026",
+  "years_usable": "5",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/denver",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,aggravated_assault,4549.0,state_publication_annual,high
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,burglary,3202.0,state_publication_annual,high
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,larceny,20339.0,state_publication_annual,high
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,motor_vehicle_theft,4039.0,state_publication_annual,high
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,murder,62.0,state_publication_annual,high
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,rape,634.0,state_publication_annual,high
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,robbery,720.0,state_publication_annual,high

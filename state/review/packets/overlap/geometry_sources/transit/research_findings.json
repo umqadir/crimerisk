@@ -1,0 +1,241 @@
+{
+  "analysis_date": "2026-03-24",
+  "packet_type": "transit_overlap_geometry_source_packet",
+  "scope": [
+    "NJ0073200",
+    "DCMTP0000",
+    "UT0184000",
+    "CA0012100"
+  ],
+  "method_note": "All source URLs below were checked on 2026-03-24. When an official source required a browser portal or returned an anonymous 403 or 404 to command-line requests, that access constraint is recorded explicitly instead of assumed away.",
+  "cases": [
+    {
+      "case_key": "NJ0073200",
+      "ori": "NJ0073200",
+      "agency_name": "NJ Transit Police",
+      "recommended_build_path": {
+        "overall_recommendation": "Do not treat current public NJ TRANSIT geometry as a full production-final network footprint. The best verifiable public path today is a partial official-map-and-facility build covering rail, light rail, stations, terminals, and other named NJ TRANSIT facilities; keep the row broad until a live official route-stop feed or equivalent downloadable system geometry is restored.",
+        "build_class": "official_map_and_facility_inventory_fallback_only",
+        "why_this_is_best_current_path": [
+          "A former NJ TRANSIT developer GTFS lane is referenced by NJ TRANSIT's own 2010 announcement, but the current public developer path `https://www.njtransit.com/developer` returns `404 Not Found`.",
+          "The current live public system-map page exposes official statewide and light-rail PDFs that are usable for manual georeferencing of rail and major facilities.",
+          "The NJ TRANSIT Police district page and district PDF remain useful semantic evidence, but both returned Cloudflare `403` responses to automated `HEAD` requests on 2026-03-24 and should not be treated as stable automated download inputs."
+        ],
+        "include": [
+          "NJ TRANSIT commuter-rail alignments visible on the official statewide system map PDF",
+          "NJ TRANSIT light-rail alignments from the Hudson-Bergen, Newark Light Rail, and River Line PDFs",
+          "rail and light-rail stations, named terminals, and named transit centers shown on the official map PDFs",
+          "other individually named NJ TRANSIT facilities that can be tied to official NJ TRANSIT map labels or facility pages"
+        ],
+        "exclude": [
+          "the full State of New Jersey polygon",
+          "any single county or place proxy",
+          "generalized statewide bus street coverage inferred only from a small-scale system overview map",
+          "ordinary bus-stop and route geometry unless an official downloadable route-stop feed is recovered"
+        ],
+        "transformation_assumptions": [
+          "Georeference the statewide and light-rail PDFs and vectorize rail and light-rail centerlines.",
+          "Convert mapped stations and terminals into point or small-area facility footprints; use modest station buffers only where the source gives a point-like label rather than a facility polygon.",
+          "Treat the police district map as semantic QA for named facilities and regional span, not as a literal county polygon input.",
+          "If bus-route geometry remains unavailable from official downloadable sources, do not fabricate a statewide bus network footprint from the overview map; leave the bus component unresolved rather than inventing false precision."
+        ],
+        "production_decision": "Not fully production-usable from current public official geometry alone. The recommended operational posture remains broad overlap unless a restored authenticated GTFS or equivalent official route-stop export is obtained."
+      },
+      "key_sources": [
+        {
+          "source_name": "NJ TRANSIT system map hub",
+          "url": "https://www.njtransit.com/accessibility/system-map",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Current live hub for official statewide and line-level map PDFs."
+        },
+        {
+          "source_name": "NJ TRANSIT statewide system map PDF",
+          "url": "https://content.njtransit.com/sites/default/files/pdfs/maps/NJT%20System%20Map%20April%202023.pdf",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Best public official statewide visual geometry surface found."
+        },
+        {
+          "source_name": "NJ TRANSIT developer landing path",
+          "url": "https://www.njtransit.com/developer",
+          "status_on_2026_03_24": "404 Not Found",
+          "why_it_matters": "Current blocker against a clean official GTFS-based build."
+        }
+      ]
+    },
+    {
+      "case_key": "DCMTP0000",
+      "ori": "DCMTP0000",
+      "agency_name": "WMATA Metro Transit Police",
+      "recommended_build_path": {
+        "overall_recommendation": "Use WMATA's official GTFS static feeds as the primary geometry source, with the combined rail-and-bus GTFS as the preferred base. Add official parking-facility inventory from WMATA's parking-details page, and use the Compact plus jurisdiction-boundary PDF only for legal QA and clipping logic, not as the footprint polygon itself.",
+        "build_class": "authenticated_gtfs_plus_official_facility_inventory",
+        "why_this_is_best_current_path": [
+          "The live WMATA developer portal documents an official `Rail & Bus Combined GTFS Static` operation and a rail-only GTFS static operation.",
+          "The live WMATA developer home page states that the GTFS feed includes platforms, levels, pathways, and more precise stop locations, which materially improves station-footprint building.",
+          "The official parking-details page is a live inventory of stations with parking, addresses, and lot or garage presence.",
+          "The Compact provides the legal definition of transit facilities and the explicit `150-foot` Metrobus stop-sign jurisdiction rule, which supports a defensible bus-stop treatment."
+        ],
+        "include": [
+          "WMATA rail guideway from GTFS rail shapes",
+          "rail stations, platforms, pathways, and entrances represented in the GTFS-enhanced station model",
+          "Metrobus stop-sign areas using GTFS stop coordinates with a `150-foot` buffer consistent with the Compact",
+          "official station parking, park-and-ride, lot, and garage facilities from the WMATA parking-details inventory once geocoded or parcel-matched",
+          "other clearly WMATA-controlled rail or bus facilities that can be tied to official inventories"
+        ],
+        "exclude": [
+          "the entire WMATA jurisdiction boundary polygon",
+          "the broader `1,500 square mile` transit zone as a routine footprint polygon",
+          "county or place proxies",
+          "generic buffers around every bus route segment between stops unless the segment itself is an official WMATA facility"
+        ],
+        "transformation_assumptions": [
+          "Acquire the combined GTFS through a WMATA developer subscription or authenticated pull step; the portal is live, but anonymous `HEAD` requests to the raw GTFS ZIP URL returned `404` on 2026-03-24.",
+          "Buffer rail alignments modestly to approximate trackway or right-of-way rather than treating centerlines as zero-width.",
+          "Union platform, pathway, and entrance features into station-area polygons before block-group weighting.",
+          "Geocode or parcel-match parking-facility addresses from `parking-details.cfm` to avoid using large station-wide buffers where a real parking facility can be located.",
+          "Use the jurisdiction-boundary PDF only as a QA envelope to catch obviously out-of-scope geometry, not as the final footprint."
+        ],
+        "production_decision": "Production-usable once the GTFS pull is authenticated. This is the strongest near-exact public path for WMATA; no county or place surrogate should be used."
+      },
+      "key_sources": [
+        {
+          "source_name": "WMATA combined GTFS portal operation",
+          "url": "https://developer.wmata.com/api-details#api=gtfs&operation=rail-bus-combined-gtfs-static",
+          "status_on_2026_03_24": "200 OK in browser",
+          "why_it_matters": "Official documentation for the combined GTFS static feed."
+        },
+        {
+          "source_name": "WMATA combined GTFS raw request URL",
+          "url": "https://api.wmata.com/gtfs/rail-bus-gtfs-static.zip",
+          "status_on_2026_03_24": "404 on anonymous HEAD",
+          "why_it_matters": "Treat as authenticated or subscription-keyed rather than anonymously downloadable."
+        },
+        {
+          "source_name": "WMATA parking details by station",
+          "url": "https://www.wmata.com/service/parking/parking-details.cfm",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Official parking-facility inventory with station addresses and lot or garage information."
+        },
+        {
+          "source_name": "WMATA Compact annotated PDF",
+          "url": "https://www.wmata.com/about/records/public_docs/upload/Compact_Annotated_2009_final.pdf",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Legal basis for transit-facility scope and the `150-foot` bus-stop area."
+        }
+      ]
+    },
+    {
+      "case_key": "UT0184000",
+      "ori": "UT0184000",
+      "agency_name": "Utah Transit Authority Police",
+      "recommended_build_path": {
+        "overall_recommendation": "Build the UTA footprint from the official GTFS static feed, then add official station and park-and-ride facilities from UTA's station-address and park-and-ride inventory pages. This is a production-usable near-exact public build path.",
+        "build_class": "public_gtfs_plus_official_facility_inventory",
+        "why_this_is_best_current_path": [
+          "UTA exposes a live public GTFS ZIP with routes, shapes, stops, trips, and stop_times.",
+          "UTA publishes a live official station-address inventory grouped by FrontRunner, TRAX Blue, TRAX Red, TRAX Green, and S-Line stations.",
+          "UTA publishes a live official park-and-ride inventory with named facilities and street addresses."
+        ],
+        "include": [
+          "all active UTA route shapes and stop locations from GTFS",
+          "FrontRunner, TRAX, S-Line, bus, and BRT service elements represented in GTFS",
+          "rail stations and transit centers from the official station-address inventory",
+          "UTA park-and-ride facilities from the official park-and-ride inventory",
+          "non-rail UTA park-and-ride facilities that are clearly UTA-operated"
+        ],
+        "exclude": [
+          "the union of UTA member counties or cities",
+          "LDS church parking entries listed on the park-and-ride page unless separate evidence shows UTA property control",
+          "broad service-area polygons with no UTA route, station, stop, or facility presence"
+        ],
+        "transformation_assumptions": [
+          "Use GTFS shapes as centerlines and apply modest buffers for rail rights-of-way or route influence where needed for block-group weighting.",
+          "Use GTFS stops first for station coordinates, then use the station-address page to QA station identity and to promote major stations and transit centers into facility footprints.",
+          "Geocode park-and-ride street addresses or parcel-match them to create lot polygons; use conservative lot buffers only when no parcel geometry can be linked.",
+          "Do not elevate church-owned shared parking entries to police-property surfaces without explicit UTA control evidence."
+        ],
+        "production_decision": "Production-usable now from public official sources. This is a strong candidate for custom-footprint implementation."
+      },
+      "key_sources": [
+        {
+          "source_name": "UTA GTFS static feed",
+          "url": "https://gtfsfeed.rideuta.com/GTFS.zip",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Primary network geometry source with `routes.txt`, `shapes.txt`, and `stops.txt`."
+        },
+        {
+          "source_name": "UTA station addresses",
+          "url": "https://www.rideuta.com/Rider-Info/Station-Addresses",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Official station facility inventory with addresses."
+        },
+        {
+          "source_name": "UTA park and ride lots",
+          "url": "https://www.rideuta.com/Rider-Info/Park-and-Ride-Lots",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Official facility inventory for park-and-ride property."
+        }
+      ]
+    },
+    {
+      "case_key": "CA0012100",
+      "ori": "CA0012100",
+      "agency_name": "BART Alameda County row",
+      "recommended_build_path": {
+        "overall_recommendation": "Build the BART police footprint from BART's official GTFS permalink plus BART's official stations-tracks-entrances KMZ. Use the KMZ as the primary exact geometry for tracks and station entrances, and use GTFS as the stable service and stop companion. This supports a production-grade system-property footprint across the full BART system, not an Alameda-only proxy.",
+        "build_class": "public_gtfs_plus_public_kmz_geometry",
+        "why_this_is_best_current_path": [
+          "BART publishes a no-registration GTFS permalink and explicitly documents it on the GTFS developer page.",
+          "BART publishes a current KMZ package containing stations, tracks, and station entrances, which is stronger geometry than GTFS stops alone.",
+          "The BART geospatial developer page is a stable official catalog for the KMZ assets."
+        ],
+        "include": [
+          "the full current BART rail network across all served counties, using official track geometry from the KMZ",
+          "station entrances and station complexes from the KMZ",
+          "GTFS stops and shapes for QA, stop IDs, and service alignment checks",
+          "station-linked parking or access facilities only where an official station or parking inventory can be tied to a real parcel or named facility"
+        ],
+        "exclude": [
+          "Alameda County polygon",
+          "Oakland place proxy",
+          "union of all BART-served counties as a polygon proxy",
+          "BART board district boundaries",
+          "fabricated parking-lot polygons unsupported by official geometry or a parcel-linked official inventory"
+        ],
+        "transformation_assumptions": [
+          "Use the KMZ `tracks` layer as the authoritative linear geometry and apply a modest guideway buffer for weighting.",
+          "Union station-entrance points by station and combine them with station centroids or GTFS stop groupings to form station-area facility polygons.",
+          "Use GTFS only as a companion QA and service table source where the KMZ already supplies better geometry.",
+          "If parking is added, require a station-linked official inventory plus parcel or address resolution; otherwise keep the parking component out rather than inventing lot shapes."
+        ],
+        "production_decision": "Production-usable now from public official sources. This is the cleanest exact public geometry path among the four reviewed cases."
+      },
+      "key_sources": [
+        {
+          "source_name": "BART GTFS permalink",
+          "url": "https://www.bart.gov/dev/schedules/google_transit.zip",
+          "status_on_2026_03_24": "307 redirect to dated ZIP, final file 200 OK",
+          "why_it_matters": "Stable official GTFS acquisition URL."
+        },
+        {
+          "source_name": "BART GTFS documentation page",
+          "url": "https://www.bart.gov/schedules/developers/gtfs",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "States that no registration is required and publishes the permalink."
+        },
+        {
+          "source_name": "BART stations tracks and entrances KMZ",
+          "url": "https://www.bart.gov/sites/default/files/2025-12/BART-Stations-tracks-entrances-121025.kmz_.zip",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Exact official geometry for station entrances and rail tracks."
+        },
+        {
+          "source_name": "BART geospatial developer page",
+          "url": "https://www.bart.gov/schedules/developers/geo",
+          "status_on_2026_03_24": "200 OK",
+          "why_it_matters": "Official catalog for the current KMZ assets."
+        }
+      ]
+    }
+  ]
+}

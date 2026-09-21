@@ -1,0 +1,107 @@
+{
+  "case_key": "north_miami_fl",
+  "jurisdiction_id": "12:municipal:place:1249450",
+  "jurisdiction_name": "North Miami city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "North Miami is a real incorporated municipality and currently operates a real North Miami Police Department. The city's 2024 police annual report identifies Cherise G. Gause as Chief of Police, describes a full police command structure, and states that Uniform Patrol operates 24/7 across three shifts.",
+    "Official city police materials show that North Miami Police, not Miami-Dade Sheriff, is the city's day-to-day general policing authority. The 2024 annual report says patrol handled about 72,000 calls for service, and Miami-Dade County's own municipal police-stations dataset lists North Miami Police Department as a municipal police station.",
+    "Miami-Dade Sheriff's own contact page does not present North Miami as one of its municipal districts. The county lists Miami Lakes, Palmetto Bay, and Cutler Bay municipal districts under MDSO patrol operations, which is inconsistent with any claim that North Miami is sheriff-primary or contract-policed.",
+    "Florida's official county-and-municipal offense reports treated North Miami Police Department as a standard municipal agency immediately before and during the transition period. FDLE's 2020 report lists North Miami Police Department with 2,489 index crimes, and FDLE's 2021 report again lists North Miami Police Department with 2,023 index crimes.",
+    "North Miami's own 2024 annual report says the Records Unit compiles crime data submitted to FDLE and the FBI and that in 2024 the unit transitioned all reporting systems to FIBRS and NIBRS. The city's January 9, 2025 crime release also reports concrete 2024 citywide crime results, including zero homicides, a 13 percent reduction in Part I crime, and a 41 percent reduction in violent crime.",
+    "The repo's zero-support condition is therefore not a service-structure problem. FL0131800 is crosswalked exclusively to North Miami city and classified in agency master as a local police department with SRS and NIBRS presence through 2024, but observations contain only SRS annual rows and drop to zero in 2021, 2023, and 2024 with no NIBRS rows at all.",
+    "The official FDLE FIBRS offense workbook for 2021 through 2025 Q2 does not contain a North Miami Police Department row, even though it does contain North Miami Beach Police Department rows in later sheets and North Miami's own annual report says 2024 FIBRS/NIBRS reporting occurred. That combination points to a state-publication and/or repo-ingestion continuity failure, not to an invalid municipal target."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "North Miami's 2024 police annual report says the city was incorporated in 1926 and presents North Miami as the sixth-largest municipality in Miami-Dade County.",
+      "The same official annual report is issued as a city police publication and presents North Miami Police Department as an operating department of city government."
+    ],
+    "important_interpretation": "North Miami is a valid municipal control object. Nothing in the city, county, or state record supports treating it as an unincorporated service area or as a place whose general policing has been replaced by Miami-Dade Sheriff."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "North Miami Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "North Miami's 2024 police annual report identifies Cherise G. Gause as Chief of Police and includes a full departmental organization chart.",
+      "The annual report says Uniform Patrol operates 24/7 across day, afternoon, and midnight shifts and handled about 72,000 calls for service in 2024.",
+      "Miami-Dade County's municipal police-stations dataset includes North Miami Police Department as a municipal police station.",
+      "Miami-Dade Sheriff's contact page lists only Miami Lakes, Palmetto Bay, and Cutler Bay as municipal districts under MDSO patrol operations; North Miami is not listed as an MDSO municipal district."
+    ],
+    "important_clarification": "This is a standard city-police case. Miami-Dade Sheriff overlaps the county and certain contract municipalities, but the official public record does not support MDSO as the primary general-policing authority for North Miami city."
+  },
+  "official_reporting_evidence": {
+    "fdle_county_and_municipal_publication_surface": {
+      "summary": "FDLE's official county-and-municipal offense reports for both 2020 and 2021 publish North Miami Police Department as a normal municipal agency row with substantive counts.",
+      "details": [
+        "FDLE 2020: North Miami Police Department, population 65,089, total index crime 2,489.",
+        "FDLE 2021: North Miami Police Department, population 60,175, total index crime 2,023."
+      ],
+      "interpretation": "Florida's own annual publication surface confirms that North Miami is a valid municipal police target."
+    },
+    "city_local_reporting_surface": {
+      "summary": "North Miami's official police materials show that the department still maintains and reports city-specific crime statistics.",
+      "details": [
+        "The 2024 annual report says the Records Unit compiles crime and calls-for-service statistics submitted to FDLE and the FBI.",
+        "The same annual report says the Records Unit transitioned all reporting systems to FIBRS and NIBRS in 2024.",
+        "The city's January 9, 2025 police news release reports zero 2024 homicides, a 13 percent reduction in overall crime, a 41 percent reduction in violent crime, and the third-lowest Part I crime total in the city's history since 1979."
+      ],
+      "interpretation": "Official local reporting clearly continued through 2024, so a zero-supported 2024 municipal target cannot be explained by the disappearance of the police department."
+    },
+    "fdle_post_srs_fibrs_publication_check": {
+      "summary": "Inspection of FDLE's official FIBRS offense workbook for 2021 through 2025 Q2 found no North Miami Police Department row in any sheet.",
+      "interpretation": "The absence of North Miami from the public FIBRS workbook conflicts with North Miami's own statement that it transitioned to FIBRS/NIBRS in 2024 and submitted statistics to FDLE/FBI. The most defensible read is a public-state continuity gap, naming mismatch, or ingestion/publication omission after the SRS transition.",
+      "important_comparison": "The same workbook does surface North Miami Beach Police Department rows in 2023, 2024, and 2025 Q2, so this is not a generic Miami-Dade-wide omission of municipal agencies."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0131800 exclusively to 12:municipal:place:1249450 with relationship_type exclusive and review_status auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0131800 as a local police department with both SRS and NIBRS presence flags across 2018-2024, but nibrs_max_months_reported is 0 and the latest 2024 SRS total is 0.",
+    "observation_state": "agency_year_observations.parquet contains only srs_return_a_annual rows for FL0131800: annual Part I totals 2853 in 2018, 2932 in 2019, 2489 in 2020, 0 in 2021, 2096 in 2022, 0 in 2023, and 0 in 2024. No NIBRS rows materialize for the agency.",
+    "review_artifact_state": "fbi_cde_source_review_queue.csv separately flags FL0131800 as present_but_no_2024_observation.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 North Miami offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill.",
+    "review_queue_state": "municipal_target_review_queue.parquet places North Miami in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1810.2024534138, and total_reported_count 0.0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "why": [
+      "North Miami has an active city-run police department that is publicly visible in current city and county sources.",
+      "FDLE's official 2020 and 2021 county-and-municipal reports publish North Miami Police Department as a standard municipal row.",
+      "North Miami's own 2024 police annual report says crime statistics were submitted to FDLE/FBI and that the department transitioned to FIBRS/NIBRS in 2024.",
+      "The repo's zero state therefore reflects broken continuity in the public-state/repo source path, not target invalidity or sheriff-primary service structure."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The production pipeline is relying on a broken Florida post-SRS continuity path for FL0131800.",
+      "At minimum, the repo failed to preserve a valid official 2021 North Miami municipal row that FDLE published.",
+      "After the SRS transition, either FDLE's public FIBRS workbook omitted North Miami, North Miami reported under a naming/code variant that the current extraction did not capture, or the repo missed a non-workbook state/local surface that still existed."
+    ],
+    "best_available_override_surface_if_business_requires_city_level_2024_support": {
+      "source": "North Miami Police Department annual-report and records/public-records surface",
+      "why": "The department itself states that it compiles city crime statistics, submits them to FDLE/FBI, and transitioned to FIBRS/NIBRS in 2024, which makes direct city police records the most credible recovery path if the state-public workbook remains incomplete.",
+      "limitations": [
+        "The currently reviewed local public materials provide strong continuity evidence but do not expose a ready-made offense-level annual table in the same standard format used by the statewide pipeline.",
+        "A production override would likely require direct extraction from NMPD records, a public-records request, or a more exact state-side agency extract."
+      ]
+    },
+    "recommended_handling": [
+      "Retain North Miami city as a true standalone municipal control row.",
+      "Do not drop or demote the North Miami municipal target.",
+      "Treat the current all-fill condition as a reporting continuity failure on FL0131800 rather than an invalid target or sheriff-contract structure.",
+      "Use FDLE's county-and-municipal offense reports as the official state truth surface through 2021.",
+      "If business needs a short-term override for 2024, pursue North Miami Police Department's own records/statistical surface or a direct state agency extract instead of deleting the municipal target."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_state_publication_and_repo_ingestion_continuity_failure",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining implementation question is where North Miami's post-2021 official agency-level annual counts are recoverable most cleanly: an omitted FDLE extract, a code/name variant in state incident-based data, or direct North Miami Police records."
+  ]
+}

@@ -1,0 +1,8 @@
+offense,incident_total_in_universe,incident_total_off_universe,off_universe_share_of_truth,n_predicted_bg,n_truth_bg_in_universe,tvd_incident_weighted,skipped_no_truth
+murder,0,0,,184,0,,True
+rape,31,0,0.0,184,24,0.6832180238563593,False
+robbery,67,0,0.0,184,30,0.6387286829119712,False
+aggravated_assault,0,0,,184,0,,True
+burglary,252,14,0.05263157894736842,184,109,0.3785900448565323,False
+larceny,1412,52,0.03551912568306011,184,138,0.36517268368217437,False
+motor_vehicle_theft,580,26,0.0429042904290429,184,128,0.31610922716940903,False

@@ -1,0 +1,244 @@
+{
+  "city_key": "raleigh_nc",
+  "contract": {
+    "city_key": "raleigh_nc",
+    "city_name": "Raleigh, North Carolina",
+    "geography": {
+      "bounds": {
+        "max_latitude": 36,
+        "max_longitude": -78.45,
+        "min_latitude": 35.6,
+        "min_longitude": -78.85
+      },
+      "jurisdiction_id": "37:municipal:place:3755000",
+      "state_fips": "37"
+    },
+    "mapping": {
+      "date_field": "reported_date_text",
+      "id_field": "GlobalID",
+      "id_fields": [],
+      "latitude_field": "__arcgis_latitude",
+      "longitude_field": "__arcgis_longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "eq",
+              "value": "MURDER",
+              "values": []
+            },
+            {
+              "field": "crime_code",
+              "op": "eq",
+              "value": "11",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "eq",
+              "value": "SEX OFFENSES",
+              "values": []
+            },
+            {
+              "field": "crime_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "17A",
+                "17B",
+                "17C"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "rape"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "eq",
+              "value": "ROBBERY",
+              "values": []
+            },
+            {
+              "field": "crime_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "20A",
+                "20B"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "eq",
+              "value": "AGGRAVATED ASSAULT",
+              "values": []
+            },
+            {
+              "field": "crime_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "25G",
+                "25M"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "in",
+              "value": "",
+              "values": [
+                "BURGLARY/COMMERCIAL",
+                "BURGLARY/RESIDENTIAL"
+              ]
+            },
+            {
+              "field": "crime_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "30A",
+                "30B"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "in",
+              "value": "",
+              "values": [
+                "LARCENY",
+                "LARCENY FROM MV"
+              ]
+            },
+            {
+              "field": "crime_code",
+              "op": "in",
+              "value": "",
+              "values": [
+                "35A",
+                "35B",
+                "35C",
+                "35D",
+                "35E",
+                "35F",
+                "35G",
+                "35H"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "crime_category",
+              "op": "eq",
+              "value": "MV THEFT",
+              "values": []
+            },
+            {
+              "field": "crime_code",
+              "op": "eq",
+              "value": "40A",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Police_Incidents/FeatureServer/0",
+      "name": "Raleigh Police Incidents (NIBRS)",
+      "order": "OBJECTID ASC",
+      "page_size": 5000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "GlobalID",
+        "case_number",
+        "crime_category",
+        "crime_code",
+        "crime_description",
+        "crime_type",
+        "reported_date",
+        "CAST(reported_date AS VARCHAR(30)) AS reported_date_text",
+        "reported_year",
+        "reported_month",
+        "reported_day",
+        "agency"
+      ],
+      "source_url": "https://data.raleighnc.gov/datasets/ral::raleigh-police-incidents-nibrs/about",
+      "where": "reported_date >= DATE '2024-01-01 00:00:00' AND reported_date < DATE '2025-01-01 00:00:00' AND crime_category IN ('MURDER','SEX OFFENSES','ROBBERY','AGGRAVATED ASSAULT','BURGLARY/COMMERCIAL','BURGLARY/RESIDENTIAL','LARCENY','LARCENY FROM MV','MV THEFT')"
+    },
+    "sources_checked": [
+      "https://data.raleighnc.gov/datasets/ral::raleigh-police-incidents-nibrs/about",
+      "https://data.raleighnc.gov/datasets/ral%3A%3Araleigh-police-incidents-nibrs/api",
+      "https://www.arcgis.com/sharing/rest/search?q=title%3A%22Raleigh%20Police%20Incidents%20(NIBRS)%22&f=json",
+      "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Police_Incidents/FeatureServer/0?f=pjson",
+      "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Police_Incidents/FeatureServer/0/query"
+    ],
+    "worker_judgment_notes": "Uses the official City of Raleigh Open Data ArcGIS feature service for Raleigh Police Incidents (NIBRS), a point incident layer with GlobalID/OBJECTID identity, reported_date/reported_year, crime_category/crime_code/crime_description/crime_type, and ArcGIS point geometry. The repo jurisdiction was resolved from state/controls/jurisdiction_controls_2024.parquet as 37:municipal:place:3755000 with state_fips 37. Bounds are the local TIGER 2020 Raleigh place envelope (raw approximately lon -78.818556 to -78.470789, lat 35.70825 to 35.970784) rounded/expanded so the runner does not prematurely drop edge or geocoding-noise records before municipal block-group spatial join. ArcGIS JSON exposes reported_date as epoch milliseconds, so the select projects CAST(reported_date AS VARCHAR(30)) AS reported_date_text for the generic runner while retaining the raw date field. GlobalID is used as the stable row id and OBJECTID only for deterministic ordering. This is a share-lane incident contract only; raw feed counts should not be treated as Raleigh annual totals. Offense mapping is code-restricted: murder excludes justifiable homicide code 13; rape includes only forcible rape/sodomy/object codes 17A/17B/17C and excludes fondling, incest, statutory rape, indecent exposure, and peeping; aggravated assault includes aggravated assault and aggravated child-abuse codes 25G/25M while excluding simple assault/intimidation; burglary, larceny, robbery, and motor-vehicle theft are limited to their direct Raleigh/NIBRS category-code pairs. The 2024 narrowed API pull had some rows without public point geometry, so geography completeness should be evaluated from the runner output, not source row counts.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 6,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 4,
+    "offense_rows": 7,
+    "rows_in_surface": 1159,
+    "share_admitted_rows": 6,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Police_Incidents/FeatureServer/0",
+    "city_key": "raleigh_nc",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 1327514,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/raleigh_nc_raw.parquet",
+    "raw_cache_sha256": "ccf30ee024e99d31110eb978f0eef38bdb378898080822140645776477161e9b",
+    "source_name": "Raleigh Police Incidents (NIBRS)",
+    "source_url": "https://data.raleighnc.gov/datasets/ral::raleigh-police-incidents-nibrs/about"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617",
+  "runtime": {
+    "city_key": "raleigh_nc",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate16_tier1_external_swarm_pilot/gate16_pilot_20260617/raw/raleigh_nc_raw.parquet",
+    "raw_cache_sha256": "ccf30ee024e99d31110eb978f0eef38bdb378898080822140645776477161e9b",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 4.281656875013141,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

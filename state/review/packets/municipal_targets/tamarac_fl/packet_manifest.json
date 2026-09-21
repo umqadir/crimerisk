@@ -1,0 +1,14 @@
+{
+  "case_key": "tamarac_fl",
+  "jurisdiction_id": "12:municipal:place:1270675",
+  "jurisdiction_name": "Tamarac city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/tamarac_fl",
+  "review_goal": "Determine whether Tamarac should retain a standalone municipal control row and whether the current full-fill condition reflects a valid BSO contract-city municipal reporting surface with broken continuity or an invalid sheriff-primary municipal target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

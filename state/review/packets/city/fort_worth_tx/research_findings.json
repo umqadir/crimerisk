@@ -1,0 +1,135 @@
+{
+  "city_key": "fort_worth_tx",
+  "city_name": "Fort Worth, Texas",
+  "geography": {
+    "bounds": {
+      "max_latitude": 33.10769,
+      "max_longitude": -97.011707,
+      "min_latitude": 32.505349,
+      "min_longitude": -97.696049
+    },
+    "jurisdiction_id": "48:municipal:place:4827000",
+    "state_fips": "48"
+  },
+  "mapping": {
+    "date_field": "Reported_Date",
+    "id_field": "Case_No_Offense",
+    "id_fields": [],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "Offense",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "field": "Offense",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://mapit.fortworthtexas.gov/ags/rest/services/CIVIC/Crime_Data/MapServer/0",
+    "name": "City of Fort Worth Open Data - CFW Police Crime Data Points",
+    "order": "OBJECTID ASC",
+    "page_size": 1000,
+    "portal_type": "arcgis_feature_service",
+    "select": [
+      "OBJECTID",
+      "Case_No_Offense",
+      "Case_No",
+      "Reported_Date",
+      "Offense",
+      "Offense_Desc",
+      "Nature_Of_Call",
+      "Attempt_Complete",
+      "Latitude",
+      "Longitude"
+    ],
+    "source_url": "https://data.fortworthtexas.gov/datasets/cfw-police-crime-data-points",
+    "where": "Reported_Date >= timestamp '2024-01-01 00:00:00' AND Reported_Date < timestamp '2025-01-01 00:00:00' AND Offense IN ('09A','120','13A','220','23A','23B','23C','23D','23E','23F','23G','23H','240')"
+  },
+  "sources_checked": [
+    "https://data.fortworthtexas.gov/datasets/cfw-police-crime-data-points",
+    "https://www.arcgis.com/sharing/rest/search?f=json&q=title:%22CFW%20Police%20Crime%20Data%20Points%22%20orgid:3ddLCBXe1bRt7mzj&num=10",
+    "https://mapit.fortworthtexas.gov/ags/rest/services/CIVIC/Crime_Data/MapServer/0?f=pjson",
+    "https://mapit.fortworthtexas.gov/ags/rest/services/CIVIC/Crime_Data/MapServer/0/query?f=json",
+    "https://police.fortworthtexas.gov/Crime-Public-Info/Crime-Data-Center",
+    "https://data.fortworthtexas.gov/resource/k6ic-7kp7.json"
+  ],
+  "worker_judgment_notes": "Selected the current official City of Fort Worth ArcGIS feature layer because it is a runnable point feed with epoch-ms Reported_Date, offense code and description fields, Case_No_Offense identity, and ArcGIS point geometry. The old Socrata k6ic-7kp7 path now redirects to the ArcGIS Hub/legacy path, so the ArcGIS service is the current runnable feed. This is share-lane only: raw feed counts must not be treated as annual control totals. The police Crime Data Center notes that certain crimes, including most sexually oriented offenses and juvenile-related cases, are not mapped; the ArcGIS item description also says juvenile-related data is removed and locations are generalized to the hundred block. Rape is therefore intentionally omitted because no defensible mapped 11A/rape category was present in the inspected 2024 offense codes. Offense mapping uses NIBRS-style Offense codes: 09A murder/nonnegligent manslaughter, 120 robbery, 13A aggravated assault, 220 burglary, 23A-23H larceny-theft, and 240 motor vehicle theft. Identity uses Case_No_Offense; date uses Reported_Date; geography uses runner-provided __arcgis_latitude/__arcgis_longitude from returned geometry. Bounds come from the repo Fort Worth municipal block-group crosswalk/TIGER geometry for jurisdiction 48:municipal:place:4827000 with a small padding for generalized points.",
+  "year": 2024
+}

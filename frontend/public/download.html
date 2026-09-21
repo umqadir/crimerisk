@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Download — CrimeRisk</title>
+<meta name="description" content="Nationwide and per-state CSV, Parquet and GeoParquet of the published CrimeRisk neighborhood crime index." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="doc">
+  <p class="topbar"><a href="index.html">&larr; Map</a><a href="methods.html">Methods</a><a href="attribution.html">Sources</a></p>
+
+  <h1>Download the data</h1>
+  <p class="lede">Every value on the map, plus counts, denominators and source modes.
+  One row per area. This edition publishes no percentile range and no reliability tier.
+  No incident-level records are published.</p>
+
+  <h2>Nationwide</h2>
+  <!--NATIONAL-->
+
+  <h2>By state</h2>
+  <p>Same schema, one file per state, in CSV, Parquet and GeoParquet (with 2020 TIGER boundaries).</p>
+  <!--STATES-->
+
+  <h2>Data dictionary</h2>
+  <p>One line per column: <a href="downloads/fields_block_group.csv">fields_block_group.csv</a>
+  &middot; <a href="downloads/fields_tract.csv">fields_tract.csv</a></p>
+
+  <h2>Checksums</h2>
+  <p>SHA-256 for every file above: <a href="downloads/checksums.sha256">checksums.sha256</a></p>
+
+  <h2>Edition and license</h2>
+  <!--EDITION-->
+  <p>Derived estimates in these files may be reused with attribution to CrimeRisk and to the
+  upstream sources listed on the <a href="attribution.html">sources page</a>, whose own license
+  terms continue to apply. The FBI and U.S. Census Bureau inputs are public domain; several
+  municipal incident feeds carry named notices and ODbL terms that are reproduced there.</p>
+
+  <p class="meta" id="edition-line"></p>
+</main>
+<script>
+fetch("data/manifest.json").then(function (r) { return r.json(); }).then(function (m) {
+  document.getElementById("edition-line").textContent = m.copy.edition_line;
+}).catch(function () {});
+</script>
+</body>
+</html>

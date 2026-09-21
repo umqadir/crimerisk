@@ -1,0 +1,9 @@
+state_abbr,packet_dir,priority_rows,queue_rows,required_outputs
+CA,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ca,7,224,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+FL,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/fl,7,7,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+NY,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ny,7,7,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+LA,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/la,7,0,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+GA,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ga,7,0,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+MS,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/ms,7,0,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+TX,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/tx,7,7,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"
+NJ,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/nj,7,2,"['packet_status.csv', 'research_findings.json', 'source_recommendations.csv']"

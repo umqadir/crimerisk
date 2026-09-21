@@ -1,0 +1,122 @@
+{
+  "city_key": "washington_dc",
+  "city_name": "Washington",
+  "jurisdiction_id": "11:municipal:place:1150000",
+  "state_abbr": "DC",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "ready_now",
+    "packet_status": "review_complete",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_six_offense_selective_path_ready"
+  },
+  "official_sources": {
+    "incident_surface": [
+      "https://opendata.dc.gov/datasets/DCGIS::crime-incidents-in-2024",
+      "https://opendata.dc.gov/datasets/DCGIS::crime-incidents-in-2024.csv",
+      "https://maps2.dcgis.dc.gov/dcgis/rest/services/FEEDS/MPD/FeatureServer/6"
+    ],
+    "aggregate_anchors": [
+      "https://mpdc.dc.gov/dailycrime",
+      "https://mpdc.dc.gov/page/mpd-annual-report-2024",
+      "https://mpdc.dc.gov/sites/default/files/dc/sites/mpdc/page_content/attachments/MPD%20Annual%20Report%202024_FIN_web_0.pdf"
+    ],
+    "notes": [
+      "The previously cited FeatureServer/39 layer is a last-30-days feed, not the official 2024 incidents surface.",
+      "The operational 2024 packet uses the direct CSV export from the official DC open-data landing page and the MPD year-end crime table on dailycrime."
+    ]
+  },
+  "source_contract_findings": {
+    "public_2024_incidents_available": true,
+    "row_count_2024": 29303,
+    "offense_values": [
+      "ARSON",
+      "ASSAULT W/DANGEROUS WEAPON",
+      "BURGLARY",
+      "HOMICIDE",
+      "MOTOR VEHICLE THEFT",
+      "ROBBERY",
+      "SEX ABUSE",
+      "THEFT F/AUTO",
+      "THEFT/OTHER"
+    ],
+    "spatial_fields_present": [
+      "LATITUDE",
+      "LONGITUDE",
+      "BLOCK",
+      "BLOCK_GROUP",
+      "CENSUS_TRACT",
+      "WARD",
+      "ANC",
+      "DISTRICT",
+      "PSA"
+    ],
+    "notes": [
+      "The source block-group field is populated on all but 13 rows in 2024.",
+      "The 2024 surface has no 0,0 coordinate failures.",
+      "Rows missing source block groups are concentrated on boundary streets such as Eastern Avenue and Southern Avenue."
+    ]
+  },
+  "crosswalk_outcome": {
+    "promoted_offenses": [
+      "murder",
+      "robbery",
+      "aggravated_assault",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "blocked_offenses": [
+      "rape"
+    ],
+    "notes": [
+      "HOMICIDE, ROBBERY, BURGLARY, and MOTOR VEHICLE THEFT map directly and reconcile within two incidents or better.",
+      "THEFT F/AUTO plus THEFT/OTHER is the accepted larceny family aggregation and stays within 64 incidents of the official combined theft-family total.",
+      "ASSAULT W/DANGEROUS WEAPON is treated as a local analogue for aggravated_assault because it closes exactly to the MPD year-end anchor and retains spatial utility.",
+      "SEX ABUSE remains blocked because the public MPD category is not treated as the repo's rape offense."
+    ]
+  },
+  "spatial_quality": {
+    "latlon_missing_rows": 0,
+    "zero_zero_rows": 0,
+    "source_block_group_missing_rows": 13,
+    "direct_or_recovered_block_group_rows": 29295,
+    "unassigned_boundary_rows_after_latlon_fallback": 8,
+    "notes": [
+      "Most incidents can be allocated by source block-group field alone.",
+      "A small coordinate fallback recovers five of the thirteen rows missing source block groups.",
+      "The remaining losses are tiny and occur on border streets, not from broad geocoding failure."
+    ]
+  },
+  "reconciliation_summary": {
+    "official_anchor_name": "District Crime Data at a Glance year-end offense table",
+    "official_anchor_url": "https://mpdc.dc.gov/dailycrime",
+    "offense_deltas_2024": {
+      "murder": 0,
+      "rape": 1,
+      "robbery": -2,
+      "aggravated_assault": 0,
+      "burglary": 2,
+      "larceny": 64,
+      "motor_vehicle_theft": -1
+    },
+    "notes": [
+      "The public 2024 incidents table and the official MPD year-end summary are essentially aligned for six promotable offense families.",
+      "The only remaining blocked lane is rape, and that is an ontology choice rather than a public-count failure."
+    ]
+  },
+  "judgment": {
+    "production_ready": "partial",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_six_offense_selective_path_ready",
+    "why_ready": [
+      "The source contract is official and stable.",
+      "Block-group coverage is effectively complete for 2024.",
+      "Six offense families reconcile closely enough to public year-end anchors for offense-selective live use."
+    ],
+    "why_blocked_offenses_remain": [
+      "Rape stays blocked because MPD Sex Abuse is not treated as the repo's rape offense."
+    ]
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "city_key": "new_york",
+  "city_name": "New York",
+  "jurisdiction_id": "36:municipal:place:3651000",
+  "analysis_date": "2026-03-22",
+  "source_contract": {
+    "recommended_source_name": "NYPD Complaint Data Historic + Current feeds",
+    "recommended_source_url": "https://data.cityofnewyork.us/api/views/qgea-i56i/rows.csv?accessType=DOWNLOAD ; https://data.cityofnewyork.us/api/views/5uac-w243/rows.csv?accessType=DOWNLOAD",
+    "portal_type": "socrata_dual_feed",
+    "coverage_start_year": "2007",
+    "coverage_end_year": "2025",
+    "years_usable": "7",
+    "geocode_quality_tier": "high",
+    "recommended_disposition": "ready_now"
+  },
+  "published_reconciliation": {
+    "latest_reconciled_year": 2024,
+    "reconciliation_summary_file": "reconciliation_summary.csv",
+    "packet_local_summary_generated_from": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/city_reconciliation/new_york_reconciliation.csv",
+    "latest_year_offense_notes": [
+      {
+        "offense": "aggravated_assault",
+        "published_comparison_quality": "exact",
+        "published_count": 29417.0,
+        "final_share_count": 28541,
+        "pct_diff_final_vs_published": -0.0297786993915083
+      },
+      {
+        "offense": "burglary",
+        "published_comparison_quality": "exact",
+        "published_count": 13029.0,
+        "final_share_count": 11472,
+        "pct_diff_final_vs_published": -0.1195026479392125
+      },
+      {
+        "offense": "larceny",
+        "published_comparison_quality": "approximate",
+        "published_count": 48423.0,
+        "final_share_count": 153716,
+        "pct_diff_final_vs_published": 2.174441897445429
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "published_comparison_quality": "exact",
+        "published_count": 14194.0,
+        "final_share_count": 16342,
+        "pct_diff_final_vs_published": 0.1513315485416373
+      },
+      {
+        "offense": "murder",
+        "published_comparison_quality": "exact",
+        "published_count": 377.0,
+        "final_share_count": 323,
+        "pct_diff_final_vs_published": -0.143236074270557
+      },
+      {
+        "offense": "rape",
+        "published_comparison_quality": "exact",
+        "published_count": 1748.0,
+        "final_share_count": 1347,
+        "pct_diff_final_vs_published": -0.2294050343249428
+      },
+      {
+        "offense": "robbery",
+        "published_comparison_quality": "exact",
+        "published_count": 16556.0,
+        "final_share_count": 16168,
+        "pct_diff_final_vs_published": -0.0234356124667794
+      }
+    ]
+  },
+  "judgment": {
+    "recommended_disposition": "ready_now",
+    "note": "Packet-local research summary generated from the active central city source inventory and stored reconciliation artifact."
+  }
+}

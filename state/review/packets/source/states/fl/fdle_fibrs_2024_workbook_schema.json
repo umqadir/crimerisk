@@ -1,0 +1,328 @@
+{
+  "state_abbr": "FL",
+  "source_workbook_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/raw/FIBRS_Offense_Detail_2021-2026.xlsx",
+  "source_workbook_url": "https://www.fdle.state.fl.us/getContentAsset/43da39b3-e350-4c0a-b5f2-2a9a98b6132e/73aabf56-e6e5-4330-95a3-5f2a270a1d2b/FIBRS_Offense_Detail_2021-2026.xlsx?language=en",
+  "source_landing_page": "https://www.fdle.state.fl.us/cjab/fibrs",
+  "worksheet": "FIBRS Offense 2024",
+  "header_rows": [
+    1,
+    2,
+    3
+  ],
+  "first_data_row": 4,
+  "agency_row_count": 211,
+  "extract_row_count": 101491,
+  "identifier_columns": [
+    {
+      "column_number": 1,
+      "column_name": "County",
+      "normalized_field": "county"
+    },
+    {
+      "column_number": 2,
+      "column_name": "Agency Name",
+      "normalized_field": "agency_name"
+    },
+    {
+      "column_number": 3,
+      "column_name": "2024 Population Estimate",
+      "normalized_field": "population_estimate"
+    }
+  ],
+  "detail_offense_blocks": [
+    {
+      "section": "violent",
+      "start_column": 4,
+      "offense_name_source": "Murder and Non-Negligent Manslaughter",
+      "offense_name": "Murder and Non-Negligent Manslaughter",
+      "offense_slug": "murder_and_non_negligent_manslaughter"
+    },
+    {
+      "section": "violent",
+      "start_column": 16,
+      "offense_name_source": "Forcible Sex Offenses",
+      "offense_name": "Forcible Sex Offenses",
+      "offense_slug": "forcible_sex_offenses"
+    },
+    {
+      "section": "violent",
+      "start_column": 28,
+      "offense_name_source": "Robbery",
+      "offense_name": "Robbery",
+      "offense_slug": "robbery"
+    },
+    {
+      "section": "violent",
+      "start_column": 40,
+      "offense_name_source": "Aggravated Assault",
+      "offense_name": "Aggravated Assault",
+      "offense_slug": "aggravated_assault"
+    },
+    {
+      "section": "property",
+      "start_column": 52,
+      "offense_name_source": "Burglary",
+      "offense_name": "Burglary",
+      "offense_slug": "burglary"
+    },
+    {
+      "section": "property",
+      "start_column": 64,
+      "offense_name_source": "Larceny - Pocket Picking",
+      "offense_name": "Larceny - Pocket Picking",
+      "offense_slug": "larceny_pocket_picking"
+    },
+    {
+      "section": "property",
+      "start_column": 76,
+      "offense_name_source": "Larceny - Purse Snatching",
+      "offense_name": "Larceny - Purse Snatching",
+      "offense_slug": "larceny_purse_snatching"
+    },
+    {
+      "section": "property",
+      "start_column": 88,
+      "offense_name_source": "Larceny - Shoplifting",
+      "offense_name": "Larceny - Shoplifting",
+      "offense_slug": "larceny_shoplifting"
+    },
+    {
+      "section": "property",
+      "start_column": 100,
+      "offense_name_source": "Larceny - From Motor Vehicle",
+      "offense_name": "Larceny - From Motor Vehicle",
+      "offense_slug": "larceny_from_motor_vehicle"
+    },
+    {
+      "section": "property",
+      "start_column": 112,
+      "offense_name_source": "Larceny - Motor Vehicle Parts",
+      "offense_name": "Larceny - Motor Vehicle Parts",
+      "offense_slug": "larceny_motor_vehicle_parts"
+    },
+    {
+      "section": "property",
+      "start_column": 124,
+      "offense_name_source": "Larceny - From Building",
+      "offense_name": "Larceny - From Building",
+      "offense_slug": "larceny_from_building"
+    },
+    {
+      "section": "property",
+      "start_column": 136,
+      "offense_name_source": "Larceny - Coin-Operated Machine",
+      "offense_name": "Larceny - Coin-Operated Machine",
+      "offense_slug": "larceny_coin_operated_machine"
+    },
+    {
+      "section": "property",
+      "start_column": 148,
+      "offense_name_source": "Larceny - All Other",
+      "offense_name": "Larceny - All Other",
+      "offense_slug": "larceny_all_other"
+    },
+    {
+      "section": "property",
+      "start_column": 160,
+      "offense_name_source": "Motor Vehicle Theft",
+      "offense_name": "Motor Vehicle Theft",
+      "offense_slug": "motor_vehicle_theft"
+    },
+    {
+      "section": "other",
+      "start_column": 172,
+      "offense_name_source": "Negligent Manslaughter",
+      "offense_name": "Negligent Manslaughter",
+      "offense_slug": "negligent_manslaughter"
+    },
+    {
+      "section": "other",
+      "start_column": 184,
+      "offense_name_source": "Arson",
+      "offense_name": "Arson",
+      "offense_slug": "arson"
+    },
+    {
+      "section": "other",
+      "start_column": 196,
+      "offense_name_source": "Simple Assault",
+      "offense_name": "Simple Assault",
+      "offense_slug": "simple_assault"
+    },
+    {
+      "section": "other",
+      "start_column": 208,
+      "offense_name_source": "Stalking",
+      "offense_name": "Stalking",
+      "offense_slug": "stalking"
+    },
+    {
+      "section": "other",
+      "start_column": 220,
+      "offense_name_source": "Intimidation",
+      "offense_name": "Intimidation",
+      "offense_slug": "intimidation"
+    },
+    {
+      "section": "other",
+      "start_column": 232,
+      "offense_name_source": "Kidnapping/Abduction",
+      "offense_name": "Kidnapping/Abduction",
+      "offense_slug": "kidnapping_abduction"
+    },
+    {
+      "section": "other",
+      "start_column": 244,
+      "offense_name_source": "Drug Offenses",
+      "offense_name": "Drug Offenses",
+      "offense_slug": "drug_offenses"
+    },
+    {
+      "section": "other",
+      "start_column": 256,
+      "offense_name_source": "Bribery",
+      "offense_name": "Bribery",
+      "offense_slug": "bribery"
+    },
+    {
+      "section": "other",
+      "start_column": 268,
+      "offense_name_source": "Embezzlement",
+      "offense_name": "Embezzlement",
+      "offense_slug": "embezzlement"
+    },
+    {
+      "section": "other",
+      "start_column": 280,
+      "offense_name_source": "Fraud",
+      "offense_name": "Fraud",
+      "offense_slug": "fraud"
+    },
+    {
+      "section": "other",
+      "start_column": 292,
+      "offense_name_source": "Counterfeiting/Forgery",
+      "offense_name": "Counterfeiting/Forgery",
+      "offense_slug": "counterfeiting_forgery"
+    },
+    {
+      "section": "other",
+      "start_column": 304,
+      "offense_name_source": "Extortion/Blackmail",
+      "offense_name": "Extortion/Blackmail",
+      "offense_slug": "extortion_blackmail"
+    },
+    {
+      "section": "other",
+      "start_column": 316,
+      "offense_name_source": "Prostitutition",
+      "offense_name": "Prostitution",
+      "offense_slug": "prostitution"
+    },
+    {
+      "section": "other",
+      "start_column": 328,
+      "offense_name_source": "Non-Forcible Sex Offenses",
+      "offense_name": "Non-Forcible Sex Offenses",
+      "offense_slug": "non_forcible_sex_offenses"
+    },
+    {
+      "section": "other",
+      "start_column": 340,
+      "offense_name_source": "Stolen Property Offenses",
+      "offense_name": "Stolen Property Offenses",
+      "offense_slug": "stolen_property_offenses"
+    },
+    {
+      "section": "other",
+      "start_column": 352,
+      "offense_name_source": "Destruction/Damage/Vandalism",
+      "offense_name": "Destruction/Damage/Vandalism",
+      "offense_slug": "destruction_damage_vandalism"
+    },
+    {
+      "section": "other",
+      "start_column": 364,
+      "offense_name_source": "Gambling Offenses",
+      "offense_name": "Gambling Offenses",
+      "offense_slug": "gambling_offenses"
+    },
+    {
+      "section": "other",
+      "start_column": 376,
+      "offense_name_source": "Weapons Offenses",
+      "offense_name": "Weapons Offenses",
+      "offense_slug": "weapons_offenses"
+    },
+    {
+      "section": "other",
+      "start_column": 388,
+      "offense_name_source": "Identity Theft",
+      "offense_name": "Identity Theft",
+      "offense_slug": "identity_theft"
+    },
+    {
+      "section": "other",
+      "start_column": 400,
+      "offense_name_source": "Hacking/Computer Invasion",
+      "offense_name": "Hacking/Computer Invasion",
+      "offense_slug": "hacking_computer_invasion"
+    },
+    {
+      "section": "other",
+      "start_column": 412,
+      "offense_name_source": "Human Trafficking - Commercial Sex Acts",
+      "offense_name": "Human Trafficking - Commercial Sex Acts",
+      "offense_slug": "human_trafficking_commercial_sex_acts"
+    },
+    {
+      "section": "other",
+      "start_column": 424,
+      "offense_name_source": "Human Trafficking - Involuntary Servitude",
+      "offense_name": "Human Trafficking - Involuntary Servitude",
+      "offense_slug": "human_trafficking_involuntary_servitude"
+    },
+    {
+      "section": "other",
+      "start_column": 436,
+      "offense_name_source": "Animal Cruelty",
+      "offense_name": "Animal Cruelty",
+      "offense_slug": "animal_cruelty"
+    }
+  ],
+  "extract_columns": [
+    "state_abbr",
+    "year",
+    "source_sheet",
+    "source_row_number",
+    "county",
+    "agency_name",
+    "agency_name_normalized",
+    "population_estimate",
+    "quarters_reported",
+    "months_reported",
+    "offense_level",
+    "offense_bucket",
+    "offense_name",
+    "offense_name_source",
+    "offense_slug",
+    "period",
+    "quarter",
+    "month",
+    "month_name",
+    "incident_count",
+    "annual_rate"
+  ],
+  "known_schema_issues": [
+    "Workbook does not expose ORI values, so agency joins must use county and agency-name crosswalk logic.",
+    "The source label 'Prostitutition' is misspelled in the workbook; the extract preserves the source label and normalizes the slug to 'prostitution'.",
+    "The refreshed workbook changed from quarter/YTD columns to monthly detail columns; YTD rows in the extract are computed from monthly cells."
+  ],
+  "months_reported_distribution": {
+    "12": 211
+  },
+  "quarters_reported_distribution": {
+    "4": 211
+  },
+  "agencies_with_zero_population_estimate": 26
+}

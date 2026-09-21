@@ -1,0 +1,432 @@
+{
+  "packet_metadata": {
+    "packet_id": "public_signal",
+    "created_at": "2026-03-22",
+    "current_owner": "codex_public_signal",
+    "scope": "Highest-value missing public feature families for V2 with emphasis on free online sources that can improve stable opportunity and exposure signal under AGS constraints."
+  },
+  "inputs_reviewed": [
+    {
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/support/seeds/feature_source_inventory_seed.csv",
+      "kind": "feature_inventory_seed"
+    },
+    {
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/jurisdiction_model_benchmark_2024.json",
+      "kind": "benchmark_context"
+    },
+    {
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/opencrimerisk/covariates/features.py",
+      "kind": "active_covariate_builder"
+    },
+    {
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/opencrimerisk/covariates/roads.py",
+      "kind": "roads_covariate_builder"
+    },
+    {
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/opencrimerisk/covariates/lodes_flow.py",
+      "kind": "lodes_flow_builder"
+    }
+  ],
+  "benchmark_context": {
+    "year": 2024,
+    "overall_cv_r2_log_rate_mean": 0.4333177228154928,
+    "overall_cv_r2_rate_mean": 0.11690344814450553,
+    "per_offense_cv_r2_log_rate": {
+      "aggravated_assault": 0.5062859412200912,
+      "burglary": 0.44374040257665626,
+      "larceny": 0.34660974631025565,
+      "motor_vehicle_theft": 0.49580558011273235,
+      "murder": 0.3286921990377296,
+      "rape": 0.36966205041901834,
+      "robbery": 0.542428140031966
+    },
+    "diagnosis": [
+      "The current public frame is dominated by ACS composition variables and LODES daytime flow shares.",
+      "The active tract pipeline still states ACS plus LODES only and explicitly leaves CDC PLACES and FEMA NRI disabled.",
+      "The largest remaining gap is not another broad socioeconomic bundle; it is missing built-environment, access, and institutional-attractor signal.",
+      "Property and exposure-heavy offenses such as burglary, larceny, robbery, and motor vehicle theft are the clearest candidates for improvement from stable opportunity features."
+    ]
+  },
+  "ags_constraints_used": {
+    "methodology_reference": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/docs/AGS-CrimeRisk-Methodology-2025B.txt",
+    "methodology_note": "AGS states that no data variables were used that relate to race, ethnicity, ancestry, or language spoken at home.",
+    "repo_filter_note": "opencrimerisk/covariates/feature_filters.py excludes race, ethnicity, ancestry, nativity, immigration, citizenship, and language patterns from public feature selection.",
+    "operational_rule": "Recommendations below prioritize interpretable opportunity, exposure, access, and land-use signals over sensitive demographic proxies."
+  },
+  "local_availability_check": {
+    "epa_smart_location": {
+      "present": true,
+      "paths": [
+        "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/EPA-SmartLocation/SmartLocationDatabaseV3.zip",
+        "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/EPA-SmartLocation/unpacked/SmartLocationDatabase.gdb"
+      ],
+      "code_hook_present": true,
+      "active_tract_pipeline_uses_it": false
+    },
+    "roads_metrics": {
+      "present": true,
+      "paths": [
+        "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/roads/block_group_road_metrics.dc_only.parquet",
+        "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/roads/state_block_groups/11.parquet"
+      ],
+      "national_ready": false,
+      "code_hook_present": true
+    },
+    "tiger_roads_source": {
+      "present": true,
+      "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_roads",
+      "national_completeness_verified": false,
+      "note": "Many county zips are present, but this packet did not verify full national completeness."
+    },
+    "nlcd_or_mrlc": {
+      "present": false
+    },
+    "nces_edge": {
+      "present": false
+    },
+    "cms_pos": {
+      "present": false
+    },
+    "pad_us": {
+      "present": false
+    }
+  },
+  "inventory_gap_summary": {
+    "seed_inventory_absent_families": [
+      "EPA Smart Location built-environment metrics",
+      "Expanded TIGER road network morphology metrics",
+      "NLCD land cover",
+      "NLCD impervious surface and impervious descriptor",
+      "School and postsecondary attractors",
+      "Hospital and urgent-care attractors",
+      "Transit stop and station access",
+      "Park and public open-space access",
+      "Correctional facility proximity"
+    ],
+    "active_code_observations": [
+      "Block-group covariate code already supports optional EPA Smart Location and road metrics joins.",
+      "Road aggregation currently stops at length totals and class shares; it does not yet expose network permeability or node structure.",
+      "The active tract pipeline does not pass Smart Location or road inputs into the tract frame."
+    ]
+  },
+  "recommended_families": [
+    {
+      "recommendation_id": "public_signal_01_sld_activation",
+      "priority_rank": 1,
+      "feature_family": "street_network_and_location_efficiency",
+      "implementation_bucket": "implementable_now_from_local_data",
+      "ags_consistent": true,
+      "current_gap_evidence": {
+        "seed_inventory_has_family": false,
+        "local_source_present": true,
+        "code_hook_present": true,
+        "active_pipeline_uses_source": false
+      },
+      "source": {
+        "name": "EPA Smart Location Database v3.0",
+        "url": "https://www.epa.gov/smartgrowth/smart-location-mapping",
+        "native_geography": "census block group",
+        "coverage": "National block-group coverage; most variables available nationwide; transit accessibility is partial where transit data exist.",
+        "source_note": "EPA describes the Smart Location Database as a nationwide geospatial database with more than 90 built-environment indicators and notes version 3.0 updated in 2021."
+      },
+      "proposed_feature_examples": [
+        "intersection density",
+        "four-way intersection share",
+        "land-use mix",
+        "jobs-housing balance",
+        "employment density",
+        "transit accessibility",
+        "National Walkability Index or its underlying components"
+      ],
+      "proposed_transformations": [
+        "Use block-group native values directly where available.",
+        "Aggregate to tract and jurisdiction using land-area or population weighting depending variable meaning.",
+        "Retain availability flags for transit metrics.",
+        "Winsorize heavy-tailed density fields before model ingestion."
+      ],
+      "model_value_hypothesis": "This is the highest-value ready-now upgrade because it already exists on disk and adds dense built-form, accessibility, and mixed-use signal that is absent from the ACS plus LODES frame."
+    },
+    {
+      "recommendation_id": "public_signal_02_tiger_roads_network",
+      "priority_rank": 2,
+      "feature_family": "road_network_morphology_and_access",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "current_gap_evidence": {
+        "seed_inventory_has_family": false,
+        "local_source_present": true,
+        "code_hook_present": true,
+        "national_ready_now": false
+      },
+      "source": {
+        "name": "Census TIGER/Line Roads",
+        "url": "https://www2.census.gov/geo/tiger/TIGER2020/ROADS/",
+        "native_geography": "county-level road shapefiles",
+        "coverage": "Nationwide county-based TIGER road files."
+      },
+      "proposed_feature_examples": [
+        "road km per sqkm by road class",
+        "distance to nearest primary road",
+        "distance to nearest ramp",
+        "intersection density",
+        "dead-end share",
+        "service or alley road share",
+        "limited-access accessibility"
+      ],
+      "proposed_transformations": [
+        "Build drivable-road nodes by snapping segment endpoints within a fixed tolerance.",
+        "Count node degree 1, 3, and 4 plus to form permeability features.",
+        "Normalize class lengths by land area.",
+        "Create multi-radius nearest-distance features to primary roads and ramps."
+      ],
+      "model_value_hypothesis": "Road morphology is a direct opportunity and access layer for burglary, robbery, and motor-vehicle theft and should materially improve generalization beyond raw road length totals.",
+      "risks": [
+        "Current local road outputs are only partially materialized.",
+        "National pull is bounded but still large enough to require a reproducible cache manifest."
+      ]
+    },
+    {
+      "recommendation_id": "public_signal_03_nlcd_land_impervious",
+      "priority_rank": 3,
+      "feature_family": "land_cover_and_imperviousness",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "MRLC Annual NLCD Land Cover plus Fractional Impervious Surface plus Impervious Descriptor",
+        "urls": [
+          "https://www.mrlc.gov/data/references/national-land-cover-database-2021-landcover-imperviousness-nlcd2021",
+          "https://www.mrlc.gov/data/type/fractional-impervious-surface",
+          "https://www.mrlc.gov/data/type/impervious-descriptor",
+          "https://www.mrlc.gov/data/type/science-tree-canopy-cover"
+        ],
+        "native_geography": "30 meter raster",
+        "coverage": "National science products; annual land cover and imperviousness products for CONUS with expanding OCONUS support."
+      },
+      "proposed_feature_examples": [
+        "mean impervious percent",
+        "share of road-impervious pixels",
+        "share of urban impervious pixels",
+        "developed open or low or medium or high intensity land cover shares",
+        "tree canopy share",
+        "open water and wetland shares"
+      ],
+      "proposed_transformations": [
+        "Area-weight raster means and class shares to block group and tract.",
+        "Create separate road-impervious and nonroad urban-impervious measures.",
+        "Log or spline-transform impervious percentage because effects are nonlinear.",
+        "Use tree canopy and open-space shares as counterweights to built intensity."
+      ],
+      "model_value_hypothesis": "This is the strongest missing structural opportunity family for property crime and vehicle theft because it distinguishes parking and roadway surfaces, urban built mass, and green open space."
+    },
+    {
+      "recommendation_id": "public_signal_04_nces_public_schools",
+      "priority_rank": 4,
+      "feature_family": "k12_institutional_attractors",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "NCES EDGE Public School Locations",
+        "url": "https://nces.ed.gov/programs/edge/geographic/schoollocations",
+        "native_geography": "school point locations",
+        "coverage": "National annual school-year files with point locations and school attributes."
+      },
+      "proposed_feature_examples": [
+        "public school count within 1 km and 3 km",
+        "nearest public school distance",
+        "enrollment-weighted school gravity",
+        "high-school share among nearby schools"
+      ],
+      "proposed_transformations": [
+        "Kernel or buffer counts around block-group representative points and polygons.",
+        "Enrollment-weighted decay features.",
+        "Separate elementary and secondary institutions where attribute coverage allows."
+      ],
+      "model_value_hypothesis": "Schools are a stable nationwide daytime attractor layer and can improve assault, larceny, and robbery exposure signal without relying on sensitive demographics."
+    },
+    {
+      "recommendation_id": "public_signal_05_nces_postsecondary",
+      "priority_rank": 5,
+      "feature_family": "postsecondary_and_campus_attractors",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "NCES EDGE Postsecondary School Locations",
+        "url": "https://nces.ed.gov/programs/edge/geographic/schoollocations",
+        "native_geography": "postsecondary point locations",
+        "coverage": "National annual postsecondary point files derived from IPEDS."
+      },
+      "proposed_feature_examples": [
+        "college count within 3 km and 5 km",
+        "nearest college distance",
+        "enrollment-weighted campus gravity",
+        "large-campus flag"
+      ],
+      "proposed_transformations": [
+        "Build multi-radius counts and inverse-distance gravity features.",
+        "Use enrollment or institution size where present.",
+        "Optionally form a campus cluster polygon proxy from dense same-name points."
+      ],
+      "model_value_hypothesis": "College and university activity nodes are concentrated high-signal attractors for robbery, larceny, and motor-vehicle theft around campus environments."
+    },
+    {
+      "recommendation_id": "public_signal_06_cms_hospitals",
+      "priority_rank": 6,
+      "feature_family": "hospital_and_medical_institution_attractors",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "CMS Provider of Services File - Hospital and Non-Hospital Facilities",
+        "url": "https://data.cms.gov/provider-characteristics/hospitals-and-other-facilities/provider-of-services-file-quality-improvement-and-evaluation-system",
+        "catalog_url": "https://catalog.data.gov/dataset/provider-of-services-file-hospital-non-hospital-facilities-f216f",
+        "native_geography": "provider address records",
+        "coverage": "National quarterly provider enrollment and certification file."
+      },
+      "proposed_feature_examples": [
+        "acute hospital count within 5 km",
+        "critical access hospital distance",
+        "psychiatric hospital proximity",
+        "medical facility density"
+      ],
+      "proposed_transformations": [
+        "Filter hospital provider types from the broader POS frame.",
+        "Geocode once and maintain a versioned facility cache.",
+        "Use multi-radius counts and nearest-distance features."
+      ],
+      "model_value_hypothesis": "Hospitals are large stable activity nodes with reliable national update cadence and clearer source governance than HIFLD hospital metadata pages."
+    },
+    {
+      "recommendation_id": "public_signal_07_transit_access",
+      "priority_rank": 7,
+      "feature_family": "transit_stop_and_station_access",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "FTA National Transit Database and National Transit Map geospatial feeds",
+        "url": "https://www.transit.dot.gov/ntd",
+        "supporting_url": "https://www.transit.dot.gov/research-innovation/national-transit-map",
+        "native_geography": "stop, station, route, and service feed geometry",
+        "coverage": "National reporter coverage; strongest where GTFS submissions are complete."
+      },
+      "proposed_feature_examples": [
+        "transit stops within 800 m",
+        "nearest fixed-guideway station distance",
+        "route-type mix",
+        "service frequency proxy",
+        "transit-rich flag"
+      ],
+      "proposed_transformations": [
+        "Aggregate stop counts and service-weighted accessibility by mode.",
+        "Keep completeness flags by agency and geography.",
+        "Prefer stable station-level counts when service frequency quality is uneven."
+      ],
+      "model_value_hypothesis": "Transit access is a meaningful opportunity and guardianship proxy in dense metros and complements SLD transit features with more current network geometry."
+    },
+    {
+      "recommendation_id": "public_signal_08_padus_open_space",
+      "priority_rank": 8,
+      "feature_family": "parks_and_public_open_space_access",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "USGS PAD-US 4.1",
+        "url": "https://www.usgs.gov/programs/gap-analysis-project/science/pad-us-data-download",
+        "reference_url": "https://www.usgs.gov/data/protected-areas-database-united-states-pad-us-4",
+        "native_geography": "protected-area polygons",
+        "coverage": "National polygon inventory of public parks and other protected open space."
+      },
+      "proposed_feature_examples": [
+        "share of public open space in block group or tract",
+        "distance to nearest accessible park polygon",
+        "adjacency to large recreation land"
+      ],
+      "proposed_transformations": [
+        "Intersect PAD-US access-capable polygons with BG and tract boundaries.",
+        "Create edge-distance features to large park polygons.",
+        "Use as structural context instead of year-over-year change signal."
+      ],
+      "model_value_hypothesis": "PAD-US adds park and open-space access signal that NLCD alone cannot recover from spectral classes.",
+      "risks": [
+        "USGS explicitly discourages naive change comparisons across PAD-US versions because many changes reflect data improvements rather than real land-status change."
+      ]
+    },
+    {
+      "recommendation_id": "public_signal_09_prison_boundaries",
+      "priority_rank": 9,
+      "feature_family": "correctional_institution_attractors",
+      "implementation_bucket": "bounded_new_public_pull",
+      "ags_consistent": true,
+      "source": {
+        "name": "HIFLD Prison Boundaries",
+        "url": "https://catalog.data.gov/dataset/prison-boundaries",
+        "native_geography": "facility polygons",
+        "coverage": "National metadata catalog entry for prison boundaries."
+      },
+      "proposed_feature_examples": [
+        "prison overlap share",
+        "nearest prison distance",
+        "correctional adjacency flag"
+      ],
+      "proposed_transformations": [
+        "Polygon overlap and nearest-edge distance features.",
+        "Optional separation of prison and jail-like facilities if attributes support it."
+      ],
+      "model_value_hypothesis": "Sparse but locally strong for places where correctional institutions materially change daytime population, traffic, and offense mix.",
+      "risks": [
+        "Data.gov HIFLD catalog pages often expose metadata without a durable direct file download path.",
+        "Any adopted HIFLD extract should be version-snapshotted locally at pull time."
+      ]
+    },
+    {
+      "recommendation_id": "public_signal_10_osm_commercial_poi",
+      "priority_rank": 10,
+      "feature_family": "commercial_and_activity_poi",
+      "implementation_bucket": "interesting_but_low_priority",
+      "ags_consistent": true,
+      "source": {
+        "name": "OpenStreetMap extracts via Geofabrik",
+        "url": "https://download.geofabrik.de/north-america/us.html",
+        "native_geography": "point, line, and polygon OSM features",
+        "coverage": "National extracts updated frequently; state shapefile extracts available."
+      },
+      "proposed_feature_examples": [
+        "retail and food-service amenity density",
+        "parking facility density",
+        "nightlife and bar proximity",
+        "shopping-center gravity"
+      ],
+      "proposed_transformations": [
+        "Use strict tag whitelists and entity deduplication.",
+        "Freeze monthly or quarterly extracts.",
+        "Prefer broad commercial classes over brittle individual tags."
+      ],
+      "model_value_hypothesis": "This could add real signal for larceny and robbery in commercial corridors, but coverage heterogeneity and schema volatility make it a weaker first-choice source family than federal datasets."
+    }
+  ],
+  "doctrine_candidates": [
+    {
+      "type": "feature_selection_doctrine",
+      "promotion_candidate": true,
+      "statement": "Prioritize built-environment and attractor datasets that are explicitly national, versioned, and geography-joinable before adding more socioeconomic proxy features."
+    },
+    {
+      "type": "public_source_policy",
+      "promotion_candidate": true,
+      "statement": "Prefer sources with direct downloadable files and durable version metadata such as Census, MRLC, NCES, CMS, EPA, and USGS. Treat catalog-only HIFLD pages as operationally weaker and snapshot any resolved extract immediately."
+    },
+    {
+      "type": "feature_engineering_doctrine",
+      "promotion_candidate": true,
+      "statement": "For attractor layers, standardize the first pass to counts, densities, nearest-distance, and inverse-distance gravity features at multiple radii rather than raw counts alone."
+    },
+    {
+      "type": "feature_engineering_doctrine",
+      "promotion_candidate": true,
+      "statement": "For static structural datasets such as land cover, roads, and parks, use them as opportunity-context features and do not treat cross-version differences as annual trend estimates unless the source explicitly supports that use."
+    },
+    {
+      "type": "pipeline_observation",
+      "promotion_candidate": true,
+      "statement": "The repo already has dormant federal-source hooks for EPA Smart Location and TIGER road metrics at block-group level. Activating those should precede any expansion into weaker or more operationally fragile source families."
+    }
+  ]
+}

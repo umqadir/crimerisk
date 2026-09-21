@@ -1,0 +1,2 @@
+city_key,source_name,source_url,api_endpoint,portal_type,raw_cache_path,raw_cache_bytes,raw_cache_sha256
+fresno_ca,Fresno Police Department Public Crime Map - Public Crime Data,https://cityoffresno.maps.arcgis.com/apps/webappviewer/index.html?id=591d11293e7f48698b015d0a36e75689,https://www4.fresno.gov/server/rest/services/PublicServices/PublicCrimeDataPublish/FeatureServer/0,arcgis_feature_service,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/fresno_ca_raw.parquet,,

@@ -1,0 +1,9 @@
+column,dtype
+OBJECTID,int64
+Record_ID,object
+Occurrence_Date_PT,object
+Offense_Code,object
+Offense_Ext,object
+Offense_Category,object
+__arcgis_longitude,float64
+__arcgis_latitude,float64

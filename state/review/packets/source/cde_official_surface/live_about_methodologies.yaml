@@ -1,0 +1,225 @@
+- generic [ref=e7]:
+  - navigation [ref=e9]:
+    - generic [ref=e11]:
+      - img "US flag signifying that this is a United States Federal Government website" [ref=e12]
+      - paragraph [ref=e13]:
+        - text: An official website of the United States government
+        - generic "Help With How to Know" [ref=e14] [cursor=pointer]:
+          - text: Here's how you know
+          - img "Here's how you know expand" [ref=e15]
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic "Side Nav" [ref=e20] [cursor=pointer]:
+          - img [ref=e23]
+        - img "FBI Seal" [ref=e33] [cursor=pointer]
+        - button "Skip to main content" [ref=e34] [cursor=pointer]
+      - generic [ref=e35]:
+        - generic "Home" [ref=e37]:
+          - generic [ref=e38] [cursor=pointer]: Home
+        - link "Data Explorer" [ref=e41] [cursor=pointer]:
+          - /url: "#/pages/explorer/crime/crime-trend"
+          - generic [ref=e42]: Data Explorer
+          - img [ref=e44]
+        - generic [ref=e50]:
+          - generic "Data Discovery Tool" [ref=e51]:
+            - generic [ref=e52] [cursor=pointer]: Data Discovery Tool
+          - link "Documents & Downloads" [ref=e54] [cursor=pointer]:
+            - /url: "#/pages/downloads"
+            - generic [ref=e55]: Documents & Downloads
+          - link "About" [ref=e57] [cursor=pointer]:
+            - /url: "#/pages/about"
+            - generic [ref=e58]: About
+        - button "Toggle Dark Theme" [ref=e59] [cursor=pointer]:
+          - img [ref=e61]
+  - generic [ref=e66]:
+    - generic [ref=e70]:
+      - img "Handcuffs" [ref=e72]
+      - generic "United States Map" [ref=e74]
+      - img "Agency" [ref=e76]
+      - img "Time" [ref=e78]
+    - generic [ref=e79]:
+      - generic [ref=e82]:
+        - generic [ref=e83]:
+          - generic [ref=e84]: About the Crime Data Explorer
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - paragraph [ref=e89]:
+                - text: The Crime Data Explorer (CDE) is the FBI’s
+                - link "Uniform Crime Reporting (UCR) Program's" [ref=e90] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e92]
+                - text: dynamic solution to presenting crime data in a more immediate venue that reflects the constant change in the nation’s crime circumstance.
+              - paragraph [ref=e98]:
+                - text: The CDE pages provide a view of estimated national and state data, reported agency-level crime statistics, and graphs of specific variables from the National Incident-Based Reporting System (NIBRS). You can also
+                - link "download bulk datasets" [ref=e99] [cursor=pointer]:
+                  - /url: "#/pages/downloads"
+                - text: from a variety of UCR topics. In addition, the
+                - link "Crime Data API" [ref=e100] [cursor=pointer]:
+                  - /url: "#/pages/docApi"
+                - text: (application programming interface) provides a way for developers to access and share large amounts of data in significant ways.
+              - paragraph [ref=e101]:
+                - text: The Crime Data Explorer is part of the FBI’s broader effort to modernize the reporting of national crime data. It allows you to
+                - link "view trends" [ref=e102] [cursor=pointer]:
+                  - /url: "#/pages/explorer/crime/crime-trend"
+                - text: ","
+                - link "download bulk data" [ref=e103] [cursor=pointer]:
+                  - /url: "#/pages/downloads"
+                - text: ", and access the Crime Data API for reported crime at the national, state, and agency levels."
+            - generic [ref=e106]:
+              - generic [ref=e107]: Available Data
+              - generic [ref=e110]:
+                - link "Bulk Data Downloads" [ref=e112] [cursor=pointer]:
+                  - /url: "#/pages/downloads"
+                  - img [ref=e114]
+                  - text: Bulk Data Downloads
+                - link "Crime Data API" [ref=e120] [cursor=pointer]:
+                  - /url: "#/pages/docApi"
+                  - img [ref=e122]
+                  - text: Crime Data API
+        - generic [ref=e127]:
+          - generic [ref=e128]: Crime Data
+          - generic [ref=e131]:
+            - generic [ref=e132]:
+              - paragraph [ref=e133]:
+                - text: Since 1930, participating law enforcement agencies have voluntarily provided the nation with crime statistics through the
+                - link "Uniform Crime Reporting (UCR) Program." [ref=e134] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e136]
+              - paragraph [ref=e142]: By recommendation of the FBI's Criminal Justice Information Services Advisory Policy Board and with the support of the nation's major law enforcement organizations, the Uniform Crime Reporting (UCR) Program retired its long-time Summary Reporting System (SRS) and began accepting crime data exclusively via the National Incident-Based Reporting System (NIBRS)–a much more comprehensive data collection system–on January 1, 2021. Incident-based data allow us to visualize details regarding individual offenses and arrests that were part of an incident, such as information about the victim, offender, property involved, and arrestees, providing context that is not provided by the summary data.
+              - paragraph [ref=e143]: For the 2022 data year, to provide nationally representative data, the FBI accepted Summary Reporting System data submissions from non-transitioned agencies. This interim measure will ensure more complete data as agencies continue to transition to NIBRS.
+              - paragraph [ref=e144]:
+                - text: The Crime Data Explorer makes this data available through the
+                - link "API" [ref=e145] [cursor=pointer]:
+                  - /url: "#/pages/docApi"
+                - text: and
+                - link "bulk downloads." [ref=e146] [cursor=pointer]:
+                  - /url: "#/pages/downloads"
+            - generic [ref=e149]:
+              - generic [ref=e150]: UCR Program Resources
+              - generic [ref=e153]:
+                - link "UCR Home" [ref=e155] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                  - img [ref=e157]
+                  - text: UCR Home
+                  - img [ref=e163]
+                - link "UCR Technical Specifications, User Manuals, and Data Tools" [ref=e170] [cursor=pointer]:
+                  - /url: https://www.fbi.gov/services/cjis/ucr/data-documentation
+                  - img [ref=e172]
+                  - text: UCR Technical Specifications, User Manuals, and Data Tools
+                  - img [ref=e178]
+        - generic [ref=e184]:
+          - generic [ref=e185]: Methodologies Explain Potential Differences in UCR Data
+          - generic [ref=e187]:
+            - paragraph [ref=e188]:
+              - text: The Uniform Crime Reporting (UCR) Program has migrated its data releases from static web publications hosted on
+              - link "fbi.gov" [ref=e189] [cursor=pointer]:
+                - /url: https://www.fbi.gov/
+              - img [ref=e191]
+              - text: to more dynamic, multi-year displays of data on the Crime Data Explorer (CDE). Just as the data in the tables of the annual publications sometimes differed from those available in the master files for the same year, the data in the tables of the various releases may also differ from those on the Explorer Pages of the CDE. These variations are due to the difference in methodologies between the tables and data displayed on the CDE. Historically, the agency, state, regional, and national data in the NIBRS (i.e., National Incident-Based Reporting System), Crime in the United States, Hate Crime Statistics, and Law Enforcement Officers Killed and Assaulted releases must pass internal data quality reviews prior to publication. According to the methodology, data that do not meet established criteria are not included.
+            - paragraph [ref=e197]: As is the case with all the master files released for 1960 through 2019, the data displayed on the CDE include all reported data from agencies and entities aggregated from the agency data, such as states. According to methodology of typical open data websites, all reported data remain in file. Individuals who typically work with data files, such as master files, can also access the CDE releases of data for 2019 and earlier for data based on the same methodology.
+            - paragraph [ref=e198]:
+              - text: Individuals who typically use data from tables in Crime in the United States and other UCR web publications on
+              - link "fbi.gov" [ref=e199] [cursor=pointer]:
+                - /url: https://www.fbi.gov/
+              - img [ref=e201]
+              - text: will continue to have access to that format via the downloadable publication tables for 2019 and prior years on that site.
+        - generic [ref=e208]:
+          - generic "FAQ" [ref=e209] [cursor=pointer]:
+            - img [ref=e211]
+            - generic [ref=e217]: FAQs
+            - img [ref=e219]
+          - generic [ref=e300]:
+            - generic "What methodology is used to display the trends on the Crime Data Explorer (CDE) homepage?" [ref=e302] [cursor=pointer]:
+              - generic [ref=e303]: What methodology is used to display the trends on the Crime Data Explorer (CDE) homepage?
+              - img [ref=e305]
+            - generic "How are the data verified?" [ref=e311] [cursor=pointer]:
+              - generic [ref=e312]: How are the data verified?
+              - img [ref=e314]
+            - generic "What does the Continuous “Rolling” 12-Month Participation Percentage in the National Use-of-Force Data Collection mean?" [ref=e320] [cursor=pointer]:
+              - generic [ref=e321]: What does the Continuous “Rolling” 12-Month Participation Percentage in the National Use-of-Force Data Collection mean?
+              - img [ref=e323]
+            - generic "What is different in 2022?" [ref=e329] [cursor=pointer]:
+              - generic [ref=e330]: What is different in 2022?
+              - img [ref=e332]
+            - generic "Why are the UCR data presentations different for 2021 data?" [ref=e338] [cursor=pointer]:
+              - generic [ref=e339]: Why are the UCR data presentations different for 2021 data?
+              - img [ref=e341]
+            - generic "What is included in the 2021 data year releases?" [ref=e347] [cursor=pointer]:
+              - generic [ref=e348]: What is included in the 2021 data year releases?
+              - img [ref=e350]
+            - generic "What data are not included in the 2021 data year release?" [ref=e356] [cursor=pointer]:
+              - generic [ref=e357]: What data are not included in the 2021 data year release?
+              - img [ref=e359]
+            - generic "What is the Crime Data Explorer (CDE)?" [ref=e365] [cursor=pointer]:
+              - generic [ref=e366]: What is the Crime Data Explorer (CDE)?
+              - img [ref=e368]
+            - generic "Where does the FBI get the data in the CDE?" [ref=e374] [cursor=pointer]:
+              - generic [ref=e375]: Where does the FBI get the data in the CDE?
+              - img [ref=e377]
+            - generic "What kinds of data does the CDE contain?" [ref=e383] [cursor=pointer]:
+              - generic [ref=e384]: What kinds of data does the CDE contain?
+              - img [ref=e386]
+            - generic "How is the data displayed?" [ref=e392] [cursor=pointer]:
+              - generic [ref=e393]: How is the data displayed?
+              - img [ref=e395]
+            - generic "What features are available to users?" [ref=e401] [cursor=pointer]:
+              - generic [ref=e402]: What features are available to users?
+              - img [ref=e404]
+            - generic "Is information in the CDE available in real time?" [ref=e410] [cursor=pointer]:
+              - generic [ref=e411]: Is information in the CDE available in real time?
+              - img [ref=e413]
+            - generic "What is the UCR Program?" [ref=e419] [cursor=pointer]:
+              - generic [ref=e420]: What is the UCR Program?
+              - img [ref=e422]
+            - generic "The FBI now collects crime data via the National Incident-Based Reporting System (NIBRS). How did it collect data previously and why did it change?" [ref=e428] [cursor=pointer]:
+              - generic [ref=e429]: The FBI now collects crime data via the National Incident-Based Reporting System (NIBRS). How did it collect data previously and why did it change?
+              - img [ref=e431]
+            - generic "Does UCR collect Personally Identifying Information (PII)?" [ref=e437] [cursor=pointer]:
+              - generic [ref=e438]: Does UCR collect Personally Identifying Information (PII)?
+              - img [ref=e440]
+            - generic "What are the differences between the CDE and the annual Crime in the United States (CIUS) report?" [ref=e446] [cursor=pointer]:
+              - generic [ref=e447]: What are the differences between the CDE and the annual Crime in the United States (CIUS) report?
+              - img [ref=e449]
+            - generic "Where can I find annual reports like Crime in the United States (CIUS) or Hate Crime Statistics?" [ref=e455] [cursor=pointer]:
+              - generic [ref=e456]: Where can I find annual reports like Crime in the United States (CIUS) or Hate Crime Statistics?
+              - img [ref=e458]
+      - navigation [ref=e225]:
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - img "FBI Seal" [ref=e230]
+            - img "FBI Seal" [ref=e231]
+          - generic [ref=e233]:
+            - generic [ref=e234]: Contact us
+            - generic [ref=e235]: FBI Uniform Crime Reporting Program
+            - generic [ref=e236]: 1000 Custer Hollow Road | Clarksburg, WV 26306
+            - generic [ref=e237]:
+              - link "Web Form" [ref=e238] [cursor=pointer]:
+                - /url: https://forms.fbi.gov/assistance-with-uniform-crime-statistics-information
+                - generic [ref=e239]: Web Form
+              - img [ref=e241]
+            - generic [ref=e247]:
+              - img "X Logo" [ref=e248] [cursor=pointer]
+              - img "facebook" [ref=e249] [cursor=pointer]
+              - img "youtube" [ref=e250] [cursor=pointer]
+              - img "instagram" [ref=e251] [cursor=pointer]
+              - img "linkedin" [ref=e252] [cursor=pointer]
+          - generic [ref=e253]:
+            - link "FAQ" [ref=e254] [cursor=pointer]:
+              - /url: "#/pages/about#faq"
+            - link "GLOSSARY" [ref=e255] [cursor=pointer]:
+              - /url: "#"
+            - link "PRIVACY POLICY" [ref=e256] [cursor=pointer]:
+              - /url: https://www.fbi.gov/privacy_policy
+            - img [ref=e258]
+            - link "FOIA" [ref=e264] [cursor=pointer]:
+              - /url: https://www.fbi.gov/services/information-management/foipa
+            - img [ref=e266]
+            - link "USA.GOV" [ref=e272] [cursor=pointer]:
+              - /url: https://www.usa.gov/
+            - img [ref=e274]
+            - link "ACCESSIBILITY" [ref=e280] [cursor=pointer]:
+              - /url: https://www.fbi.gov/accessibility
+            - img [ref=e282]
+            - link "FEEDBACK" [ref=e288] [cursor=pointer]:
+              - /url: https://forms.fbi.gov/cde
+            - img [ref=e290]

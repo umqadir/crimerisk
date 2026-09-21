@@ -1,0 +1,121 @@
+{
+  "case_key": "tamarac_fl",
+  "jurisdiction_id": "12:municipal:place:1270675",
+  "jurisdiction_name": "Tamarac city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_for_bso_contract_city_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Tamarac is a real incorporated municipality. The City's official history page says Tamarac was incorporated on July 19, 1963.",
+    "As of March 24, 2026, Tamarac's current primary general-policing entity is Broward Sheriff's Office, not a city-run Tamarac Police Department. Tamarac's official volunteer page says BSO provides police services for the City of Tamarac, and BSO's official Tamarac district page lists a Tamarac law-enforcement office at 7515 Pine Island Road.",
+    "The contract-policing structure is longstanding. In the City's official September 23, 2020 commission meeting transcript, Tamarac approved a police-services agreement with BSO effective October 1, 2020 through September 30, 2025 with one five-year renewal option, and city staff described it as a continuation of BSO agreements that had been in place for over the last twenty five years.",
+    "Florida's official county-and-municipal offense publications support a real Tamarac-specific annual reporting identity through the transition period. FDLE's 2020 report lists Tamarac Police Department with population 66,089 and total index crime 1,155, and FDLE's 2021 report retains Tamarac Police Department as a named Broward municipal row with population 72,509 even though every offense cell is blank.",
+    "Florida's post-SRS public offense workbook no longer publishes Tamarac. Inspection of FDLE's official FIBRS Offense Detail 2021-2025 Q2 workbook found no Tamarac Police Department row in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets.",
+    "The FBI Crime Data Explorer agency roster still carries Tamarac's legacy agency identity. The official CDE Florida agency endpoint lists Tamarac Police Department in Broward County under ORI FL0063100, but marks is_nibrs as false and nibrs_start_date as null.",
+    "Repo evidence matches a continuity collapse under a contract-city model rather than a bad municipal target. The live crosswalk routes FL0063100 exclusively to Tamarac city, agency_master classifies FL0063100 as a local police department with SRS and NIBRS source-presence flags through 2024, and agency_year_observations shows positive annual totals in 2018, 2019, and 2020 before zero rows from 2021 through 2024. jurisdiction_controls_2024 then fully fills every 2024 Tamarac offense row from historical medians."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_current_bso_contract_policing",
+    "official_basis": [
+      "Tamarac is an incorporated city under its own municipal government.",
+      "Current city materials state that Broward Sheriff's Office provides police services for the City of Tamarac.",
+      "Current BSO materials maintain a Tamarac district office serving the city."
+    ],
+    "important_interpretation": "Tamarac is not Broward County nonmunicipal remainder and not a fake place-level routing artifact. It is a valid municipality whose current policing is delivered under a long-running BSO contract structure."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Broward Sheriff's Office under Tamarac contract-policing arrangement",
+    "active_city_police_department_found": false,
+    "city_specific_reporting_surface_historically_visible": true,
+    "county_or_special_layer_displacing_city_police": true,
+    "official_evidence": [
+      "Tamarac's official volunteer page says BSO provides police services for the City of Tamarac.",
+      "BSO's official Tamarac district page lists Tamarac as its own law-enforcement district office with Tamarac address and non-emergency number.",
+      "The City's September 23, 2020 commission meeting approved a BSO police-services agreement effective October 1, 2020 through September 30, 2025 with one five-year renewal option.",
+      "In that same meeting, city staff described the 2020 agreement as a continuation of BSO agreements that had been in place for over the last twenty five years."
+    ],
+    "important_clarification": "Tamarac is not a current city-run police department case. The keep decision rests on Tamarac's continuing validity as a standalone municipal policing target plus the documented existence of a Tamarac-specific legacy reporting identity tied to FL0063100."
+  },
+  "official_reporting_evidence": {
+    "current_service_structure_check": {
+      "summary": "Current official city and sheriff sources agree that Tamarac is policed by Broward Sheriff's Office under a city-specific service structure.",
+      "details": [
+        "Tamarac's official volunteer page says BSO provides police services for the City of Tamarac.",
+        "BSO's official Tamarac district page lists Tamarac as a district office at 7515 Pine Island Road.",
+        "The City's September 23, 2020 meeting approved a BSO police-services agreement effective October 1, 2020 through September 30, 2025 with one five-year renewal option."
+      ],
+      "interpretation": "The current service model is contract policing by BSO, not a city-run municipal police department."
+    },
+    "fdle_county_and_municipal_reports": {
+      "summary": "FDLE's official county-and-municipal offense reports treat Tamarac Police Department as a named municipal agency row through the transition period.",
+      "details": [
+        "FDLE 2020: Tamarac Police Department, population 66,089, total index crime 1,155.",
+        "FDLE 2021: Tamarac Police Department, population 72,509, retained as a row but with all offense fields blank."
+      ],
+      "interpretation": "Florida's own publication surface confirms that Tamarac had a real city-specific annual reporting identity. The last substantive public annual row is 2020; 2021 keeps the identity visible but no longer publishes offense counts."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The official FDLE FIBRS offense workbook for 2021 through 2025 Q2 contains no Tamarac Police Department row.",
+      "interpretation": "Tamarac loses public statewide offense continuity after the old county-and-municipal report path. That absence is a continuity and publication break under a contract-city model, not evidence that Tamarac is an invalid municipal target."
+    },
+    "fbi_cde_roster_check": {
+      "summary": "The official FBI Crime Data Explorer Florida agency roster still lists Tamarac Police Department with ORI FL0063100 in Broward County, but not as a NIBRS agency.",
+      "details": [
+        "agency_name: Tamarac Police Department",
+        "ori: FL0063100",
+        "agency_type_name: City",
+        "counties: BROWARD",
+        "is_nibrs: false",
+        "nibrs_start_date: null"
+      ],
+      "interpretation": "The FBI roster shows that Tamarac's legacy city agency identity still exists administratively, but it does not support a current NIBRS continuity path."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0063100 exclusively to 12:municipal:place:1270675 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0063100 as a local police department with srs_years and nibrs_years both listed as 2018 through 2024, latest_srs_year 2024, latest_srs_part1_total 0.0, latest_nibrs_year 2024, population_latest_nibrs 72,527, and nibrs_max_months_reported 0.0.",
+    "observation_state": "agency_year_observations.parquet shows CIUS-backed annual totals of 1,445 in 2018 and 1,567 in 2019, an SRS annual total of 1,155 in 2020, then zero annual rows with months_reported 0.0 and annual_part1_total 0.0 in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "agency_master asserts NIBRS source presence through 2024, but agency_year_observations contains no NIBRS rows for FL0063100 and only zero-valued post-2020 summary rows. That mismatch aligns with a broken continuity or source-presence interpretation problem rather than a bad Tamarac place mapping.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Tamarac offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, estimate_source hist_median, and current_year_fill_count values of 115 aggravated assault, 126 burglary, 985 larceny, 142 motor vehicle theft, 20 rape, and 51 robbery.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Tamarac in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1,439.0, and total_reported_count 0.0.",
+    "fbi_cde_queue_state": "fbi_cde_source_review_queue.csv separately flags FL0063100 as present_but_no_2024_observation with official_is_nibrs false, repo_has_srs_2024 false, repo_has_nibrs_2024 false, and mismatch_reason no_2024_observation."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Tamarac is a valid incorporated municipality.",
+      "Current city and sheriff sources show Tamarac is still a distinct city-specific policing object even though operations are delivered by BSO under contract.",
+      "FDLE officially published Tamarac Police Department as a municipal row with substantive 2020 counts and retained the Tamarac row in 2021.",
+      "The FBI CDE roster still carries Tamarac Police Department as a Florida city agency tied to FL0063100, even though it is not marked as a NIBRS participant.",
+      "The live repo crosswalk from FL0063100 to Tamarac city matches that historical Tamarac-specific reporting identity."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Tamarac's legacy municipal reporting identity survived administratively into the 2021 transition but lost public offense continuity after the SRS-era county-and-municipal report path.",
+      "The contract-city structure made the legacy city row fragile during the SRS-to-NIBRS transition: FDLE kept Tamarac as a blank row in 2021, the public FIBRS workbook stopped publishing it, and FBI CDE does not show Tamarac as a NIBRS agency.",
+      "Because FL0063100 remained exclusively attached to Tamarac in reference while official post-2020 offense continuity vanished, the 2024 control builder treated the city as structurally missing and fully filled it."
+    ],
+    "best_available_override_surface_if_business_requires_post_break_city_specific_support": {
+      "source": "Tamarac-specific BSO district records or city-held contract-performance materials",
+      "why": "The current public FDLE and FBI surfaces do not provide post-2020 Tamarac offense counts, but Tamarac still has a distinct BSO district and city-managed police-services contract structure.",
+      "limitations": [
+        "No ready-made official public annual offense table for Tamarac after 2020 was found in the reviewed materials.",
+        "A later override would require direct Tamarac-district BSO records, city public-records retrieval, or other city-held contract reporting outputs."
+      ]
+    },
+    "recommended_handling": [
+      "Retain Tamarac city as a standalone municipal control row.",
+      "Document Tamarac explicitly as a BSO contract-policing municipality rather than treating it as a standard city-run police department.",
+      "Do not drop Tamarac into generic Broward County nonmunicipal remainder.",
+      "Treat the current full-fill state as a reporting continuity and publication failure on FL0063100 under a contract-city municipal reporting model.",
+      "Use FDLE's county-and-municipal offense reports as the official state truth surface through 2021, with 2020 as the last substantive annual offense row."
+    ]
+  },
+  "likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining implementation blocker is that no reviewed official public source exposes ready-made post-2020 Tamarac offense totals; any later override would need Tamarac-specific BSO district records or city-held contract-reporting material."
+  ]
+}

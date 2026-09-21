@@ -1,0 +1,138 @@
+{
+  "contract_version": "2026-07-02",
+  "state_abbr": "FL",
+  "year": 2024,
+  "source": {
+    "official_source_type": "FDLE FIBRS workbook",
+    "official_source_url": "https://www.fdle.state.fl.us/getContentAsset/43da39b3-e350-4c0a-b5f2-2a9a98b6132e/73aabf56-e6e5-4330-95a3-5f2a270a1d2b/FIBRS_Offense_Detail_2021-2026.xlsx?language=en",
+    "landing_page_url": "https://www.fdle.state.fl.us/cjab/fibrs",
+    "local_workbook_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/raw/FIBRS_Offense_Detail_2021-2026.xlsx",
+    "selected_worksheet": "FIBRS Offense 2024"
+  },
+  "selection_rules": {
+    "use_only_selected_worksheet_for_2024": true,
+    "skip_header_rows": [
+      1,
+      2,
+      3
+    ],
+    "treat_row_4_and_below_as_agency_rows": true
+  },
+  "normalization_rules": {
+    "county_field": "trimmed source County cell",
+    "agency_name_field": "trimmed source Agency Name cell",
+    "agency_name_normalized": "lowercased punctuation-stripped alias key for county-aware joins",
+    "population_estimate": "numeric source column 3",
+    "months_reported": "count of non-null monthly cells by agency/offense; zero counts still count as reported months",
+    "quarters_reported": "derived from the reported monthly cells for compatibility with older state-publication consumers",
+    "count_null_token": "--",
+    "count_columns": "monthly cells converted to nullable integers; YTD rows are computed as the sum of monthly counts"
+  },
+  "staging_output": {
+    "path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FDLE-FIBRS-2024/parsed/fdle_fibrs_2024_offense_period_extract.csv",
+    "grain": "one row per agency x offense/group x period",
+    "period_values": [
+      "M01",
+      "M02",
+      "M03",
+      "M04",
+      "M05",
+      "M06",
+      "M07",
+      "M08",
+      "M09",
+      "M10",
+      "M11",
+      "M12",
+      "YTD"
+    ],
+    "offense_levels": [
+      "detail_offense"
+    ],
+    "row_count": 101491,
+    "required_columns": [
+      "state_abbr",
+      "year",
+      "source_sheet",
+      "source_row_number",
+      "county",
+      "agency_name",
+      "agency_name_normalized",
+      "population_estimate",
+      "quarters_reported",
+      "months_reported",
+      "offense_level",
+      "offense_bucket",
+      "offense_name",
+      "offense_name_source",
+      "offense_slug",
+      "period",
+      "quarter",
+      "month",
+      "month_name",
+      "incident_count",
+      "annual_rate"
+    ]
+  },
+  "join_contract": {
+    "preferred_join_keys": [
+      "county",
+      "agency_name_normalized"
+    ],
+    "join_limitations": [
+      "No ORI appears in the workbook.",
+      "Alias resolution is required for some college and FDLE regional-office rows.",
+      "Many validation rows remain genuine workbook absences rather than naming misses."
+    ]
+  },
+  "known_matching_issues": [
+    {
+      "issue": "county_sheriff_absences",
+      "examples": [
+        "Hamilton County Sheriff's Office",
+        "Highlands County Sheriff's Office",
+        "Okaloosa County Sheriff's Office",
+        "Union County Sheriff's Office"
+      ],
+      "note": "These roster rows were not found in the refreshed 2024 FDLE workbook."
+    },
+    {
+      "issue": "city_absences",
+      "examples": [
+        "Plant City Police Department",
+        "Dade City Police Department",
+        "Port Richey Police Department",
+        "Venice Police Department",
+        "Southwest Ranches Police Department"
+      ],
+      "note": "These spotcheck agencies were not found as refreshed 2024 workbook rows."
+    },
+    {
+      "issue": "alias_only_matches",
+      "examples": [
+        "Tallahassee Community College -> Tallahassee Community College PD",
+        "Department of Law Enforcement: Lee County, Fort Myers -> FDLE - Fort Myers RA",
+        "Department of Law Enforcement: Leon County, Tallahassee -> FDLE - Tallahassee"
+      ],
+      "note": "These require county-aware alias logic; exact normalized-name joins are insufficient."
+    },
+    {
+      "issue": "campus_name_mismatch",
+      "examples": [
+        "University of South Florida: Tampa"
+      ],
+      "note": "The workbook only shows 'Univ of South Florida PD - St Pete Campus' and does not expose a Tampa campus row."
+    }
+  ],
+  "spotcheck_reconciliation": {
+    "source_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/source/states/fl/official_fibrs_spotcheck_2024.csv",
+    "output_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/source/states/fl/official_fibrs_spotcheck_2024_reconciled.csv",
+    "row_count": 29,
+    "matched_row_count": 22,
+    "status_counts": {
+      "matched_new_from_normalized_extract": 8,
+      "matched_same_workbook_row": 14,
+      "not_found_in_workbook": 7
+    }
+  }
+}

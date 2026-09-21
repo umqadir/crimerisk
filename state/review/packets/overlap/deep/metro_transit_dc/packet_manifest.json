@@ -1,0 +1,14 @@
+{
+  "case_key": "metro_transit_dc",
+  "ori": "DCMTP0000",
+  "agency_name_raw": "Metro Transit Police",
+  "state_abbr": "DC",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/metro_transit_dc",
+  "required_artifacts": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "question": "Determine the defensible production handling for WMATA Metro Transit Police: custom multijurisdiction transit footprint, narrower county/place proxy, or another overlap class."
+}

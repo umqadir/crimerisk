@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,aggravated_assault,641.0,cius_publication_annual,high
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,burglary,778.0,cius_publication_annual,high
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,larceny,3870.0,cius_publication_annual,high
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,motor_vehicle_theft,1245.0,cius_publication_annual,high
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,murder,8.0,cius_publication_annual,high
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,rape,107.0,cius_publication_annual,high
+henderson_nv,"Henderson, Nevada",32:municipal:place:3231900,robbery,180.0,cius_publication_annual,high

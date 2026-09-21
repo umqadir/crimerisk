@@ -1,0 +1,40 @@
+{
+  "general": {
+    "default_override_note": "Special-use classification is descriptive. A value is published when its denominator passes the applicable minimum.",
+    "insufficient_exposure_note": "The applicable denominator is below its publication minimum. Expected counts and density remain available.",
+    "county_proxy_localization_note": "Some state-police, patrol, constable, precinct, and county-named overlap agencies are localized to the coded county as a county-proxy geography; post, precinct, and service-area footprints are not exact county boundaries.",
+    "estimate_modes": {
+      "insufficient_exposure": {
+        "disclaimer": "The applicable denominator is below its publication minimum. Expected counts and density remain available."
+      }
+    }
+  },
+  "aggravated_assault": {
+    "excluded_by_default": false,
+    "disclaimer": "Primary denominator: estimated person-present exposure. Resident denominator: resident population."
+  },
+  "burglary": {
+    "excluded_by_default": false,
+    "disclaimer": "Primary denominator: estimated residential and commercial premises exposure. Resident denominator: resident population."
+  },
+  "larceny": {
+    "excluded_by_default": false,
+    "disclaimer": "Primary denominator: estimated person-present and commercial-activity exposure. Resident denominator: resident population."
+  },
+  "motor_vehicle_theft": {
+    "excluded_by_default": false,
+    "disclaimer": "Primary denominator: estimated regularly present vehicles. Resident denominator: resident population."
+  },
+  "murder": {
+    "excluded_by_default": false,
+    "disclaimer": "Census-tract estimate. Primary denominator: estimated person-present exposure. Resident denominator: resident population."
+  },
+  "rape": {
+    "excluded_by_default": false,
+    "disclaimer": "Census-tract estimate. Primary denominator: estimated person-present exposure. Resident denominator: resident population."
+  },
+  "robbery": {
+    "excluded_by_default": false,
+    "disclaimer": "Primary denominator: estimated person-present exposure. Resident denominator: resident population."
+  }
+}

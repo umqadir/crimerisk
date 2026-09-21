@@ -1,0 +1,18 @@
+{
+  "case_key": "uc_berkeley_ca",
+  "ori": "CA0019700",
+  "agency_name_raw": "un of ca: berkeley",
+  "state_abbr": "CA",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/uc_berkeley_ca"
+  },
+  "bottom_line": "Treat CA0019700 as a custom UC Berkeley campus-and-associated-properties overlap, not Berkeley city, not Alameda County, and not a broader University of California system row. The defensible production footprint is the union of the Berkeley campus core and specifically served UC Berkeley properties in Berkeley, Albany, Emeryville, Oakland, Kensington, and Richmond; if that discontiguous custom geometry is unavailable, keep the row broad overlap rather than forcing a city or county proxy."
+}

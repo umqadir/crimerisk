@@ -1,0 +1,18 @@
+{
+  "case_key": "bwi_md",
+  "ori": "MD0020300",
+  "agency_name_raw": "Baltimore/Washington International Airport",
+  "state_abbr": "MD",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/bwi_md"
+  },
+  "bottom_line": "Treat MD0020300 as a custom BWI airport-property footprint. The defensible production geometry is the contiguous BWI campus and airport operational facilities controlled by the Maryland Aviation Administration, including the consolidated rental-car facility, not Anne Arundel County, not any single place proxy, not the statewide MDTA network, and not the statute's conditional 500-foot perimeter-security extension."
+}

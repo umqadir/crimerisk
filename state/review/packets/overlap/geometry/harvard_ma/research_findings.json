@@ -1,0 +1,163 @@
+{
+  "case_key": "harvard_ma",
+  "ori": "MA0096200",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "MA0096200 should use a Massachusetts-only Harvard custom footprint built from official Harvard/HUPD campus geography and MassGIS parcel envelopes, not Cambridge, Boston, Middlesex County, Suffolk County, or a worldwide Harvard proxy. The final footprint carries the Cambridge/Allston core, Longwood, Somerville housing, Arnold Arboretum area, Concord Field Station holdings, and Harvard Forest/Petersham holdings that the official Harvard and HUPD materials support.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "official_harvard_hupd_scope_plus_massgis_exact_parcel_envelopes",
+    "official_scope_support": {
+      "clery_maps_page_url": "https://www.hupd.harvard.edu/clery-geography-maps",
+      "summary": "HUPD publishes Massachusetts Clery geography maps for the Cambridge campus, Longwood campus, Arnold Arboretum, Concord Field Station, and Harvard Forest. The deep packet already established that MA0096200 is a Massachusetts-only, property-based Harvard footprint rather than a Cambridge or county proxy."
+    },
+    "geometry_strategy": "Use official Harvard map layers for the urban campus shape seed, then expand to exact parcel envelopes with MassGIS parcels where Harvard ownership is visible. Use rural MassGIS parcels directly for Bedford, Concord, Carlisle, and Petersham because the official Harvard/HUPD materials explicitly support including those Massachusetts campuses and landholdings.",
+    "explicit_exclusions": [
+      "Cambridge city as a whole",
+      "Boston city as a whole",
+      "Somerville city as a whole",
+      "Middlesex County as a whole",
+      "Suffolk County as a whole",
+      "Foreign Harvard campuses or overseas centers",
+      "Generic surrounding neighborhoods not anchored by official Harvard/HUPD geography or Harvard-owned parcel envelopes"
+    ]
+  },
+  "source_validation": {
+    "harvard_facilities_layer": {
+      "feature_count_harvard_only": 539,
+      "locality_counts": {
+        "Allston": 101,
+        "Boston": 25,
+        "Cambridge": 394,
+        "Jamaica Plain": 7,
+        "Roslindale": 1,
+        "Somerville": 11
+      },
+      "equal_area_acres": 141.73594587619002,
+      "interpretation": "Official Harvard facilities polygons anchor the active urban Harvard footprint across Cambridge, Allston/Boston, Longwood/Boston, Somerville housing, and the Arnold Arboretum buildings."
+    },
+    "harvard_green_space_layer": {
+      "tile_zoom": 15,
+      "tile_count_scanned": 135,
+      "decoded_polygon_features": 3646,
+      "skipped_type0_features": 475,
+      "equal_area_acres_union": 145.02686720346105,
+      "interpretation": "Official Harvard landscaped-ground polygons add nonbuilding campus surface area, especially open-space and grounds support that is not visible in the building layer alone."
+    },
+    "massgis_parcels": {
+      "urban_candidate_rows_after_geom_dedupe": 420,
+      "urban_selected_rows_after_500m_facility_filter": 338,
+      "urban_selected_city_acres": {
+        "BOSTON": 390.21323248365786,
+        "CAMBRIDGE": 221.86479707245283,
+        "SOMERVILLE": 1.868958202321413
+      },
+      "rural_rows_after_geom_dedupe": 74,
+      "rural_city_acres": {
+        "BEDFORD": 78.6195333757895,
+        "CARLISLE": 94.89486831055773,
+        "CONCORD": 574.7251612107561,
+        "PETERSHAM": 3167.7209495141315
+      },
+      "interpretation": "MassGIS supplies exact parcel envelopes and works well for Harvard-owned rural campuses and for urban parcel-envelope expansion near the official Harvard facility geography."
+    },
+    "acreage_qa_against_harvard_factbook": {
+      "factbook_reference": "https://oira.harvard.edu/factbook/fact-book-physical-plant/",
+      "factbook_target_acres": {
+        "Cambridge": 212.0,
+        "Somerville": 2.0,
+        "Bedford": 79.0,
+        "Concord": 612.0,
+        "Carlisle": 69.0,
+        "Petersham": 3193.0,
+        "Boston_plus_Allston_plus_Arnold_JP_Roslindale": 615.0
+      },
+      "built_component_acres": {
+        "urban_selected_parcel_envelopes_cambridge_boston_somerville": 613.9469869570388,
+        "official_urban_nonparcel_addition_from_facilities_and_green_space": 7.256041939477427,
+        "urban_hybrid_total": 621.2030288965162,
+        "bedford_concord_carlisle_petersham_total": 3915.9600873035524,
+        "final_total_equal_area_acres": 4537.163116200072
+      },
+      "qa_note": "Cambridge, Somerville, Bedford, and Petersham align closely with the FY2024 factbook scale, while the final Boston/Allston/Arnold hybrid remains materially below the factbook total. That shortfall reflects a public-data limitation: Harvard does not expose one exact parcel or campus-boundary layer for every urban controlled/open-space component, especially Arnold Arboretum and other nonbuilding Boston grounds. The build therefore stays conservative and official-source-bounded rather than fabricating city territory."
+    }
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "seed_geometry": "Official Harvard Facilities polygons plus official Harvard HUGreenSpace polygons over the Massachusetts urban campuses.",
+    "parcel_expansion_rule": "Select MassGIS Harvard parcel envelopes in Cambridge/Boston/Somerville only when they intersect a 500-meter buffer of the official Harvard facilities union; include all Harvard-owned MassGIS parcels in Bedford, Concord, Carlisle, and Petersham.",
+    "why_this_is_defensible": [
+      "The official Harvard/HUPD materials define which Massachusetts campuses belong in the footprint.",
+      "The Harvard facilities and green-space layers are stronger urban geometry anchors than guessing from municipal boundaries or generic place proxies.",
+      "MassGIS parcel envelopes convert supported Harvard-owned land into production-usable polygons without inventing unsupported surrounding territory.",
+      "The rural campuses are expressly named in official Harvard/HUPD materials, so using their Harvard-owned parcel envelopes is more exact than relying on tiny Clery inset outlines alone."
+    ],
+    "omissions_by_design": [
+      "No foreign campuses are included.",
+      "No generic Cambridge, Boston, Somerville, Middlesex, or Suffolk territory is added.",
+      "No attempt is made to infer every possible nonowned but Harvard-controlled city parcel when the public official geometry does not expose an exact boundary."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_25_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersected_counties": [
+      {
+        "county_fips": "017",
+        "county_name": "Middlesex",
+        "share_sum": 0.2144822078710578,
+        "area_acres": 973.140762633717
+      },
+      {
+        "county_fips": "025",
+        "county_name": "Suffolk",
+        "share_sum": 0.08734563732945941,
+        "area_acres": 396.30140405221016
+      },
+      {
+        "county_fips": "027",
+        "county_name": "Worcester",
+        "share_sum": 0.6981721547994829,
+        "area_acres": 3167.7209495141306
+      }
+    ],
+    "intersected_county_fips_sorted": [
+      "017",
+      "025",
+      "027"
+    ],
+    "intersected_block_groups": 56,
+    "intersection_area_total_m2": 18361247.6962706,
+    "intersection_area_total_acres": 4537.163116200058,
+    "weight_sum_exact": 1.0,
+    "weight_sum_csv": 0.9999999999999981,
+    "largest_block_group_geoid": "250277042021",
+    "largest_block_group_share": 0.6980822402767574,
+    "smallest_block_group_geoid": "250277033002",
+    "smallest_block_group_share": 8.33088211204304e-06
+  },
+  "qa_checks": {
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_in_csv": true,
+    "tiger_intersection_nonempty": true,
+    "urban_hybrid_exceeds_buildings_only": true,
+    "rural_massachusetts_campuses_present": true,
+    "qa_notes": [
+      "Exact share sum is 1.0000000000000000; parsed CSV share sum is 0.9999999999999981.",
+      "Urban hybrid acreage is 621.20 acres; rural Bedford/Concord/Carlisle/Petersham acreage is 3915.96 acres; final union acreage is 4537.16 acres.",
+      "Urban parcel-envelope selection captured 613.95 acres from MassGIS near official Harvard facilities, and the official Harvard facilities/green-space layers add 7.26 acres beyond those parcel envelopes.",
+      "The final footprint remains intentionally conservative where public Harvard/HUPD geometry does not provide a single exact urban parcel boundary, especially for Boston open-space/control areas."
+    ]
+  },
+  "residual_caveats": [
+    "The hybrid still undercounts the FY2024 factbook total in Boston/Allston/Arnold terms, so this packet should be understood as a conservative public-source-bounded production footprint, not an exhaustive internal Harvard land ledger.",
+    "The Harvard green-space vector tiles contain a nontrivial number of type-0 vector-tile features; those were skipped rather than guessed, which is another reason the build should be treated as conservative.",
+    "Because HUPD publishes Clery geography maps rather than a turnkey parcel union, some urban control/open-space edges cannot be reproduced perfectly from public materials alone."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/harvard_ma/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/harvard_ma/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/harvard_ma/sources.csv"
+  }
+}

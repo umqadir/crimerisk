@@ -1,0 +1,8 @@
+city_key,offense,production_ready,city_share_integration_status,total_lane,feed_total_candidate,notes
+san_diego,murder,yes,pilot_share_only,official_control,no,
+san_diego,rape,yes,pilot_share_only,official_control,yes,
+san_diego,robbery,yes,pilot_share_only,official_control,yes,
+san_diego,aggravated_assault,yes,pilot_share_only,official_control,yes,
+san_diego,burglary,yes,pilot_share_only,official_control,yes,
+san_diego,larceny,yes,pilot_share_only,official_control,no,
+san_diego,motor_vehicle_theft,yes,pilot_share_only,official_control,yes,

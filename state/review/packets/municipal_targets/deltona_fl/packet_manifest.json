@@ -1,0 +1,14 @@
+{
+  "case_key": "deltona_fl",
+  "jurisdiction_id": "12:municipal:place:1217200",
+  "jurisdiction_name": "Deltona city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/deltona_fl",
+  "review_goal": "Determine whether Deltona should retain a standalone municipal control row or be treated as a sheriff-contract city whose current full-fill state reflects an agency-definition error rather than broken municipal police continuity.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

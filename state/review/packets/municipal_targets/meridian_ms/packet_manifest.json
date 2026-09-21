@@ -1,0 +1,14 @@
+{
+  "case_key": "meridian_ms",
+  "jurisdiction_id": "28:municipal:place:2846640",
+  "jurisdiction_name": "Meridian city",
+  "state_abbr": "MS",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/meridian_ms",
+  "review_goal": "Determine whether Meridian should retain a standalone municipal control row or whether the current all-fill state reflects an invalid municipal target or sheriff-replacement service structure.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

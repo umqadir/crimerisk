@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,aggravated_assault,3631.0,cius_publication_annual,high
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,burglary,3121.0,cius_publication_annual,high
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,larceny,8777.0,cius_publication_annual,high
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,motor_vehicle_theft,4159.0,cius_publication_annual,high
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,murder,109.0,cius_publication_annual,high
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,rape,511.0,cius_publication_annual,high
+cleveland_oh,"Cleveland, Ohio",39:municipal:place:3916000,robbery,1412.0,cius_publication_annual,high

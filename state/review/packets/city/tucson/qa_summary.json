@@ -1,0 +1,30 @@
+{
+  "admission_status": "pass_share_only",
+  "admitted_offense_rows": 7,
+  "city_key": "tucson",
+  "city_name": "Tucson",
+  "jurisdiction_id": "04:municipal:place:0477000",
+  "min_geocode_match_share": 0.8,
+  "offense_rows": 7,
+  "official_total_present_all": true,
+  "rows_in_surface": 3002,
+  "run_id": "gate1_pilot_20260615",
+  "schema_pass": true,
+  "share_geography_pass_all": true,
+  "share_sum_pass_all": true,
+  "strict_reconciliation_tolerance": 0.1,
+  "validation_case_type": "municipal_validation_case",
+  "worker_runtime": {
+    "city_key": "tucson",
+    "input_tokens": null,
+    "model": "",
+    "output_tokens": null,
+    "run_id": "gate1_pilot_20260615",
+    "status": "completed",
+    "token_note": "No LLM tokens: deterministic Python city builder.",
+    "total_tokens": null,
+    "wall_seconds": 8.539798083002097,
+    "worker_id": "local_deterministic_tucson",
+    "worker_type": "local_deterministic_builder"
+  }
+}

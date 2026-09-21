@@ -1,0 +1,68 @@
+{
+  "case_key": "hartsfield_jackson_ga",
+  "ori": "GA0602400",
+  "agency_name_raw": "hrtsfld-jcksn atl int ap",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "airport_property_footprint",
+    "absorb_into_primary": false,
+    "production_ready": true,
+    "confidence": "high"
+  },
+  "core_findings": [
+    "The official Atlanta Police Department page identifies the Airport Section as the local law enforcement unit providing police services for Hartsfield-Jackson Atlanta International Airport, specifically including terminals, concourses, and parking lots.",
+    "Official airport emergency-management material shows airport operations coordinate law enforcement, fire, and EMS with City of Atlanta, Fulton County, Clayton County, College Park, and Forest Park, which is inconsistent with a simple single-place or single-county proxy.",
+    "Official airport legal and fact-sheet materials show the airport is a bounded airport property owned and operated by the City of Atlanta Department of Aviation and located in Fulton and Clayton Counties.",
+    "Official Atlanta airport ordinances expressly recognize airport police personnel and airport-specific traffic enforcement within the airfield and restricted airport operations areas.",
+    "Because the policing function is airport-facility-specific and the airport is a bounded multijurisdiction property, the right production treatment is a custom airport footprint rather than absorption into Atlanta city or localization to a single county."
+  ],
+  "footprint_assessment": {
+    "facility_type": "major international airport",
+    "facility_owner_operator": "City of Atlanta Department of Aviation",
+    "geographic_scope": [
+      "airport terminals",
+      "airport concourses",
+      "airport parking lots",
+      "restricted airfield operations area",
+      "broader airport property"
+    ],
+    "multijurisdiction_evidence": [
+      "The Airport Operations Center coordinates with City of Atlanta, Fulton County, Clayton County, College Park, and Forest Park.",
+      "Official airport legal material places the airport in both Fulton and Clayton Counties."
+    ]
+  },
+  "why_simple_proxies_fail": {
+    "atlanta_city_proxy": [
+      "Atlanta city is too broad; the agency polices airport facilities, not general city territory.",
+      "Airport police are airport-specific in both the APD description and the airport ordinance."
+    ],
+    "single_county_proxy": [
+      "Official airport legal material places the airport in both Fulton and Clayton Counties.",
+      "Using only Fulton or only Clayton would misstate the facility footprint."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing this case into Atlanta would erase a distinct bounded airport policing layer that is materially different from ordinary city patrol geography.",
+      "The airport has its own dedicated police budget and airport-specific ordinance framework."
+    ]
+  },
+  "implementation_recommendation": {
+    "production_disposition": "localize_to_custom_footprint",
+    "custom_footprint_description": "Use the Hartsfield-Jackson Atlanta International Airport property footprint rather than a municipal or county proxy.",
+    "secondary_note": "If custom footprint support is temporarily unavailable, keep this row in overlap rather than collapsing it into Atlanta city or a single county.",
+    "not_recommended": [
+      "localize_to_place: Atlanta",
+      "localize_to_county: Fulton",
+      "localize_to_county: Clayton",
+      "absorb_into_primary_jurisdiction"
+    ]
+  },
+  "authoritative_sources_used": [
+    "https://www.atlantapd.org/services/community-services/airport",
+    "https://www.atl.com/c4/",
+    "https://www.atl.com/about-atl/atl-factsheet/",
+    "https://atlanta.elaws.us/code/coor_ptii_ch22_artiii_div6_sec22-182",
+    "https://www.atl.com/wp-content/uploads/2025/08/FY26_Rates-Charges-Book.pdf",
+    "https://www.atl.com/wp-content/uploads/2017/01/ATL-Lease.pdf"
+  ]
+}

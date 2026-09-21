@@ -1,0 +1,399 @@
+{
+  "factory_key": "city_onboarding_standard_v2",
+  "analysis_date": "2026-03-22",
+  "scope": "Synthesis of packet doctrine from NYC, Chicago, Seattle, San Francisco, Austin, Mesa, and the live V2 city-incident builder/validator path.",
+  "inputs": {
+    "city_packets_reviewed": [
+      "new_york",
+      "chicago",
+      "seattle",
+      "san_francisco",
+      "austin",
+      "mesa"
+    ],
+    "live_builder_files": [
+      "scripts/build_v2_city_incident_shares.py",
+      "scripts/validate_v2_city_packets.py",
+      "scripts/summarize_v2_city_packets.py",
+      "scripts/build_v2_review_scaffolding.py",
+      "scripts/city_incident_source_output_schema.json",
+      "opencrimerisk/v2/city_incidents.py"
+    ]
+  },
+  "observed_repo_contract": {
+    "central_source_gate": {
+      "source_file": "configs/city_incident_sources.csv",
+      "required_value_for_builder_entry": "recommended_disposition=ready_now",
+      "meaning": "Central config is the coarse source-level allowlist. If it is not ready_now, the live builder will not consider the city."
+    },
+    "packet_gate": {
+      "source_file": "state/review/city_packets/<city>/packet_status.csv",
+      "required_values_for_builder_entry": {
+        "production_ready": [
+          "yes",
+          "true",
+          "1",
+          "partial"
+        ],
+        "city_share_integration_status": [
+          "active",
+          "approved",
+          "live",
+          "offense_selective"
+        ]
+      },
+      "meaning": "Packet status is the operational promotion switch. Central ready_now alone is not enough."
+    },
+    "offense_selective_gate": {
+      "source_file": "state/review/city_packets/<city>/packet_offense_status.csv",
+      "required": true,
+      "required_values_per_promoted_offense": {
+        "production_ready": [
+          "yes",
+          "true",
+          "1",
+          "partial"
+        ],
+        "city_share_integration_status": [
+          "active",
+          "approved",
+          "live",
+          "offense_selective"
+        ]
+      },
+      "meaning": "Offense-selective promotion is real repo behavior, not just packet prose."
+    },
+    "validator_minimums": {
+      "always_required_packet_files": [
+        "packet_manifest.json",
+        "packet_checklist.csv",
+        "packet_status.csv",
+        "source_candidate.csv"
+      ],
+      "required_when_central_ready_now": [
+        "research_findings.json",
+        "reconciliation_summary.csv"
+      ],
+      "required_when_packet_is_offense_selective": [
+        "packet_offense_status.csv"
+      ]
+    }
+  },
+  "standard_sequence_of_work": [
+    {
+      "step_order": 1,
+      "step_key": "lock_source_contract",
+      "objective": "Name the exact live public feed contract before any mapping work.",
+      "mandatory_outputs": [
+        "source_candidate.csv",
+        "research_findings.json"
+      ],
+      "required_evidence": [
+        "exact feed URL or URLs",
+        "portal type",
+        "coverage window",
+        "canonical date field",
+        "canonical offense field or fields",
+        "canonical spatial field or fields",
+        "whether old local loader assumptions are stale"
+      ],
+      "why_it_matters": "Austin and Seattle both show that stale loader assumptions cause false blockers or false confidence."
+    },
+    {
+      "step_order": 2,
+      "step_key": "lock_raw_snapshot",
+      "objective": "Record the exact raw snapshot or query path used for review.",
+      "mandatory_outputs": [
+        "research_findings.json"
+      ],
+      "required_evidence": [
+        "download URL or API query",
+        "local cache path if one exists",
+        "dual-feed cutoff if applicable",
+        "dedupe key candidate"
+      ],
+      "why_it_matters": "San Francisco and NYC depend on dual-feed discipline; Seattle and Chicago depend on stable cache contracts."
+    },
+    {
+      "step_order": 3,
+      "step_key": "audit_schema_and_coverage",
+      "objective": "Prove the live contract still supports V2 offense/date/spatial logic across the target years.",
+      "mandatory_outputs": [
+        "research_findings.json",
+        "source_schema.csv"
+      ],
+      "required_evidence": [
+        "required columns present",
+        "year counts by target window",
+        "coverage gaps or undercovered years",
+        "null-rate or field-loss notes for offense and spatial fields"
+      ],
+      "why_it_matters": "Austin's null-heavy offense schema and Seattle's dropped proxy geography are gating failures, not minor notes."
+    },
+    {
+      "step_order": 4,
+      "step_key": "build_offense_contract",
+      "objective": "Create the offense crosswalk and the dedupe rule together.",
+      "mandatory_outputs": [
+        "offense_crosswalk.csv"
+      ],
+      "required_evidence": [
+        "exact vs approximate mappings",
+        "explicit exclusions",
+        "dedupe key and dedupe grain",
+        "city-specific overrides"
+      ],
+      "why_it_matters": "San Francisco required incident_number plus V2 offense dedupe and initial-only gating; Austin required bounded code-candidate isolation; Seattle mapped cleanly from NIBRS codes."
+    },
+    {
+      "step_order": 5,
+      "step_key": "build_spatial_contract",
+      "objective": "Show how rows become in-city block-group incidents and how redacted or invalid rows are handled.",
+      "mandatory_outputs": [
+        "research_findings.json",
+        "spatial_contract_notes.json"
+      ],
+      "required_evidence": [
+        "primary assignment method",
+        "in-city membership rule",
+        "treatment of out-of-city or OOJ rows",
+        "public proxy fallback if coordinates are missing or redacted",
+        "whether proxy geography survives into the cache used by the builder"
+      ],
+      "why_it_matters": "Seattle became viable only after Beat-aware fallback. San Francisco remains partially blocked because privacy-snapped and Out of SF rows cannot all be allocated."
+    },
+    {
+      "step_order": 6,
+      "step_key": "reconcile_to_official_reference",
+      "objective": "Compare final or promotable counts to an official or defensible public reference and classify each line as exact or approximate.",
+      "mandatory_outputs": [
+        "reconciliation_summary.csv",
+        "published_reference_extract.csv"
+      ],
+      "required_evidence": [
+        "reference year",
+        "published source URL",
+        "published label or table used",
+        "final count vs published count by offense",
+        "exact vs approximate comparability label",
+        "written explanation for every material gap"
+      ],
+      "why_it_matters": "Unexplained divergence is either a bug, a concept mismatch, or a promotion blocker."
+    },
+    {
+      "step_order": 7,
+      "step_key": "assign_city_and_offense_status",
+      "objective": "Translate evidence into packet-local promotion status.",
+      "mandatory_outputs": [
+        "packet_status.csv",
+        "packet_offense_status.csv"
+      ],
+      "required_evidence": [
+        "city-wide verdict",
+        "offense-selective verdict if needed",
+        "blocked offenses",
+        "minimum change to unblock"
+      ],
+      "why_it_matters": "Seattle shows offense-selective should be explicit. SF shows promising offenses do not justify city-wide promotion."
+    },
+    {
+      "step_order": 8,
+      "step_key": "prepare_central_sync",
+      "objective": "State what central configs should say after packet review, but keep packet-local status more precise than central config.",
+      "mandatory_outputs": [
+        "research_findings.json"
+      ],
+      "required_evidence": [
+        "whether central recommended_disposition should stay ready_now, needs_schema_work, or insufficient_quality",
+        "whether packet source_candidate is now stale relative to packet findings",
+        "what builder support is still missing"
+      ],
+      "why_it_matters": "Central config is coarse. Packet status carries the true operational state until sync."
+    }
+  ],
+  "status_doctrine": {
+    "city_outcomes": [
+      {
+        "outcome": "city_wide_ready",
+        "central_recommended_disposition": "ready_now",
+        "packet_status_fields": {
+          "production_ready": "yes",
+          "city_share_integration_status": "active"
+        },
+        "minimum_evidence": [
+          "all retained core offenses have defendable mappings",
+          "spatial assignment is solved for the retained city-wide contract",
+          "reconciliation_summary exists",
+          "no material unexplained exact-comparable gap remains"
+        ],
+        "best_template_city": "chicago"
+      },
+      {
+        "outcome": "offense_selective_only",
+        "central_recommended_disposition": "ready_now",
+        "packet_status_fields": {
+          "production_ready": "partial",
+          "city_share_integration_status": "offense_selective"
+        },
+        "minimum_evidence": [
+          "packet_offense_status.csv exists",
+          "promoted offenses have defendable evidence individually",
+          "blocked offenses are explicitly marked no or blocked",
+          "builder can apply offense gates"
+        ],
+        "best_template_city": "seattle"
+      },
+      {
+        "outcome": "needs_schema_work",
+        "central_recommended_disposition": "needs_schema_work",
+        "packet_status_fields": {
+          "production_ready": "no",
+          "city_share_integration_status": "review or bounded_loader_refresh_pending or scaffolded"
+        },
+        "minimum_evidence": [
+          "best source path is known",
+          "current live contract is not yet translated safely into V2 logic"
+        ],
+        "best_template_city": "austin"
+      },
+      {
+        "outcome": "insufficient_quality",
+        "central_recommended_disposition": "insufficient_quality",
+        "packet_status_fields": {
+          "production_ready": "no",
+          "city_share_integration_status": "blocked"
+        },
+        "minimum_evidence": [
+          "public source path is known",
+          "material gaps appear intrinsic to the public product or unresolved hardening limits"
+        ],
+        "best_template_city": "san_francisco"
+      },
+      {
+        "outcome": "blocked",
+        "central_recommended_disposition": "pair with needs_schema_work or insufficient_quality",
+        "packet_status_fields": {
+          "production_ready": "no",
+          "city_share_integration_status": "blocked"
+        },
+        "minimum_evidence": [
+          "city or offense cannot be promoted under the current contract"
+        ],
+        "best_template_city": "san_francisco"
+      }
+    ],
+    "promotion_thresholds": {
+      "code_enforced_sanity_gates": {
+        "nyc_min_incidents_in_window": 100000,
+        "chicago_min_incidents_in_window": 500000,
+        "chicago_min_incidents_per_year": 50000,
+        "chicago_min_geocoded_share": 0.8,
+        "seattle_min_incidents_in_window": 300000,
+        "seattle_min_incidents_per_year": 30000,
+        "seattle_min_geocoded_share": 0.85
+      },
+      "inferred_reconciliation_bands_for_future_promotions": {
+        "exact_comparable_green_abs_pct_diff_max": 0.03,
+        "exact_comparable_promotable_with_explanation_abs_pct_diff_max": 0.06,
+        "exact_comparable_watchlist_abs_pct_diff_max": 0.1,
+        "exact_comparable_block_abs_pct_diff_gt": 0.1,
+        "approximate_only_never_sufficient_for_city_wide": true,
+        "approximate_can_support_offense_selective_if_gap_small_and_cause_is_bounded": true
+      },
+      "interpretation_notes": [
+        "Chicago is the cleanest city-wide bar: exact-comparable lines land roughly within 0 to 3 percent.",
+        "Seattle and Austin show that roughly 3 to 6 percent exact-comparable gaps can still support offense-selective promotion when the logic is explicit and the remaining issue is understood.",
+        "San Francisco shows that roughly 8 to 9 percent exact-comparable gaps are watchlist territory even after hardening and should not justify city-wide promotion.",
+        "Austin murder, Seattle aggravated_assault, and San Francisco murder and rape show that exact-comparable gaps above about 10 percent are blockers unless a legacy exception is already live.",
+        "NYC is a live legacy packet and should not be treated as the future default threshold template because several exact-comparable lines remain materially off while the packet stays active."
+      ]
+    }
+  },
+  "central_vs_packet_interaction": {
+    "central_configs_should_store": [
+      "coarse recommended_disposition",
+      "source contract summary",
+      "priority rank and rationale"
+    ],
+    "packet_local_files_should_store": [
+      "real buildability status",
+      "exact offense-level promotion decisions",
+      "reconciliation details",
+      "city-specific blockers and minimum changes to unblock"
+    ],
+    "practical_rule": "Do not use central configs as the only truth. Use central configs to queue and coarse-gate; use packet_status and packet_offense_status to decide what actually ships.",
+    "observed_patterns": [
+      {
+        "city_key": "seattle",
+        "pattern": "Central ready_now plus packet partial plus offense_selective is a valid live configuration."
+      },
+      {
+        "city_key": "san_francisco",
+        "pattern": "Central insufficient_quality plus packet blocked can still carry offense-selective candidate evidence for future repo support."
+      },
+      {
+        "city_key": "austin",
+        "pattern": "Central needs_schema_work plus packet-specific bounded refresh status is the right shape for a near-term schema refresh city."
+      }
+    ]
+  },
+  "reusable_vs_city_specific": {
+    "highly_reusable": [
+      "packet scaffold and checklist shape",
+      "source contract lock before loader work",
+      "dedupe plus crosswalk as a paired step",
+      "separate exact versus approximate comparability labels",
+      "packet_offense_status.csv for offense-selective promotion",
+      "explicit treatment of redacted rows and out-of-city rows",
+      "central ready_now plus packet status handshake",
+      "reconciliation_summary.csv as the promotion evidence table"
+    ],
+    "city_specific": [
+      "dual-feed cutoff dates and overlap logic",
+      "local offense-code overrides",
+      "official published comparator source and labels",
+      "proxy geography choice such as beat, block group field, or none",
+      "bounded empirical refresh rules",
+      "privacy redaction semantics and acceptable residual tail"
+    ]
+  },
+  "city_case_summaries": [
+    {
+      "city_key": "new_york",
+      "role_in_doctrine": "legacy_active_exception",
+      "main_takeaway": "Useful for packet shape and dual-feed sourcing, but not the clean promotion threshold template."
+    },
+    {
+      "city_key": "chicago",
+      "role_in_doctrine": "city_wide_ready_template",
+      "main_takeaway": "Best city-wide pattern: stable single feed, direct coordinates, mature crosswalk, exact-comparable reconciliation."
+    },
+    {
+      "city_key": "seattle",
+      "role_in_doctrine": "offense_selective_template",
+      "main_takeaway": "Best proof that retained proxy geography can recover privacy-redacted incidents and justify offense-selective promotion."
+    },
+    {
+      "city_key": "san_francisco",
+      "role_in_doctrine": "public_quality_limit_template",
+      "main_takeaway": "Best proof that good hardening on several offenses still does not justify city-wide promotion when murder and rape remain public-feed limited."
+    },
+    {
+      "city_key": "austin",
+      "role_in_doctrine": "bounded_schema_refresh_template",
+      "main_takeaway": "Best proof that needs_schema_work can be a narrow loader-refresh task rather than a full rebuild."
+    },
+    {
+      "city_key": "mesa",
+      "role_in_doctrine": "queued_schema_work_template",
+      "main_takeaway": "Useful reminder that second-wave cities can remain scaffolded until first-wave blockers are resolved."
+    }
+  ],
+  "top_doctrine_candidates": [
+    "Central ready_now is necessary but not sufficient; packet_status is the operational gate and packet_offense_status is mandatory for offense-selective build.",
+    "Do not promote from raw geocode share alone. Validate in-city membership, redaction recovery, and whether proxy geography survives into the actual builder cache.",
+    "Use exact-comparable offense lines as the hard gate. Approximate lines can support offense-selective judgment but should not independently unlock city-wide promotion.",
+    "Treat bounded empirical refresh rules as blocked until they are validated across multiple periods and written into the packet contract.",
+    "Keep central configs coarse and packet-local statuses precise. The packet is where city-specific truth should live until sync."
+  ]
+}

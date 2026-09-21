@@ -1,0 +1,11 @@
+column,dtype
+OBJECTID,int64
+EVENT__,object
+CITY,object
+STATE,object
+BEAT,object
+OCCURRED_S,int64
+INC_ADDRESS,object
+INC_PRIMAR,object
+__arcgis_longitude,float64
+__arcgis_latitude,float64

@@ -1,0 +1,14 @@
+{
+  "case_key": "dania_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1216335",
+  "jurisdiction_name": "Dania Beach city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/dania_beach_fl",
+  "review_goal": "Determine whether Dania Beach should retain a standalone municipal control row and whether the current full-fill condition reflects contract-city reporting continuity/publication failure, county replacement, or an invalid municipal target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "sources.csv",
+    "research_findings.json",
+    "recommendation.csv"
+  ]
+}

@@ -1,0 +1,15 @@
+mcd_geoid_2020,disposition,source_municipality_geoid,provider_ori,evidence
+4200346072,cross_county_piece,4212546072,,McDonald Borough principal PCCD row
+4200377272,cross_county_piece,4212977272,,Trafford Borough principal PCCD row
+4200723304,cross_county_piece,4207323304,,Ellwood City Borough principal PCCD row
+4201100364,cross_county_piece,4207100364,,Adamstown Borough principal PCCD row
+4201377808,cross_county_piece,4202177808,,Tunnelhill Borough principal PCCD row
+4201776304,cross_county_piece,4209176304,,Telford Borough principal PCCD row
+4203123568,cross_county_piece,4212123568,,Emlenton Borough principal PCCD row
+4203325136,cross_county_piece,4206525136,,Falls Creek Borough principal PCCD row
+4203703264,cross_county_piece,4210703264,,Ashland Borough principal PCCD row
+4204900000,county_psp,,PA025SP00,County subdivisions not defined; zero-population Erie blocks
+4205169336,cross_county_piece,4211169336,,Seven Springs Borough principal PCCD row
+4207514944,county_psp,,PA038SP00,Cold Spring Township has no current PCCD municipal-service row
+4208584376,county_psp,,PA043SP00,Wheatland Township has no current PCCD municipal-service row
+4211110808,county_psp,,PA056SP00,Callimont has no current PCCD municipal-service row

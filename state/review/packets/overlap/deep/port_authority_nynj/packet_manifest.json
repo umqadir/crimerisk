@@ -1,0 +1,14 @@
+{
+  "case_key": "port_authority_nynj",
+  "ori": "NJNYPOA00|NY0300300",
+  "agency_name_raw": "Port Authority of NY/NJ",
+  "state_abbr": "NJ|NY",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/port_authority_nynj",
+  "review_goal": "Determine the defensible production handling for the Port Authority of New York and New Jersey overlap case and whether the correct outcome is a custom multistate footprint, absorb-into-primary treatment for any subparts, or another overlap class.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

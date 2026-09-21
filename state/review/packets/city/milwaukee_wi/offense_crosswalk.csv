@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)09A(;|$)"", ""values"": []}]",[]
+rape,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)11[ABC](;|$)"", ""values"": []}]",[]
+robbery,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)120(;|$)"", ""values"": []}]",[]
+aggravated_assault,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)13A(;|$)"", ""values"": []}]",[]
+burglary,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)220(;|$)"", ""values"": []}]",[]
+motor_vehicle_theft,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)240(;|$)"", ""values"": []}]",[]
+larceny,"[{""field"": ""Offense_All"", ""op"": ""regex"", ""value"": ""(^|;)23[A-H](;|$)"", ""values"": []}]",[]

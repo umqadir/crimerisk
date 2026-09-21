@@ -1,0 +1,182 @@
+{
+  "case_key": "ut_austin_tx",
+  "ori": "TX2270500",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "TX2270500 should use a custom UTPD footprint built from exact current official UT Austin site polygons, a narrow official West Campus add-on from live district 7, and one Travis parcel fallback for Paisano Ranch rather than any Austin, Travis County, or all-UT-system proxy.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "current_ut_austin_site_footprint_plus_formally_mapped_west_campus_add_on",
+    "official_scope_support": {
+      "authority_page_url": "https://police.utexas.edu/about/authority",
+      "dashboard_page_url": "https://police.utexas.edu/records-reports/interactive-transparency-dashboards",
+      "summary": "Current UTPD authority text lists Main campus, J.J. Pickle Research Campus, Brackenridge tract, Paisano Ranch, and Bee Caves Research Center. The current dashboard text separately says areas west of campus are in APD jurisdiction but UTPD often responds there, which supports treating West Campus as a special mapped add-on rather than importing all live district overhangs wholesale."
+    },
+    "inclusion_rule": "Retain exact official polygons for current UT Austin sites that the university marks in current campus-map and patrol-jurisdiction materials; add only district 7 as the formally mapped west-of-campus response zone; operationalize Paisano with the exact Travis parcel because UT publishes the tract name, address, and acreage but not a public exact polygon.",
+    "explicit_exclusions": [
+      "City of Austin proxy",
+      "Travis County proxy",
+      "all UT System or all UT Austin site proxies",
+      "raw union of all live UTPD police districts",
+      "Colorado Apartments bookmark without current UTPD inclusion evidence",
+      "Montopolis Research Center, Marine Sciences Institute, McDonald Observatory, Winedale, Lost Pines, and other UT sites not supported by current UTPD jurisdiction materials for this packet"
+    ]
+  },
+  "source_validation": {
+    "current_campus_map_bookmarks_checked": [
+      "UT Main Campus",
+      "Pickle Research Campus",
+      "Bee Caves Complex",
+      "Brackenridge Apartments",
+      "Brackenridge Field Lab",
+      "Colorado Apartments",
+      "Johnson Wildflower Center",
+      "UT Elementary School",
+      "Wright-Whitaker Sports Complex"
+    ],
+    "campus_map_bookmark_exclusion_signal": "Colorado Apartments appears in the current campus map bookmarks but is not part of the selected BRACKTRACT polygon and is not retained in the production footprint.",
+    "exact_site_polygon_components": [
+      {
+        "component_key": "UTM",
+        "component_label": "UT Main Campus",
+        "source_type": "official_arcgis_feature_layer",
+        "source_url": "https://services9.arcgis.com/w9x0fkENXvuWZY26/arcgis/rest/services/UTM_Basemap_Color_250225/FeatureServer/518",
+        "parts": 11,
+        "area_acres": 484.42538008859594
+      },
+      {
+        "component_key": "PRC",
+        "component_label": "Pickle Research Campus",
+        "source_type": "official_arcgis_service_definition_poi_poly",
+        "source_url": "https://www.arcgis.com/sharing/rest/content/items/d2ac2133c53649028cc421210ea01f7a?f=json",
+        "parts": 2,
+        "area_acres": 304.52768957462456
+      },
+      {
+        "component_key": "BEE_CAVE",
+        "component_label": "Bee Caves Research Center",
+        "source_type": "official_arcgis_service_definition_poi_poly",
+        "source_url": "https://www.arcgis.com/sharing/rest/content/items/d2ac2133c53649028cc421210ea01f7a?f=json",
+        "parts": 1,
+        "area_acres": 31.402610617384372
+      },
+      {
+        "component_key": "BRACKTRACT",
+        "component_label": "Brackenridge tract",
+        "source_type": "official_arcgis_service_definition_poi_poly",
+        "source_url": "https://www.arcgis.com/sharing/rest/content/items/d2ac2133c53649028cc421210ea01f7a?f=json",
+        "parts": 1,
+        "area_acres": 70.03011422450813
+      },
+      {
+        "component_key": "JWC",
+        "component_label": "Johnson Wildflower Center",
+        "source_type": "official_arcgis_service_definition_poi_poly",
+        "source_url": "https://www.arcgis.com/sharing/rest/content/items/d2ac2133c53649028cc421210ea01f7a?f=json",
+        "parts": 1,
+        "area_acres": 277.11368095713243
+      },
+      {
+        "component_key": "WHI",
+        "component_label": "Wright-Whitaker Sports Complex",
+        "source_type": "official_arcgis_service_definition_poi_poly",
+        "source_url": "https://www.arcgis.com/sharing/rest/content/items/d2ac2133c53649028cc421210ea01f7a?f=json",
+        "parts": 1,
+        "area_acres": 60.093443837962305
+      },
+      {
+        "component_key": "USX",
+        "component_label": "UT Elementary School",
+        "source_type": "official_arcgis_service_definition_poi_poly",
+        "source_url": "https://www.arcgis.com/sharing/rest/content/items/d2ac2133c53649028cc421210ea01f7a?f=json",
+        "parts": 1,
+        "area_acres": 4.0318070165985915
+      }
+    ],
+    "district_layer_qa": {
+      "district_feature_count": 12,
+      "district_union_acres_raw": 12204.366389263403,
+      "district7_total_acres": 100.24830669820422,
+      "district7_incremental_acres": 94.38007607861725,
+      "interpretation": "The full live district union is too broad to use directly. District 7 is the only district retained as production geometry because it is the dedicated west-of-campus add-on. Other district overhangs were used only as QA to identify currently mapped sites such as JWC, WHI, and USX."
+    },
+    "paisano_crosscheck": {
+      "ut_direct_page_url": "https://utdirect.utexas.edu/apps/campus/buildings/information/nlogon/maps/utm/prh/",
+      "parcel_query_url": "https://services7.arcgis.com/Q6vsXnxTnYcWB7qg/ArcGIS/rest/services/TRAVIS_PARCELS/FeatureServer/0/query?where=Prop_ID%3D%27103090%27&outFields=Prop_ID%2COWNER_NAME%2CGIS_AREA%2CGIS_AREA_U%2CSITUS_ADDR%2CLEGAL_DESC&returnGeometry=true&f=geojson",
+      "parcel_owner_name": "UNIVERSITY OF TEXAS",
+      "parcel_gis_area_acres": 254.34606927,
+      "parcel_legal_desc": "ABS 468 SUR 513 KUNZE F & VAR SURS ACR 253.9600",
+      "interpretation": "The Travis parcel matches the authority-page 254-acre description closely enough to serve as the exact Paisano production geometry fallback."
+    }
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "geometry_method": "Download the live UTM Campus_Boundary layer; download and extract the official BEE_Basemap_Color service-definition geodatabase and select campus POI_Poly rows for PRC, BEE_CAVE, BRACKTRACT, JWC, WHI, and USX; add live police district 7 for West Campus; add Travis parcel 103090 for Paisano; dissolve the union; intersect with 2020 Texas TIGER block groups; and normalize intersection areas to shares.",
+    "why_this_is_defensible": [
+      "The build prefers exact current official UT Austin site polygons over oversized patrol-district envelopes.",
+      "District 7 is retained because the current UTPD materials explicitly distinguish west-of-campus response activity from ordinary campus jurisdiction, making it the one justified non-campus add-on.",
+      "Paisano is handled with a single matching official Travis parcel rather than an Austin-wide proxy or a made-up buffer."
+    ],
+    "omissions_by_design": [
+      "No raw district 8 or district 9 overhangs are included outside exact site polygons.",
+      "No generic west-of-campus APD area beyond district 7 is fabricated.",
+      "No all-bookmarks or all-UT-properties union is used."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_48_bg.zip",
+    "intersected_block_groups": 27,
+    "intersected_county_fips_sorted": [
+      "453"
+    ],
+    "intersection_area_total_m2": 6395537.317983397,
+    "intersection_area_total_acres": 1580.371688647779,
+    "weight_sum_exact": 0.9999999999999999,
+    "weight_sum_rounded_csv": 0.9999999999999999,
+    "largest_block_group_geoid": "484530368002",
+    "largest_block_group_share": 0.16358405858577,
+    "county_share_summary": [
+      {
+        "county_fips": "453",
+        "share_sum": 1.0,
+        "area_acres": 1580.3716886477787
+      }
+    ]
+  },
+  "qa_checks": {
+    "exact_site_union_acres": 1231.6247263168057,
+    "exact_main_campus_acres": 484.42538008859594,
+    "exact_prc_acres": 304.52768957462456,
+    "exact_bee_caves_acres": 31.402610617384372,
+    "exact_bracktract_acres": 70.03011422450813,
+    "exact_jwc_acres": 277.11368095713243,
+    "exact_whi_acres": 60.093443837962305,
+    "exact_usx_acres": 4.0318070165985915,
+    "district7_total_acres": 100.24830669820422,
+    "district7_incremental_acres": 94.38007607861725,
+    "paisano_parcel_acres": 254.3668862523523,
+    "final_union_acres": 1580.3716886477757,
+    "police_union_acres_qa_only": 12204.366389263403,
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_after_csv_rounding": true
+  },
+  "explicit_qa_notes": [
+    "The full live police-district union is about 12,205.10 acres, so it was rejected as production geometry. Exact site polygons plus a narrow district-7 add-on produce a much more defensible footprint.",
+    "District 7 adds about 94.38 non-overlapping acres west of campus after exact-campus overlap is removed in the dissolved union.",
+    "The official campus-map bookmarks include Colorado Apartments, but the retained BRACKTRACT exact polygon does not sweep it in; that exclusion is intentional.",
+    "BEE_CAVE appears on the authority page and in the current campus map, but not inside the live police-district union, so it was added from exact official UT geometry rather than dropped.",
+    "JWC, WHI, and USX are not named on the authority page but are current official campus-map sites and are fully covered by the live district layer, so they were retained using exact site polygons rather than the much larger surrounding districts.",
+    "Paisano Ranch required the only non-UT geometry fallback: a single Travis parcel owned by University of Texas whose GIS acreage matches the authority-page tract size."
+  ],
+  "residual_caveats": [
+    "The off-main-campus exact polygons come from an official downloadable UT Austin service-definition geodatabase rather than a separately queryable public FeatureServer layer for each site.",
+    "Paisano still lacks a public exact UT Austin polygon layer, so the county parcel is a fallback operationalization of an officially named UTPD tract rather than a UT-authored boundary.",
+    "The current dashboard text says West Campus is APD jurisdiction; retaining district 7 here is a deliberate choice to represent the university's formally mapped west-of-campus response zone, not a claim that UTPD owns the whole neighborhood."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/ut_austin_tx/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/ut_austin_tx/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/ut_austin_tx/sources.csv"
+  }
+}

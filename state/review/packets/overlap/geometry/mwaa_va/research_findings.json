@@ -1,0 +1,132 @@
+{
+  "case_key": "mwaa_va",
+  "ori": "VAMWA0000",
+  "analysis_date": "2026-03-28",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "VAMWA0000 should use a Virginia-only, discontiguous MWAA custom footprint built from bounded airport-campus proxies for Reagan National and Dulles plus the official Route 267 corridor for the Dulles roadway facilities. The result is materially better than any single county/place proxy and better than the currently available county parcel inventories, which undercapture the full Dulles property.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "bounded_airport_bg_proxies_plus_official_route_centerline_corridor",
+    "official_scope_support": {
+      "reagan_overview_url": "https://www.flyreagan.com/airport-overview",
+      "dulles_overview_url": "https://www.flydulles.com/airport-overview",
+      "dulles_master_plan_url": "https://www.flydulles.com/about-airport/dulles-international-airport-master-plan",
+      "vdot_route_service_url": "https://services.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/VDOT_Routes/FeatureServer/0",
+      "summary": "Official MWAA and Virginia transportation materials support a facility-based MWAA police footprint: bounded Reagan property, bounded Dulles property, and the Dulles roadway facilities. The public-source build therefore uses bounded airport-campus proxies for the two airport properties and the official Route 267 corridor for the roadway component, rather than any county/place surrogate or blanket 300-yard authority halo."
+    },
+    "explicit_exclusions": [
+      "Arlington County-wide proxy",
+      "Fairfax County-wide proxy",
+      "Loudoun County-wide proxy",
+      "Washington, DC place proxy",
+      "airport campuses without the Dulles roadway facilities",
+      "statutory 300-yard blanket buffer around all Authority Facilities",
+      "parcel-only IAD footprint assembled from Fairfax and Loudoun county records"
+    ]
+  },
+  "proxy_validation": {
+    "reagan_special_bg_proxy": {
+      "block_group_geoid": "510139802001",
+      "proxy_acres_equal_area": 943.9150612889035,
+      "official_airport_acres": 860.0,
+      "delta_acres": 83.91506128890353,
+      "point_containment_bg": [
+        "510139802001"
+      ],
+      "interpretation": "The long Potomac-side special block group matches the bounded Reagan campus shape and its acreage is within about 84 acres of the official 860-acre figure, making it a defensible public bounded-campus proxy."
+    },
+    "dulles_special_bg_proxy": {
+      "block_group_geoids": [
+        "510599802001",
+        "511079801001"
+      ],
+      "proxy_acres_equal_area": 11452.066962526666,
+      "official_airport_acres": 11184.0,
+      "delta_acres": 268.0669625266655,
+      "interpretation": "The two Dulles special airport block groups sum to within roughly 268 acres of the official 11,184-acre airport figure and align to the official property-map interpretation from the Dulles master-plan / ALP materials."
+    },
+    "dulles_roadway_component": {
+      "route_number": 267,
+      "route_feature_count": 45,
+      "route_category_counts": {
+        "Interstate Ramp": 7,
+        "Non-Interstate Ramp": 36,
+        "State Highway Primary": 2
+      },
+      "buffer_meters": 20.0,
+      "buffer_acres_equal_area": 1005.750191952037,
+      "interpretation": "A conservative 20 m buffer around the official Route 267 centerline and ramp features in the Dulles corridor produces an approximately 1,006-acre roadway component, which is consistent with a long divided toll/access-road complex and avoids inventing an unsupported corridor polygon."
+    }
+  },
+  "rejected_alternatives": {
+    "county_parcel_only_iad_build": {
+      "fairfax_airport_acres_equal_area": 2440.6753605652984,
+      "loudoun_airport_acres_equal_area": 1010.9441747883286,
+      "combined_acres_equal_area": 3451.619535353627,
+      "official_iad_acres": 11184.0,
+      "why_rejected": "The currently available Fairfax and Loudoun parcel/land-use inventories recover only about one-third of the official Dulles acreage, so parcel-only geometry would materially understate the airport property."
+    },
+    "single_county_or_place_surrogates": [
+      "No single locality contains Reagan, Dulles, and the Dulles roadway facilities together.",
+      "Locality-wide proxies would create spurious precision and greatly overstate the actual authority-facility footprint."
+    ]
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "airport_property_strategy": "Use bounded 2020 Virginia special airport block groups as public campus proxies where they closely match the official airport acreage and the official map context.",
+    "roadway_strategy": "Query official VDOT Route 267 centerlines in the Dulles corridor and buffer them 20 m in EPSG:5070 to represent the MWAA-policed Dulles roadway facilities conservatively.",
+    "union_strategy": "Union the Reagan proxy BG, the two Dulles proxy BGs, and the buffered Route 267 corridor without dissolving to any locality boundary, then intersect the union with 2020 Virginia TIGER block groups.",
+    "why_this_is_defensible": [
+      "The build stays bounded to facilities MWAA actually identifies as its routine police footprint.",
+      "The airport-campus proxies are anchored to official acreage and official map context rather than guessed county/place surrogates.",
+      "The roadway component comes from an official state route service rather than a hand-drawn corridor.",
+      "The approach preserves the discontiguous, multi-facility nature of MWAA rather than flattening it into one locality."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_51_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersected_block_groups": 60,
+    "intersection_area_total_acres": 13295.612183744775,
+    "weight_sum_csv": 0.9999999999999999,
+    "largest_block_group_geoid": "511079801001",
+    "largest_block_group_share": 0.6756686762469776,
+    "county_share_summary": [
+      {
+        "county_fips": "107",
+        "weight_share": 0.7012106087216765
+      },
+      {
+        "county_fips": "059",
+        "weight_share": 0.2277949121792014
+      },
+      {
+        "county_fips": "013",
+        "weight_share": 0.07099447909912208
+      }
+    ]
+  },
+  "qa_checks": {
+    "share_sum_is_one_within_tolerance": true,
+    "dca_proxy_matches_official_scale_within_100_acres": true,
+    "iad_proxy_matches_official_scale_within_300_acres": true,
+    "route_component_nonempty": true,
+    "qa_notes": [
+      "Reagan proxy BG 510139802001 is 943.92 acres versus the official 860-acre campus figure.",
+      "Dulles proxy BGs ['510599802001', '511079801001'] sum to 11452.07 acres versus the official 11,184-acre airport figure.",
+      "Route 267 corridor buffer contributes 1005.75 acres using a 20 m buffer in EPSG:5070.",
+      "Final MWAA footprint covers 13295.61 acres across 60 Virginia block groups."
+    ]
+  },
+  "residual_caveats": [
+    "The airport property components are bounded campus proxies derived from public special airport block groups, not turnkey official property polygons exported directly from MWAA.",
+    "The Dulles roadway component uses a conservative route-centerline buffer because a single public roadway-right-of-way polygon was not available in a production-ready official format.",
+    "County parcel/land-use services remain useful corroboration but do not currently recover the full IAD property, so they are not sufficient as the primary build geometry."
+  ],
+  "files_written": {
+      "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/overlap/geometry/mwaa_va/custom_footprint_rows.csv",
+      "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/overlap/geometry/mwaa_va/research_findings.json",
+      "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/overlap/geometry/mwaa_va/sources.csv"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "state_abbr": "NJ",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/nj",
+  "priority_rows": 7,
+  "queue_rows": 2,
+  "required_outputs": [
+    "packet_status.csv",
+    "research_findings.json",
+    "source_recommendations.csv"
+  ]
+}

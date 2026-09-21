@@ -1,0 +1,19 @@
+{
+  "case_key": "ut_austin_tx",
+  "ori": "TX2270500",
+  "agency_name_raw": "univ of tx: austin",
+  "state_abbr": "TX",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/ut_austin_tx"
+  },
+  "review_goal": "Determine the defensible overlap treatment for ORI TX2270500 and whether UT Austin Police should be handled as a custom Austin-area campus/property footprint, an Austin or Travis County proxy, a broader university-system row, or a broad-overlap hold until custom geometry exists.",
+  "bottom_line": "Treat TX2270500 as a custom UT Austin footprint: the Austin sites the university currently marks as within UTPD jurisdiction, plus only any formally mapped near-campus patrol zone that can be traced to current official UTPD materials. Do not proxy it to Austin or Travis County, do not expand it to all UT Austin properties, and do not treat it as a broader UT system row; if custom geometry is not yet implemented, keep broad overlap."
+}

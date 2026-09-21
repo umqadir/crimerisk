@@ -1,0 +1,14 @@
+{
+  "case_key": "new_orleans_la",
+  "jurisdiction_id": "22:municipal:place:2255000",
+  "jurisdiction_name": "New Orleans city",
+  "state_abbr": "LA",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/new_orleans_la",
+  "review_goal": "Determine whether New Orleans should retain a true separate municipal control row and what official continuity/publication surface should anchor the current fully filled 2024 target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

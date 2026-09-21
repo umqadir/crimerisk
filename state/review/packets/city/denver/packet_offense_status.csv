@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,yes,offense_selective,exact_local_anchor,"Denver's murder category is public, direct, and reconciles on victim_count; the 2024 service returns 62 rows and 66 victims."
+rape,no,blocked,blocked_local_ontology,"Denver exposes sex-related categories, but none are a repo-compatible rape bucket."
+robbery,yes,offense_selective,exact_local_anchor,"Denver's robbery category is direct and reconciles cleanly on row count."
+aggravated_assault,yes,offense_selective,exact_local_anchor,"Denver's aggravated-assault category is public and should be reconciled on victim_count; 2024 returns 2,689 rows and 3,549 victims."
+burglary,yes,offense_selective,exact_local_anchor,"Denver's burglary category is direct and reconciles cleanly on row count."
+larceny,yes,offense_selective,exact_local_anchor,"Denver's larceny category is direct and reconciles cleanly on row count."
+motor_vehicle_theft,yes,offense_selective,exact_local_anchor,"Denver's auto-theft category is the repo's motor_vehicle_theft anchor."

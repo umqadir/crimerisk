@@ -1,0 +1,26 @@
+{
+  "city_key": "minneapolis",
+  "city_name": "Minneapolis",
+  "jurisdiction_id": "27:municipal:place:2743000",
+  "state_abbr": "MN",
+  "priority_bucket": "second_wave",
+  "priority_rank": "12",
+  "basis": "Large single-city police jurisdiction with an official NIBRS-coded public incident service and official dashboard/document anchors.",
+  "notes": "Now live offense-selectively for murder, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft. Keep rape blocked because the public feed collapses sex-offense codes into a generic Sex Offenses bucket rather than a strict repo rape category, and reconcile the six promotable offenses on row count rather than Crime_Count.",
+  "source_name": "Minneapolis Crime_Data feature service plus official crime dashboard/document anchors",
+  "source_url": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Crime_Data/FeatureServer/0 ; https://opendata.minneapolismn.gov/datasets/cityoflakes::crime-data/about ; https://www.minneapolismn.gov/government/government-data/datasource/crime-dashboard/ ; https://www.minneapolismn.gov/government/government-data/datasource/crime-dashboard/crime-dashboard-document/",
+  "portal_type": "arcgis_feature_service_plus_dashboard",
+  "coverage_start_year": "2019",
+  "coverage_end_year": "2026",
+  "years_usable": "7",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "medium_with_anonymized_variant",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/minneapolis",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

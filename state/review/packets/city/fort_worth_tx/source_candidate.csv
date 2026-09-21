@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,City of Fort Worth Open Data - CFW Police Crime Data Points,https://data.fortworthtexas.gov/datasets/cfw-police-crime-data-points,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

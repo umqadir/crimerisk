@@ -1,0 +1,11 @@
+{
+  "state_abbr": "TX",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/tx",
+  "priority_rows": 7,
+  "queue_rows": 7,
+  "required_outputs": [
+    "packet_status.csv",
+    "research_findings.json",
+    "source_recommendations.csv"
+  ]
+}

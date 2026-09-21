@@ -1,0 +1,4 @@
+label,county_fips,manifest_status,observed_probe_result,implication
+fail_ca,06101,failed_permanent,HTTP 200 on canonical URL,canonical path exists; failure is not a missing URL
+transient_al,01127,failed_transient,HTTP 200 on canonical URL,retry can succeed after cooldown; confirms throttling behavior
+directory_listing,,,HTTP 429 on directory probe,server is rate limiting metadata/listing access during diagnosis

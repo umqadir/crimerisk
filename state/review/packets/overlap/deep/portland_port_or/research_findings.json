@@ -1,0 +1,166 @@
+{
+  "case_key": "portland_port_or",
+  "ori": "OR0260300",
+  "agency_name_raw": "Port of Portland Police Department",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "port_of_portland_multi_facility_property_system",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": false,
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Current official Port materials show the Port of Portland is a multi-facility transportation and industrial-property system, not a Portland city agency. The Port currently operates three airports, three operating or active marine terminals, and six business parks.",
+    "Current official Port facility pages identify the system components relevant here as Portland International Airport, Hillsboro Airport, Troutdale Airport, Terminals 4 5 and 6, PDX Cargo Center and Air Trans Center, Portland International Center or Cascade Station, Rivergate Industrial District, Swan Island Industrial Park, Gresham Vista Business Park, and Troutdale Reynolds Industrial Park.",
+    "Oregon law now grounds port-police authority in port property rather than a single city anchor. ORS 777.190 authorizes a port to police and regulate property owned, operated, maintained, or controlled by the port and to appoint peace officers for that purpose.",
+    "Current Port media and policy pages reinforce that the Port's operational property system spans airports, marine terminals, and industrial properties, and that Port of Portland Police incidents are part of that broader system context rather than a Portland-only airport placeholder.",
+    "The existing Multnomah County and Portland place anchors in federal and legacy repo artifacts are address geocodes keyed to the Port Police mailing location at 7000 NE Airport Way, not evidence that the ORI should be localized to Portland or Multnomah County.",
+    "A custom Port-property footprint is therefore the defensible production treatment. The best machine-readable geometry path currently available is the official local-government polygon layer explicitly named Port of Portland Properties, validated against current Port-hosted property and facility pages."
+  ],
+  "service_jurisdiction_footprint": {
+    "is_truly_multicounty": true,
+    "known_counties": [
+      "Multnomah County, Oregon",
+      "Washington County, Oregon"
+    ],
+    "is_multi_facility": true,
+    "legal_backdrop": {
+      "entity_type": "regional port authority police force tied to Port-controlled property",
+      "statutory_rule": "ORS 777.190 authorizes a port to police, control, regulate, and manage property owned, operated, maintained, or controlled by the port and to appoint peace officers for enforcement.",
+      "important_interpretation": "The controlling legal footprint is Port property, not the Port's headquarters address and not a generic Portland or Multnomah territorial substitute."
+    },
+    "current_official_system_inventory": {
+      "airports": [
+        "Portland International Airport (PDX)",
+        "Hillsboro Airport (HIO)",
+        "Troutdale Airport (TTD)"
+      ],
+      "marine_terminals": [
+        "Terminal 4",
+        "Terminal 5",
+        "Terminal 6 / Oregon Container Terminal"
+      ],
+      "business_and_industrial_properties": [
+        "PDX Cargo Center and Air Trans Center",
+        "Portland International Center / Cascade Station",
+        "Rivergate Industrial District",
+        "Swan Island Industrial Park",
+        "Gresham Vista Business Park",
+        "Troutdale Reynolds Industrial Park"
+      ]
+    },
+    "geometry_supporting_cities_in_current_polygon_layer": [
+      "Portland",
+      "Hillsboro",
+      "Troutdale",
+      "Fairview",
+      "Gresham",
+      "Airport Station"
+    ]
+  },
+  "why_simple_proxies_fail": {
+    "single_place_proxy": [
+      "Portland is not defensible because the current Port system includes Hillsboro Airport in Washington County and Troutdale or Fairview-facing properties east of Portland. A Portland place polygon would omit real Port property components.",
+      "Hillsboro is not defensible because it would omit PDX, the Rivergate and Swan Island industrial and marine areas, and the east Multnomah business parks.",
+      "The federal and LEAIC address anchor at 7000 NE Airport Way Portland is an administrative or mailing location at PDX, not proof that the ORI is a Portland-place police row."
+    ],
+    "single_county_proxy": [
+      "Multnomah County is not defensible because the Port's current airport system includes Hillsboro Airport in Washington County.",
+      "Washington County is not defensible because the Port's marine terminals, PDX, and most named business and industrial properties are in Multnomah County.",
+      "Because the current official property system spans at least Multnomah and Washington Counties, any single-county proxy would create false precision."
+    ],
+    "pdx_only_proxy": [
+      "The public-facing police page is PDX-centered, but the Port's current official system inventory and media resources pages show a broader property system of airports, marine terminals, and business or industrial parks tied to Port Police situations.",
+      "Reducing OR0260300 to only PDX would understate the real Port-property system and ignore the statutory Port-property basis for peace-officer authority."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing the row into Portland Police, Multnomah County, Hillsboro, or any local primary would erase a real special-jurisdiction overlap layer tied to Port-controlled transportation and industrial property.",
+      "Concurrent local jurisdiction does not make the Port Police layer unreal; it means the correct treatment is an overlap anchored to the Port-property system."
+    ]
+  },
+  "custom_footprint_geometry_path": {
+    "primary_machine_readable_source": {
+      "source_type": "official_local_gis_query",
+      "path": "https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/Public_Map_Layers/FeatureServer/25/query?where=1%3D1&outFields=OBJECTID_1%2CSITECITY%2COWNER1%2CSITEADDR&returnGeometry=true&f=geojson",
+      "why_this_is_primary": "This is the best public polygon source located for the full Port-property system. It returns polygon features for Port of Portland Properties across the current operating geography instead of a single point or mailing address."
+    },
+    "authoritative_validation_surfaces": [
+      "https://www.portofportland.com/Commercial",
+      "https://www.portofportland.com/Marine",
+      "https://www.portofportland.com/PortlandAirport",
+      "https://www.portofportland.com/HIO",
+      "https://www.portofportland.com/TTD",
+      "https://www.portofportland.com/Terminal4",
+      "https://www.portofportland.com/Terminal5",
+      "https://www.portofportland.com/Terminal6",
+      "https://www.portofportland.com/aircargo",
+      "https://cdn.portofportland.com/maps/PortfolioMap/{z}/{x}/{y}.png",
+      "https://cdn.portofportland.com/maps/PICMap/{z}/{x}/{y}.png",
+      "https://cdn.portofportland.com/maps/RivergatesMap/{z}/{x}/{y}.png",
+      "https://cdn.portofportland.com/maps/SwanIslandMap/{z}/{x}/{y}.png",
+      "https://cdn.portofportland.com/maps/Hillsboro/{z}/{x}/{y}.png",
+      "https://cdn.portofportland.com/maps/TroutdaleAirportMap/{z}/{x}/{y}.png",
+      "https://cdn.portofportland.com/pop/Commercial/GVBPMap.webp",
+      "https://cdn.portofportland.com/pop/Commercial/TRIPMap.webp"
+    ],
+    "build_guidance": [
+      "Use the full polygon union from the Port of Portland Properties feature layer as the initial system footprint rather than a point buffer around Port headquarters.",
+      "QA the union against the current official Port system inventory so the footprint clearly includes the three airports, the three active marine terminals, PDX cargo facilities, and the current business or industrial park portfolio.",
+      "Retain discontiguous geometry. This is a multi-facility system footprint, not one contiguous city or county polygon.",
+      "Do not replace the polygon union with only PDX, only Rivergate, or only one airport.",
+      "Because the feature-layer metadata shows a 2020 edit date, perform a quick facility-by-facility visual QA against the current Port-hosted pages and map tiles before final promotion into overlap_custom_footprints.csv."
+    ],
+    "exact_blocker_status": "No substantive research blocker remains. The remaining gap is implementation work in overlap_custom_footprints.csv, which is outside this packet's allowed edit scope."
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a discontiguous Port of Portland property-system footprint covering current Port-operated airports, active marine terminals, air-cargo facilities, and business or industrial properties rather than any one county, place, or airport-only surrogate.",
+    "geometry_guidance": [
+      "Start from the official Port of Portland Properties polygon query path and union all returned polygons.",
+      "Use current Port-hosted property and facility pages to confirm inclusion of PDX, HIO, TTD, Terminal 4, Terminal 5, Terminal 6, PDX cargo facilities, PIC or Cascade Station, Rivergate, Swan Island, Gresham Vista, and TRIP.",
+      "Treat the result as a special-jurisdiction overlap footprint for OR0260300.",
+      "Do not force the ORI to Portland place, Multnomah County, or Hillsboro place just because those appear in mailing-address or roster anchors."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "fallback_why": [
+      "If the production system cannot yet ingest the custom Port-property footprint, broad overlap is safer than a false Portland or Multnomah proxy.",
+      "The repo already treats custom-without-footprint cases as broad overlap at allocation time, so this fallback is consistent with existing production behavior."
+    ],
+    "not_recommended": [
+      "localize_to_place",
+      "localize_to_county",
+      "absorb_into_primary_jurisdiction",
+      "localize_to_pdx_only"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": true,
+    "exact_recommended_production_disposition": "custom Port of Portland multi-facility property-system footprint; otherwise keep broad overlap"
+  },
+  "authoritative_sources_used": [
+    "https://www.oregonlegislature.gov/bills_laws/ors/ors777.html",
+    "https://www.portofportland.com/PublicSafety",
+    "https://www.portofportland.com/PublicSafety/PoliceReport?culture=en",
+    "https://www.portofportland.com/Newsroom/Reporters",
+    "https://www.portofportland.com/Drones",
+    "https://www.portofportland.com/MovingWithPurpose",
+    "https://www.portofportland.com/Commercial",
+    "https://www.portofportland.com/Marine",
+    "https://www.portofportland.com/PortlandAirport",
+    "https://www.portofportland.com/HIO",
+    "https://www.portofportland.com/TTD",
+    "https://www.portofportland.com/Terminal4",
+    "https://www.portofportland.com/Terminal5",
+    "https://www.portofportland.com/Terminal6",
+    "https://www.portofportland.com/aircargo",
+    "https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/Public_Map_Layers/FeatureServer/25?f=pjson",
+    "https://services.arcgis.com/quVN97tn06YNGj9s/ArcGIS/rest/services/Public_Map_Layers/FeatureServer/25/query?where=1%3D1&outFields=OBJECTID_1%2CSITECITY%2COWNER1%2CSITEADDR&returnGeometry=true&f=geojson",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/agency_rosters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/LEAIC-Crosswalk-ICPSR_35158/DS0001/35158-0001-Data.tsv"
+  ]
+}

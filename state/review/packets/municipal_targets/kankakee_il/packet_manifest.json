@@ -1,0 +1,14 @@
+{
+  "case_key": "kankakee_il",
+  "jurisdiction_id": "17:municipal:place:1738934",
+  "jurisdiction_name": "Kankakee city",
+  "state_abbr": "IL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/kankakee_il",
+  "review_goal": "Determine whether Kankakee city should retain a standalone municipal control row and whether the current full-fill state reflects invalid targeting, sheriff replacement, shared service structure, or reporting continuity failure.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

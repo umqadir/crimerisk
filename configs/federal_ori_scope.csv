@@ -1,0 +1,842 @@
+ori9,class,evidence,source
+AKATF0200,national_hq,BUREAU OF ATF ANCHORAGE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AKDI00100,installation,KATMAI NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AKDI00200,installation,MOUNT MCKINLEY NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AKDI00300,installation,SITKA NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AKDI00400,installation,GLACIER BAY NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AKFBIAN00,national_hq,FBI ANCHORAGE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALATF0300,national_hq,BUREAU OF ATF MOBILE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALATF0400,national_hq,BUREAU OF ATF MONTGOMERY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALATF0800,national_hq,BUREAU OF ATF HUNTSVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALATFBH00,national_hq,BUREAU OF ATF DISTRICT O; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALDEA0100,national_hq,DEA BIRMINGHAM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALDI00100,installation,HORSESHOE BEND NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ALDI00200,installation,NATCHEZ TRACE PARKWAY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ALDI00300,installation,POARCH CREEK TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ALFBIBH00,national_hq,FBI BIRMINGHAM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALFBIMO00,national_hq,FBI MOBILE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ALPO00100,national_hq,U S POSTAL INSPECTION S; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ARATFLR00,national_hq,BUREAU OF ATF LITTLE RO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ARDI00100,installation,FORT SMITH NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ARDI00200,installation,HOT SPRINGS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ARDI00300,installation,PEA RIDGE NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ARDI00400,installation,ARKANSAS POST NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ARDI00500,installation,BUFFALO NR; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ARFBILR00,national_hq,FBI LITTLE ROCK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZATF0200,national_hq,BUREAU OF ATF PHOENIX; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZATF0300,national_hq,BUREAU OF ATF TUCSON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZATF0400,national_hq,BUREAU OF ATF FLAGSTAFF; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZATF0600,national_hq,BUREAU OF ATF SIERRA VIS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZCBP1600,national_hq,U S CUSTOMS AND BORDER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZCBP2500,national_hq,U S BORDER PATROL CASA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZDEA0400,national_hq,DEA PHOENIX; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZDEA0700,national_hq,DEA SIERRA VISTA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00100,installation,GRAND CANYON NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00200,installation,CORONDAO NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00300,installation,GLEN CANYON NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00400,installation,PETRIFIED FOREST NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00500,installation,SAGUARO NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00700,installation,CANYON DE CHELLY NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00800,installation,HUBBELL TRAD POST NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI00900,installation,NAVAJO NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01000,installation,SUNSET CRATER NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01100,installation,WUPATKI NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01200,installation,CASA GRANDE RUINS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01300,installation,CHIRICAHUA FT BOWIE NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01400,installation,MONTEZUMA CASTLE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01500,installation,ORGAN PIPE CASTUS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01600,installation,TONTO NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01700,installation,TUMACACORI NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01800,installation,TUZIGOOT NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI01900,installation,WALNUT CANYON NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI02000,installation,PIPE SPRING NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI02100,installation,LAKE MEAD NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI02300,installation,YAVAPAI PRESCOTT TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI05200,installation,SAN CARLOS AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI05300,installation,HOPI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI05500,installation,BIA NAVAJO DIV OF PUBLI; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI05900,installation,COLORADO RIVER AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06000,installation,TRUXTON CANON AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06100,installation,FORT MCDOWELL TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06200,installation,FORT APACHE AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06300,installation,BIA PIMA AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06500,installation,AK CHIN TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06600,installation,PASCUA YAQUI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06700,installation,HUALAPAI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI06900,installation,YAVAPAI APACHE NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI07200,installation,BIA WESTERN NAVAJO AGEN; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI08100,installation,TONTO APACHE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZDI08900,installation,HOPI RESOURCE ENFORCEMEN; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+AZFBIPX00,national_hq,FBI PHOENIX; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS0100,national_hq,U S BORDER PATROL TUCS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS0200,national_hq,US BORDER PATROL YUMA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS0300,national_hq,US BORDER PATROL NOGALE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS1700,national_hq,US BORDER PATROL YUMA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS3600,national_hq,U S BORDER PATROL CASA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS4000,national_hq,U S CUSTOMS BORDER PR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS4100,national_hq,U S BORDER PATROL BISB; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZINS4300,national_hq,U S BORDER PATROL TUCS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZUSC5000,national_hq,US CUSTOMS SERVICE DOUG; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZUSC5100,national_hq,U S CUSTOMS SERVICE NO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+AZUSC5800,national_hq,US CUSTOMS SERVICE SELL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+BDDEA0100,national_hq,DEA BAHAMAS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CA0190E00,installation,SRS type is federal; current identity is a Los Angeles County railroad footprint,SRS agency panel; agency master; LEAIC 35158
+CAATF0500,national_hq,BUREAU OF ATF FRESNO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF0600,national_hq,BUREAU OF ATF LONG BEACH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF0700,national_hq,BUREAU OF ATF OAKLAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF1100,national_hq,BUREAU OF ATF SACRAMENTO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF1300,national_hq,BUREAU OF ATF RIVERSIDE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF1400,national_hq,BUREAU OF ATF SAN DIEGO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF1500,national_hq,BUREAU OF ATF SAN JOSE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF1600,national_hq,BUREAU OF ATF SANTA ANA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF1900,national_hq,BUREAU OF ATF GLENDALE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF2100,national_hq,BUREAU OF ATF SAN FRANCI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF2700,national_hq,BUREAU OF ATF STOCKTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATF3000,national_hq,BUREAU OF ATF EL CENTRO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATFLA00,national_hq,BUREAU OF ATF DIST OFFIC; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAATFSF00,national_hq,BUREAU OF ATF DIST OFF S; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CACBP0000,national_hq,U S BORDER PATROL CAMP; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CADEA0200,national_hq,DEA LOS ANGELES; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CADEA2000,national_hq,DEA LOS ANGELES; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00100,installation,DEATH VALLEY NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00200,installation,JOSHUA TREE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00300,installation,LASSEN VOLCANIC NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00400,installation,POINT REYES NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00500,installation,SEQUOIA KINGS CANYON NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00600,installation,WHISKEYTOWN NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00700,installation,YOSEMITE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00800,installation,CABRILLO NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI00900,installation,CHANNEL ISLANDS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI01000,installation,GOLDEN GATE NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI01100,installation,PINNACLES NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI01200,installation,REDWOOD NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI01300,installation,JOHN MUIR NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI01400,installation,LAVA BEDS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI01500,installation,MUIR WOODS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI03900,installation,BLUE LAKE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI09900,installation,LA JOLLA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADI0990X,installation,LA JOLLA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIF0100,installation,US FISH WILDLIFE SERVI; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0000,installation,TULE RIVER TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0100,installation,HOPLAND TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0200,installation,YUROK TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0400,installation,SYCUAN TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0500,installation,LOS COYOTES TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0700,installation,ROBINSON RANCHERIA TRIBA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0800,installation,HOOPA VALLEY TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT0900,installation,COYOTE VALLEY TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT1100,installation,TABLE MOUNTAIN RANCHERIA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT1400,installation,SAN PASQUAL BAND OF MISS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CADIT1600,installation,BEAR RIVER BAND; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CAFBILA00,national_hq,FBI LOS ANGELES; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAFBISC00,national_hq,FBI SACRAMENTO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAFBISD00,national_hq,FBI SAN DIEGO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAFBISF00,national_hq,FBI SAN FRANCISCO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINS0100,national_hq,US BORDER PATROL CHULA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINS0200,national_hq,US BORDER PATROL EL CEN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINS6200,national_hq,U S BORDER PATROL BLYT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINS8400,national_hq,US BORDER PATROL SAN DI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINS8800,national_hq,U S BORDER PATROL EL C; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINSA900,national_hq,U S BORDER PATROL INDI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAINSBF00,national_hq,US BORDER PATROL BROWN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CASS40300,national_hq,US SECRET SERVICE LOS A; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAUSC5300,national_hq,US CUSTOMS SERVICE SAN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CAUSM0500,national_hq,US MARSHALS SERVICE FRE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+COATF0200,national_hq,BUREAU OF ATF DENVER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+COATF0400,national_hq,BUREAU OF ATF COLORADO S; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00100,installation,ROCKY MOUNTAIN; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00200,installation,MESA VERDE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00400,installation,BLACK CANYON OTG NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00500,installation,COLORADO NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00600,installation,CURECANTI RA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00700,installation,FLORISSANT FOSS BEDS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00800,installation,GREAT SAND DUNES NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI00900,installation,YUCCA HOUSE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI01000,installation,BENT S OLD FORT NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI01100,installation,UTE MOUNTAIN TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI01200,installation,HOVENWEEP NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI01300,installation,SHADOW MOUNTAIN; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CODI01600,installation,BUREAU OF RECLAMATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+COFBIDN00,national_hq,FBI DENVER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+COSS40200,national_hq,US SECRET SERVICE DENVE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CTATF0100,national_hq,BUREAU OF ATF NEW HAVEN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CTATF0200,national_hq,BUREAU OF ATF DIST OFF H; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+CTDI00200,installation,MASHANTUCKET PEQUOT TRBL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CTDI00300,installation,MOHEGAN TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+CTFBINH00,national_hq,FBI NEW HAVEN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DC0010500,national_hq,U S DEPARTMENT OF HEALT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DC0010700,national_hq,U S DEPT OF EDUCATION O; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DC0011900,national_hq,Pension Benefit Guaranty Corporation OIG national investigative caseload,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DC0012400,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DC0013000,national_hq,Department of State service-wide federal caseload,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DC0013100,national_hq,U S DEPARTMENT OF HEALT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DC0019000,installation,Architect of the Capitol polices the Capitol complex footprint,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCAF00100,national_hq,UNITED STATES AIR FORCE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCAF00200,national_hq,United States Air Force service-wide rollup registered in Washington,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCATF0200,national_hq,BUREAU OF ATF SPECIAL TA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCATF0300,national_hq,BUREAU OF ATF SPECIAL TA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCATF0400,national_hq,BUREAU OF ATF WASHINGTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCATF0800,national_hq,BUREAU OF ATF HQ INDUSTR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCATFWF00,national_hq,BUREAU OF ATF WASHINGTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCB0M0100,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCBEP0100,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCD0A0000,national_hq,United States Forest Service service-wide rollup registered in Washington,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCD0L0300,national_hq,Federal department OIG caseload has no installation policing footprint,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCD0T0700,national_hq,Federal department-wide caseload has no installation policing footprint,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCDEA0100,national_hq,DEA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCDHS0000,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCDI00400,national_hq,Bureau of Land Management service-wide rollup registered in Washington,SRS agency panel; agency master
+DCDI00500,national_hq,Bureau of Reclamation service-wide rollup registered in Washington,SRS agency panel; agency master
+DCDI00600,national_hq,Fish and Wildlife Service service-wide rollup registered in Washington,SRS agency panel; agency master
+DCDI00700,national_hq,National Park Service service-wide rollup is distinct from park-specific installation ORIs,SRS agency panel; agency master
+DCDI00800,national_hq,Bureau of Indian Affairs headquarters has no DC reservation footprint,SRS agency panel; tribal footprint registry
+DCDI01200,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCDI05000,national_hq,Bureau of Indian Affairs headquarters has no DC reservation footprint,SRS agency panel; tribal footprint registry
+DCDI07500,national_hq,FISH AND WILDLIFE SERVIC; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCDOA0200,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCDOD1000,national_hq,Defense Intelligence Agency investigative caseload has no installation policing footprint,SRS agency panel; agency master
+DCDOJ1200,national_hq,Department of Justice OIG national investigative caseload,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCDOL0600,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCFBIIT00,national_hq,FBI IT MANAGEMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCFBIWA00,national_hq,FBI investigative caseload is national; this is the only FBI ORI reporting 2024 murders,FBI NIBRS 2024 Table 40 federal section; national agency-panel census
+DCFBIWF00,national_hq,FBI WASHINGTON D C; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCGSA0000,national_hq,General Services Administration service-wide rollup registered in Washington,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCMC01000,national_hq,Marine Corps service-wide law-enforcement rollup registered in Washington,SRS agency panel; agency master
+DCSS15600,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCTIX0000,national_hq,Treasury Inspector General for Tax Administration national investigative caseload,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCTRE0400,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DCUSA0100,national_hq,United States Army service-wide rollup registered in Washington,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCUSN0000,national_hq,United States Navy service-wide law-enforcement rollup registered in Washington,SRS agency panel; agency master
+DCVA00000,national_hq,Department of Veterans Affairs Police Service service-wide rollup registered in Washington,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+DCZPP0000,installation,National Zoological Park Police patrols the zoo campus footprint,SRS type is federal; LEAIC 35158
+DEATF0200,national_hq,BUREAU OF ATF WILMINGTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+DEDEA0100,national_hq,DEA resident-office investigations are not an installation policing footprint,SRS type is federal; LEAIC 35158
+FDLK24000,national_hq,U S MARSHALS SERVICE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF0100,national_hq,BUREAU OF ATF FORT LAUDE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF0200,national_hq,BUREAU OF ATF DIST OFF M; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF0300,national_hq,BUREAU OF ATF ORLANDO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF0400,national_hq,BUREAU OF ATF PENSACOLA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF0700,national_hq,BUREAU OF ATF MIAMI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF0900,national_hq,BUREAU OF ATF WEST PALM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF1200,national_hq,BUREAU OF ATF FT LAUDERD; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF1300,national_hq,BUREAU OF ATF PANAMA CIT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF1400,national_hq,BUREAU OF ATF FORT MYERS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF1600,national_hq,BUREAU OF ATF; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF1700,national_hq,BUREAU OF ATF TALLAHASSE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATF3100,national_hq,BUREAU OF ATF PORT ST LU; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLATFJK00,national_hq,BUREAU OF ATF JACKSONVIL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00100,installation,EVERGLADES NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00200,installation,BISCAYNE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00300,installation,CASTILLO DE SAN MARCOS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00400,installation,FORT MATANZAS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00500,installation,FORT JEFFERSON NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00600,installation,DE SOTO NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00700,installation,FORT CAROLINE NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00800,installation,GULF ISLANDS NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLDI00900,installation,CANAVERAL NAT L SEASHORE; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+FLFBIJK00,national_hq,FBI JACKSONVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLFBIMM00,national_hq,FBI MIAMI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLFBITP00,national_hq,FBI TAMPA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLSS31800,national_hq,U S SECRET SERVICE TAM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLUSC0300,national_hq,US CUSTOMS SERVICE JACK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLUSC6900,national_hq,US CUSTOMS SERVICE MIAM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+FLUSM0600,national_hq,U S MARSHALS SERVICE T; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GAATF0200,national_hq,BUREAU OF ATF COLUMBUS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GAATF0400,national_hq,BUREAU OF ATF MACON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GAATF0600,national_hq,BUREAU OF ATF SAVANNAH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GAATFAT00,national_hq,BUREAU OF ATF DIST OFF A; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GACBP0000,national_hq,US CUSTOMS AND BORDER PR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GADEA0100,national_hq,DEA ATLANTA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00100,installation,ANDERSONVILLE NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00200,installation,CHICK CHATT NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00300,installation,FORT FREDERICA NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00400,installation,FORT PULASKI NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00500,installation,KENNESAW MOUNTAIN NBP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00600,installation,OCMULGEE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADI00700,installation,CUMBERLAND ISLAND NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+GADOA0100,installation,U S FOREST SERVICE; regional federal-land enforcement has a mappable land footprint,agency_master.parquet; agency_year_observations.parquet
+GAFBIAT00,national_hq,FBI ATLANTA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+GMATF0100,national_hq,BUREAU OF ATF GUAM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+HIATF0200,national_hq,BUREAU OF ATF HONOLULU; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+HIDEA0100,national_hq,DEA HONOLULU; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+HIDI00000,installation,HAWAII VOLCANOES NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+HIDI00100,installation,CITY OF REFUGE NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+HIDI00200,installation,HALEAKALA NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+HIDIF0100,installation,U S FISH WILDLIFE DIV; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+HIFBIHN00,national_hq,FBI HONOLULU; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+IAATF0200,national_hq,BUREAU OF ATF DES MOINES; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+IADI00100,installation,EFFIGY MOUND NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IADI00200,installation,HERBERT HOOVER NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IADIT0000,installation,MESKWAKI NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDATF0200,national_hq,BUREAU OF ATF BOISE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+IDDI00100,installation,CRATERS OF THE MOON NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDDI00200,installation,NEZ PERCE NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDDI00300,installation,YELLOWSTONE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDDI00400,installation,NEZ PERCE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDDI00900,installation,COEUR D ALENE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDDI01100,installation,KOOTENAI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+IDUSM0100,national_hq,U S MARSHALS SERVICE B; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILATF0100,national_hq,BUREAU OF ATF CHICAGO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILATF0600,national_hq,BUREAU OF ATF SPRINGFIEL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILATF0800,national_hq,BUREAU OF ATF FAIRVIEW H; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILDI00100,installation,LINCOLN HOME NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ILFBICG00,national_hq,FBI CHICAGO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILFBISI00,national_hq,FBI SPRINGFIELD; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILSS20100,national_hq,US SECRET SERVICE CHICA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ILUSM0100,national_hq,US MARSHALS SERVICE CHI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+INATF0200,national_hq,BUREAU OF ATF INDIANAPOL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+INATF0300,national_hq,BUREAU OF ATF FORT WAYNE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+INATF0500,national_hq,BUREAU OF ATF MERRILLVIL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+INDI00100,installation,LINCOLN BOYHOOD NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+INDI00200,installation,GEORGE ROGERS CLARK NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+INDI00300,installation,INDIANA DUNES NL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+INFBIIP00,national_hq,FBI INDIANAPOLIS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KSATF0200,national_hq,BUREAU OF ATF WICHITA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KSDI00100,installation,FORT LARNED NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KSDI00200,installation,POTAWATOMI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KSDI05000,installation,KICKAPOO TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KSDI05100,installation,IOWA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KSDI05200,installation,SAC AND FOX TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KY1110200,installation,Tennessee Valley Authority police row identifies a specific Kentucky facility area,SRS type is federal; LEAIC 35158
+KYATF0100,national_hq,BUREAU OF ATF ASHLAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KYATF0200,national_hq,BUREAU OF ATF DIST OFF L; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KYATF0300,national_hq,BUREAU OF ATF BOWLING GR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KYATF0400,national_hq,BUREAU OF ATF LEXINGTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KYATF0900,national_hq,BUREAU OF ATF LONDON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KYDI00100,installation,MAMMOTH CAVE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KYDI00200,installation,CUMBERLAND GAP NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KYDI00300,installation,ABRAHAM LINCOLN BPL NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+KYFBILS00,national_hq,FBI LOUISVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+KYUSM0200,national_hq,US MARSHALS SRVC LXNGTN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+LAATF0200,national_hq,BUREAU OF ATF NEW ORLEA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+LAATF0300,national_hq,BUREAU OF ATF SHREVEPORT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+LAATF0400,national_hq,BUREAU OF ATF BATON ROUG; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+LADI00100,installation,CHALMETTE NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+LADI00500,installation,TUNICA BILOXI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+LADI00600,installation,COUSHATTA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+LAFBINO00,national_hq,FBI NEW ORLEANS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+LAUSC0500,national_hq,US CUSTOMS SERVICE GRAM; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+LAUSM0300,national_hq,U S MARSHALS SERVICE B; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MAATF0300,national_hq,BUREAU OF ATF SPRINGFIEL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MAATF0400,national_hq,BUREAU OF ATF WORCESTER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MAATF0500,national_hq,BUREAU OF ATF BOSTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00100,installation,CAPE COD NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00200,installation,ADAMS NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00400,installation,LONGFELLOW NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00500,installation,MINUTE MAN NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00600,installation,SALEM MARITIME NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00700,installation,SAUGUS IRON WORKS NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00800,installation,BOSTON NAT L HIST PARK; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI00900,installation,JFK NAT L HISTORIC SITE; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADI01000,installation,WAMPANOAG TRIBE GAY HEAD; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MADIT0000,installation,MASHPEE WAMPANOAG TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MAFBIBS00,national_hq,FBI BOSTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MDATF0100,national_hq,BUREAU OF ATF HYATTSVILL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MDATF0200,national_hq,BUREAU OF ATF BALTIMORE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MDD0AHY00,installation,UNITED STATES DEPARTMENT; regional federal-land enforcement has a mappable land footprint,agency_master.parquet; agency_year_observations.parquet
+MDDC00200,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00100,installation,CATOCTIN MTN PARK; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00200,installation,C O CANAL ANTIETAM NS NC; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00300,installation,ASSATEAGUE ISLAND NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00400,installation,FORT MCHENRY NM HS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00500,installation,HARPERS FERRY NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00600,installation,HAMPTON NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDDI00900,installation,GREENBELT NATL PARK; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MDFBIBA00,national_hq,FBI BALTIMORE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MDFDA0300,national_hq,U S DEPT OF HEALTH AND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MDHHS0100,installation,National Institutes of Health police protect the Bethesda campus footprint,SRS agency panel; agency master
+MDPPD0000,installation,U S PARK POLICE; protective police/security row identifies a federal site footprint,agency_master.parquet; agency_year_observations.parquet
+ME001BI00,national_hq,DEA ANDROSCOGGIN COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME002BI00,national_hq,DEA AROOSTOOK COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME003BI00,national_hq,DEA CUMBERLAND COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME004BI00,national_hq,DEA FRANKLIN COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME005BI00,national_hq,DEA HANCOCK COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME006BI00,national_hq,DEA KENNEBEC COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME007BI00,national_hq,DEA KNOX COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME008BI00,national_hq,DEA LINCOLN COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME009BI00,national_hq,DEA OXFORD COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME010BI00,national_hq,DEA PENOBSCOT COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME011BI00,national_hq,DEA PISCATAQUIS COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME012BI00,national_hq,DEA SAGADAHOC COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME013BI00,national_hq,DEA SOMERSET COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME014BI00,national_hq,DEA WALDO COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME015BI00,national_hq,DEA WASHINGTON COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ME016BI00,national_hq,DEA YORK COUNTY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MEATF0200,national_hq,BUREAU OF ATF PORTLAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MEDI00100,installation,ACADIA NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MEDI00300,installation,PASSAMAQUODDY INDIAN TWP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MEINS1200,national_hq,US BORDER PATROL HOULTO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MIATF0200,national_hq,BUREAU OF ATF GRAND RAPI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MIATF0400,national_hq,BUREAU OF ATF FLINT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MIATF0600,national_hq,BUREAU OF ATF ANN ARBOR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MIATFDE00,national_hq,BUREAU OF ATF DIST OFF D; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MIDEA0100,national_hq,DEA DETROIT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI00100,installation,ISLE ROYALE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI00200,installation,PICTURED ROCKS NL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI00300,installation,SLEEPING BEAR DUNES NL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI00400,installation,VOYAGEURS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI00900,installation,POKAGON TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI03000,installation,GUN LAKE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI05000,installation,KEWEENAW BAY TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI05200,installation,SAULT STE MARIE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI05300,installation,SAGINAW CHIPPEWA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI05400,installation,BAY MILLS TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI05500,installation,L TRVRS BAY BNDS ODAWA I; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI06000,installation,LITTLE RVR BND OTTAWA IN; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIDI07000,installation,NOTTAWASEPPI HURON PTWTM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MIFBIDE00,national_hq,FBI DETROIT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MNATFSP00,national_hq,BUREAU OF ATF; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI00100,installation,GRAND PORTAGE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI00200,installation,PIPESTONE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI00300,installation,VOYAGEURS NAT L PARK; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI00500,installation,LEECH LAKE BAND OF OJIBW; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI01900,installation,WHITE EARTH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI02300,installation,UPPER SIOUX COMMUNITY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI02400,installation,MILLE LACS TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI05000,installation,RED LAKE AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI05100,installation,NETT LAKE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI06000,installation,LOWER SIOUX TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDI07000,installation,FOND DU LAC TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MNDOA0100,installation,US FOREST SERVICE DULUT; regional federal-land enforcement has a mappable land footprint,agency_master.parquet; agency_year_observations.parquet
+MNFBIMP00,national_hq,FBI MINNEAPOLIS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MNKST0000,national_hq,FBI MINNEAPOLIS FIELD OF; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MNUSM0100,national_hq,US MARSHALS SERVICE MIN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MOATF0100,national_hq,BUREAU OF ATF DIST CAPE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MOATF0200,national_hq,BUREAU OF ATF DIST OFF K; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MOATF0600,national_hq,BUREAU OF ATF SPRINGFIEL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MOATFSL00,national_hq,BUREAU OF ATF DIST OFF S; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MODI00100,installation,JEFFERSON NEM NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MODI00200,installation,OZARK NSR; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MODI00300,installation,GEORGE WASH CARVER NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MODI00400,installation,WILSONS CREEK NB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MODOAKC00,national_hq,US Department of Agriculture OIG investigative caseload has no installation policing footprint,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+MOFBIKC00,national_hq,FBI KANSAS CITY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MOFBISL00,national_hq,FBI ST LOUIS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MOUSM0200,national_hq,U S MARSHALS SERVICE S; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MSATF0700,national_hq,BUREAU OF ATF OXFORD; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MSATF0800,national_hq,BUREAU OF ATF GULFPORT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MSATFJN00,national_hq,BUREAU OF ATF JACKSON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI00100,installation,NATCHEZ TRACE PARKWAY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI00200,installation,GULF ISLANDS NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI00300,installation,BRICES CROSS ROADS NBS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI00400,installation,TUPELO NB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI00500,installation,VICKSBURG NMP NC; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI05000,installation,CHOCTAW TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSDI06000,installation,NATIONAL PARK SERVICE O; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MSFBIJN00,national_hq,FBI JACKSON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MTATF0200,national_hq,BUREAU OF ATF HELENA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MTATF0300,national_hq,BUREAU OF ATF BILLINGS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00000,installation,FLATHEAD TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00100,installation,GLACIER NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00200,installation,BIGHORN CANYON NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00300,installation,YELLOWSTONE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00400,installation,BIG HOLE NB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00500,installation,CUSTER BATTLEFIELD NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI00600,installation,FORT UNION TRAD POST; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI05000,installation,CROW AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI05100,installation,NORTHERN CHEYENNE AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI05300,installation,BLACKFEET AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI05400,installation,FORT BELKNAP TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI05500,installation,FT PCK ASSINIBOINE SIOUX; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI05600,installation,BIA BOX ELDER; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+MTDI06200,installation,ROCKY BOY S TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NBATF0200,national_hq,BUREAU OF ATF OMAHA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NBDI00100,installation,SCOTTS BLUFF; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NBDI00200,installation,HOMESTEAD NM OF AMERICA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NBDI00300,installation,AGATE FOSSIL BEDS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NBDI00800,installation,SANTEE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NBFBIOM00,national_hq,FBI OMAHA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCATF0100,national_hq,BUREAU OF ATF ASHEVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCATF0200,national_hq,BUREAU OF ATF GREENSBORO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCATF0500,national_hq,BUREAU OF ATF FAYETTEVIL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCATF0900,national_hq,BUREAU OF ATF RALEIGH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCATF1400,national_hq,BUREAU OF ATF WILMINGTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCATFCE00,national_hq,BUREAU OF ATF DIST OFF C; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00100,installation,CAPE HATTERAS NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00200,installation,KINGS MT NATL PARK; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00300,installation,APPALACHIAN NSR; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00400,installation,BLUE RIDGE PARKWAY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00500,installation,CARL SANDBURG HOME NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00600,installation,GUILFORD COURTHOUSE NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00700,installation,FORT RALEIGH NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00800,installation,WRIGHT BROTHERS NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI00900,installation,CAPE LOOKOUT NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI01000,installation,GREAT SMOKY MTNS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDI01100,installation,MOORES CREEK NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NCDOA0100,installation,U S FOREST SERVICE ASH; regional federal-land enforcement has a mappable land footprint,agency_master.parquet; agency_year_observations.parquet
+NCFBICE00,national_hq,FBI CHARLOTTE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NDATF0200,national_hq,BUREAU OF ATF FARGO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI00100,installation,TURTLE MOUNTAIN AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI00200,installation,FORT TOTTEN AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI00300,installation,STANDING ROCK AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI00400,installation,FORT BERTHOLD AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI00500,installation,FORT UNION TRAD POST; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI00600,installation,THEO ROOSEVELT NMEMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDDI01900,installation,THREE AFFILIATED TRIBES; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NDUSM0100,national_hq,US MARSHALS SERVICE FAR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NHATF0300,national_hq,BUREAU OF ATF BEDFORD; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NJATF0200,national_hq,BUREAU OF ATF CHERRY HIL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NJATF0500,national_hq,BUREAU OF ATF TRENTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NJATF0600,national_hq,BUREAU OF ATF NEWARK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NJDI00100,installation,MORRISTOWN NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NJDI00200,installation,PALISADES INTERSTATE PWY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NJDI00300,installation,DELAWARE WATER GAP NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NJDI00400,installation,EDISON NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NJFBINK00,national_hq,FBI NEWARK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NJFBIZ100,national_hq,FEDERAL BUREAU OF INVEST; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NJSS10600,national_hq,US SECRET SERVICE NEWAR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NMATF0200,national_hq,BUREAU OF ATF ALBUQUERQU; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NMATF0300,national_hq,BUREAU OF ATF LAS CRUCES; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00200,installation,BANDELIER NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00300,installation,CHACO CANYON NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00400,installation,GRAND QUIVIRA NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00500,installation,WHITE SANDS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00600,installation,CARLSBAD CAVERNS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00700,installation,CAPULIN MTN NATL MON; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00800,installation,FORT UNION NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI00900,installation,GILA CLIFF DWELLINGS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI01100,installation,AZTEC RUINS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI01200,installation,EL MORRO NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI01300,installation,PECOS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI02200,installation,POJOAQUE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI02300,installation,JEMEZ PUEBLO; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI05000,installation,NORTHERN PUEBLOS AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI05100,installation,SOUTHERN PUEBLOS AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI05200,installation,BIA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI05500,installation,PUEBLO OF SANDIA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI05700,installation,ISLETA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI07000,installation,MESCALERO TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMDI08300,installation,ZIA PUEBLO; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NMFBIAQ00,national_hq,FBI ALBUQUERQUE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NMINS1300,national_hq,U S BORDER PATROL LORD; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NVATF0200,national_hq,BUREAU OF ATF LAS VEGAS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NVATF0300,national_hq,BUREAU OF ATF RENO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00100,installation,LAKE MEAD NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00200,installation,LEHMAN CAVES NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00300,installation,RENO SPARKS INDIAN COLNY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00500,installation,LOVELOCK PAIUTE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00700,installation,ELY SHOSHONE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00800,installation,FALLON TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI00900,installation,WELLS BAND TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI05000,installation,WESTERN NEVADA AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI05100,installation,EASTERN NEVADA AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI05500,installation,WALKER RIVER TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI05700,installation,PYRAMID LAKE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI05800,installation,MOAPA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI06300,installation,WESTERN SHOSHONE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI06400,installation,YOMBA SHOSHONE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI06500,installation,SOUTH FORK BAND TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI06600,installation,DUCKWATER TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVDI06700,installation,ELKO BAND TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NVFBILV00,national_hq,FBI LAS VEGAS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NY0299300,installation,US Merchant Marine Academy police patrol the Kings Point academy campus,SRS type is federal; LEAIC 35158
+NYATF0100,national_hq,BUREAU OF ATF NEW YORK C; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF0200,national_hq,BUREAU OF ATF BUFFALO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF0300,national_hq,BUREAU OF ATF ALBANY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF0500,national_hq,BUREAU OF ATF BROOKLYN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF0700,national_hq,BUREAU OF ATF MELLVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF1000,national_hq,BUREAU OF ATF ROCHESTER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF1100,national_hq,BUREAU OF ATF SYRACUSE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYATF1400,national_hq,BUREAU OF ATF BRONX; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYDEA0300,national_hq,DEA NEW YORK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00100,installation,SARATOGA NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00200,installation,VANDERBILT MANSION NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00300,installation,CASTLE CLINTON N MON; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00400,installation,FEDERAL HALL N MEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00500,installation,FIRE ISLAND NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00600,installation,FORT STANWIX N MON; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00700,installation,GENERAL GRAND N MEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00800,installation,HAMILTON GRANGE N MEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI00900,installation,HOME OF FDR NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI01000,installation,SAGAMORE HILL NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI01200,installation,STATUE OF LIBERTY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI01300,installation,T ROOSEVELT BPL INAUG NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI01500,installation,GATEWAY NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI01600,installation,SAINT GAUDENS NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI01700,installation,DELAWARE WATER GAP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI02100,installation,ONEIDA INDIAN NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYDI02200,installation,ST REGIS TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+NYFBIAL00,national_hq,FBI ALBANY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYFBIFB00,national_hq,FBI BUFFALO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYFBINY00,national_hq,FBI NEW YORK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+NYSS10800,national_hq,US SECRET SERVICE NEW Y; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHATF0100,national_hq,BUREAU OF ATF REG OFF CI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHATF0200,national_hq,BUREAU OF ATF INDEPENDEN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHATF0300,national_hq,BUREAU OF ATF COLUMBUS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHATF0700,national_hq,BUREAU OF ATF TOLEDO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHATF0800,national_hq,BUREAU OF ATF YOUNGSTOWN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHATF1000,national_hq,BUREAU OF ATF CLEVELAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHDI00100,installation,MOUND CITY GROUP NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OHDI00200,installation,PERRYS VICTORY IPM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OHDI00300,installation,WILLIAM HOWARD TAFT NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OHDI00400,installation,CUYAHOGA VALLEY NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OHFBICI00,national_hq,FBI CINCINNATI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHFBICV00,national_hq,FBI CLEVELAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OHSS22100,national_hq,US SECRET SERVICE DAYTO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OKATF0400,national_hq,BUREAU OF ATF TULSA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OKATFOC00,national_hq,BUREAU OF ATF OKLAHOMA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OKDEA0100,national_hq,DEA OKLAHOMA CITY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI00100,installation,FT CLATSOP NATL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI00200,installation,PLATT NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI00300,installation,ARBUCKLE RA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI00400,installation,MIAMI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI00600,installation,CHOCTAW NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI00800,installation,Quapaw Tribal Marshals police a reservation/community footprint,SRS type is federal; FBI CDE roster tribal class; LEAIC 35158
+OKDI05100,installation,ANADARKO AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI05200,installation,CONCHO AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI05300,installation,PAWNEE AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI05500,installation,OTOE MISSOURIA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI06000,installation,MIAMI AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI06200,installation,SEMINOLE NATN LIGHTHORSE; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI14000,installation,EASTERN SHAWNEE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI15000,installation,COMANCHE NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI16000,installation,KEETOOWAH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDI18000,installation,CHICKASAW NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDIT0800,installation,IOWA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDIT1500,installation,OTOE MISSOURIA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKDIT1700,installation,KIOWA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+OKFBIOC00,national_hq,FBI OKLAHOMA CITY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+OKSS31400,national_hq,US SECRET SERVICE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ORATF0200,national_hq,BUREAU OF ATF PORTLAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ORATF0300,national_hq,BUREAU OF ATF EUGENE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI00100,installation,CRATER LAKE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI00200,installation,FORT CLATSOP NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI00300,installation,OREGON CAVES NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI00400,installation,SILETZ TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI01300,installation,COOS L UMPQUA SIUSLAW; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI01400,installation,GRAND RONDE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI01500,installation,COW CREEK TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI05000,installation,WARM SPRINGS TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORDI06000,installation,COLUMBIA RIVER IT FISH E; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+ORFBIPD00,national_hq,FBI PORTLAND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PAATF0100,national_hq,BUREAU OF ATF REG OFF PH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PAATF0500,national_hq,BUREAU OF ATF ERIE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PAATF0600,national_hq,BUREAU OF ATF HARRISBURG; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PAATF0700,national_hq,BUREAU OF ATF READING; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PAATFPH00,national_hq,BUREAU OF ATF DIST OFF P; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00200,installation,WESTERN PENNA GROUP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00300,installation,EISENHOWER NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00400,installation,GETTYSBURG NMP NC; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00500,installation,HOPEWELL VILLAGE NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00600,installation,INDEPENDENCE NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00700,installation,DELAWARE WATER GAP NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PADI00800,installation,VALLEY FORGE NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PAFBIPG00,national_hq,FBI PITTSBURGH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PAFBIPH00,national_hq,FBI PHILADELPHIA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PRATF0100,national_hq,BUREAU OF ATF SAN JUAN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PRDI00100,installation,SAN JUAN NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+PRFBISJ00,national_hq,FBI SAN JUAN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PRSS31700,national_hq,US SECRET SERVICE SAN J; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PRUSC5200,national_hq,US CUSTOMS SERVICE SAN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+PRUSC5400,national_hq,US CUSTOMS SERVICE AGUA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+RIATF0200,national_hq,BUREAU OF ATF PROVIDENCE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+RIDI00100,installation,ROGER WILLIAMS NATL MEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+RIDI00300,installation,NARRAGANSETT TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SC0021000,installation,US DOE Savannah River Plant police a specific federal reservation footprint,SRS agency panel; agency master
+SCATF0100,national_hq,BUREAU OF ATF FLORENCE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SCATF0200,national_hq,BUREAU OF ATF CHARLESTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SCATF0300,national_hq,BUREAU OF ATF GREENVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SCATFC000,national_hq,BUREAU OF ATF COLUMBIA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SCDEA0200,national_hq,DEA COLUMBIA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SCDI00100,installation,FORT SUMTER NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SCDI00200,installation,KINGS MOUNTAIN NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SCDI00300,installation,COWPENS NB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SCDI00700,installation,CATAWBA NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SCFBICO00,national_hq,FBI COLUMBIA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SDATF0200,national_hq,BUREAU OF ATF SIOUX FALL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI00100,installation,WIND CAVE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI00200,installation,BADLANDS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI00300,installation,JEWEL CAVE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI00400,installation,MOUNT RUSHMORE NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI01000,installation,OGLALA SIOUX TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI01700,installation,FLANDREAU TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDDI01800,installation,FLANDREAU SANTEE SIOUX T; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+SDUSM0200,national_hq,U S MARSHALS SERVICE R; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNATF0200,national_hq,BUREAU OF ATF CHATTANOOG; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNATF0600,national_hq,BUREAU OF ATF KNOXVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNATF0700,national_hq,BUREAU OF ATF MEMPHIS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNATF0800,national_hq,BUREAU OF ATF NASHVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00100,installation,GREAT SMOKY MTNS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00200,installation,SHILOH NMP NC; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00300,installation,APPALACHIAN NST; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00400,installation,CHICK CHATT NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00500,installation,CUMBERLAND GAP NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00600,installation,FORT DONELSON NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00700,installation,ANDREW JOHNSON NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00800,installation,NATCHEZ TRACE PARKWAY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNDI00900,installation,STONES RIVER NB NC; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TNFBIKX00,national_hq,FBI KNOXVILLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNFBIME00,national_hq,FBI MEMPHIS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TNSS31000,national_hq,US SECRET SERVICE MEMPH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0200,national_hq,BUREAU OF ATF HOUSTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0300,national_hq,BUREAU OF ATF AUSTIN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0400,national_hq,BUREAU OF ATF MCALLEN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0500,national_hq,BUREAU OF ATF EL PASO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0600,national_hq,BUREAU OF ATF FORT WORTH; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0700,national_hq,BUREAU OF ATF LUBBOCK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0800,national_hq,BUREAU OF ATF SAN ANTONI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF0900,national_hq,BUREAU OF ATF TYLER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF1000,national_hq,BUREAU OF ATF LAREDO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF1100,national_hq,BUREAU OF ATF CORPUS CHR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF1200,national_hq,BUREAU OF ATF BEAUMONT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATF1400,national_hq,BUREAU OF ATF WACO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXATFDL00,national_hq,BUREAU OF ATF DIST OFF D; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXCBP3000,national_hq,U S CUSTOMS BORDER PR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXCBP3500,national_hq,U S BORDER PATROL EAGL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXCBP6500,national_hq,U S BORDER PATROL UVAL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXCBP6800,national_hq,U S BORDER PATROL EDIN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXCBP8300,national_hq,U S BORDER PATROL CARR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXCBPC100,national_hq,U S BORDER PATROL FORT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXDEA1000,national_hq,DEA HOUSTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXDEA1300,national_hq,DEA MCALLEN; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXDEA1400,national_hq,DEA SAN ANTONIO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00100,installation,LAKE MEREDITH RA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00200,installation,FORT DAVIS NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00300,installation,BIG BEND NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00400,installation,GUADALUPE MOUNTAINS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00500,installation,PADRE ISLAND NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00600,installation,AMISTAD RA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00700,installation,CHAMIZAL NMEM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00800,installation,LYNDON B JOHNSON NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI00900,installation,ALIBATES FLINT NATL MON; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI01200,installation,YSLETA DEL SUR PUEBLO TB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDI02600,installation,ALABAMA COUSHATTA TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXDIT0000,installation,YSLETA DEL SUR PUEBLO TR; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+TXFBIDL00,national_hq,FBI DALLAS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXFBIEP00,national_hq,FBI EL PASO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXFBIHO00,national_hq,FBI HOUSTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXFBISA00,national_hq,FBI SAN ANTONIO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXINS0100,national_hq,US BORDER PATROL DEL RI; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXINS0200,national_hq,US BORDER PATROL EL PAS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXINS0300,national_hq,US BORDER PATROL LAREDO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXINS0500,national_hq,US BORDER PATROL MCALLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXINS9700,national_hq,U S BORDER PATROL HARL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXINSCB00,national_hq,US BORDER PATROL COTULL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXUSC1100,national_hq,US CUSTOMS SERVICE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXUSC2000,national_hq,US CUSTOMS SERVICE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXUSC5400,national_hq,US CUSTOMS SERVICE EL P; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXUSC5500,national_hq,US CUSTOMS SERVICE HOUS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+TXUSC6000,national_hq,U S CUSTOMS BORDER PR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+UTATF0200,national_hq,BUREAU OF ATF SALT LAKE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00100,installation,BRYCE CANYON NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00200,installation,TIMPANOGOS CAVE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00300,installation,ZION NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00400,installation,GLEN CANYON NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00500,installation,ARCHES NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00600,installation,CANYONLANDS NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00700,installation,CAPITOL REEF NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00800,installation,CEDAR BREAKS NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI00900,installation,DINOSAUR NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI01000,installation,NATURAL BRIDGES NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI01100,installation,GOLDEN SPIKE NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI01200,installation,HOVENWEEP NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI01300,installation,RAINBOW BRIDGE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTDI01700,installation,GOSHUTE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+UTFBISU00,national_hq,FBI SALT LAKE CITY; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VA0070500,national_hq,Federal Deposit Insurance Corporation investigative caseload has no installation policing footprint,SRS agency panel; agency master
+VA0SI0200,national_hq,Air Force Office of Special Investigations HQ rollup is investigative and service-wide,SRS agency panel address HQ OSI; agency master
+VA1360000,installation,Virginia Military Institute police patrol the Lexington campus footprint,SRS type is federal; LEAIC 35158
+VAATF0300,national_hq,BUREAU OF ATF NORFOLK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAATF0400,national_hq,BUREAU OF ATF ROANOKE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAATF0700,national_hq,BUREAU OF ATF BRISTOL; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAATF1000,national_hq,BUREAU OF ATF WASH DIST; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAATF1400,national_hq,BUREAU OF ATF RICHMOND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VACIA0000,installation,CIA Security Protective Service patrols a specific federal campus,SRS agency panel; agency master
+VADEA0300,national_hq,DEA QUANTICO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00100,installation,BLUE RIDGE PARKWAY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00200,installation,COLONIAL NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00300,installation,SHENANDOAH NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00400,installation,FRED SPOT NMP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00500,installation,GEO WASH BIRTHPLACE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00600,installation,RICHMOND NBP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00700,installation,PETERSBURG NB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00800,installation,MANASSA NBP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI00900,installation,APPOMATTOX CRT HSE NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI01000,installation,BOOKER T WASHINGTON NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI01100,installation,ASSATEAGUE ISLAND NS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI01200,installation,HARPERS FERRY NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI01300,installation,PRINCE WILLIAM FOR PK; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI01400,installation,APPALACHIAN NST; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADI01500,installation,CUMBERLAND GAP NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADIF0400,installation,UNITED STATES FISH AND W; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+VADOD1400,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VADOS0200,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VADOT0100,national_hq,UNITED STATES DEPARTMENT; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VADPP0000,installation,Pentagon Force Protection Agency patrols the Pentagon reservation,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+VAFBINF00,national_hq,FBI NORFOLK; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAFBIQT00,national_hq,FBI QUANTICO; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAFBIRH00,national_hq,FBI RICHMOND; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VANAV0000,installation,U S NAVY SECURITY FORCE; protective police/security row identifies a federal site footprint,agency_master.parquet; agency_year_observations.parquet
+VAP000800,national_hq,UNITED STATES POSTAL SER; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAPO00800,national_hq,United States Postal Service OIG/service-wide larceny rollup is national,FBI NIBRS 2024 Table 40 federal section; SRS agency panel
+VAPPD0000,installation,U S PARK POLICE; protective police/security row identifies a federal site footprint,agency_master.parquet; agency_year_observations.parquet
+VATSA1200,national_hq,US DEPT OF HOMELAND SECU; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VAUSM0000,national_hq,U S MARSHALS SERVICE HE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VIATF0100,national_hq,BUREAU OF ATF ST THOMAS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VIATF0200,national_hq,BUREAU OF ATF CHRISTIANS; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VIUSM0100,national_hq,US MARSHALS SERVICE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+VTATF0300,national_hq,BUREAU OF ATF BURLINGTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WAATF0100,national_hq,BUREAU OF ATF SPOKANE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WAATF0200,national_hq,BUREAU OF ATF YAKIMA; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WAATFSE00,national_hq,BUREAU OF ATF SEATTLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WACBP2200,national_hq,U S CUSTOMS SERVICE OFF; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00100,installation,MOUNT RAINIER NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00200,installation,OLYMPIC NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00300,installation,NORTH CASCADES NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00400,installation,COULEE DAM RA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00500,installation,FORT VANCOUVER NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00600,installation,SAN JUAN ISLAND NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00700,installation,WHITMAN MISSION NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00800,installation,NISQUALLY TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI00900,installation,SUQUAMISH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI01000,installation,MUCKLESHOOT TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI01100,installation,SKOKOMISH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI01200,installation,SHOALWATER BAY TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI01300,installation,STILLAGUAMISH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI01400,installation,NOOKSACK TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05100,installation,SPOKANE AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05400,installation,QUINAULT INDIAN NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05500,installation,SQUAXIN ISLAND TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05600,installation,MAKAH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05700,installation,COLVILLE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05800,installation,YAKAMA NATION; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI05900,installation,LUMMI TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06100,installation,KALISPEL TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06200,installation,PUYALLUP TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06300,installation,SAUK SUIATTLE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06400,installation,SWINOMISH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06500,installation,UPPER SKAGIT TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06600,installation,PORT GAMBLE S KLALLAM TB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06700,installation,CHEHALIS TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI06800,installation,TULALIP TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI07000,installation,LA PUSH TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI08200,installation,JAMESTOWN S KLALLAM TRBL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI08300,installation,SNOQUALMIE TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADI08600,installation,LOWER ELWHA KLALLAM TRIB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WADOA0500,installation,U S FOREST SERVICE VAN; regional federal-land enforcement has a mappable land footprint,agency_master.parquet; agency_year_observations.parquet
+WAFBISE00,national_hq,FBI SEATTLE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WAINS0100,national_hq,US BORDER PATROL BLAINE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WIATF0200,national_hq,BUREAU OF ATF MILWAUKEE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WIATF0400,national_hq,BUREAU OF ATF MADISON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI00100,installation,APOSTLE ISLANDS NL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI00200,installation,SAINT CROIX NSR; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI00300,installation,LAC DU FLAMBEAU TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI01000,installation,STOCKBRIDGE MUNSEE TRIBL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI01100,installation,LAC COURTE OREILLES TRIB; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI01200,installation,ST CROIX TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI01500,installation,RED CLIFF TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIDI01600,installation,BAD RIVER TRIBAL; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WIFBIMW00,national_hq,FBI MILWAUKEE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WVATF0200,national_hq,BUREAU OF ATF CHARLESTON; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WVATF0600,national_hq,BUREAU OF ATF CLARKSBURG; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WVATF1000,national_hq,BUREAU OF ATF MARTINSBUR; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WVDI00100,installation,HARPERS FERRY NHP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WVUSM0600,national_hq,U S MARSHALS SERVICE C; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WYATF0200,national_hq,BUREAU OF ATF CHEYENNE; investigative departmental or field-office caseload has no fixed policing footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI00100,installation,GRAND TETON NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI00200,installation,YELLOWSTONE NP; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI00300,installation,DEVILS TOWER NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI00400,installation,FORT LARAMIE NHS; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI00500,installation,FOSSIL BUTTE NM; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI00600,installation,BIGHORN CANYON NRA; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet
+WYDI05000,installation,WIND RIVER AGENCY; DOI/BIA ORI class identifies a park reservation or tribal footprint,agency_master.parquet; agency_year_observations.parquet

@@ -1,0 +1,408 @@
+{
+  "city_key": "aurora_co",
+  "city_name": "Aurora, Colorado",
+  "geography": {
+    "bounds": {
+      "max_latitude": 39.9764,
+      "max_longitude": -104.394,
+      "min_latitude": 39.4983,
+      "min_longitude": -104.9066
+    },
+    "jurisdiction_id": "08:municipal:place:0804000",
+    "state_fips": "08"
+  },
+  "mapping": {
+    "date_field": "ReportDate",
+    "id_field": "OBJECTID",
+    "id_fields": [
+      "__source_slug",
+      "OBJECTID"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "homicide",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "sexual_assault",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "robbery",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "aggravated_assault",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "burglary",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "theft",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "motor_vehicle_theft",
+            "values": []
+          },
+          {
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Homicide_Public/FeatureServer/36; https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Sexual_Assault_Public/FeatureServer/36; https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Robbery_Public/FeatureServer/36; https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Aggravated_Assault_Public/FeatureServer/36; https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Burglary_Public/FeatureServer/36; https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Theft_View/FeatureServer/36; https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Motor_Vehicle_Theft_Public/FeatureServer/36",
+    "name": "APD Transparency Portal - APD_RMS (7 layers)",
+    "order": "ReportDate ASC, OBJECTID ASC",
+    "page_size": 2000,
+    "portal_type": "arcgis_feature_service",
+    "select": [
+      "OBJECTID",
+      "OffenseId",
+      "CallId",
+      "Statute",
+      "NIBRSCode",
+      "NIBRSOffense",
+      "NIBRSDesc",
+      "OffenseCat",
+      "AttemptedCompleted",
+      "County",
+      "Zip",
+      "Neighborhood",
+      "Agency",
+      "ReportDate",
+      "ReportYear"
+    ],
+    "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+    "where": "ReportYear = 2024"
+  },
+  "sources": [
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Homicide_Public/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Homicide_Public",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "homicide",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Sexual_Assault_Public/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Sexual_Assault_Public",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "sexual_assault",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Robbery_Public/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Robbery_Public",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "robbery",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Aggravated_Assault_Public/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Aggravated_Assault_Public",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "aggravated_assault",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Burglary_Public/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Burglary_Public",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "burglary",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Theft_View/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Theft_View",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "theft",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Motor_Vehicle_Theft_Public/FeatureServer/36",
+      "name": "APD Transparency Portal - APD_RMS_Motor_Vehicle_Theft_Public",
+      "order": "ReportDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "OffenseId",
+        "CallId",
+        "Statute",
+        "NIBRSCode",
+        "NIBRSOffense",
+        "NIBRSDesc",
+        "OffenseCat",
+        "AttemptedCompleted",
+        "County",
+        "Zip",
+        "Neighborhood",
+        "Agency",
+        "ReportDate",
+        "ReportYear"
+      ],
+      "slug": "motor_vehicle_theft",
+      "source_url": "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+      "where": "ReportYear = 2024"
+    }
+  ],
+  "sources_checked": [
+    "https://apd-transparency-portal-auroraco.hub.arcgis.com/",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Burglary_Public/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Robbery_Public/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Homicide_Public/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Aggravated_Assault_Public/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Motor_Vehicle_Theft_Public/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Sexual_Assault_Public/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Theft_View/FeatureServer?f=json",
+    "https://services3.arcgis.com/0Va1ID99NSrNyyPX/arcgis/rest/services/APD_RMS_Arson_Public/FeatureServer?f=json",
+    "state/controls/jurisdiction_controls_2024.parquet",
+    "state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
+    "state/modeling/batch_b_preregistration_2024.json"
+  ],
+  "worker_judgment_notes": "Multi-layer contract (first use of the schema's 'sources' array): Aurora PD publishes 2024 incidents as 8 separate per-offense ArcGIS FeatureServers under the org (0Va1ID99NSrNyyPX, owner A_ESRI_KHughes) backing its own transparency hub apd-transparency-portal-auroraco.hub.arcgis.com -- APD_RMS_{Burglary,Robbery,Homicide,Aggravated_Assault,Motor_Vehicle_Theft,Sexual_Assault,Arson}_Public plus APD_RMS_Theft_View (note the _View naming for theft only), all at sublayer id 36 (not 0). Identity was independently re-verified 2026-07-08 before onboarding (Agency field = 100% 'Aurora PD' on every layer, real Aurora CO neighborhood names, org/domain ownership chain; the Aurora IL lookalike hub is a confirmed-different org). City field is null on all layers -- identity rests on Agency + org + neighborhoods. Native geometry is EPSG:2232 Colorado Central state plane (feet); the runner's standard outSR=4326 request reprojects server-side, verified in-range for Aurora CO (39.5-39.9N, -104.9 to -104.4W). ARSON LAYER EXCLUDED: arson (89 rows 2024) is not one of the seven canonical offenses; the layer is intentionally not in this contract. Full-data per-layer NIBRS purity verification (all 16,191 in-scope 2024 rows pulled, not sampled): homicide layer = 100% 09A (35/35, no 09B negligent manslaughter / 09C justifiable homicide present at all); robbery = 100% 120; aggravated_assault = 100% 13A (no 13B/13C contamination); burglary = 100% 220; motor_vehicle_theft = 100% 240; sexual_assault = exactly 11A (191) + 11B (51) + 11C (42), which is precisely the FBI revised (2013+) rape definition with no 11D fondling and no 36-series non-forcible codes -- maps directly to our 'rape' with zero exclusions needed; theft = 8,167 rows of 23A-23H larceny codes PLUS 8 stray rows of 26A (Fraud Offenses), the only layer broader than its name -- the 23-series in-list rule excludes the 26A rows by construction (larceny mapped count 8,167 pre-bounds). Offense rules are layer-scoped (each rule conditions on __source_slug AND NIBRSCode) so a stray code in the wrong layer can never cross-contaminate an offense. id_fields = [__source_slug, OBJECTID]: OBJECTID is unique within each layer (verified 0 duplicates per layer), and slug-prefixing keeps a multi-offense incident that legitimately appears in two layers (same OffenseId/CallId) counted once per offense, matching per-offense NIBRS semantics. ReportYear=2024 server-side filter and the runner's ReportDate-derived year filter agree exactly (0 year-filter drops on all 7 layers); ReportDate is epoch-ms and is handled by the runner's epoch-ms fallback. Bounds are the raw TIGER/crosswalk-touching Aurora block-group envelope (273 BGs raw-touching jurisdiction 08:municipal:place:0804000; minx/miny/maxx/maxy -104.886613,39.518327,-104.413963,39.956417) padded 0.02 deg; 12 of 16,191 rows (8 theft, 3 MVT, 1 sexual assault) fall outside and are dropped. Aurora spans Arapahoe/Adams/Douglas counties; the BG universe comes from the jurisdiction crosswalk, so county lines are irrelevant. Coordinate coverage is 100% on every layer (0 null geometries). Reconciliation against state/controls/jurisdiction_controls_2024.parquet (all cius_publication_annual, quality tier high): robbery 545/542=1.006, motor_vehicle_theft 3618/3567=1.014, rape 283/292=0.969, burglary 1364/1477=0.924 all inside the strict 10% gate (feed_total_candidate); murder 35/41=0.854, larceny 8159/7305=1.117, aggravated_assault 2167/2896=0.748 outside it (share_only) -- the aggravated-assault gap plausibly reflects the feed being offense-record-level vs the control's victim-count basis and/or partial-year record suppression on the public layer, and murder's gap (6 events) is small-n; neither is treated as a source-identity problem given four offenses reconcile tightly. Rape maps cleanly here but the repo's rape default-deny texture policy applies regardless of this feed's quality. Contract is share-lane only per the standard generic-runner convention; the strict 10% gate decides feed-total-candidate status per offense, not admission of the contract.",
+  "year": 2024
+}

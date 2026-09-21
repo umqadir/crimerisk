@@ -1,0 +1,189 @@
+{
+  "case_key": "uc_davis_ca",
+  "ori": "CA0579700",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "CA0579700 should use the official UC Davis Campus Boundary layer as the production custom footprint. The correct object is the discontiguous UC Davis campus-property footprint in and around Davis plus the Sacramento campus polygons, not Davis city, Yolo County, Sacramento County, Solano County, the whole UC Davis institution, or the Clery report's one-mile off-campus arrest halo.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "official_uc_davis_campus_boundary_with_clery_scope_crosscheck",
+    "official_scope_support": {
+      "annual_security_report_url": "https://clery.ucdavis.edu/sites/g/files/dgvnsk1761/files/media/documents/ASFSR-UCD-2025-vSep2025.pdf",
+      "summary": "The 2025 UC Davis Annual Security and Fire Safety Report says UC Davis Police patrol the Davis and UCD Health campuses, have primary jurisdiction over university-owned or operated property on and around those campuses, and separately notes that one-mile Davis-campus arrest authority should not be confused with the campus footprint."
+    },
+    "official_map_support": {
+      "campus_boundary_layer_url": "https://gis.ucdavis.edu/server/rest/services/UC_Davis_Campus_Boundary/MapServer/0",
+      "maps_page_url": "https://health.ucdavis.edu/welcome/maps-directions/",
+      "summary": "UC Davis publishes an official campus-boundary GIS layer with named Davis and Sacramento campus polygons, and the official maps-and-directions page links both the Sacramento campus map PDF and the Davis campus map."
+    },
+    "explicit_exclusions": [
+      "Davis city proxy",
+      "Yolo County proxy",
+      "Sacramento County proxy",
+      "Solano County proxy",
+      "whole UC Davis institutional system proxy",
+      "California campus-police peace-officer authority as a blanket service-area geometry",
+      "the Clery report's one-mile Davis-campus halo as a substitute for mapped campus property"
+    ]
+  },
+  "source_validation": {
+    "campus_boundary_layer": {
+      "arcgis_service_item_id": "3af612020fd3498fb7865399d780e6ec",
+      "arcgis_layer_url": "https://gis.ucdavis.edu/server/rest/services/UC_Davis_Campus_Boundary/MapServer/0",
+      "arcgis_layer_name": "Campus Boundary",
+      "feature_count_query": 10,
+      "feature_count_downloaded": 10,
+      "campus_name_values": [
+        "Central Campus",
+        "Research Park",
+        "Russell Ranch",
+        "Sacramento Campus",
+        "South Campus",
+        "West Campus"
+      ],
+      "campus_parts_summary": [
+        {
+          "campus": "Central Campus",
+          "parts": 1,
+          "service_acres": 900.3343898,
+          "equal_area_acres": 900.410244484667
+        },
+        {
+          "campus": "Research Park",
+          "parts": 1,
+          "service_acres": 15.90251969,
+          "equal_area_acres": 15.903867021205622
+        },
+        {
+          "campus": "Russell Ranch",
+          "parts": 1,
+          "service_acres": 1586.15522384,
+          "equal_area_acres": 1586.294303483822
+        },
+        {
+          "campus": "Sacramento Campus",
+          "parts": 3,
+          "service_acres": 146.22655641,
+          "equal_area_acres": 146.23953896069992
+        },
+        {
+          "campus": "South Campus",
+          "parts": 2,
+          "service_acres": 579.1628839499999,
+          "equal_area_acres": 579.2061720435298
+        },
+        {
+          "campus": "West Campus",
+          "parts": 2,
+          "service_acres": 2213.4029859499997,
+          "equal_area_acres": 2213.587452488723
+        }
+      ],
+      "geometry_types": {
+        "Polygon": 10
+      },
+      "source_spatial_reference_wkid": 4326,
+      "source_acres_field_sum": 5441.184559640001,
+      "equal_area_acres_epsg_5070": 5441.641578482645,
+      "source_vs_equal_area_acres_difference": 0.4570188426441746,
+      "source_geometry_valid_before_repair": true,
+      "bounds_wgs84": [
+        -121.88707612576688,
+        38.51530846417223,
+        -121.44455988727928,
+        38.56157394034722
+      ],
+      "interpretation": "The official UC Davis Campus Boundary layer is already a discontiguous campus-property footprint rather than a city or county polygon. It includes named Davis-side campus components plus three Sacramento Campus polygons, and its geographic extent stays confined to the Davis/Solano edge and Sacramento UC Davis Health corridor rather than statewide UC Davis holdings."
+    },
+    "clery_and_police_scope_crosscheck": {
+      "annual_security_report_url": "https://clery.ucdavis.edu/sites/g/files/dgvnsk1761/files/media/documents/ASFSR-UCD-2025-vSep2025.pdf",
+      "key_points": [
+        "UC Davis Police patrol the Davis and UCD Health campuses 24/7.",
+        "The report says the department has primary jurisdiction over university-owned or operated property on and around the Davis and UCD Health campuses.",
+        "The same report separately describes one-mile Davis-campus arrest authority, which confirms that broader statutory authority should not be used as the footprint geometry.",
+        "The report identifies ANOVA Aggie Square as located on the UCD Health campus and within UC Davis Police law-enforcement jurisdiction."
+      ]
+    },
+    "sacramento_campus_property_crosscheck": {
+      "maps_page_url": "https://health.ucdavis.edu/welcome/maps-directions/",
+      "aggie_square_ceqa_url": "https://environmentalplanning.ucdavis.edu/sites/g/files/dgvnsk2921/files/inline-files/UCD%20Aggie%20Square%20Phase%20I%20Tenant%20Improvements%20Findings_FINAL_4.27.21.pdf",
+      "summary": "The official UC Davis Health maps page treats Sacramento as a distinct UC Davis campus, and the Aggie Square CEQA findings say Aggie Square is part of the UC Davis Sacramento Campus education/research/housing land-use framework connected to the hospital campus. That supports keeping the Sacramento-side boundary as a multipolygon campus footprint rather than collapsing to the main medical-center block only."
+    }
+  },
+  "build_method": {
+    "area_crs": "EPSG:5070",
+    "seed_geometry": "Union all 10 official UC Davis Campus Boundary polygons from the public MapServer layer without buffering or manual expansion.",
+    "why_this_is_defensible": [
+      "The layer is published by UC Davis as an explicit campus-boundary dataset and already encodes the discontiguous Davis and Sacramento campus-property structure that the doctrine calls for.",
+      "The 2025 Clery report and UC Davis Health map materials confirm that UCD Police serve the Davis and UCD Health campuses, while also warning against substituting broader off-campus arrest authority for the actual campus footprint.",
+      "The footprint naturally spans Yolo, Solano, and Sacramento counties, which is exactly why place or county proxying is misleading in this case."
+    ],
+    "omissions_by_design": [
+      "No generic Davis, Yolo, Sacramento, or Solano proxy areas are included.",
+      "No one-mile off-campus halo is added around the Davis campus.",
+      "No remote UC Davis institutional sites outside the official Davis/Sacramento campus-boundary layer are included."
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_06_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersected_counties": [
+      {
+        "county_fips": "067",
+        "county_name": "Sacramento",
+        "share_sum": 0.026874158625029777,
+        "area_acres": 146.23953896070003
+      },
+      {
+        "county_fips": "095",
+        "county_name": "Solano",
+        "share_sum": 0.16567766748746574,
+        "area_acres": 901.5584840258158
+      },
+      {
+        "county_fips": "113",
+        "county_name": "Yolo",
+        "share_sum": 0.807448173887505,
+        "area_acres": 4393.843555496132
+      }
+    ],
+    "intersected_county_fips_sorted": [
+      "067",
+      "095",
+      "113"
+    ],
+    "intersected_block_groups": 10,
+    "intersection_area_total_m2": 22021542.170281366,
+    "intersection_area_total_acres": 5441.641578482645,
+    "weight_sum_exact": 1.0000000000000007,
+    "weight_sum_csv": 1.0,
+    "largest_block_group_geoid": "061130105011",
+    "largest_block_group_share": 0.34690436012444603,
+    "smallest_block_group_geoid": "060670018005",
+    "smallest_block_group_share": 0.00012336732436224823
+  },
+  "qa_checks": {
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_in_csv": true,
+    "tiger_intersection_nonempty": true,
+    "source_geometry_valid_before_repair": true,
+    "county_proxy_failure_is_visible_in_output": true,
+    "qa_notes": [
+      "Rounded CSV shares sum to exactly 1.0 at 14 decimal places.",
+      "The official footprint intersects only 10 California block groups, making manual QA tractable.",
+      "The Davis-side official polygons cross the Yolo/Solano line, so a single-county localization would mechanically misallocate large shares.",
+      "The Sacramento-side acreage from the official campus-boundary layer is about 146.2 acres, matching the three Sacramento Campus polygons carried into the final union."
+    ]
+  },
+  "residual_caveats": [
+    "The official campus-boundary service is the best public geometry source in this packet, but it is a campus-planning/property footprint rather than a separately published police beat file.",
+    "The packet intentionally does not add every possible Clery noncampus property or every location where UC Davis Police could exercise peace-officer authority; it stays with the mapped Davis/Sacramento campus-property footprint documented by UC Davis.",
+    "One small Sacramento polygon south along Stockton Boulevard is interpreted as part of the directly associated Sacramento-campus property set; that inclusion is supported by the official multipolygon campus-boundary layer and Aggie Square planning materials rather than by a separate parcel-by-parcel public boundary file."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/uc_davis_ca/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/uc_davis_ca/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/uc_davis_ca/sources.csv"
+  }
+}

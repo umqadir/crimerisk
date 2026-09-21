@@ -1,0 +1,114 @@
+{
+  "case_key": "sunrise_fl",
+  "jurisdiction_id": "12:municipal:place:1269700",
+  "jurisdiction_name": "Sunrise city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Sunrise plainly operates a real municipal police department. The City's official police page says the City of Sunrise Police Department is a Florida-accredited law-enforcement agency responsible for protecting life and property, preventing crime, responding to calls for service, and enforcing city ordinances and state laws. The same page says the City's Public Safety Building is the headquarters of the Police Department and contains the City's 9-1-1 Dispatch Center.",
+    "Current city-police leadership and staffing are official and substantial. The City identifies Daniel J. Ransone as Chief of the Sunrise Police Department and says he assumed the responsibilities of the former chief upon retirement in June 2023. The Chief's message page says the department had 323 professional employees as of June 2023, including 219 sworn officers and 104 civilian employees.",
+    "Sunrise has long-running municipal police continuity, not a sheriff-substitution structure. The City's police-history page says the City of Sunrise Golf Village Police Department was established in 1961, and the current records page says the Records Unit maintains crime reports and statistical records for the department.",
+    "No official sheriff evidence was found showing that Broward Sheriff's Office is the primary general-policing authority for Sunrise. Broward Sheriff's public On Call service-area page lists several BSO law-enforcement contract cities and the Broward Municipal Services District, but not Sunrise. That aligns with Sunrise's own presentation of an active city police agency with its own headquarters, records function, and dispatch center.",
+    "Florida's official county-and-municipal offense publications treat Sunrise Police Department as a normal municipal agency row. FDLE's 2020 report lists Sunrise Police Department with population 94,333 and total index crime 1,519. FDLE's 2021 report again lists Sunrise Police Department as a municipal row, with a partial-year indicator, 120 days, population 97,359, and total index crime 507.",
+    "FDLE's post-transition public FIBRS workbook does not contain a Sunrise Police Department row in the 2021, 2022, 2023, 2024, or 2025 Q3 sheets. That means the current public statewide incident-based surface does not carry Sunrise after the old county-and-municipal report path. The packet does not resolve whether that break is agency submission, state publication, or repo ingestion; it does resolve that the break is not evidence of a sheriff-contract or invalid-target service structure.",
+    "Repo evidence points to broken continuity, not a structurally wrong municipal target. The live crosswalk routes FL0062700 exclusively to Sunrise city, agency_master classifies FL0062700 as a local police department and says SRS and NIBRS years run through 2024, but agency_year_observations contains only CIUS local rows in 2018 and 2019, one 2020 SRS annual point, and zero-valued SRS rows from 2021 through 2024. jurisdiction_controls_2024 then fully fills every 2024 Sunrise offense row from historical medians."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Sunrise maintains a dedicated Police Department as part of city government.",
+      "The City's official police-history page says the City of Sunrise Golf Village Police Department was established in 1961.",
+      "Current city pages identify a serving Chief of Police and a staffed Sunrise Police Department operating from the City's Public Safety Building."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Sunrise Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The official department page says Sunrise Police Department is a Florida-accredited law-enforcement agency charged with protecting life and property, preventing crime, responding to calls for service, and enforcing city ordinances and state laws.",
+      "The same page says the City's Public Safety Building is the headquarters of the Police Department and contains the City's 9-1-1 Dispatch Center.",
+      "The Office of the Chief page identifies Daniel J. Ransone as Chief of the Sunrise Police Department and says he assumed chief responsibilities in June 2023.",
+      "The Chief's message page says the department had 323 professional employees as of June 2023, including 219 sworn officers and 104 civilian employees."
+    ],
+    "important_clarification": "This is a standard city-police case. Broward Sheriff's Office does not appear to displace Sunrise Police Department as the primary general-policing authority for Sunrise city."
+  },
+  "official_reporting_evidence": {
+    "sheriff_structure_check": {
+      "summary": "Official Broward Sheriff public-facing service-area material lists several BSO contract-policing municipalities, but Sunrise is not among them.",
+      "details": [
+        "BSO's On Call page lists PIO law-enforcement service areas including Cooper City, Deerfield Beach, Lauderdale Lakes, Pembroke Park, Weston, and the Broward Municipal Services District.",
+        "Sunrise is not listed in that sheriff service-area summary.",
+        "Sunrise's own official police page separately presents a city-run police headquarters, city 9-1-1 dispatch center, and department records/statistical unit."
+      ],
+      "interpretation": "The official local service-structure evidence supports Sunrise Police Department as the city's primary police surface, not BSO contract policing."
+    },
+    "fdle_state_publication_surface": {
+      "summary": "FDLE's official county-and-municipal offense reports for both 2020 and 2021 publish Sunrise Police Department as a municipal agency row with nonzero counts.",
+      "details": [
+        "FDLE 2020: Sunrise Police Department, population 94,333, total index crime 1,519.",
+        "FDLE 2021: Sunrise Police Department, partial-year indicator Y, 120 days, population 97,359, total index crime 507."
+      ],
+      "interpretation": "Florida's own annual county-and-municipal publication surface confirms that Sunrise is a real municipal police target."
+    },
+    "fdle_post_transition_publication_check": {
+      "summary": "The official FDLE FIBRS offense workbook through 2025 Q3 does not contain a Sunrise Police Department row in the 2021 through 2025 sheets.",
+      "interpretation": "Sunrise loses public statewide continuity after the old county-and-municipal report path. That absence is a reporting/publication continuity problem, not evidence that the municipality lacks a real police department."
+    },
+    "best_local_backfill_surface_found": {
+      "source": "Sunrise Police Department Records Unit / statistical records",
+      "summary": "The City's official records page says the Records Unit maintains crime reports and statistical records and provides police-report access from the Sunrise Public Safety Building.",
+      "why_it_matters": "This is the clearest official local evidence that Sunrise-specific crime and statistical records still exist in a maintained city-police records system even though the post-2021 public statewide publication surface is not carrying Sunrise.",
+      "limitations": [
+        "The page does not itself publish ready-made annual six-offense totals.",
+        "A production override would require extraction and annual aggregation from local police records or statistics.",
+        "The packet resolves target validity, not the implementation details of a later backfill."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0062700 exclusively to 12:municipal:place:1269700 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0062700 as a local police department with srs_years and nibrs_years both listed as 2018 through 2024, latest_srs_year 2024, latest_nibrs_year 2024, and nibrs_max_months_reported 0.0.",
+    "observation_state": "agency_year_observations.parquet currently materializes CIUS local rows for FL0062700 in 2018 and 2019, one annual SRS row in 2020 with aggravated_assault 111, burglary 96, larceny 1031, motor_vehicle_theft 197, murder 3, rape 21, and robbery 60, then zero-valued SRS rows for every tracked offense in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "agency_master says FL0062700 has NIBRS presence through 2024, but agency_year_observations provides no NIBRS rows at all and no nonzero SRS support after 2020, even though FDLE's official 2021 county-and-municipal report still shows a nonzero Sunrise Police Department municipal row.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Sunrise offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, estimate_source hist_median, and current_year_fill_count equal to the full adjusted estimate.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Sunrise in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 2202.0, and total_reported_count 0.0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Sunrise has an active, city-run police department with its own chief, headquarters, dispatch center, and records/statistical unit.",
+      "No official Broward Sheriff source reviewed here shows Sunrise as a BSO contract-policing city or sheriff-primary municipal service area.",
+      "FDLE's official county-and-municipal offense reports publish Sunrise Police Department as a municipal agency row in 2020 and 2021.",
+      "The repo's zero state conflicts with that official city-specific reporting surface and is therefore a continuity problem rather than target invalidity."
+    ],
+    "likely_explanation_for_current_full_fill_state": [
+      "The production pipeline is relying on a broken or incomplete post-2020 Sunrise reporting path.",
+      "At minimum, the repo lost the official nonzero 2021 FDLE Sunrise municipal row and carries no official public Sunrise support after 2020.",
+      "Because no usable 2021-2024 Sunrise observation survives in the repo, 2024 controls fall through to structurally-missing handling and historical-median fill."
+    ],
+    "best_available_override_surface_if_business_requires_city_level_estimate": {
+      "source": "Sunrise Police Department records/statistical records via the City's official records channel",
+      "why": "The City explicitly says its Records Unit maintains crime reports and statistical records, making this the strongest city-owned backfill surface identified in the packet.",
+      "limitations": [
+        "This would be a bespoke local override rather than a simple statewide-publication ingest.",
+        "The records would need offense mapping and annual aggregation work before use in the standard control pipeline."
+      ]
+    },
+    "recommended_handling": [
+      "Retain Sunrise city as a true standalone municipal control row.",
+      "Do not drop or demote the Sunrise municipal target.",
+      "Treat the current all-fill condition as a reporting continuity / publication-ingestion failure on FL0062700 rather than a sheriff-contract or invalid-target problem.",
+      "Use FDLE's county-and-municipal offense reports as the official state truth surface through 2021, and if a city-level override becomes necessary before broader Florida continuity is repaired, use Sunrise Police Department records/statistical records as the most plausible official local backfill route."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining source-repair question is whether Sunrise's post-2021 break reflects agency non-submission to the public FDLE FIBRS surface, omission from the published workbook, repo ingestion loss, or some combination of those factors."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "city_key": "boston",
+  "city_name": "Boston",
+  "jurisdiction_id": "25:municipal:place:2507000",
+  "state_abbr": "MA",
+  "priority_bucket": "first_wave",
+  "priority_rank": "3",
+  "basis": "Large AGS-seed city with official BPD/Analyze Boston direct-coordinate incidents and packet-validated property-offense reconciliation.",
+  "notes": "Boston is now ready offense-selectively for larceny and motor_vehicle_theft only. Keep the initial live window at 2019-2024 because 2018 still needs explicit dedupe; keep murder pending explicit policy sign-off and leave rape, robbery, aggravated_assault, and burglary blocked by current public-feed coverage limits.",
+  "source_name": "Boston Police Department Crime Incident Reports (August 2015 - To Date) (Source: New System)",
+  "source_url": "https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system",
+  "portal_type": "ckan_multi_resource_csv",
+  "coverage_start_year": "2015",
+  "coverage_end_year": "2026",
+  "years_usable": "6",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/boston",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

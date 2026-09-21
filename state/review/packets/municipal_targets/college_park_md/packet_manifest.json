@@ -1,0 +1,14 @@
+{
+  "case_key": "college_park_md",
+  "jurisdiction_id": "24:municipal:place:2418750",
+  "jurisdiction_name": "College Park city",
+  "state_abbr": "MD",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/college_park_md",
+  "review_goal": "Determine whether College Park should retain a standalone municipal control row given city public-safety administration, Prince George's County primary policing, and University of Maryland overlap.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

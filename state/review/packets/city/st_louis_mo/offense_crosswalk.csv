@@ -1,0 +1,16 @@
+source_field,source_value,source_label,v2_offense,include_in_v2,counting_basis,notes
+NIBRS,13A,Aggravated Assault,aggravated_assault,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,220,Burglary/Breaking and Entering,burglary,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23A,Pocket-picking,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23B,Purse-snatching,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23C,Shoplifting,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23D,Theft From Building,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23E,Theft From Coin-Operated Machine or Device,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23F,Theft From Motor Vehicle,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23G,Theft From Motor Vehicle Parts/Accessories,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,23H,All Other Larceny,larceny,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,240,Motor Vehicle Theft,motor_vehicle_theft,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,09A,Murder and Nonnegligent Manslaughter,murder,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,11A,Rape,rape,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,11B,Sodomy,rape,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.
+NIBRS,120,Robbery,robbery,yes,public_monthly_incident_offense_location_dedupe,Included in the seven Part-I share surface. Public monthly supplement repeats are deduped without VictimNum.

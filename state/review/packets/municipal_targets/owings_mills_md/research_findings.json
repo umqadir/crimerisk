@@ -1,0 +1,74 @@
+{
+  "case_key": "owings_mills_md",
+  "jurisdiction_id": "24:municipal:place:2459425",
+  "jurisdiction_name": "Owings Mills CDP",
+  "state_abbr": "MD",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_place_level_municipal_control_row_24_municipal_place_2459425_and_treat_owings_mills_as_baltimore_county_service_structure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Owings Mills is a Census-designated place rather than an incorporated municipality. The U.S. Census Bureau identifies it as Owings Mills CDP, Maryland, and Baltimore County's own Council says there are no incorporated towns, villages, municipalities, or other political subdivisions anywhere in Baltimore County.",
+    "Maryland's official local-government reference independently says Baltimore County has no municipalities. That removes the legal basis for any standalone Owings Mills municipal government row.",
+    "Official Baltimore County police materials point to county policing rather than a local Owings Mills police department. Baltimore County Police maintains Precinct 3 - Franklin, and an official 2024 police news release for an incident at Rosewood Lane and Reisterstown Road in Owings Mills says Baltimore County Police Department Franklin Precinct officers handled the call.",
+    "Repo-side evidence is consistent with an invalid target plus alias contamination, not a real annual jurisdiction. The crosswalk routes MD0035M00 exclusively to Owings Mills, but agency master labels that row rosewood, shows SRS-only presence across 2018-2024 with no NIBRS presence, and shows a 2024 SRS total of zero. Agency-year observations are zero-month summary-annual rows across all seven offenses, and the review queue shows zero reported support with 5,132.273296 total fill.",
+    "Official Maryland records strongly suggest rosewood is legacy place/institution contamination rather than a live municipal police surface. Maryland Manual identifies Rosewood Center at Rosewood Lane, Owings Mills, and says the state facility closed on July 1, 2009. That matches both the raw agency name and the Owings Mills location used in the 2024 Baltimore County police incident release."
+  ],
+  "place_status": {
+    "municipal_status": "census_designated_place_in_county_with_no_municipalities",
+    "official_basis": [
+      "U.S. Census QuickFacts identifies the geography as Owings Mills CDP, Maryland.",
+      "Baltimore County Council says there are no incorporated towns, villages, municipalities, or other political subdivisions in Baltimore County.",
+      "Maryland's Local Government reference says Baltimore County has no municipalities."
+    ]
+  },
+  "primary_policing_structure": {
+    "standalone_owings_mills_police_department_found": false,
+    "primary_policing_entity": "Baltimore County Police Department, Precinct 3 - Franklin",
+    "official_evidence": [
+      "Baltimore County Police annual materials identify Precinct 3 - Franklin as an active county precinct.",
+      "An official Baltimore County Police news release says Franklin Precinct officers responded to a call at Rosewood Lane and Reisterstown Road in Owings Mills.",
+      "Because Baltimore County has no municipalities, county police precinct service is the operative local policing surface unless an official special-purpose agency is separately proven."
+    ],
+    "important_clarification": "Police activity occurring in Owings Mills does not imply a separate Owings Mills police department; official evidence points to Baltimore County Police precinct coverage."
+  },
+  "repo_interpretation": {
+    "crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes MD0035M00 exclusively to 24:municipal:place:2459425 with weight 1.0 and provisional_auto resolution.",
+    "agency_master_state": "agency_master.parquet shows ori9 MD0035M00 / ori7 MD0035M, agency_name_raw rosewood, source_presence_srs true, source_presence_nibrs false, srs_years 2018-2024, and latest_srs_part1_total 0.",
+    "observation_state": "agency_year_observations.parquet shows MD0035M00 only as summary_annual rows with months_reported 0.0 for all seven offenses in every year 2018-2024.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all seven 2024 offense rows estimated from peer_state_type_pop_band with reported_count_preferred 0.0 and mean_months_reported_preferred 0.0.",
+    "review_queue_state": "municipal_target_review_queue.parquet shows total_fill_count 5132.273296, total_reported_count 0.0, fill_share_of_estimated 1.0, and suspect_reason cdp_place."
+  },
+  "rosewood_interpretation": {
+    "likely_reference": "legacy Rosewood Center / Rosewood Lane institutional location in Owings Mills, not a valid standalone municipal police jurisdiction",
+    "confidence": "moderate_to_high",
+    "why_this_is_likely": [
+      "The raw agency name is rosewood, not Owings Mills.",
+      "Official Maryland Manual places Rosewood Center at Rosewood Lane, Owings Mills.",
+      "The state facility officially closed in 2009, which makes a live 2018-2024 SRS-only zero row look like stale legacy routing rather than current agency continuity.",
+      "An official 2024 Baltimore County Police release still references Rosewood Lane in Owings Mills, reinforcing that Rosewood is a location/site identifier within county-policed Owings Mills."
+    ],
+    "important_limit": "The packet does not claim to have conclusively identified the exact historical legal owner of ORI MD0035M00. The defensible point is narrower: the row does not support a current standalone Owings Mills municipal control."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_police_row_exists": false,
+    "why_not": [
+      "Owings Mills is a CDP, not an incorporated municipality.",
+      "Baltimore County has no municipalities at all, so there is no underlying municipal government for Owings Mills to anchor.",
+      "Official policing is through Baltimore County Police, specifically Franklin Precinct coverage in Owings Mills.",
+      "The only crosswalked row is a rosewood alias with SRS-only zero-summary continuity and no NIBRS presence, which is not credible evidence of a real citywide police reporting surface."
+    ],
+    "recommended_handling": [
+      "Do not retain the standalone Owings Mills CDP municipal control row 24:municipal:place:2459425.",
+      "Treat Owings Mills as part of Baltimore County's policing structure rather than as an independent municipal police jurisdiction.",
+      "Treat MD0035M00 as likely legacy Rosewood contamination requiring crosswalk cleanup or retirement, not as support for a live Owings Mills target."
+    ]
+  },
+  "likely_issue_class": "invalid_target_alias_contamination_from_legacy_rosewood_row",
+  "open_questions": [
+    "If a later cleanup pass needs exact agency genealogy, trace whether MD0035M00 originated from Rosewood Center security or another institutional reporting surface. That is not necessary for the keep/remove decision, which is already closed at high confidence."
+  ]
+}

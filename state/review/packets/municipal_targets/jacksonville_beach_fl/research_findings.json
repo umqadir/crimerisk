@@ -1,0 +1,123 @@
+{
+  "case_key": "jacksonville_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1235050",
+  "jurisdiction_name": "Jacksonville Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_pre_2025_reporting_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Jacksonville Beach is a real municipal police jurisdiction with an active city-run police department. The official Jacksonville Beach Police Department site is live, names Chief Gene Paul Smith, describes the agency as a CALEA-accredited full-service law-enforcement department, and says the department has 100 sworn officers and employees.",
+    "Jacksonville Beach is not part of the Jacksonville Sheriff's Office / Duval consolidated primary policing surface. Jacksonville's own consolidation materials say the three beach communities retained separate police departments when Jacksonville and Duval law enforcement were brought under the sheriff structure.",
+    "Current city operating documents confirm the police function remains active inside Jacksonville Beach city government. The adopted FY2026 budget identifies Gene P. Smith as Chief of the Police Department, funds police as an active city business plan, and lists current police-protection summary statistics.",
+    "FDLE's legacy annual publications confirm a real Jacksonville Beach municipal reporting identity immediately before the current break. FDLE's 2020 County and Municipal Offense Report lists Jacksonville Beach Police Department with population 23,394 and total index crime 850, and FDLE's 2021 transition report retains Jacksonville Beach Police Department as a named municipal row with population 24,075 but blanks the offense cells.",
+    "The public Florida incident-based publication gap runs through the target year. The official FDLE FIBRS Offense Detail workbook contains no Jacksonville Beach Police Department row in the 2021, 2022, 2023, or 2024 sheets, while the official 2025 Q2 sheet does contain Jacksonville Beach again.",
+    "The federal roster aligns with that timing. The official FBI CDE 2024 agency roster lists FL0160300 Jacksonville Beach Police Department as a City agency with `is_nibrs` true and `nibrs_start_date` `2025-01-01`, which matches a pre-2025 public continuity gap rather than target invalidity.",
+    "Repo behavior is therefore not evidence of county replacement, contract policing, or a fake municipal target. The crosswalk is exclusive to Jacksonville Beach city, but observations collapse to zero-valued annual rows for 2021-2024 and the 2024 control layer fully fills every offense."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "Jacksonville Beach maintains a current official Police Department section on the city website.",
+      "The official city site identifies Gene Paul Smith as Police Chief and describes Jacksonville Beach Police Department as a full-service CALEA-accredited law-enforcement agency.",
+      "The adopted FY2026 city budget funds police as an active city business plan and identifies current police leadership."
+    ],
+    "important_interpretation": "Jacksonville Beach is a valid standalone municipal policing object. The review question is not whether the city still has police; it is why public annual continuity disappears through 2024."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Jacksonville Beach Police Department",
+    "active_city_police_department_found": true,
+    "county_or_consolidated_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The official Jacksonville Beach Police Department About Us page says the department is a CALEA-accredited full-service law-enforcement agency with 100 sworn officers and employees.",
+      "The same page describes active patrol, investigations, communications, downtown CAPE, beach patrol, SWAT, K-9, and volunteer programs.",
+      "The Chief Gene Paul Smith page presents a current chief with deep departmental experience across patrol, investigations, services, SWAT, and budgeting.",
+      "Jacksonville's consolidation materials say the sheriff structure covers Jacksonville/Duval while the beach communities retained separate police departments.",
+      "The FY2026 budget lists police-protection summary statistics for Jacksonville Beach and keeps police as an active city-funded line of service."
+    ],
+    "important_clarification": "This is not a Jacksonville Sheriff's Office replacement case. Jacksonville Beach is one of the explicit beach-community carve-outs that retained its own police department inside the broader Jacksonville-Duval consolidation structure."
+  },
+  "official_reporting_evidence": {
+    "city_local_identity_surface": {
+      "summary": "Jacksonville Beach maintains a live official police identity and city-funded police operations.",
+      "details": [
+        "The official police site names Chief Gene Paul Smith and describes a full-service police department.",
+        "The FY2026 adopted city budget names Gene P. Smith as Chief of the Police Department and lists police-protection statistics."
+      ],
+      "interpretation": "Jacksonville Beach remains a live city-police jurisdiction in current official city materials."
+    },
+    "city_local_publication_surface": {
+      "summary": "I found official Jacksonville Beach Police Department annual-report publications through 2018, but I did not locate a ready-made official 2021-2024 city annual offense table on the current public city site.",
+      "details": [
+        "The official police archive center currently exposes 2016, 2017, and 2018 annual reports.",
+        "The 2018 annual report publishes Jacksonville Beach crime and traffic statistics, including offense counts for homicide, robbery, burglary, larceny, and motor-vehicle theft."
+      ],
+      "interpretation": "Jacksonville Beach has a real local publication tradition, but I did not find a current public city annual offense surface that would let production backfill 2024 immediately."
+    },
+    "fdle_transition_surface": {
+      "summary": "FDLE's official county-and-municipal reports support Jacksonville Beach as a real municipal row through the 2021 transition report.",
+      "details": [
+        "FDLE 2020: Jacksonville Beach Police Department, population 23,394, total index crime 850.",
+        "FDLE 2021: Jacksonville Beach Police Department retained as a named municipal row with population 24,075, but offense cells blank."
+      ],
+      "interpretation": "The 2021 break is a reporting/publication transition issue on a real city agency, not evidence that the municipal target was synthetic."
+    },
+    "fdle_post_transition_publication_check": {
+      "summary": "The official FDLE FIBRS offense workbook contains no Jacksonville Beach row for 2021, 2022, 2023, or 2024, but Jacksonville Beach reappears in the 2025 Q2 sheet.",
+      "details": [
+        "The normalized 2024 repo extract built from the official FDLE workbook contains no Jacksonville Beach row.",
+        "The official 2025 Q2 FDLE workbook includes Jacksonville Beach Police Department again."
+      ],
+      "interpretation": "Public statewide continuity is missing for the target year and only resumes on the official FDLE surface in 2025."
+    },
+    "fbi_transition_signal": {
+      "summary": "The official FBI CDE 2024 roster lists Jacksonville Beach Police Department with `nibrs_start_date` `2025-01-01`.",
+      "interpretation": "The federal roster independently supports a pre-2025 transition gap rather than a 2024-valid incident-based publication path."
+    },
+    "exact_blocker": {
+      "summary": "No defensible public 2024 Jacksonville Beach annual offense row was located on either the official city site or the official FDLE 2024 statewide workbook.",
+      "why_it_blocks_direct_2024_backfill": [
+        "FDLE's public 2021-2024 FIBRS offense sheets omit Jacksonville Beach entirely.",
+        "The official FBI roster starts Jacksonville Beach's incident-based continuity on January 1, 2025 rather than by 2024.",
+        "The current public Jacksonville Beach site exposes archived annual reports through 2018, but I did not find a public 2021-2024 citywide annual offense table."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0160300 exclusively to 12:municipal:place:1235050 with relationship_type exclusive, weight 1.0, review_status auto, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0160300 as local_police and flags both SRS and NIBRS presence through 2024, with latest_srs_year 2024, latest_srs_part1_total 0.0, and population_latest_nibrs 23974.0.",
+    "observation_state": "agency_year_observations.parquet carries annual part I support for FL0160300 in 2018 (1058), 2019 (969), and 2020 (850), then only zero-valued srs_return_a_annual rows in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "The reference layer says FL0160300 has NIBRS presence through 2024, but the official FBI roster sets the NIBRS start at 2025-01-01 and the official FDLE workbook has no Jacksonville Beach row in the 2021-2024 sheets.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all seven Jacksonville Beach offense rows preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill from hist_median.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Jacksonville Beach in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 990.0, total_reported_count 0.0, and priority_rank 10."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Jacksonville Beach still operates an active city-run police department.",
+      "Jacksonville consolidation materials explicitly preserve the beach communities as separate police carve-outs.",
+      "FDLE published Jacksonville Beach as a municipal row in 2020 and retained the row, blanked, in 2021.",
+      "Official state and federal incident-based continuity does not become visible again until 2025."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Jacksonville Beach's public statewide reporting continuity broke during the Florida summary-to-incident transition after the retained 2021 legacy row.",
+      "The official FBI roster indicates the city's incident-based start date is January 1, 2025, which explains why no public 2024 row is available.",
+      "The repo then materialized only zero-valued annual placeholders for 2021-2024, forcing full fill in the 2024 controls layer."
+    ],
+    "recommended_handling": [
+      "Retain Jacksonville Beach city as a true standalone municipal control row.",
+      "Do not reroute Jacksonville Beach into Jacksonville Sheriff's Office, Duval county remainder, or any contract-policing structure.",
+      "Classify the current all-fill condition as a pre-2025 Florida reporting/publication transition gap on FL0160300.",
+      "Use FDLE's 2020 and retained 2021 county-and-municipal reports as the last clear statewide pre-break anchors.",
+      "Treat the official 2025 Q2 FDLE workbook and FBI CDE roster as the first visible forward continuity surfaces, and keep estimator-backed handling for 2024 unless a direct local Jacksonville Beach records surface is acquired."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_2021_2024_reporting_gap_before_public_2025_incident_based_continuity",
+  "open_questions": [
+    "If business later requires a bespoke 2024 override, the remaining task is to identify or request a direct Jacksonville Beach Police Department records surface for 2021-2024; I did not find a ready-made public city annual offense table for those years on the current official site."
+  ]
+}

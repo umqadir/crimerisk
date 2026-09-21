@@ -1,0 +1,172 @@
+{
+  "city_key": "indianapolis_in",
+  "contract": {
+    "city_key": "indianapolis_in",
+    "city_name": "Indianapolis, Indiana",
+    "geography": {
+      "bounds": {
+        "max_latitude": 39.927392,
+        "max_longitude": -85.937379,
+        "min_latitude": 39.632177,
+        "min_longitude": -86.328121
+      },
+      "jurisdiction_id": "18:municipal:place:1836003",
+      "state_fips": "18"
+    },
+    "mapping": {
+      "date_field": "OccurredFrom",
+      "id_field": "GlobalID",
+      "id_fields": [],
+      "latitude_field": "Latitude",
+      "longitude_field": "Longitude",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "NIBRSClassCode",
+              "op": "eq",
+              "value": "N09A",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSClassCode",
+              "op": "eq",
+              "value": "N120",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSClassCode",
+              "op": "eq",
+              "value": "N13A",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSClassCode",
+              "op": "eq",
+              "value": "N220",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSClassCode",
+              "op": "in",
+              "value": "",
+              "values": [
+                "N23A",
+                "N23B",
+                "N23C",
+                "N23D",
+                "N23E",
+                "N23F",
+                "N23G",
+                "N23H"
+              ]
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "NIBRSClassCode",
+              "op": "eq",
+              "value": "N240",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://gis.indy.gov/server/rest/services/IMPD/IMPD_Public_Data/FeatureServer/1",
+      "name": "Indianapolis Metropolitan Police Department IMPD_Public_Data Incidents_Public",
+      "order": "OccurredFrom ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "GlobalID",
+        "CaseNum",
+        "OccurredFrom",
+        "iOccYr",
+        "NIBRSClassCode",
+        "NIBRSClassCodeDesc",
+        "NIBRSClassDesc",
+        "CAIU_ClassType",
+        "PublicData",
+        "Latitude",
+        "Longitude"
+      ],
+      "source_url": "https://www.arcgis.com/home/item.html?id=0390f89c33c04556b7eb353dd31486e3",
+      "where": "iOccYr = 2024 AND PublicData = 'Yes' AND Latitude IS NOT NULL AND Longitude IS NOT NULL"
+    },
+    "sources_checked": [
+      "https://impd-transparency-hub-indygis.hub.arcgis.com/pages/crime~63636f92c8ca4673a1a65a90e74a91a4",
+      "https://www.arcgis.com/home/item.html?id=0390f89c33c04556b7eb353dd31486e3",
+      "https://gis.indy.gov/server/rest/services/IMPD/IMPD_Public_Data/FeatureServer/1?f=json",
+      "https://gis.indy.gov/server/rest/services/IMPD/IMPD_Public_Data/FeatureServer/1/query?f=json&where=iOccYr%3D2024&returnCountOnly=true",
+      "https://gis.indy.gov/server/rest/services/IMPD/IMPD_NIBRS_Public/FeatureServer/1?f=json",
+      "https://data.indy.gov/datasets/IndyGIS%3A%3Aimpd-ucr-current-year/about",
+      "https://data.indy.gov/datasets/impd-ucr-2021-data/about"
+    ],
+    "worker_judgment_notes": "Selected the official IMPD Transparency Portal FeatureServer layer IMPD_Public_Data/Incidents_Public because it is the first official runnable point feed found with 2024 records, stable row identity via GlobalID/OBJECTID, epoch-ms OccurredFrom dates, NIBRSClassCode offense categories, and WGS84 Latitude/Longitude point coordinates. Older Open Indy UCR annual tables are official Part 1 feeds but were published only through 2021 plus an empty current-year table, so they do not satisfy the 2024 point-feed requirement. This contract is share-lane only: raw feed rows are public incident/offense rows and must not be promoted as annual totals. Rape is intentionally omitted because the public point layer inspected did not expose N11 sex-offense rows, while the separate NIBRS_Inc_DBonly table showed N11A/N11B/N11C/N11D categories but no point geometry. The jurisdiction_id and state_fips come from state/controls/jurisdiction_controls_2024.parquet for Indianapolis city (balance); bounds are broad municipal block-group bounds computed from the local TIGER block-group file joined through state/geometry/block_group_to_jurisdiction_crosswalk.parquet, so the runner can spatially join incidents to municipal block groups.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 6,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 4,
+    "offense_rows": 7,
+    "rows_in_surface": 3184,
+    "share_admitted_rows": 6,
+    "share_sum_pass_all": false
+  },
+  "raw_source": {
+    "api_endpoint": "https://gis.indy.gov/server/rest/services/IMPD/IMPD_Public_Data/FeatureServer/1",
+    "city_key": "indianapolis_in",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 7700893,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/indianapolis_in_raw.parquet",
+    "raw_cache_sha256": "ccf66ce605cd231d7958978931f5a6c82fb872dc005182eb83c626b0b5428852",
+    "source_name": "Indianapolis Metropolitan Police Department IMPD_Public_Data Incidents_Public",
+    "source_url": "https://www.arcgis.com/home/item.html?id=0390f89c33c04556b7eb353dd31486e3"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final",
+  "runtime": {
+    "city_key": "indianapolis_in",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/indianapolis_in_raw.parquet",
+    "raw_cache_sha256": "ccf66ce605cd231d7958978931f5a6c82fb872dc005182eb83c626b0b5428852",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 38.732770415983396,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

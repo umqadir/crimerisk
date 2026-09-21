@@ -1,0 +1,118 @@
+{
+  "target_id": "12:municipal:place:1258050",
+  "target_name": "Pompano Beach city, FL",
+  "question": "Should Pompano Beach city, FL keep a standalone municipal control row, and if so, what is the most likely explanation for the current all-fill state?",
+  "verdict": {
+    "keep_standalone_municipal_control_row": true,
+    "confidence": "high",
+    "decision_reason": "Official Florida and City materials show that Pompano Beach is not a current city-run police department, but it is a real city-specific law-enforcement reporting surface tied to FL0060700. FDLE published substantive municipal offense totals for 'Pompano Beach Police Department' well after the 1999 BSO contract conversion, then retained the row in 2021 but blanked it, and later omitted it from the statewide FIBRS offense workbook. That pattern fits a continuity/publication failure, not an invalid place target."
+  },
+  "operational_context": {
+    "current_policing_model": "The City of Pompano Beach has contracted with the Broward Sheriff's Office for police services since August 1, 1999.",
+    "standalone_city_police_department_today": false,
+    "standalone_municipal_reporting_surface_historically": true,
+    "key_nuance": "This target should be kept because the municipal reporting surface is real even though operational policing is currently delivered by BSO under contract."
+  },
+  "most_likely_explanation_for_all_fill": {
+    "label": "state_federal_reporting_continuity_failure_under_contract_city_model",
+    "confidence": "moderate_high",
+    "summary": "The most likely failure mode is that Pompano Beach's legacy municipal ORI/reporting surface (FL0060700) continued to exist administratively, but the city-specific offense stream was not carried cleanly from FDLE's legacy SRS publications into the 2021+ NIBRS/FIBRS publication layer. The longstanding BSO contract model likely made the routing more fragile: incidents could still be tracked operationally within the Pompano Beach BSO district, while state/federal offense publications stopped emitting a separate Pompano row.",
+    "why_not_invalid_target": [
+      "City documents confirm Pompano Beach is still a distinct municipal police-service jurisdiction under a BSO contract, not an unpoliced or dissolved place.",
+      "FDLE continued to recognize FL0060700 as 'Pompano Beach Police Department'.",
+      "FDLE annual offense reports carried city-specific Pompano Beach counts through 2020, proving that the contract model did not invalidate the municipal row.",
+      "FDLE's 2021 annual offense report still listed Pompano Beach Police Department as a row, but all offense fields were blank.",
+      "The official FDLE FIBRS offense workbook for 2021-2025 Q2 contains no Pompano Beach row at all, indicating a publication continuity break rather than a clean, intentional retirement."
+    ]
+  },
+  "best_backfill_or_override_surfaces": {
+    "primary_surface": {
+      "name": "City of Pompano Beach Standalone Police Department Strategic Assessment (February 23, 2026)",
+      "why_it_matters": "This is the strongest official local surface for modern override work because it documents the current Pompano Beach BSO district structure and cites Pompano-originating 2023-2024 workload/caseload figures supplied by BSO, showing that city-specific operational accounting still exists even without published FDLE offense rows."
+    },
+    "secondary_surface": {
+      "name": "FDLE County and Municipal Offense Data annual reports",
+      "why_it_matters": "These are the strongest official state source for pre-break historical truth, showing substantive Pompano Beach municipal offense counts through 2020 and a blank-but-still-listed Pompano row in 2021."
+    }
+  },
+  "evidence": [
+    {
+      "source_id": "city_budget_2026",
+      "finding": "The City says it has contracted with BSO for police services since August 1, 1999.",
+      "details": "FY2026 adopted budget, Police Services section: 'Since August 1, 1999, the City of Pompano Beach has contracted with the Broward County Sheriff's Office (BSO) to provide police services...'",
+      "supports": [
+        "current_policing_model",
+        "not_a_current_city_run_pd"
+      ]
+    },
+    {
+      "source_id": "city_assessment_2026",
+      "finding": "The City states that Pompano Beach transitioned from its own municipal police department to BSO in 1999, renewed the BSO contract in September 2025, and still maintains a dedicated Pompano Beach BSO district staffing complement.",
+      "details": "The assessment states that in 1999 Pompano Beach 'transitioned from having its own municipal police department to contracting with BSO to become the sole law enforcement provider.' It also reports a contract-defined Pompano Beach District staffing complement of 272 General Fund personnel plus nine School Resource Deputies, and cites Pompano-originating 2023-2024 caseloads provided by BSO.",
+      "supports": [
+        "municipal_service_surface_continues",
+        "city_specific_operational_accounting_still_exists"
+      ]
+    },
+    {
+      "source_id": "fdle_atms_registry",
+      "finding": "FDLE still lists 'Pompano Beach Police Department (FL0060700)' in its official criminal justice agency registry surface.",
+      "details": "The FDLE ATMS agency list includes Pompano Beach Police Department with ORI FL0060700.",
+      "supports": [
+        "agency_identity_continues",
+        "not_a_bad_crosswalk_to_a_nonexistent_agency"
+      ]
+    },
+    {
+      "source_id": "fdle_offense_2017",
+      "finding": "FDLE published a fully populated Pompano Beach Police Department municipal offense row in 2017, long after the 1999 BSO contract conversion.",
+      "details": "2017 annual County and Municipal Offense Data shows Pompano Beach Police Department population 109,441 and total index crime 6,288.",
+      "supports": [
+        "contract_policing_does_not_invalidate_target",
+        "historical_municipal_surface_is_real"
+      ]
+    },
+    {
+      "source_id": "fdle_offense_2020",
+      "finding": "FDLE still published a fully populated Pompano Beach Police Department offense row in 2020.",
+      "details": "2020 annual County and Municipal Offense Data shows Pompano Beach Police Department population 112,941 and total index crime 3,979.",
+      "supports": [
+        "continuity_through_2020",
+        "pre_break_true_counts_exist"
+      ]
+    },
+    {
+      "source_id": "fdle_offense_2021",
+      "finding": "FDLE kept the Pompano Beach Police Department row in 2021 but every offense cell was blank.",
+      "details": "2021 annual County and Municipal Offense Data lists Pompano Beach Police Department population 113,144 with all offense and rate fields shown as '--'.",
+      "supports": [
+        "break_occurs_at_2021_transition",
+        "row_not_retired_cleanly"
+      ]
+    },
+    {
+      "source_id": "fdle_fibrs_workbook",
+      "finding": "Derived from official workbook inspection: the FDLE FIBRS offense workbook for 2021, 2022, 2023, 2024, and 2025 Q2 contains no Pompano Beach row in any annual sheet.",
+      "details": "This absence, combined with the continuing agency listing and the blank 2021 annual row, supports the inference that the city-specific publication surface broke during the SRS-to-NIBRS era instead of the municipal target becoming invalid.",
+      "supports": [
+        "nibrs_era_publication_gap",
+        "state_federal_continuity_failure_inference"
+      ]
+    }
+  ],
+  "production_recommendation": {
+    "disposition": "keep",
+    "label": "keep_valid_municipal_control_row",
+    "action": "Retain the standalone municipal control row for 12:municipal:place:1258050 and classify the current all-fill state as a continuity/reporting failure candidate, not an invalid-target deletion candidate.",
+    "rationale": "The place remains a valid municipal reporting surface tied exclusively to FL0060700, and the official-source pattern is exactly what a broken continuity/backfill case looks like: substantive municipal counts through 2020, the same row blanked in 2021, then omission from FIBRS offense publications despite continuing city-specific operational accounting.",
+    "suggested_follow_on": [
+      "Use the City's 2026 strategic assessment as the leading local override surface for modern Pompano-specific workload evidence.",
+      "Use FDLE annual County and Municipal Offense Data archives as the canonical pre-break state truth surface.",
+      "If override work proceeds, test whether post-2020 incidents were absorbed into a Broward Sheriff/contract-city pipeline rather than retired from collection."
+    ]
+  },
+  "inference_notes": [
+    "The continuity-failure diagnosis is an inference from official sources, not an explicit FDLE statement. It is based on the combination of: continued agency identity, continued city-specific service delivery, full offense publication through 2020, a blank retained row in 2021, and total omission from the official FIBRS offense workbook thereafter.",
+    "The evidence does not support treating Pompano Beach as an invalid municipal target. It supports treating it as a valid but publication-broken target under a contract-city reporting arrangement."
+  ]
+}

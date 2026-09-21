@@ -1,0 +1,234 @@
+{
+  "case_key": "bwi_md",
+  "ori": "MD0020300",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "MD0020300 should use a parcel-based contiguous BWI campus footprint built from the official Anne Arundel parcel layer, not Anne Arundel County, Baltimore city/county, statewide MDTA scope, or the detached MAA offsite holdings.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "custom_airport_property_campus_footprint",
+    "official_scope_support": {
+      "parcel_layer_url": "https://gis.aacounty.org/arcgis/rest/services/OpenData/Planning_OpenData/MapServer/34",
+      "ea_url": "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Final%20EA%20and%20Section%204f%20Determination%20and%20Finding%20of%20No%20Significant%20Impact%20%20Record%20of%20Decision.pdf",
+      "appendix_h_url": "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Appendix%20H%20-%20Biological.pdf",
+      "summary": "Official county parcel ownership plus official BWI environmental-review materials distinguish the contiguous BWI airport campus from detached offsite MAA holdings and support a campus-specific airport-property footprint for MD0020300."
+    },
+    "explicit_exclusions": [
+      "Anne Arundel County-wide proxy",
+      "Baltimore city or county proxy",
+      "statewide MDTA / Maryland transportation surrogate",
+      "detached MAA offsite / Part 150 holdings outside the contiguous BWI campus",
+      "fabricated smoothing polygons beyond the owner-filtered parcel union"
+    ]
+  },
+  "source_validation": {
+    "parcel_layer": {
+      "service_url": "https://gis.aacounty.org/arcgis/rest/services/OpenData/Planning_OpenData/MapServer/34",
+      "service_name": "Parcels",
+      "service_crs": "EPSG:2893",
+      "queried_candidate_rows_with_aviation_in_owner_fields": 344,
+      "deduplicated_government_aviation_owner_rows_used_for_component_analysis": 319,
+      "false_positive_non_government_aviation_rows_excluded": 6,
+      "owner_field_variants_observed": [
+        "",
+        "ADM DEPT OF TRANS",
+        "AVIATION ADMIN OF THE",
+        "AVIATION ADMINISTRATION",
+        "DEPARTMENT OF TRANSPORATION",
+        "DEPARTMENT OF TRANSPORTATION",
+        "DEPT OF TRANS",
+        "DEPT OF TRANSPORATION",
+        "DEPT OF TRANSPORTATION",
+        "MARYLAND AVIATION ADMIN",
+        "MARYLAND AVIATION ADMIN OF DEPT OF",
+        "MARYLAND AVIATION ADMIN OF THE",
+        "MARYLAND AVIATION ADMINISTRATION",
+        "MARYLAND AVIATION ADMINSTRATION",
+        "MD AVIATION ADM OF THE DEPT",
+        "MD AVIATION ADMIN OF THE",
+        "MD AVIATION ADMINISTRATION",
+        "MD AVIATION ADMINISTRATION OF THE",
+        "OF THE DEPARTMENT OF TRANSPORATION",
+        "OF THE DEPARTMENT OF TRANSPORTATIO",
+        "OF THE DEPT OF TRANSPORTATION",
+        "OF TRANSPORTATION",
+        "ST OF MD AVIATION ADM",
+        "ST OF MD AVIATION ADMI",
+        "ST OF MD AVIATION ADMIN",
+        "STATE AVIATION ADM OF MD",
+        "STATE AVIATION ADMIN",
+        "STATE AVIATION ADMINISTRATION",
+        "STATE MARYLAND AVIATION ADMIN",
+        "STATE OF MARYLAND",
+        "STATE OF MARYLAND AVIATION",
+        "STATE OF MARYLAND AVIATION ADMIN",
+        "STATE OF MARYLAND AVIATION ADMN",
+        "STATE OF MD AVIATION",
+        "STATE OF MD AVIATION ADM",
+        "STATE OF MD AVIATION ADMIN",
+        "TRANSPORATION",
+        "TRANSPORTATION"
+      ]
+    },
+    "official_pdf_qa": {
+      "final_ea_main_campus_text": {
+        "source_url": "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Final%20EA%20and%20Section%204f%20Determination%20and%20Finding%20of%20No%20Significant%20Impact%20%20Record%20of%20Decision.pdf",
+        "summary": "The EA describes a ~3,600-acre airport with a narrower ~3,200-acre main campus containing the runways, terminal complex, and landside/support facilities."
+      },
+      "appendix_h_contiguous_vs_offsite_text": {
+        "source_url": "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Appendix%20H%20-%20Biological.pdf",
+        "summary": "Appendix H distinguishes ~3,500 acres of contiguous BWI campus property from an additional ~400 acres of detached offsite holdings, which is the decisive QA split for parcel selection."
+      }
+    }
+  },
+  "build_method": {
+    "owner_filter_rule": "Keep parcel records where aviation appears in an owner field and the owner strings resolve to Maryland Aviation Administration / State of Maryland aviation-owner variants; exclude private LLC and other non-government aviation-name false positives.",
+    "component_method": "Deduplicate by PUID, project to EPSG:2893, split the owner-filtered parcels into strict touching components, take the largest component as the core campus, then keep any detached component within 1,500 ft of that largest component.",
+    "distance_threshold_ft": 1500.0,
+    "why_1500_ft_is_defensible": "Using a 1,500-ft cutoff produces a 3,505.8-acre campus, almost exactly matching Appendix H's ~3,500-acre contiguous-property statement, while excluding detached Anne Arundel offsite holdings that the same appendix treats separately from the campus.",
+    "dissolve_method": "Union the kept parcel geometries without buffering or invented fill polygons, then intersect the dissolved multipart campus footprint with 2020 Maryland TIGER block groups in EPSG:5070."
+  },
+  "parcel_component_qa": {
+    "largest_touch_component_acres": 3173.2131172486506,
+    "largest_touch_component_alignment": "The largest single touching parcel mass aligns closely with the EA's narrower ~3,200-acre main-campus description.",
+    "selected_campus_component_count": 34,
+    "selected_campus_acres": 3505.7810932247967,
+    "selected_minus_appendix_h_contiguous_acres": 5.7810932247966775,
+    "all_anne_arundel_owner_filtered_candidate_acres": 3645.4863289950226,
+    "excluded_detached_anne_arundel_acres": 139.70523577022553,
+    "excluded_detached_component_examples": [
+      {
+        "component_touch": 8,
+        "component_acres": 80.3177278426632,
+        "component_parcels": 7,
+        "distance_ft_to_largest": 1852.441127411023,
+        "post_offices": "HANOVER | HARMANS",
+        "sample_streets": "RIDGE"
+      },
+      {
+        "component_touch": 10,
+        "component_acres": 15.187247742105793,
+        "component_parcels": 5,
+        "distance_ft_to_largest": 2285.425890112572,
+        "post_offices": "HANOVER",
+        "sample_streets": "RIDGE"
+      },
+      {
+        "component_touch": 29,
+        "component_acres": 6.22783878126274,
+        "component_parcels": 3,
+        "distance_ft_to_largest": 2234.9627294815696,
+        "post_offices": "HANOVER",
+        "sample_streets": "HANOVER | RIDGE"
+      },
+      {
+        "component_touch": 16,
+        "component_acres": 5.551209258047702,
+        "component_parcels": 4,
+        "distance_ft_to_largest": 3297.7155152679475,
+        "post_offices": "HANOVER",
+        "sample_streets": "HANOVER"
+      },
+      {
+        "component_touch": 28,
+        "component_acres": 4.091709343525871,
+        "component_parcels": 2,
+        "distance_ft_to_largest": 1703.4407710839512,
+        "post_offices": "HANOVER",
+        "sample_streets": "RIDGE | STONEY RUN"
+      },
+      {
+        "component_touch": 12,
+        "component_acres": 3.2278886240108564,
+        "component_parcels": 1,
+        "distance_ft_to_largest": 2022.9914679790638,
+        "post_offices": "HANOVER",
+        "sample_streets": "STONEY RUN"
+      },
+      {
+        "component_touch": 17,
+        "component_acres": 2.7144327514605315,
+        "component_parcels": 1,
+        "distance_ft_to_largest": 1591.329970575917,
+        "post_offices": "HANOVER",
+        "sample_streets": "RIDGE"
+      },
+      {
+        "component_touch": 9,
+        "component_acres": 2.6006365306059505,
+        "component_parcels": 5,
+        "distance_ft_to_largest": 2853.457736923938,
+        "post_offices": "HANOVER",
+        "sample_streets": "HANOVER"
+      },
+      {
+        "component_touch": 24,
+        "component_acres": 2.024688509209054,
+        "component_parcels": 3,
+        "distance_ft_to_largest": 5400.417019564777,
+        "post_offices": "HANOVER",
+        "sample_streets": "RACE"
+      },
+      {
+        "component_touch": 22,
+        "component_acres": 2.017761962788929,
+        "component_parcels": 1,
+        "distance_ft_to_largest": 9362.444096358216,
+        "post_offices": "HANOVER",
+        "sample_streets": "OCONNOR"
+      },
+      {
+        "component_touch": 26,
+        "component_acres": 1.69569257982045,
+        "component_parcels": 3,
+        "distance_ft_to_largest": 9434.565594498028,
+        "post_offices": "HANOVER",
+        "sample_streets": "OCONNOR"
+      },
+      {
+        "component_touch": 32,
+        "component_acres": 1.5797695385968755,
+        "component_parcels": 2,
+        "distance_ft_to_largest": 4071.3751892261666,
+        "post_offices": "HANOVER",
+        "sample_streets": "RACE"
+      }
+    ]
+  },
+  "share_build": {
+    "block_group_source": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/tiger_bg/tl_2020_24_bg.zip",
+    "area_crs": "EPSG:5070",
+    "intersected_block_groups": 8,
+    "intersection_area_total_m2": 14188491.11122262,
+    "intersection_area_total_acres": 3506.0525084821497,
+    "weight_sum_exact": 1.0,
+    "weight_sum_rounded_csv": 0.9999999999999998,
+    "largest_block_group_geoid": "240039800001",
+    "largest_block_group_share": 0.7967002078817436,
+    "county_share_summary": [
+      {
+        "county_fips": "003",
+        "share_sum": 1.0,
+        "block_groups": 8
+      }
+    ]
+  },
+  "qa_checks": {
+    "selected_campus_matches_appendix_h_contiguous_figure_within_10_acres": true,
+    "largest_component_matches_ea_main_campus_figure_within_50_acres": true,
+    "share_sum_is_one_exact": true,
+    "share_sum_is_one_after_csv_rounding": true,
+    "selected_footprint_is_smaller_than_all_owner_filtered_anne_arundel_parcels": true
+  },
+  "residual_caveats": [
+    "This is a parcel-exact contiguous-campus footprint inside Anne Arundel County, but it is still a property footprint rather than a separately surveyed police beat map.",
+    "The appendix's additional ~400 acres of offsite holdings are not meant to be part of the BWI campus footprint. Some of those offsite holdings also fall outside Anne Arundel County and therefore are not present in the county parcel layer used here.",
+    "The 1,500-ft detached-component cutoff is an explicit QA decision, not a hidden heuristic: it is chosen because it reproduces the official ~3,500-acre contiguous-campus figure while leaving detached offsite parcel clusters out of the airport campus geometry."
+  ],
+  "files_written": {
+    "custom_footprint_rows_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bwi_md/custom_footprint_rows.csv",
+    "research_findings_json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bwi_md/research_findings.json",
+    "sources_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_geometry_build_packets/bwi_md/sources.csv"
+  }
+}

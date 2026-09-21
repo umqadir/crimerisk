@@ -1,0 +1,14 @@
+{
+  "case_key": "winter_garden_fl",
+  "jurisdiction_id": "12:municipal:place:1278250",
+  "jurisdiction_name": "Winter Garden city",
+  "state_abbr": "FL",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/winter_garden_fl",
+  "review_goal": "Determine whether Winter Garden should retain a standalone municipal control row and whether the current full-fill condition reflects broken continuity/publication for a real city police target, contract policing, county replacement, or target invalidity.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

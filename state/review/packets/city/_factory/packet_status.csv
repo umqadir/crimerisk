@@ -1,0 +1,2 @@
+factory_key,factory_name,analysis_date,packet_status,current_owner,deliverables_complete,inputs_reviewed,notes
+city_onboarding_standard_v2,City Onboarding Factory Synthesis,2026-03-22,completed,codex,yes,new_york|chicago|seattle|san_francisco|austin|mesa|live_builder_code,Synthesis completed from representative city packets plus live builder and validator semantics. Doctrine favors Chicago and Seattle as promotion templates, Austin and San Francisco as blocker templates, and treats NYC as a useful packet-shape reference but not the future quality bar.

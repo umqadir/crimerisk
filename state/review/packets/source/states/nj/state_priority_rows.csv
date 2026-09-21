@@ -1,0 +1,8 @@
+state_fips,state_abbr,offense,repo_nibrs_observed_total_2024,repo_srs_observed_total_2024,year,fbi_cde_estimated_total_2024,population,state_name,bjs_ckle_count_2024,bjs_ckle_rate_2024,repo_srs_minus_fbi_cde,repo_nibrs_minus_bjs_ckle,bjs_state_estimate_suppressed,repo_srs_gap_below_fbi_cde,repo_nibrs_gap_below_bjs_ckle,gap_priority_score,priority_rank
+34,NJ,larceny,82154.0,102766.0,2024,106353,9500851,New Jersey,107180.0,1128.2,-3587.0,-25026.0,False,3587.0,25026.0,28613.0,13
+34,NJ,aggravated_assault,9481.0,13834.0,2024,14140,9500851,New Jersey,14420.0,151.8,-306.0,-4939.0,False,306.0,4939.0,5245.0,53
+34,NJ,motor_vehicle_theft,11943.0,15169.0,2024,15452,9500851,New Jersey,16230.0,170.8,-283.0,-4287.0,False,283.0,4287.0,4570.0,64
+34,NJ,burglary,10048.0,13442.0,2024,13805,9500851,New Jersey,13750.0,144.8,-363.0,-3702.0,False,363.0,3702.0,4065.0,68
+34,NJ,robbery,3650.0,4616.0,2024,4681,9500851,New Jersey,4690.0,49.3,-65.0,-1040.0,False,65.0,1040.0,1105.0,131
+34,NJ,rape,1017.0,1618.0,2024,1640,9500851,New Jersey,1690.0,17.8,-22.0,-673.0,False,22.0,673.0,695.0,161
+34,NJ,murder,157.0,223.0,2024,223,9500851,New Jersey,230.0,2.5,0.0,-73.0,False,-0.0,73.0,73.0,257

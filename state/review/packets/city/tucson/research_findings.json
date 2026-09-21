@@ -1,0 +1,26 @@
+{
+  "builder": "_build_tucson_surface",
+  "city_key": "tucson",
+  "city_name": "Tucson",
+  "contract": "Gate-1 pilot: official totals lane plus incident share lane.",
+  "incident_feed_total_policy": "share_only_unless_strict_reconciliation_clears",
+  "jurisdiction_id": "04:municipal:place:0477000",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/tucson",
+  "raw_cache_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/inputs/gap_closing_pilot/gate1_pilot_20260615",
+  "run_id": "gate1_pilot_20260615",
+  "source_name": "Tucson Police Incidents - 2024 - Open Data",
+  "source_url": "https://data-cotgis.opendata.arcgis.com/items/734392a9ac114ea89e5e3b427e55efc5",
+  "worker_runtime": {
+    "city_key": "tucson",
+    "input_tokens": null,
+    "model": "",
+    "output_tokens": null,
+    "run_id": "gate1_pilot_20260615",
+    "status": "completed",
+    "token_note": "No LLM tokens: deterministic Python city builder.",
+    "total_tokens": null,
+    "wall_seconds": 8.539798083002097,
+    "worker_id": "local_deterministic_tucson",
+    "worker_type": "local_deterministic_builder"
+  }
+}

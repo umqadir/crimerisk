@@ -1,0 +1,14 @@
+{
+  "case_key": "owings_mills_md",
+  "jurisdiction_id": "24:municipal:place:2459425",
+  "jurisdiction_name": "Owings Mills CDP",
+  "state_abbr": "MD",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/owings_mills_md",
+  "review_goal": "Determine whether Owings Mills should ever receive a standalone municipal control row given its CDP status and the suspicious Rosewood crosswalk routing.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

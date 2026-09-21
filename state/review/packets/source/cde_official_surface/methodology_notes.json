@@ -1,0 +1,499 @@
+{
+  "packet_name": "cde_official_surface",
+  "generated_on": "2026-03-22",
+  "scope": "Official-source survey packet for FBI CDE/UCR/BJS surfaces relevant to V2, focused on methodology differences, operational lane rules, and reconciliation guardrails.",
+  "local_anchors": {
+    "participation_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/ucr-participation-1960-2024.csv",
+    "cius_contents_xlsx": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/2024-cius-list-of-contents.xlsx",
+    "official_roster_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/agency_rosters_2024.csv",
+    "official_roster_validation_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "cde_methodologies_capture": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/page-2026-03-22T17-47-15-437Z.yml",
+    "cde_crime_explorer_capture": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/page-2026-03-22T17-48-23-009Z.yml",
+    "cde_ddt_capture": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/page-2026-03-18T23-14-10-263Z.yml",
+    "cde_participation_panel_capture": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/page-2026-03-22T17-29-24-825Z.yml",
+    "cde_table_8_11_capture": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/.playwright-cli/page-2026-03-18T23-13-32-918Z.yml",
+    "roster_effective_year_guardrails_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/cde_official_surface/roster_effective_year_guardrails.csv"
+  },
+  "naming_doctrine": [
+    {
+      "id": "rcn_is_current_umbrella_release",
+      "finding": "Starting with the 2024 public release, the FBI's annual umbrella release is 'Reported Crimes in the Nation' (RCN), and CIUS is one component inside it.",
+      "official_evidence": [
+        {
+          "title": "UCR Summary of Reported Crimes in the Nation, 2024",
+          "url": "https://cde.ucr.cjis.gov/LATEST/resources/reports/UCR%20Summary%20of%20Reported%20Crimes%20in%20the%20Nation%202024.pdf",
+          "detail": "RCN 2024 lists CIUS, NIBRS, Hate Crime Statistics, and LEOKA as its components and says CIUS combines reported, estimated, and trended data."
+        },
+        {
+          "title": "Reported Crimes in the Nation, 2024 Frequently Asked Questions",
+          "url": "https://cde.ucr.cjis.gov/LATEST/resources/reports/Reported%20Crimes%20in%20the%20Nation%202024%20FAQs.pdf",
+          "detail": "FAQ states that RCN 2024 includes CIUS 2024, NIBRS 2024, Hate Crime Statistics 2024, LEOKA 2024, and the UCR summary."
+        }
+      ],
+      "v2_rule": "When V2 says 'CIUS annual bundle' for 2024+, interpret it as the CIUS component inside the broader RCN release, not as the whole release."
+    }
+  ],
+  "core_distinctions": [
+    {
+      "id": "publication_vs_open_data",
+      "finding": "Publication tables and CDE/master/open-data surfaces are official but methodologically different lanes.",
+      "official_evidence": [
+        {
+          "title": "CDE Methodologies Explain Potential Differences in UCR Data",
+          "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/about#methodologies",
+          "detail": "Publication releases must pass internal quality reviews and may exclude data; CDE/master-style releases keep all reported data in file."
+        }
+      ],
+      "v2_rule": "Never treat a mismatch between a publication table and an explorer/master/open-data surface as an automatic error; classify the methodology lane first."
+    },
+    {
+      "id": "cius_estimates_vs_cius_agency_tables",
+      "finding": "CIUS tables 1-7 and CIUS tables 8-11 are not the same methodology lane.",
+      "official_evidence": [
+        {
+          "title": "Reported Crimes in the Nation, 2024 Frequently Asked Questions",
+          "url": "https://cde.ucr.cjis.gov/LATEST/resources/reports/Reported%20Crimes%20in%20the%20Nation%202024%20FAQs.pdf",
+          "detail": "Traditional estimates in CIUS tables 1-7 approximate agencies without a complete 12 months of data."
+        },
+        {
+          "title": "CDE Find Info on CDE landing page",
+          "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer",
+          "detail": "The 2024 reported violent/property tables 8-11 are from agencies submitting 12 months of complete offense data."
+        }
+      ],
+      "v2_rule": "Use tables 1-7 for official FBI estimate controls and tables 8-11 for published reported-agency counts; do not merge them into one city/state series."
+    },
+    {
+      "id": "explorer_is_dynamic_mixed_method",
+      "finding": "Crime Explorer is a dynamic surface that mixes SRS and summarized NIBRS for violent/property views and uses NIBRS-only logic elsewhere.",
+      "official_evidence": [
+        {
+          "title": "CDE Crime Explorer Methodology",
+          "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer/crime/crime-trend",
+          "detail": "Explorer methodology says violent/property offense pages consist of SRS data and summarized NIBRS data, while all other offenses include only NIBRS information."
+        }
+      ],
+      "v2_rule": "Use Crime Explorer for monitoring and context, not as the annual canonical input lane for V2."
+    },
+    {
+      "id": "ddt_hierarchy_rule",
+      "finding": "The Data Discovery Tool is a query surface that applies hierarchy-rule logic for violent/property selections.",
+      "official_evidence": [
+        {
+          "title": "CDE Data Discovery Tool",
+          "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/explorer",
+          "detail": "DDT says violent/property counts reflect the hierarchy rule and are query-based rather than raw incident extraction."
+        }
+      ],
+      "v2_rule": "Use DDT for agency lookup and query-based explanation, not as a raw-NIBRS substitute."
+    },
+    {
+      "id": "participation_is_coverage_not_roster",
+      "finding": "Participation data measure reporting coverage across any format and are not an agency roster or offense dataset.",
+      "official_evidence": [
+        {
+          "title": "CDE Participation download panel",
+          "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads",
+          "detail": "The participation panel says agencies are counted regardless of format and the purpose is to clarify population covered by reported data."
+        }
+      ],
+      "v2_rule": "Use participation only for coverage denominators and transition context."
+    },
+    {
+      "id": "roster_current_status_requires_effective_year_logic",
+      "finding": "The public roster endpoint is current-status metadata, so year-specific regime audits must use nibrs_start_date.",
+      "official_evidence": [
+        {
+          "title": "CDE public agency roster endpoint",
+          "url": "https://api.usa.gov/crime/fbi/cde/agency/byStateAbbr/{STATE_ABBR}",
+          "detail": "Roster payload exposes is_nibrs and nibrs_start_date."
+        },
+        {
+          "title": "Packet-local roster_effective_year_guardrails.csv",
+          "url": "",
+          "detail": "The anchored 2024 roster pull contains 481 agencies with is_nibrs=true but nibrs_start_date after 2024-12-31."
+        }
+      ],
+      "v2_rule": "Derive effective_nibrs_2024 using nibrs_start_date <= 2024-12-31 before choosing a 2024 reporting-regime lane."
+    },
+    {
+      "id": "legacy_srs_estimates_vs_bjs_nibrs_estimates",
+      "finding": "The FBI traditional SRS-derived estimate family and the BJS/FBI NIBRS-estimate family are complementary but distinct.",
+      "official_evidence": [
+        {
+          "title": "CDE SRS estimated crimes panel",
+          "url": "https://cde.ucr.cjis.gov/LATEST/webapp/#/pages/downloads",
+          "detail": "CDE says the SRS dataset reflects the estimates traditionally included in FBI annual publications."
+        },
+        {
+          "title": "Crime Known to Law Enforcement, 2024",
+          "url": "https://bjs.ojp.gov/document/ckle24.pdf",
+          "detail": "CKLE says NIBRS estimates use imputation and weighting and are based on the NIBRS Estimation Program."
+        },
+        {
+          "title": "UCR Summary of Reported Crimes in the Nation, 2024",
+          "url": "https://cde.ucr.cjis.gov/LATEST/resources/reports/UCR%20Summary%20of%20Reported%20Crimes%20in%20the%20Nation%202024.pdf",
+          "detail": "The summary says traditional CIUS estimates are SRS plus NIBRS converted to SRS, while NIBRS-only estimates should be viewed as analogous measures."
+        }
+      ],
+      "v2_rule": "Do not stitch these estimate families into one undifferentiated series without an explicit bridge note."
+    },
+    {
+      "id": "bjs_api_current_vs_archive",
+      "finding": "BJS current API endpoints publish revised prior-year estimates, while archive endpoints preserve originally published values.",
+      "official_evidence": [
+        {
+          "title": "BJS NIBRS National Estimates API",
+          "url": "https://bjs.ojp.gov/national-incident-based-reporting-system-nibrs-national-estimates-api",
+          "detail": "The API page explains that late-transmitted incidents update prior years and provides archive endpoints for original values."
+        }
+      ],
+      "v2_rule": "Pick current or archive endpoints intentionally depending on whether V2 wants latest best estimates or point-in-time reproducibility."
+    },
+    {
+      "id": "learcat_secondary_only",
+      "finding": "LEARCAT is an official BJS exploratory tool, but it is neither definition-identical to CDE nor universally covered.",
+      "official_evidence": [
+        {
+          "title": "LEARCAT Methodology",
+          "url": "https://bjs.ojp.gov/learcat-methodology",
+          "detail": "LEARCAT notes different offense definitions for some categories and limits rates to full-reporter states with 90%+ coverage."
+        }
+      ],
+      "v2_rule": "Use LEARCAT as a secondary exploratory aid, not as the authority for matching CDE or CIUS counts."
+    }
+  ],
+  "action_lanes": {
+    "fbi_publication_estimates_trend": {
+      "preferred_source_id": "cde_download_cius_annual",
+      "backup_source_id": "fbi_rcn_summary_2024",
+      "decision_rule": "Use CIUS tables 1-7 and CIUS trend resources when V2 needs official FBI annual estimates or same-agency trends.",
+      "mandatory_guardrails": [
+        "CIUS estimate and trend outputs are not raw counts.",
+        "Do not compare CIUS estimates directly to raw NIBRS counts or participation counts without a bridge rule."
+      ],
+      "avoid_source_ids": [
+        "cde_crime_explorer",
+        "cde_download_nibrs_state",
+        "bjs_nibrs_api"
+      ]
+    },
+    "fbi_publication_agency_tables": {
+      "preferred_source_id": "cde_download_cius_annual",
+      "backup_source_id": "cde_data_discovery_tool",
+      "decision_rule": "Use CIUS tables 8-11 for published agency-level reported counts in 2024+ annual releases.",
+      "mandatory_guardrails": [
+        "Only agencies with 12 months of complete offense data appear in these tables.",
+        "Use DDT or the roster only to explain exclusions or naming, not to backfill the publication table."
+      ],
+      "avoid_source_ids": [
+        "cde_download_participation",
+        "bjs_nibrs_api",
+        "bjs_learcat_tool"
+      ]
+    },
+    "agency_roster_validation": {
+      "preferred_source_id": "cde_agency_roster_endpoint",
+      "backup_source_id": "cde_data_discovery_tool",
+      "decision_rule": "Use the roster endpoint for ORI/name/type/current status fields and DDT for spot checks or interactive lookup.",
+      "mandatory_guardrails": [
+        "Derive effective-year NIBRS status from nibrs_start_date.",
+        "Do not treat current is_nibrs as retrospective truth for 2024."
+      ],
+      "avoid_source_ids": [
+        "cde_download_participation",
+        "cde_download_cius_annual"
+      ]
+    },
+    "participation_coverage_context": {
+      "preferred_source_id": "cde_download_participation",
+      "backup_source_id": "bjs_nibrs_program",
+      "decision_rule": "Use participation data only for state-year agency and population coverage context.",
+      "mandatory_guardrails": [
+        "Participation counts include summary and incident-based reporters.",
+        "Coverage context is not an offense input lane."
+      ],
+      "avoid_source_ids": [
+        "cde_agency_roster_endpoint",
+        "cde_download_cius_annual"
+      ]
+    },
+    "raw_nibrs_incident_detail": {
+      "preferred_source_id": "cde_download_nibrs_state",
+      "backup_source_id": "cde_download_master_annual",
+      "decision_rule": "Use state NIBRS downloads for raw offense/victim/property detail and ORI-level incident support.",
+      "mandatory_guardrails": [
+        "Expect differences from CIUS and DDT because they answer different counting questions.",
+        "Use raw NIBRS only where NIBRS coverage exists and is appropriate for the year."
+      ],
+      "avoid_source_ids": [
+        "cde_download_srs_estimated",
+        "cde_crime_explorer"
+      ]
+    },
+    "historical_raw_master_continuity": {
+      "preferred_source_id": "cde_download_master_annual",
+      "backup_source_id": "fbi_ucr_publications",
+      "decision_rule": "Use annual master files when continuity of raw in-file data matters more than publication comparability.",
+      "mandatory_guardrails": [
+        "Master files require extraction code and collection-specific handling.",
+        "This lane retains all reported data in file and is not publication-quality filtered."
+      ],
+      "avoid_source_ids": [
+        "cde_download_cius_annual"
+      ]
+    },
+    "historical_publication_continuity": {
+      "preferred_source_id": "fbi_ucr_publications",
+      "backup_source_id": "cde_download_cius_annual",
+      "decision_rule": "Bridge historical FBI publications through 2019 to CIUS annual bundles in CDE/RCN for 2020+ publication-style continuity.",
+      "mandatory_guardrails": [
+        "Keep the whole series in the publication lane.",
+        "Do not substitute master/open-data values to fill publication gaps without explicit disclosure."
+      ],
+      "avoid_source_ids": [
+        "cde_download_master_annual",
+        "cde_crime_explorer"
+      ]
+    },
+    "bjs_national_estimates": {
+      "preferred_source_id": "bjs_nibrs_api",
+      "backup_source_id": "bjs_ckle_2024",
+      "decision_rule": "Use the BJS API for machine pulls and CKLE for the human-readable benchmark publication.",
+      "mandatory_guardrails": [
+        "This is an estimate lane, not a raw reported-count lane.",
+        "Choose current vs archive endpoints deliberately."
+      ],
+      "avoid_source_ids": [
+        "cde_download_srs_estimated",
+        "cde_download_cius_annual"
+      ]
+    },
+    "fbi_hosted_nibrs_estimation_tables": {
+      "preferred_source_id": "cde_download_nibrs_estimation_tables",
+      "backup_source_id": "bjs_ckle_2024",
+      "decision_rule": "Use FBI-hosted NIBRS estimation tables only when V2 wants static download-table surfaces from CDE.",
+      "mandatory_guardrails": [
+        "Treat this as the NIBRS-estimate family, not as CIUS continuity.",
+        "Prefer the BJS API when point-in-time reproducibility or machine access matters more than packaging."
+      ],
+      "avoid_source_ids": [
+        "cde_download_srs_estimated",
+        "cde_download_nibrs_state"
+      ]
+    },
+    "methodology_guardrails": {
+      "preferred_source_id": "cde_about_methodologies",
+      "backup_source_id": "fbi_rcn_summary_2024",
+      "decision_rule": "Read the methodology docs before reconciling two official counts from different FBI/BJS surfaces.",
+      "mandatory_guardrails": [
+        "Classify each source as publication, estimate, raw/open-data, participation, agency metadata, or dynamic explorer before comparing values.",
+        "Treat methodology differences as the default explanation until the two surfaces are proven to be in the same lane."
+      ],
+      "avoid_source_ids": []
+    },
+    "current_monitoring": {
+      "preferred_source_id": "cde_crime_explorer",
+      "backup_source_id": "cde_data_discovery_tool",
+      "decision_rule": "Use the dynamic CDE surfaces for current monitoring, not for annual canonical inputs.",
+      "mandatory_guardrails": [
+        "Capture timestamps externally if outputs must be frozen.",
+        "Expect periodic pauses around annual release processing."
+      ],
+      "avoid_source_ids": [
+        "cde_download_cius_annual",
+        "cde_download_master_ytd"
+      ]
+    }
+  },
+  "reconciliation_playbook": [
+    "Start by labeling each source as publication_table, estimate_series, master_raw, participation_coverage, agency_metadata, or dynamic_explorer.",
+    "If two sources land in different methodology families, explain the family mismatch before investigating data defects.",
+    "Never compare CIUS tables 1-7 to CIUS tables 8-11 as if they answer the same question.",
+    "Never compare participation or roster metadata directly to offense totals; use them only to explain coverage or agency-regime differences.",
+    "When reconciling BJS estimates to FBI annual releases, decide whether the target is traditional CIUS estimates or NIBRS-only estimates; they are different lanes.",
+    "When reconciling a dynamic CDE value to an annual bundle, verify the explorer timestamp and whether annual publication processing paused or changed the dynamic surface."
+  ],
+  "do_not_compare_directly": [
+    {
+      "left": "CIUS tables 1-7",
+      "right": "CIUS tables 8-11",
+      "reason": "Tables 1-7 are traditional estimates/trends; tables 8-11 are reported-agency tables requiring 12 months of complete offense data."
+    },
+    {
+      "left": "CIUS publication tables",
+      "right": "CDE explorer/master/open-data surfaces",
+      "reason": "Publication tables are quality-filtered; explorer/master/open-data surfaces retain all reported data in file or dynamic query outputs."
+    },
+    {
+      "left": "CDE SRS estimated crimes dataset",
+      "right": "BJS NIBRS estimates (API or CKLE)",
+      "reason": "These are different estimate families with different underlying methodology and coverage assumptions."
+    },
+    {
+      "left": "UCR participation data",
+      "right": "agency roster endpoint",
+      "reason": "Participation is state-year coverage context across any format; roster is agency metadata with current reporting-status fields."
+    },
+    {
+      "left": "DDT violent/property counts",
+      "right": "raw NIBRS offense counts",
+      "reason": "DDT applies hierarchy-rule logic for violent/property counts; raw NIBRS does not collapse incidents the same way."
+    },
+    {
+      "left": "LEARCAT outputs",
+      "right": "CDE/CIUS counts",
+      "reason": "LEARCAT uses different offense-category definitions for some measures and only supports rates in full-reporter states."
+    }
+  ],
+  "observed_quant_checks": {
+    "roster_effective_year_guardrails": {
+      "extract_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/cde_official_surface/roster_effective_year_guardrails.csv",
+      "total_agency_rows": 19535,
+      "is_nibrs_true_rows": 16119,
+      "effective_nibrs_2024_rows": 15638,
+      "future_dated_is_nibrs_rows": 481,
+      "future_dated_states_count": 31,
+      "top_future_dated_states": [
+        {
+          "state_abbr": "TX",
+          "future_dated_is_nibrs_rows": 154
+        },
+        {
+          "state_abbr": "CA",
+          "future_dated_is_nibrs_rows": 74
+        },
+        {
+          "state_abbr": "MS",
+          "future_dated_is_nibrs_rows": 44
+        },
+        {
+          "state_abbr": "FL",
+          "future_dated_is_nibrs_rows": 43
+        },
+        {
+          "state_abbr": "PA",
+          "future_dated_is_nibrs_rows": 36
+        },
+        {
+          "state_abbr": "NJ",
+          "future_dated_is_nibrs_rows": 24
+        },
+        {
+          "state_abbr": "IL",
+          "future_dated_is_nibrs_rows": 21
+        },
+        {
+          "state_abbr": "NY",
+          "future_dated_is_nibrs_rows": 16
+        },
+        {
+          "state_abbr": "MO",
+          "future_dated_is_nibrs_rows": 9
+        },
+        {
+          "state_abbr": "KY",
+          "future_dated_is_nibrs_rows": 8
+        }
+      ],
+      "future_examples": [
+        {
+          "state_abbr": "AL",
+          "ori": "AL047019E",
+          "agency_name": "Oakwood University",
+          "nibrs_start_date": "2025-01-01"
+        },
+        {
+          "state_abbr": "AL",
+          "ori": "AL0611200",
+          "agency_name": "Munford Police Department",
+          "nibrs_start_date": "2025-02-01"
+        },
+        {
+          "state_abbr": "AL",
+          "ori": "AL003025C",
+          "agency_name": "Alabama Department of Corrections",
+          "nibrs_start_date": "2025-03-01"
+        },
+        {
+          "state_abbr": "AZ",
+          "ori": "AZ0072300",
+          "agency_name": "Phoenix Police Department",
+          "nibrs_start_date": "2025-09-01"
+        },
+        {
+          "state_abbr": "AR",
+          "ori": "AR0601100",
+          "agency_name": "Arkansas State Hospital",
+          "nibrs_start_date": "2025-01-01"
+        },
+        {
+          "state_abbr": "AR",
+          "ori": "AR0161400",
+          "agency_name": "Cash Police Department",
+          "nibrs_start_date": "2025-01-01"
+        },
+        {
+          "state_abbr": "CA",
+          "ori": "CA001320X",
+          "agency_name": "Union Pacific Railroad: Alameda County",
+          "nibrs_start_date": "2025-01-01"
+        },
+        {
+          "state_abbr": "CA",
+          "ori": "CA0011100",
+          "agency_name": "Pleasanton Police Department",
+          "nibrs_start_date": "2025-01-01"
+        },
+        {
+          "state_abbr": "CA",
+          "ori": "CA0030600",
+          "agency_name": "Union Pacific Railroad: Amador County",
+          "nibrs_start_date": "2025-01-01"
+        },
+        {
+          "state_abbr": "CA",
+          "ori": "CA0040600",
+          "agency_name": "Union Pacific Railroad: Butte County",
+          "nibrs_start_date": "2025-01-01"
+        }
+      ]
+    }
+  },
+  "promotable_doctrine": [
+    {
+      "id": "do_not_mix_methodology_lanes",
+      "statement": "Publication tables, raw/open-data files, dynamic explorers, participation datasets, and estimate products are separate lanes. V2 must choose one lane per metric and reconciliation task."
+    },
+    {
+      "id": "cius_has_two_internal_lanes",
+      "statement": "Inside CIUS, tables 1-7 are estimate/trend tables while tables 8-11 are reported-agency tables with a 12-month completeness filter."
+    },
+    {
+      "id": "dynamic_cde_is_monitoring_not_canonical_annual_input",
+      "statement": "Use Crime Explorer and DDT for monitoring and triage, not as canonical annual controls."
+    },
+    {
+      "id": "roster_needs_effective_year_logic",
+      "statement": "Treat public roster is_nibrs as current-status metadata and derive year-effective reporting status from nibrs_start_date."
+    },
+    {
+      "id": "participation_is_context_only",
+      "statement": "Use participation data only for coverage context and denominators, never for offense totals or ORI roster authority."
+    },
+    {
+      "id": "separate_srs_and_nibrs_estimate_families",
+      "statement": "Keep the traditional FBI SRS-derived estimate series separate from BJS/FBI NIBRS-only estimate series unless an explicit bridge is documented."
+    },
+    {
+      "id": "choose_bjs_current_vs_archive_intentionally",
+      "statement": "For BJS NIBRS estimates, current API endpoints give the latest revised values and archive endpoints preserve originally published values."
+    }
+  ],
+  "secondary_sources_used": [
+    {
+      "source_id": "icpsr_ucr_series",
+      "purpose": "Archival taxonomy only; retained because it can clarify legacy UCR component names if a V2 historical note needs it."
+    }
+  ]
+}

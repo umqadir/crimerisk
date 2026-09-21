@@ -1,0 +1,649 @@
+{
+  "state_abbr": "LA",
+  "generated_on": "2026-03-22",
+  "packet_scope": "Louisiana official-source reconciliation for V2 with emphasis on whether 2024 Louisiana should be treated as a statewide replacement state, a narrow exception state, a master/reference omission state, or a different reporting-structure lane.",
+  "inputs_used": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/la/state_priority_rows.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/la/source_review_queue.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/data/FBI-CDE-Agency-Rosters-2024/validation/state_source_transition_summary_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/state_source_benchmark_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/top_partial_reporters_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_quarterly_pattern_candidates_2024.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/artifacts/qa/srs_nibrs_exploration/srs_vs_nibrs_state_ratios_2024_12m.csv"
+  ],
+  "supporting_artifacts": [
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/la/supporting_issue_metrics.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/la/issue_bucket_summary.csv",
+    "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/source_packets/states/la/source_recommendations.csv"
+  ],
+  "official_source_inventory": [
+    {
+      "source_id": "crimeinla_home_page",
+      "source_name": "Crime in LA home page",
+      "source_url": "https://crimeinla.org/",
+      "coverage_note": "The home page says UCR Online is no longer available as of January 1, 2021. It also shows a LIBRS participation surface last updated 2024-02-23 with 57 of 64 parish agencies and 242 of 284 city, municipal, university, and other agencies reporting.",
+      "packet_use": "Confirms Louisiana runs a post-summary LIBRS/NIBRS structure and still exposes participation status, but not a public 2024 agency-level offense extract."
+    },
+    {
+      "source_id": "lcle_recent_publications_page",
+      "source_name": "LCLE/LSA recent publications page",
+      "source_url": "https://lclelsac.com/",
+      "coverage_note": "The LCLE/LSA site currently promotes a 2023 Crime in Louisiana Report posted on 2025-05-01. Inference from official-site review: a public 2024 Crime in Louisiana report was not located on official Louisiana sites as of 2026-03-22.",
+      "packet_use": "Supports treating Louisiana public reporting as lagged relative to the 2024 target year."
+    },
+    {
+      "source_id": "crime_in_louisiana_2023_report",
+      "source_name": "Crime in Louisiana 2023 report",
+      "source_url": "https://lclelsac.com/wp-content/uploads/2025/05/Crime-in-LA-2024-FINAL-web.pdf",
+      "coverage_note": "Released 2025-05-01. The report says it provides the most current certified information available and lists 265 LIBRS-certified agencies with population covered 3,423,421 for 2023.",
+      "packet_use": "This is the best recent official Louisiana crime publication located, but it is a lagged 2023 annual report rather than a 2024 agency-level production extract."
+    },
+    {
+      "source_id": "louisiana_legislative_audit_ucr_report",
+      "source_name": "Louisiana Legislative Auditor Uniform Crime Reporting report",
+      "source_url": "https://app.lla.la.gov/publicreports.nsf/0/feba967abcfeb8ae86258ac400593f3a/%24file/00003c8c.pdf",
+      "coverage_note": "The audit says approximately 256 of 374 local agencies reported NIBRS data to the FBI in 2022, including 109 smaller agencies reporting through another agency RMS, and notes that Lafayette, Shreveport, and New Orleans still relied on FBI-permitted SRS submissions during the transition.",
+      "packet_use": "Confirms that Louisiana's transition and continuity issues are structural statewide conditions, not a simple master-reference gap."
+    }
+  ],
+  "statewide_summary": {
+    "official_transition_summary_2024": {
+      "state_abbr": "LA",
+      "official_oris": 233,
+      "official_nibrs_oris": 174,
+      "official_effective_nibrs_oris": 173,
+      "repo_master_matches": 232,
+      "mismatch_rows": 99,
+      "mismatch_weight": 0.0,
+      "official_nibrs_repo_no_nibrs": 39,
+      "repo_nibrs_official_false": 0,
+      "no_2024_observation": 98
+    },
+    "priority_offense_context": [
+      {
+        "offense": "larceny",
+        "priority_rank": 8,
+        "repo_srs_gap_below_fbi_cde": 18991.0,
+        "repo_nibrs_gap_below_bjs_ckle": 25821.0,
+        "gap_priority_score": 44812.0
+      },
+      {
+        "offense": "aggravated_assault",
+        "priority_rank": 21,
+        "repo_srs_gap_below_fbi_cde": 4568.0,
+        "repo_nibrs_gap_below_bjs_ckle": 9331.0,
+        "gap_priority_score": 13899.0
+      },
+      {
+        "offense": "burglary",
+        "priority_rank": 27,
+        "repo_srs_gap_below_fbi_cde": 4626.0,
+        "repo_nibrs_gap_below_bjs_ckle": 5902.0,
+        "gap_priority_score": 10528.0
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "priority_rank": 29,
+        "repo_srs_gap_below_fbi_cde": 3391.0,
+        "repo_nibrs_gap_below_bjs_ckle": 5937.0,
+        "gap_priority_score": 9328.0
+      },
+      {
+        "offense": "rape",
+        "priority_rank": 107,
+        "repo_srs_gap_below_fbi_cde": 355.0,
+        "repo_nibrs_gap_below_bjs_ckle": 1299.0,
+        "gap_priority_score": 1654.0
+      },
+      {
+        "offense": "robbery",
+        "priority_rank": 135,
+        "repo_srs_gap_below_fbi_cde": 520.0,
+        "repo_nibrs_gap_below_bjs_ckle": 487.0,
+        "gap_priority_score": 1007.0
+      },
+      {
+        "offense": "murder",
+        "priority_rank": 211,
+        "repo_srs_gap_below_fbi_cde": 133.0,
+        "repo_nibrs_gap_below_bjs_ckle": 179.0,
+        "gap_priority_score": 312.0
+      }
+    ],
+    "mixed_source_support_concentration": {
+      "mixed_source_rows": 133,
+      "mixed_source_support_sum_2024": 96822.0,
+      "top_10_support_sum": 50129.0,
+      "top_25_support_sum": 73461.0,
+      "all_rows_prefer_source": "srs_return_a_annual",
+      "top_examples": [
+        {
+          "ori9": "LA0090100",
+          "agency_name": "Shreveport Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 9138.0,
+          "official_nibrs_start_date": "2023-01-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        },
+        {
+          "ori9": "LA0260000",
+          "agency_name": "Jefferson Parish Sheriff's Office",
+          "agency_type_name": "County",
+          "repo_preferred_support_count_2024": 8146.0,
+          "official_nibrs_start_date": "2020-01-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        },
+        {
+          "ori9": "LA0280300",
+          "agency_name": "Lafayette Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 6576.0,
+          "official_nibrs_start_date": "2024-01-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        },
+        {
+          "ori9": "LA0170000",
+          "agency_name": "East Baton Rouge Parish Sheriff's Office",
+          "agency_type_name": "County",
+          "repo_preferred_support_count_2024": 5496.0,
+          "official_nibrs_start_date": "2021-01-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        },
+        {
+          "ori9": "LA0170200",
+          "agency_name": "Baton Rouge Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 4475.0,
+          "official_nibrs_start_date": "2021-01-01",
+          "repo_reporting_regime_mix_2024": "lumpy_or_batched|true_partial"
+        },
+        {
+          "ori9": "LA0400100",
+          "agency_name": "Alexandria Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 3997.0,
+          "official_nibrs_start_date": "2021-01-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        },
+        {
+          "ori9": "LA0370100",
+          "agency_name": "Monroe Police Department",
+          "agency_type_name": "City",
+          "repo_preferred_support_count_2024": 3530.0,
+          "official_nibrs_start_date": "2017-06-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        },
+        {
+          "ori9": "LA0100000",
+          "agency_name": "Calcasieu Parish Sheriff's Office",
+          "agency_type_name": "County",
+          "repo_preferred_support_count_2024": 3254.0,
+          "official_nibrs_start_date": "2009-01-01",
+          "repo_reporting_regime_mix_2024": "full_monthly"
+        }
+      ]
+    },
+    "coverage_matched_srs_to_nibrs_ratios_2024": {
+      "murder": 0.8984126984126984,
+      "rape": 0.6873385012919897,
+      "robbery": 1.000848896434635,
+      "aggravated_assault": 0.8268160217243721,
+      "burglary": 0.9351488576044311,
+      "larceny": 1.0102684879886952,
+      "motor_vehicle_theft": 0.8670589808746824
+    },
+    "public_official_surface": {
+      "crimeinla_homepage_last_updated": "2024-02-23",
+      "crimeinla_homepage_reporting_parish_agencies": 57,
+      "crimeinla_homepage_total_parish_agencies": 64,
+      "crimeinla_homepage_reporting_city_other_agencies": 242,
+      "crimeinla_homepage_total_city_other_agencies": 284,
+      "latest_public_crime_report_year_located": 2023,
+      "latest_public_crime_report_release_date": "2025-05-01",
+      "latest_public_crime_report_agencies": 265,
+      "latest_public_crime_report_population_covered": 3423421,
+      "latest_public_crime_report_absence_of_2024_is_inference": "A public 2024 Crime in Louisiana report or 2024 agency-level offense workbook was not located in official Louisiana searches as of 2026-03-22."
+    },
+    "queue_interpretation": "Louisiana source_review_queue.csv is empty because no mismatch rows carry benchmark support weight. That does not mean Louisiana is clean. The live production doctrine problem sits in the 133-row mixed-source continuity slice that already aligns under current repo policy.",
+    "lane_decision": {
+      "statewide_replacement_state": false,
+      "narrow_exception_state": false,
+      "master_reference_omission_state": false,
+      "different_reporting_structure_lane": true,
+      "decision_note": "Louisiana is best treated as a different reporting-structure lane for 2024: high-support agencies remain mixed-source and SRS-preferred in repo, the public official reporting path is lagged, and the only master omission is a zero-support 2025-effective stub."
+    }
+  },
+  "issue_groups": [
+    {
+      "issue_id": "la_high_support_mixed_source_slice_drives_reporting_structure_doctrine",
+      "issue_type": "broader_louisiana_reporting_structure_or_continuity_issue",
+      "severity": "high",
+      "finding": "Louisiana is not a Florida-style statewide replacement state and not a New Jersey-style narrow exception state. The main 2024 production doctrine fact is that 133 official-effective-NIBRS rows already carry both SRS and NIBRS traces in repo, yet all 133 still prefer SRS annual counts.",
+      "statewide_evidence": {
+        "mixed_source_rows": 133,
+        "mixed_source_support_sum_2024": 96822.0,
+        "top_10_support_sum": 50129.0,
+        "top_25_support_sum": 73461.0,
+        "agency_type_mix": {
+          "City": 72,
+          "County": 54,
+          "University or College": 4,
+          "Tribal": 3
+        },
+        "top_examples": [
+          {
+            "ori9": "LA0090100",
+            "agency_name": "Shreveport Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 9138.0,
+            "official_nibrs_start_date": "2023-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "LA0260000",
+            "agency_name": "Jefferson Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 8146.0,
+            "official_nibrs_start_date": "2020-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "LA0280300",
+            "agency_name": "Lafayette Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 6576.0,
+            "official_nibrs_start_date": "2024-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "LA0170000",
+            "agency_name": "East Baton Rouge Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 5496.0,
+            "official_nibrs_start_date": "2021-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "LA0170200",
+            "agency_name": "Baton Rouge Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 4475.0,
+            "official_nibrs_start_date": "2021-01-01",
+            "repo_reporting_regime_mix_2024": "lumpy_or_batched|true_partial"
+          },
+          {
+            "ori9": "LA0400100",
+            "agency_name": "Alexandria Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 3997.0,
+            "official_nibrs_start_date": "2021-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "LA0370100",
+            "agency_name": "Monroe Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 3530.0,
+            "official_nibrs_start_date": "2017-06-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          },
+          {
+            "ori9": "LA0100000",
+            "agency_name": "Calcasieu Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 3254.0,
+            "official_nibrs_start_date": "2009-01-01",
+            "repo_reporting_regime_mix_2024": "full_monthly"
+          }
+        ],
+        "partial_reporters_in_top_partial_reporters_2024": 2
+      },
+      "why_it_matters": "The high-impact Louisiana agencies are already being held in a continuity posture. A blind statewide source flip to NIBRS would override the repo's current continuity logic without a public 2024 Louisiana agency extract to validate against.",
+      "recommended_next_action": "Keep Louisiana in a reporting-structure lane for 2024. If a real official 2024 agency extract appears later, reconcile the top mixed-source agencies first rather than doing a statewide flip.",
+      "representative_entities": [
+        "Shreveport Police Department",
+        "Jefferson Parish Sheriff's Office",
+        "Lafayette Police Department",
+        "East Baton Rouge Parish Sheriff's Office",
+        "Baton Rouge Police Department"
+      ],
+      "doctrine_candidate": "When a large high-support agency slice is already mixed-source and still prefers SRS annual counts despite official-effective-NIBRS roster status, treat the state as a reporting-structure continuity lane rather than a statewide replacement or narrow-exception lane."
+    },
+    {
+      "issue_id": "la_public_official_reporting_path_is_lagged_relative_to_2024",
+      "issue_type": "public_official_path_lag",
+      "severity": "high",
+      "finding": "Official Louisiana public sources show participation and annual certified reporting, but the publicly located annual crime publication is still for 2023 and the public site does not expose a 2024 agency-level offense workbook.",
+      "statewide_evidence": {
+        "crimeinla_homepage_last_updated": "2024-02-23",
+        "crimeinla_reporting_total_agencies": 299,
+        "latest_public_crime_report_year_located": 2023,
+        "latest_public_crime_report_release_date": "2025-05-01",
+        "latest_public_crime_report_agencies": 265,
+        "latest_public_crime_report_population_covered": 3423421
+      },
+      "why_it_matters": "Without a public 2024 Louisiana agency extract, the packet cannot justify a machine-safe statewide replacement doctrine. The public sources are still valuable as continuity evidence.",
+      "recommended_next_action": "Use Louisiana public sources for statewide doctrine and continuity validation only. Do not treat them as a ready 2024 agency-level ingestion path until an actual extract is found.",
+      "representative_entities": [
+        "Crime in LA home page",
+        "Crime in Louisiana 2023 report",
+        "Louisiana Legislative Auditor"
+      ],
+      "doctrine_candidate": "If the official public surface is active but lagged relative to the target year and no agency-level target-year extract is available, use it as doctrine evidence and continuity validation instead of a statewide replacement feed."
+    },
+    {
+      "issue_id": "la_effective_nibrs_zero_observation_rows_are_bounded_backfill_lane",
+      "issue_type": "repo_missing_observation_problem",
+      "severity": "high",
+      "finding": "Louisiana has 39 rows that are official-effective-NIBRS by 2024 but have no repo 2024 SRS or NIBRS observations. This is the state's clearest bounded backfill lane.",
+      "statewide_evidence": {
+        "affected_rows": 39,
+        "agency_type_mix": {
+          "City": 28,
+          "University or College": 7,
+          "County": 3,
+          "Other State Agency": 1
+        },
+        "examples": [
+          {
+            "ori9": "LA0010100",
+            "agency_name": "Crowley Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2021-01-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0020000",
+            "agency_name": "Allen Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2021-09-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0050800",
+            "agency_name": "Evergreen Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2020-03-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0080200",
+            "agency_name": "Benton Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2019-06-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0080600",
+            "agency_name": "Louisiana State University: Shreveport",
+            "agency_type_name": "University or College",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2020-01-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0090800",
+            "agency_name": "Ida Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2020-09-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0100100",
+            "agency_name": "De Quincy Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2007-01-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0150100",
+            "agency_name": "Ferriday Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2021-12-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0190000",
+            "agency_name": "East Feliciana Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2020-03-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0190100",
+            "agency_name": "Clinton Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2021-01-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0190300",
+            "agency_name": "Wilson Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2021-01-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0190500",
+            "agency_name": "Norwood Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "2020-10-01",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          }
+        ]
+      },
+      "why_it_matters": "This lane is concrete and machine-usable, but it depends on obtaining agency-level official evidence rather than inferring counts from roster status alone.",
+      "recommended_next_action": "Queue the 39 effective-NIBRS zero-observation rows for official backfill after a Louisiana agency-level extract or equivalently strong official evidence path is available.",
+      "representative_entities": [
+        "Crowley Police Department",
+        "Allen Parish Sheriff's Office",
+        "Louisiana State University: Shreveport",
+        "Delgado Community College",
+        "University of New Orleans"
+      ],
+      "doctrine_candidate": "Rows that are official-effective-NIBRS by the target year but have zero repo observations belong in a backfill lane, not in a statewide source-policy flip."
+    },
+    {
+      "issue_id": "la_non_effective_zero_observation_tail_is_continuity_monitoring_not_reference_work",
+      "issue_type": "present_but_missing_2024_observation",
+      "severity": "medium",
+      "finding": "Louisiana also has a 59-row no-observation tail that is not official-effective-NIBRS by 2024. This includes continuity-sensitive rows such as New Orleans Police Department and State Police.",
+      "statewide_evidence": {
+        "affected_rows": 59,
+        "agency_type_mix": {
+          "City": 42,
+          "University or College": 9,
+          "County": 6,
+          "Other State Agency": 1,
+          "State Police": 1
+        },
+        "examples": [
+          {
+            "ori9": "LA0020100",
+            "agency_name": "Kinder Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0020200",
+            "agency_name": "Oakdale Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0020300",
+            "agency_name": "Oberlin Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0040000",
+            "agency_name": "Assumption Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0050000",
+            "agency_name": "Avoyelles Parish Sheriff's Office",
+            "agency_type_name": "County",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0050100",
+            "agency_name": "Bunkie Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0050300",
+            "agency_name": "Simmesport Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0050400",
+            "agency_name": "Cottonport Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0050600",
+            "agency_name": "Moreauville Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0060200",
+            "agency_name": "Merryville Police Department",
+            "agency_type_name": "City",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0080700",
+            "agency_name": "Southern University and A&M College: Shreveport",
+            "agency_type_name": "University or College",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          },
+          {
+            "ori9": "LA0170600",
+            "agency_name": "Southern University and A&M College: Baton Rouge",
+            "agency_type_name": "University or College",
+            "repo_preferred_support_count_2024": 0.0,
+            "official_nibrs_start_date": "",
+            "repo_reporting_regime_mix_2024": "structurally_missing_or_unreliable"
+          }
+        ]
+      },
+      "why_it_matters": "These rows should not be turned into deletions or master patches. They are monitoring and coverage rows until stronger 2024 official evidence exists.",
+      "recommended_next_action": "Keep these rows in master and handle them as continuity monitoring. Prioritize New Orleans PD and State Police as doctrine-sensitive rows if a later Louisiana extract appears.",
+      "representative_entities": [
+        "New Orleans Police Department",
+        "State Police",
+        "Kinder Police Department",
+        "Assumption Parish Sheriff's Office"
+      ],
+      "doctrine_candidate": "Rows present in master but lacking target-year observations remain continuity-monitoring rows unless the state offers a clear target-year public extract that distinguishes true zeros from missing reporting."
+    },
+    {
+      "issue_id": "la_missing_master_row_is_future_effective_stub_not_reference_gap",
+      "issue_type": "master_reference_omission",
+      "severity": "low",
+      "finding": "Louisiana has only one missing-master row and it is not a live 2024 omission. Central Police Department starts officially on 2025-01-01 and carries zero 2024 support.",
+      "statewide_evidence": {
+        "missing_in_repo_master": 1,
+        "row_detail": {
+          "ori9": "LA0173400",
+          "state_abbr": "LA",
+          "state_fips": "",
+          "county_fips": "",
+          "place_fips": "",
+          "agency_name": "Central Police Department",
+          "agency_type_name": "City",
+          "agency_name_std": "",
+          "agency_type_norm": "",
+          "official_is_nibrs": "True",
+          "official_effective_nibrs_2024": "False",
+          "official_nibrs_start_date": "2025-01-01",
+          "official_nibrs_start_year": "2025",
+          "repo_present_in_master": "False",
+          "repo_has_srs_2024": "False",
+          "repo_has_nibrs_2024": "False",
+          "repo_preferred_source_any_offense_2024": "",
+          "repo_reporting_regime_mix_2024": "",
+          "repo_preferred_support_count_2024": "0.0",
+          "repo_nibrs_regime_offense_count_2024": "",
+          "repo_srs_regime_offense_count_2024": "",
+          "official_repo_presence_flag": "missing_in_repo_master",
+          "official_repo_transition_flag": "official_nibrs_start_after_2024",
+          "mismatch_reason": "missing_in_repo_master"
+        }
+      },
+      "why_it_matters": "Louisiana should not be treated as a master/reference omission state.",
+      "recommended_next_action": "Leave Central Police Department out of 2024 master work and revisit only when 2025+ evidence matters.",
+      "representative_entities": [
+        "Central Police Department"
+      ],
+      "doctrine_candidate": "A zero-support future-effective roster row is not a current-year master/reference omission."
+    }
+  ],
+  "top_doctrine_candidates": [
+    {
+      "rank": 1,
+      "candidate": "different_reporting_structure_lane",
+      "confidence": "high",
+      "reason": "Louisiana has a 133-row high-support mixed-source continuity slice, lagged public annual reporting, and no public 2024 agency-level extract."
+    },
+    {
+      "rank": 2,
+      "candidate": "narrow_exception_state",
+      "confidence": "low",
+      "reason": "Rejected because the live doctrine problem is broad, not narrow: 133 mixed-source rows carry 96,822 support."
+    },
+    {
+      "rank": 3,
+      "candidate": "master_reference_omission_state",
+      "confidence": "very_low",
+      "reason": "Rejected because the only missing-master row is a zero-support 2025-effective stub."
+    },
+    {
+      "rank": 4,
+      "candidate": "statewide_replacement_state",
+      "confidence": "very_low",
+      "reason": "Rejected because official public Louisiana reporting is lagged relative to 2024 and does not expose a public 2024 agency-level offense extract."
+    }
+  ]
+}

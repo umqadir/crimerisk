@@ -1,0 +1,36 @@
+city_key,severity,issue_type,artifact,detail
+atlanta_ga,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/atlanta_ga/packet_checklist.csv is missing
+atlanta_ga,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+baton_rouge_la,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/baton_rouge_la/packet_checklist.csv is missing
+baton_rouge_la,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+charlotte,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+cincinnati,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/cincinnati/packet_checklist.csv is missing
+cincinnati,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+cleveland_oh,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/cleveland_oh/packet_checklist.csv is missing
+cleveland_oh,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+colorado_springs_co,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/colorado_springs_co/packet_checklist.csv is missing
+colorado_springs_co,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+dallas,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+fort_worth_tx,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/fort_worth_tx/packet_checklist.csv is missing
+fort_worth_tx,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+indianapolis_in,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/indianapolis_in/packet_checklist.csv is missing
+indianapolis_in,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+kansas_city_mo,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/kansas_city_mo/packet_checklist.csv is missing
+kansas_city_mo,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+louisville_ky,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/louisville_ky/packet_checklist.csv is missing
+louisville_ky,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+milwaukee_wi,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/milwaukee_wi/packet_checklist.csv is missing
+milwaukee_wi,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+montgomery_county_md,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+new_orleans_la,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/new_orleans_la/packet_checklist.csv is missing
+new_orleans_la,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+omaha_ne,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/omaha_ne/packet_checklist.csv is missing
+omaha_ne,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+orlando_fl,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/orlando_fl/packet_checklist.csv is missing
+orlando_fl,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+raleigh_nc,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/raleigh_nc/packet_checklist.csv is missing
+raleigh_nc,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+sacramento_ca,error,missing_required_packet_artifact,packet_checklist.csv,/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/sacramento_ca/packet_checklist.csv is missing
+sacramento_ca,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+san_diego,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.
+tucson,warning,packet_missing_from_central_source_inventory,configs/city_incident_sources.csv,Packet exists but city_key is absent from central source inventory.

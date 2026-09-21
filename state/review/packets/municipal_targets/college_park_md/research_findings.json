@@ -1,0 +1,78 @@
+{
+  "case_key": "college_park_md",
+  "jurisdiction_id": "24:municipal:place:2418750",
+  "jurisdiction_name": "College Park city",
+  "state_abbr": "MD",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_place_level_municipal_control_row_24_municipal_place_2418750_and_treat_college_park_as_pg_county_primary_with_university_and_other_special_overlaps",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "College Park is an incorporated municipality, but the City does not operate its own police department. Official city budget and public-safety materials state that the City does not have a police department and instead relies on the Prince George's County Police Department and contractual arrangements with county officers.",
+    "Official city public-safety pages describe the City's role as a public-safety and contract-police coordinator inside the Department of Public Services, not as an independent police agency. The Contract Police Program uses off-duty Prince George's County police officers as part-time city employees to supplement the County's regular police services.",
+    "The Police Foundation assessment commissioned by the City states that Prince George's County Police Department is the local law-enforcement agency with primary jurisdiction throughout the city. The same assessment says the City's most feasible short-term path is to remain under the current policing structure rather than assume an existing city-police baseline.",
+    "University of Maryland Police Department is a real overlap layer, but not evidence for a standalone city row. Official UMPD materials state that UMPD has primary jurisdiction on University property and concurrent jurisdiction in adjacent parts of College Park, while Prince George's County Police remains the primary investigating agency off campus.",
+    "Repo evidence is consistent with an invalid municipal target rather than broken annual continuity. The only crosswalked agency row, MD0170600, is zero in every panel year 2018-2024, and the 2024 city control row is entirely fill-driven."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_without_city_police_department",
+    "official_basis": [
+      "City budget and organizational materials explicitly state that the City does not have a Police Department.",
+      "The City instead administers public safety through the Department of Public Services and a contract-police program."
+    ],
+    "city_public_safety_components": [
+      "Department of Public Services",
+      "Contract Police Program",
+      "parking enforcement",
+      "code enforcement",
+      "animal control",
+      "speed enforcement"
+    ]
+  },
+  "policing_structure": {
+    "city_police_department_found": false,
+    "primary_policing_entity": "Prince George's County Police Department",
+    "city_contract_police_character": "supplemental county-officer program rather than a standalone city police department",
+    "official_evidence": [
+      "City public-safety materials say the Contract Police Program provides off-duty Prince George's County police officers to supplement the County's regular police services within the City.",
+      "The Police Foundation assessment says PGPD is the local law-enforcement agency with primary jurisdiction throughout the city.",
+      "The same assessment describes UMPD, Metro Transit Police, Maryland State Police, and Park Police as overlapping specialized agencies rather than replacements for PGPD citywide primary jurisdiction."
+    ],
+    "university_overlap": {
+      "entity": "University of Maryland Police Department",
+      "role": "primary on university property; concurrent in adjacent parts of College Park",
+      "important_limit": "off campus within the concurrent-jurisdiction area, PGPD is the primary investigating agency"
+    },
+    "other_special_overlaps": [
+      "WMATA Metro Transit Police",
+      "Maryland-National Capital Park Police",
+      "Maryland State Police"
+    ]
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "MD0170600 is currently routed exclusively to the College Park city target",
+    "current_observation_state": "MD0170600 is a zero-count summary row in every panel year 2018-2024",
+    "current_control_state": "The 2024 College Park control row is entirely peer-state-pop-band fill with no reported support"
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_city_police_row_exists": false,
+    "why_not": [
+      "The City does not have its own police department.",
+      "PGPD is the citywide primary policing surface according to both the City-commissioned public-safety assessment and current city public-safety program materials.",
+      "UMPD and other agencies are specialized overlap layers, not a basis for a standalone city annual police-control row.",
+      "The repo's agency continuity evidence is zero throughout the panel, which points away from a successor-handoff explanation."
+    ],
+    "recommended_handling": [
+      "Do not keep the standalone College Park municipal control row 24:municipal:place:2418750 as an upstream annual police target.",
+      "Treat the core policing surface as Prince George's County primary service structure, with UMPD, WMATA, Park Police, and other specialized agencies handled as overlaps.",
+      "If the City's contract-police program or city public-safety summaries are useful later, use them as downstream local-share evidence rather than as proof of an independent citywide police reporting jurisdiction."
+    ]
+  },
+  "likely_issue_class": "invalid_target_not_broken_successor_continuity",
+  "open_questions": [
+    "A later implementation pass may want to examine whether any city-maintained public-safety summary tables are useful for downstream allocation or local-share adjustments, but they do not justify a standalone annual police control row."
+  ]
+}

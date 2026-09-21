@@ -1,0 +1,26 @@
+{
+  "builder": "_build_montgomery_county_surface",
+  "city_key": "montgomery_county_md",
+  "city_name": "Montgomery County, MD",
+  "contract": "Gate-1 pilot: official totals lane plus incident share lane.",
+  "incident_feed_total_policy": "share_only_unless_strict_reconciliation_clears",
+  "jurisdiction_id": "24:county:24031",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/montgomery_county_md",
+  "raw_cache_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/inputs/gap_closing_pilot/gate1_pilot_20260615",
+  "run_id": "gate1_pilot_20260615",
+  "source_name": "Montgomery County Crime",
+  "source_url": "https://data.montgomerycountymd.gov/Public-Safety/Crime/icn6-v9z3",
+  "worker_runtime": {
+    "city_key": "montgomery_county_md",
+    "input_tokens": null,
+    "model": "",
+    "output_tokens": null,
+    "run_id": "gate1_pilot_20260615",
+    "status": "completed",
+    "token_note": "No LLM tokens: deterministic Python city builder.",
+    "total_tokens": null,
+    "wall_seconds": 2.7856436250003753,
+    "worker_id": "local_deterministic_montgomery_county_md",
+    "worker_type": "local_deterministic_builder"
+  }
+}

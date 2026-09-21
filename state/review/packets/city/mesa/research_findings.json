@@ -1,0 +1,148 @@
+{
+  "city_key": "mesa",
+  "city_name": "Mesa",
+  "jurisdiction_id": "04:municipal:place:0446000",
+  "state_abbr": "AZ",
+  "analysis_date": "2026-03-22",
+  "artifacts": {
+    "source_schema": "source_schema.csv",
+    "published_reference_extract": "published_reference_extract.csv",
+    "offense_crosswalk": "offense_crosswalk.csv",
+    "reconciliation_summary": "reconciliation_summary.csv",
+    "packet_offense_status": "packet_offense_status.csv",
+    "raw_snapshot": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/city_packets/mesa/tmp/mesa_2024_full.csv",
+    "helper_script": "refresh_mesa_packet.py"
+  },
+  "source_contract": {
+    "recommended_source_name": "Mesa Police Incidents 2020-present",
+    "recommended_source_url": "https://data.mesaaz.gov/resource/hpbg-2wph.csv?$select=crime_id,crime_type,report_date,report_year,occurred_date,verified,address,city,state,nibrs_code,nibrs_description,crime_against,offense_type,location&$where=report_year=%272024%27&$limit=60000",
+    "metadata_url": "https://data.mesaaz.gov/api/views/hpbg-2wph",
+    "legacy_source_url": "https://data.mesaaz.gov/api/views/tq8y-k6mu",
+    "portal_type": "socrata_csv_plus_view_metadata",
+    "coverage_start_year": "2020",
+    "coverage_end_year": "2026",
+    "rows_updated_at_utc": "2026-03-22T17:38:58+00:00",
+    "view_last_modified_utc": "2026-03-16T15:11:11+00:00",
+    "download_count": 56,
+    "view_count": 1433,
+    "live_row_count_all_years": "311952",
+    "rows_2024": 51616,
+    "dedupe_key": "crime_id",
+    "dedupe_result_2024": {
+      "rows": 51616,
+      "unique_crime_id": 51616,
+      "duplicate_rows": 0
+    },
+    "schema_quirks": [
+      "Mesa split the public incidents feed into pre-2020 and 2020-present datasets because the department switched from UCR/Summary to NIBRS in 2020.",
+      "The 2020-present feed stores the primary offense in Crime Type but may list multiple related offenses in the comma-delimited NIBRS Code field.",
+      "Traffic-related offenses are excluded from the 2020-present feed.",
+      "Addresses are rounded to the nearest hundred block and the location field is a rounded point, not an exact incident location.",
+      "Sensitive crimes are included but their locations are withheld; Mesa metadata names homicide, manslaughter, and sexual crimes explicitly.",
+      "The verified field is almost entirely -1 in 2024 and is not useful as a public QA filter."
+    ],
+    "official_description_summary": "Information comes from initial police reports taken when officers respond to calls for service. Traffic-related offenses are excluded.\n<b>Incident definition (NIBRS/UCR)</b>\nFor the National Incident-Based Reporting System (NIBRS), the FBI\u2019s UCR Program defines an incident as one or more offenses committed by the same offender\u2014or offenders acting together\u2014at the same time and place. A primary offense is identified for each incident (see the 'Crime Type' field), but an incident may include multiple offenses/crimes (see the 'NIBRS Code' field for all related offenses).\n<b>Location precision</b>\n<i>Addresses are rounded to the nearest hundred block and do not represent exact locations.</i> Not all incidents here will match Police calls for service <a href=\"https://data.mesaaz.gov/Police/Police-Dispatch-Events-2021-present/s38h-z4c7\" target=\"_blank\">Police Dispatch Events</a>.\n<b>Important note on comparability</b>\nBeginning January 2020, the Mesa Police Department moved from UCR to NIBRS. Because NIBRS uses different reporting standards, data from 2020 onward should not be compared to prior years. See also <a href=\"https://data.mesaaz.gov/Police/Police-Incidents-Pre-2020/tq8y-k6mu\" target=\"_blank\">Police Incidents 2016\u20132019</a>. Use caution when comparing across agencies, as the nationwide shift to NIBRS has not been uniform. Learn more about UCR vs. NIBRS <a href=\"https://community.amstat.org/blogs/greg-ridgeway/2024/06/06/ucr-srs-and-nibrs\" target=\"_blank\">here</a>.\n<b>Redacted data</b>\nExcluded incident types: traffic-related offenses (code 5499) and duplicate/partial cases (code 7477). Sensitive crimes are included but have location details withheld (e.g., homicide, manslaughter, sexual abuse/assault, suicide, incest, child molestation, etc.). See the full list of NIBRS Codes with Redacted Locations in the Attachments section.\n<b>Related resources</b>\nSimilar crime data is available on the third-party site <a href=\"https://communitycrimemap.com/\" target=\"_blank\">CommunityCrimeMap.com</a>, which provides a visual map for Mesa and nearby areas.\n<b>Disclaimer</b>\nIncidents in this dataset have not been adjudicated. Classifications may change after investigation or legal proceedings."
+  },
+  "spatial_contract": {
+    "public_precision": "rounded_hundred_block_point",
+    "rows_with_location_2024": 46306,
+    "rows_with_location_share_2024": 0.8971,
+    "offense_geocode_findings": {
+      "murder": {
+        "mapped_offense_count": 13,
+        "geocoded_offense_count": 0,
+        "geocoded_share": 0.0
+      },
+      "rape": {
+        "mapped_offense_count": 606,
+        "geocoded_offense_count": 0,
+        "geocoded_share": 0.0
+      },
+      "robbery": {
+        "mapped_offense_count": 258,
+        "geocoded_offense_count": 253,
+        "geocoded_share": 0.9806
+      },
+      "aggravated_assault": {
+        "mapped_offense_count": 1516,
+        "geocoded_offense_count": 1475,
+        "geocoded_share": 0.973
+      },
+      "burglary": {
+        "mapped_offense_count": 953,
+        "geocoded_offense_count": 950,
+        "geocoded_share": 0.9969
+      },
+      "larceny": {
+        "mapped_offense_count": 5652,
+        "geocoded_offense_count": 5641,
+        "geocoded_share": 0.9981
+      },
+      "motor_vehicle_theft": {
+        "mapped_offense_count": 1025,
+        "geocoded_offense_count": 1023,
+        "geocoded_share": 0.998
+      }
+    },
+    "blocking_findings": [
+      "Mesa public incidents retain usable rounded points for robbery, burglary, larceny, and motor vehicle theft.",
+      "Mesa public incidents redact locations for homicide and sexual assault categories, which blocks murder and rape share surfaces.",
+      "Aggravated assault rows are mostly geocoded, but the public published comparator is victim-based and materially larger than the incident feed, so the offense remains blocked on comparability rather than geography."
+    ]
+  },
+  "published_reconciliation": {
+    "reference_year": 2024,
+    "reference_source_name": "Arizona Crime Statistics TOPS 2024 Mesa PD PDF reports",
+    "violent_source_url": "https://azcrimestatistics.azdps.gov/tops/report/violent-crimes/mesa-pd/2024/pdf",
+    "property_source_url": "https://azcrimestatistics.azdps.gov/tops/report/property-crime/mesa-pd/2024/pdf",
+    "overview_source_url": "https://azcrimestatistics.azdps.gov/tops/report/crime-overview/mesa-pd/2024/pdf",
+    "summary_file": "reconciliation_summary.csv",
+    "published_extract_file": "published_reference_extract.csv",
+    "key_findings": [
+      "Robbery reconciles tightly: 258 source rows versus 259 published (-0.4%).",
+      "Burglary reconciles closely: 953 source rows versus 976 published (-2.4%).",
+      "Larceny is closest under a first-listed-code rule: 5652 source rows versus 5607 published (+0.8%).",
+      "Motor vehicle theft reconciles tightly: 1025 source rows versus 1028 published (-0.3%).",
+      "Aggravated assault remains materially low: 1516 source incidents versus 1972 published victims (-23.1%).",
+      "Sexual assault remains non-comparable: 606 broad sex-offense incidents versus 251 published sexual-assault cases, with no public locations."
+    ]
+  },
+  "judgment": {
+    "packet_status": "reviewed",
+    "production_ready": "partial",
+    "recommended_disposition": "ready_now",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_property_and_robbery_ready_person_offenses_blocked",
+    "promote_offenses": [
+      "robbery",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "hold_offenses": [
+      "aggravated_assault"
+    ],
+    "blocked_offenses": [
+      "murder",
+      "rape"
+    ],
+    "exact_next_action": "Integrate Mesa's 2020-present feed as an offense-selective city-share source. Promote robbery, burglary, larceny, and motor_vehicle_theft only; use a first-listed-code rule for larceny and an any-listed-code rule for robbery/burglary/motor_vehicle_theft. Keep murder, rape, and aggravated_assault out of production."
+  },
+  "promotable_findings": [
+    {
+      "category": "schema",
+      "finding": "A city can publish a single incident row with multiple comma-delimited NIBRS codes, so offense-selective onboarding may require offense-specific counting-basis decisions rather than one global explode rule.",
+      "evidence_from_mesa": "Mesa larceny overcounts under any-code treatment but aligns closely when limited to the first listed NIBRS code."
+    },
+    {
+      "category": "qa",
+      "finding": "If the public city feed explicitly redacts homicide and sexual-offense locations, those offenses should be blocked even when citywide counts are available.",
+      "evidence_from_mesa": "Mesa metadata names homicide, manslaughter, and sexual crimes as redacted, and all 2024 homicide and broad sexual-assault rows lack public locations."
+    },
+    {
+      "category": "comparability",
+      "finding": "Victim-based public violent-crime summaries can diverge materially from incident-based city feeds even when property offenses reconcile closely.",
+      "evidence_from_mesa": "Mesa aggravated assault public incident rows are about 23 percent below the Arizona violent-crime PDF while robbery and property offenses are very close."
+    }
+  ]
+}

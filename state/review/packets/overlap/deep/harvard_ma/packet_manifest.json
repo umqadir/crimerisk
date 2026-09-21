@@ -1,0 +1,18 @@
+{
+  "case_key": "harvard_ma",
+  "ori": "MA0096200",
+  "agency_name_raw": "harvard university",
+  "state_abbr": "MA",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/harvard_ma"
+  },
+  "bottom_line": "Treat MA0096200 as a custom Massachusetts-only Harvard property-and-Clery overlap footprint, not Cambridge, not Boston, not Middlesex County, not Suffolk County, and not a worldwide Harvard-institution row. The defensible production footprint is the union of the official HUPD Massachusetts campus Clery geographies and Harvard-owned or controlled associated properties they identify, with the Cambridge map already spanning Cambridge, Allston, and Somerville housing; if that custom geometry is unavailable, keep the row broad overlap rather than forcing a city or county proxy."
+}

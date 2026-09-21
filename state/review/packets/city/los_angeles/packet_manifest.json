@@ -1,0 +1,26 @@
+{
+  "city_key": "los_angeles",
+  "city_name": "Los Angeles",
+  "jurisdiction_id": "06:municipal:place:0644000",
+  "state_abbr": "CA",
+  "priority_bucket": "second_wave",
+  "priority_rank": "9",
+  "basis": "High municipal payoff, but the public LA surface is fragmented across geocoded legacy incidents and non-spatial post-transition NIBRS feeds.",
+  "notes": "Keep blocked until a public post-transition spatial contract or a validated district-boundary fallback exists. This is not a near-term selective-promotion lane.",
+  "source_name": "LAPD legacy geocoded incidents plus public NIBRS companion feeds",
+  "source_url": "https://data.lacity.org/api/views/63jg-8b9z/rows.csv?accessType=DOWNLOAD ; https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD ; https://data.lacity.org/api/views/y8y3-fqfu/rows.csv?accessType=DOWNLOAD ; https://data.lacity.org/api/views/gqf2-vm2j/rows.csv?accessType=DOWNLOAD",
+  "portal_type": "socrata_multiplex",
+  "coverage_start_year": "2010",
+  "coverage_end_year": "2025",
+  "years_usable": "15",
+  "recommended_disposition": "blocked",
+  "geocode_quality_tier": "mixed_blocked",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/los_angeles",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

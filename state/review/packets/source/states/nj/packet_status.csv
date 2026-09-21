@@ -1,0 +1,2 @@
+state_abbr,packet_status,current_owner,production_input_ready,notes
+NJ,completed,codex,true,New Jersey packet completed: 0 master omissions; 2 late-2024 official-NIBRS-vs-repo source disagreements; 61 rows present in master but missing 2024 observations

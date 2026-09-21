@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,share_lane_disposition,total_lane_disposition
+kansas_city_mo,aggravated_assault,True,False,True,pass_share_only,admit_share_only,official_control
+kansas_city_mo,burglary,True,True,True,pass_share_only,admit_share_only,feed_total_candidate
+kansas_city_mo,larceny,True,True,True,pass_share_only,admit_share_only,feed_total_candidate
+kansas_city_mo,motor_vehicle_theft,True,True,True,pass_share_only,admit_share_only,feed_total_candidate
+kansas_city_mo,murder,True,True,True,pass_share_only,admit_share_only,feed_total_candidate
+kansas_city_mo,rape,True,True,True,pass_share_only,admit_share_only,feed_total_candidate
+kansas_city_mo,robbery,True,True,True,pass_share_only,admit_share_only,feed_total_candidate

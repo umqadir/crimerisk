@@ -1,0 +1,11 @@
+column,dtype
+crimetype,object
+datetime,object
+casenumber,object
+description,object
+policebeat,object
+address,object
+city,object
+state,object
+lat,object
+lon,object

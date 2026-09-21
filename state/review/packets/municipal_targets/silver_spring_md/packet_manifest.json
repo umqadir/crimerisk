@@ -1,0 +1,14 @@
+{
+  "case_key": "silver_spring_md",
+  "jurisdiction_id": "24:municipal:place:2472450",
+  "jurisdiction_name": "Silver Spring CDP",
+  "state_abbr": "MD",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/silver_spring_md",
+  "review_goal": "Determine whether Silver Spring should receive a separate municipal control row given its CDP status and Montgomery County policing structure.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

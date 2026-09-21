@@ -1,0 +1,193 @@
+{
+  "city_key": "cleveland_oh",
+  "contract": {
+    "city_key": "cleveland_oh",
+    "city_name": "Cleveland, Ohio",
+    "geography": {
+      "bounds": {
+        "max_latitude": 41.604436,
+        "max_longitude": -81.532744,
+        "min_latitude": 41.390628,
+        "min_longitude": -81.878984
+      },
+      "jurisdiction_id": "39:municipal:place:3916000",
+      "state_fips": "39"
+    },
+    "mapping": {
+      "date_field": "OffenseDate",
+      "id_field": "PrimaryKey",
+      "id_fields": [],
+      "latitude_field": "LAT",
+      "longitude_field": "LON",
+      "offense_rules": [
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "Homicide",
+              "values": []
+            },
+            {
+              "field": "StatDesc",
+              "op": "contains",
+              "value": "Murder",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "StatDesc",
+              "op": "contains",
+              "value": "Negligence",
+              "values": []
+            }
+          ],
+          "offense": "murder"
+        },
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "Rape",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "rape"
+        },
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "Robbery",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "robbery"
+        },
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "Fel Assault",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [
+            {
+              "field": "StatDesc",
+              "op": "regex",
+              "value": "Homicide|Vehicular",
+              "values": []
+            }
+          ],
+          "offense": "aggravated_assault"
+        },
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "Burglary",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "burglary"
+        },
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "Theft",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "larceny"
+        },
+        {
+          "conditions": [
+            {
+              "field": "UCRdesc",
+              "op": "eq",
+              "value": "GTMV",
+              "values": []
+            }
+          ],
+          "exclude_conditions": [],
+          "offense": "motor_vehicle_theft"
+        }
+      ]
+    },
+    "source": {
+      "api_endpoint": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Crime_Incidents/FeatureServer/0",
+      "name": "City of Cleveland Open Data Crime Incidents [2016 to 11/11/25]",
+      "order": "OffenseDate ASC, OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "PrimaryKey",
+        "CaseNumber",
+        "OffenseDate",
+        "OffenseYear",
+        "UCRdesc",
+        "StatDesc",
+        "Statute",
+        "LAT",
+        "LON"
+      ],
+      "source_url": "https://data.clevelandohio.gov/datasets/ClevelandGIS::crime-incidents-2016-to-11-11-25/about",
+      "where": "OffenseYear = 2024 AND LAT IS NOT NULL AND LON IS NOT NULL"
+    },
+    "sources_checked": [
+      "https://data.clevelandohio.gov/pages/public-safety",
+      "https://data.clevelandohio.gov/datasets/ClevelandGIS::crime-incidents-2016-to-11-11-25/about",
+      "https://www.arcgis.com/sharing/rest/content/items/c749e34199c1425cbbc5959308658ec3?f=json",
+      "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Crime_Incidents/FeatureServer/0?f=json",
+      "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Crime_Incidents/FeatureServer/0/query",
+      "https://data.clevelandohio.gov/datasets/e15e8989c83e4cbd841fb171a6c62f68_0/",
+      "https://www.arcgis.com/sharing/rest/content/items/e15e8989c83e4cbd841fb171a6c62f68?f=json"
+    ],
+    "worker_judgment_notes": "Selected the official City of Cleveland ArcGIS FeatureServer layer for Crime Incidents [2016 to 11/11/25] because the newer Crime Incidents layer is initialized from 11/11/2025 onward and therefore does not cover 2024. The selected feed has a documented unique incident identifier PrimaryKey, CaseNumber context, OffenseDate epoch-ms date, UCRdesc top-level UCR category, StatDesc/Statute detail, and snapped LAT/LON point coordinates. This is a share-lane-only contract: source rows are not promoted as 2024 annual totals. The source where clause keeps only geocoded 2024 rows, so offenses with missing coordinates are intentionally out of the share surface. Jurisdiction_id and state_fips come from state/controls/jurisdiction_controls_2024.parquet for Cleveland city, OH. Bounds come from the local 2020 TIGER block groups joined to state/geometry/block_group_to_jurisdiction_crosswalk.parquet for jurisdiction 39:municipal:place:3916000. Offense mapping uses the feed's UCRdesc categories where directly defensible: Rape, Robbery, Burglary, Theft, and GTMV. Homicide is restricted to StatDesc containing Murder and excludes Negligence so negligent/involuntary/police-undetermined homicide labels are not mapped to canonical murder. Aggravated assault uses UCRdesc Fel Assault but excludes StatDesc containing Homicide or Vehicular to avoid vehicular homicide/assault records in the aggravated assault share.",
+    "year": 2024
+  },
+  "qa": {
+    "admitted_rows": 7,
+    "duplicate_surface_key_rows": 0,
+    "feed_total_candidate_rows": 5,
+    "offense_rows": 7,
+    "rows_in_surface": 2334,
+    "share_admitted_rows": 7,
+    "share_sum_pass_all": true
+  },
+  "raw_source": {
+    "api_endpoint": "https://services3.arcgis.com/dty2kHktVXHrqO8i/arcgis/rest/services/Crime_Incidents/FeatureServer/0",
+    "city_key": "cleveland_oh",
+    "portal_type": "arcgis_feature_service",
+    "raw_cache_bytes": 3778439,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/cleveland_oh_raw.parquet",
+    "raw_cache_sha256": "cb4a588caf4ea4452341098de9698f9572650c03d415709b65b93c3f9f61cf3a",
+    "source_name": "City of Cleveland Open Data Crime Incidents [2016 to 11/11/25]",
+    "source_url": "https://data.clevelandohio.gov/datasets/ClevelandGIS::crime-incidents-2016-to-11-11-25/about"
+  },
+  "run_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final",
+  "runtime": {
+    "city_key": "cleveland_oh",
+    "input_tokens": null,
+    "output_tokens": null,
+    "raw_cache_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/orchestration/gate17_tier1_batch_a/batch_a_20260618_final/raw/cleveland_oh_raw.parquet",
+    "raw_cache_sha256": "cb4a588caf4ea4452341098de9698f9572650c03d415709b65b93c3f9f61cf3a",
+    "status": "completed",
+    "total_tokens": null,
+    "wall_seconds": 45.411774042004254,
+    "worker_type": "generic_contract_ingestor"
+  }
+}

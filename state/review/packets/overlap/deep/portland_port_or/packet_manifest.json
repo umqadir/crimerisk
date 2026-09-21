@@ -1,0 +1,14 @@
+{
+  "case_key": "portland_port_or",
+  "ori": "OR0260300",
+  "agency_name_raw": "Port of Portland Police Department",
+  "state_abbr": "OR",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/portland_port_or",
+  "review_goal": "Determine the defensible production handling for ORI OR0260300 and whether Port of Portland Police should be treated as a county/place proxy, a broad-overlap hold, or a custom Port-property system footprint covering airports, marine terminals, cargo facilities, and business or industrial properties.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}

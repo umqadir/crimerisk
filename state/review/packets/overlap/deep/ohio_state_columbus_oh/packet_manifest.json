@@ -1,0 +1,19 @@
+{
+  "case_key": "ohio_state_columbus_oh",
+  "ori": "OH0252700",
+  "agency_name_raw": "oh state univ: columbus",
+  "state_abbr": "OH",
+  "created_utc": "2026-03-24T00:00:00Z",
+  "packet_version": 1,
+  "artifact_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "owned_scope": {
+    "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/overlap_deep_packets/ohio_state_columbus_oh"
+  },
+  "review_goal": "Determine the defensible overlap treatment for ORI OH0252700 and whether Ohio State University Police in Columbus should resolve to Columbus, Franklin County, a custom Columbus-campus footprint, or broad overlap pending better geometry.",
+  "bottom_line": "Treat OH0252700 as a custom Ohio State Columbus-campus footprint rather than Columbus city or Franklin County. The official record ties OSUPD primary policing to university property and the Columbus campus, while off-campus University District work is a limited Columbus mutual-aid / joint-patrol function and Clery noncampus geography is broader than the police footprint. Build the footprint from the official Columbus campus property system and adjacent public-property edges; do not auto-include the wider city, county, University District neighborhoods, or remote Wexner / airport sites without direct current OSUPD service evidence."
+}

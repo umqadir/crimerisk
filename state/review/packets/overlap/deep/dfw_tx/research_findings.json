@@ -1,0 +1,113 @@
+{
+  "case_key": "dfw_tx",
+  "ori": "TX2203600",
+  "agency_name_raw": "dallas-fort worth int ap",
+  "state_abbr": "TX",
+  "question": "What is the defensible overlap treatment for TX2203600, Dallas-Fort Worth International Airport Police / DALLAS FORT WORTH INTERNATIONAL AIRPORT D.P.S.: bounded airport-property footprint, county/place proxy, or absorb-into-primary outcome?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "transport_hub",
+    "footprint_type": "airport_property_and_operational_facilities",
+    "confidence": 0.98
+  },
+  "verified_findings": [
+    {
+      "topic": "Official DFW police service description",
+      "finding": "The official DFW Airport Police page says the department provides law-enforcement coverage for a 27-square-mile area and patrols the central terminal area as well as surrounding businesses. That is an airport-facility policing description, not a citywide or countywide patrol description."
+    },
+    {
+      "topic": "Official DFW scale and airport-specific civic functions",
+      "finding": "DFW's official Facts page says the airport covers more than 26.9 square miles with 17,183 acres of real property and, like a city, has its own zip code, city designation, police, fire, and medical departments. This confirms a bounded airport campus with dedicated airport public-safety functions."
+    },
+    {
+      "topic": "Official governance structure",
+      "finding": "The official DFW Board page says the Airport Board is a semi-autonomous governing body for DFW, appointed by the owner cities Dallas and Fort Worth, with a rotating neighboring-city board seat for Irving, Grapevine, Euless, and Coppell. This shows DFW policing is tied to a special airport board structure rather than to one ordinary municipal jurisdiction."
+    },
+    {
+      "topic": "Official multi-county and multi-city footprint",
+      "finding": "An official DFW Airport environmental/stormwater document states the airport is located on the border of Tarrant and Dallas Counties, consists of nearly 18,000 acres, and falls within five cities: Grapevine, Irving, Euless, Coppell, and Fort Worth. That defeats any single-county or single-place proxy."
+    },
+    {
+      "topic": "Official board legal backdrop",
+      "finding": "The same official DFW document states the Cities of Dallas and Fort Worth jointly own the airport and that it is operated by the Airport Board, a joint board established under Texas Transportation Code Chapter 22. That legal/governance language explains why the agency exists, but it does not convert the row into a Dallas or Fort Worth citywide footprint."
+    },
+    {
+      "topic": "Official scope rule for routine airport regulation",
+      "finding": "The official DFW Code of Rules and Regulations says the Code has effect only within the boundaries of Dallas-Fort Worth International Airport and defines the Air Operations Area in airport-facility terms. This is the strongest official indicator for the routine production geometry: airport boundaries and airport operational areas, not a broader owner-city or county geography."
+    },
+    {
+      "topic": "Official evidence of distinct airport public-safety operations",
+      "finding": "DFW's official ESG report says the airport, although not a municipality, has its own Department of Public Safety; DPS operates under Police, Fire, and Special Services; maintains a visible presence in multiple airport locations; and provides services 24/7. This supports keeping the airport police layer distinct rather than absorbing it into another local primary."
+    },
+    {
+      "topic": "Operational facilities to include in the footprint",
+      "finding": "Official DFW materials describe airport-board activities and infrastructure in terms that include terminals, surrounding businesses, roadway maintenance, airfield maintenance, airport train rail activity, and fire/DPS training activities. The practical production footprint should therefore follow the airport campus and its operational facilities inside airport boundaries."
+    }
+  ],
+  "exact_service_footprint_for_production": {
+    "type": "custom DFW airport-property footprint",
+    "include": [
+      "the Dallas Fort Worth International Airport campus within airport boundaries",
+      "the central terminal area",
+      "airport roadways and parking areas within the airport boundary",
+      "the airfield and other airport operational areas, including the Air Operations Area",
+      "surrounding airport businesses and board-operated operational facilities documented as part of the airport campus"
+    ],
+    "exclude": [
+      "Dallas city as a place proxy",
+      "Fort Worth city as a place proxy",
+      "Dallas County as a county proxy",
+      "Tarrant County as a county proxy",
+      "all territory of the owner cities outside airport boundaries",
+      "all neighboring-city territory outside airport boundaries",
+      "mutual-aid geography or generic regional Metroplex coverage"
+    ],
+    "legal_backdrop": "DFW is jointly owned by Dallas and Fort Worth and operated by an Airport Board under Texas Transportation Code Chapter 22, but the Board's own Code of Rules and Regulations states that the airport code has effect only within airport boundaries. For production, that bounded airport scope is more defensible than any broader ownership or governance concept.",
+    "implementation_note": "Use authoritative DFW airport-property / airport-boundary geometry. The routine geometry should track the airport campus and airport operational facilities inside airport boundaries rather than a broader theory of owner-city, neighboring-city, or regional authority reach."
+  },
+  "proxy_assessment": {
+    "airport_property_or_authority_system_based": {
+      "defensible": true,
+      "why": "All primary official sources describe DFW policing as an airport-board / airport-facility function tied to the airport campus, terminals, roadway system, surrounding airport businesses, and operational areas inside airport boundaries."
+    },
+    "single_county_proxy": {
+      "defensible": false,
+      "why_not": "Official DFW material places the airport on the border of Dallas and Tarrant Counties. A one-county proxy would misstate the geography."
+    },
+    "single_place_proxy": {
+      "defensible": false,
+      "why_not": "Official DFW material places the airport in five cities while the owner-city structure is Dallas and Fort Worth. Dallas is especially indefensible as a place proxy because the airport is not coterminous with Dallas city and official sources instead describe a multi-city airport campus."
+    },
+    "broader_owner_city_or_joint_board_proxy": {
+      "defensible": false,
+      "why_not": "The fact that Dallas and Fort Worth jointly own DFW and appoint the Board does not make the police footprint citywide in either owner city. Official police and code materials localize the routine service footprint to the airport itself."
+    },
+    "absorb_into_primary_jurisdiction": {
+      "defensible": false,
+      "why_not": "Absorbing TX2203600 into Dallas, Fort Worth, Dallas County, or Tarrant County would erase a real airport-specific special-jurisdiction public-safety layer that DFW operates as its own Department of Public Safety."
+    }
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "transport_hub",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "airport_property_and_operational_facilities",
+    "geometry_sources": [
+      "https://www.dfwairport.com/dps/police/",
+      "https://www.dfwairport.com/business/about/facts/",
+      "https://www.dfwairport.com/business/about/board/",
+      "https://dfwairport-prd-dfw-vip.dfwairport.com/cs/groups/webasset/documents/webasset/p1_005909.pdf",
+      "https://assets.ctfassets.net/m2p70vmwc019/2ev1VoQGwZAo4tGQ5NrHPY/2614e5c914d456510c4019477916ae3b/DFW_Publications_The_Code_of_Rules_and_Regulations_Chapter_1_General_Provisions.pdf",
+      "https://dfwairport-prd-dfw-vip.dfwairport.com/cs/groups/webcontent/documents/webasset/p2_950004.pdf"
+    ],
+    "implementation_note": "Localize TX2203600 to a custom DFW airport-property footprint. If that custom geometry is not yet built, keep the row in broad overlap rather than forcing a Dallas, Fort Worth, Dallas County, or Tarrant County proxy.",
+    "production_ready": true
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": true,
+    "exact_recommended_production_disposition": "custom DFW airport-property footprint covering the airport campus and airport operational facilities inside airport boundaries; otherwise keep broad overlap"
+  }
+}

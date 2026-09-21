@@ -1,0 +1,26 @@
+{
+  "city_key": "austin",
+  "city_name": "Austin",
+  "jurisdiction_id": "48:municipal:place:4805000",
+  "state_abbr": "TX",
+  "priority_bucket": "first_wave",
+  "priority_rank": "6",
+  "basis": "Long continuous series and source-provided block groups make Austin valuable, and the remaining problem is now narrowed to a bounded aggravated-assault disagreement rather than a broad ETL question.",
+  "notes": "Austin is now live offense-selectively for robbery burglary larceny and motor_vehicle_theft. Keep aggravated_assault blocked until the official APD lookup and the empirical refresh candidate can be reconciled cleanly.",
+  "source_name": "Austin APD Crime Reports",
+  "source_url": "https://data.austintexas.gov/api/views/fdj4-gpfu/rows.csv?accessType=DOWNLOAD",
+  "portal_type": "socrata",
+  "coverage_start_year": "2003",
+  "coverage_end_year": "2025",
+  "years_usable": "23",
+  "recommended_disposition": "ready_now",
+  "geocode_quality_tier": "high",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/packets/city/austin",
+  "required_artifacts": [
+    "source_candidate.csv",
+    "packet_status.csv",
+    "packet_checklist.csv",
+    "research_findings.json",
+    "reconciliation_summary.csv"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "case_key": "downey_ca",
+  "jurisdiction_id": "06:municipal:place:0619766",
+  "jurisdiction_name": "Downey city",
+  "state_abbr": "CA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Downey is an incorporated, full-service city rather than a county-policed or contract-policed place. The City's official profile says Downey is a full-service municipal organization providing police, fire protection, emergency medical services, water, library, and parks services.",
+    "Downey plainly operates a real Downey Police Department. Official city police pages describe the Police Department's leadership and divisions, and the Records Bureau page says department records staff process arrests and crimes into local, state, and national databases and prepare the statistics required by state and federal government.",
+    "California DOJ's official Crime in California 2024 publication explicitly lists Downey Police Department under agency limitations and says the agency was unable to report in 2024 due to system issues. That is direct official evidence of a current reporting-continuity problem rather than evidence that the municipal police target is fake.",
+    "Repo continuity evidence matches a real city-police target with a broken reporting series. The crosswalk routes CA0192000 exclusively to Downey city, and agency-year observations show substantial annual Downey totals in 2018, 2019, 2020, 2022, and 2023, with zero years only in 2021 and 2024. That stop-start pattern is incompatible with an invalid municipal target and consistent with source continuity failure."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_full_service_city_with_municipal_police_department",
+    "official_basis": [
+      "The City's official profile identifies Downey as a full-service municipal organization serving more than 113,000 residents.",
+      "That same city profile explicitly includes police among the services the City provides directly."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Downey Police Department",
+    "active_city_police_department_found": true,
+    "official_evidence": [
+      "The official City police pages present a Downey Police Department within the municipal department structure, including administration and other departmental functions.",
+      "The Records Bureau page says Downey Police Department personnel prepare statistics required by state and federal government and that the California Department of Justice audits those records.",
+      "The City maintains an official annual-report page for Downey Police Department with listed annual reports for 2021, 2022, 2023, and 2024."
+    ],
+    "likely_official_backfill_surface": "California DOJ's Crime in California / OpenJustice law-enforcement-agency publication surface for Downey Police Department is the most likely official annual backfill path once the agency's system issues are resolved; Downey Police Department annual reports are a useful municipal corroboration surface."
+  },
+  "repo_continuity_evidence": {
+    "crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes CA0192000 exclusively to 06:municipal:place:0619766 with weight 1.0.",
+    "observation_pattern": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "total_count": 2982.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "total_count": 2825.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "total_count": 2454.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "total_count": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "total_count": 3398.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "total_count": 3591.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "total_count": 0.0
+      }
+    ],
+    "current_control_state": "jurisdiction_controls_2024.parquet shows zero reported support and zero mean months reported for every 2024 Downey offense row, with trend_log_linear estimates anchored to usable history through 2023.",
+    "review_queue_state": "municipal_target_review_queue.parquet flags Downey as a high-impact full-fill place with suspect_reason full_fill_no_reported_support, total_fill_count 3694.157692, total_reported_count 0.0, and fill_share_of_estimated 1.0 across the six tracked review offenses.",
+    "interpretation": "The crosswalk is clean and the agency has real nonzero history immediately before 2024. The 2024 all-fill state is therefore a continuity/reporting failure on a valid Downey Police Department row, not evidence that Downey lacks a true municipal policing surface."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Downey is a full-service city that directly provides police services.",
+      "Downey Police Department is an active official city police department with its own records, administration, and annual reporting surfaces.",
+      "California DOJ explicitly attributes Downey's missing 2024 reporting to system issues.",
+      "Repo history shows a live municipal agency row with strong pre-2024 counts, not a permanently zero or alias-contaminated target."
+    ],
+    "recommended_handling": [
+      "Retain Downey city as a standalone municipal control row.",
+      "Do not treat the 2024 all-fill condition as evidence that the Downey municipal target is invalid or should be replaced by Los Angeles County Sheriff or another service structure.",
+      "Treat the immediate repair task as source continuity restoration for CA0192000, using California DOJ's official agency publication surface as the primary backfill path and Downey Police Department annual reporting as corroboration."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The target-validity question is closed. The only remaining bounded repair question is whether the 2021 zero year reflects a separate transition gap or a similar reporting interruption; 2024 is already officially explained by California DOJ as a system-issues nonreporting year."
+  ]
+}

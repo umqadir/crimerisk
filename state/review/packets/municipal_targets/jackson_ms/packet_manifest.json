@@ -1,0 +1,14 @@
+{
+  "case_key": "jackson_ms",
+  "jurisdiction_id": "28:municipal:place:2836000",
+  "jurisdiction_name": "Jackson city",
+  "state_abbr": "MS",
+  "packet_dir": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/review/municipal_target_packets/jackson_ms",
+  "review_goal": "Determine whether Jackson should retain a standalone municipal control row and what kind of continuity problem explains the current full-fill target.",
+  "required_outputs": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ]
+}
