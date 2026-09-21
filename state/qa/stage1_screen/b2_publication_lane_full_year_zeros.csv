@@ -1,0 +1,1231 @@
+ori9,state_abbr,year,total,months,lane,median_hist_total_2018_2023,agency_name_std,agency_type_norm,population_latest_nibrs,county_fips,place_fips,county_fips_source,published_as_full_year_zero
+PA0450100,PA,2024,0.0,12.0,cius,38.0,DELAWARE WATER GAP,local_police,755.0,089,18736,srs_agency_header,True
+PA0100400,PA,2024,0.0,12.0,cius,28.0,ZELIENOPLE,local_police,3795.0,019,87272,srs_agency_header,True
+AL0080200,AL,2024,0.0,12.0,cius,25.0,BLOUNTSVILLE,local_police,1825.0,009,07456,srs_agency_header,True
+IL0170200,IL,2024,0.0,12.0,cius,25.0,PALESTINE,local_police,1285.0,033,57277,srs_agency_header,True
+OK0120500,OK,2024,0.0,12.0,cius,25.0,FORT TOWSON,local_police,504.0,023,27400,srs_agency_header,True
+TX1940300,TX,2024,0.0,12.0,cius,24.0,BOGATA,local_police,1102.0,387,09172,srs_agency_header,True
+GA0710300,GA,2024,0.0,12.0,cius,23.0,BUCHANAN,local_police,1205.0,143,11616,srs_agency_header,True
+NY0082000,NY,2024,0.0,12.0,cius,23.0,AFTON VILLAGE,local_police,796.0,017,00342,srs_agency_header,True
+VT0110300,VT,2024,0.0,12.0,cius,22.0,CASTLETON,local_police,4599.0,021,11950,srs_agency_header,True
+MN0701000,MN,2024,0.0,12.0,cius,21.5,ELKO NEW MARKET,local_police,5128.0,139,,fbi_cde_agency_roster,True
+VT0141000,VT,2024,0.0,12.0,cius,21.5,NORWICH,local_police,3681.0,027,52900,srs_agency_header,True
+MN0120200,MN,2024,0.0,12.0,cius,20.0,MONTEVIDEO,local_police,5247.0,023,43720,srs_agency_header,True
+PA0140100,PA,2024,0.0,12.0,cius,20.0,BELLEFONTE,local_police,6325.0,027,05256,srs_agency_header,True
+IL0580100,IL,2024,0.0,12.0,cius,17.0,BLUE MOUND,local_police,1088.0,115,06756,srs_agency_header,True
+OK0340800,OK,2024,0.0,12.0,cius,17.0,RINGLING,local_police,977.0,067,63350,srs_agency_header,True
+PA0032200,PA,2024,0.0,12.0,cius,17.0,EAST FRANKLIN TOWNSHIP,local_police,3854.0,005,21160,srs_agency_header,True
+TX2300300,TX,2024,0.0,12.0,cius,16.0,ORE CITY,local_police,1266.0,459,54216,srs_agency_header,True
+KY1130300,KY,2024,0.0,12.0,cius,15.5,UNIONTOWN,local_police,943.0,225,78492,srs_agency_header,True
+AL0340400,AL,2024,0.0,12.0,cius,15.0,SLOCOMB,local_police,2149.0,061,71040,srs_agency_header,True
+AL0530100,AL,2024,0.0,12.0,cius,15.0,MARION,local_police,3265.0,105,46768,srs_agency_header,True
+IL0970300,IL,2024,0.0,12.0,cius,14.0,NORRIS CITY,local_police,1203.0,193,53403,srs_agency_header,True
+LA0190100,LA,2024,0.0,12.0,cius,14.0,CLINTON,local_police,1516.0,037,15990,srs_agency_header,True
+MN0181100,MN,2024,0.0,12.0,cius,14.0,PEQUOT LAKES,local_police,2486.0,035,50416,srs_agency_header,True
+IL0141300,IL,2024,0.0,12.0,cius,13.0,GERMANTOWN,local_police,1383.0,027,29041,srs_agency_header,True
+IL0750400,IL,2024,0.0,12.0,cius,13.0,PLEASANT HILL,local_police,928.0,149,60534,srs_agency_header,True
+ME0101300,ME,2024,0.0,12.0,cius,13.0,VEAZIE,local_police,1831.0,019,78780,srs_agency_header,True
+TX0980200,TX,2024,0.0,12.0,cius,13.0,SPEARMAN,local_police,3275.0,195,69476,srs_agency_header,True
+PA0021H00,PA,2024,0.0,12.0,cius,12.0,CRESCENT TOWNSHIP,local_police,2569.0,003,17048,srs_agency_header,True
+IA0820500,IA,2024,0.0,12.0,cius,11.0,BLUE GRASS,local_police,1715.0,163,07075,srs_agency_header,True
+TX1100400,TX,2024,0.0,12.0,cius,11.0,SOUTH PLAINS COLLEGE,special_jurisdiction,0.0,219,42448,srs_agency_header,True
+MN0610200,MN,2024,0.0,12.0,cius,10.5,STARBUCK,local_police,1435.0,121,62500,srs_agency_header,True
+MO0600500,MO,2024,0.0,12.0,cius,10.0,GOODMAN,local_police,1311.0,119,27874,srs_agency_header,True
+NJ0191600,NJ,2024,0.0,12.0,cius,10.0,OGDENSBURG,local_police,2307.0,037,54660,srs_agency_header,True
+PA0071000,PA,2024,0.0,12.0,cius,10.0,WILLIAMSBURG,local_police,1222.0,013,85272,srs_agency_header,True
+IA0540100,IA,2024,0.0,12.0,cius,9.0,SIGOURNEY,local_police,2013.0,107,73110,srs_agency_header,True
+IL0090100,IL,2024,0.0,12.0,cius,9.0,ASHLAND,local_police,1203.0,017,02505,srs_agency_header,True
+IL0110500,IL,2024,0.0,12.0,cius,9.0,ASSUMPTION,local_police,1172.0,021,02609,srs_agency_header,True
+KY0470400,KY,2024,0.0,12.0,cius,9.0,WEST POINT,local_police,942.0,093,81930,srs_agency_header,True
+MN0400600,MN,2024,0.0,12.0,cius,9.0,CLEVELAND,local_police,783.0,079,,fbi_cde_agency_roster,True
+OH0070300,OH,2024,0.0,12.0,cius,9.0,BRIDGEPORT,local_police,1756.0,013,08560,srs_agency_header,True
+MO0570700,MO,2024,0.0,12.0,cius,8.5,HAWK POINT,local_police,752.0,113,31024,srs_agency_header,True
+MO0830300,MO,2024,0.0,12.0,cius,8.5,PLATTE WOODS,local_police,409.0,165,58196,srs_agency_header,True
+CA0309600,CA,2024,0.0,12.0,cius,8.0,IRVINE VALLEY COLLEGE,special_jurisdiction,0.0,059,,fbi_cde_agency_roster,True
+IL0169C00,IL,2024,0.0,12.0,cius,8.0,SOUTH SUBURBAN COLLEGE,special_jurisdiction,0.0,031,70850,srs_agency_header,True
+KY1140400,KY,2024,0.0,12.0,cius,8.0,WOODBURN,local_police,381.0,227,84414,srs_agency_header,True
+ME0151700,ME,2024,0.0,12.0,cius,8.0,MILBRIDGE,local_police,1407.0,029,45600,srs_agency_header,True
+NM0090400,NM,2024,0.0,12.0,cius,8.0,HURLEY,local_police,1232.0,017,33850,srs_agency_header,True
+IL0920900,IL,2024,0.0,12.0,cius,7.5,RIDGE FARM,local_police,828.0,183,63862,srs_agency_header,True
+KY0110200,KY,2024,0.0,12.0,cius,7.5,JUNCTION CITY,local_police,2347.0,021,41338,srs_agency_header,True
+MO0540700,MO,2024,0.0,12.0,cius,7.0,WAVERLY,local_police,846.0,107,77866,srs_agency_header,True
+NY0262500,NY,2024,0.0,12.0,cius,7.0,HAMILTON VILLAGE,local_police,4100.0,053,31709,srs_agency_header,True
+SC0231900,SC,2024,0.0,12.0,cius,7.0,BOB JONES UNIVERSITY,special_jurisdiction,0.0,045,30850,srs_agency_header,True
+IL0900400,IL,2024,0.0,12.0,cius,6.5,HOPEDALE,local_police,1101.0,179,36126,srs_agency_header,True
+MN0540100,MN,2024,0.0,12.0,cius,6.5,ADA,local_police,1741.0,107,00172,srs_agency_header,True
+NY0582100,NY,2024,0.0,12.0,cius,6.5,WOLCOTT VILLAGE,local_police,1613.0,117,82678,srs_agency_header,True
+TX1660300,TX,2024,0.0,12.0,cius,6.5,THORNDALE,local_police,1399.0,331,72776,srs_agency_header,True
+CA0470700,CA,2024,0.0,12.0,cius,6.0,TULELAKE,local_police,991.0,093,80686,srs_agency_header,True
+IL1011000,IL,2024,0.0,12.0,cius,6.0,DURAND,local_police,1393.0,201,21280,srs_agency_header,True
+KY1130200,KY,2024,0.0,12.0,cius,6.0,STURGIS,local_police,1824.0,225,74316,srs_agency_header,True
+OK0230700,OK,2024,0.0,12.0,cius,6.0,SHATTUCK,local_police,1284.0,045,66750,srs_agency_header,True
+OK0241500,OK,2024,0.0,12.0,cius,6.0,LAHOMA,local_police,629.0,047,40700,srs_agency_header,True
+PA0420800,PA,2024,0.0,12.0,cius,6.0,SMETHPORT,local_police,1541.0,083,71248,srs_agency_header,True
+TX2101600,TX,2024,0.0,12.0,cius,6.0,TENAHA,local_police,1153.0,419,,fbi_cde_agency_roster,True
+GA1050200,GA,2024,0.0,12.0,cius,5.5,ETON,local_police,923.0,213,27932,srs_agency_header,True
+IL0451900,IL,2024,0.0,12.0,cius,5.0,WAUBONSEE COMM COLLEGE,special_jurisdiction,0.0,089,73391,srs_agency_header,True
+IL0493300,IL,2024,0.0,12.0,cius,5.0,TOWER LAKES,local_police,1246.0,097,75874,srs_agency_header,True
+IL0501600,IL,2024,0.0,12.0,cius,5.0,TONICA,local_police,736.0,099,75718,srs_agency_header,True
+KY0290100,KY,2024,0.0,12.0,cius,5.0,BURKESVILLE,local_police,1473.0,057,11098,srs_agency_header,True
+KY0900200,KY,2024,0.0,12.0,cius,5.0,BLOOMFIELD,local_police,1088.0,179,07516,srs_agency_header,True
+MN0110700,MN,2024,0.0,12.0,cius,5.0,PILLAGER,local_police,524.0,021,,fbi_cde_agency_roster,True
+NY0355800,NY,2024,0.0,12.0,cius,5.0,HIGHLANDS TOWN,local_police,9199.0,071,34550,srs_agency_header,True
+SD0290100,SD,2024,0.0,12.0,cius,5.0,MILLER,local_police,1361.0,059,42460,srs_agency_header,True
+TX0201700,TX,2024,0.0,12.0,cius,5.0,ALVIN COMMUNITY COLLEGE,special_jurisdiction,0.0,039,02272,srs_agency_header,True
+TX0990100,TX,2024,0.0,12.0,cius,5.0,CHILLICOTHE,local_police,684.0,197,14680,srs_agency_header,True
+TX2340200,TX,2024,0.0,12.0,cius,5.0,EDGEWOOD,local_police,1763.0,467,22612,srs_agency_header,True
+MN0250400,MN,2024,0.0,12.0,cius,4.5,KENYON,local_police,1907.0,049,32840,srs_agency_header,True
+MO0660200,MO,2024,0.0,12.0,cius,4.5,IBERIA,local_police,755.0,131,34228,srs_agency_header,True
+OK0310800,OK,2024,0.0,12.0,cius,4.5,MCCURTAIN,local_police,508.0,061,44950,srs_agency_header,True
+IL0167E00,IL,2024,0.0,12.0,cius,4.0,OAKTON COMMUNITY COLLEGE,special_jurisdiction,0.0,031,19642,srs_agency_header,True
+IL0169F00,IL,2024,0.0,12.0,cius,4.0,MORTON COLLEGE,special_jurisdiction,0.0,031,14351,srs_agency_header,True
+IL0570800,IL,2024,0.0,12.0,cius,4.0,COLFAX,local_police,1021.0,113,15495,srs_agency_header,True
+IL0603800,IL,2024,0.0,12.0,cius,4.0,GRANTFORK,local_police,344.0,119,30978,srs_agency_header,True
+KS0050400,KS,2024,0.0,12.0,cius,4.0,CLAFLIN,local_police,614.0,009,13425,srs_agency_header,True
+MI7859600,MI,2024,0.0,12.0,cius,4.0,MORRICE,local_police,999.0,155,55560,srs_agency_header,True
+MN0150200,MN,2024,0.0,12.0,cius,4.0,CLEARBROOK,local_police,537.0,029,11746,srs_agency_header,True
+MO0270400,MO,2024,0.0,12.0,cius,4.0,PRAIRIE HOME,local_police,280.0,053,59726,srs_agency_header,True
+NY0195100,NY,2024,0.0,12.0,cius,4.0,DURHAM TOWN,local_police,2699.0,039,21204,srs_agency_header,True
+PA0211000,PA,2024,0.0,12.0,cius,4.0,SHIREMANSTOWN,local_police,1659.0,041,70384,srs_agency_header,True
+VA0960400,VA,2024,0.0,12.0,cius,4.0,POUND,local_police,939.0,195,64272,srs_agency_header,True
+GA1290200,GA,2024,0.0,12.0,cius,3.5,LESLIE,local_police,369.0,261,46020,srs_agency_header,True
+IL0790900,IL,2024,0.0,12.0,cius,3.5,RUMA,local_police,311.0,157,66287,srs_agency_header,True
+IL0870600,IL,2024,0.0,12.0,cius,3.5,COWDEN,local_police,576.0,173,17055,srs_agency_header,True
+KS0290300,KS,2024,0.0,12.0,cius,3.5,SPEARVILLE,local_police,811.0,057,67125,srs_agency_header,True
+MA0082000,MA,2024,0.0,12.0,cius,3.5,WORTHINGTON,local_police,1198.0,015,82175,srs_agency_header,True
+MN0640400,MN,2024,0.0,12.0,cius,3.5,MORGAN,local_police,883.0,127,44116,srs_agency_header,True
+MO0241000,MO,2024,0.0,12.0,cius,3.5,OAKVIEW VILLAGE,local_police,395.0,047,53858,srs_agency_header,True
+NC0101000,NC,2024,0.0,12.0,cius,3.5,CASWELL BEACH,local_police,442.0,019,10960,srs_agency_header,True
+PA0092500,PA,2024,0.0,12.0,cius,3.5,HULMEVILLE,local_police,998.0,017,36192,srs_agency_header,True
+PA0580300,PA,2024,0.0,12.0,cius,3.5,LANESBORO,local_police,496.0,115,41336,srs_agency_header,True
+TX0910100,TX,2024,0.0,12.0,cius,3.5,COLLINSVILLE,local_police,2086.0,181,16036,srs_agency_header,True
+AL0540500,AL,2024,0.0,12.0,cius,3.0,PICKENSVILLE,local_police,577.0,107,59592,srs_agency_header,True
+GA1100400,GA,2024,0.0,12.0,cius,3.0,BRASWELL,local_police,387.0,223,10104,srs_agency_header,True
+IL0320300,IL,2024,0.0,12.0,cius,3.0,MAZON,local_police,981.0,063,47787,srs_agency_header,True
+IL0571400,IL,2024,0.0,12.0,cius,3.0,STANFORD,local_police,597.0,113,72260,srs_agency_header,True
+KS0160300,KS,2024,0.0,12.0,cius,3.0,LEBO,local_police,889.0,031,39125,srs_agency_header,True
+KY0710400,KY,2024,0.0,12.0,cius,3.0,LEWISBURG,local_police,807.0,141,45064,srs_agency_header,True
+MA0080600,MA,2024,0.0,12.0,cius,3.0,GOSHEN,local_police,1067.0,015,26290,srs_agency_header,True
+MN0181300,MN,2024,0.0,12.0,cius,3.0,CUYUNA,local_police,370.0,035,,fbi_cde_agency_roster,True
+MN0230100,MN,2024,0.0,12.0,cius,3.0,CHATFIELD,local_police,3007.0,045,11008,srs_agency_header,True
+MN0280100,MN,2024,0.0,12.0,cius,3.0,CALEDONIA,local_police,2823.0,055,09226,srs_agency_header,True
+MN0470200,MN,2024,0.0,12.0,cius,3.0,EDEN VALLEY,local_police,1089.0,093,18134,srs_agency_header,True
+MN0640700,MN,2024,0.0,12.0,cius,3.0,WALNUT GROVE,local_police,799.0,127,67846,srs_agency_header,True
+MN0650600,MN,2024,0.0,12.0,cius,3.0,BUFFALO LAKE,local_police,680.0,129,08488,srs_agency_header,True
+NY0353600,NY,2024,0.0,12.0,cius,3.0,TUXEDO PARK VILLAGE,local_police,639.0,071,75803,srs_agency_header,True
+OK0120300,OK,2024,0.0,12.0,cius,3.0,BOSWELL,local_police,687.0,023,07750,srs_agency_header,True
+OK0221100,OK,2024,0.0,12.0,cius,3.0,SEILING,local_police,862.0,043,66250,srs_agency_header,True
+PA0095200,PA,2024,0.0,12.0,cius,3.0,IVYLAND,local_police,1054.0,017,37304,srs_agency_header,True
+PA0100800,PA,2024,0.0,12.0,cius,3.0,MARS,local_police,1628.0,019,47672,srs_agency_header,True
+PA0200500,PA,2024,0.0,12.0,cius,3.0,COCHRANTON,local_police,1109.0,039,14800,srs_agency_header,True
+PA0482100,PA,2024,0.0,12.0,cius,3.0,PORTLAND,local_police,517.0,095,62264,srs_agency_header,True
+PA0561100,PA,2024,0.0,12.0,cius,3.0,JENNERSTOWN,local_police,677.0,111,38048,srs_agency_header,True
+PA0640300,PA,2024,0.0,12.0,cius,3.0,WAYMART,local_police,1312.0,127,81712,srs_agency_header,True
+SC0210700,SC,2024,0.0,12.0,cius,3.0,QUINBY,local_police,931.0,041,58795,srs_agency_header,True
+TX0030600,TX,2024,0.0,12.0,cius,3.0,ANGELINA COLLEGE,special_jurisdiction,0.0,005,45072,srs_agency_header,True
+KS0160400,KS,2024,0.0,12.0,cius,2.5,WAVERLY,local_police,571.0,031,76050,srs_agency_header,True
+KY0930300,KY,2024,0.0,12.0,cius,2.5,PEWEE VALLEY,local_police,1650.0,185,60492,srs_agency_header,True
+KY0950100,KY,2024,0.0,12.0,cius,2.5,BOONEVILLE,local_police,163.0,189,08614,srs_agency_header,True
+MN0800400,MN,2024,0.0,12.0,cius,2.5,MENAHGA,local_police,1359.0,159,41660,srs_agency_header,True
+NY0192200,NY,2024,0.0,12.0,cius,2.5,COXSACKIE VILLAGE,local_police,2821.0,039,18718,srs_agency_header,True
+NY0502900,NY,2024,0.0,12.0,cius,2.5,WAYLAND VILLAGE,local_police,1769.0,101,78850,srs_agency_header,True
+OK0641700,OK,2024,0.0,12.0,cius,2.5,RATTAN,local_police,298.0,127,61950,srs_agency_header,True
+PA0261500,PA,2024,0.0,12.0,cius,2.5,LUZERNE TOWNSHIP,local_police,5940.0,051,45560,srs_agency_header,True
+TX1270500,TX,2024,0.0,12.0,cius,2.5,HAWLEY,local_police,625.0,253,32840,srs_agency_header,True
+TX1390400,TX,2024,0.0,12.0,cius,2.5,PARIS JUNIOR COLLEGE,special_jurisdiction,0.0,277,55080,srs_agency_header,True
+AL0380900,AL,2024,0.0,12.0,cius,2.0,TAYLOR,local_police,2449.0,069,75096,srs_agency_header,True
+AL0480300,AL,2024,0.0,12.0,cius,2.0,THOMASTON,local_police,382.0,091,75936,srs_agency_header,True
+GA1550500,GA,2024,0.0,12.0,cius,2.0,DALTON STATE COLLEGE,special_jurisdiction,0.0,313,21380,srs_agency_header,True
+IL0140600,IL,2024,0.0,12.0,cius,2.0,ALBERS,local_police,1152.0,027,00555,srs_agency_header,True
+IL0150900,IL,2024,0.0,12.0,cius,2.0,LAKE LAND COLLEGE,special_jurisdiction,0.0,029,47553,srs_agency_header,True
+IL0570700,IL,2024,0.0,12.0,cius,2.0,DANVERS,local_police,1110.0,113,18537,srs_agency_header,True
+IL0921800,IL,2024,0.0,12.0,cius,2.0,FITHIAN,local_police,474.0,183,26233,srs_agency_header,True
+IL0921900,IL,2024,0.0,12.0,cius,2.0,HENNING,local_police,236.0,183,34137,srs_agency_header,True
+KY0450400,KY,2024,0.0,12.0,cius,2.0,SOUTH SHORE,local_police,1061.0,089,72210,srs_agency_header,True
+KY0561400,KY,2024,0.0,12.0,cius,2.0,WOODLAWN PARK,local_police,978.0,111,,fbi_cde_agency_roster,True
+KY0562300,KY,2024,0.0,12.0,cius,2.0,MEADOW VALE,local_police,768.0,111,51258,srs_agency_header,True
+KY0563600,KY,2024,0.0,12.0,cius,2.0,STRATHMOOR VILLAGE,local_police,673.0,111,74082,srs_agency_header,True
+KY0920400,KY,2024,0.0,12.0,cius,2.0,CENTERTOWN,local_police,436.0,183,13870,srs_agency_header,True
+KY1100400,KY,2024,0.0,12.0,cius,2.0,TRENTON,local_police,377.0,219,77592,srs_agency_header,True
+LA0600900,LA,2024,0.0,12.0,cius,2.0,HEFLIN,local_police,222.0,119,33735,srs_agency_header,True
+MA0070400,MA,2024,0.0,12.0,cius,2.0,CHESTER,local_police,1388.0,013,13485,srs_agency_header,True
+MI6461200,MI,2024,0.0,12.0,cius,2.0,NEW ERA,local_police,466.0,127,57280,srs_agency_header,True
+MN0280500,MN,2024,0.0,12.0,cius,2.0,HOKAH,local_police,556.0,055,29510,srs_agency_header,True
+MO0050700,MO,2024,0.0,12.0,cius,2.0,WASHBURN,local_police,439.0,009,77200,srs_agency_header,True
+MO0540300,MO,2024,0.0,12.0,cius,2.0,CORDER,local_police,425.0,107,16408,srs_agency_header,True
+MO0870100,MO,2024,0.0,12.0,cius,2.0,CENTER,local_police,539.0,173,12592,srs_agency_header,True
+NH0084000,NH,2024,0.0,12.0,cius,2.0,NEW CASTLE,local_police,1004.0,015,50980,srs_agency_header,True
+NY0222300,NY,2024,0.0,12.0,cius,2.0,BROWNVILLE VILLAGE,local_police,1110.0,045,10231,srs_agency_header,True
+NY0222500,NY,2024,0.0,12.0,cius,2.0,GLEN PARK VILLAGE,local_police,490.0,045,29322,srs_agency_header,True
+NY0492000,NY,2024,0.0,12.0,cius,2.0,INTERLAKEN VILLAGE,local_police,626.0,099,37528,srs_agency_header,True
+OK0080900,OK,2024,0.0,12.0,cius,2.0,CEMENT,local_police,484.0,015,13000,srs_agency_header,True
+OK0270700,OK,2024,0.0,12.0,cius,2.0,NASH,local_police,198.0,053,,fbi_cde_agency_roster,True
+OK0320400,OK,2024,0.0,12.0,cius,2.0,CALVIN,local_police,321.0,063,,fbi_cde_agency_roster,True
+OK0411400,OK,2024,0.0,12.0,cius,2.0,SPARKS,local_police,172.0,081,68950,srs_agency_header,True
+PA0031000,PA,2024,0.0,12.0,cius,2.0,PARKS TOWNSHIP,local_police,2571.0,005,58160,srs_agency_header,True
+PA0032500,PA,2024,0.0,12.0,cius,2.0,WORTHINGTON,local_police,596.0,005,86560,srs_agency_header,True
+PA0094100,PA,2024,0.0,12.0,cius,2.0,LANGHORNE MANOR,local_police,1488.0,017,41416,srs_agency_header,True
+PA0102900,PA,2024,0.0,12.0,cius,2.0,HARRISVILLE,local_police,865.0,019,32896,srs_agency_header,True
+PA0103000,PA,2024,0.0,12.0,cius,2.0,PROSPECT,local_police,1117.0,019,,fbi_cde_agency_roster,True
+PA0155300,PA,2024,0.0,12.0,cius,2.0,WEST NOTTINGHAM TOWNSHIP,local_police,2875.0,029,83712,srs_agency_header,True
+PA0221600,PA,2024,0.0,12.0,cius,2.0,HALIFAX,local_police,886.0,043,99991,srs_agency_header,True
+PA0221800,PA,2024,0.0,12.0,cius,2.0,WICONISCO TOWNSHIP,local_police,1204.0,043,84976,srs_agency_header,True
+PA0261100,PA,2024,0.0,12.0,cius,2.0,EVERSON,local_police,760.0,051,24336,srs_agency_header,True
+PA0561700,PA,2024,0.0,12.0,cius,2.0,INDIAN LAKE,local_police,390.0,111,36888,srs_agency_header,True
+PA0562600,PA,2024,0.0,12.0,cius,2.0,SUMMIT TOWNSHIP,local_police,2141.0,111,75232,srs_agency_header,True
+PA0591700,PA,2024,0.0,12.0,cius,2.0,OSCEOLA TOWNSHIP,local_police,633.0,117,57224,srs_agency_header,True
+PA0600600,PA,2024,0.0,12.0,cius,2.0,NEW BERLIN,local_police,859.0,119,53200,srs_agency_header,True
+PA0654200,PA,2024,0.0,12.0,cius,2.0,WEST LEECHBURG,local_police,1249.0,129,83328,srs_agency_header,True
+TX0313300,TX,2024,0.0,12.0,cius,2.0,INDIAN LAKE,local_police,891.0,061,,fbi_cde_agency_roster,True
+TX0740400,TX,2024,0.0,12.0,cius,2.0,SAVOY,local_police,876.0,147,66008,srs_agency_header,True
+AL0060300,AL,2024,0.0,12.0,cius,1.5,CLIO,local_police,1491.0,005,15640,srs_agency_header,True
+AL0080500,AL,2024,0.0,12.0,cius,1.5,HIGHLAND LAKE,local_police,428.0,009,34480,srs_agency_header,True
+GA0471100,GA,2024,0.0,12.0,cius,1.5,ALBANY TECHNICAL COLLEGE,special_jurisdiction,0.0,095,,fbi_cde_agency_roster,True
+KY0451000,KY,2024,0.0,12.0,cius,1.5,BELLEFONTE,local_police,902.0,089,05374,srs_agency_header,True
+MN0340200,MN,2024,0.0,12.0,cius,1.5,ATWATER,local_police,1117.0,067,02692,srs_agency_header,True
+MN0410100,MN,2024,0.0,12.0,cius,1.5,TYLER,local_police,1111.0,081,66046,srs_agency_header,True
+MO0470400,MO,2024,0.0,12.0,cius,1.5,ARCADIA,local_police,606.0,093,01648,srs_agency_header,True
+OK0570600,OK,2024,0.0,12.0,cius,1.5,AVANT,local_police,311.0,113,03500,srs_agency_header,True
+PA0031100,PA,2024,0.0,12.0,cius,1.5,RURAL VALLEY,local_police,820.0,005,66720,srs_agency_header,True
+PA0542800,PA,2024,0.0,12.0,cius,1.5,TOWER CITY,local_police,1433.0,107,77184,srs_agency_header,True
+PA0560100,PA,2024,0.0,12.0,cius,1.5,MEYERSDALE,local_police,2070.0,111,48912,srs_agency_header,True
+PA0635000,PA,2024,0.0,12.0,cius,1.5,WEST PIKE RUN,local_police,1981.0,125,83840,srs_agency_header,True
+SC0450500,SC,2024,0.0,12.0,cius,1.5,LANE,local_police,473.0,089,40210,srs_agency_header,True
+TX0912300,TX,2024,0.0,12.0,cius,1.5,TOM BEAN,local_police,1087.0,181,73328,srs_agency_header,True
+AL0160600,AL,2024,0.0,12.0,cius,1.0,COFFEEVILLE,local_police,326.0,025,16264,srs_agency_header,True
+AR0030500,AR,2024,0.0,12.0,cius,1.0,NORFORK,local_police,543.0,005,,fbi_cde_agency_roster,True
+GA0680800,GA,2024,0.0,12.0,cius,1.0,PIEDMONT COLLEGE,special_jurisdiction,,137,22304,srs_agency_header,True
+IA0060400,IA,2024,0.0,12.0,cius,1.0,URBANA,local_police,1649.0,011,,leaic_crosswalk,True
+IL0410300,IL,2024,0.0,12.0,cius,1.0,REND LAKE COLLEGE,special_jurisdiction,0.0,081,37179,srs_agency_header,True
+IL0501300,IL,2024,0.0,12.0,cius,1.0,GRAND RIDGE,local_police,525.0,099,30757,srs_agency_header,True
+IL0842800,IL,2024,0.0,12.0,cius,1.0,LINCOLN LAND COMM COLLEG,special_jurisdiction,0.0,167,72000,srs_agency_header,True
+IL0921600,IL,2024,0.0,12.0,cius,1.0,SIDELL,local_police,579.0,183,69836,srs_agency_header,True
+KS0440300,KS,2024,0.0,12.0,cius,1.0,MERIDEN,local_police,792.0,087,45950,srs_agency_header,True
+KS0720100,KS,2024,0.0,12.0,cius,1.0,DELPHOS,local_police,339.0,143,17600,srs_agency_header,True
+KY0110300,KY,2024,0.0,12.0,cius,1.0,PERRYVILLE,local_police,793.0,021,60258,srs_agency_header,True
+KY0360400,KY,2024,0.0,12.0,cius,1.0,WAYLAND,local_police,398.0,071,81012,srs_agency_header,True
+KY0430200,KY,2024,0.0,12.0,cius,1.0,CANEYVILLE,local_police,615.0,085,12538,srs_agency_header,True
+KY0430300,KY,2024,0.0,12.0,cius,1.0,CLARKSON,local_police,958.0,085,15148,srs_agency_header,True
+KY0600200,KY,2024,0.0,12.0,cius,1.0,PIPPA PASSES,local_police,677.0,119,61374,srs_agency_header,True
+KY0860300,KY,2024,0.0,12.0,cius,1.0,FOUNTAIN RUN,local_police,223.0,171,28666,srs_agency_header,True
+KY0980200,KY,2024,0.0,12.0,cius,1.0,ELKHORN CITY,local_police,980.0,195,24382,srs_agency_header,True
+KY1000300,KY,2024,0.0,12.0,cius,1.0,EUBANK,local_police,335.0,199,25552,srs_agency_header,True
+KY1020100,KY,2024,0.0,12.0,cius,1.0,LIVINGSTON,local_police,218.0,203,47098,srs_agency_header,True
+MI2755500,MI,2024,0.0,12.0,cius,1.0,MARENISCO TOWNSHIP,local_police,1626.0,053,51560,srs_agency_header,True
+MI3264400,MI,2024,0.0,12.0,cius,1.0,OWENDALE,local_police,261.0,063,61920,srs_agency_header,True
+MN0170500,MN,2024,0.0,12.0,cius,1.0,WESTBROOK,local_police,769.0,033,69250,srs_agency_header,True
+MN0720500,MN,2024,0.0,12.0,cius,1.0,HENDERSON,local_police,982.0,143,28394,srs_agency_header,True
+MN0800200,MN,2024,0.0,12.0,cius,1.0,SEBEKA,local_police,753.0,159,59152,srs_agency_header,True
+MO0191200,MO,2024,0.0,12.0,cius,1.0,EAST LYNNE,local_police,313.0,037,20980,srs_agency_header,True
+MO0440500,MO,2024,0.0,12.0,cius,1.0,OREGON,local_police,845.0,087,54848,srs_agency_header,True
+MO0540100,MO,2024,0.0,12.0,cius,1.0,ALMA,local_police,394.0,107,00802,srs_agency_header,True
+MO0540900,MO,2024,0.0,12.0,cius,1.0,NAPOLEON,local_police,213.0,107,51140,srs_agency_header,True
+MO1050300,MO,2024,0.0,12.0,cius,1.0,REEDS SPRING,local_police,1278.0,209,61112,srs_agency_header,True
+MS0610900,MS,2024,0.0,12.0,cius,1.0,PUCKETT,local_police,352.0,121,,fbi_cde_agency_roster,True
+NH0033000,NH,2024,0.0,12.0,cius,1.0,ROXBURY,local_police,228.0,005,65700,srs_agency_header,True
+NH0057000,NH,2024,0.0,12.0,cius,1.0,SUGAR HILL,local_police,688.0,009,74740,srs_agency_header,True
+NH0074800,NH,2024,0.0,12.0,cius,1.0,SUTTON,local_police,2060.0,013,75460,srs_agency_header,True
+NH0101000,NH,2024,0.0,12.0,cius,1.0,GOSHEN,local_police,820.0,019,30500,srs_agency_header,True
+NY0022200,NY,2024,0.0,12.0,cius,1.0,ANDOVER VILLAGE,local_police,987.0,003,02143,srs_agency_header,True
+NY0025600,NY,2024,0.0,12.0,cius,1.0,WILLING TOWN,local_police,1256.0,003,82095,srs_agency_header,True
+NY0223300,NY,2024,0.0,12.0,cius,1.0,SACKETS HARBOR VILLAGE,local_police,1432.0,045,64408,srs_agency_header,True
+NY0294700,NY,2024,0.0,12.0,cius,1.0,CENTRE ISLAND VILLAGE,local_police,414.0,059,13618,srs_agency_header,True
+OK0200300,OK,2024,0.0,12.0,cius,1.0,ARAPAHO,local_police,657.0,039,02500,srs_agency_header,True
+OK0200400,OK,2024,0.0,12.0,cius,1.0,BUTLER,local_police,299.0,039,10450,srs_agency_header,True
+OK0572300,OK,2024,0.0,12.0,cius,1.0,WYNONA,local_police,434.0,113,82450,srs_agency_header,True
+OK0680600,OK,2024,0.0,12.0,cius,1.0,GANS,local_police,300.0,135,28350,srs_agency_header,True
+PA0063200,PA,2024,0.0,12.0,cius,1.0,BERNVILLE,local_police,956.0,011,05848,srs_agency_header,True
+PA0131200,PA,2024,0.0,12.0,cius,1.0,BEAVER MEADOWS,local_police,913.0,025,04816,srs_agency_header,True
+PA0131600,PA,2024,0.0,12.0,cius,1.0,WEISSPORT,local_police,418.0,025,82080,srs_agency_header,True
+PA0320200,PA,2024,0.0,12.0,cius,1.0,HOMER CITY,local_police,1733.0,063,35408,srs_agency_header,True
+PA0320500,PA,2024,0.0,12.0,cius,1.0,CHERRY TREE,local_police,340.0,063,13120,srs_agency_header,True
+PA0371800,PA,2024,0.0,12.0,cius,1.0,NEW BEAVER,local_police,1425.0,073,53184,srs_agency_header,True
+PA0482800,PA,2024,0.0,12.0,cius,1.0,WALNUTPORT,local_police,2119.0,095,80800,srs_agency_header,True
+PA0543400,PA,2024,0.0,12.0,cius,1.0,RYAN TOWNSHIP,local_police,2955.0,107,66944,srs_agency_header,True
+PA0544500,PA,2024,0.0,12.0,cius,1.0,WALKER TOWNSHIP,local_police,1008.0,107,80576,srs_agency_header,True
+PA0545000,PA,2024,0.0,12.0,cius,1.0,REILLY TOWNSHIP,local_police,688.0,107,64088,srs_agency_header,True
+PA0580400,PA,2024,0.0,12.0,cius,1.0,MONTROSE,local_police,1484.0,115,50736,srs_agency_header,True
+PA0652900,PA,2024,0.0,12.0,cius,1.0,AVONMORE BORO,local_police,953.0,129,03688,srs_agency_header,True
+SC0019E00,SC,2024,0.0,12.0,cius,1.0,ERSKINE COLLEGE,special_jurisdiction,0.0,001,21040,srs_agency_header,True
+TX0290100,TX,2024,0.0,12.0,cius,1.0,POINT COMFORT,local_police,700.0,057,58568,srs_agency_header,True
+TX0911800,TX,2024,0.0,12.0,cius,1.0,GRAYSON COLLEGE,special_jurisdiction,0.0,181,19900,srs_agency_header,True
+TX1701800,TX,2024,0.0,12.0,cius,1.0,WOODBRANCH,local_police,1603.0,339,80044,srs_agency_header,True
+TX1800100,TX,2024,0.0,12.0,cius,1.0,VEGA,local_police,887.0,359,75188,srs_agency_header,True
+AL0420400,AL,2024,0.0,12.0,cius,,HILLSBORO,local_police,518.0,079,34816,srs_agency_header,True
+GA0050400,GA,2024,0.0,12.0,cius,,GEORGIA MILITARY COLLEGE,special_jurisdiction,0.0,009,51492,srs_agency_header,True
+GA0190300,GA,2024,0.0,12.0,cius,,LEARY,local_police,577.0,037,45600,srs_agency_header,True
+GA0290900,GA,2024,0.0,12.0,cius,,ATHENS TECHNICAL COLLEGE,special_jurisdiction,0.0,059,,fbi_cde_agency_roster,True
+GA0810400,GA,2024,0.0,12.0,cius,,BARTOW,local_police,256.0,163,05680,srs_agency_header,True
+GA0810500,GA,2024,0.0,12.0,cius,,STAPLETON,local_police,399.0,163,73004,srs_agency_header,True
+GA0850200,GA,2024,0.0,12.0,cius,,MILNER,local_police,828.0,171,51604,srs_agency_header,True
+IA0820800,IA,2024,0.0,12.0,cius,,PRINCETON,local_police,962.0,163,64740,srs_agency_header,True
+IL0141500,IL,2024,0.0,12.0,cius,,KASKASKIA COLLEGE,special_jurisdiction,0.0,027,,fbi_cde_agency_roster,True
+IL0190600,IL,2024,0.0,12.0,cius,,WATERMAN,local_police,1498.0,037,79163,srs_agency_header,True
+IL0562500,IL,2024,0.0,12.0,cius,,BULL VALLEY,local_police,1122.0,111,09531,srs_agency_header,True
+IL0601000,IL,2024,0.0,12.0,cius,,LIVINGSTON,local_police,815.0,119,44160,srs_agency_header,True
+IL0610900,IL,2024,0.0,12.0,cius,,PATOKA,local_police,560.0,121,58057,srs_agency_header,True
+IL0792100,IL,2024,0.0,12.0,cius,,ELLIS GROVE,local_police,346.0,157,23503,srs_agency_header,True
+IL0922000,IL,2024,0.0,12.0,cius,,INDIANOLA,local_police,263.0,183,37348,srs_agency_header,True
+IN0740600,IN,2024,0.0,12.0,cius,,CHRISNEY,local_police,471.0,147,,fbi_cde_agency_roster,True
+KS0010300,KS,2024,0.0,12.0,cius,,MORAN,local_police,511.0,001,48125,srs_agency_header,True
+KS0290200,KS,2024,0.0,12.0,cius,,BUCKLIN,local_police,792.0,057,09000,srs_agency_header,True
+KS0350300,KS,2024,0.0,12.0,cius,,MONTEZUMA,local_police,981.0,069,47875,srs_agency_header,True
+KS0850200,KS,2024,0.0,12.0,cius,,ASSARIA,local_police,426.0,169,02850,srs_agency_header,True
+KY0360200,KY,2024,0.0,12.0,cius,,WHEELWRIGHT,local_police,481.0,071,82272,srs_agency_header,True
+KY0360500,KY,2024,0.0,12.0,cius,,ALLEN,local_police,179.0,071,00946,srs_agency_header,True
+KY0480400,KY,2024,0.0,12.0,cius,,LYNCH,local_police,654.0,095,48540,srs_agency_header,True
+KY0520400,KY,2024,0.0,12.0,cius,,CAMPBELLSBURG,local_police,852.0,103,12142,srs_agency_header,True
+KY0660100,KY,2024,0.0,12.0,cius,,HYDEN,local_police,341.0,131,38908,srs_agency_header,True
+KY0690300,KY,2024,0.0,12.0,cius,,CRAB ORCHARD,local_police,831.0,137,17956,srs_agency_header,True
+KY0960200,KY,2024,0.0,12.0,cius,,BUTLER,local_police,640.0,191,11530,srs_agency_header,True
+LA0190300,LA,2024,0.0,12.0,cius,,WILSON,local_police,564.0,037,82215,srs_agency_header,True
+MA0022500,MA,2024,0.0,12.0,cius,,SAVOY,local_police,682.0,003,60225,srs_agency_header,True
+MA0060500,MA,2024,0.0,12.0,cius,,COLRAIN,local_police,1638.0,011,14885,srs_agency_header,True
+MA0071400,MA,2024,0.0,12.0,cius,,MONTGOMERY,local_police,828.0,013,,fbi_cde_agency_roster,True
+MI3266600,MI,2024,0.0,12.0,cius,,PIGEON,local_police,1205.0,063,64060,srs_agency_header,True
+MN0010200,MN,2024,0.0,12.0,cius,,MCGREGOR,local_police,385.0,001,39014,srs_agency_header,True
+MN0230500,MN,2024,0.0,12.0,cius,,RUSHFORD,local_police,1861.0,045,56284,srs_agency_header,True
+MO0980600,MO,2024,0.0,12.0,cius,,EMMA,local_police,232.0,195,22312,srs_agency_header,True
+NB0140300,NE,2024,0.0,12.0,cius,,LAUREL,local_police,966.0,027,26350,srs_agency_header,True
+NH0057400,NH,2024,0.0,12.0,cius,,WARREN,local_police,952.0,009,78740,srs_agency_header,True
+NY0182500,NY,2024,0.0,12.0,cius,,CORFU VILLAGE,local_police,703.0,037,18201,srs_agency_header,True
+NY0503400,NY,2024,0.0,12.0,cius,,NORTH HORNELL VILLAGE,local_police,783.0,101,53055,srs_agency_header,True
+PA0032000,PA,2024,0.0,12.0,cius,,WEST KITTANNING,local_police,1174.0,005,83248,srs_agency_header,True
+PA0044900,PA,2024,0.0,12.0,cius,,SOUTH HEIGHTS,local_police,450.0,007,72216,srs_agency_header,True
+PA0111900,PA,2024,0.0,12.0,cius,,BLACKLICK TOWNSHIP,local_police,1890.0,021,06736,srs_agency_header,True
+PA0113500,PA,2024,0.0,12.0,cius,,LORETTO,local_police,1289.0,021,44704,srs_agency_header,True
+PA0351700,PA,2024,0.0,12.0,cius,,MAYFIELD,local_police,1762.0,069,48176,srs_agency_header,True
+PA0372100,PA,2024,0.0,12.0,cius,,LITTLE BEAVER TOWNSHIP,local_police,1351.0,073,43824,srs_agency_header,True
+PA0544200,PA,2024,0.0,12.0,cius,,NORTH UNION TOWNSHIP,local_police,1426.0,107,55472,srs_agency_header,True
+PA0544700,PA,2024,0.0,12.0,cius,,BRANCH TOWNSHIP,local_police,2406.0,107,08200,srs_agency_header,True
+PA0560500,PA,2024,0.0,12.0,cius,,BOSWELL,local_police,1211.0,111,07712,srs_agency_header,True
+PA0561800,PA,2024,0.0,12.0,cius,,ROCKWOOD,local_police,837.0,111,65736,srs_agency_header,True
+SC0130400,SC,2024,0.0,12.0,cius,,MCBEE,local_police,852.0,025,43495,srs_agency_header,True
+TX0191400,TX,2024,0.0,12.0,cius,,TEXARKANA COLLEGE,special_jurisdiction,0.0,037,72368,srs_agency_header,True
+TX0730300,TX,2024,0.0,12.0,cius,,ROSEBUD,local_police,1376.0,145,63188,srs_agency_header,True
+TX0780100,TX,2024,0.0,12.0,cius,,CROWELL,local_police,854.0,155,17948,srs_agency_header,True
+TX0891000,TX,2024,0.0,12.0,cius,,SMILEY,local_police,490.0,177,,fbi_cde_agency_roster,True
+TX0912200,TX,2024,0.0,12.0,cius,,SOUTHMAYD,local_police,1196.0,181,,fbi_cde_agency_roster,True
+TX0960200,TX,2024,0.0,12.0,cius,,ESTELLINE,local_police,131.0,191,24636,srs_agency_header,True
+TX1100500,TX,2024,0.0,12.0,cius,,ANTON,local_police,1097.0,219,03540,srs_agency_header,True
+TX1410600,TX,2024,0.0,12.0,cius,,LOMETA,local_police,877.0,281,43516,srs_agency_header,True
+TX1521100,TX,2024,0.0,12.0,cius,,RANSOM CANYON,local_police,1157.0,303,60672,srs_agency_header,True
+TX1750700,TX,2024,0.0,12.0,cius,,BLOOMING GROVE,local_police,888.0,349,,fbi_cde_agency_roster,True
+WA0380900,WA,2024,0.0,12.0,cius,,PALOUSE,local_police,1084.0,075,52950,srs_agency_header,True
+WY0070400,WY,2024,0.0,12.0,cius,,SHOSHONI,local_police,652.0,013,70570,srs_agency_header,True
+IL0710300,IL,2023,0.0,12.0,cius,68.0,OREGON,local_police,3570.0,141,56484,srs_agency_header,True
+MA0082800,MA,2023,0.0,12.0,cius,49.0,AMHERST COLLEGE,special_jurisdiction,,015,01325,srs_agency_header,True
+NC0630300,NC,2023,0.0,12.0,cius,44.0,ROBBINS,local_police,1281.0,125,57000,srs_agency_header,True
+OK0120500,OK,2023,0.0,12.0,cius,25.0,FORT TOWSON,local_police,504.0,023,27400,srs_agency_header,True
+MA0082600,MA,2023,0.0,12.0,cius,23.0,SMITH COLLEGE,special_jurisdiction,,015,64110,srs_agency_header,True
+VT0140600,VT,2023,0.0,12.0,cius,23.0,CHESTER,local_police,3055.0,027,13675,srs_agency_header,True
+PA0540400,PA,2023,0.0,12.0,cius,21.5,MCADOO,local_police,2480.0,107,45824,srs_agency_header,True
+MN0120200,MN,2023,0.0,12.0,cius,20.0,MONTEVIDEO,local_police,5247.0,023,43720,srs_agency_header,True
+PA0140100,PA,2023,0.0,12.0,cius,20.0,BELLEFONTE,local_police,6325.0,027,05256,srs_agency_header,True
+PA0321000,PA,2023,0.0,12.0,cius,18.5,INDIANA UNIVERSITY,special_jurisdiction,0.0,063,36816,srs_agency_header,True
+OK0340800,OK,2023,0.0,12.0,cius,17.0,RINGLING,local_police,977.0,067,63350,srs_agency_header,True
+ID0400400,ID,2023,0.0,12.0,cius,15.0,PINEHURST,local_police,1837.0,079,63100,srs_agency_header,True
+IL0970300,IL,2023,0.0,12.0,cius,14.0,NORRIS CITY,local_police,1203.0,193,53403,srs_agency_header,True
+LA0190100,LA,2023,0.0,12.0,cius,14.0,CLINTON,local_police,1516.0,037,15990,srs_agency_header,True
+NY0082200,NY,2023,0.0,12.0,cius,14.0,GREENE VILLAGE,local_police,1448.0,017,30411,srs_agency_header,True
+IA0940200,IA,2023,0.0,12.0,cius,13.5,GOWRIE,local_police,959.0,187,31710,srs_agency_header,True
+WI0040400,WI,2023,0.0,12.0,cius,13.5,IRON RIVER,local_police,1310.0,007,37200,srs_agency_header,True
+IL0750400,IL,2023,0.0,12.0,cius,13.0,PLEASANT HILL,local_police,928.0,149,60534,srs_agency_header,True
+TX0980200,TX,2023,0.0,12.0,cius,13.0,SPEARMAN,local_police,3275.0,195,69476,srs_agency_header,True
+TX0190200,TX,2023,0.0,12.0,cius,12.0,MAUD,local_police,1069.0,037,47088,srs_agency_header,True
+IA0820500,IA,2023,0.0,12.0,cius,11.0,BLUE GRASS,local_police,1715.0,163,07075,srs_agency_header,True
+TX1100400,TX,2023,0.0,12.0,cius,11.0,SOUTH PLAINS COLLEGE,special_jurisdiction,0.0,219,42448,srs_agency_header,True
+MO0080100,MO,2023,0.0,12.0,cius,10.0,COLE CAMP,local_police,1189.0,015,15436,srs_agency_header,True
+GA0080300,GA,2023,0.0,12.0,cius,9.5,KINGSTON,local_police,968.0,015,43668,srs_agency_header,True
+IL0380400,IL,2023,0.0,12.0,cius,9.5,ONARGA,local_police,1308.0,075,56081,srs_agency_header,True
+PA0541300,PA,2023,0.0,12.0,cius,9.5,COALDALE,local_police,2435.0,107,14600,srs_agency_header,True
+IA0540100,IA,2023,0.0,12.0,cius,9.0,SIGOURNEY,local_police,2013.0,107,73110,srs_agency_header,True
+IL0110500,IL,2023,0.0,12.0,cius,9.0,ASSUMPTION,local_police,1172.0,021,02609,srs_agency_header,True
+KY0470400,KY,2023,0.0,12.0,cius,9.0,WEST POINT,local_police,942.0,093,81930,srs_agency_header,True
+MN0400600,MN,2023,0.0,12.0,cius,9.0,CLEVELAND,local_police,783.0,079,,fbi_cde_agency_roster,True
+TX2000700,TX,2023,0.0,12.0,cius,9.0,MILES,local_police,939.0,399,48396,srs_agency_header,True
+NY0352400,NY,2023,0.0,12.0,cius,8.5,HIGHLAND FALLS VILLAGE,local_police,3838.0,071,34495,srs_agency_header,True
+KY1140400,KY,2023,0.0,12.0,cius,8.0,WOODBURN,local_police,381.0,227,84414,srs_agency_header,True
+ME0151700,ME,2023,0.0,12.0,cius,8.0,MILBRIDGE,local_police,1407.0,029,45600,srs_agency_header,True
+MO0481300,MO,2023,0.0,12.0,cius,7.5,LAKE TAPAWINGO,local_police,783.0,095,40196,srs_agency_header,True
+MO0501900,MO,2023,0.0,12.0,cius,7.0,JEFFERSON COLLEGE,special_jurisdiction,0.0,099,,fbi_cde_agency_roster,True
+IL0453300,IL,2023,0.0,12.0,cius,6.5,ELGIN COMMUNITY COLLEGE,special_jurisdiction,0.0,089,23074,srs_agency_header,True
+IL0900400,IL,2023,0.0,12.0,cius,6.5,HOPEDALE,local_police,1101.0,179,36126,srs_agency_header,True
+NY0582100,NY,2023,0.0,12.0,cius,6.5,WOLCOTT VILLAGE,local_police,1613.0,117,82678,srs_agency_header,True
+TX1660300,TX,2023,0.0,12.0,cius,6.5,THORNDALE,local_police,1399.0,331,72776,srs_agency_header,True
+WI0660300,WI,2023,0.0,12.0,cius,6.5,BIRCHWOOD,local_police,433.0,129,07550,srs_agency_header,True
+IL0080300,IL,2023,0.0,12.0,cius,6.0,MILLEDGEVILLE,local_police,1082.0,015,49191,srs_agency_header,True
+IL0453400,IL,2023,0.0,12.0,cius,6.0,CAMPTON HILLS,local_police,11305.0,089,10906,srs_agency_header,True
+MO0470200,MO,2023,0.0,12.0,cius,6.0,PILOT KNOB,local_police,719.0,093,57656,srs_agency_header,True
+OH0500600,OH,2023,0.0,12.0,cius,6.0,POLAND VILLAGE,local_police,2432.0,099,63954,srs_agency_header,True
+OK0230700,OK,2023,0.0,12.0,cius,6.0,SHATTUCK,local_police,1284.0,045,66750,srs_agency_header,True
+OK0241500,OK,2023,0.0,12.0,cius,6.0,LAHOMA,local_police,629.0,047,40700,srs_agency_header,True
+TX2101600,TX,2023,0.0,12.0,cius,6.0,TENAHA,local_police,1153.0,419,,fbi_cde_agency_roster,True
+AR0620600,AR,2023,0.0,12.0,cius,5.0,MADISON,local_police,721.0,123,43280,srs_agency_header,True
+IL0451900,IL,2023,0.0,12.0,cius,5.0,WAUBONSEE COMM COLLEGE,special_jurisdiction,0.0,089,73391,srs_agency_header,True
+KY0900200,KY,2023,0.0,12.0,cius,5.0,BLOOMFIELD,local_police,1088.0,179,07516,srs_agency_header,True
+ME0051300,ME,2023,0.0,12.0,cius,5.0,GOULDSBORO,local_police,1768.0,009,28450,srs_agency_header,True
+MN0110700,MN,2023,0.0,12.0,cius,5.0,PILLAGER,local_police,524.0,021,,fbi_cde_agency_roster,True
+NY0223400,NY,2023,0.0,12.0,cius,5.0,BLACK RIVER,local_police,1274.0,045,06794,srs_agency_header,True
+NY0355800,NY,2023,0.0,12.0,cius,5.0,HIGHLANDS TOWN,local_police,9199.0,071,34550,srs_agency_header,True
+PA0111500,PA,2023,0.0,12.0,cius,5.0,SOUTH FORK,local_police,935.0,021,72168,srs_agency_header,True
+TX0201700,TX,2023,0.0,12.0,cius,5.0,ALVIN COMMUNITY COLLEGE,special_jurisdiction,0.0,039,02272,srs_agency_header,True
+TX2340200,TX,2023,0.0,12.0,cius,5.0,EDGEWOOD,local_police,1763.0,467,22612,srs_agency_header,True
+MN0250400,MN,2023,0.0,12.0,cius,4.5,KENYON,local_police,1907.0,049,32840,srs_agency_header,True
+MO0060900,MO,2023,0.0,12.0,cius,4.5,LIBERAL,local_police,717.0,011,41906,srs_agency_header,True
+OK0310800,OK,2023,0.0,12.0,cius,4.5,MCCURTAIN,local_police,508.0,061,44950,srs_agency_header,True
+PA0654000,PA,2023,0.0,12.0,cius,4.5,MANOR,local_police,3550.0,129,47000,srs_agency_header,True
+KY0120200,KY,2023,0.0,12.0,cius,4.0,BROOKSVILLE,local_police,662.0,023,10000,srs_agency_header,True
+KY0710200,KY,2023,0.0,12.0,cius,4.0,AUBURN,local_police,1651.0,141,02638,srs_agency_header,True
+MN0220500,MN,2023,0.0,12.0,cius,4.0,WINNEBAGO,local_police,1391.0,043,70924,srs_agency_header,True
+MN0300200,MN,2023,0.0,12.0,cius,4.0,BRAHAM,local_police,1856.0,059,07282,srs_agency_header,True
+MO0270400,MO,2023,0.0,12.0,cius,4.0,PRAIRIE HOME,local_police,280.0,053,59726,srs_agency_header,True
+OK0411500,OK,2023,0.0,12.0,cius,4.0,TRYON,local_police,502.0,081,74550,srs_agency_header,True
+PA0420300,PA,2023,0.0,12.0,cius,4.0,PORT ALLEGANY,local_police,2069.0,083,62088,srs_agency_header,True
+IL0790900,IL,2023,0.0,12.0,cius,3.5,RUMA,local_police,311.0,157,66287,srs_agency_header,True
+IL0870600,IL,2023,0.0,12.0,cius,3.5,COWDEN,local_police,576.0,173,17055,srs_agency_header,True
+KY0670200,KY,2023,0.0,12.0,cius,3.5,JENKINS,local_police,1981.0,133,40312,srs_agency_header,True
+MO0241000,MO,2023,0.0,12.0,cius,3.5,OAKVIEW VILLAGE,local_police,395.0,047,53858,srs_agency_header,True
+PA0092500,PA,2023,0.0,12.0,cius,3.5,HULMEVILLE,local_police,998.0,017,36192,srs_agency_header,True
+PA0580300,PA,2023,0.0,12.0,cius,3.5,LANESBORO,local_police,496.0,115,41336,srs_agency_header,True
+TX0140600,TX,2023,0.0,12.0,cius,3.5,ROGERS,local_police,1255.0,027,62924,srs_agency_header,True
+IL0571400,IL,2023,0.0,12.0,cius,3.0,STANFORD,local_police,597.0,113,72260,srs_agency_header,True
+IL0602600,IL,2023,0.0,12.0,cius,3.0,WORDEN,local_police,1092.0,119,83505,srs_agency_header,True
+KY0360300,KY,2023,0.0,12.0,cius,3.0,MARTIN,local_police,562.0,071,50286,srs_agency_header,True
+KY0710400,KY,2023,0.0,12.0,cius,3.0,LEWISBURG,local_police,807.0,141,45064,srs_agency_header,True
+KY0840200,KY,2023,0.0,12.0,cius,3.0,BURGIN,local_police,1006.0,167,11044,srs_agency_header,True
+MA0060300,MA,2023,0.0,12.0,cius,3.0,BUCKLAND,local_police,1872.0,011,09595,srs_agency_header,True
+MN0181300,MN,2023,0.0,12.0,cius,3.0,CUYUNA,local_police,370.0,035,,fbi_cde_agency_roster,True
+MN0230100,MN,2023,0.0,12.0,cius,3.0,CHATFIELD,local_police,3007.0,045,11008,srs_agency_header,True
+MN0280100,MN,2023,0.0,12.0,cius,3.0,CALEDONIA,local_police,2823.0,055,09226,srs_agency_header,True
+MN0640700,MN,2023,0.0,12.0,cius,3.0,WALNUT GROVE,local_police,799.0,127,67846,srs_agency_header,True
+MO0050300,MO,2023,0.0,12.0,cius,3.0,EXETER,local_police,773.0,009,23122,srs_agency_header,True
+NH0055600,NH,2023,0.0,12.0,cius,3.0,LYME,local_police,1764.0,009,44260,srs_agency_header,True
+NY0222800,NY,2023,0.0,12.0,cius,3.0,CLAYTON VILLAGE,local_police,1860.0,045,16089,srs_agency_header,True
+OK0160300,OK,2023,0.0,12.0,cius,3.0,CHATTANOOGA,local_police,457.0,031,,fbi_cde_agency_roster,True
+PA0200500,PA,2023,0.0,12.0,cius,3.0,COCHRANTON,local_police,1109.0,039,14800,srs_agency_header,True
+PA0371700,PA,2023,0.0,12.0,cius,3.0,WAMPUM,local_police,674.0,073,80880,srs_agency_header,True
+PA0561100,PA,2023,0.0,12.0,cius,3.0,JENNERSTOWN,local_police,677.0,111,38048,srs_agency_header,True
+PA0640300,PA,2023,0.0,12.0,cius,3.0,WAYMART,local_police,1312.0,127,81712,srs_agency_header,True
+TX0671200,TX,2023,0.0,12.0,cius,3.0,CISCO COLLEGE,special_jurisdiction,0.0,133,,fbi_cde_agency_roster,True
+TX0702200,TX,2023,0.0,12.0,cius,3.0,MAYPEARL,local_police,1060.0,139,,fbi_cde_agency_roster,True
+TX1781700,TX,2023,0.0,12.0,cius,3.0,DRISCOLL,local_police,752.0,355,21436,srs_agency_header,True
+IL0164100,IL,2023,0.0,12.0,cius,2.5,GOLF,local_police,501.0,031,30328,srs_agency_header,True
+KY0930300,KY,2023,0.0,12.0,cius,2.5,PEWEE VALLEY,local_police,1650.0,185,60492,srs_agency_header,True
+OK0070500,OK,2023,0.0,12.0,cius,2.5,BENNINGTON,local_police,378.0,013,05400,srs_agency_header,True
+OK0641700,OK,2023,0.0,12.0,cius,2.5,RATTAN,local_police,298.0,127,61950,srs_agency_header,True
+TX1270500,TX,2023,0.0,12.0,cius,2.5,HAWLEY,local_police,625.0,253,32840,srs_agency_header,True
+WI0541100,WI,2023,0.0,12.0,cius,2.5,FULTON,local_police,3674.0,105,28075,srs_agency_header,True
+AL0280800,AL,2023,0.0,12.0,cius,2.0,HAMMONDVILLE,local_police,495.0,049,32896,srs_agency_header,True
+GA1500300,GA,2023,0.0,12.0,cius,2.0,DAVISBORO,local_police,1976.0,303,21800,srs_agency_header,True
+IL0140600,IL,2023,0.0,12.0,cius,2.0,ALBERS,local_police,1152.0,027,00555,srs_agency_header,True
+IL0430200,IL,2023,0.0,12.0,cius,2.0,ELIZABETH,local_police,729.0,085,23165,srs_agency_header,True
+IL0920700,IL,2023,0.0,12.0,cius,2.0,POTOMAC,local_police,711.0,183,61366,srs_agency_header,True
+IL0921800,IL,2023,0.0,12.0,cius,2.0,FITHIAN,local_police,474.0,183,26233,srs_agency_header,True
+IL0980500,IL,2023,0.0,12.0,cius,2.0,PROPHETSTOWN,local_police,1959.0,195,61977,srs_agency_header,True
+KY0040300,KY,2023,0.0,12.0,cius,2.0,LA CENTER,local_police,978.0,007,43336,srs_agency_header,True
+KY0561400,KY,2023,0.0,12.0,cius,2.0,WOODLAWN PARK,local_police,978.0,111,,fbi_cde_agency_roster,True
+KY1050300,KY,2023,0.0,12.0,cius,2.0,SADIEVILLE,local_police,378.0,209,67656,srs_agency_header,True
+KY1170400,KY,2023,0.0,12.0,cius,2.0,SEBREE,local_police,1549.0,233,69222,srs_agency_header,True
+LA0050800,LA,2023,0.0,12.0,cius,2.0,EVERGREEN,local_police,286.0,009,,fbi_cde_agency_roster,True
+LA0600700,LA,2023,0.0,12.0,cius,2.0,SIBLEY,local_police,1161.0,119,70175,srs_agency_header,True
+MN0180700,MN,2023,0.0,12.0,cius,2.0,EMILY,local_police,872.0,035,,leaic_crosswalk,True
+MN0280500,MN,2023,0.0,12.0,cius,2.0,HOKAH,local_police,556.0,055,29510,srs_agency_header,True
+MO0050700,MO,2023,0.0,12.0,cius,2.0,WASHBURN,local_police,439.0,009,77200,srs_agency_header,True
+MO0870100,MO,2023,0.0,12.0,cius,2.0,CENTER,local_police,539.0,173,12592,srs_agency_header,True
+MO0890100,MO,2023,0.0,12.0,cius,2.0,HARDIN,local_police,558.0,177,30322,srs_agency_header,True
+ND0530400,ND,2023,0.0,12.0,cius,2.0,RAY,local_police,989.0,105,,fbi_cde_agency_roster,True
+NY0135000,NY,2023,0.0,12.0,cius,2.0,PINE PLAINS TOWN,local_police,2427.0,027,58156,srs_agency_header,True
+NY0222300,NY,2023,0.0,12.0,cius,2.0,BROWNVILLE VILLAGE,local_police,1110.0,045,10231,srs_agency_header,True
+NY0222500,NY,2023,0.0,12.0,cius,2.0,GLEN PARK VILLAGE,local_police,490.0,045,29322,srs_agency_header,True
+OK0260500,OK,2023,0.0,12.0,cius,2.0,AMBER,local_police,502.0,051,,fbi_cde_agency_roster,True
+OK0270700,OK,2023,0.0,12.0,cius,2.0,NASH,local_police,198.0,053,,fbi_cde_agency_roster,True
+OK0320400,OK,2023,0.0,12.0,cius,2.0,CALVIN,local_police,321.0,063,,fbi_cde_agency_roster,True
+OK0330500,OK,2023,0.0,12.0,cius,2.0,ELDORADO,local_police,415.0,065,23350,srs_agency_header,True
+OK0411400,OK,2023,0.0,12.0,cius,2.0,SPARKS,local_police,172.0,081,68950,srs_agency_header,True
+OK0660900,OK,2023,0.0,12.0,cius,2.0,TALALA,local_police,279.0,131,,fbi_cde_agency_roster,True
+PA0094100,PA,2023,0.0,12.0,cius,2.0,LANGHORNE MANOR,local_police,1488.0,017,41416,srs_agency_header,True
+PA0103000,PA,2023,0.0,12.0,cius,2.0,PROSPECT,local_police,1117.0,019,,fbi_cde_agency_roster,True
+PA0221600,PA,2023,0.0,12.0,cius,2.0,HALIFAX,local_police,886.0,043,99991,srs_agency_header,True
+PA0261100,PA,2023,0.0,12.0,cius,2.0,EVERSON,local_police,760.0,051,24336,srs_agency_header,True
+PA0541700,PA,2023,0.0,12.0,cius,2.0,PORT CARBON,local_police,3242.0,107,62128,srs_agency_header,True
+PA0561700,PA,2023,0.0,12.0,cius,2.0,INDIAN LAKE,local_police,390.0,111,36888,srs_agency_header,True
+PA0632600,PA,2023,0.0,12.0,cius,2.0,HOUSTON,local_police,1239.0,125,35896,srs_agency_header,True
+TX2011000,TX,2023,0.0,12.0,cius,2.0,MOUNT ENTERPRISE,local_police,512.0,401,49728,srs_agency_header,True
+VA0650300,VA,2023,0.0,12.0,cius,2.0,EASTVILLE,local_police,344.0,131,,fbi_cde_agency_roster,True
+WI0420600,WI,2023,0.0,12.0,cius,2.0,WILTON,local_police,520.0,081,87525,srs_agency_header,True
+AL0100300,AL,2023,0.0,12.0,cius,1.5,MCKENZIE,local_police,499.0,013,45496,srs_agency_header,True
+GA0471100,GA,2023,0.0,12.0,cius,1.5,ALBANY TECHNICAL COLLEGE,special_jurisdiction,0.0,095,,fbi_cde_agency_roster,True
+GA1210800,GA,2023,0.0,12.0,cius,1.5,BLYTHE,local_police,777.0,245,09040,srs_agency_header,True
+MA0062200,MA,2023,0.0,12.0,cius,1.5,SHUTESBURY,local_police,1774.0,011,61905,srs_agency_header,True
+MN0800300,MN,2023,0.0,12.0,cius,1.5,VERNDALE,local_police,574.0,159,66874,srs_agency_header,True
+ND0180600,ND,2023,0.0,12.0,cius,1.5,THOMPSON,local_police,1086.0,035,78660,srs_agency_header,True
+NY0042600,NY,2023,0.0,12.0,cius,1.5,CATTARAUGUS VILLAGE,local_police,978.0,009,13024,srs_agency_header,True
+NY0222600,NY,2023,0.0,12.0,cius,1.5,CAPE VINCENT VILLAGE,local_police,739.0,045,12353,srs_agency_header,True
+PA0031100,PA,2023,0.0,12.0,cius,1.5,RURAL VALLEY,local_police,820.0,005,66720,srs_agency_header,True
+PA0111100,PA,2023,0.0,12.0,cius,1.5,GEISTOWN,local_police,2325.0,021,28720,srs_agency_header,True
+PA0431400,PA,2023,0.0,12.0,cius,1.5,STONEBORO,local_police,990.0,085,74288,srs_agency_header,True
+PA0482300,PA,2023,0.0,12.0,cius,1.5,TATAMY,local_police,1480.0,095,76144,srs_agency_header,True
+PA0635000,PA,2023,0.0,12.0,cius,1.5,WEST PIKE RUN,local_police,1981.0,125,83840,srs_agency_header,True
+PA0653500,PA,2023,0.0,12.0,cius,1.5,PENN,local_police,708.0,129,58872,srs_agency_header,True
+WA0311800,WA,2023,0.0,12.0,cius,1.5,INDEX,local_police,218.0,061,,fbi_cde_agency_roster,True
+AL0311000,AL,2023,0.0,12.0,cius,1.0,WALNUT GROVE,local_police,779.0,055,79728,srs_agency_header,True
+AL0370300,AL,2023,0.0,12.0,cius,1.0,NEWVILLE,local_police,562.0,067,54600,srs_agency_header,True
+AR0030500,AR,2023,0.0,12.0,cius,1.0,NORFORK,local_police,543.0,005,,fbi_cde_agency_roster,True
+CO0050700,CO,2023,0.0,12.0,cius,1.0,WALSH,local_police,549.0,009,82460,srs_agency_header,True
+GA0590500,GA,2023,0.0,12.0,cius,1.0,FRANKLIN SPRINGS,local_police,1232.0,119,31320,srs_agency_header,True
+GA0680800,GA,2023,0.0,12.0,cius,1.0,PIEDMONT COLLEGE,special_jurisdiction,,137,22304,srs_agency_header,True
+IL0410300,IL,2023,0.0,12.0,cius,1.0,REND LAKE COLLEGE,special_jurisdiction,0.0,081,37179,srs_agency_header,True
+IL0501300,IL,2023,0.0,12.0,cius,1.0,GRAND RIDGE,local_police,525.0,099,30757,srs_agency_header,True
+IL0880100,IL,2023,0.0,12.0,cius,1.0,TOULON,local_police,1179.0,175,75783,srs_agency_header,True
+IL0921600,IL,2023,0.0,12.0,cius,1.0,SIDELL,local_police,579.0,183,69836,srs_agency_header,True
+IN0110600,IN,2023,0.0,12.0,cius,1.0,KNIGHTSVILLE,local_police,767.0,021,40302,srs_agency_header,True
+KY0360400,KY,2023,0.0,12.0,cius,1.0,WAYLAND,local_police,398.0,071,81012,srs_agency_header,True
+KY0430300,KY,2023,0.0,12.0,cius,1.0,CLARKSON,local_police,958.0,085,15148,srs_agency_header,True
+KY0980200,KY,2023,0.0,12.0,cius,1.0,ELKHORN CITY,local_police,980.0,195,24382,srs_agency_header,True
+KY1000300,KY,2023,0.0,12.0,cius,1.0,EUBANK,local_police,335.0,199,25552,srs_agency_header,True
+KY1020100,KY,2023,0.0,12.0,cius,1.0,LIVINGSTON,local_police,218.0,203,47098,srs_agency_header,True
+MI3250600,MI,2023,0.0,12.0,cius,1.0,KINDE,local_police,440.0,063,43220,srs_agency_header,True
+MI3264400,MI,2023,0.0,12.0,cius,1.0,OWENDALE,local_police,261.0,063,61920,srs_agency_header,True
+MN0170500,MN,2023,0.0,12.0,cius,1.0,WESTBROOK,local_police,769.0,033,69250,srs_agency_header,True
+MN0720500,MN,2023,0.0,12.0,cius,1.0,HENDERSON,local_police,982.0,143,28394,srs_agency_header,True
+MN0800200,MN,2023,0.0,12.0,cius,1.0,SEBEKA,local_police,753.0,159,59152,srs_agency_header,True
+MO0191200,MO,2023,0.0,12.0,cius,1.0,EAST LYNNE,local_police,313.0,037,20980,srs_agency_header,True
+MO0440500,MO,2023,0.0,12.0,cius,1.0,OREGON,local_police,845.0,087,54848,srs_agency_header,True
+MO0540100,MO,2023,0.0,12.0,cius,1.0,ALMA,local_police,394.0,107,00802,srs_agency_header,True
+MO0540900,MO,2023,0.0,12.0,cius,1.0,NAPOLEON,local_police,213.0,107,51140,srs_agency_header,True
+MO1050300,MO,2023,0.0,12.0,cius,1.0,REEDS SPRING,local_police,1278.0,209,61112,srs_agency_header,True
+NH0033000,NH,2023,0.0,12.0,cius,1.0,ROXBURY,local_police,228.0,005,65700,srs_agency_header,True
+NH0053200,NH,2023,0.0,12.0,cius,1.0,GROTON,local_police,611.0,009,32180,srs_agency_header,True
+NY0022200,NY,2023,0.0,12.0,cius,1.0,ANDOVER VILLAGE,local_police,987.0,003,02143,srs_agency_header,True
+NY0052200,NY,2023,0.0,12.0,cius,1.0,PORT BYRON VILLAGE,local_police,1271.0,011,59212,srs_agency_header,True
+NY0294700,NY,2023,0.0,12.0,cius,1.0,CENTRE ISLAND VILLAGE,local_police,414.0,059,13618,srs_agency_header,True
+NY0514400,NY,2023,0.0,12.0,cius,1.0,ASHAROKEN VILLAGE,local_police,650.0,103,02737,srs_agency_header,True
+OK0200400,OK,2023,0.0,12.0,cius,1.0,BUTLER,local_police,299.0,039,10450,srs_agency_header,True
+OK0572300,OK,2023,0.0,12.0,cius,1.0,WYNONA,local_police,434.0,113,82450,srs_agency_header,True
+OK0680600,OK,2023,0.0,12.0,cius,1.0,GANS,local_police,300.0,135,28350,srs_agency_header,True
+PA0027800,PA,2023,0.0,12.0,cius,1.0,LINCOLN,local_police,1038.0,003,43408,srs_agency_header,True
+PA0131600,PA,2023,0.0,12.0,cius,1.0,WEISSPORT,local_police,418.0,025,82080,srs_agency_header,True
+PA0222100,PA,2023,0.0,12.0,cius,1.0,ROYALTON,local_police,1131.0,043,66560,srs_agency_header,True
+PA0261800,PA,2023,0.0,12.0,cius,1.0,PERRYOPOLIS,local_police,1690.0,051,59520,srs_agency_header,True
+PA0320500,PA,2023,0.0,12.0,cius,1.0,CHERRY TREE,local_police,340.0,063,13120,srs_agency_header,True
+PA0544500,PA,2023,0.0,12.0,cius,1.0,WALKER TOWNSHIP,local_police,1008.0,107,80576,srs_agency_header,True
+PA0652900,PA,2023,0.0,12.0,cius,1.0,AVONMORE BORO,local_police,953.0,129,03688,srs_agency_header,True
+SC0460700,SC,2023,0.0,12.0,cius,1.0,YORK TECHNICAL COLLEGE,special_jurisdiction,0.0,091,,fbi_cde_agency_roster,True
+TX1701800,TX,2023,0.0,12.0,cius,1.0,WOODBRANCH,local_police,1603.0,339,80044,srs_agency_header,True
+WY0040300,WY,2023,0.0,12.0,cius,1.0,MEDICINE BOW,local_police,265.0,007,51575,srs_agency_header,True
+AL0420400,AL,2023,0.0,12.0,cius,,HILLSBORO,local_police,518.0,079,34816,srs_agency_header,True
+GA0050400,GA,2023,0.0,12.0,cius,,GEORGIA MILITARY COLLEGE,special_jurisdiction,0.0,009,51492,srs_agency_header,True
+GA0190300,GA,2023,0.0,12.0,cius,,LEARY,local_police,577.0,037,45600,srs_agency_header,True
+GA0290900,GA,2023,0.0,12.0,cius,,ATHENS TECHNICAL COLLEGE,special_jurisdiction,0.0,059,,fbi_cde_agency_roster,True
+GA0810400,GA,2023,0.0,12.0,cius,,BARTOW,local_police,256.0,163,05680,srs_agency_header,True
+GA1130200,GA,2023,0.0,12.0,cius,,PATTERSON,local_police,779.0,229,59500,srs_agency_header,True
+IA0820800,IA,2023,0.0,12.0,cius,,PRINCETON,local_police,962.0,163,64740,srs_agency_header,True
+IL0060100,IL,2023,0.0,12.0,cius,,BUDA,local_police,506.0,011,09356,srs_agency_header,True
+IL0061600,IL,2023,0.0,12.0,cius,,CHERRY,local_police,426.0,011,,fbi_cde_agency_roster,True
+IL0562500,IL,2023,0.0,12.0,cius,,BULL VALLEY,local_police,1122.0,111,09531,srs_agency_header,True
+IL0792100,IL,2023,0.0,12.0,cius,,ELLIS GROVE,local_police,346.0,157,23503,srs_agency_header,True
+IL0922000,IL,2023,0.0,12.0,cius,,INDIANOLA,local_police,263.0,183,37348,srs_agency_header,True
+KY0360200,KY,2023,0.0,12.0,cius,,WHEELWRIGHT,local_police,481.0,071,82272,srs_agency_header,True
+KY0480400,KY,2023,0.0,12.0,cius,,LYNCH,local_police,654.0,095,48540,srs_agency_header,True
+KY0660100,KY,2023,0.0,12.0,cius,,HYDEN,local_police,341.0,131,38908,srs_agency_header,True
+KY0690200,KY,2023,0.0,12.0,cius,,HUSTONVILLE,local_police,402.0,137,38836,srs_agency_header,True
+KY0690300,KY,2023,0.0,12.0,cius,,CRAB ORCHARD,local_police,831.0,137,17956,srs_agency_header,True
+LA0090800,LA,2023,0.0,12.0,cius,,IDA,local_police,212.0,017,,fbi_cde_agency_roster,True
+LA0190300,LA,2023,0.0,12.0,cius,,WILSON,local_police,564.0,037,82215,srs_agency_header,True
+LA0190500,LA,2023,0.0,12.0,cius,,NORWOOD,local_police,299.0,037,56295,srs_agency_header,True
+LA0200600,LA,2023,0.0,12.0,cius,,CHATAIGNIER,local_police,355.0,039,14450,srs_agency_header,True
+LA0430700,LA,2023,0.0,12.0,cius,,FISHER,local_police,221.0,085,25615,srs_agency_header,True
+LA0460200,LA,2023,0.0,12.0,cius,,MONTPELIER,local_police,246.0,091,51690,srs_agency_header,True
+MA0022800,MA,2023,0.0,12.0,cius,,TYRINGHAM,local_police,419.0,003,71095,srs_agency_header,True
+MI3266600,MI,2023,0.0,12.0,cius,,PIGEON,local_police,1205.0,063,64060,srs_agency_header,True
+MN0010200,MN,2023,0.0,12.0,cius,,MCGREGOR,local_police,385.0,001,39014,srs_agency_header,True
+MN0221000,MN,2023,0.0,12.0,cius,,MINNESOTA LAKE,local_police,663.0,043,43198,srs_agency_header,True
+MN0230500,MN,2023,0.0,12.0,cius,,RUSHFORD,local_police,1861.0,045,56284,srs_agency_header,True
+MO0620300,MO,2023,0.0,12.0,cius,,MARQUAND,local_police,203.0,123,46244,srs_agency_header,True
+MT0410300,MT,2023,0.0,12.0,cius,,DARBY,local_police,886.0,081,19300,srs_agency_header,True
+ND0040100,ND,2023,0.0,12.0,cius,,MEDORA,local_police,172.0,007,51900,srs_agency_header,True
+NH0057400,NH,2023,0.0,12.0,cius,,WARREN,local_police,952.0,009,78740,srs_agency_header,True
+OK0380800,OK,2023,0.0,12.0,cius,,MOUNTAIN PARK,local_police,318.0,075,,fbi_cde_agency_roster,True
+OK0680900,OK,2023,0.0,12.0,cius,,MARBLE CITY,local_police,249.0,135,46450,srs_agency_header,True
+PA0032800,PA,2023,0.0,12.0,cius,,ELDERTON,local_police,342.0,005,22832,srs_agency_header,True
+PA0115600,PA,2023,0.0,12.0,cius,,VINTONDALE,local_police,407.0,021,80288,srs_agency_header,True
+PA0180900,PA,2023,0.0,12.0,cius,,MILL HALL,local_police,5179.0,035,49760,srs_agency_header,True
+PA0261000,PA,2023,0.0,12.0,cius,,DUNBAR,local_police,993.0,051,20216,srs_agency_header,True
+PA0351700,PA,2023,0.0,12.0,cius,,MAYFIELD,local_police,1762.0,069,48176,srs_agency_header,True
+PA0542400,PA,2023,0.0,12.0,cius,,PINE GROVE,local_police,2079.0,107,60456,srs_agency_header,True
+PA0544200,PA,2023,0.0,12.0,cius,,NORTH UNION TOWNSHIP,local_police,1426.0,107,55472,srs_agency_header,True
+PA0544700,PA,2023,0.0,12.0,cius,,BRANCH TOWNSHIP,local_police,2406.0,107,08200,srs_agency_header,True
+PA0544900,PA,2023,0.0,12.0,cius,,BLYTHE TOWNSHIP,local_police,887.0,107,07336,srs_agency_header,True
+PA0560500,PA,2023,0.0,12.0,cius,,BOSWELL,local_police,1211.0,111,07712,srs_agency_header,True
+PA0561800,PA,2023,0.0,12.0,cius,,ROCKWOOD,local_police,837.0,111,65736,srs_agency_header,True
+PA0562500,PA,2023,0.0,12.0,cius,,ELK LICK TOWNSHIP,local_police,2250.0,111,23168,srs_agency_header,True
+SC0200200,SC,2023,0.0,12.0,cius,,RIDGEWAY,local_police,297.0,039,60415,srs_agency_header,True
+UT0210300,UT,2023,0.0,12.0,cius,,AURORA,local_police,1065.0,041,,fbi_cde_agency_roster,True
+WI0670600,WI,2023,0.0,12.0,cius,,HARTFORD TOWNSHIP,local_police,3571.0,131,,fbi_cde_agency_roster,True
+MT0320300,MT,2022,0.0,12.0,cius,100.0,UNIVERSITY OF MONTANA,special_jurisdiction,0.0,063,50200,srs_agency_header,True
+MA0082800,MA,2022,0.0,12.0,cius,49.0,AMHERST COLLEGE,special_jurisdiction,,015,01325,srs_agency_header,True
+MO0951100,MO,2022,0.0,12.0,cius,25.0,CALVERTON PARK,local_police,1276.0,189,10612,srs_agency_header,True
+OK0120500,OK,2022,0.0,12.0,cius,25.0,FORT TOWSON,local_police,504.0,023,27400,srs_agency_header,True
+MO1050500,MO,2022,0.0,12.0,cius,24.0,KIMBERLING CITY,local_police,2410.0,209,38612,srs_agency_header,True
+NY0082000,NY,2022,0.0,12.0,cius,23.0,AFTON VILLAGE,local_police,796.0,017,00342,srs_agency_header,True
+AL0030600,AL,2022,0.0,12.0,cius,20.0,ALABAMA STATE UNIVERSITY,special_jurisdiction,0.0,101,51000,srs_agency_header,True
+WI0040200,WI,2022,0.0,12.0,cius,20.0,BAYFIELD,local_police,609.0,007,05350,srs_agency_header,True
+WA0341900,WA,2022,0.0,12.0,cius,16.0,EVERGREEN STATE COLLEGE,special_jurisdiction,0.0,067,51300,srs_agency_header,True
+KY1130300,KY,2022,0.0,12.0,cius,15.5,UNIONTOWN,local_police,943.0,225,78492,srs_agency_header,True
+WI0201200,WI,2022,0.0,12.0,cius,15.0,ROSENDALE,local_police,1052.0,039,69550,srs_agency_header,True
+NY0082200,NY,2022,0.0,12.0,cius,14.0,GREENE VILLAGE,local_police,1448.0,017,30411,srs_agency_header,True
+TX0980200,TX,2022,0.0,12.0,cius,13.0,SPEARMAN,local_police,3275.0,195,69476,srs_agency_header,True
+KY0230100,KY,2022,0.0,12.0,cius,11.0,LIBERTY,local_police,2136.0,045,46072,srs_agency_header,True
+SC0210300,SC,2022,0.0,12.0,cius,11.0,COWARD,local_police,773.0,041,17215,srs_agency_header,True
+GA0540200,GA,2022,0.0,12.0,cius,10.0,HAGAN,local_police,982.0,109,36024,srs_agency_header,True
+MO0080100,MO,2022,0.0,12.0,cius,10.0,COLE CAMP,local_police,1189.0,015,15436,srs_agency_header,True
+OK0060200,OK,2022,0.0,12.0,cius,10.0,CANTON,local_police,594.0,011,11600,srs_agency_header,True
+GA0080300,GA,2022,0.0,12.0,cius,9.5,KINGSTON,local_police,968.0,015,43668,srs_agency_header,True
+NY0352400,NY,2022,0.0,12.0,cius,8.5,HIGHLAND FALLS VILLAGE,local_police,3838.0,071,34495,srs_agency_header,True
+KY1140400,KY,2022,0.0,12.0,cius,8.0,WOODBURN,local_police,381.0,227,84414,srs_agency_header,True
+ME0151700,ME,2022,0.0,12.0,cius,8.0,MILBRIDGE,local_police,1407.0,029,45600,srs_agency_header,True
+KY0530100,KY,2022,0.0,12.0,cius,7.0,CLINTON,local_police,1277.0,105,15742,srs_agency_header,True
+MO0720100,MO,2022,0.0,12.0,cius,7.0,GIDEON,local_police,985.0,143,26974,srs_agency_header,True
+OK0451000,OK,2022,0.0,12.0,cius,7.0,HAWORTH,local_police,294.0,089,,fbi_cde_agency_roster,True
+SC0231900,SC,2022,0.0,12.0,cius,7.0,BOB JONES UNIVERSITY,special_jurisdiction,0.0,045,30850,srs_agency_header,True
+NY0582100,NY,2022,0.0,12.0,cius,6.5,WOLCOTT VILLAGE,local_police,1613.0,117,82678,srs_agency_header,True
+WI0660300,WI,2022,0.0,12.0,cius,6.5,BIRCHWOOD,local_police,433.0,129,07550,srs_agency_header,True
+AL0230600,AL,2022,0.0,12.0,cius,6.0,LOCKHART,local_police,503.0,039,43816,srs_agency_header,True
+AL0390900,AL,2022,0.0,12.0,cius,6.0,SKYLINE,local_police,858.0,071,70896,srs_agency_header,True
+LA0560400,LA,2022,0.0,12.0,cius,6.0,MARION,local_police,750.0,111,48645,srs_agency_header,True
+MA0021100,MA,2022,0.0,12.0,cius,6.0,HINSDALE,local_police,1918.0,003,30315,srs_agency_header,True
+MO1040500,MO,2022,0.0,12.0,cius,6.0,PUXICO,local_police,865.0,207,60284,srs_agency_header,True
+ND0510300,ND,2022,0.0,12.0,cius,6.0,BURLINGTON,local_police,1312.0,101,10940,srs_agency_header,True
+NY0323100,NY,2022,0.0,12.0,cius,6.0,VERNON VILLAGE,local_police,1170.0,065,77112,srs_agency_header,True
+TX2101600,TX,2022,0.0,12.0,cius,6.0,TENAHA,local_police,1153.0,419,,fbi_cde_agency_roster,True
+KY0900200,KY,2022,0.0,12.0,cius,5.0,BLOOMFIELD,local_police,1088.0,179,07516,srs_agency_header,True
+ME0051300,ME,2022,0.0,12.0,cius,5.0,GOULDSBORO,local_police,1768.0,009,28450,srs_agency_header,True
+NY0223400,NY,2022,0.0,12.0,cius,5.0,BLACK RIVER,local_police,1274.0,045,06794,srs_agency_header,True
+NY0355800,NY,2022,0.0,12.0,cius,5.0,HIGHLANDS TOWN,local_police,9199.0,071,34550,srs_agency_header,True
+TX0201700,TX,2022,0.0,12.0,cius,5.0,ALVIN COMMUNITY COLLEGE,special_jurisdiction,0.0,039,02272,srs_agency_header,True
+MN0250400,MN,2022,0.0,12.0,cius,4.5,KENYON,local_police,1907.0,049,32840,srs_agency_header,True
+OK0081300,OK,2022,0.0,12.0,cius,4.5,FORT COBB,local_police,618.0,015,27100,srs_agency_header,True
+OK0310800,OK,2022,0.0,12.0,cius,4.5,MCCURTAIN,local_police,508.0,061,44950,srs_agency_header,True
+AL0360100,AL,2022,0.0,12.0,cius,4.0,GREENSBORO,local_police,2290.0,065,31720,srs_agency_header,True
+CT00B5900,CT,2022,0.0,12.0,cius,4.0,GROTON LONG POINT,local_police,521.0,011,34460,srs_agency_header,True
+KY0120200,KY,2022,0.0,12.0,cius,4.0,BROOKSVILLE,local_police,662.0,023,10000,srs_agency_header,True
+MO0270400,MO,2022,0.0,12.0,cius,4.0,PRAIRIE HOME,local_police,280.0,053,59726,srs_agency_header,True
+NY0512400,NY,2022,0.0,12.0,cius,4.0,SAG HARBOR VILLAGE,local_police,2802.0,103,64485,srs_agency_header,True
+OK0411500,OK,2022,0.0,12.0,cius,4.0,TRYON,local_police,502.0,081,74550,srs_agency_header,True
+TX2110100,TX,2022,0.0,12.0,cius,4.0,STRATFORD,local_police,2103.0,421,70544,srs_agency_header,True
+OK0271200,OK,2022,0.0,12.0,cius,3.5,WAKITA,local_police,332.0,053,77950,srs_agency_header,True
+KY1020300,KY,2022,0.0,12.0,cius,3.0,BRODHEAD,local_police,1182.0,203,09838,srs_agency_header,True
+MN0181300,MN,2022,0.0,12.0,cius,3.0,CUYUNA,local_police,370.0,035,,fbi_cde_agency_roster,True
+MN0220200,MN,2022,0.0,12.0,cius,3.0,ELMORE,local_police,619.0,043,18998,srs_agency_header,True
+MN0280100,MN,2022,0.0,12.0,cius,3.0,CALEDONIA,local_police,2823.0,055,09226,srs_agency_header,True
+MN0640100,MN,2022,0.0,12.0,cius,3.0,LAMBERTON,local_police,792.0,127,35288,srs_agency_header,True
+NH0062000,NH,2022,0.0,12.0,cius,3.0,GREENVILLE,local_police,2111.0,011,31940,srs_agency_header,True
+NJ0100400,NJ,2022,0.0,12.0,cius,3.0,CALIFON,local_police,1068.0,019,09280,srs_agency_header,True
+NY0353600,NY,2022,0.0,12.0,cius,3.0,TUXEDO PARK VILLAGE,local_police,639.0,071,75803,srs_agency_header,True
+OK0160300,OK,2022,0.0,12.0,cius,3.0,CHATTANOOGA,local_police,457.0,031,,fbi_cde_agency_roster,True
+OK0490500,OK,2022,0.0,12.0,cius,3.0,DISNEY,local_police,307.0,097,20900,srs_agency_header,True
+TX1072500,TX,2022,0.0,12.0,cius,3.0,PAYNE SPRINGS,local_police,757.0,213,,fbi_cde_agency_roster,True
+TX1410800,TX,2022,0.0,12.0,cius,3.0,KEMPNER,local_police,1311.0,281,38800,srs_agency_header,True
+WI0541300,WI,2022,0.0,12.0,cius,3.0,MILTON TOWN,local_police,3168.0,105,,fbi_cde_agency_roster,True
+AL0420500,AL,2022,0.0,12.0,cius,2.5,NORTH COURTLAND,local_police,620.0,079,55044,srs_agency_header,True
+KY0890400,KY,2022,0.0,12.0,cius,2.5,POWDERLY,local_police,784.0,177,62652,srs_agency_header,True
+KY0950100,KY,2022,0.0,12.0,cius,2.5,BOONEVILLE,local_police,163.0,189,08614,srs_agency_header,True
+MN0800400,MN,2022,0.0,12.0,cius,2.5,MENAHGA,local_police,1359.0,159,41660,srs_agency_header,True
+NH0061400,NH,2022,0.0,12.0,cius,2.5,FRANCESTOWN,local_police,1657.0,011,27140,srs_agency_header,True
+OK0070500,OK,2022,0.0,12.0,cius,2.5,BENNINGTON,local_police,378.0,013,05400,srs_agency_header,True
+OK0270400,OK,2022,0.0,12.0,cius,2.5,LAMONT,local_police,400.0,053,41350,srs_agency_header,True
+TX1270500,TX,2022,0.0,12.0,cius,2.5,HAWLEY,local_police,625.0,253,32840,srs_agency_header,True
+AL0210300,AL,2022,0.0,12.0,cius,2.0,REPTON,local_police,265.0,035,64368,srs_agency_header,True
+AL0591100,AL,2022,0.0,12.0,cius,2.0,UNIVERSITY OF MONTEVALLO,special_jurisdiction,0.0,117,50312,srs_agency_header,True
+GA1500300,GA,2022,0.0,12.0,cius,2.0,DAVISBORO,local_police,1976.0,303,21800,srs_agency_header,True
+GA1550500,GA,2022,0.0,12.0,cius,2.0,DALTON STATE COLLEGE,special_jurisdiction,0.0,313,21380,srs_agency_header,True
+KY0040300,KY,2022,0.0,12.0,cius,2.0,LA CENTER,local_police,978.0,007,43336,srs_agency_header,True
+KY0561400,KY,2022,0.0,12.0,cius,2.0,WOODLAWN PARK,local_police,978.0,111,,fbi_cde_agency_roster,True
+KY0563600,KY,2022,0.0,12.0,cius,2.0,STRATHMOOR VILLAGE,local_police,673.0,111,74082,srs_agency_header,True
+KY0670100,KY,2022,0.0,12.0,cius,2.0,WHITESBURG,local_police,1885.0,133,82776,srs_agency_header,True
+KY1100400,KY,2022,0.0,12.0,cius,2.0,TRENTON,local_police,377.0,219,77592,srs_agency_header,True
+LA0050800,LA,2022,0.0,12.0,cius,2.0,EVERGREEN,local_police,286.0,009,,fbi_cde_agency_roster,True
+MI6461200,MI,2022,0.0,12.0,cius,2.0,NEW ERA,local_police,466.0,127,57280,srs_agency_header,True
+MI7823000,MI,2022,0.0,12.0,cius,2.0,BANCROFT,local_police,497.0,155,05080,srs_agency_header,True
+MN0180700,MN,2022,0.0,12.0,cius,2.0,EMILY,local_police,872.0,035,,leaic_crosswalk,True
+MN0280500,MN,2022,0.0,12.0,cius,2.0,HOKAH,local_police,556.0,055,29510,srs_agency_header,True
+MO0050700,MO,2022,0.0,12.0,cius,2.0,WASHBURN,local_police,439.0,009,77200,srs_agency_header,True
+ND0240300,ND,2022,0.0,12.0,cius,2.0,NAPOLEON,local_police,773.0,047,55420,srs_agency_header,True
+NH0031200,NH,2022,0.0,12.0,cius,2.0,HARRISVILLE,local_police,1009.0,005,34420,srs_agency_header,True
+NH0075600,NH,2022,0.0,12.0,cius,2.0,WILMOT,local_police,1485.0,013,84900,srs_agency_header,True
+NM0030200,NM,2022,0.0,12.0,cius,2.0,DEXTER,local_police,1242.0,005,20620,srs_agency_header,True
+NY0192500,NY,2022,0.0,12.0,cius,2.0,WINDHAM TOWN,local_police,1769.0,039,82480,srs_agency_header,True
+NY0222400,NY,2022,0.0,12.0,cius,2.0,DEXTER VILLAGE,local_police,1029.0,045,20500,srs_agency_header,True
+NY0222500,NY,2022,0.0,12.0,cius,2.0,GLEN PARK VILLAGE,local_police,490.0,045,29322,srs_agency_header,True
+OK0030800,OK,2022,0.0,12.0,cius,2.0,STRINGTOWN,local_police,460.0,005,70850,srs_agency_header,True
+OK0080900,OK,2022,0.0,12.0,cius,2.0,CEMENT,local_police,484.0,015,13000,srs_agency_header,True
+OK0270700,OK,2022,0.0,12.0,cius,2.0,NASH,local_police,198.0,053,,fbi_cde_agency_roster,True
+OK0411400,OK,2022,0.0,12.0,cius,2.0,SPARKS,local_police,172.0,081,68950,srs_agency_header,True
+SC0210500,SC,2022,0.0,12.0,cius,2.0,OLANTA,local_police,565.0,041,52540,srs_agency_header,True
+TX1830400,TX,2022,0.0,12.0,cius,2.0,PANOLA COLLEGE,special_jurisdiction,0.0,365,,fbi_cde_agency_roster,True
+VA0510300,VA,2022,0.0,12.0,cius,2.0,WHITE STONE,local_police,388.0,103,85600,srs_agency_header,True
+VA0650300,VA,2022,0.0,12.0,cius,2.0,EASTVILLE,local_police,344.0,131,,fbi_cde_agency_roster,True
+WI0420600,WI,2022,0.0,12.0,cius,2.0,WILTON,local_police,520.0,081,87525,srs_agency_header,True
+GA1210800,GA,2022,0.0,12.0,cius,1.5,BLYTHE,local_police,777.0,245,09040,srs_agency_header,True
+MI1136800,MI,2022,0.0,12.0,cius,1.5,EAU CLAIRE,local_police,603.0,021,24580,srs_agency_header,True
+MN0410100,MN,2022,0.0,12.0,cius,1.5,TYLER,local_police,1111.0,081,66046,srs_agency_header,True
+MO0470400,MO,2022,0.0,12.0,cius,1.5,ARCADIA,local_police,606.0,093,01648,srs_agency_header,True
+NY0042600,NY,2022,0.0,12.0,cius,1.5,CATTARAUGUS VILLAGE,local_police,978.0,009,13024,srs_agency_header,True
+NY0155100,NY,2022,0.0,12.0,cius,1.5,MORIAH TOWN,local_police,4672.0,031,48428,srs_agency_header,True
+NY0222600,NY,2022,0.0,12.0,cius,1.5,CAPE VINCENT VILLAGE,local_police,739.0,045,12353,srs_agency_header,True
+TX0912300,TX,2022,0.0,12.0,cius,1.5,TOM BEAN,local_police,1087.0,181,73328,srs_agency_header,True
+AL0160600,AL,2022,0.0,12.0,cius,1.0,COFFEEVILLE,local_police,326.0,025,16264,srs_agency_header,True
+AL0311000,AL,2022,0.0,12.0,cius,1.0,WALNUT GROVE,local_police,779.0,055,79728,srs_agency_header,True
+AL0480600,AL,2022,0.0,12.0,cius,1.0,SWEET WATER,local_police,241.0,091,74304,srs_agency_header,True
+GA0590500,GA,2022,0.0,12.0,cius,1.0,FRANKLIN SPRINGS,local_police,1232.0,119,31320,srs_agency_header,True
+GA0680800,GA,2022,0.0,12.0,cius,1.0,PIEDMONT COLLEGE,special_jurisdiction,,137,22304,srs_agency_header,True
+KY0110300,KY,2022,0.0,12.0,cius,1.0,PERRYVILLE,local_police,793.0,021,60258,srs_agency_header,True
+KY0430200,KY,2022,0.0,12.0,cius,1.0,CANEYVILLE,local_police,615.0,085,12538,srs_agency_header,True
+KY0430300,KY,2022,0.0,12.0,cius,1.0,CLARKSON,local_police,958.0,085,15148,srs_agency_header,True
+KY0980200,KY,2022,0.0,12.0,cius,1.0,ELKHORN CITY,local_police,980.0,195,24382,srs_agency_header,True
+KY1000300,KY,2022,0.0,12.0,cius,1.0,EUBANK,local_police,335.0,199,25552,srs_agency_header,True
+KY1020100,KY,2022,0.0,12.0,cius,1.0,LIVINGSTON,local_police,218.0,203,47098,srs_agency_header,True
+MI2755500,MI,2022,0.0,12.0,cius,1.0,MARENISCO TOWNSHIP,local_police,1626.0,053,51560,srs_agency_header,True
+MI3264400,MI,2022,0.0,12.0,cius,1.0,OWENDALE,local_police,261.0,063,61920,srs_agency_header,True
+MN0080400,MN,2022,0.0,12.0,cius,1.0,COMFREY,local_police,379.0,015,12772,srs_agency_header,True
+MN0320300,MN,2022,0.0,12.0,cius,1.0,HERON LAKE,local_police,647.0,063,28700,srs_agency_header,True
+MN0720500,MN,2022,0.0,12.0,cius,1.0,HENDERSON,local_police,982.0,143,28394,srs_agency_header,True
+MN0800200,MN,2022,0.0,12.0,cius,1.0,SEBEKA,local_police,753.0,159,59152,srs_agency_header,True
+MO0150600,MO,2022,0.0,12.0,cius,1.0,LINN CREEK,local_police,256.0,029,43274,srs_agency_header,True
+MO0540100,MO,2022,0.0,12.0,cius,1.0,ALMA,local_police,394.0,107,00802,srs_agency_header,True
+MO0540900,MO,2022,0.0,12.0,cius,1.0,NAPOLEON,local_police,213.0,107,51140,srs_agency_header,True
+MO0810600,MO,2022,0.0,12.0,cius,1.0,EDGAR SPRINGS,local_police,205.0,161,21214,srs_agency_header,True
+NB0540100,NE,2022,0.0,12.0,cius,1.0,CREIGHTON,local_police,1152.0,107,11230,srs_agency_header,True
+NH0033000,NH,2022,0.0,12.0,cius,1.0,ROXBURY,local_police,228.0,005,65700,srs_agency_header,True
+NH0033200,NH,2022,0.0,12.0,cius,1.0,STODDARD,local_police,1448.0,005,73700,srs_agency_header,True
+NJ0025500,NJ,2022,0.0,12.0,cius,1.0,ROCKLEIGH,local_police,544.0,003,64170,srs_agency_header,True
+NM0230700,NM,2022,0.0,12.0,cius,1.0,SAN YSIDRO,local_police,205.0,043,71020,srs_agency_header,True
+NY0205000,NY,2022,0.0,12.0,cius,1.0,INLET TOWN,local_police,369.0,041,37495,srs_agency_header,True
+NY0223700,NY,2022,0.0,12.0,cius,1.0,THERESA VILLAGE,local_police,801.0,045,73517,srs_agency_header,True
+NY0294700,NY,2022,0.0,12.0,cius,1.0,CENTRE ISLAND VILLAGE,local_police,414.0,059,13618,srs_agency_header,True
+NY0514400,NY,2022,0.0,12.0,cius,1.0,ASHAROKEN VILLAGE,local_police,650.0,103,02737,srs_agency_header,True
+OK0200400,OK,2022,0.0,12.0,cius,1.0,BUTLER,local_police,299.0,039,10450,srs_agency_header,True
+OK0330400,OK,2022,0.0,12.0,cius,1.0,DUKE,local_police,395.0,065,,fbi_cde_agency_roster,True
+SC0460700,SC,2022,0.0,12.0,cius,1.0,YORK TECHNICAL COLLEGE,special_jurisdiction,0.0,091,,fbi_cde_agency_roster,True
+TX0702900,TX,2022,0.0,12.0,cius,1.0,ALMA,local_police,420.0,139,,fbi_cde_agency_roster,True
+TX0911800,TX,2022,0.0,12.0,cius,1.0,GRAYSON COLLEGE,special_jurisdiction,0.0,181,19900,srs_agency_header,True
+TX1701800,TX,2022,0.0,12.0,cius,1.0,WOODBRANCH,local_police,1603.0,339,80044,srs_agency_header,True
+WY0040300,WY,2022,0.0,12.0,cius,1.0,MEDICINE BOW,local_police,265.0,007,51575,srs_agency_header,True
+AL0150300,AL,2022,0.0,12.0,cius,,PENNINGTON,local_police,329.0,023,58968,srs_agency_header,True
+AL0420400,AL,2022,0.0,12.0,cius,,HILLSBORO,local_police,518.0,079,34816,srs_agency_header,True
+AL0460600,AL,2022,0.0,12.0,cius,,SHORTER,local_police,409.0,087,70128,srs_agency_header,True
+GA0050400,GA,2022,0.0,12.0,cius,,GEORGIA MILITARY COLLEGE,special_jurisdiction,0.0,009,51492,srs_agency_header,True
+GA0130200,GA,2022,0.0,12.0,cius,,HOBOKEN,local_police,542.0,025,39216,srs_agency_header,True
+GA0190300,GA,2022,0.0,12.0,cius,,LEARY,local_police,577.0,037,45600,srs_agency_header,True
+GA0290900,GA,2022,0.0,12.0,cius,,ATHENS TECHNICAL COLLEGE,special_jurisdiction,0.0,059,,fbi_cde_agency_roster,True
+GA0810400,GA,2022,0.0,12.0,cius,,BARTOW,local_police,256.0,163,05680,srs_agency_header,True
+GA0810500,GA,2022,0.0,12.0,cius,,STAPLETON,local_police,399.0,163,73004,srs_agency_header,True
+GA1130200,GA,2022,0.0,12.0,cius,,PATTERSON,local_police,779.0,229,59500,srs_agency_header,True
+KY0360200,KY,2022,0.0,12.0,cius,,WHEELWRIGHT,local_police,481.0,071,82272,srs_agency_header,True
+KY0566200,KY,2022,0.0,12.0,cius,,WINDY HILLS,local_police,2486.0,111,,leaic_crosswalk,True
+KY0660100,KY,2022,0.0,12.0,cius,,HYDEN,local_police,341.0,131,38908,srs_agency_header,True
+KY0690200,KY,2022,0.0,12.0,cius,,HUSTONVILLE,local_police,402.0,137,38836,srs_agency_header,True
+KY0690300,KY,2022,0.0,12.0,cius,,CRAB ORCHARD,local_police,831.0,137,17956,srs_agency_header,True
+KY0900400,KY,2022,0.0,12.0,cius,,NEW HAVEN,local_police,904.0,179,55758,srs_agency_header,True
+LA0090800,LA,2022,0.0,12.0,cius,,IDA,local_police,212.0,017,,fbi_cde_agency_roster,True
+LA0190300,LA,2022,0.0,12.0,cius,,WILSON,local_police,564.0,037,82215,srs_agency_header,True
+LA0190500,LA,2022,0.0,12.0,cius,,NORWOOD,local_police,299.0,037,56295,srs_agency_header,True
+MI3266600,MI,2022,0.0,12.0,cius,,PIGEON,local_police,1205.0,063,64060,srs_agency_header,True
+MI4089200,MI,2022,0.0,12.0,cius,,GARFIELD TOWNSHIP,local_police,1029.0,079,31600,srs_agency_header,True
+MN0010200,MN,2022,0.0,12.0,cius,,MCGREGOR,local_police,385.0,001,39014,srs_agency_header,True
+MN0221000,MN,2022,0.0,12.0,cius,,MINNESOTA LAKE,local_police,663.0,043,43198,srs_agency_header,True
+MN0230500,MN,2022,0.0,12.0,cius,,RUSHFORD,local_police,1861.0,045,56284,srs_agency_header,True
+MO0620300,MO,2022,0.0,12.0,cius,,MARQUAND,local_police,203.0,123,46244,srs_agency_header,True
+MO1130500,MO,2022,0.0,12.0,cius,,NIANGUA,local_police,429.0,225,52418,srs_agency_header,True
+NB0140300,NE,2022,0.0,12.0,cius,,LAUREL,local_police,966.0,027,26350,srs_agency_header,True
+NB0600400,NE,2022,0.0,12.0,cius,,TILDEN,local_police,987.0,119,48935,srs_agency_header,True
+ND0040100,ND,2022,0.0,12.0,cius,,MEDORA,local_police,172.0,007,51900,srs_agency_header,True
+NH0057400,NH,2022,0.0,12.0,cius,,WARREN,local_police,952.0,009,78740,srs_agency_header,True
+NH0101400,NH,2022,0.0,12.0,cius,,LANGDON,local_police,690.0,019,40900,srs_agency_header,True
+OK0380800,OK,2022,0.0,12.0,cius,,MOUNTAIN PARK,local_police,318.0,075,,fbi_cde_agency_roster,True
+OK0680900,OK,2022,0.0,12.0,cius,,MARBLE CITY,local_police,249.0,135,46450,srs_agency_header,True
+SC0130400,SC,2022,0.0,12.0,cius,,MCBEE,local_police,852.0,025,43495,srs_agency_header,True
+SC0180400,SC,2022,0.0,12.0,cius,,RIDGEVILLE,local_police,1830.0,035,60370,srs_agency_header,True
+WI0670600,WI,2022,0.0,12.0,cius,,HARTFORD TOWNSHIP,local_police,3571.0,131,,fbi_cde_agency_roster,True
+IL0169E00,IL,2020,0.0,12.0,cius,15.0,TRITON COLLEGE,special_jurisdiction,0.0,031,64343,srs_agency_header,True
+IL0900800,IL,2020,0.0,12.0,cius,14.0,NORTH PEKIN,local_police,1543.0,179,54092,srs_agency_header,True
+IL0940100,IL,2020,0.0,12.0,cius,13.0,ALEXIS,local_police,789.0,187,00672,srs_agency_header,True
+IL0223700,IL,2020,0.0,12.0,cius,8.5,COLLEGE OF DUPAGE,special_jurisdiction,0.0,043,29756,srs_agency_header,True
+IL0169C00,IL,2020,0.0,12.0,cius,8.0,SOUTH SUBURBAN COLLEGE,special_jurisdiction,0.0,031,70850,srs_agency_header,True
+IL0493200,IL,2020,0.0,12.0,cius,8.0,COLLEGE OF LAKE COUNTY,special_jurisdiction,0.0,097,99097,srs_agency_header,True
+IL0410700,IL,2020,0.0,12.0,cius,7.0,INA,local_police,2349.0,081,,fbi_cde_agency_roster,True
+IL0453300,IL,2020,0.0,12.0,cius,6.5,ELGIN COMMUNITY COLLEGE,special_jurisdiction,0.0,089,23074,srs_agency_header,True
+GA1460300,GA,2020,0.0,12.0,cius,6.0,LOOKOUT MOUNTAIN,local_police,1680.0,295,47336,srs_agency_header,True
+IL0562900,IL,2020,0.0,12.0,cius,6.0,MCHENRY COUNTY COLLEGE,special_jurisdiction,0.0,111,17887,srs_agency_header,True
+IL0060300,IL,2020,0.0,12.0,cius,5.0,LADD,local_police,1576.0,011,40598,srs_agency_header,True
+IL0451900,IL,2020,0.0,12.0,cius,5.0,WAUBONSEE COMM COLLEGE,special_jurisdiction,0.0,089,73391,srs_agency_header,True
+IL0571200,IL,2020,0.0,12.0,cius,5.0,MCLEAN,local_police,799.0,113,45811,srs_agency_header,True
+IL1011200,IL,2020,0.0,12.0,cius,5.0,ROCK VALLEY COLLEGE,special_jurisdiction,0.0,201,65000,srs_agency_header,True
+IL0842400,IL,2020,0.0,12.0,cius,4.5,PLEASANT PLAINS,local_police,806.0,167,60599,srs_agency_header,True
+IL0167E00,IL,2020,0.0,12.0,cius,4.0,OAKTON COMMUNITY COLLEGE,special_jurisdiction,0.0,031,19642,srs_agency_header,True
+IL0169F00,IL,2020,0.0,12.0,cius,4.0,MORTON COLLEGE,special_jurisdiction,0.0,031,14351,srs_agency_header,True
+IL0920400,IL,2020,0.0,12.0,cius,3.5,FAIRMOUNT,local_police,612.0,183,24985,srs_agency_header,True
+IL0140700,IL,2020,0.0,12.0,cius,3.0,AVISTON,local_police,2446.0,027,03181,srs_agency_header,True
+IL0100200,IL,2020,0.0,12.0,cius,2.0,HOMER,local_police,1168.0,019,35814,srs_agency_header,True
+IL0140600,IL,2020,0.0,12.0,cius,2.0,ALBERS,local_police,1152.0,027,00555,srs_agency_header,True
+IL0150900,IL,2020,0.0,12.0,cius,2.0,LAKE LAND COLLEGE,special_jurisdiction,0.0,029,47553,srs_agency_header,True
+IL0430200,IL,2020,0.0,12.0,cius,2.0,ELIZABETH,local_police,729.0,085,23165,srs_agency_header,True
+IL0920100,IL,2020,0.0,12.0,cius,2.0,BELGIUM,local_police,386.0,183,04689,srs_agency_header,True
+IL0920700,IL,2020,0.0,12.0,cius,2.0,POTOMAC,local_police,711.0,183,61366,srs_agency_header,True
+IL0921800,IL,2020,0.0,12.0,cius,2.0,FITHIAN,local_police,474.0,183,26233,srs_agency_header,True
+IL0921900,IL,2020,0.0,12.0,cius,2.0,HENNING,local_police,236.0,183,34137,srs_agency_header,True
+IL0630400,IL,2020,0.0,12.0,cius,1.5,SAN JOSE,local_police,607.0,107,67613,srs_agency_header,True
+PA0542800,PA,2020,0.0,12.0,cius,1.5,TOWER CITY,local_police,1433.0,107,77184,srs_agency_header,True
+IL0230200,IL,2020,0.0,12.0,cius,1.0,KANSAS,local_police,721.0,045,38986,srs_agency_header,True
+IL0410300,IL,2020,0.0,12.0,cius,1.0,REND LAKE COLLEGE,special_jurisdiction,0.0,081,37179,srs_agency_header,True
+IL0501300,IL,2020,0.0,12.0,cius,1.0,GRAND RIDGE,local_police,525.0,099,30757,srs_agency_header,True
+IL0921600,IL,2020,0.0,12.0,cius,1.0,SIDELL,local_police,579.0,183,69836,srs_agency_header,True
+PA0320500,PA,2020,0.0,12.0,cius,1.0,CHERRY TREE,local_police,340.0,063,13120,srs_agency_header,True
+IL0550100,IL,2020,0.0,12.0,cius,,BLANDINSVILLE,local_police,605.0,109,06470,srs_agency_header,True
+IL0660700,IL,2020,0.0,12.0,cius,,VIOLA,local_police,891.0,131,78123,srs_agency_header,True
+IL0901800,IL,2020,0.0,12.0,cius,,ARMINGTON,local_police,323.0,179,02206,srs_agency_header,True
+IL0920800,IL,2020,0.0,12.0,cius,,RANKIN,local_police,528.0,183,62744,srs_agency_header,True
+IL0922000,IL,2020,0.0,12.0,cius,,INDIANOLA,local_police,263.0,183,37348,srs_agency_header,True
+ID0440100,ID,2019,0.0,12.0,cius,25.0,WEISER,local_police,6194.0,087,86140,srs_agency_header,True
+WI0100800,WI,2019,0.0,12.0,cius,23.0,THORP,local_police,1770.0,019,79625,srs_agency_header,True
+MO0720200,MO,2019,0.0,12.0,cius,18.0,LILBOURN,local_police,1082.0,143,42536,srs_agency_header,True
+TX2030100,TX,2019,0.0,12.0,cius,16.0,SAN AUGUSTINE,local_police,1868.0,405,65024,srs_agency_header,True
+OK0660700,OK,2019,0.0,12.0,cius,15.0,OOLOGAH,local_police,1349.0,131,55750,srs_agency_header,True
+WI0201200,WI,2019,0.0,12.0,cius,15.0,ROSENDALE,local_police,1052.0,039,69550,srs_agency_header,True
+VA0550100,VA,2019,0.0,12.0,cius,13.5,KENBRIDGE,local_police,1198.0,111,41832,srs_agency_header,True
+MO0070400,MO,2019,0.0,12.0,cius,13.0,RICH HILL,local_police,1323.0,013,61418,srs_agency_header,True
+MO0930200,MO,2019,0.0,12.0,cius,13.0,OSCEOLA,local_police,983.0,185,55388,srs_agency_header,True
+MN0380100,MN,2019,0.0,12.0,cius,10.5,SILVER BAY,local_police,1865.0,075,60250,srs_agency_header,True
+MN0870100,MN,2019,0.0,12.0,cius,9.0,CANBY,local_police,1688.0,173,09604,srs_agency_header,True
+MO0220800,MO,2019,0.0,12.0,cius,9.0,HIGHLANDVILLE,local_police,1070.0,043,32068,srs_agency_header,True
+WI0141400,WI,2019,0.0,12.0,cius,9.0,IRON RIDGE,local_police,915.0,027,37150,srs_agency_header,True
+MO0830300,MO,2019,0.0,12.0,cius,8.5,PLATTE WOODS,local_police,409.0,165,58196,srs_agency_header,True
+PA0655300,PA,2019,0.0,12.0,cius,8.5,ST CLAIR TOWNSHIP,local_police,2369.0,129,67240,srs_agency_header,True
+MI0524500,MI,2019,0.0,12.0,cius,7.0,BELLAIRE,local_police,1067.0,009,06980,srs_agency_header,True
+MI0554800,MI,2019,0.0,12.0,cius,7.0,MANCELONA,local_police,1406.0,009,50620,srs_agency_header,True
+MO0530100,MO,2019,0.0,12.0,cius,7.0,CONWAY,local_police,777.0,105,16192,srs_agency_header,True
+MO0810300,MO,2019,0.0,12.0,cius,7.0,DOOLITTLE,local_police,602.0,161,19828,srs_agency_header,True
+KS0010400,KS,2019,0.0,12.0,cius,6.0,LA HARPE,local_police,532.0,001,37725,srs_agency_header,True
+KY0310100,KY,2019,0.0,12.0,cius,6.0,BROWNSVILLE,local_police,943.0,061,10324,srs_agency_header,True
+MI8356900,MI,2019,0.0,12.0,cius,6.0,MANTON,local_police,1625.0,165,50880,srs_agency_header,True
+TN0260600,TN,2019,0.0,12.0,cius,6.0,HUNTLAND,local_police,909.0,051,36600,srs_agency_header,True
+IL0493300,IL,2019,0.0,12.0,cius,5.0,TOWER LAKES,local_police,1246.0,097,75874,srs_agency_header,True
+IL0680400,IL,2019,0.0,12.0,cius,5.0,RAYMOND,local_police,947.0,135,62965,srs_agency_header,True
+KY0290100,KY,2019,0.0,12.0,cius,5.0,BURKESVILLE,local_police,1473.0,057,11098,srs_agency_header,True
+MI0537500,MI,2019,0.0,12.0,cius,5.0,ELK RAPIDS,local_police,1625.0,009,25320,srs_agency_header,True
+MI2324700,MI,2019,0.0,12.0,cius,5.0,BELLEVUE,local_police,1354.0,045,07060,srs_agency_header,True
+MN0760200,MN,2019,0.0,12.0,cius,5.0,BENSON,local_police,3428.0,151,05212,srs_agency_header,True
+OK0370300,OK,2019,0.0,12.0,cius,5.0,CASHION,local_police,943.0,073,12650,srs_agency_header,True
+VA0170100,VA,2019,0.0,12.0,cius,5.0,BOWLING GREEN,local_police,1245.0,033,08888,srs_agency_header,True
+OK0691100,OK,2019,0.0,12.0,cius,4.5,VELMA,local_police,596.0,137,76900,srs_agency_header,True
+FL0070100,FL,2019,0.0,12.0,cius,4.0,ALTHA,local_police,525.0,013,01000,srs_agency_header,True
+IL0841100,IL,2019,0.0,12.0,cius,4.0,DIVERNON,local_police,1124.0,167,20045,srs_agency_header,True
+KY0550100,KY,2019,0.0,12.0,cius,4.0,MCKEE,local_police,804.0,109,49116,srs_agency_header,True
+ME0051500,ME,2019,0.0,12.0,cius,4.0,WINTER HARBOR,local_police,514.0,009,86655,srs_agency_header,True
+MI2578200,MI,2019,0.0,12.0,cius,4.0,THETFORD TOWNSHIP,local_police,6699.0,049,79460,srs_agency_header,True
+MO0970200,MO,2019,0.0,12.0,cius,4.0,ST MARYS,local_police,348.0,186,65034,srs_agency_header,True
+OK0411500,OK,2019,0.0,12.0,cius,4.0,TRYON,local_police,502.0,081,74550,srs_agency_header,True
+WI0250800,WI,2019,0.0,12.0,cius,4.0,AVOCA,local_police,627.0,049,04025,srs_agency_header,True
+IL0501700,IL,2019,0.0,12.0,cius,3.5,NORTH UTICA,local_police,1345.0,099,77096,srs_agency_header,True
+IL0920400,IL,2019,0.0,12.0,cius,3.5,FAIRMOUNT,local_police,612.0,183,24985,srs_agency_header,True
+KS0290300,KS,2019,0.0,12.0,cius,3.5,SPEARVILLE,local_police,811.0,057,67125,srs_agency_header,True
+KY0670200,KY,2019,0.0,12.0,cius,3.5,JENKINS,local_police,1981.0,133,40312,srs_agency_header,True
+MA0082000,MA,2019,0.0,12.0,cius,3.5,WORTHINGTON,local_police,1198.0,015,82175,srs_agency_header,True
+MI2564000,MI,2019,0.0,12.0,cius,3.5,OTISVILLE,local_police,832.0,049,61600,srs_agency_header,True
+MN0280200,MN,2019,0.0,12.0,cius,3.5,HOUSTON,local_police,995.0,055,30230,srs_agency_header,True
+GA1100400,GA,2019,0.0,12.0,cius,3.0,BRASWELL,local_police,387.0,223,10104,srs_agency_header,True
+IL0562400,IL,2019,0.0,12.0,cius,3.0,UNION,local_police,610.0,111,76706,srs_agency_header,True
+MI0530400,MI,2019,0.0,12.0,cius,3.0,CENTRAL LAKE,local_police,989.0,009,14400,srs_agency_header,True
+MI0622500,MI,2019,0.0,12.0,cius,3.0,AU GRES,local_police,963.0,011,99991,srs_agency_header,True
+MN0540400,MN,2019,0.0,12.0,cius,3.0,TWIN VALLEY,local_police,778.0,107,65938,srs_agency_header,True
+MN0640100,MN,2019,0.0,12.0,cius,3.0,LAMBERTON,local_police,792.0,127,35288,srs_agency_header,True
+MO0050300,MO,2019,0.0,12.0,cius,3.0,EXETER,local_police,773.0,009,23122,srs_agency_header,True
+PA0026500,PA,2019,0.0,12.0,cius,3.0,EDGEWORTH,local_police,1653.0,003,22576,srs_agency_header,True
+AR0181000,AR,2019,0.0,12.0,cius,2.5,JERICHO,local_police,111.0,035,,fbi_cde_agency_roster,True
+KS0160400,KS,2019,0.0,12.0,cius,2.5,WAVERLY,local_police,571.0,031,76050,srs_agency_header,True
+PA0261500,PA,2019,0.0,12.0,cius,2.5,LUZERNE TOWNSHIP,local_police,5940.0,051,45560,srs_agency_header,True
+TN0280200,TN,2019,0.0,12.0,cius,2.5,MINOR HILL,local_police,534.0,055,49360,srs_agency_header,True
+TN0750500,TN,2019,0.0,12.0,cius,2.5,EAGLEVILLE,local_police,985.0,149,22360,srs_agency_header,True
+IL0150900,IL,2019,0.0,12.0,cius,2.0,LAKE LAND COLLEGE,special_jurisdiction,0.0,029,47553,srs_agency_header,True
+IL0920100,IL,2019,0.0,12.0,cius,2.0,BELGIUM,local_police,386.0,183,04689,srs_agency_header,True
+IL0921900,IL,2019,0.0,12.0,cius,2.0,HENNING,local_police,236.0,183,34137,srs_agency_header,True
+IL0980500,IL,2019,0.0,12.0,cius,2.0,PROPHETSTOWN,local_police,1959.0,195,61977,srs_agency_header,True
+KS0160500,KS,2019,0.0,12.0,cius,2.0,LE ROY,local_police,538.0,031,39650,srs_agency_header,True
+KS0990100,KS,2019,0.0,12.0,cius,2.0,ALMA,local_police,829.0,197,01350,srs_agency_header,True
+KY0040300,KY,2019,0.0,12.0,cius,2.0,LA CENTER,local_police,978.0,007,43336,srs_agency_header,True
+KY0710300,KY,2019,0.0,12.0,cius,2.0,ADAIRVILLE,local_police,893.0,141,00298,srs_agency_header,True
+KY0920400,KY,2019,0.0,12.0,cius,2.0,CENTERTOWN,local_police,436.0,183,13870,srs_agency_header,True
+KY1050300,KY,2019,0.0,12.0,cius,2.0,SADIEVILLE,local_police,378.0,209,67656,srs_agency_header,True
+KY1100400,KY,2019,0.0,12.0,cius,2.0,TRENTON,local_police,377.0,219,77592,srs_agency_header,True
+LA0600700,LA,2019,0.0,12.0,cius,2.0,SIBLEY,local_police,1161.0,119,70175,srs_agency_header,True
+MI3069200,MI,2019,0.0,12.0,cius,2.0,READING,local_police,1088.0,059,67500,srs_agency_header,True
+MI6351100,MI,2019,0.0,12.0,cius,2.0,LAKE ANGELUS,local_police,309.0,125,44440,srs_agency_header,True
+MI7665300,MI,2019,0.0,12.0,cius,2.0,PECK,local_police,606.0,151,63260,srs_agency_header,True
+MN0280500,MN,2019,0.0,12.0,cius,2.0,HOKAH,local_police,556.0,055,29510,srs_agency_header,True
+MN0350100,MN,2019,0.0,12.0,cius,2.0,HALLOCK,local_police,914.0,069,26576,srs_agency_header,True
+MO0050700,MO,2019,0.0,12.0,cius,2.0,WASHBURN,local_police,439.0,009,77200,srs_agency_header,True
+MO0450200,MO,2019,0.0,12.0,cius,2.0,GLASGOW,local_police,1095.0,089,27208,srs_agency_header,True
+MO0450300,MO,2019,0.0,12.0,cius,2.0,NEW FRANKLIN,local_police,1074.0,089,51824,srs_agency_header,True
+OK0330500,OK,2019,0.0,12.0,cius,2.0,ELDORADO,local_police,415.0,065,23350,srs_agency_header,True
+OK0660900,OK,2019,0.0,12.0,cius,2.0,TALALA,local_police,279.0,131,,fbi_cde_agency_roster,True
+PA0032500,PA,2019,0.0,12.0,cius,2.0,WORTHINGTON,local_police,596.0,005,86560,srs_agency_header,True
+PA0155300,PA,2019,0.0,12.0,cius,2.0,WEST NOTTINGHAM TOWNSHIP,local_police,2875.0,029,83712,srs_agency_header,True
+PA0330700,PA,2019,0.0,12.0,cius,2.0,SYKESVILLE,local_police,1117.0,065,75888,srs_agency_header,True
+PA0381900,PA,2019,0.0,12.0,cius,2.0,WEST CORNWALL TOWNSHIP,local_police,2091.0,075,82752,srs_agency_header,True
+PA0562600,PA,2019,0.0,12.0,cius,2.0,SUMMIT TOWNSHIP,local_police,2141.0,111,75232,srs_agency_header,True
+VA0510300,VA,2019,0.0,12.0,cius,2.0,WHITE STONE,local_police,388.0,103,85600,srs_agency_header,True
+WI0030400,WI,2019,0.0,12.0,cius,2.0,CUMBERLAND,local_police,2315.0,005,18025,srs_agency_header,True
+WI0110900,WI,2019,0.0,12.0,cius,2.0,RIO,local_police,1138.0,021,68100,srs_agency_header,True
+WI0220800,WI,2019,0.0,12.0,cius,2.0,CUBA CITY,local_police,2173.0,043,17950,srs_agency_header,True
+WI0450600,WI,2019,0.0,12.0,cius,2.0,SHIOCTON,local_police,938.0,087,73625,srs_agency_header,True
+KY0451000,KY,2019,0.0,12.0,cius,1.5,BELLEFONTE,local_police,902.0,089,05374,srs_agency_header,True
+TN0090800,TN,2019,0.0,12.0,cius,1.5,CLARKSBURG,local_police,385.0,017,15140,srs_agency_header,True
+FL0132500,FL,2019,0.0,12.0,cius,1.0,INDIAN CREEK VILLAGE,local_police,93.0,086,33425,srs_agency_header,True
+IL0030500,IL,2019,0.0,12.0,cius,1.0,PIERRON,local_police,562.0,005,59709,srs_agency_header,True
+IL0410300,IL,2019,0.0,12.0,cius,1.0,REND LAKE COLLEGE,special_jurisdiction,0.0,081,37179,srs_agency_header,True
+IL0996000,IL,2019,0.0,12.0,cius,1.0,DIAMOND,local_police,2701.0,063,19837,srs_agency_header,True
+KS0440900,KS,2019,0.0,12.0,cius,1.0,OZAWKIE,local_police,637.0,087,53925,srs_agency_header,True
+KS0800500,KS,2019,0.0,12.0,cius,1.0,LITTLE RIVER,local_police,524.0,159,41575,srs_agency_header,True
+KY0110300,KY,2019,0.0,12.0,cius,1.0,PERRYVILLE,local_police,793.0,021,60258,srs_agency_header,True
+KY0360400,KY,2019,0.0,12.0,cius,1.0,WAYLAND,local_police,398.0,071,81012,srs_agency_header,True
+KY0600200,KY,2019,0.0,12.0,cius,1.0,PIPPA PASSES,local_police,677.0,119,61374,srs_agency_header,True
+KY0980200,KY,2019,0.0,12.0,cius,1.0,ELKHORN CITY,local_police,980.0,195,24382,srs_agency_header,True
+KY1000300,KY,2019,0.0,12.0,cius,1.0,EUBANK,local_police,335.0,199,25552,srs_agency_header,True
+LA0220400,LA,2019,0.0,12.0,cius,1.0,GEORGETOWN,local_police,326.0,043,28660,srs_agency_header,True
+MI3250600,MI,2019,0.0,12.0,cius,1.0,KINDE,local_police,440.0,063,43220,srs_agency_header,True
+MI3264400,MI,2019,0.0,12.0,cius,1.0,OWENDALE,local_police,261.0,063,61920,srs_agency_header,True
+MI5423800,MI,2019,0.0,12.0,cius,1.0,BARRYTON,local_police,413.0,107,05580,srs_agency_header,True
+MO0040100,MO,2019,0.0,12.0,cius,1.0,FARBER,local_police,315.0,007,23662,srs_agency_header,True
+MO0191200,MO,2019,0.0,12.0,cius,1.0,EAST LYNNE,local_police,313.0,037,20980,srs_agency_header,True
+MO0500500,MO,2019,0.0,12.0,cius,1.0,KIMMSWICK,local_police,151.0,099,38684,srs_agency_header,True
+MO0721400,MO,2019,0.0,12.0,cius,1.0,RISCO,local_police,315.0,143,61994,srs_agency_header,True
+MO0980500,MO,2019,0.0,12.0,cius,1.0,BLACKBURN,local_police,238.0,195,05950,srs_agency_header,True
+MO1020300,MO,2019,0.0,12.0,cius,1.0,EMINENCE,local_police,582.0,203,22276,srs_agency_header,True
+TN0660700,TN,2019,0.0,12.0,cius,1.0,HORNBEAK,local_police,505.0,131,36000,srs_agency_header,True
+WI0201000,WI,2019,0.0,12.0,cius,1.0,RIPON TOWN,local_police,1381.0,039,68200,srs_agency_header,True
+WI0201100,WI,2019,0.0,12.0,cius,1.0,BRANDON FAIRWATER,local_police,1229.0,039,99991,srs_agency_header,True
+WI0420500,WI,2019,0.0,12.0,cius,1.0,NORWALK,local_police,632.0,081,,fbi_cde_agency_roster,True
+IL0460900,IL,2019,0.0,12.0,cius,,ESSEX,local_police,858.0,091,24452,srs_agency_header,True
+IL0550100,IL,2019,0.0,12.0,cius,,BLANDINSVILLE,local_police,605.0,109,06470,srs_agency_header,True
+IL0660700,IL,2019,0.0,12.0,cius,,VIOLA,local_police,891.0,131,78123,srs_agency_header,True
+IL0920800,IL,2019,0.0,12.0,cius,,RANKIN,local_police,528.0,183,62744,srs_agency_header,True
+IL0922000,IL,2019,0.0,12.0,cius,,INDIANOLA,local_police,263.0,183,37348,srs_agency_header,True
+KS0060200,KS,2019,0.0,12.0,cius,,BRONSON,local_police,311.0,011,,leaic_crosswalk,True
+KS0270400,KS,2019,0.0,12.0,cius,,HOLYROOD,local_police,431.0,053,32850,srs_agency_header,True
+KS0350300,KS,2019,0.0,12.0,cius,,MONTEZUMA,local_police,981.0,069,47875,srs_agency_header,True
+KS0540100,KS,2019,0.0,12.0,cius,,MOUND CITY,local_police,685.0,107,48750,srs_agency_header,True
+KS0750600,KS,2019,0.0,12.0,cius,,HAVENSVILLE,local_police,159.0,149,30775,srs_agency_header,True
+KS0990300,KS,2019,0.0,12.0,cius,,ALTA VISTA,local_police,425.0,197,01575,srs_agency_header,True
+KY0360200,KY,2019,0.0,12.0,cius,,WHEELWRIGHT,local_police,481.0,071,82272,srs_agency_header,True
+KY0660100,KY,2019,0.0,12.0,cius,,HYDEN,local_police,341.0,131,38908,srs_agency_header,True
+KY0690300,KY,2019,0.0,12.0,cius,,CRAB ORCHARD,local_police,831.0,137,17956,srs_agency_header,True
+KY0900400,KY,2019,0.0,12.0,cius,,NEW HAVEN,local_police,904.0,179,55758,srs_agency_header,True
+LA0090800,LA,2019,0.0,12.0,cius,,IDA,local_police,212.0,017,,fbi_cde_agency_roster,True
+LA0190500,LA,2019,0.0,12.0,cius,,NORWOOD,local_police,299.0,037,56295,srs_agency_header,True
+LA0620200,LA,2019,0.0,12.0,cius,,EPPS,local_police,820.0,123,24145,srs_agency_header,True
+MD0010500,MD,2019,0.0,12.0,cius,,LUKE,local_police,86.0,001,48775,srs_agency_header,True
+MI0347800,MI,2019,0.0,12.0,cius,,HOPKINS,local_police,625.0,005,39180,srs_agency_header,True
+MI0883200,MI,2019,0.0,12.0,cius,,WOODLAND TOWNSHIP,local_police,2157.0,015,88420,srs_agency_header,True
+MI1141800,MI,2019,0.0,12.0,cius,,GALIEN,local_police,535.0,021,31300,srs_agency_header,True
+MI3266600,MI,2019,0.0,12.0,cius,,PIGEON,local_police,1205.0,063,64060,srs_agency_header,True
+MI4089200,MI,2019,0.0,12.0,cius,,GARFIELD TOWNSHIP,local_police,1029.0,079,31600,srs_agency_header,True
+MI7941500,MI,2019,0.0,12.0,cius,,GAGETOWN,local_police,362.0,157,31180,srs_agency_header,True
+MN0010200,MN,2019,0.0,12.0,cius,,MCGREGOR,local_police,385.0,001,39014,srs_agency_header,True
+MN0230500,MN,2019,0.0,12.0,cius,,RUSHFORD,local_police,1861.0,045,56284,srs_agency_header,True
+MN0731000,MN,2019,0.0,12.0,cius,,KIMBALL,local_police,874.0,145,33164,srs_agency_header,True
+MO0040300,MO,2019,0.0,12.0,cius,,MARTINSBURG,local_police,300.0,007,46460,srs_agency_header,True
+MO0050800,MO,2019,0.0,12.0,cius,,WHEATON,local_police,693.0,009,79126,srs_agency_header,True
+MO0160300,MO,2019,0.0,12.0,cius,,DELTA,local_police,439.0,031,19072,srs_agency_header,True
+MO0191600,MO,2019,0.0,12.0,cius,,STRASBURG,local_police,142.0,037,71098,srs_agency_header,True
+MO0580200,MO,2019,0.0,12.0,cius,,BUCKLIN,local_police,442.0,115,09388,srs_agency_header,True
+MO0600300,MO,2019,0.0,12.0,cius,,PINEVILLE,local_police,837.0,119,57818,srs_agency_header,True
+MO0890700,MO,2019,0.0,12.0,cius,,FLEMING,local_police,129.0,167,24562,srs_agency_header,True
+MO1000400,MO,2019,0.0,12.0,cius,,RUTLEDGE,local_police,111.0,199,,fbi_cde_agency_roster,True
+MO1130500,MO,2019,0.0,12.0,cius,,NIANGUA,local_police,429.0,225,52418,srs_agency_header,True
+NB0600400,NE,2019,0.0,12.0,cius,,TILDEN,local_police,987.0,119,48935,srs_agency_header,True
+OH0430400,OH,2019,0.0,12.0,cius,,KIRTLAND HILLS,local_police,691.0,085,40670,srs_agency_header,True
+OH0431000,OH,2019,0.0,12.0,cius,,WAITE HILL,local_police,530.0,085,80402,srs_agency_header,True
+OK0492000,OK,2019,0.0,12.0,cius,,SPORTSMEN ACRES,local_police,320.0,097,,leaic_crosswalk,True
+PA0028800,PA,2019,0.0,12.0,cius,,ROSSLYN FARMS,local_police,430.0,003,66320,srs_agency_header,True
+PA0032000,PA,2019,0.0,12.0,cius,,WEST KITTANNING,local_police,1174.0,005,83248,srs_agency_header,True
+PA0032800,PA,2019,0.0,12.0,cius,,ELDERTON,local_police,342.0,005,22832,srs_agency_header,True
+PA0044900,PA,2019,0.0,12.0,cius,,SOUTH HEIGHTS,local_police,450.0,007,72216,srs_agency_header,True
+PA0102800,PA,2019,0.0,12.0,cius,,PORTERSVILLE,local_police,229.0,019,,leaic_crosswalk,True
+PA0111900,PA,2019,0.0,12.0,cius,,BLACKLICK TOWNSHIP,local_police,1890.0,021,06736,srs_agency_header,True
+PA0115600,PA,2019,0.0,12.0,cius,,VINTONDALE,local_police,407.0,021,80288,srs_agency_header,True
+PA0180500,PA,2019,0.0,12.0,cius,,DUNNSTABLE TOWNSHIP,local_police,1019.0,035,20408,srs_agency_header,True
+PA0542300,PA,2019,0.0,12.0,cius,,PALO ALTO,local_police,982.0,107,57752,srs_agency_header,True
+PA0544900,PA,2019,0.0,12.0,cius,,BLYTHE TOWNSHIP,local_police,887.0,107,07336,srs_agency_header,True
+TX1120100,TX,2019,0.0,12.0,cius,,CUMBY,local_police,800.0,223,18128,srs_agency_header,True
+UT0210300,UT,2019,0.0,12.0,cius,,AURORA,local_police,1065.0,041,,fbi_cde_agency_roster,True
+WI0630800,WI,2019,0.0,12.0,cius,,READSTOWN,local_police,418.0,123,66450,srs_agency_header,True
+WI0670600,WI,2019,0.0,12.0,cius,,HARTFORD TOWNSHIP,local_police,3571.0,131,,fbi_cde_agency_roster,True
+WI0700200,WI,2019,0.0,12.0,cius,,HANCOCK,local_police,408.0,137,32450,srs_agency_header,True
+WI0700300,WI,2019,0.0,12.0,cius,,PLAINFIELD,local_police,940.0,137,63175,srs_agency_header,True
+PA0450100,PA,2018,0.0,12.0,cius,38.0,DELAWARE WATER GAP,local_police,755.0,089,18736,srs_agency_header,True
+NM0070500,NM,2018,0.0,12.0,cius,27.0,MESILLA,local_police,1837.0,013,48060,srs_agency_header,True
+NY0082000,NY,2018,0.0,12.0,cius,23.0,AFTON VILLAGE,local_police,796.0,017,00342,srs_agency_header,True
+VT0110300,VT,2018,0.0,12.0,cius,22.0,CASTLETON,local_police,4599.0,021,11950,srs_agency_header,True
+TX0141000,TX,2018,0.0,12.0,cius,21.0,MORGANS POINT RESORT,local_police,4844.0,027,49392,srs_agency_header,True
+TX2300100,TX,2018,0.0,12.0,cius,21.0,BIG SANDY,local_police,1418.0,459,08224,srs_agency_header,True
+OK0660700,OK,2018,0.0,12.0,cius,15.0,OOLOGAH,local_police,1349.0,131,55750,srs_agency_header,True
+WI0201200,WI,2018,0.0,12.0,cius,15.0,ROSENDALE,local_police,1052.0,039,69550,srs_agency_header,True
+VA0550100,VA,2018,0.0,12.0,cius,13.5,KENBRIDGE,local_police,1198.0,111,41832,srs_agency_header,True
+MN0080300,MN,2018,0.0,12.0,cius,12.0,SPRINGFIELD,local_police,2006.0,015,61816,srs_agency_header,True
+NY0293300,NY,2018,0.0,12.0,cius,11.0,GREAT NECK ESTATES VILLA,local_police,3143.0,059,30191,srs_agency_header,True
+MN0380100,MN,2018,0.0,12.0,cius,10.5,SILVER BAY,local_police,1865.0,075,60250,srs_agency_header,True
+PA0101900,PA,2018,0.0,12.0,cius,10.0,SAXONBURG,local_police,1456.0,019,68056,srs_agency_header,True
+CA0470300,CA,2018,0.0,12.0,cius,9.0,ETNA,local_police,718.0,093,22972,srs_agency_header,True
+KY1140400,KY,2018,0.0,12.0,cius,8.0,WOODBURN,local_police,381.0,227,84414,srs_agency_header,True
+SD0630300,SD,2018,0.0,12.0,cius,7.5,ALCESTER,local_police,774.0,127,00700,srs_agency_header,True
+GA0990500,GA,2018,0.0,12.0,cius,7.0,WARM SPRINGS,local_police,532.0,199,80480,srs_agency_header,True
+MO0390400,MO,2018,0.0,12.0,cius,7.0,WALNUT GROVE,local_police,807.0,077,76840,srs_agency_header,True
+NY0042800,NY,2018,0.0,12.0,cius,7.0,PORTVILLE VILLAGE,local_police,961.0,009,59498,srs_agency_header,True
+TN0500300,TN,2018,0.0,12.0,cius,7.0,ST JOSEPH,local_police,833.0,099,66160,srs_agency_header,True
+PA0640200,PA,2018,0.0,12.0,cius,6.5,HAWLEY,local_police,1234.0,127,33200,srs_agency_header,True
+AR0042000,AR,2018,0.0,12.0,cius,6.0,HIGHFILL,local_police,2739.0,007,32200,srs_agency_header,True
+PA0180600,PA,2018,0.0,12.0,cius,6.0,WOODWARD TOWNSHIP,local_police,2465.0,035,86448,srs_agency_header,True
+SD0070200,SD,2018,0.0,12.0,cius,6.0,KIMBALL,local_police,677.0,015,33980,srs_agency_header,True
+PA0063000,PA,2018,0.0,12.0,cius,5.5,BALLY,local_police,1281.0,011,03984,srs_agency_header,True
+NY0216700,NY,2018,0.0,12.0,cius,5.0,WEBB TOWN,local_police,1810.0,043,78927,srs_agency_header,True
+OK0110500,OK,2018,0.0,12.0,cius,5.0,HULBERT,local_police,593.0,021,36400,srs_agency_header,True
+OK0240600,OK,2018,0.0,12.0,cius,5.0,COVINGTON,local_police,538.0,047,17700,srs_agency_header,True
+PA0111500,PA,2018,0.0,12.0,cius,5.0,SOUTH FORK,local_police,935.0,021,72168,srs_agency_header,True
+PA0211900,PA,2018,0.0,12.0,cius,5.0,NEWVILLE,local_police,1396.0,041,54320,srs_agency_header,True
+PA0260700,PA,2018,0.0,12.0,cius,5.0,SOUTH CONNELLSVILLE BORO,local_police,1884.0,051,72080,srs_agency_header,True
+TN0740400,TN,2018,0.0,12.0,cius,5.0,CROSS PLAINS,local_police,1931.0,147,18420,srs_agency_header,True
+NM0290500,NM,2018,0.0,12.0,cius,4.5,TAOS SKI VALLEY,local_police,82.0,055,76480,srs_agency_header,True
+NY0294100,NY,2018,0.0,12.0,cius,4.5,KENSINGTON VILLAGE,local_police,1221.0,059,39309,srs_agency_header,True
+OK0691100,OK,2018,0.0,12.0,cius,4.5,VELMA,local_police,596.0,137,76900,srs_agency_header,True
+WI0480400,WI,2018,0.0,12.0,cius,4.5,SPRING VALLEY,local_police,1430.0,093,76300,srs_agency_header,True
+CO0621200,CO,2018,0.0,12.0,cius,4.0,AULT,local_police,2978.0,123,03950,srs_agency_header,True
+LA0600400,LA,2018,0.0,12.0,cius,4.0,CULLEN,local_police,1088.0,119,18790,srs_agency_header,True
+MI7861400,MI,2018,0.0,12.0,cius,4.0,NEW LOTHROP,local_police,583.0,155,57520,srs_agency_header,True
+NH0102200,NH,2018,0.0,12.0,cius,4.0,SPRINGFIELD,local_police,1351.0,019,72740,srs_agency_header,True
+NY0472400,NY,2018,0.0,12.0,cius,4.0,SCHOHARIE VILLAGE,local_police,954.0,095,65585,srs_agency_header,True
+NY0512400,NY,2018,0.0,12.0,cius,4.0,SAG HARBOR VILLAGE,local_police,2802.0,103,64485,srs_agency_header,True
+PA0402900,PA,2018,0.0,12.0,cius,4.0,CONYNGHAM,local_police,1862.0,079,15888,srs_agency_header,True
+SD0040400,SD,2018,0.0,12.0,cius,4.0,AVON,local_police,599.0,009,02900,srs_agency_header,True
+WI0250800,WI,2018,0.0,12.0,cius,4.0,AVOCA,local_police,627.0,049,04025,srs_agency_header,True
+WI0610300,WI,2018,0.0,12.0,cius,4.0,RIB LAKE,local_police,926.0,119,67275,srs_agency_header,True
+MN0280200,MN,2018,0.0,12.0,cius,3.5,HOUSTON,local_police,995.0,055,30230,srs_agency_header,True
+GA1100400,GA,2018,0.0,12.0,cius,3.0,BRASWELL,local_police,387.0,223,10104,srs_agency_header,True
+IL0571400,IL,2018,0.0,12.0,cius,3.0,STANFORD,local_police,597.0,113,72260,srs_agency_header,True
+KY0460200,KY,2018,0.0,12.0,cius,3.0,LEWISPORT,local_police,1749.0,091,45136,srs_agency_header,True
+MN0470200,MN,2018,0.0,12.0,cius,3.0,EDEN VALLEY,local_police,1089.0,093,18134,srs_agency_header,True
+MN0540400,MN,2018,0.0,12.0,cius,3.0,TWIN VALLEY,local_police,778.0,107,65938,srs_agency_header,True
+MN0640100,MN,2018,0.0,12.0,cius,3.0,LAMBERTON,local_police,792.0,127,35288,srs_agency_header,True
+MO0320300,MO,2018,0.0,12.0,cius,3.0,STEWARTSVILLE,local_police,755.0,063,70738,srs_agency_header,True
+MO1050700,MO,2018,0.0,12.0,cius,3.0,INDIAN POINT,local_police,598.0,209,35186,srs_agency_header,True
+NJ0100400,NJ,2018,0.0,12.0,cius,3.0,CALIFON,local_police,1068.0,019,09280,srs_agency_header,True
+OK0070200,OK,2018,0.0,12.0,cius,3.0,ACHILLE,local_police,556.0,013,00100,srs_agency_header,True
+PA0025100,PA,2018,0.0,12.0,cius,3.0,BEN AVON HEIGHTS,local_police,387.0,003,05520,srs_agency_header,True
+SC0210700,SC,2018,0.0,12.0,cius,3.0,QUINBY,local_police,931.0,041,58795,srs_agency_header,True
+SC0370500,SC,2018,0.0,12.0,cius,3.0,SALEM,local_police,154.0,073,62980,srs_agency_header,True
+SD0330200,SD,2018,0.0,12.0,cius,3.0,PARKSTON,local_police,1539.0,067,48460,srs_agency_header,True
+KS0020200,KS,2018,0.0,12.0,cius,2.5,COLONY,local_police,425.0,003,14950,srs_agency_header,True
+PA0261500,PA,2018,0.0,12.0,cius,2.5,LUZERNE TOWNSHIP,local_police,5940.0,051,45560,srs_agency_header,True
+SD0180100,SD,2018,0.0,12.0,cius,2.5,WEBSTER,local_police,1757.0,037,69780,srs_agency_header,True
+GA0010300,GA,2018,0.0,12.0,cius,2.0,GRAHAM,local_police,297.0,001,34260,srs_agency_header,True
+GA0720300,GA,2018,0.0,12.0,cius,2.0,SHILOH,local_police,501.0,145,70428,srs_agency_header,True
+IL0100200,IL,2018,0.0,12.0,cius,2.0,HOMER,local_police,1168.0,019,35814,srs_agency_header,True
+IL0150900,IL,2018,0.0,12.0,cius,2.0,LAKE LAND COLLEGE,special_jurisdiction,0.0,029,47553,srs_agency_header,True
+IL0921800,IL,2018,0.0,12.0,cius,2.0,FITHIAN,local_police,474.0,183,26233,srs_agency_header,True
+IL0921900,IL,2018,0.0,12.0,cius,2.0,HENNING,local_police,236.0,183,34137,srs_agency_header,True
+MI6351100,MI,2018,0.0,12.0,cius,2.0,LAKE ANGELUS,local_police,309.0,125,44440,srs_agency_header,True
+MI7665300,MI,2018,0.0,12.0,cius,2.0,PECK,local_police,606.0,151,63260,srs_agency_header,True
+MN0350100,MN,2018,0.0,12.0,cius,2.0,HALLOCK,local_police,914.0,069,26576,srs_agency_header,True
+MO0450300,MO,2018,0.0,12.0,cius,2.0,NEW FRANKLIN,local_police,1074.0,089,51824,srs_agency_header,True
+MO0540300,MO,2018,0.0,12.0,cius,2.0,CORDER,local_police,425.0,107,16408,srs_agency_header,True
+MO0570200,MO,2018,0.0,12.0,cius,2.0,OLD MONROE,local_police,294.0,113,54416,srs_agency_header,True
+MO1080500,MO,2018,0.0,12.0,cius,2.0,SUMMERSVILLE,local_police,491.0,215,71512,srs_agency_header,True
+NY0222500,NY,2018,0.0,12.0,cius,2.0,GLEN PARK VILLAGE,local_police,490.0,045,29322,srs_agency_header,True
+NY0492000,NY,2018,0.0,12.0,cius,2.0,INTERLAKEN VILLAGE,local_police,626.0,099,37528,srs_agency_header,True
+OK0221400,OK,2018,0.0,12.0,cius,2.0,VICI,local_police,708.0,043,77300,srs_agency_header,True
+OK0270700,OK,2018,0.0,12.0,cius,2.0,NASH,local_police,198.0,053,,fbi_cde_agency_roster,True
+OK0330500,OK,2018,0.0,12.0,cius,2.0,ELDORADO,local_police,415.0,065,23350,srs_agency_header,True
+PA0031000,PA,2018,0.0,12.0,cius,2.0,PARKS TOWNSHIP,local_police,2571.0,005,58160,srs_agency_header,True
+PA0102900,PA,2018,0.0,12.0,cius,2.0,HARRISVILLE,local_police,865.0,019,32896,srs_agency_header,True
+PA0103000,PA,2018,0.0,12.0,cius,2.0,PROSPECT,local_police,1117.0,019,,fbi_cde_agency_roster,True
+PA0155300,PA,2018,0.0,12.0,cius,2.0,WEST NOTTINGHAM TOWNSHIP,local_police,2875.0,029,83712,srs_agency_header,True
+PA0180300,PA,2018,0.0,12.0,cius,2.0,AVIS,local_police,1500.0,035,03632,srs_agency_header,True
+PA0330700,PA,2018,0.0,12.0,cius,2.0,SYKESVILLE,local_police,1117.0,065,75888,srs_agency_header,True
+PA0561700,PA,2018,0.0,12.0,cius,2.0,INDIAN LAKE,local_police,390.0,111,36888,srs_agency_header,True
+PA0562600,PA,2018,0.0,12.0,cius,2.0,SUMMIT TOWNSHIP,local_police,2141.0,111,75232,srs_agency_header,True
+PA0591700,PA,2018,0.0,12.0,cius,2.0,OSCEOLA TOWNSHIP,local_police,633.0,117,57224,srs_agency_header,True
+PA0632600,PA,2018,0.0,12.0,cius,2.0,HOUSTON,local_police,1239.0,125,35896,srs_agency_header,True
+PA0654200,PA,2018,0.0,12.0,cius,2.0,WEST LEECHBURG,local_police,1249.0,129,83328,srs_agency_header,True
+SD0260300,SD,2018,0.0,12.0,cius,2.0,BURKE,local_police,586.0,053,08700,srs_agency_header,True
+TN0780400,TN,2018,0.0,12.0,cius,2.0,PITTMAN CENTER,local_police,583.0,155,58940,srs_agency_header,True
+VA0920200,VA,2018,0.0,12.0,cius,2.0,POCAHONTAS,local_police,357.0,185,63288,srs_agency_header,True
+WI0030400,WI,2018,0.0,12.0,cius,2.0,CUMBERLAND,local_police,2315.0,005,18025,srs_agency_header,True
+WY0120300,WY,2018,0.0,12.0,cius,2.0,DIAMONDVILLE,local_police,769.0,023,20110,srs_agency_header,True
+GA1210800,GA,2018,0.0,12.0,cius,1.5,BLYTHE,local_police,777.0,245,09040,srs_agency_header,True
+MO0191100,MO,2018,0.0,12.0,cius,1.5,CLEVELAND,local_police,669.0,037,14770,srs_agency_header,True
+ND0180600,ND,2018,0.0,12.0,cius,1.5,THOMPSON,local_police,1086.0,035,78660,srs_agency_header,True
+NY0155100,NY,2018,0.0,12.0,cius,1.5,MORIAH TOWN,local_police,4672.0,031,48428,srs_agency_header,True
+NY0222600,NY,2018,0.0,12.0,cius,1.5,CAPE VINCENT VILLAGE,local_police,739.0,045,12353,srs_agency_header,True
+NY0595500,NY,2018,0.0,12.0,cius,1.5,LEWISBORO TOWN,local_police,12823.0,119,42136,srs_agency_header,True
+PA0031500,PA,2018,0.0,12.0,cius,1.5,NORTH BUFFALO,local_police,2933.0,005,54856,srs_agency_header,True
+PA0045100,PA,2018,0.0,12.0,cius,1.5,SHIPPINGPORT,local_police,199.0,007,70376,srs_agency_header,True
+PA0560100,PA,2018,0.0,12.0,cius,1.5,MEYERSDALE,local_police,2070.0,111,48912,srs_agency_header,True
+SD0330400,SD,2018,0.0,12.0,cius,1.5,TRIPP,local_police,630.0,067,64020,srs_agency_header,True
+FL0132500,FL,2018,0.0,12.0,cius,1.0,INDIAN CREEK VILLAGE,local_police,93.0,086,33425,srs_agency_header,True
+GA0680800,GA,2018,0.0,12.0,cius,1.0,PIEDMONT COLLEGE,special_jurisdiction,,137,22304,srs_agency_header,True
+GA1030200,GA,2018,0.0,12.0,cius,1.0,UVALDA,local_police,585.0,209,78744,srs_agency_header,True
+IL0030500,IL,2018,0.0,12.0,cius,1.0,PIERRON,local_police,562.0,005,59709,srs_agency_header,True
+IL0230200,IL,2018,0.0,12.0,cius,1.0,KANSAS,local_police,721.0,045,38986,srs_agency_header,True
+IL0501300,IL,2018,0.0,12.0,cius,1.0,GRAND RIDGE,local_police,525.0,099,30757,srs_agency_header,True
+IL0921600,IL,2018,0.0,12.0,cius,1.0,SIDELL,local_police,579.0,183,69836,srs_agency_header,True
+KY1020100,KY,2018,0.0,12.0,cius,1.0,LIVINGSTON,local_police,218.0,203,47098,srs_agency_header,True
+MI2262600,MI,2018,0.0,12.0,cius,1.0,NORWAY,local_police,2840.0,043,59220,srs_agency_header,True
+MI2755500,MI,2018,0.0,12.0,cius,1.0,MARENISCO TOWNSHIP,local_police,1626.0,053,51560,srs_agency_header,True
+MI3250600,MI,2018,0.0,12.0,cius,1.0,KINDE,local_police,440.0,063,43220,srs_agency_header,True
+MO0040100,MO,2018,0.0,12.0,cius,1.0,FARBER,local_police,315.0,007,23662,srs_agency_header,True
+MO0300200,MO,2018,0.0,12.0,cius,1.0,URBANA,local_police,424.0,059,75310,srs_agency_header,True
+MO0500500,MO,2018,0.0,12.0,cius,1.0,KIMMSWICK,local_police,151.0,099,38684,srs_agency_header,True
+MO0720900,MO,2018,0.0,12.0,cius,1.0,HOWARDVILLE,local_police,346.0,143,33364,srs_agency_header,True
+MO1050300,MO,2018,0.0,12.0,cius,1.0,REEDS SPRING,local_police,1278.0,209,61112,srs_agency_header,True
+NH0057000,NH,2018,0.0,12.0,cius,1.0,SUGAR HILL,local_police,688.0,009,74740,srs_agency_header,True
+NY0223300,NY,2018,0.0,12.0,cius,1.0,SACKETS HARBOR VILLAGE,local_police,1432.0,045,64408,srs_agency_header,True
+NY0223700,NY,2018,0.0,12.0,cius,1.0,THERESA VILLAGE,local_police,801.0,045,73517,srs_agency_header,True
+NY0342300,NY,2018,0.0,12.0,cius,1.0,SHORTSVILLE VILLAGE,local_police,1422.0,069,67257,srs_agency_header,True
+OK0572300,OK,2018,0.0,12.0,cius,1.0,WYNONA,local_police,434.0,113,82450,srs_agency_header,True
+OK0680600,OK,2018,0.0,12.0,cius,1.0,GANS,local_police,300.0,135,28350,srs_agency_header,True
+PA0027800,PA,2018,0.0,12.0,cius,1.0,LINCOLN,local_police,1038.0,003,43408,srs_agency_header,True
+PA0032300,PA,2018,0.0,12.0,cius,1.0,PARKER,local_police,806.0,005,57976,srs_agency_header,True
+PA0131200,PA,2018,0.0,12.0,cius,1.0,BEAVER MEADOWS,local_police,913.0,025,04816,srs_agency_header,True
+PA0151900,PA,2018,0.0,12.0,cius,1.0,AVONDALE,local_police,1422.0,029,03656,srs_agency_header,True
+PA0153400,PA,2018,0.0,12.0,cius,1.0,HIGHLAND TOWNSHIP,local_police,1291.0,029,34448,srs_agency_header,True
+PA0222100,PA,2018,0.0,12.0,cius,1.0,ROYALTON,local_police,1131.0,043,66560,srs_agency_header,True
+PA0261300,PA,2018,0.0,12.0,cius,1.0,FAYETTE CITY,local_police,570.0,051,25456,srs_agency_header,True
+PA0320200,PA,2018,0.0,12.0,cius,1.0,HOMER CITY,local_police,1733.0,063,35408,srs_agency_header,True
+PA0482800,PA,2018,0.0,12.0,cius,1.0,WALNUTPORT,local_police,2119.0,095,80800,srs_agency_header,True
+PA0541800,PA,2018,0.0,12.0,cius,1.0,DELANO TOWNSHIP,local_police,421.0,107,18672,srs_agency_header,True
+PA0580400,PA,2018,0.0,12.0,cius,1.0,MONTROSE,local_police,1484.0,115,50736,srs_agency_header,True
+TN0020200,TN,2018,0.0,12.0,cius,1.0,WARTRACE,local_police,726.0,003,78120,srs_agency_header,True
+AR0750400,AR,2018,0.0,12.0,cius,,PLAINVIEW,local_police,584.0,149,55970,srs_agency_header,True
+GA0050400,GA,2018,0.0,12.0,cius,,GEORGIA MILITARY COLLEGE,special_jurisdiction,0.0,009,51492,srs_agency_header,True
+GA0130200,GA,2018,0.0,12.0,cius,,HOBOKEN,local_police,542.0,025,39216,srs_agency_header,True
+GA0170200,GA,2018,0.0,12.0,cius,,MIDVILLE,local_police,380.0,033,51240,srs_agency_header,True
+GA0190300,GA,2018,0.0,12.0,cius,,LEARY,local_police,577.0,037,45600,srs_agency_header,True
+GA0240200,GA,2018,0.0,12.0,cius,,HOMELAND,local_police,958.0,049,39692,srs_agency_header,True
+GA0290900,GA,2018,0.0,12.0,cius,,ATHENS TECHNICAL COLLEGE,special_jurisdiction,0.0,059,,fbi_cde_agency_roster,True
+GA0430200,GA,2018,0.0,12.0,cius,,ATTAPULGUS,local_police,445.0,087,04084,srs_agency_header,True
+GA0430900,GA,2018,0.0,12.0,cius,,BAINBRIDGE STATE COLLEGE,special_jurisdiction,0.0,087,04896,srs_agency_header,True
+GA1140300,GA,2018,0.0,12.0,cius,,MOLENA,local_police,432.0,231,52108,srs_agency_header,True
+GA1150400,GA,2018,0.0,12.0,cius,,ARAGON,local_police,1520.0,233,02592,srs_agency_header,True
+GA1190200,GA,2018,0.0,12.0,cius,,MOUNTAIN CITY,local_police,1116.0,241,53116,srs_agency_header,True
+GA1280100,GA,2018,0.0,12.0,cius,,LUMPKIN,local_police,1297.0,259,47980,srs_agency_header,True
+GA1340600,GA,2018,0.0,12.0,cius,,JACKSONVILLE,local_police,132.0,271,41708,srs_agency_header,True
+GA1580200,GA,2018,0.0,12.0,cius,,IRWINTON,local_police,552.0,319,41400,srs_agency_header,True
+IL0660700,IL,2018,0.0,12.0,cius,,VIOLA,local_police,891.0,131,78123,srs_agency_header,True
+IL0920800,IL,2018,0.0,12.0,cius,,RANKIN,local_police,528.0,183,62744,srs_agency_header,True
+IL0922000,IL,2018,0.0,12.0,cius,,INDIANOLA,local_police,263.0,183,37348,srs_agency_header,True
+KS0010300,KS,2018,0.0,12.0,cius,,MORAN,local_police,511.0,001,48125,srs_agency_header,True
+KS0060200,KS,2018,0.0,12.0,cius,,BRONSON,local_police,311.0,011,,leaic_crosswalk,True
+KS0290200,KS,2018,0.0,12.0,cius,,BUCKLIN,local_police,792.0,057,09000,srs_agency_header,True
+KS0350300,KS,2018,0.0,12.0,cius,,MONTEZUMA,local_police,981.0,069,47875,srs_agency_header,True
+KS0400700,KS,2018,0.0,12.0,cius,,WALTON,local_police,235.0,079,75200,srs_agency_header,True
+KS0540100,KS,2018,0.0,12.0,cius,,MOUND CITY,local_police,685.0,107,48750,srs_agency_header,True
+KS0750600,KS,2018,0.0,12.0,cius,,HAVENSVILLE,local_police,159.0,149,30775,srs_agency_header,True
+KS0890700,KS,2018,0.0,12.0,cius,,AUBURN,local_police,1259.0,177,03250,srs_agency_header,True
+KS0990300,KS,2018,0.0,12.0,cius,,ALTA VISTA,local_police,425.0,197,01575,srs_agency_header,True
+LA0050600,LA,2018,0.0,12.0,cius,,MOREAUVILLE,local_police,948.0,009,51970,srs_agency_header,True
+LA0070900,LA,2018,0.0,12.0,cius,,RINGGOLD,local_police,1396.0,013,64905,srs_agency_header,True
+LA0090800,LA,2018,0.0,12.0,cius,,IDA,local_police,212.0,017,,fbi_cde_agency_roster,True
+LA0190300,LA,2018,0.0,12.0,cius,,WILSON,local_police,564.0,037,82215,srs_agency_header,True
+LA0190500,LA,2018,0.0,12.0,cius,,NORWOOD,local_police,299.0,037,56295,srs_agency_header,True
+LA0220500,LA,2018,0.0,12.0,cius,,POLLOCK,local_police,482.0,043,61580,srs_agency_header,True
+LA0430700,LA,2018,0.0,12.0,cius,,FISHER,local_police,221.0,085,25615,srs_agency_header,True
+LA0620200,LA,2018,0.0,12.0,cius,,EPPS,local_police,820.0,123,24145,srs_agency_header,True
+MD0010400,MD,2018,0.0,12.0,cius,,LONACONING,local_police,1120.0,001,47875,srs_agency_header,True
+MD0010500,MD,2018,0.0,12.0,cius,,LUKE,local_police,86.0,001,48775,srs_agency_header,True
+MI1141800,MI,2018,0.0,12.0,cius,,GALIEN,local_police,535.0,021,31300,srs_agency_header,True
+MI4089200,MI,2018,0.0,12.0,cius,,GARFIELD TOWNSHIP,local_police,1029.0,079,31600,srs_agency_header,True
+MI7667700,MI,2018,0.0,12.0,cius,,PORT SANILAC,local_police,579.0,151,65900,srs_agency_header,True
+MN0010200,MN,2018,0.0,12.0,cius,,MCGREGOR,local_police,385.0,001,39014,srs_agency_header,True
+MN0230500,MN,2018,0.0,12.0,cius,,RUSHFORD,local_police,1861.0,045,56284,srs_agency_header,True
+MN0731000,MN,2018,0.0,12.0,cius,,KIMBALL,local_police,874.0,145,33164,srs_agency_header,True
+MO0040300,MO,2018,0.0,12.0,cius,,MARTINSBURG,local_police,300.0,007,46460,srs_agency_header,True
+MO0050800,MO,2018,0.0,12.0,cius,,WHEATON,local_police,693.0,009,79126,srs_agency_header,True
+MO0051000,MO,2018,0.0,12.0,cius,,BUTTERFIELD VILLAGE,local_police,480.0,009,10144,srs_agency_header,True
+MO0160300,MO,2018,0.0,12.0,cius,,DELTA,local_police,439.0,031,19072,srs_agency_header,True
+MO0570300,MO,2018,0.0,12.0,cius,,SILEX,local_police,309.0,113,67808,srs_agency_header,True
+MO0600300,MO,2018,0.0,12.0,cius,,PINEVILLE,local_police,837.0,119,57818,srs_agency_header,True
+MO0730600,MO,2018,0.0,12.0,cius,,FAIRVIEW,local_police,428.0,145,23545,srs_agency_header,True
+MO0800400,MO,2018,0.0,12.0,cius,,GREEN RIDGE,local_police,652.0,159,,leaic_crosswalk,True
+MO0831300,MO,2018,0.0,12.0,cius,,FERRELVIEW,local_police,872.0,165,24058,srs_agency_header,True
+MO0890400,MO,2018,0.0,12.0,cius,,CAMDEN,local_police,188.0,177,,fbi_cde_agency_roster,True
+MO0890700,MO,2018,0.0,12.0,cius,,FLEMING,local_police,129.0,167,24562,srs_agency_header,True
+MO0990500,MO,2018,0.0,12.0,cius,,QUEEN CITY,local_police,628.0,197,60356,srs_agency_header,True
+MO1130500,MO,2018,0.0,12.0,cius,,NIANGUA,local_police,429.0,225,52418,srs_agency_header,True
+NB0600400,NE,2018,0.0,12.0,cius,,TILDEN,local_police,987.0,119,48935,srs_agency_header,True
+ND0040100,ND,2018,0.0,12.0,cius,,MEDORA,local_police,172.0,007,51900,srs_agency_header,True
+NJ0042900,NJ,2018,0.0,12.0,cius,,PINE VALLEY,local_police,12.0,007,58920,srs_agency_header,True
+NY0312500,NY,2018,0.0,12.0,cius,,BARKER,local_police,579.0,063,04440,srs_agency_header,True
+NY0342200,NY,2018,0.0,12.0,cius,,MANCHESTER VILLAGE,local_police,1658.0,069,44853,srs_agency_header,True
+OH0430400,OH,2018,0.0,12.0,cius,,KIRTLAND HILLS,local_police,691.0,085,40670,srs_agency_header,True
+OH0431000,OH,2018,0.0,12.0,cius,,WAITE HILL,local_police,530.0,085,80402,srs_agency_header,True
+OK0492000,OK,2018,0.0,12.0,cius,,SPORTSMEN ACRES,local_police,320.0,097,,leaic_crosswalk,True
+PA0028800,PA,2018,0.0,12.0,cius,,ROSSLYN FARMS,local_police,430.0,003,66320,srs_agency_header,True
+PA0032800,PA,2018,0.0,12.0,cius,,ELDERTON,local_police,342.0,005,22832,srs_agency_header,True
+PA0044900,PA,2018,0.0,12.0,cius,,SOUTH HEIGHTS,local_police,450.0,007,72216,srs_agency_header,True
+PA0081200,PA,2018,0.0,12.0,cius,,NORTHEAST,local_police,410.0,015,65944,srs_agency_header,True
+PA0102300,PA,2018,0.0,12.0,cius,,CALLERY,local_police,384.0,019,,fbi_cde_agency_roster,True
+PA0102800,PA,2018,0.0,12.0,cius,,PORTERSVILLE,local_police,229.0,019,,leaic_crosswalk,True
+PA0111900,PA,2018,0.0,12.0,cius,,BLACKLICK TOWNSHIP,local_police,1890.0,021,06736,srs_agency_header,True
+PA0113700,PA,2018,0.0,12.0,cius,,SANKERTOWN,local_police,627.0,021,67920,srs_agency_header,True
+PA0115500,PA,2018,0.0,12.0,cius,,ASHVILLE,local_police,210.0,021,03296,srs_agency_header,True
+PA0115600,PA,2018,0.0,12.0,cius,,VINTONDALE,local_police,407.0,021,80288,srs_agency_header,True
+PA0115800,PA,2018,0.0,12.0,cius,,GALLITZIN TOWNSHIP,local_police,1256.0,021,28336,srs_agency_header,True
+PA0180500,PA,2018,0.0,12.0,cius,,DUNNSTABLE TOWNSHIP,local_police,1019.0,035,20408,srs_agency_header,True
+PA0180900,PA,2018,0.0,12.0,cius,,MILL HALL,local_police,5179.0,035,49760,srs_agency_header,True
+PA0192200,PA,2018,0.0,12.0,cius,,MAIN TOWNSHIP,local_police,1282.0,037,46688,srs_agency_header,True
+PA0261000,PA,2018,0.0,12.0,cius,,DUNBAR,local_police,993.0,051,20216,srs_agency_header,True
+PA0351700,PA,2018,0.0,12.0,cius,,MAYFIELD,local_police,1762.0,069,48176,srs_agency_header,True
+PA0372100,PA,2018,0.0,12.0,cius,,LITTLE BEAVER TOWNSHIP,local_police,1351.0,073,43824,srs_agency_header,True
+PA0381100,PA,2018,0.0,12.0,cius,,MOUNT GRETNA BOROUGH,local_police,210.0,075,51568,srs_agency_header,True
+PA0491900,PA,2018,0.0,12.0,cius,,LOWER MAHANOY TOWNSHIP,local_police,1653.0,097,44960,srs_agency_header,True
+PA0531300,PA,2018,0.0,12.0,cius,,SWEDEN TOWNSHIP,local_police,1923.0,105,75720,srs_agency_header,True
+PA0542300,PA,2018,0.0,12.0,cius,,PALO ALTO,local_police,982.0,107,57752,srs_agency_header,True
+PA0542400,PA,2018,0.0,12.0,cius,,PINE GROVE,local_police,2079.0,107,60456,srs_agency_header,True
+PA0544200,PA,2018,0.0,12.0,cius,,NORTH UNION TOWNSHIP,local_police,1426.0,107,55472,srs_agency_header,True
+PA0544700,PA,2018,0.0,12.0,cius,,BRANCH TOWNSHIP,local_police,2406.0,107,08200,srs_agency_header,True
+PA0544800,PA,2018,0.0,12.0,cius,,NEW CASTLE TOWNSHIP,local_police,391.0,107,53376,srs_agency_header,True
+PA0561800,PA,2018,0.0,12.0,cius,,ROCKWOOD,local_police,837.0,111,65736,srs_agency_header,True
+PA0600800,PA,2018,0.0,12.0,cius,,HARTLETON,local_police,280.0,119,32936,srs_agency_header,True
+PA0653300,PA,2018,0.0,12.0,cius,,NEW FLORENCE,local_police,662.0,129,53544,srs_agency_header,True
+PA0661100,PA,2018,0.0,12.0,cius,,OVERFIELD TOWNSHIP,local_police,2766.0,131,57408,srs_agency_header,True
+SD0040100,SD,2018,0.0,12.0,cius,,SCOTLAND,local_police,814.0,009,57940,srs_agency_header,True
+SD0040200,SD,2018,0.0,12.0,cius,,SPRINGFIELD,local_police,2053.0,009,60660,srs_agency_header,True
+SD0040300,SD,2018,0.0,12.0,cius,,TYNDALL,local_police,1083.0,009,64860,srs_agency_header,True
+SD0160200,SD,2018,0.0,12.0,cius,,HERMOSA,local_police,428.0,033,28300,srs_agency_header,True
+SD0330300,SD,2018,0.0,12.0,cius,,MENNO,local_police,622.0,067,41980,srs_agency_header,True
+SD0540400,SD,2018,0.0,12.0,cius,,ROSHOLT,local_police,434.0,109,56340,srs_agency_header,True
+TX1120100,TX,2018,0.0,12.0,cius,,CUMBY,local_police,800.0,223,18128,srs_agency_header,True
+TX1701500,TX,2018,0.0,12.0,cius,,STAGECOACH,local_police,609.0,339,69932,srs_agency_header,True
+TX2401000,TX,2018,0.0,12.0,cius,,RIO BRAVO,local_police,4755.0,479,,fbi_cde_agency_roster,True
+UT0210300,UT,2018,0.0,12.0,cius,,AURORA,local_police,1065.0,041,,fbi_cde_agency_roster,True
+WI0670600,WI,2018,0.0,12.0,cius,,HARTFORD TOWNSHIP,local_police,3571.0,131,,fbi_cde_agency_roster,True
+WI0700200,WI,2018,0.0,12.0,cius,,HANCOCK,local_police,408.0,137,32450,srs_agency_header,True
+FL0299000,FL,2024,0.0,12.0,state_publication,35.0,HP HILLSBOROUGH COUNTY,state_law_enforcement,0.0,057,71000,srs_agency_header,True
+NY0355800,NY,2024,0.0,12.0,state_publication,5.0,HIGHLANDS TOWN,local_police,9199.0,071,34550,srs_agency_header,True
+NY0353600,NY,2024,0.0,12.0,state_publication,3.0,TUXEDO PARK VILLAGE,local_police,639.0,071,75803,srs_agency_header,True
+NY0192200,NY,2024,0.0,12.0,state_publication,2.5,COXSACKIE VILLAGE,local_police,2821.0,039,18718,srs_agency_header,True
+NY0502900,NY,2024,0.0,12.0,state_publication,2.5,WAYLAND VILLAGE,local_police,1769.0,101,78850,srs_agency_header,True
+NY0492000,NY,2024,0.0,12.0,state_publication,2.0,INTERLAKEN VILLAGE,local_police,626.0,099,37528,srs_agency_header,True
+NY0025600,NY,2024,0.0,12.0,state_publication,1.0,WILLING TOWN,local_police,1256.0,003,82095,srs_agency_header,True
+NY0223300,NY,2024,0.0,12.0,state_publication,1.0,SACKETS HARBOR VILLAGE,local_police,1432.0,045,64408,srs_agency_header,True
+NY0132800,NY,2024,0.0,12.0,state_publication,,MILLBROOK VILLAGE,local_police,1449.0,027,47273,srs_agency_header,True
+NY0593200,NY,2023,0.0,12.0,state_publication,2.5,SLEEPY HOLLOW VILLAGE,local_police,12088.0,119,67638,srs_agency_header,True
+NY0222500,NY,2023,0.0,12.0,state_publication,2.0,GLEN PARK VILLAGE,local_police,490.0,045,29322,srs_agency_header,True
+NY0160000,NY,2023,0.0,12.0,state_publication,,FRANKLIN,sheriff,38453.0,033,99033,srs_agency_header,True
+NY0323100,NY,2022,0.0,12.0,state_publication,6.0,VERNON VILLAGE,local_police,1170.0,065,77112,srs_agency_header,True
+NY0382400,NY,2022,0.0,12.0,state_publication,3.0,COOPERSTOWN VILLAGE,local_police,1863.0,077,18047,srs_agency_header,True
+NY0192500,NY,2022,0.0,12.0,state_publication,2.0,WINDHAM TOWN,local_police,1769.0,039,82480,srs_agency_header,True
+NY0222400,NY,2022,0.0,12.0,state_publication,2.0,DEXTER VILLAGE,local_police,1029.0,045,20500,srs_agency_header,True
+NY0222500,NY,2022,0.0,12.0,state_publication,2.0,GLEN PARK VILLAGE,local_police,490.0,045,29322,srs_agency_header,True
+NY0205000,NY,2022,0.0,12.0,state_publication,1.0,INLET TOWN,local_police,369.0,041,37495,srs_agency_header,True
+NY0294700,NY,2022,0.0,12.0,state_publication,1.0,CENTRE ISLAND VILLAGE,local_police,414.0,059,13618,srs_agency_header,True

@@ -1,0 +1,107 @@
+level,rule,scope,threshold,n_units,n_binding,pct_binding,population_in_binding,expected_count_total_in_binding,land_area_sq_mi_in_binding,note
+block_group,non_residential_household_floor,all 7 offenses (primary+resident+all aggregates),10.0,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,households_total < 10
+block_group,special_use_tract_flag,all 7 offenses (primary+resident+all aggregates),tract code 98xx,238193,686,0.288,342534.0,28293.930112726597,19669.482191561103,GEOID chars 6:11 start with '98'
+block_group,special_use_or_burglary_premises_floor,burglary only,10.0,238193,1791,0.7519,691947.0,30906.30087054843,22192.05484151817,burglary folds its premises floor INTO the special_use mask
+block_group,burglary_premises_floor_alone,burglary only,10.0,238193,1296,0.5441,448124.0,3080.6548368770577,13573.213608304945,
+block_group,person_exposure_denominator_floor,murder/rape/robbery/agg_assault/larceny primary,50.0,238193,793,0.3329,763.0,423.58563109635594,6876.745053474397,
+block_group,person_exposure_denominator_floor_resident,murder/rape/robbery/agg_assault/larceny resident,50.0,238193,2301,0.966,6237.0,47740.774472239915,21983.871356845728,resident arm applies the SAME 50 floor to resident_secondary_denominator
+block_group,mvt_vehicle_exposure_denominator_floor,motor_vehicle_theft primary AND resident,50.0,238193,1536,0.6449,486835.0,12213.165758220743,15185.708057555523,"SURPRISE: the resident arm for MVT also tests the VEHICLE denominator, not resident pop"
+block_group,zero_primary_denominator_exposure,person offenses,0.0,238193,462,0.194,0.0,68.5342547096487,2563.818299150416,
+block_group,zero_primary_denominator_vehicles,motor_vehicle_theft,0.0,238193,888,0.3728,85659.0,1441.3926269626174,4837.905227680756,
+block_group,zero_primary_denominator_premises,burglary,0.0,238193,1082,0.4543,325617.0,2016.1710631331987,11175.843306863675,
+block_group,zero_resident_denominator,all resident indices,0.0,238193,2024,0.8497,0.0,40865.44352836231,13697.650777632334,
+block_group,no_floor_bound_but_denominator_positive_burglary,burglary,n/a,238193,235259,98.7682,336561779.0,7089851.622280092,2930063.149903804,eligible population
+block_group,primary_index_publishable_murder,murder primary,flag,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,publishable flag TRUE
+block_group,primary_index_null_murder,murder primary,rendered,238193,238193,100.0,337832297.0,7156055.246549912,2955593.2949599526,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_murder=count_derived,murder,mode,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,
+block_group,estimate_mode_murder=insufficient_exposure,murder,mode,238193,9,0.0038,346.0,7.82081785169368,1534.172820584879,
+block_group,estimate_mode_murder=non_residential,murder,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_murder=special_use,murder,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+block_group,primary_index_publishable_rape,rape primary,flag,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,publishable flag TRUE
+block_group,primary_index_null_rape,rape primary,rendered,238193,238193,100.0,337832297.0,7156055.246549912,2955593.2949599526,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_rape=count_derived,rape,mode,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,
+block_group,estimate_mode_rape=insufficient_exposure,rape,mode,238193,9,0.0038,346.0,7.82081785169368,1534.172820584879,
+block_group,estimate_mode_rape=non_residential,rape,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_rape=special_use,rape,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+block_group,primary_index_publishable_robbery,robbery primary,flag,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,publishable flag TRUE
+block_group,primary_index_null_robbery,robbery primary,rendered,238193,2943,1.2356,1270864.0,66211.4450876706,27064.31787673342,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_robbery=count_derived,robbery,mode,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,
+block_group,estimate_mode_robbery=insufficient_exposure,robbery,mode,238193,9,0.0038,346.0,7.82081785169368,1534.172820584879,
+block_group,estimate_mode_robbery=non_residential,robbery,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_robbery=special_use,robbery,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+block_group,primary_index_publishable_aggravated_assault,aggravated_assault primary,flag,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,publishable flag TRUE
+block_group,primary_index_null_aggravated_assault,aggravated_assault primary,rendered,238193,2943,1.2356,1270864.0,66211.4450876706,27064.31787673342,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_aggravated_assault=count_derived,aggravated_assault,mode,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,
+block_group,estimate_mode_aggravated_assault=insufficient_exposure,aggravated_assault,mode,238193,9,0.0038,346.0,7.82081785169368,1534.172820584879,
+block_group,estimate_mode_aggravated_assault=non_residential,aggravated_assault,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_aggravated_assault=special_use,aggravated_assault,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+block_group,primary_index_publishable_burglary,burglary primary,flag,238193,235259,98.7682,336561779.0,7089851.622280092,2930063.149903804,publishable flag TRUE
+block_group,primary_index_null_burglary,burglary primary,rendered,238193,2934,1.2318,1270518.0,66203.62426981889,25530.14505614854,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_burglary=count_derived,burglary,mode,238193,235259,98.7682,336561779.0,7089851.622280092,2930063.149903804,
+block_group,estimate_mode_burglary=non_residential,burglary,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_burglary=special_use,burglary,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+block_group,primary_index_publishable_larceny,larceny primary,flag,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,publishable flag TRUE
+block_group,primary_index_null_larceny,larceny primary,rendered,238193,2943,1.2356,1270864.0,66211.4450876706,27064.31787673342,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_larceny=count_derived,larceny,mode,238193,235250,98.7644,336561433.0,7089843.8014622405,2928528.977083219,
+block_group,estimate_mode_larceny=insufficient_exposure,larceny,mode,238193,9,0.0038,346.0,7.82081785169368,1534.172820584879,
+block_group,estimate_mode_larceny=non_residential,larceny,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_larceny=special_use,larceny,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+block_group,primary_index_publishable_motor_vehicle_theft,motor_vehicle_theft primary,flag,238193,234964,98.6444,336319731.0,7082543.432646812,2925686.5735669346,publishable flag TRUE
+block_group,primary_index_null_motor_vehicle_theft,motor_vehicle_theft primary,rendered,238193,3229,1.3556,1512566.0,73511.81390309944,29906.72139301829,index_{o}_primary is NULL in the published parquet
+block_group,estimate_mode_motor_vehicle_theft=count_derived,motor_vehicle_theft,mode,238193,234964,98.6444,336319731.0,7082543.432646812,2925686.5735669346,
+block_group,estimate_mode_motor_vehicle_theft=insufficient_exposure,motor_vehicle_theft,mode,238193,295,0.1238,242048.0,7308.189633280541,4376.576336869747,
+block_group,estimate_mode_motor_vehicle_theft=non_residential,motor_vehicle_theft,mode,238193,2797,1.1743,1098462.0,55435.20426529828,22273.31668677043,
+block_group,estimate_mode_motor_vehicle_theft=special_use,motor_vehicle_theft,mode,238193,137,0.0575,172056.0,10768.420004520623,3256.828369378113,
+tract,non_residential_household_floor,all 7 offenses (primary+resident+all aggregates),10.0,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,households_total < 10
+tract,special_use_tract_flag,all 7 offenses (primary+resident+all aggregates),tract code 98xx,83776,614,0.7329,342534.0,28293.930112726594,19669.482191561103,GEOID chars 6:11 start with '98'
+tract,special_use_or_burglary_premises_floor,burglary only,10.0,83776,1025,1.2235,503663.0,29415.932977808585,20476.62478651302,burglary folds its premises floor INTO the special_use mask
+tract,burglary_premises_floor_alone,burglary only,10.0,83776,580,0.6923,256103.0,1495.8997794281436,11845.225756268046,
+tract,person_exposure_denominator_floor,murder/rape/robbery/agg_assault/larceny primary,50.0,83776,398,0.4751,357.0,164.2370312270141,5524.754619047267,
+tract,person_exposure_denominator_floor_resident,murder/rape/robbery/agg_assault/larceny resident,50.0,83776,858,1.0242,2061.0,21711.669987875437,18034.156160276736,resident arm applies the SAME 50 floor to resident_secondary_denominator
+tract,mvt_vehicle_exposure_denominator_floor,motor_vehicle_theft primary AND resident,50.0,83776,552,0.6589,94398.0,2101.433986593313,9883.630010177923,"SURPRISE: the resident arm for MVT also tests the VEHICLE denominator, not resident pop"
+tract,zero_primary_denominator_exposure,person offenses,0.0,83776,293,0.3497,0.0,64.9607701822425,2421.7585852160537,
+tract,zero_primary_denominator_vehicles,motor_vehicle_theft,0.0,83776,417,0.4978,39282.0,624.7729338870063,3997.2497977992653,
+tract,zero_primary_denominator_premises,burglary,0.0,83776,506,0.604,191557.0,1012.4259104689504,9737.738355872221,
+tract,zero_resident_denominator,all resident indices,0.0,83776,756,0.9024,0.0,18390.370016263147,11475.297214009219,
+tract,no_floor_bound_but_denominator_positive_burglary,burglary,n/a,83776,82570,98.5604,337063252.0,7119438.003523612,2934375.9712653663,eligible population
+tract,primary_index_publishable_murder,murder primary,flag,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,publishable flag TRUE
+tract,primary_index_null_murder,murder primary,rendered,83776,1208,1.4419,769108.0,36617.67174336949,22684.773145927684,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_murder=count_derived,murder,mode,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,
+tract,estimate_mode_murder=insufficient_exposure,murder,mode,83776,2,0.0024,63.0,0.42871707015768534,1467.4494513413038,
+tract,estimate_mode_murder=non_residential,murder,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_murder=special_use,murder,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,
+tract,primary_index_publishable_rape,rape primary,flag,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,publishable flag TRUE
+tract,primary_index_null_rape,rape primary,rendered,83776,1208,1.4419,769108.0,36617.67174336949,22684.773145927684,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_rape=count_derived,rape,mode,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,
+tract,estimate_mode_rape=insufficient_exposure,rape,mode,83776,2,0.0024,63.0,0.42871707015768534,1467.4494513413038,
+tract,estimate_mode_rape=non_residential,rape,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_rape=special_use,rape,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,
+tract,primary_index_publishable_robbery,robbery primary,flag,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,publishable flag TRUE
+tract,primary_index_null_robbery,robbery primary,rendered,83776,1208,1.4419,769108.0,36617.67174336949,22684.773145927684,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_robbery=count_derived,robbery,mode,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,
+tract,estimate_mode_robbery=insufficient_exposure,robbery,mode,83776,2,0.0024,63.0,0.42871707015768534,1467.4494513413038,
+tract,estimate_mode_robbery=non_residential,robbery,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_robbery=special_use,robbery,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,
+tract,primary_index_publishable_aggravated_assault,aggravated_assault primary,flag,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,publishable flag TRUE
+tract,primary_index_null_aggravated_assault,aggravated_assault primary,rendered,83776,1208,1.4419,769108.0,36617.67174336949,22684.773145927684,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_aggravated_assault=count_derived,aggravated_assault,mode,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,
+tract,estimate_mode_aggravated_assault=insufficient_exposure,aggravated_assault,mode,83776,2,0.0024,63.0,0.42871707015768534,1467.4494513413038,
+tract,estimate_mode_aggravated_assault=non_residential,aggravated_assault,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_aggravated_assault=special_use,aggravated_assault,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,
+tract,primary_index_publishable_burglary,burglary primary,flag,83776,82570,98.5604,337063252.0,7119438.003523612,2934375.9712653663,publishable flag TRUE
+tract,primary_index_null_burglary,burglary primary,rendered,83776,1206,1.4396,769045.0,36617.24302629932,21217.323694586383,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_burglary=count_derived,burglary,mode,83776,82570,98.5604,337063252.0,7119438.003523612,2934375.9712653663,
+tract,estimate_mode_burglary=non_residential,burglary,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_burglary=special_use,burglary,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,
+tract,primary_index_publishable_larceny,larceny primary,flag,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,publishable flag TRUE
+tract,primary_index_null_larceny,larceny primary,rendered,83776,1208,1.4419,769108.0,36617.67174336949,22684.773145927684,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_larceny=count_derived,larceny,mode,83776,82568,98.5581,337063189.0,7119437.574806542,2932908.521814025,
+tract,estimate_mode_larceny=insufficient_exposure,larceny,mode,83776,2,0.0024,63.0,0.42871707015768534,1467.4494513413038,
+tract,estimate_mode_larceny=non_residential,larceny,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_larceny=special_use,larceny,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,
+tract,primary_index_publishable_motor_vehicle_theft,motor_vehicle_theft primary,flag,83776,82563,98.5521,337059728.0,7119287.985762916,2932907.55282309,publishable flag TRUE
+tract,primary_index_null_motor_vehicle_theft,motor_vehicle_theft primary,rendered,83776,1213,1.4479,772569.0,36767.260786995525,22685.74213686255,index_{o}_primary is NULL in the published parquet
+tract,estimate_mode_motor_vehicle_theft=count_derived,motor_vehicle_theft,mode,83776,82563,98.5521,337059728.0,7119287.985762916,2932907.55282309,
+tract,estimate_mode_motor_vehicle_theft=insufficient_exposure,motor_vehicle_theft,mode,83776,7,0.0084,3524.0,150.01776069620487,1468.4184422761693,
+tract,estimate_mode_motor_vehicle_theft=non_residential,motor_vehicle_theft,mode,83776,1083,1.2927,593664.0,25835.63710496365,17951.286318453407,
+tract,estimate_mode_motor_vehicle_theft=special_use,motor_vehicle_theft,mode,83776,123,0.1468,175381.0,10781.605921335673,3266.037376132974,

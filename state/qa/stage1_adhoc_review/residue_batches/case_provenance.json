@@ -1,0 +1,1858 @@
+{
+ "spec": "docs/STATE.md 'Stage 1 adjudication cleanup COMPLETE' RESIDUE list, read against state/qa/stage1_adhoc_review/supervisor_escalations.csv",
+ "populations": {
+  "merged_double_framing": 34,
+  "qc_rerule": 2,
+  "no_disposition": 1,
+  "twin_batch_never_dispatched": 2
+ },
+ "dispatched": {
+  "cases": 39,
+  "batches": 6,
+  "batch_size_max": 8,
+  "by_reason": {
+   "merged_double_framing": 34,
+   "qc_rerule": 2,
+   "no_disposition": 1,
+   "twin_batch_never_dispatched": 2
+  },
+  "by_class": {
+   "token_zero_shaped": 37,
+   "twin_shaped": 2
+  }
+ },
+ "rendering_changes": {
+  "reported_months_exposure_series": "NEW uniform facts block on all 37 token/zero-shaped packets. Both QC failures were one reasoning error -- reading a year's total as evidence about crime level without checking filed months. Applied to the whole population, not the two flagged cases, so it is a rendering change and not a result-fitted patch.",
+  "priors_withheld": "No packet in this pass quotes a prior verdict, confidence, repair value or QC opinion. Every one of these cases is open because a framing predicted its own answer or because a ruling was withdrawn; quoting the prior would reintroduce exactly that.",
+  "twins_byte_identical": "The 2 twin packets are copied byte-identical from cleanup_batches/batch_026.json -- the batch was built and never dispatched."
+ },
+ "cases": {
+  "r-AL0080200-blountsville": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "AL0080200",
+   "source_case_ids": [
+    "b2-AL0080200-blountsville",
+    "c-AL0080200-blountsville"
+   ],
+   "evidence_framings_merged": [
+    "b2-AL0080200-blountsville",
+    "c-AL0080200-blountsville"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 4,
+    "max_prior_total": 32.0,
+    "last_full_year_positive_total": 31.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 1816.0,
+    "arms": [
+     "capacity_then_zero",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-AL0080200-blountsville",
+     "case_class": "published_zero",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    },
+    {
+     "case_id": "c-AL0080200-blountsville",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-GA0710300-buchanan": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "GA0710300",
+   "source_case_ids": [
+    "b2-GA0710300-buchanan",
+    "c-GA0710300-buchanan"
+   ],
+   "evidence_framings_merged": [
+    "b2-GA0710300-buchanan",
+    "c-GA0710300-buchanan"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": 2021,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 48.0,
+    "last_full_year_positive_total": 24.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 966.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-GA0710300-buchanan",
+     "case_class": "published_zero",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    },
+    {
+     "case_id": "c-GA0710300-buchanan",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-OK0120500-fort-towson": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "OK0120500",
+   "source_case_ids": [
+    "b2-OK0120500-fort-towson",
+    "c-OK0120500-fort-towson"
+   ],
+   "evidence_framings_merged": [
+    "b2-OK0120500-fort-towson",
+    "c-OK0120500-fort-towson"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2020,
+    "last_full_year_positive": 2020,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 28.0,
+    "last_full_year_positive_total": 25.0,
+    "zero_run_through_2024": 4,
+    "pop2024": 496.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-OK0120500-fort-towson",
+     "case_class": "published_zero",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    },
+    {
+     "case_id": "c-OK0120500-fort-towson",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0100800-mars": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0100800",
+   "source_case_ids": [
+    "b2-PA0100800-mars",
+    "c-PA0100800-mars"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0100800-mars",
+    "c-PA0100800-mars"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 8.0,
+    "last_full_year_positive_total": 6.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 1413.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0100800-mars",
+     "case_class": "published_zero",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    },
+    {
+     "case_id": "c-PA0100800-mars",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-NY0502900-wayland-village": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "NY0502900",
+   "source_case_ids": [
+    "b2-NY0502900-wayland-village",
+    "c-NY0502900-wayland-village"
+   ],
+   "evidence_framings_merged": [
+    "b2-NY0502900-wayland-village",
+    "c-NY0502900-wayland-village"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 5.0,
+    "last_full_year_positive_total": 5.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 1769.0,
+    "arms": [
+     "capacity_then_zero",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-NY0502900-wayland-village",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-NY0502900-wayland-village",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-NY0192200-coxsackie-village": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "NY0192200",
+   "source_case_ids": [
+    "b2-NY0192200-coxsackie-village",
+    "c-NY0192200-coxsackie-village"
+   ],
+   "evidence_framings_merged": [
+    "b2-NY0192200-coxsackie-village",
+    "c-NY0192200-coxsackie-village"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 5,
+    "max_prior_total": 6.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 2821.0,
+    "arms": [
+     "capacity_then_zero",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-NY0192200-coxsackie-village",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-NY0192200-coxsackie-village",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-NY0353600-tuxedo-park-village": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "NY0353600",
+   "source_case_ids": [
+    "b2-NY0353600-tuxedo-park-village",
+    "c-NY0353600-tuxedo-park-village"
+   ],
+   "evidence_framings_merged": [
+    "b2-NY0353600-tuxedo-park-village",
+    "c-NY0353600-tuxedo-park-village"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 11.0,
+    "last_full_year_positive_total": 3.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 639.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-NY0353600-tuxedo-park-village",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-NY0353600-tuxedo-park-village",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0580300-lanesboro": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0580300",
+   "source_case_ids": [
+    "b2-PA0580300-lanesboro",
+    "c-PA0580300-lanesboro"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0580300-lanesboro",
+    "c-PA0580300-lanesboro"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2019,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 5.0,
+    "last_full_year_positive_total": 5.0,
+    "zero_run_through_2024": 5,
+    "pop2024": 492.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0580300-lanesboro",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0580300-lanesboro",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0640300-waymart": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0640300",
+   "source_case_ids": [
+    "b2-PA0640300-waymart",
+    "c-PA0640300-waymart"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0640300-waymart",
+    "c-PA0640300-waymart"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2019,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 5.0,
+    "last_full_year_positive_total": 5.0,
+    "zero_run_through_2024": 5,
+    "pop2024": 1287.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0640300-waymart",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0640300-waymart",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-NY0492000-interlaken-village": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "NY0492000",
+   "source_case_ids": [
+    "b2-NY0492000-interlaken-village",
+    "c-NY0492000-interlaken-village"
+   ],
+   "evidence_framings_merged": [
+    "b2-NY0492000-interlaken-village",
+    "c-NY0492000-interlaken-village"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 2,
+    "max_prior_total": 3.0,
+    "last_full_year_positive_total": 3.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 626.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-NY0492000-interlaken-village",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-NY0492000-interlaken-village",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0211000-shiremanstown": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0211000",
+   "source_case_ids": [
+    "b2-PA0211000-shiremanstown",
+    "c-PA0211000-shiremanstown"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0211000-shiremanstown",
+    "c-PA0211000-shiremanstown"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 8.0,
+    "last_full_year_positive_total": 2.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 1652.0,
+    "arms": [
+     "capacity_then_zero",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0211000-shiremanstown",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0211000-shiremanstown",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0600600-new-berlin": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0600600",
+   "source_case_ids": [
+    "b2-PA0600600-new-berlin",
+    "c-PA0600600-new-berlin"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0600600-new-berlin",
+    "c-PA0600600-new-berlin"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 2.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 782.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0600600-new-berlin",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0600600-new-berlin",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-NY0223300-sackets-harbor-village": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "NY0223300",
+   "source_case_ids": [
+    "b2-NY0223300-sackets-harbor-village",
+    "c-NY0223300-sackets-harbor-village"
+   ],
+   "evidence_framings_merged": [
+    "b2-NY0223300-sackets-harbor-village",
+    "c-NY0223300-sackets-harbor-village"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 1432.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-NY0223300-sackets-harbor-village",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-NY0223300-sackets-harbor-village",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0545000-reilly-township": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0545000",
+   "source_case_ids": [
+    "b2-PA0545000-reilly-township",
+    "c-PA0545000-reilly-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0545000-reilly-township",
+    "c-PA0545000-reilly-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2018,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 1.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 6,
+    "pop2024": 640.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0545000-reilly-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0545000-reilly-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0580400-montrose": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0580400",
+   "source_case_ids": [
+    "b2-PA0580400-montrose",
+    "c-PA0580400-montrose"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0580400-montrose",
+    "c-PA0580400-montrose"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": 2023,
+    "n_full_year_positive_years": 3,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 1274.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0580400-montrose",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0580400-montrose",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0654200-west-leechburg": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0654200",
+   "source_case_ids": [
+    "b2-PA0654200-west-leechburg",
+    "c-PA0654200-west-leechburg"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0654200-west-leechburg",
+    "c-PA0654200-west-leechburg"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2019,
+    "last_full_year_positive": 2019,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 2.0,
+    "zero_run_through_2024": 5,
+    "pop2024": 1235.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0654200-west-leechburg",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0654200-west-leechburg",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-NY0022200-andover-village": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "NY0022200",
+   "source_case_ids": [
+    "b2-NY0022200-andover-village",
+    "c-NY0022200-andover-village"
+   ],
+   "evidence_framings_merged": [
+    "b2-NY0022200-andover-village",
+    "c-NY0022200-andover-village"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": 2022,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 1.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 889.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-NY0022200-andover-village",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-NY0022200-andover-village",
+     "case_class": "token_reporter",
+     "arm": "sol",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0561100-jennerstown": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0561100",
+   "source_case_ids": [
+    "b2-PA0561100-jennerstown",
+    "c-PA0561100-jennerstown"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0561100-jennerstown",
+    "c-PA0561100-jennerstown"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2020,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 4.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 4,
+    "pop2024": 662.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0561100-jennerstown",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0561100-jennerstown",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0652900-avonmore-boro": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0652900",
+   "source_case_ids": [
+    "b2-PA0652900-avonmore-boro",
+    "c-PA0652900-avonmore-boro"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0652900-avonmore-boro",
+    "c-PA0652900-avonmore-boro"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2018,
+    "last_full_year_positive": 2018,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 1.0,
+    "last_full_year_positive_total": 1.0,
+    "zero_run_through_2024": 6,
+    "pop2024": 879.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0652900-avonmore-boro",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0652900-avonmore-boro",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0102900-harrisville": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0102900",
+   "source_case_ids": [
+    "b2-PA0102900-harrisville",
+    "c-PA0102900-harrisville"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0102900-harrisville",
+    "c-PA0102900-harrisville"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2023,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 3.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 1,
+    "pop2024": 793.0,
+    "arms": []
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0102900-harrisville",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0102900-harrisville",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0103000-prospect": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0103000",
+   "source_case_ids": [
+    "b2-PA0103000-prospect",
+    "c-PA0103000-prospect"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0103000-prospect",
+    "c-PA0103000-prospect"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2019,
+    "last_full_year_positive": 2019,
+    "n_full_year_positive_years": 1,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 2.0,
+    "zero_run_through_2024": 5,
+    "pop2024": 1082.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0103000-prospect",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0103000-prospect",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0111900-blacklick-township": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0111900",
+   "source_case_ids": [
+    "b2-PA0111900-blacklick-township",
+    "c-PA0111900-blacklick-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0111900-blacklick-township",
+    "c-PA0111900-blacklick-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 1865.0,
+    "arms": [
+     "never_positive",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0111900-blacklick-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0111900-blacklick-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "medium",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0113500-loretto": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0113500",
+   "source_case_ids": [
+    "b2-PA0113500-loretto",
+    "c-PA0113500-loretto"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0113500-loretto",
+    "c-PA0113500-loretto"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 1161.0,
+    "arms": [
+     "never_positive"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0113500-loretto",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0113500-loretto",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0155300-west-nottingham-township": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0155300",
+   "source_case_ids": [
+    "b2-PA0155300-west-nottingham-township",
+    "c-PA0155300-west-nottingham-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0155300-west-nottingham-township",
+    "c-PA0155300-west-nottingham-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2020,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 4,
+    "pop2024": 2875.0,
+    "arms": [
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0155300-west-nottingham-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0155300-west-nottingham-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0261500-luzerne-township": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0261500",
+   "source_case_ids": [
+    "b2-PA0261500-luzerne-township",
+    "c-PA0261500-luzerne-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0261500-luzerne-township",
+    "c-PA0261500-luzerne-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 4.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 5127.0,
+    "arms": [
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0261500-luzerne-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0261500-luzerne-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0372100-little-beaver-township": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0372100",
+   "source_case_ids": [
+    "b2-PA0372100-little-beaver-township",
+    "c-PA0372100-little-beaver-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0372100-little-beaver-township",
+    "c-PA0372100-little-beaver-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 1195.0,
+    "arms": [
+     "never_positive"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0372100-little-beaver-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0372100-little-beaver-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "partial_year_uplift"
+   ]
+  },
+  "r-PA0482800-walnutport": {
+   "reason": "merged_double_framing",
+   "subtype": "both_reject_DIFFERENT_repair",
+   "oris": "PA0482800",
+   "source_case_ids": [
+    "b2-PA0482800-walnutport",
+    "c-PA0482800-walnutport"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0482800-walnutport",
+    "c-PA0482800-walnutport"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 1.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 2090.0,
+    "arms": [
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0482800-walnutport",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0482800-walnutport",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "partial_year_uplift",
+    "treat_missing_repair"
+   ]
+  },
+  "r-PA0544700-branch-township": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0544700",
+   "source_case_ids": [
+    "b2-PA0544700-branch-township",
+    "c-PA0544700-branch-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0544700-branch-township",
+    "c-PA0544700-branch-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 1764.0,
+    "arms": [
+     "never_positive",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0544700-branch-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0544700-branch-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0560100-meyersdale": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0560100",
+   "source_case_ids": [
+    "b2-PA0560100-meyersdale",
+    "c-PA0560100-meyersdale"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0560100-meyersdale",
+    "c-PA0560100-meyersdale"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2020,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 4,
+    "pop2024": 1999.0,
+    "arms": [
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0560100-meyersdale",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0560100-meyersdale",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0560500-boswell": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0560500",
+   "source_case_ids": [
+    "b2-PA0560500-boswell",
+    "c-PA0560500-boswell"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0560500-boswell",
+    "c-PA0560500-boswell"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 1198.0,
+    "arms": [
+     "never_positive"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0560500-boswell",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0560500-boswell",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "medium",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0561700-indian-lake": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0561700",
+   "source_case_ids": [
+    "b2-PA0561700-indian-lake",
+    "c-PA0561700-indian-lake"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0561700-indian-lake",
+    "c-PA0561700-indian-lake"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 389.0,
+    "arms": []
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0561700-indian-lake",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0561700-indian-lake",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0561800-rockwood": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0561800",
+   "source_case_ids": [
+    "b2-PA0561800-rockwood",
+    "c-PA0561800-rockwood"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0561800-rockwood",
+    "c-PA0561800-rockwood"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 822.0,
+    "arms": [
+     "never_positive"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0561800-rockwood",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0561800-rockwood",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "medium",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0562600-summit-township": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0562600",
+   "source_case_ids": [
+    "b2-PA0562600-summit-township",
+    "c-PA0562600-summit-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0562600-summit-township",
+    "c-PA0562600-summit-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 2088.0,
+    "arms": [
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0562600-summit-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0562600-summit-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-PA0591700-osceola-township": {
+   "reason": "merged_double_framing",
+   "subtype": "disposition_conflict_FLAG/REJECT",
+   "oris": "PA0591700",
+   "source_case_ids": [
+    "b2-PA0591700-osceola-township",
+    "c-PA0591700-osceola-township"
+   ],
+   "evidence_framings_merged": [
+    "b2-PA0591700-osceola-township",
+    "c-PA0591700-osceola-township"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2019,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 2.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 5,
+    "pop2024": 575.0,
+    "arms": []
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "b2-PA0591700-osceola-township",
+     "case_class": "published_zero",
+     "arm": "luna",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": true
+    },
+    {
+     "case_id": "c-PA0591700-osceola-township",
+     "case_class": "token_reporter",
+     "arm": "opus",
+     "confidence": "high",
+     "shown_in_packet": false,
+     "discarded_as_rule_echo": false
+    }
+   ],
+   "prior_verdicts_withheld": "misread_missing;token_reporting_flag",
+   "prior_actions_in_conflict": [
+    "treat_missing_repair",
+    "flag_review"
+   ]
+  },
+  "r-KY0470400-west-point": {
+   "reason": "qc_rerule",
+   "subtype": "qc_flagged_for_reread",
+   "oris": "KY0470400",
+   "source_case_ids": [
+    "b2-KY0470400-west-point",
+    "c-KY0470400-west-point",
+    "x-KY0470400-west-point"
+   ],
+   "evidence_framings_merged": [
+    "b2-KY0470400-west-point",
+    "c-KY0470400-west-point"
+   ],
+   "recomputed_signals": {
+    "never_positive": false,
+    "last_positive_year": 2022,
+    "last_full_year_positive": 2022,
+    "n_full_year_positive_years": 5,
+    "max_prior_total": 14.0,
+    "last_full_year_positive_total": 2.0,
+    "zero_run_through_2024": 2,
+    "pop2024": 922.0,
+    "arms": [
+     "capacity_then_zero"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "x-KY0470400-west-point",
+     "case_class": "merged_cleanup_ruling",
+     "shown_in_packet": false,
+     "status": "withdrawn_on_qc_reread"
+    }
+   ],
+   "qc_note_withheld": "QC: verdict likely WRONG. The ruling anchors 'zero is plausible' on 2022 (2 offences) and 2023 (0), but the panel is 10, 7, 14, 9, 2, 0, 0 \u2014 five consecutive 12-month positive years at 7-14 through 2021, then the cliff. Using the already-degraded 2022-23 tail as the base rate is the own-history-launders-the-artefact error this same pass refuses elsewhere, and SRS months degrade 7/10/9/6/2/0/0 under an unchanged 12-month NIBRS header. Re-read; the likely correct verdict is misread_missing anchored on the 2018-2021 level."
+  },
+  "r-GA0850200-milner": {
+   "reason": "qc_rerule",
+   "subtype": "qc_flagged_for_reread",
+   "oris": "GA0850200",
+   "source_case_ids": [
+    "b2-GA0850200-milner",
+    "c-GA0850200-milner",
+    "x-GA0850200-milner"
+   ],
+   "evidence_framings_merged": [
+    "b2-GA0850200-milner",
+    "c-GA0850200-milner"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 7,
+    "pop2024": 828.0,
+    "arms": [
+     "never_positive"
+    ]
+   },
+   "structural_block_shown": true,
+   "prior_rulings": [
+    {
+     "case_id": "x-GA0850200-milner",
+     "case_class": "merged_cleanup_ruling",
+     "shown_in_packet": false,
+     "status": "withdrawn_on_qc_reread"
+    }
+   ],
+   "qc_note_withheld": "QC: verdict defensible, CONFIDENCE OVERSTATED. 'No positive count in its seven-year history' counts five years (2018-2022) in which the ORI submitted nothing at all (SRS 0 months, no NIBRS row) \u2014 real exposure is 22 filed months (2023 NIB 10mo + 2024 12mo). Population 828 is below the 1,000 line at which this pass treats never-positive as structural, and other rulings in the same pass call that arm vacuous on 0-month years. Downgrade to medium or re-read."
+  },
+  "r-AR063019E-ar063019e": {
+   "reason": "no_disposition",
+   "subtype": "unadjudicated_no_zero_token_ruling",
+   "oris": "AR063019E",
+   "source_case_ids": [
+    "c-AR063019E-ar063019e"
+   ],
+   "evidence_framings_merged": [
+    "c-AR063019E-ar063019e"
+   ],
+   "recomputed_signals": {
+    "never_positive": true,
+    "last_positive_year": null,
+    "last_full_year_positive": null,
+    "n_full_year_positive_years": 0,
+    "max_prior_total": 0.0,
+    "last_full_year_positive_total": 0.0,
+    "zero_run_through_2024": 0,
+    "pop2024": 15861.0,
+    "arms": [
+     "never_positive",
+     "pop_gt_1500"
+    ]
+   },
+   "structural_block_shown": false,
+   "prior_rulings": [],
+   "identity_ruling_cited": {
+    "case_id": "a2-AR06301-benton",
+    "arm": "gold",
+    "verdict": "distinct_agencies",
+    "oris": "AR0630100;AR063019E"
+   }
+  },
+  "a3-CO-durango-vs-fort-lewis-college": {
+   "reason": "twin_batch_never_dispatched",
+   "subtype": "replicate_conflict",
+   "oris": "CO034019E|CO0340500",
+   "source_case_ids": [
+    "a3-CO-durango-vs-fort-lewis-college"
+   ],
+   "evidence": "copied BYTE-IDENTICAL from cleanup_batches/batch_026.json -- the batch was built and never dispatched, so this is a re-dispatch, not a rebuild",
+   "prior_rulings": []
+  },
+  "a2-CA04099-highway-patrol-templeton": {
+   "reason": "twin_batch_never_dispatched",
+   "subtype": "coverage_gap",
+   "oris": "CA0409940|CA0409945|CA0409901",
+   "source_case_ids": [
+    "a2-CA04099-highway-patrol-templeton"
+   ],
+   "evidence": "copied BYTE-IDENTICAL from cleanup_batches/batch_026.json -- the batch was built and never dispatched, so this is a re-dispatch, not a rebuild",
+   "prior_rulings": []
+  }
+ }
+}

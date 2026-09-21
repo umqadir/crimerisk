@@ -1,0 +1,1026 @@
+{
+  "source_journal": "/Users/uzairqadir/.claude/projects/-Users-uzairqadir-Projects-data-projects-national-crimerisk-clone/6b6a1654-17bb-4f3a-aa47-aa689bda8400/subagents/workflows/wf_5e933bc1-cb8/journal.jsonl",
+  "n_rulings": 127,
+  "n_dropped_non_case_rulings": 1,
+  "dropped_non_case_ruling_ids": [
+    "BATCH-000-FILE-NOT-FOUND"
+  ],
+  "rulings": [
+    {
+      "case_id": "a2-CA00199-highway-patrol-oakland",
+      "verdict": "distinct_agencies",
+      "detail": "Keep all 6 ORI9s; the block total of 689 is a correct sum, not double counting, and no canonical merge should be applied. Separate defect to route: all six are ALAMEDA-county CHP commands crosswalked to 06:statewide_overlap_layer \u2014 the correct footprint is Alameda County (the CHP-patrolled non-municipal/freeway remainder), not the statewide smear. The three zero members (CA0019916, CA0019947, CA0019991) are genuine 12-month NIBRS zeros \u2014 commercial-vehicle enforcement facilities and an investigative services unit have no Part-I patrol volume \u2014 keep as zeros, do not fill.",
+      "rationale": "For CHP the last two ORI9 characters identify a physically separate Area Office or enforcement facility, not a lane variant: Oakland, Hayward and Dublin Area Offices patrol different Alameda County freeway segments and the FBI roster names all six independently. There is no \u202600 stem reporting in 2024, so there is no parent rollup the members could be duplicating, and none carries the covering-city name/footprint signature of a NIBRS-lane twin. The vectors are unrelated (MVT 385 / 168 / 16) and the trajectories move independently \u2014 Oakland rises 105\u2192259\u2192444 while Hayward goes 110\u2192622\u2192207 \u2014 which is inconsistent with the same incidents being counted twice. statewide_overlap_layer is an accumulation layer built for additive mass, so a shared footprint is not itself evidence of duplication.",
+      "confidence": "high",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "a2-CA01999-highway-patrol-east",
+      "verdict": "distinct_agencies",
+      "detail": "Keep all 14 ORI9s. Block total 486 for 2024 is correct as reported; no member collapses into CA0199935. Why the shared ORI7 is not evidence of double counting: CA01999xx is the FBI's state-agency ORI convention (CA019 = Los Angeles County, 99 = state agency operating in that county), so the shared ORI7 encodes 'state agency in LA County', not a parent/child rollup \u2014 and the packet confirms no ...00 stem (CA0199900) exists, so the ...00-stem twin rule has nothing to key on. Why the shared footprint is not evidence either: the crosswalk is marked 'overlap', not 'exclusive' \u2014 statewide_overlap_layer is the designed mechanism for agencies with no assignable exclusive territory, so co-residence there is intended, not duplication. SECONDARY: CA0199901 'Southern Division' reports 6, not the 486 group sum, so it is not a rollup parent. HYGIENE: five members (CA0199910, CA0199901, CA0199941, CA0199945, CA0199998) carry '(blank)' panel names while the roster has proper names, and their crosswalk rows are flagged_auto \u2014 a name-backfill gap worth fixing separately.",
+      "rationale": "CHP is organized Division -> Area Office, and each Area Office is a distinct physical command with its own station, personnel and patrol territory; East LA, Newhall, Antelope Valley and West Valley are geographically separate parts of LA County covering different freeway corridors, and the FBI roster lists all 14 as separately named agencies. The 2024 offense vectors are operationally distinct rather than nested or duplicated \u2014 East LA is MVT-dominant (62 of 94), Santa Fe Springs is agg-assault-dominant (36 of 53), and the Southern Investigative Services Unit is larceny-only (35 of 36) \u2014 which is what separate units look like, not what one agency's duplicate feeds look like. The real overlap risk on this footprint is CHP-versus-local double counting (a freeway vehicle theft appearing in both CHP and LAPD/LASD counts), which is a jurisdictional-overlap problem and is exactly why these sit on a non-exclusive layer.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "a2-CA03699-highway-patrol-victorville",
+      "verdict": "distinct_agencies",
+      "detail": "Keep all 10 ORI9s. Block total 126 is correct and involves no double counting. The shared ORI7 CA03699 is CHP's Inland Division numbering block, not a single reporting entity; the ORI9 suffix identifies the area office. CA0369901 (Inland Division) and CA0369908 (Investigative Services Unit) are the only candidate rollup parents and both report 0 in 2024, confirming no parent aggregates the children.",
+      "rationale": "CHP area offices are separate operational commands each patrolling a disjoint geographic beat \u2014 Victorville, Barstow, Rancho Cucamonga, Needles, San Bernardino \u2014 so their incident counts are additive, not overlapping; an incident on I-15 near Barstow is Barstow's and cannot also be Victorville's. The 2024 FBI roster names all ten distinctly, and their year-to-year trajectories move independently (Victorville 20/98/57/56 versus Barstow 8/11/29/39), which a single agency split across duplicate ORIs would not do. The shared 06:statewide_overlap_layer footprint is the crosswalk's coarse default for every state agency with no place assignment, not a claim of coincident jurisdiction \u2014 treating it as evidence of duplication would force a merge of every CHP office in California. The absence of a reporting CA0369900 stem removes the one structure that would signal a parent/child double count.",
+      "confidence": "high",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "a2-CA04299-highway-patrol-santa",
+      "verdict": "distinct_agencies",
+      "detail": "Keep all three ORI9s. Correct 2024 block total is 108 (CA0429950=46, CA0429960=37, CA0429955=25). No canonical ORI, no merge, no supersession. The 62 counts riding above the largest member are real and must stay.",
+      "rationale": "CHP Santa Maria, Santa Barbara and Buellton are three real Coastal Division Area Offices with separate stations, commanders and mutually exclusive patrol territories in Santa Barbara County, and the FBI 2024 roster lists all three as separate named agencies. The shared ORI7 CA04299 is the FBI's sequential-suffix convention for state-agency sub-units (50/55/60), not a parent/child rollup \u2014 and CA0429900 does not report, so no parent total already contains their counts. The shared 06:statewide_overlap_layer footprint is the deliberate catch-all for state and special-jurisdiction agencies that cannot be assigned to a place; it is marked 'overlap' rather than 'exclusive', and every CHP office in California lands there by design, so co-location on it is not evidence of duplicated incidents. Counts and vectors differ materially (larceny/MVT 5/41, 10/27, 7/18), and the identical nibrs_start of 2021-11-01 with matching 2-month 2021 stubs reflects one statewide CHP onboarding date, not one agency.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "a2-CA05499-highway-patrol-visalia",
+      "verdict": "distinct_agencies",
+      "detail": "Keep both ORI9s. CA0549980 (Visalia Area Office, 314) and CA0549981 (Porterville Area Office, 140) are separate CHP field offices; the correct 2024 block total is 454 and no counts should be collapsed. The shared 06:statewide_overlap_layer footprint is NOT evidence of a shared jurisdiction \u2014 it is the crosswalk's default for every state agency the FBI publishes no population for, so every CHP office in California lands on that same layer by construction and it carries zero discriminating information. Separately worth recording (not a merge issue): the statewide smear means this MVT-heavy CHP mass is not localized to Tulare County, which is the state-police-localization problem, not a duplication problem.",
+      "rationale": "Visalia and Porterville are real, physically separate CHP area offices with non-overlapping patrol areas in Tulare County, and the FBI 2024 roster lists them as separately named agencies; the shared CA05499 ORI7 is simply the CHP-in-Tulare block with \u202680/\u202681 enumerating offices, not a parent/variant stem. The counts diverge in every year on record (2021: 78 vs 56; 2022: 355 vs 167; 2023: 356 vs 194; 2024: 314 vs 140) and the 2024 offense vectors differ in both level and mix (larceny 65 / MVT 249 versus larceny 37 / MVT 103) \u2014 a double-submitted single agency produces identical or near-identical vectors, which is what the already-run identical-vector merge rule would have caught. There is also no \u202600 stem reporting in 2024, so no rollup parent exists that either member could be duplicating.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "a2-OK05502-del-city",
+      "verdict": "distinct_agencies",
+      "detail": "Keep both. OK0550200 = Del City Police Department, 777, footprint 40:municipal:place:4019900 \u2014 correct as-is. OK055025C = Oklahoma Department of Corrections, 133, a state correctional agency. No merge, no supersession; the block total of 910 is not double counting and the 133 must NOT be collapsed onto Del City. Two follow-ups that are footprint problems, not dedup problems: (1) OK055025C carries name '(blank)' and type 'unknown' in the panel while the FBI 2024 roster names it \u2014 adopt the roster name and type so it stops presenting as a Del City twin; (2) its 15 murders and 37 rapes ride 40:statewide_overlap_layer at w=1, smearing institutional-population incidents across all of Oklahoma residential geography, which should be reviewed separately.",
+      "rationale": "The 2024 offence vectors are dispositive and disjoint in kind: Del City is 1/9/12/89/61/542/63 \u2014 a normal city profile with larceny at 70% of total \u2014 while OK055025C is 15/37/1/78/0/2/0, with zero burglary, zero MVT and two larcenies. No municipality on earth produces that vector; it is a correctional system's PREA and inmate-death reporting. Every identifying field also diverges: roster names (Del City Police Department vs Oklahoma Department of Corrections), types (City vs Other State Agency), counties (OKLAHOMA vs NOT SPECIFIED), FBI population served (21,151 vs 0), and footprints (exclusive municipal place vs statewide overlap layer). This is not an ORI succession either \u2014 the active windows OVERLAP, both carrying positive counts across 2022-2024, so the shared ORI7 stem is an artifact of Oklahoma's ORI construction (county 055 = Oklahoma County) with a '5C' facility extension, not shared identity.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "a3-CT-yale-university-vs-yale-university",
+      "verdict": "superseded_ori",
+      "detail": "One agency, two ORIs. Survivor / mass carrier: CT0050400 (the live submitter). CT0016900 must stop carrying mass from 2021 forward; its 2018-2020 rows are the same agency's earlier history and can be merged under the surviving record. CT0050400's identity metadata is defective (type 'unknown', county <NA>, place <NA>, agency_master_fallback footprint) and should be replaced with CT0016900's (special_jurisdiction, CT cty009, plc52000 New Haven). Correct footprint is a New Haven campus overlay, not statewide_overlap_layer \u2014 as it stands both ORIs smear 277 each over the whole state, double-counting 554. If downstream prefers a merge framing, the merged record is CT0050400's counts on CT0016900's identity.",
+      "rationale": "The single deciding fact: from 2022 onward CT0016900 has NO FBI submission at all (SRS 0/0mo in 22, 23, 24) \u2014 its only rows are CIUS published rows, and CIUS derives FROM the FBI submission, so those rows ARE CT0050400's 12-month submission republished under the retired ORI, not independent data. That is why the vectors are byte-identical across three consecutive years including the distinctive 46/194/31 tail. The active windows are non-overlapping with a lane change at the break: CT0016900 submits SRS-only through 2020 (102/8mo) then dies, CT0050400 appears in 2020 (138/4mo, NIBRS+SRS) and runs 12mo from 2021 \u2014 8+4 months partitioning the handover year, with 102+138=240 sitting exactly between the 2019 (261) and 2021 (173) campus levels. Both ORIs are absent from the 2024 CDE roster, so roster presence cannot arbitrate direction; submission liveness does.",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "a3-MA-cambridge-vs-mass-inst-of",
+      "verdict": "same_agency_merge",
+      "detail": "Canonical ORI9 = MA009639E. Supersede MA009IT00 so only ONE 295-count mass lands. Correct the canonical record's display name from 'CAMBRIDGE' \u2014 the covering-city name carried by the NIBRS batch header \u2014 to the roster name 'Massachusetts Institute of Technology'. Footprint: BOTH ORIs currently sit on 25:statewide_overlap_layer at w=1, which is wrong for either. MIT PD is a campus force inside Cambridge city, Middlesex County; the correct footprint is a non-exclusive campus OVERLAP anchored on place 2511000 (Cambridge city) at weight <1, layered under Cambridge PD's exclusive municipal footprint \u2014 never the statewide layer. Note MA009IT00 already carries plc11000 (Cambridge city) with a mislabeled census_name 'state of massachusetts'; that place code, not the statewide layer, is the right anchor to carry forward onto MA009639E.",
+      "rationale": "The two ORIs carry byte-identical 7-offense vectors in seven consecutive years (2018-2024) in the same county FIPS 017, with a clean cross-lane split \u2014 MA009639E arriving via NIBRS, MA009IT00 via SRS \u2014 which is the documented duplication mechanism, not a coincidence pattern. The single deciding fact is the FBI 2024 roster: it lists MA009639E as 'Massachusetts Institute of Technology' (University or College, Middlesex) and does not list MA009IT00 at all, making the NIBRS ORI the live record and the legacy SRS stem dead. The name inversion is the expected NIBRS-twin artifact \u2014 the NIBRS variant displays the covering-city name while the legacy stem displays the correct agency name \u2014 so name quality must not be mistaken for ORI survivorship here.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "a3-MI-lincoln-vs-lincoln-township",
+      "verdict": "same_agency_merge",
+      "detail": "Canonical ORI = MI1176600 (Lincoln Township Police Department, Berrien County), footprint 26:municipal:cousub:2602147600 (Lincoln charter township) \u2014 already correct, keep as-is. MI0153300 must stop carrying mass entirely and should carry ZERO, not a fill: its CIUS rows are a name-collision mis-key of Lincoln Township's published data onto the Lincoln village (Alcona County) ORI, and it has no independent data of its own to preserve. Do not let the differing county FIPS (001 vs 021) or differing footprints block the merge \u2014 the geographic mismatch IS the defect. The 2022 discrepancy (CIUS 149 vs NIB/SRS 153) is an as-published-vs-revised difference, not evidence of a second agency. Recommend a parser guard: reject a CIUS row whose implied all-offence rate exceeds a hard ceiling (e.g. 10,000/100k) against the target ORI's own FBI population.",
+      "rationale": "The single decisive fact is the rate: MI0153300's FBI population served is 301-315 people, and 146 Part-I offences over 301 residents is ~48,500/100k, roughly thirty times the national rate and physically impossible; the identical 146 over Lincoln Charter Township's 14,864 residents is ~982/100k, entirely normal. MI0153300 also records SRS 0 total at 0 MONTHS in every single year 2018-2024 and is ABSENT from the 2024 FBI roster, so it has never submitted anything \u2014 every value it carries arrives via the CIUS lane, which is where the mis-key happens. The byte-identical vectors in 2018 (189), 2019 (185), 2023 (165) and 2024 (146) match MI1176600's SRS values exactly, and a 301-person Michigan village almost certainly has no police department at all. Cross-lane split plus impossible rate plus zero own submissions leaves no coincidence reading.",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "a3-MN-white-earth-vs-white-earth-tribal",
+      "verdict": "same_agency_merge",
+      "detail": "Canonical ORI = MN0030600 (the only one on the FBI 2024 roster, listed as \"White Earth Tribal\", Tribal, is_nibrs since 2017-02-01). MNDI01900 must stop carrying mass \u2014 it is the BIA-series shadow ORI for the same White Earth Tribal Police Department and is ABSENT from the 2024 roster. Footprint: BOTH current footprints are wrong and the merge must not inherit either. 27:statewide_overlap_layer smears a tribal PD's 171 offenses across 5.7M Minnesotans; 27:municipal:place:2770006 (White Earth CDP, ~600 people) would imply ~28,000/100k. Correct footprint is the White Earth Reservation AIANNH area spanning Becker (005), Mahnomen and Clearwater counties (~9-10k served, giving a plausible ~1,700/100k). If the crosswalk has no AIANNH layer, escalate the footprint separately rather than defaulting to statewide.",
+      "rationale": "Same agency name, same county FIPS (005), and byte-identical 7-offense vectors in five consecutive years (2020 170, 2021 225, 2022 165, 2023 151, 2024 171), with the classic cross-lane split: MN0030600 arrives only via NIBRS, MNDI01900 only via SRS Return-A. The 2018/2019 near-misses (307/278, 204/203) are lane-revision noise, not two agencies. The single fact that decided it: both ORIs sit in the same county with the same name and the same year-by-year vectors, split cleanly across the two FBI submission lanes \u2014 the documented duplication mechanism. Roster presence decides which survives; the footprint is a separate defect that the merge must not silently propagate.",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "a3-NC-raleigh-vs-wakemed-campus-police",
+      "verdict": "same_agency_merge",
+      "detail": "Canonical ORI9: NC092109E (the ORI the FBI's own 2024 CDE roster identifies as 'WakeMed Campus Police', Other, Wake County). Retire NC0929800 \u2014 it is ABSENT from the 2024 roster and is the duplicate carrier. Correct the canonical record's name from the batch-header value 'RALEIGH' to 'WakeMed Campus Police'. Footprint: a hospital campus police agency belongs on a Wake County / Raleigh non-exclusive overlay, not 37:statewide_overlap_layer; at minimum keep exactly ONE overlay at w=1 so the 103 counts land once instead of twice. Not a succession \u2014 the active windows overlap fully (2019-2024 in both), so this is a concurrent cross-lane duplicate.",
+      "rationale": "The FBI 2024 roster identifies NC092109E by the same agency name the twin ORI carries in its own title \u2014 'WakeMed Campus Police' \u2014 while NC0929800 appears on no 2024 roster at all; that single fact names both the identity and the survivor. NC092109E displays the known NIBRS-lane artifact exactly: it carries the covering-city batch-header name 'RALEIGH' while the ...00 stem carries the true agency name and crosswalk. The vectors are byte-identical across five consecutive years (2020-2024, 2024 = 0/0/1/7/10/83/2), the county FIPS match (183/Wake), the footprints match, and the lanes are split (NIBRS vs SRS) \u2014 the textbook duplication mechanism.",
+      "confidence": "high",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "a3-NY-ithaca-vs-cornell-university",
+      "verdict": "same_agency_merge",
+      "detail": "Canonical ORI9 = NY054119E (Cornell University Police). Retire NY254UC00: drop its 2024 mass entirely and re-key its pre-2020 rows (2018 CIUS/SRS 229, 2019 SRS 158/9mo) onto NY054119E so the agency keeps its history. Correct footprint: neither ORI's current 36:statewide_overlap_layer is right for a campus PD \u2014 the merged agency should carry a Tompkins County campus overlay (Ithaca city / town of Ithaca, non-exclusive, overlap weight) so it neither smears across New York State nor subtracts from Ithaca PD's place mass.",
+      "rationale": "Byte-identical 7-offence vectors in 2020 (149), 2023 (252) and 2024 (0/5/0/0/8/266/1 = 280), same county FIPS 109, same footprint, with the split running exactly along the known cross-lane duplication mechanism (NY054119E on NIBRS, NY254UC00 on CIUS/SRS) \u2014 and the NIBRS-lane ORI carries the covering-city name 'ITHACA' per the known twin artifact while the FBI's own 2024 roster resolves it to 'Cornell University', Tompkins. The single deciding fact for canonicity: NY054119E is on the FBI CDE 2024 roster and NY254UC00 is ABSENT, so the live ORI must carry the mass. Active windows overlap 2019-2024, so this is a live duplicate, not an ORI succession \u2014 both masses are currently landing on one geography.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "b2-AL0080200-blountsville",
+      "verdict": "misread_missing",
+      "detail": "The printed 0 means 'did not report'. Set AL0080200 2024 to missing and fill. Own-history fill is permitted and well-anchored: 2022 and 2023 are both full 12-month NIBRS years, CIUS-corroborated, at 32 and 31, both within the 2-year window \u2014 fill at ~31.5 with the 2023 offense split. Do not treat the NIBRS 12-month batch header as decisive for this ORI: its own record shows the NIBRS lane printing 0 while real crime occurred (2019 NIB 0/1mo against a true 20; 2020 NIB 0/1mo against a true 12), so a NIBRS zero here has demonstrated precedent as a false zero.",
+      "rationale": "The single decisive fact is the prior-year baseline: 32 in 2022 and 31 in 2023, both full 12-month years, make P(observing exactly 0 | rate ~31/yr) = e^-31 = 3e-14 \u2014 statistically impossible as a genuine outcome. The history is flat, not decaying (30, 20, 12, 20, 32, 31), so this is a cliff rather than the endpoint of a trajectory, which is precisely what separates it from the Pequot Lakes zero in the same batch where the 2023 baseline was 2. If the fill looks wrong on inspection, check whether Blountsville PD disbanded and Blount County SO absorbed the footprint \u2014 but even under that branch the correct handling is supersession, not keeping 0 as a measurement.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "b2-AL0340400-slocomb",
+      "verdict": "unclear_escalate",
+      "detail": "Do not certify the zero and do not fill from it. Hold as low-confidence pending Slocomb's 2024 NIBRS monthly detail: if the twelve submitted months carry zero Group A incidents of ANY type (including non-Part-I drug, vandalism, simple assault), the feed is dead and the year should become missing and fillable from the 2021-2022 level (~11-15); if non-Part-I Group A incidents are present, the Part-I zero is real and stands. Mass at stake is only ~11-15 offences on a 2,149 footprint, so this is a provenance question rather than a national-total risk.",
+      "rationale": "The batch-header evidence and the base rate point in opposite directions and the packet cannot separate them. Unlike Hurley and Junction City, Slocomb has no prior full-period zero \u2014 its 2019 and 2023 zeros are 3-month and 2-month windows \u2014 while its last two genuine full years are 15 (2021) and 11 (2022), so a true zero requires the underlying rate to have collapsed rather than continued down. Coverage also broke and returned (12mo 2022 \u2192 2mo 2023 \u2192 12mo 2024), and a returning filer posting twelve empty months is equally consistent with an export that resumed sending headers without incidents. Nothing here distinguishes an affirmative twelve-month zero-report from a revived-but-empty feed.",
+      "confidence": "medium",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "b2-AL0530100-marion",
+      "verdict": "misread_missing",
+      "detail": "The zero is unusable; mark 2024 missing and fillable. Fill from own history, annualizing the partial years first: 2023 = 6 at 6mo -> 12, 2022 = 15 at 10mo -> 18, 2021 = 15 at 11mo -> 16; scaling for the 20% population loss (3,265 -> 2,610) gives ~12-14. Recommend ~13. SECOND READING that downstream must resolve: Marion PD may have ceased operating and been absorbed by the Perry County SO \u2014 if so the fix is a footprint reassignment, not a fill, because the SO sits on state_nonmunicipal_remainder and would exclude Marion city entirely. Either reading forbids publishing a hard zero on this w=1 exclusive municipal footprint.",
+      "rationale": "Same lane-month contradiction as the other 2024 zeros: NIB claims 12 months while SRS records ZERO months, the twelve-zero-report-headers signature rather than a measurement. The trajectory is decisive against a real zero \u2014 months coverage fell 11, 10, 6 across 2021-2023 while counts ran 15/15/6, and then 2024 claims coverage JUMPED from 6 months to 12 while output fell to zero; an agency that doubles its month coverage does not stop recording crime. Against a declining lambda of roughly 6-15, a genuine full-year zero runs between e^-6 (0.25%) and e^-15. I hold this at medium rather than high because Marion's lambda is small and its history is chaotic (2019 was a legitimate 5 at 12 months), and because the defunct-department alternative changes the correct repair even though it does not change the verdict.",
+      "confidence": "medium",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "b2-CA0309600-irvine-valley-college",
+      "verdict": "misread_missing",
+      "detail": "Treat 2024 as missing and fillable. Do not carry the printed 0. Fill from own CIUS history anchored on the two most recent real full years (2022=8, 2023=5), i.e. roughly 5-6, NOT the 6-year median 9.5 which is dragged up by 2018-2019 (17, 11) and ignores the monotone decline. Peer-rate fill is structurally unavailable: FBIpop is 0/null for every year of this ORI. Separately flag that this ORI sits on 06:statewide_overlap_layer w=1, so whatever value lands gets smeared across all of California \u2014 a campus agency's counts should not ride a statewide layer.",
+      "rationale": "Textbook BLANK-AS-ZERO: the SRS Return-A lane records months_reported=0 for 2024 and there is no NIBRS row at all, so the agency submitted nothing to the FBI for that year, yet the CIUS table prints 0 in all seven cells. CIUS is derived from the FBI submission and is never independent corroboration of it, so the 12mo/tier-high/weight-1.0 label is entirely the pipeline's default assumption, not a measurement. The agency reported real positive values as recently as 2023 (CIUS 5, on a 4-month SRS submission), so it was not dormant. A zero-month submission cannot be rescued by uplift and cannot stand as a measured zero.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "b2-CA0470700-tulelake",
+      "verdict": "misread_missing",
+      "detail": "Drop the 2024 zero; mark CA0470700 2024 missing and fillable. Own-history fill is licensed (real report 2023, within 2 years): CIUS-lane median 6 across 2018/2019/2022/2023, so fill ~6 Part-I. Also correct the 2021 panel value \u2014 SRS 0 at 0 months is a non-report being carried as a literal zero, which is depressing this agency's own baseline.",
+      "rationale": "This ORI has a documented history of the exact failure mode in question: in 2022 the NIBRS lane reported 0 across a 7-month header while the CIUS-published value for the same agency-year was 4. That is direct, agency-specific proof that a NIBRS zero from Tulelake does not mean zero crime, which disposes of the 'decisive provenance' framing of the 12-month 2024 header. Against that, 2024 shows the full BLANK-AS-ZERO signature \u2014 printed full-year zero, SRS submission record of 1 month, and CIUS/NIB/SRS carrying one identical vector rather than three independent confirmations. A stable positive history (6, 7, 11, 4, 6) in an 856-person town makes a categorical seven-class zero a sub-1% event on its own terms.",
+      "confidence": "high",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "b2-GA0710300-buchanan",
+      "verdict": "misread_missing",
+      "detail": "The printed 0 is not a measurement. Set GA0710300 2024 to missing. Fill is less clean than Blountsville because the immediately preceding year is itself a non-report (2023 SRS 0/0mo) and 2022 is only a 3-4 month partial (5 offenses): annualize 2022 first (5 x 12/3.5 = ~17-20) and cross-check against the last real full year 2021 (24), giving a defensible fill of ~20, or use GA small-town local_police peers. PRECONDITION on the fill: check whether Buchanan PD went dark and Haralson County SO absorbed the footprint \u2014 if so the correct handling is supersession under the existing dead-ORI rule rather than a fill. Either way 0 must not survive as an observed value.",
+      "rationale": "The decisive fact is that the 2024 'complete 12-month zero report' emerges from a reporting vacuum: 2021 was the last full year (24), 2022 collapsed to a 3-4 month partial (5), and 2023 was a total non-report \u2014 a feed that decayed to nothing does not spontaneously produce a clean full-year submission, and P(0 | rate ~24/yr) = 4e-11 rules out a genuine zero. This ORI's NIBRS lane is demonstrably intermittent (NIB 4mo in 2019, 12mo in 2020-21, 4mo in 2022, none in 2023, then 12mo in 2024), so the 12-month batch header is far more likely a vendor or state auto-generated zero-month series than a real submission improvement. Contrast Pequot Lakes in this same batch, where a 12-month NIBRS zero follows an unbroken submission record and a prior-year baseline of 2 \u2014 Buchanan has neither.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "b2-IL0141300-germantown",
+      "verdict": "genuine_zero_year",
+      "detail": "Accept 0 for 2024, but attach a watch flag rather than treating it as a settled structural fact: if 2025 also prints all-seven zeros, reclassify the 2022-2025 run as a decayed feed and refill from the pre-transition baseline (2018 20, 2019 28). Do not let this zero anchor any own-history fill for neighbouring agency-years.",
+      "rationale": "The immediately preceding credible level makes a zero draw ordinary rather than extraordinary: 2023 was 2 at a 12-month NIBRS header (SRS 2 at 5mo annualizes to ~5), so P(0) is 3-14% \u2014 unremarkable for a 1,383-person village. The 12-month NIBRS batch header is an affirmative submission and the agency has filed 12-month NIBRS in 2022, 2023 and 2024. I explicitly do not treat the 28->7->6->2->0 slope as support (partial feeds decay smoothly); the ruling rests on the magnitude of the last measured level, and the pre-NIBRS baseline of 20-28 is the reason this is medium and not high.",
+      "confidence": "medium",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "b2-IL0169C00-south-suburban-college",
+      "verdict": "misread_missing",
+      "detail": "Treat the 2024 zero as a non-report; the agency-year should be missing and fillable. Fill from own history \u2014 the last real report is 2023 (=9), inside the 2-year recency rule; median of the non-zero best-values 2018-2023 (9, 8, 6, 5, 9) is 8. Footprint is a statewide overlap layer at w=1, so the mass impact is immaterial either way; the point is not to let a printed zero stand as a measurement.",
+      "rationale": "The single decisive fact is that this ORI's own publication lane has a demonstrated false zero: in 2020 CIUS printed 0 (NoF7, 6 rows) while SRS carried 6 offenses in 3 months for the same agency-year. Against a stable campus history of 9/8/6/5/9, a true zero has probability on the order of 3e-4 under Poisson, and the zero is total \u2014 including larceny, which is the offense that carries essentially all of a commuter-campus Part-I count. The countervailing fact is the 12-month NIBRS batch header, but a header is an administrative months field, not a measurement of incidents, and SRS records only 1 month for 2024, contradicting the claim of full-year coverage.",
+      "confidence": "medium",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "b2-IL0170200-palestine",
+      "verdict": "misread_missing",
+      "detail": "Void the zero; set 2024 missing and fill from own history, which is live and within the 2-year window: 2022 NIB 7/12mo and 2023 NIB 8/12mo give a fill near 8. Absolute stakes are small; the point is to stop a false structural zero being written onto the Palestine village place footprint. If the escalation budget allows, the confirming check is whether the 2024 NIBRS submission carries twelve explicit zero-report month flags or twelve headers with no incident segments.",
+      "rationale": "Unlike the decaying cases, Palestine's post-transition level was flat and credible \u2014 7 then 8 (about 600/100k for ~1,200 people) \u2014 and then stepped to exactly zero in all seven categories. From a stable lambda of 7.5 a zero year is a P=0.0006 event, roughly 1 in 1,800; against that, a header-continues/incidents-stop feed break is a mechanism this very batch demonstrates repeatedly. The 12-month NIBRS header is a submission envelope and cannot distinguish twelve zero-reports from twelve empty batches, and SRS offers nothing (0 at 1 month, statistically uninformative).",
+      "confidence": "medium",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "b2-IL0970300-norris-city",
+      "verdict": "unclear_escalate",
+      "detail": "Do not resolve on this packet. Two live hypotheses give opposite verdicts: (a) an operating 1,094-person village PD that genuinely recorded no Part-I offence in 2023 and 2024 (true zero), or (b) an Illinois NIBRS onboarding that registered 12-month batch headers while carrying no incident data (hollow feed). Resolving evidence needed: whether the 2023-2024 NIBRS submissions contain ANY Group A/Group B incidents of any type (drug, DUI, simple assault, vandalism). A feed with non-Part-I incidents but zero Part-I is a genuine zero; a feed with literally no incidents of any kind is hollow. Meanwhile: do NOT fill from own history \u2014 the last real report is 2020 and it fails the within-2-years rule, so any fill would be fabrication off a 2018 value.",
+      "rationale": "The agency is NOT dormant \u2014 ROSTER2024 carries it as an active City agency with is_nibrs True, and a disbanded department does not file 12-month NIBRS batch headers, which rules out the structural-zero reading. But unlike the Hamilton Village case in this same batch, Norris City has NO independent lane to test the zero against: its NIBRS feed has never once carried a positive count (first row 2023, zero; 2024, zero), SRS has shown 0 months for four straight years (2021-2024), and the last positive anywhere is 2020. The 2018 full year of 19 argues against a true zero, but it predates a complete two-year submission blackout and a 10% population decline, so it cannot settle 2024. This is precisely the 'genuinely low-crime small village versus token filer' ambiguity the class exists for, and the packet contains no fact that separates them.",
+      "confidence": "medium",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "b2-KY0110200-junction-city",
+      "verdict": "genuine_zero_year",
+      "detail": "Keep 0 as observed; do not fill. Record provenance as the NIBRS 12-month batch header rather than the CIUS row. Unrelated item for a different queue: 2022 carries CIUS/SRS 72 against NIB 40 for this same ORI \u2014 a lane divergence worth its own check, with no bearing on the 2024 ruling.",
+      "rationale": "Single deciding fact: Junction City has submitted twelve NIBRS months in every year from 2018 through 2024 with no gap (nibrs_start 2009-01-01), so its batch header is a demonstrably reliable completeness signal rather than a returning-filer artifact. Its recent baseline is 3 offences a year (2021: 3, 2023: 3) at 2,294 population, which makes a zero year roughly a 1-in-20 outcome \u2014 unremarkable rather than a discontinuity. SRS 0/1mo is the expected residue for a long-standing NIBRS agency and is not a second non-report signal.",
+      "confidence": "high",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "b2-KY1130300-uniontown",
+      "verdict": "genuine_zero_year",
+      "detail": "Keep 0 and do not fill; EST2024 = 0 is defensible. The decisive fact is the 2023 row: NIB 2 at 12 months proves this ORI's NIBRS feed emits positive Part-I counts when they exist, so the 2024 zero is a measured zero rather than an inert feed. Filling this agency-year would fabricate crime for an 892-person city.",
+      "rationale": "Uniontown has an unbroken 12-month NIBRS record since well before the panel window (nibrs_start 2009-01-01): 2021 = 0, 2022 = 0, 2023 = 2, 2024 = 0, all at full coverage \u2014 a settled level, not a one-year collapse. At the demonstrated recent intensity of about 0-2 offences a year in a town of ~890, P(0) is on the order of 15-40%, so a zero year is an ordinary draw rather than an anomaly. The CIUS printed zero adds nothing (it derives from the same submission), but it does not need to \u2014 the full-year NIBRS submission with a proven-live feed carries the ruling on its own.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "b2-ME0101300-veazie",
+      "verdict": "genuine_zero_year",
+      "detail": "Keep the 2024 zero as observed. EST2024=0 stands. Do not fill. The SRS 3mo label is a red herring \u2014 Return-A becomes vestigial once an agency converts to NIBRS (Veazie's SRS months decay 11 -> 12 -> 11 -> 8 -> 6 -> 4 -> 3 across exactly the conversion period), so the measurement lane here is NIBRS, which reports 12 months. Recommend recording this as a low-confidence-accept rather than a hard true zero: a single 0 against a two-year mean of 4.5 is roughly a 1-in-90 year, unusual but well within expectation across a national panel of small agencies.",
+      "rationale": "The decisive fact is that Veazie's NIBRS feed is PROVEN, not unproven: it has carried 12-month batch headers in all four years since nibrs_start 2021-01-01 and produced positive counts in three of them (13, 4, 5), so the 2024 zero is the output of a feed that demonstrably transmits incidents. That is the exact opposite of the Norris City and Hamilton Village feeds in this same batch, whose NIBRS lanes have never once carried a positive value. For an 1,824-person Maine town whose two most recent years were 4 and 5, zero is one Poisson step down, not a break. Rejecting this zero would fabricate crime for an agency that plausibly had none \u2014 the failure direction the class explicitly warns about.",
+      "confidence": "medium",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "b2-MI7859600-morrice",
+      "verdict": "genuine_zero_year",
+      "detail": "true_zero \u2014 keep EST2024 = 0, no fill. The evidence is the NIBRS batch header, not the CIUS printed zero; the CIUS row should be treated as derivative and carry no independent weight in the ladder.",
+      "rationale": "The single deciding fact is the 12-month 2024 NIBRS batch header at 0 Part-I \u2014 an affirmative full-year submission, not a publication default. SRS at 0mo is a red herring for this agency: Michigan runs MICR/NIBRS and SRS month counts are unusable for it in every prior year (9, 9, 7, 5, 7, 3 months) while NIB shows 12mo throughout. At 999 residents with own recent counts of 4, 3, 4, 2, expected 2024 is roughly 1-2 and a zero draw is statistically ordinary (P(0) around 20-25%). Rejecting this zero would fabricate crime for a village that plausibly had none.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "b2-MN0110700-pillager",
+      "verdict": "misread_missing",
+      "detail": "Treat the 2024 zero (and the identical 2023 zero) as non-reports rather than measurements; make the agency-year missing and fillable. Own-history fill from the last positive year, 2022 (=4), which sits exactly at the 2-year recency boundary \u2014 expected fill is ~4. Magnitude is immaterial (a 524-person village on an exclusive municipal footprint); the ruling exists so a printed zero is not recorded as an observed fact.",
+      "rationale": "The only pro-zero evidence is the 12-month NIBRS batch header, and this same batch demonstrates that signal is unreliable \u2014 Fort Towson (OK0120500) carries 12-month NIBRS headers with zero for four straight years after a hard step down from 25, which cannot be a true zero. Pillager's series 28/13/5/5/4/0/0 is a smooth monotone decay beginning at nibrs_start 2019-02-01, which is exactly the partial-feed decay pattern, not evidence of a genuine floor; two consecutive exact zeros against a pre-death lambda of ~4.7 sits at roughly 1e-4. SRS records 0 months in both 2023 and 2024, so nothing independently corroborates coverage. I hold this at medium, not high: a 524-person village genuinely reaching zero is not absurd, and the trend-extrapolated lambda of 1-2 would make it merely unlikely.",
+      "confidence": "medium",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "b2-MN0120200-montevideo",
+      "verdict": "misread_missing",
+      "detail": "Void the zero and treat 2023 the same way; set both years missing. Do NOT use the own-history fill \u2014 the in-window values (2022: 2, 2023: 0) are themselves the degraded feed, so the recency rule would launder the artifact into a fill of ~2. Fill from peers instead: local_police 5-10k band at 1,096.9/100k x 5,180 = ~57, trimmed toward MN-specific peer rates (~40-60). Downstream rule to add: block own-history fills when the in-window history is itself sub-peer-floor. The crosswalk is already flagged_auto.",
+      "rationale": "A county-seat regional centre of 5,180 with retail and a hospital cannot record zero larcenies, zero burglaries and zero of everything else for a full year; peer expectation is ~57 offences and P(0) is effectively zero. More decisively, the feed was already demonstrably broken before 2024: 66 and 33 pre-NIBRS, then 2, 2, 0, 0 after the 2020-12 onboarding \u2014 a post-transition level of 39/100k proves the RMS is exporting a fraction, so the 12-month NIBRS header is transmitting envelopes, not incidents. Two consecutive printed zeros on a live, rostered department is publication without measurement.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "b2-MN0181100-pequot-lakes",
+      "verdict": "genuine_zero_year",
+      "detail": "Keep 0 for 2024; EST2024 [observed x7] stands. Decisive fact: the immediately preceding year's baseline is 2 offenses (2023), so P(0 | rate=2/yr) = e^-2 = 13.5% \u2014 an ordinary outcome, not an anomaly. The SRS 0mo does NOT indicate non-submission for this ORI: post-transition the converted Return-A month count tracks months-with-a-record almost exactly (2020: 16 offenses/7mo, 2021: 6/6mo, 2022: 12/11mo, 2023: 2/2mo), so 0 offenses mechanically yields 0 months. SEPARATE FLAG for downstream: the 2019->2020 step from 62 to 16 falls exactly on nibrs_start 2020-01-01 \u2014 a 74% drop at the transition boundary. Review 2020-2024 as a block-level NIBRS-transition degradation candidate; that does not change the 2024 ruling but the whole block may sit below true level.",
+      "rationale": "The 12-month NIBRS batch header is a real affirmative submission, and unlike CIUS it is the submission record itself rather than a derivative of it, so the BLANK-AS-ZERO artifact does not apply. The discriminator against the fake zeros in this same batch is the prior-year baseline: Pequot Lakes reached 2 before reaching 0, whereas Blountsville and Buchanan drop to 0 from baselines of 31 and 24. Confidence is capped at medium because the 2020 transition step is a textbook feed-degradation signature, so the 2018-2019 level of 62-94 may be the true one and the recent near-zeros may all be understated.",
+      "confidence": "medium",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "b2-MN0540100-ada",
+      "verdict": "misread_missing",
+      "detail": "Drop the 2024 CIUS/NIB zero; mark MN0540100 2024 missing and fillable. Own-history fill is licensed (real report in 2023, within 2 years): best-any-lane 2020-2023 = 8/5/2/11, median ~6.5, so a fill of 6-7 Part-I with a normal small-town mix. Do NOT carry 0 forward.",
+      "rationale": "The CIUS row is the BLANK-AS-ZERO signature exactly as specified: a full-year printed zero for an agency whose SRS submission record shows 2 months, and CIUS here is not independent \u2014 it derives from the same FBI submission that NIB and SRS report (all three vectors are identical). The agency has never recorded a zero in six years (8, 5, 2, 11) at a served population of ~1,690, so a categorical zero across all seven offense classes is a ~1-in-400 event under its own rate, and the case was selected on the outcome, which makes the feed-failure explanation dominant. The 12-month NIBRS batch header is real submission machinery but a zero-report shell is indistinguishable from it at this resolution. Failure cost is symmetric and small (~6 offenses), so the selection-bias argument decides it.",
+      "confidence": "medium",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "b2-MN0610200-starbuck",
+      "verdict": "genuine_zero_year",
+      "detail": "Accept the zero, but this is the weakest published_zero in the batch and I would not object to escalation. Deciding fact: TWO lanes show submission-with-zero \u2014 a 12-month NIBRS batch header AND SRS at 6 months with zero counts \u2014 so BLANK-AS-ZERO (which requires a 0-2 month submission record) is ruled out on the primary record; the CIUS 0 adds nothing, being a derived echo. RESIDUAL DOUBT driving the low confidence: unlike Ore City and Bogata this is a cliff, not a decline \u2014 three consecutive full 12-month NIBRS years at 5, 7, 9 then exactly 0, roughly a 1-in-1000 Poisson event at lambda~8 \u2014 and the two lanes disagree on months (12 vs 6). If escalated, the question to answer is whether Starbuck PD still fields officers or has effectively handed policing to the Pope County sheriff while its RMS keeps firing monthly zero-reports; that outcome makes the ORI zero true but leaves place 2762500 a coverage hole.",
+      "rationale": "The 2024 submission record shows 12 NIBRS months plus 6 SRS months, both carrying zero counts, which is affirmative zero-reporting rather than publication without submission. The all-zero vector makes the composition test inapplicable, removing the usual discriminator between a real zero and a dark feed, so the submission record is the only evidence available and it points to accept. Against three stable immediately-prior full-year levels of 5, 7 and 9, an exact zero is the least plausible of the three zeros in this batch, and the earlier 68/48 levels in 2018-19 suggest the ORI's scope changed at some point \u2014 hence low confidence on an accept verdict.",
+      "confidence": "low",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "b2-MO0600500-goodman",
+      "verdict": "unclear_escalate",
+      "detail": "Hold the agency-year out of the observed / weight-1.0 set and mark it needs-verification; do not silently keep 0 and do not peer-fill yet. The CIUS zero itself is worthless here (CIUS derives from the submission, never corroborates it) \u2014 the whole question is the 12-month NIBRS header. Own-history fill is unavailable regardless: the last positive count anywhere is 2020, which fails the within-2-years rule. Resolve by checking whether Goodman PD still operates or whether McDonald County SO absorbed its calls; if absorbed, the correct treatment is footprint reassignment, not a peer fill.",
+      "rationale": "The 12-month 2024 NIBRS batch header is a real submission, so this is not a Smethport-style publication-without-submission artifact \u2014 but the feed has never emitted a single positive Part-I count since NIBRS onboarding (2023-06-01 gave 0 at 8 months, itself a partial-year zero and therefore uninformative), so there is no evidence it is capable of carrying one. Against the agency's own pre-transition level of 10-11 offences/year in a 1,311-person city, a full-year zero is a roughly 5e-5 Poisson event, which rules out 'the town simply had no crime' as a comfortable reading. That leaves two live hypotheses I cannot separate from the panel \u2014 a defunct or absorbed PD filing formal zero-reports (zero is then correct for the ORI but the city's crime sits under the sheriff) versus an inert vendor feed behind a compliant header \u2014 and both failure directions are costly.",
+      "confidence": "medium",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "b2-NM0090400-hurley",
+      "verdict": "genuine_zero_year",
+      "detail": "Keep 0 as observed; do not fill and do not treat as missing. Downstream should record provenance as the 12-month NIBRS batch header, not the CIUS row, so the CIUS months_reported=12 assumption is never the load-bearing fact for this agency-year.",
+      "rationale": "Single deciding fact: Hurley already has a full-year NIBRS zero on record (2021, NIB 0/12mo) plus a 7-month zero in 2023, so a zero year sits inside its own observed distribution rather than being a discontinuity. The 2024 zero rests on a real 12-month NIBRS submission, and SRS 0/0mo is the expected artifact for a NIBRS-transitioned agency (nibrs_start 2021-01-01), not a second non-report. At 1,221 population with a 2018-2023 range of 0-14 and a recent baseline near 0-8, a zero year is ordinary rather than improbable.",
+      "confidence": "high",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "b2-NY0262500-hamilton-village",
+      "verdict": "misread_missing",
+      "detail": "Treat 2024 as missing and fillable. Do not carry the printed 0. Fill from own recent history \u2014 the NY DCJS state-publication lane gives 2021:8, 2022:9, 2023:6, so roughly 7. The last real report is 2023, inside the within-2-years window, so own-history fill is legitimate here (unlike Norris City in this same batch). Minor caveat on one strand of evidence: the absence of a 2024 SPUB row could be an ingestion-timing artifact rather than a non-report, so the ruling should not rest on it \u2014 the FBI-side provenance carries it.",
+      "rationale": "The 2024 NIBRS row is this agency's FIRST EVER \u2014 nibrs_start is 2023-05-01 yet no NIBRS row exists for 2023 \u2014 and that first-ever row is all zeros, while SRS records 0 months for the same year. A never-positive feed's inaugural output is not a proven measurement, and the CIUS zero is derived from that same empty submission, so the 12mo/high/weight-1.0 label is purely the pipeline's default. Against that, the agency has six consecutive positive years on other lanes (10, 3, 5, 8, 9, 6, mean ~6.8), which makes an observed 0 roughly a 1-in-900 event, whereas an empty first-year NIBRS onboarding is a common and well-documented occurrence in New York's late transition. The contrast with Veazie is the discriminator: Veazie's zero comes off a four-year proven NIBRS feed, Hamilton's off an unproven one.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "b2-OH0070300-bridgeport",
+      "verdict": "misread_missing",
+      "detail": "The zero is unusable. The packet's 'DECISIVE PROVENANCE' overstates: the two FBI-side lanes CONTRADICT each other on 2024 coverage \u2014 NIBRS batch header says 12 months, SRS Return-A says 1 month. A batch header with zero incident content is a header, not a measurement; the SRS submission record (1 month) is the named BLANK-AS-ZERO condition (publication full-year zero sitting on a 0-2 month submission record). Set 2024 to missing and fillable. Fill basis: own history within 2 years \u2014 2023 4 at NIB 11mo (~4.4 annualized), 2022 5 at 12mo, 2021 8 at 11mo (~8.7) \u2014 giving ~5-6 Part-I offences. EST2024=0 observed is not defensible; a printed zero cannot be rescued by uplift and silently deletes the agency. Cheap settling test for the reviewer: pull the NIBRS segment-level zero-report indicator \u2014 a genuine zero-crime year shows 12 explicit zero-report records; an auto-generated header shows none.",
+      "rationale": "SRS month coverage decays in lockstep with the counts (2020: 12mo/10, 2021: 7mo/8, 2022: 7mo/5, 2023: 6mo/4, 2024: 1mo/0), which is the signature of a dying feed rather than falling crime \u2014 COMPOSITION OVER SLOPE applies, and the smoothness of the decline is not evidence. Crucially SRS months exceed offence counts in 2022 (7 months, 5 offences), so the months field is measuring submission coverage, not months-with-a-crime, and 1 month for 2024 means the agency effectively stopped submitting. A full year with zero larcenies for a 1,522-person Rust Belt village PD whose own recent full-coverage expectation is ~4-5 is a roughly 1% Poisson event. Medium confidence because the NIBRS 12-month header is a real field that I am choosing to discount on the strength of the contradicting SRS record.",
+      "confidence": "medium",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "b2-OK0120500-fort-towson",
+      "verdict": "misread_missing",
+      "detail": "The printed zero is a non-report; 2021-2024 should all be missing, not zero. Own-history fill is blocked for 2024 by the 2-year recency rule (last real report 2020), so the value must come from peer-rate imputation for the town footprint. Before imputing, resolve the structural question: if Fort Towson PD is in fact dormant or dissolved, the correct repair is reassigning the municipal:place:4027400 footprint (currently w=1 EXCLUSIVE on this ORI) to Choctaw County SO, not fabricating counts under a dead ORI. Leaving the zero in place silently zeroes the town.",
+      "rationale": "The decisive fact is the shape of the break: 28/18/25 through 2020 \u2014 with SRS carrying a real 12 months in 2020 \u2014 then an abrupt step to exactly 0 sustained for four consecutive years, with SRS recording 0 months submitted in every one of them. A true zero at that pre-break level is on the order of 1e-11 per year, let alone four in a row, so the agency went dark rather than the town going crimeless. The 12-month NIBRS headers in 2021-2024 are therefore auto-carried zero-report shells for a silent agency, which is precisely the artifact class that a batch-header completeness test cannot see.",
+      "confidence": "high",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "b2-OK0340800-ringling",
+      "verdict": "misread_missing",
+      "detail": "The zero is not usable as a crime level for Ringling town; mark 2024 missing. But the fill is genuinely blocked and the real question is coverage, not value: the last positive count anywhere is 2020, four years back, so the within-2-years own-history rule bars a fill, and the packet supplies no peer median for the sub-1,000 band. ESCALATE to a coverage check on whether Ringling PD still functions \u2014 Oklahoma towns under 1,000 routinely lose their department to the county sheriff / OHP while the ORI keeps filing zero-report months. If the PD is defunct, reassign the Ringling town footprint rather than fabricating a value; if it is alive with a dead feed, fill at ~15-20 (own 2018-2020 level of 25/17/~12, pop-scaled 977 -> 871).",
+      "rationale": "Same fingerprint as the other 2024 zeros \u2014 NIB 12mo against SRS 0mo \u2014 and here it is visibly the terminal stage of a four-year decay: counts and months ran 25/12mo, 17/10mo, 8/5-8mo, then 0/0mo (2021), 0/2mo (2022), and finally 12-month zero headers in 2023 and 2024. The step from 2 zero-report months in 2022 to 12 in 2023 is a compliance filing pattern, not a return to measurement. Against the agency's own reporting-era lambda of ~17, four consecutive genuine zeros run to roughly e^-68; even at the peer-implied lambda of ~6 for an 871-person town, four straight zeros is about 4e-10. I hold this at medium because the verdict is solid but the mechanism (dead department versus dead feed) is unresolved and changes the correct repair entirely.",
+      "confidence": "medium",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "b2-PA0021H00-crescent-township",
+      "verdict": "misread_missing",
+      "detail": "Void the CIUS zero; set 2024 missing and fillable. Fill from annualized own history: the partial-year submissions annualize to 2019 30, 2020 18, 2022 18, 2023 20 \u2014 a fill of roughly 20 Part-I, or a PA sub-3,000 township-police peer rate. The last real report (2023, 3mo) is within 2 years so the own-history path is open. Downstream must also stop treating a CIUS row as evidence of submission when SRS months=0.",
+      "rationale": "This is the BLANK-AS-ZERO artifact in its pure form: the FBI SRS Return-A lane carries this ORI for 2024 at months_reported=0 and there is no NIBRS row at all, so the agency submitted nothing, yet the published table prints 0 in all seven cells. CIUS derives from the submission and is never independent corroboration of it, and the months=12/tier-high/weight-1.0 label is a pipeline assumption, not a measurement. The department is live on the 2024 roster and reported every prior year (23, 15, 12, 9, 5), so accepting the zero silently deletes a real agency. One fact decided it: zero months submitted underneath the printed zero.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "b2-PA0032200-east-franklin-township",
+      "verdict": "misread_missing",
+      "detail": "Cleanest BLANK-AS-ZERO case in the batch. Set PA0032200 2024 to missing and fill. Fill guidance: do NOT use the raw recent values (2021:1, 2022:7, 2023:3) \u2014 those are themselves partial years at 3mo, 7mo and 5mo. Annualize first (2021 -> 4, 2022 -> 12, 2023 -> 7.2) and take the median for a fill of ~7, or use the 2018-2020 full-year level (33, 27, 31 at 11mo -> 33.8) if the pipeline judges the 2021+ decline to be feed degradation rather than real. The gap between those two answers (~7 versus ~31) is genuine and I am not confident which is right; flag it for the fill step rather than hard-coding. PIPELINE GAP: the same partials-used-as-baseline error will affect every PA small-township ORI, since PA's SRS participation is chronically partial.",
+      "rationale": "The single decisive fact is that the CIUS printed zero sits on a 2024 SRS row with months_reported=0 and no NIBRS row at all (is_nibrs False) \u2014 the agency submitted nothing to the FBI, and CIUS derives from that submission, so the printed 0 is the same nothing rendered as a number rather than independent corroboration. That is the BLANK-AS-ZERO artifact in its textbook form: publication without submission, then assigned months_reported=12 / tier high / weight 1.0 by pipeline assumption. Unlike Pequot Lakes there is no affirmative NIBRS batch header to weigh against it, and unlike a genuine zero the agency's own record shows 33, 27 and 31 in its last three full years.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "b2-PA0071000-williamsburg",
+      "verdict": "misread_missing",
+      "detail": "The printed zero is unusable and must not stand. Set 2024 to missing and fillable. Fill basis: own history with a real report inside 2 years \u2014 2023 is 8 at SRS 8mo (~12 annualized) and CIUS 8; 2019 is 16 at 12mo; 2018 is 11. A fill of ~8-12 Part-I offences is defensible for a 1,188-person borough PD. EST2024=0 observed is not defensible: 0 x any uplift is still 0, so leaving it as observed permanently deletes the agency from the panel. Also note the agency is is_nibrs=False with no NIBRS row at all, so there is no second FBI lane that could ever corroborate this zero \u2014 the CIUS row is the only thing asserting a full year.",
+      "rationale": "This is the textbook BLANK-AS-ZERO case and the single decisive fact is unambiguous: the SRS Return-A lane records months_reported = 0 for 2024, and there is no NIBRS row whatsoever, so NO submission exists behind the CIUS printed zero. CIUS derives from the FBI submission and is never independent corroboration of it, and its 12mo/high/weight-1.0 stamp here is the pipeline's default assumption (artifact 2), not a measurement. The agency's own record shows the same pattern already occurred in 2021 (0 at 0 months) with real counts either side, confirming that zero-month years for this ORI mean non-report rather than crime-free. Publication without submission \u2014 publication_lane_standing should never let a 12mo-by-assumption zero outrank an explicit zero-month submission record.",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "b2-PA0100800-mars",
+      "verdict": "misread_missing",
+      "detail": "publication_gap_treat_as_missing \u2014 discard the printed zero and make 2024 missing and fillable. Do not fill from own history: no year 2018-2023 is complete (best coverage is 11 months in 2019) and the nearest years are 2-month stubs, so the within-2-years own-history path would be building on 2-month fragments. Fill from the local_police peer band at pop ~1,400, with annualized 2019 (3 x 12/11 = ~3) as a floor, and flag the year low-confidence.",
+      "rationale": "The single deciding fact is SRS months_reported = 0 for 2024 with no NIBRS row at all (is_nibrs False) \u2014 the agency submitted nothing to the FBI for the year, yet CIUS prints 0 in all seven cells. That is BLANK-AS-ZERO exactly: publication without submission, and CIUS derives from the FBI submission so it can never corroborate it. Mars is a chronic non-submitter across the whole window (5, 11, 6, 0, 2, 2 months for 2018-2023), so the zero continues a reporting gap rather than measuring anything. Accepting it silently deletes a real borough PD's crime from the national panel.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "b2-PA0420800-smethport",
+      "verdict": "misread_missing",
+      "detail": "Drop the CIUS zero and mark 2024 missing and fillable; EST2024 = 0 is NOT defensible. Own-history fill is unavailable: 2023 is 1 offence at 1 month (statistically uninformative and unusable as an anchor) and the last real full year is 2019, five years stale, which fails the within-2-years rule. The fill must therefore be peer-based for a ~1,370-person PA borough with a municipal PD. Before filling, check whether Smethport's PD is part-time or disbanded with PA State Police covering the borough \u2014 if so the correct treatment is footprint reassignment to the PSP layer, and a peer fill would double count against it.",
+      "rationale": "The single decisive fact is that the SRS Return-A lane records months_reported = 0 for 2024 with no NIBRS row at all (is_nibrs False) \u2014 the agency submitted nothing to the FBI, so the printed zero is the pipeline's 12-month/tier-high/weight-1.0 default applied to a blank publication row, the textbook BLANK-AS-ZERO artifact. CIUS cannot rescue it because CIUS derives from the submission and is never independent corroboration of it. The surrounding record is the same failure repeated: 2021 and 2022 are both 0 at 0 months, and 2020 and 2023 are 3-month and 1-month scraps, so this is an agency that stopped submitting after 2019 rather than one whose crime went to zero.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "b2-SC0231900-bob-jones-university",
+      "verdict": "genuine_zero_year",
+      "detail": "Keep EST2024 = 0 as observed. The 2024 zero is the sixth consecutive zero year, not a break. Footprint note: the ORI is crosswalked to 45:statewide_overlap_layer rather than the Greenville campus, which is the standard special-jurisdiction default and is harmless at zero mass, but would matter if this agency ever reports.",
+      "rationale": "The decisive fact is the history, not the header: best-any-lane values run 2019:1, 2020:0, 2021:0, 2022:0, 2023:0, and the 2020-2023 zeros carry 11-12 month NIBRS batch headers of their own. A 2024 zero continues an established five-year pattern instead of breaking a positive one \u2014 the opposite of the Ada/Tulelake/Durand signature in this same batch. A small residential campus that refers Part-I matters to Greenville city police plausibly clears zero, and FBIpop is unpublished so no peer-rate test can contradict it. Rejecting this zero would fabricate campus crime that the agency has affirmatively reported as absent for five straight years.",
+      "confidence": "high",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "b2-SD0290100-miller",
+      "verdict": "misread_missing",
+      "detail": "Treat the 2024 zero as missing and fillable. Fill basis: own history within 2 years \u2014 2023 is 4 at NIB 9mo (~5.3 annualized), 2020 is 5 at 12mo, 2019 is 5 at 9mo (~6.7) \u2014 giving ~4-6 Part-I offences for this 1,319-person town. EST2024=0 observed is not defensible. Do NOT treat the 2022 zero as supporting evidence: it sits on NIB 4 months and SRS 0 months, i.e. it is a partial-year zero and statistically uninformative by the standing rule. Same settling test as Bridgeport: pull the NIBRS segment-level zero-report indicator \u2014 twelve explicit zero-report records would flip this to genuine_zero_year, their absence confirms an auto-populated header.",
+      "rationale": "The published zero rests on a CIUS row whose 12mo/high/weight-1.0 is assumed rather than measured, plus a NIBRS batch header of 12 months containing no incident content, against an SRS Return-A record of just 1 MONTH \u2014 the named 0-2 month submission condition for BLANK-AS-ZERO. The coverage pattern is the auto-zero-report signature rather than a decay: NIBRS months jump from 9 (2023) to 12 (2024), the best in four years, at exactly the moment content falls to zero, while the agency's own SRS submissions collapse to a single month. Against a full-year expectation of ~5 from its own record, a true zero is roughly a 1% event. Medium confidence because at this population a genuine crime-free year is not absurd, and the 12-month NIBRS header is a real field I am discounting on the strength of the contradicting 1-month SRS record.",
+      "confidence": "medium",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "b2-TX1100400-south-plains-college",
+      "verdict": "unclear_escalate",
+      "detail": "Hold 2024 out of the panel \u2014 neither accept the 0 nor fabricate a fill. Resolve with the Clery Act Annual Security Report for South Plains College (2023 and 2024): it is published independently of UCR and is the only channel available that is not derived from the same submission. If Clery shows on-campus burglary/MVT/larceny while NIBRS shows zero, rule publication_gap / zero-report artifact and fill; if Clery is also near zero, rule true_zero. Note the downstream stake is small and diffuse \u2014 FBIpop is 0 and the footprint is 48:statewide_overlap_layer.",
+      "rationale": "The 12-month NIBRS batch header is affirmative, but a NIBRS Zero Report month is indistinguishable on the wire from a month of real submission with no Part-I, so the header cannot settle whether the agency measured zero or administratively zero-reported. The statistics cut the other way: two consecutive absolute zeros (2023 and 2024) against a 2021-2022 level of 3 and 6 is roughly a 0.03% Poisson event, so the underlying rate changed \u2014 and at a ~9,500-student college with residence halls, a change to literal zero larceny is more consistent with a records or reporting change than with crime vanishing. FBIpop is 0 for this ORI, which the packet states makes any peer-rate cross-check structurally impossible, and no third channel in the packet breaks the tie. This is deliberately not the Morrice call: Morrice's zero sits inside Poisson noise of its own recent level (4, 3, 4, 2); this one does not.",
+      "confidence": "medium",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "b2-TX1940300-bogata",
+      "verdict": "genuine_zero_year",
+      "detail": "Accept the zero; EST2024=0 stands. Deciding fact: the 12-month NIBRS batch header rules out BLANK-AS-ZERO, which requires a 0-2 month submission record, and the immediately prior year is 2 on an equally full 12-month header \u2014 a zero against lambda~2 is a ~13% event, entirely ordinary. The CIUS 0 is a derived echo of the same submission, not corroboration. RESIDUAL DOUBT to record: the genuinely unexplained step is 2022->2023 (21 -> 2 on unchanged 12-month headers), so if 2023 is itself a broken feed then 2024 is year two of the same break rather than a true zero. Worth checking whether Bogata PD (pop 1,102, Red River County) still operates or has handed policing to the county sheriff \u2014 that outcome makes the ORI zero true but leaves place 4809172 a coverage hole.",
+      "rationale": "The 2024 submission record shows 12 NIBRS months, not the 0-2 months that defines publication-without-submission, so the printed zero rests on a real full-year submission. Of the three published_zero cases in this batch, this is the only one where the zero is a small step from the prior year rather than a cliff \u2014 2023 was 2 offenses on a full 12-month header \u2014 so the Poisson objection that weakens Ore City and Starbuck does not apply here. For a town of 1,102 that is a physically attainable zero, and rejecting it would fabricate roughly 2 offenses; the doubt sits on 2023, not on 2024.",
+      "confidence": "medium",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "b2-TX2300300-ore-city",
+      "verdict": "genuine_zero_year",
+      "detail": "Accept the zero; EST2024=0 stands. Deciding fact: the 12-month NIBRS batch header \u2014 twelve monthly submissions including zero-reports \u2014 which is the only mechanism by which a genuine zero can be recorded, and which rules out BLANK-AS-ZERO explicitly (that artifact requires a 0-2 month submission record; here it is 12). The CIUS 0 is a derived echo of the same submission and supplies no independent corroboration. RESIDUAL DOUBT, record don't patch: the zero terminates a monotone annualized decline (31 / 16 / 16 / 10.5 / 6.9 / 0) and the all-zero vector makes the composition test inapplicable, so a phantom auto-zero-report feed cannot be excluded. Class-level follow-up: check whether municipal place 4854216 at w=1 exclusive is a coverage hole \u2014 a PD gone dark to the Upshur County sheriff produces a technically-true ORI zero plus a real geographic hole.",
+      "rationale": "The 2024 FBI submission record shows 12 NIBRS months, not the 0-2 months that defines publication-without-submission, so the printed zero rests on a real full-year submission rather than a default label. Month coverage improved from 7mo (2023) to 12mo (2024) while content went to zero, which reads more like an agency that submitted more and found nothing than like a feed dying. For a town of 1,196 whose last two annualized levels were ~10.5 and ~6.9, a zero year is physically attainable, though it sits well below the 2021 full-12-month level of 16 \u2014 hence medium, not high.",
+      "confidence": "medium",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "b2-VT0141000-norwich",
+      "verdict": "misread_missing",
+      "detail": "The printed zero is unusable; mark 2024 missing and fillable. Fill from own history \u2014 2023 = 20 at 12mo in BOTH lanes (a clean, unambiguous full year, well inside the within-2-years rule); the 2018-2023 median is 21.5. Recommend ~20-21. EST2024=0 observed deletes a real agency's full year from a w=1 exclusive municipal footprint.",
+      "rationale": "The deciding fact is the lane-month contradiction: NIB claims a 12-month 2024 while SRS \u2014 the only lane that can record months \u2014 records ZERO months, which is the signature of twelve NIBRS zero-report headers filed without any Return-A data, not of twelve measured months. Norwich's own record has no precedent for it: 2018-2023 run 15/14/23/29/28/20 with the SRS lane recording 10-12 months of actual data every single year, and 2023 specifically shows NIB 20/12mo + SRS 20/12mo. Against the agency's own lambda of ~20, a genuine full-year zero has probability e^-20, about 2e-9. The packet's 'DECISIVE PROVENANCE' claim that a 12-month NIBRS header proves a real submission is exactly the trap \u2014 a batch header can be twelve zero reports.",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-AL0240000-crenshaw",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat 2024 as partial, roughly 2-3 months believable (23 offences against a ~9.5/month historical run-rate implies ~2.4 months). EST2024=23 observed is not a defensible repair \u2014 it embeds an 80% phantom drop into the AL nonmunicipal remainder. Both lanes carry the same 23 at 12mo, so the ladder did NOT discard a larger submission; the fix is not lane reselection. Recommended basis: own-history fill from 2021-2023 (94, 112, 115; median 112), or a 12/2.5 month-ratio uplift of the observed 23 \u2014 both land near 100-115.",
+      "rationale": "Crenshaw sits on a stable four-year plateau (2021:94, 2022:112, 2023:115) at essentially constant FBI population-served (10,190 -> 9,669), then drops to 23 in a single step with no scope change to explain it \u2014 flat population served rules out a jurisdictional narrowing. The 2024 mix (0/1/0/4/3/14/1) is a proportionally normal Part-I distribution scaled to about one fifth, which is the signature of month-truncation rather than offence-channel loss. Confidence is medium rather than high because the peer-rate arm did not fire (238/100k against a sheriff-band median of 627) and the composition is not internally broken, so a genuine sharp decline cannot be excluded from this packet alone.",
+      "confidence": "medium",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "c-AL0260600-midland-city",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep EST2024 = 16 as observed. No repair needed. Recommend the c2 own-history arm be suppressed when the SRS submission record independently shows 11+ months, to stop this class of false positive.",
+      "rationale": "All three lanes carry the same 16 and the SRS lane \u2014 the only one that counts literal months \u2014 reports 11, so the CIUS 12-month label is corroborated rather than assumed. The peer-rate arm did not fire: 693 per 100k for a 2,310-person town sits inside the normal range for its size band, meaning only the stale own-history median (65) drove the flag. Composition is intact across four classes (rape 2, agg assault 2, larceny 10, MVT 2) with larceny at 62% of the total, the normal share, not the single-category collapse that marks a partial feed. Burglary at 0 is unremarkable when the expected count is 2-3. Noted but not decisive: 16 happens to equal 65 x 3/12, which would be the arithmetic of a three-month partial \u2014 the 11-month SRS record is what rules that out.",
+      "confidence": "medium",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-AL0340000-geneva",
+      "verdict": "token_reporting_flag",
+      "detail": "Structural zero \u2014 treat as missing, not as a reported zero. Zero believable months. Fill from own history, and prefer 2021 (179/178 at 12mo in BOTH lanes, the last clean year, pop-scaled 16,315 -> 16,235 = ~178) over 2022 (81 at NIB 12mo / SRS 8mo, itself depleted; annualizes to ~122). The 2020-2022 median is 111 and the peer anchor is 627.2/100k x 16,235 = 102. Recommend ~110-130 with the 102-178 spread recorded. EST2024=0 observed is indefensible.",
+      "rationale": "NIB shows a 12-month 2024 while SRS records zero months \u2014 twelve zero-report headers, not twelve measured months \u2014 and as with Peach the ladder selected this lane on 'greater_month_coverage', i.e. on the strength of the artifact itself. Geneva County SO ran 242/142/111/178/81 across 2018-2022; against a lambda of roughly 80-180, a genuine full-year zero for a sheriff serving 16,235 people has probability around e^-160. The 2023 row is the tell that the feed died first, not the crime: NIB 0 at only 2 months with SRS at 0 months, and then 2024 claims coverage rose from 2 months to 12 while output stayed at zero \u2014 coverage and output moving in opposite directions is a filing artifact, never a crime signal. The agency's own 2019 line shows the same pattern in miniature (NIB 0/2mo alongside a real SRS 142/12mo).",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-AL0510100-monroeville",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 47 as observed. Believable coverage is roughly 3-4 months (47 vs the 2022-2023 level of 158-199). Refill from own recent history: 2023 = 158 at 12mo is inside the 2-year window and 2022 = 199, giving a hist_median fill of ~158; annualizing 47 x 12/4 gives ~141, which converges. EST2024 = 47 [observed] is NOT defensible. All three lanes carry 47, so no larger complete submission was discarded.",
+      "rationale": "After a broken pre-2021 feed (10-12 total offences in 2018-2020 for a 5,800-person city), this agency came onto NIBRS in Feb 2021 and reported three solid full years \u2014 138, 199, 158 \u2014 then dropped to 47 with nominal 12-month coverage in all three lanes. The composition is category-selectively hollow: agg assault holds at 11 (23% of the total, roughly double the normal index share) while burglary falls to 5 and MVT to 1, i.e. the violent side survived and the property side collapsed, which is a partial feed rather than a crime decline. The peer arm's silence is not exculpatory \u2014 the 1,096.9 per 100k median is national, whereas Monroeville's own 2022 rate was ~3,430 per 100k, so 829 per 100k is still a two-thirds cut against its actual level.",
+      "confidence": "medium",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-AL0640000-walker",
+      "verdict": "token_reporting_flag",
+      "detail": "Structural zero \u2014 treat the whole 2024 agency-year as missing (and 2023 likewise, same signature). Fill the full seven-offence vector as a unit from the last credible full years (2021 471, 2022 301) or from the sheriff 25-50k peer rate 706/100k x 41,418 = ~292, preserving a realistic offence mix. The current EST2024 is NOT defensible: 0/0/0/0/0/219.6/0 fabricates a jurisdiction where 100% of Part-I is larceny and zero of everything else, by filling one offence from hist_median while leaving six at observed zero \u2014 exactly the per-offence lane mixing the per-agency-year rule was meant to end.",
+      "rationale": "A sheriff serving 41,418 people cannot record zero murders, rapes, robberies, assaults, burglaries, larcenies and MVTs across a full year; the peer floor is 706/100k and its own 2018-2022 record is 595/438/253/469/301. The 12-month NIBRS batch header is a submission envelope, not incident data \u2014 an RMS that stops exporting incidents while headers keep flowing produces exactly this, and SRS confirms 0 months on the other lane. 2023 carries the identical zero, so the feed has been dead two years.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-AR0340100-newport",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep 140 as observed; EST2024 (observed x7) is defensible. Add a watch flag only, no repair. All three lanes carry the identical 140/12mo so nothing larger was discarded by the ladder \u2014 the multi-lane hint is a non-issue here.",
+      "rationale": "The instructed composition test passes: 0/9/2/29/20/76/4 is a complete, proportionate mix (burglary 20 against larceny 76, ratio 0.26; agg assault 29; rape 9), not the class-dropout signature of a partial feed. The rate is 1,725/100k against a peer median of 1,097 for local_police in the 5-10k band \u2014 above the floor, which is why only the c2 own-history arm fired. The 305->140 halving is large but both endpoints sit in credible ranges for Jackson County AR, and the NIBRS batch header reports 12 months. Only MVT (4, ~49/100k) is soft, not enough to overturn.",
+      "confidence": "medium",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-CA0169940-highway-patrol-hanford-area",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 1 as observed. Effective coverage is zero to one month \u2014 treat the agency-year as a non-report. Refill from own history: 2022 = 107 and 2023 = 88 are both full 12-month NIBRS years and 2023 is inside the 2-year window, so a hist_median fill of ~97.5 is the defensible repair. EST2024 = 1 [observed] is NOT defensible. Before filling, check whether Hanford's incidents were submitted under a neighbouring CHP area ORI in 2024 (Visalia/Porterville are the adjacent Central Valley offices) \u2014 if they migrated, filling would double count.",
+      "rationale": "A CHP area office that reported 107 and 88 Part-I equivalents in 2022-2023 reporting exactly one offence \u2014 a single motor vehicle theft \u2014 under a 12-month batch header is the canonical dead-feed-behind-a-compliant-header pattern; CHP does not stop recording stolen and recovered vehicles on state highways. The sibling offices in this same batch (Visalia 314, Porterville 140, both MVT-dominated) establish what a live CHP area office's 2024 vector looks like, and 0/0/0/0/0/0/1 is not it. The missing FBI population makes the peer arm structurally blind here, so the own-history arm at 1.0% of baseline is the whole case \u2014 and at that magnitude it is decisive without needing a rate.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-CA0190I00-uprr-los-angeles-county",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep 136 for 2024; EST2024 [observed x7] is defensible as-is. Do not apply the own-history collapse arm to this ORI: its caseload is episodic rather than trended (611 -> 1,934 -> 2,279 -> non-report -> 1,636 -> 75 -> 136), so an own-history median is not a valid baseline and the 8.3%-of-median figure is an artifact of the metric. Peer-rate comparison is structurally impossible here (FBIpop = 0 for all years) and its absence is not evidence in either direction. Recommend downstream carry this as observed-but-volatile rather than flagged. Note separately that a railroad ORI on 06:statewide_overlap_layer may double-count with LAPD/LASD for the same rail-yard incidents \u2014 a jurisdictional-overlap issue, not a reporting-completeness one.",
+      "rationale": "The composition test passes rather than fails: 0/0/0/1/91/44/0 is burglary-dominant, which is exactly the correct signature for a railroad police agency working container and rail-car break-ins, and zero murders, rapes, robberies and vehicle thefts on rail right-of-way with no residential population is expected rather than suspicious. This is the opposite of the Florida pathology in this batch, where violent counts collapse to zero while larceny carries the total in jurisdictions that must have violent crime. Coverage is stable across the whole record \u2014 months_reported is 12 in 2018, 2019, 2020, 2022, 2023 and 2024, so the variation lives in the counts and not in the feed \u2014 and 2024 rose from 2023 (75 -> 136) rather than decaying toward zero, which is inconsistent with a dying partial feed. Roster nibrs_start 2025-01-01 confirms the agency was SRS-only in 2024, so no transition artifact is in play; confidence is capped at medium only because the 2022-to-2023 step is very steep.",
+      "confidence": "medium",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-CA0459935-highway-patrol-redding-area",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep 68 as observed; do not fill. Any own-history fill would be fabrication \u2014 sibling CHP area offices swing roughly 3x year over year in both directions. Rule note for downstream: the c2 own-history arm should not fire alone on FBIpop=0 state/special-jurisdiction ORIs (4,133 of 18,728 2024 ORIs), because the peer arm is structurally blind to them and no second test exists. Same footprint defect as the CA00199 block \u2014 a Shasta-county command smeared to 06:statewide_overlap_layer instead of its actual patrol area.",
+      "rationale": "Composition is type-correct and it is the only affirmative test available here: 63 motor vehicle thefts and 5 larcenies with nothing else, matching the MVT-dominant Part-I profile CHP area offices produce (compare CHP Oakland at 385 MVT of 444). The FBI publishes no population for this ORI, so no peer-rate check exists and its absence carries no information either way. Sibling CHP offices in the same state and lane swing comparably in both directions in 2024 \u2014 Hayward 622\u2192207 is a 67% fall, Oakland 259\u2192444 a 71% rise \u2014 so a 189\u219268 step is inside the class distribution rather than anomalous. Only the own-history arm fired, and slope alone is not evidence.",
+      "confidence": "medium",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-CO0600000-teller",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat 2024 as partial \u2014 at most about 1 month believable (7 offences against a ~7.5/month baseline). EST2024=7 observed is not defensible. Note the SRS lane's 7mo label is also unreliable: 7 offences over a claimed 7 months annualizes to 12, still an order of magnitude below baseline, so a month-ratio uplift is the wrong repair shape. Recommended basis: own-history fill from the last clean full years 2021-2022 (95, 86; ~90). Explicitly exclude 2023 from the baseline \u2014 its 37 at NIB 10mo / SRS 9mo is itself degraded and is where the break begins, so 2023 should be re-examined alongside 2024.",
+      "rationale": "Three larcenies and one burglary for an entire year is not a possible measurement for a sheriff's office with 15,788 population served \u2014 that is a larceny rate of 19/100k against rural-sheriff norms in the hundreds. The all-offence rate of 43.2/100k is 6.9% of the sheriff-band peer median (627.2) and 7.4% of the agency's own 2018-2023 median of 95, with FBI population served flat across the entire period (15,884 -> 15,788), which rules out any scope narrowing. This is a long-standing NIBRS agency (nibrs_start 1997), so the collapse beginning in 2023 is a new feed break, not a transition artifact. Both the dual screen and the composition check agree.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "c-CT0016600-wolcott",
+      "verdict": "token_reporting_flag",
+      "detail": "FLAG, do not auto-fill. This is a content-depleted feed beginning in 2023, NOT a months-partial, so no uplift applies (the batch headers really are 12 months). If a repair is made, it must come from the pre-2023 own-history level \u2014 2018-2022 median 203, pop-scaled to 16,379 gives ~195 \u2014 which means the fill window has to reach past 2023, since the within-2-years rule would otherwise anchor on the equally suspect 2023 value of 42. Honest counter-evidence on the record: SRS carries 10 months WITH data in 2024 and 12 in 2023, and the 2024 mix is internally coherent, so this should be confirmed with CT DESPP / Wolcott PD (RMS or NIBRS-extract change at end of 2022) before any value is written.",
+      "rationale": "The break is a cliff, not a decay \u2014 194 (2022) to 42 (2023) to 33 (2024) \u2014 and a one-step 78% drop between two years both labelled 12 months in all three lanes is a feed-content change, not a crime trend; a smooth slope would have been the weaker signal, this is the stronger one. At 33/16,379 = 198.0 per 100k the agency sits at 14.9% of the peer median and roughly one sixth of its own 2018-2022 level of ~1,240/100k, which is outside the plausible support for any fully-reporting 16k-population municipal PD, including affluent New England suburbs. Unlike Sedro-Woolley in this same batch, whose 694/100k is ordinary, Wolcott's level is not reachable by a real decline. I am withholding a confident repair because the SRS-months test cannot detect content depletion behind an intact monthly header, so the mechanism is inferred rather than measured.",
+      "confidence": "medium",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-DCVA00000-united-states-department",
+      "verdict": "unclear_escalate",
+      "detail": "Interim: keep 291 as observed \u2014 no repair is defensible. Do NOT apply partial-year uplift (SRS records 12 MEASURED months, not an assumed 12) and do NOT fill from own history (the 'baseline' is effectively the single year 2023). Escalate the ORI's identity and footprint instead, which is the real defect: roster-absent in 2024, no FBI population, agency_type 'unknown', name truncated to 'UNITED STATES DEPARTMENT', no county or place, and an 11:statewide_overlap_layer footprint at w=1 smearing a federal agency's mass across all of DC. Hypothesis to test (hedged, not established): the 'VA' ORI stem suggests Dept. of Veterans Affairs police filing under one DC ORI \u2014 if that composite spans facilities outside DC, the footprint is wrong at national scale and the 996->291 step likely reflects which facilities fed the composite, not crime.",
+      "rationale": "Both 2023 (996) and 2024 (291) are SRS at 12 measured months, so none of the known artifacts fires: not BLANK-AS-ZERO (no publication lane involved, months are measured), not partial-month, not composition. The 2024 mix 0/6/0/13/10/252/10 is coherent and complete for a federal medical/campus force at 87% larceny with no missing stream, so the change is a uniform level shift rather than a feed gap. But the baseline is one usable year (2022 was 6mo, 2021 1mo, 2020 0mo) and the ORI's coverage is unresolved, so I cannot certify that 996 and 291 measure the same footprint \u2014 that underdetermination, not the count, is what needs a human.",
+      "confidence": "medium",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0030100-panama-city",
+      "verdict": "token_reporting_flag",
+      "detail": "This one needs no estimate at all \u2014 it is a pure lane-selection error, and it is the cleanest demonstration in the batch. A genuine full-year FBI submission exists in the panel: SRS 1,040 at 12mo, tier high, vector 3/21/9/205/147/616/39, which is 88% of the 2023 full year (1,182) and 82% of 2022 (1,269) \u2014 a normal year-over-year decline for a 37,318-population city. The ladder discarded it in favour of SPUB 31 (0/9/0/1/3/16/2) solely because 'publication_lane_standing' outranks measured FBI lanes and SPUB rows are assigned months_reported=12 / tier high / weight 1.0 by assumption (artifact 2). Set 2024 = SRS 1,040 as observed. The current EST2024 of 898.9 is NOT defensible on two counts: it fabricates (trend_log_linear x3) when a real observation is sitting in the panel, and it retains four fragment values as 'observed' (murder 0, rape 9, robbery 0, MVT 2) for a city that reported 3 murders and 39 MVTs in the SRS lane the same year.",
+      "rationale": "The packet explicitly asks whether the ladder discarded a larger equally-complete submission in favour of the small one, and here it demonstrably did \u2014 SRS 1,040 at a real 12 months lost to SPUB 31 at an assumed 12 months. The SPUB vector is self-evidently a fragment: 0 murders, 0 robberies and 1 aggravated assault for a 37k city, 3.0% of the FBI lane's own total for the identical agency-year. This is the highest-severity finding in the batch because the fix requires no imputation and because the same ladder ordering is corrupting Pembroke Pines and Homestead by the same mechanism.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-FL0030500-springfield",
+      "verdict": "token_reporting_flag",
+      "detail": "Reject the SPUB 7. 2024 = 248 from the SRS 12-month submission (0/12/4/51/47/125/9), taken as a full year with no uplift. EST2024=7 is not defensible. Rule-level fix: a state-publication row assigned months=12 by assumption must not outrank a genuine 12-month FBI submission when its total is a small fraction of it \u2014 the same FDLE-2024 token-row pattern hits Springfield, Lynn Haven and Pembroke Park in this batch alone.",
+      "rationale": "The ladder discarded a larger, equally complete submission: SRS carries 248 at 12 months with a full balanced mix, consistent with 2020-2023 (305, 262, 256) and a rate of 2,606/100k for this Panama City suburb, while the FDLE row prints 0/1/0/0/2/4/0 = 7 (73.6/100k, 6.7% of peers). The SPUB row wins only because state publications carry no period field and get months=12/tier-high/weight-1.0 by assumption (artifact 2). With nibrs_start 2025-01-01, the agency's 2024 FDLE record is a transition-period stub, not a measurement.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-FL0030700-lynn-haven",
+      "verdict": "token_reporting_flag",
+      "detail": "Two stacked errors. (1) Reject the SPUB 6. (2) 2024 = 166 from SRS, taken as a FULL YEAR \u2014 the months_reported=1 label is corrupt and the 12/1 annualization must be explicitly suppressed, or the panel gets 1,992 offences (9,113/100k) for a quiet Panama City suburb. Same corrupt 1mo label sits on 2023's 185, so apply the fix to both years. EST2024=6 is not defensible.",
+      "rationale": "The SRS 2024 row 1/4/3/22/18/112/6 = 166 is a complete, balanced full-year mix at 759/100k, sitting squarely inside this agency's own full-year history (2018 230, 2019 339, 2020 215) and well under the 1,327/100k peer median for the 10-25k band \u2014 so the value is a year, not a month, and the period field is wrong. The FDLE row 0/1/0/0/1/3/1 = 6 (27.4/100k, 2.1% of peers) wins only through the months=12-by-assumption rule applied to state publications with no period field. nibrs_start 2025-01-01 marks 2024 as an FL transition-year stub.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-FL0032600-parker",
+      "verdict": "token_reporting_flag",
+      "detail": "This is a lane-selection failure, not a crime fact. The ladder discarded a larger, genuinely complete submission: SRS Return-A 112 at 12 MEASURED months (0/3/0/14/9/83/3) in favour of an FDLE state-publication row of 2 (0/0/0/0/0/2/0) whose 12-month label is the pipeline's no-period-field assumption (artifact 2). EST2024 should be 112, sourced from srs_return_a_annual; the current EST2024=2 is indefensible and deletes ~98% of a real agency's crime. Corroboration that the SPUB row is empty by construction: ROSTER2024 gives nibrs_start = 2025-01-01, so Parker was still SRS-only through 2024 and Florida's NIBRS-derived publication has essentially no data for it. RULE GAP TO CLOSE: _drop_state_publication_non_reports only catches ALL-ZERO SPUB rows on zero SRS months; extend it to drop any SPUB row that is a tiny fraction (<10-20%) of a same-year FBI submission with full measured month coverage.",
+      "rationale": "SRS 112 is internally consistent with Parker's own record (2019: 121, 2022: 96, 2023: 152) and with its peer band \u2014 2198/100k against a 1096.9 median for a low-income Panhandle city of 5,096, roughly double peers, matching its long-run position. The SPUB 2 has a single larceny and nothing else across all seven categories, which is not a crime pattern but an absent feed. The single decisive fact is nibrs_start 2025-01-01: the state publication lane could not have carried Parker's 2024 offences, so its near-zero row is a structural artifact of the FL NIBRS transition, and publication_lane_standing let it outrank a measured full-year FBI submission.",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-FL0060800-pembroke-pines",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 411. This is an offense-truncated feed, not a time-truncated one, so NO month-count uplift can repair it \u2014 the NIB vector 0/0/0/4/13/349/25 has murder, rape and robbery all at zero for a 175,757-population city while larceny carries 87% of the total. State how many months are believable: none cleanly; the roster's nibrs_start 2024-10-01 contradicts the NIB '12mo' label and implies at most 3 NIBRS months, and SRS says 8mo, and SPUB assumes 12 \u2014 all three lanes are the same broken feed with different labels. Own-history fill is NOT permitted: the last real full year is 2020 (2,704) and 2021, 2022 and 2023 are all SRS 0/0mo non-reports, so there is no real report within 2 years. Fill from peers (FL local_police, 100k-1M band) or from the 2020 anchor with a state trend adjustment, and flag the whole 2021-2024 block as a four-year hole.",
+      "rationale": "Burglary at 14 alongside larceny at 359 in a city of 175,757 is the exact COMPOSITION-OVER-SLOPE signature \u2014 expected burglary for this size is roughly 400-600 and expected agg assault 400-600 against a reported 8. Both screen arms fired (own history 11.3%, peer rate 9.2% of the median), and the reported 233.8 per 100k against a peer median of 2,548.5 is not attainable by any real municipal police agency of this size. EST2024 keeping 411 as [observed x7] is the worst outcome available: it silently inserts a 176k-population city into the national panel at a tenth of its true level and drags the Broward County and Florida aggregates down without leaving a trace.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-FL0063000-pembroke-park",
+      "verdict": "token_reporting_flag",
+      "detail": "Reject the SPUB 1 (a single burglary); set 2024 missing. Fill anchored on the agency's OWN established rate, not the peer median: last credible full year is 2020 SRS 230 (3,376/100k) against a band peer median of 1,097 \u2014 a peer fill would land near 75 and understate this commercial enclave threefold. Recommend own-rate anchor 230 trended on the Broward/FL 2020-2024 path (~160-230). Two caveats for downstream: the 2-year recency rule currently blocks that own-history path and needs an exception for agencies whose established rate is far off the peer median; and before filling, confirm Broward SO is not already carrying this town's calls, or the mass will double-count.",
+      "rationale": "The FBI lane shows 0 months submitted in 2021, 2022, 2023 and 2024, so there has been no FBI submission for four years; the only 2024 value is an FDLE row of 1 offence that survived the all-zero drop rule solely because it is 1 rather than 0. One Part-I offence for a 6,812-person town with an own history of 336/267/230 is 14.7/100k, 1.3% of peers \u2014 not a measurement. Because the underlying coverage is zero months, no uplift can rescue it; the year has to be missing.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-FL0063800-southwest-ranches",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not accept 26 as a complete 2024. The FBI submission record for FL0063800 in 2024 is SRS 0 total at 0 MONTHS \u2014 no submission exists. The SPUB 26 carries months_reported=12 only by the pipeline's no-period-field assumption (artifact 2). At most ~2-3 months of the FDLE feed are believable (26/125 = 21% of the 2021-2023 baseline). EST2024=26 observed is NOT defensible. Because a partial-year value on an unmeasured period cannot be safely uplifted, treat 2024 as missing/fillable and base it on the last full-coverage own-year (2022 NIB/SRS 125 at 12mo), i.e. ~120-130. Two secondary defects to record: (a) the SITUATION text says FBI publishes no population while the panel shows a flat imputed 8046 for all seven years \u2014 the peer-rate arm was blinded on a false premise; (b) the crosswalk footprint is 12:statewide_overlap_layer despite plc57425 (Southwest Ranches town) being known. Alternative worth checking before filling: Southwest Ranches is contract-policed, so if 2024 crime migrated to the contracting provider's ORI the right answer is superseded/treat-as-missing with NO fill \u2014 filling would then double-count.",
+      "rationale": "This is the BLANK-AS-ZERO pattern one step up: a state publication printing a full-year-labelled figure for an agency whose FBI submission record is zero months. The decay 2022 (125 at 12mo) -> 2023 (53 at 5mo) -> 2024 (26 on 0 FBI months) is a feed dying, not crime falling. The offense mix confirms it \u2014 0 murder / 2 rape / 0 robbery / 0 agg assault / 2 burglary / 20 larceny / 2 MVT: agg assault and robbery both empty in an 8k-population jurisdiction while larceny carries the total is a category-holed partial feed. Confidence is medium only because the contract-policing alternative (mass moved to another ORI) would change the repair from fill to no-fill.",
+      "confidence": "medium",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-FL0130500-homestead",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat 2024 as a structural non-report and discard all seven SPUB values. The FBI submission record for FL0130500 in 2024 is SRS 0/0mo with no NIBRS row (roster nibrs_start 2025-01-01) \u2014 the agency submitted nothing at all \u2014 so a 50-offense FDLE row cannot be a full year for an 82,094-population city. Own-history fill IS permitted: the last real full year is 2022 (2,589), within the 2-year window, so fill the entire vector from the 2022 level and split. The current EST2024 of 2,223.5 is right in magnitude but the vector is not defensible: it keeps murder=0 and rape=7 as 'observed' from the fragment and fabricates only the other five, so Homestead enters the panel with zero homicides in 2024 (it runs roughly 5-10/yr) next to a full-year larceny of 1,402. PIPELINE GAP: _drop_state_publication_non_reports keys on SPUB == 0 exactly; this row is SPUB == 50 sitting on a 0-month FBI year and therefore evades the rule. Re-key the rule on 'SPUB total implies an implausible fraction of own history or of the FBI lane', not on equality with zero.",
+      "rationale": "Both screen arms fired hard \u2014 1.8% of the own-history median and 3.1% of the peer median at 60.9 per 100k against 1,953.7 \u2014 and the composition confirms a fragment rather than low crime, with murder 0 and motor vehicle theft 0 in an 82k city alongside burglary 5 and larceny 27. The decisive fact is provenance rather than magnitude: an agency with zero months submitted to the FBI has no full-year measurement in existence, so the FDLE row is a partial upload printed without a period field and assigned months_reported=12 by pipeline assumption (artifact 2). Note also that 2021 and 2023 are themselves 0-month non-reports, so this agency has an intermittent record and the 2022 anchor is the only recent real full year.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-FL0132700-medley",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat as a non-report, not a partial \u2014 there is nothing to uplift. Zero believable months. Fill must come from own history (2019 190/12mo, 2020 194/12mo, pop-scaled -> ~195); a peer fill is CATASTROPHICALLY wrong here (702.6/100k x 1031 = 7 offences) because Medley is a ~1,000-resident Miami-Dade industrial/warehouse district whose own record implies ~19,000/100k from daytime population. The within-2-years own-history rule blocks the correct fill, so escalate the fill window. Also a concrete rule gap: _drop_state_publication_non_reports keys on all-zero, so this total-of-1 row with 0 FBI months slipped through and got stamped 12mo/high/w=1 \u2014 extend the rule to a de-minimis threshold ANDed with 0 FBI months.",
+      "rationale": "The FBI records literally zero submitted months for 2024 (SRS 0/0mo) and nibrs_start is 2025-01-01, so Medley had no FBI reporting channel at all in 2024; the only 2024 row is a state-publication line whose 12mo label is assumed, not measured. That row is a single larceny (0/0/0/0/0/1/0) against own full years of 220/190/194 in 2018-2020 \u2014 0.5% of baseline, which is a non-report with one stray record, not a crime level. The agency has filed 0 months in every year since 2021, so the collapse is a four-year reporting outage, not a trend. EST2024=1 observed silently deletes ~195 offences from a footprint the ORI holds w=1 exclusive.",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-FL0150000-dixie",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not accept 17 as a complete year. The FDLE row covers at most ~7 months and is offense-depleted within those months, so neither the observed 17 nor a 12/7 uplift (~29) is usable. Mark 2024 missing and fill; NOTE the fill is contested: own-history anchor (2019-2020 full years 232/219, pop-scaled) gives ~230, peer anchor (sheriff, 10-25k band, 627.2/100k x 16218) gives ~102 \u2014 a 2x spread. The within-2-years own-history rule is blocked (last clean full year 2020), so this fill choice should be escalated rather than defaulted. EST2024=17 observed is not a defensible repair.",
+      "rationale": "The SPUB 'months_reported=12' is the pipeline's assumption for a state table with no period field (artifact 2), while the two FBI lanes independently measure the same agency-year at 6-7 months (NIB 12/7mo, SRS 12/6mo) \u2014 a direct contradiction of the completeness label. The offense mix settles it: 0/0/0/9/1/7/0 puts agg assault (9) above larceny (7) with burglary at 1 for a 16,218-population rural sheriff, the person-offense-only signature of a broken Group A extract, not a low-crime county. Even annualized to ~29 the value is 13% of the agency's own 2019-2020 full-year level of ~225, so the months that did arrive are themselves depleted. Agency has not filed a clean full year since 2020 (21: 0mo, 22: 1mo, 23: 0mo).",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-FL0160300-jacksonville-beach",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat SPUB 67 as ~1 month of coverage (2 at the outside), not a 12-month year. Mark 2024 non-observed and fillable; EST2024=67 observed is indefensible. Anchor the fill to the agency's own last clean full year (2020 SRS 850 at 12 measured months), NOT the peer band: Jacksonville Beach runs ~3,550/100k historically against the 1,327/100k band median, so a peer fill (~318) would under-count by ~2.6x. The 2-year own-history window blocks this fill and should be relaxed by exception for agencies with a multi-year FBI submission gap. A 1-month uplift (67 x 12 = 804) lands independently at the same level, which corroborates ~800-850.",
+      "rationale": "SRS records 0 months for 2021, 2022, 2023 and 2024, so there is no measured month count anywhere against which the SPUB row can be checked, and its 12mo/high/weight-1.0 status is assigned by assumption (artifact 2), not measured. 67 against the agency's own 2020 full-year 850 is 0.95 months of activity, and the rate of 279.5/100k is 21% of the peer band median. The offense mix 0/3/3/8/11/40/2 is proportionally intact (larceny 60%, burglary:larceny ~1:3.6) \u2014 a uniform ~12x scale-down, which is the signature of month truncation rather than an offense-stream gap or a real decline.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0280300-sebring",
+      "verdict": "token_reporting_flag",
+      "detail": "structural_zero_treat_as_missing \u2014 0 believable months. Mark 2024 non-observed and fillable; EST2024=1 is indefensible, and uplift cannot rescue it (1 x 12 = 12, still absurd for an 11,767-person city). Anchor the fill to the 2020 full-year SRS 468, not the peer band: Sebring runs ~4,300/100k historically against the 1,327/100k band median, so a peer fill (~156) under-counts by ~3x. Separately, a rule gap worth patching: _drop_state_publication_non_reports drops all-zero SPUB rows with 0 SRS months, but a single stray record (total 1) walks straight through it \u2014 the threshold should be near-zero, not exactly zero.",
+      "rationale": "The SPUB vector is 0/0/0/0/1/0/0 \u2014 a lone burglary with larceny at zero, the inverse of any real offense mix for a city this size \u2014 which is a degenerate feed, not a crime year. SRS shows 0 months reported for 2021 through 2024, so the SPUB's 12mo/high/weight-1.0 label is pure assumption (artifact 2) with no measured month count anywhere to support it. 1 offense against the agency's own 2020 full-year 468 is 0.03 months of activity and 0.6% of the peer-band rate.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0290300-temple-terrace",
+      "verdict": "token_reporting_flag",
+      "detail": "This is a lane-selection defect, not agency behaviour. The 2024 value should be the SRS 560 at 12 MEASURED months; EST2024=111 is indefensible. No fill or uplift is needed \u2014 the correct number is already in the panel and was discarded by the ladder. Systemic fix (this is the highest-value item in the batch): publication_lane_standing must not let a period-less SPUB row, whose months_reported=12 / tier high / weight 1.0 is assigned by assumption (artifact 2), outrank an FBI lane carrying a MEASURED 12-month count. Demote SPUB below any lane with a real months field.",
+      "rationale": "SRS 2024 is 560 at 12 measured months and sits exactly on the agency's own full-year history (555 in 2020, 586 in 2022, 539 in 2023), so the SPUB 111 is the outlier, not the SRS. The SPUB is not a subset of the SRS row \u2014 agg assault 3 vs 93 and burglary 10 vs 93, yet murder 2 vs 1 \u2014 so it is a broken partial extract with whole offense streams missing, not a competing full-year measurement. The ladder promoted the assumed-complete publication row over a measured complete submission purely on lane standing, deleting 449 offenses from a 27,462-person city.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0290600-tampa-international-airp",
+      "verdict": "genuine_low_crime",
+      "detail": "Accept 2024; EST2024=186 is defensible, though I would prefer the FBI 12-month NIBRS/SRS value of 182 on provenance grounds (measured months vs assumed) \u2014 the 2% difference is immaterial either way. The screen fired against a garbage baseline: the '2021-2023 median 1172' rests on a single wild SRS year sandwiched between 0 (2021, 1 month) and 92 (2023, 11 months), so the collapse is an artifact of the baseline, not of 2024. The real defect on this ORI is the footprint, not the count: an airport police department is carried at 12:statewide_overlap_layer w=1 (marked [mini_second_pass/reviewed]), smearing its mass across the whole of Florida. It should be a non-exclusive overlap on the airport polygon within Hillsborough County / Tampa.",
+      "rationale": "Three lanes land independently at 182-186 for 2024, two of them (NIBRS and SRS) at 12 MEASURED months, so this is a complete full-year submission rather than a relabeled partial \u2014 the opposite configuration from the other FL cases in this batch. The offense mix 0/0/1/2/2/165/12 \u2014 91% larceny, 12 MVT, near-zero violent and burglary \u2014 is exactly the coherent profile of a facility with no resident population, so the composition test passes cleanly (contrast Vero Beach, where MVT=0 fails it). 2024 is the agency's first clean full NIBRS year (nibrs_start 2023-07-01) and is consistent with 2023's 92-in-11-months once the mid-year start is accounted for.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0310300-vero-beach",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a partial-month case \u2014 the NIBRS header really is 12 months \u2014 but an offense-stream gap, so partial-year uplift does not apply. Mark 2024 non-observed; EST2024=58 is indefensible. Do NOT fill from 2023 (81 at 11mo) even though it is inside the 2-year window: 2023 is itself degraded and filling from it propagates the defect. Anchor on the last uncompromised full year, 2020 SRS 284, cross-checked against a peer-band fill (1327.2/100k x 18,049 = ~240); the two agree at ~240-285, so either is defensible. Rule addition: a within-window own-history year that itself fails a composition check must be excluded as a fill source.",
+      "rationale": "The 2024 vector is 0/2/1/5/5/43/0 \u2014 motor vehicle theft at exactly zero across a full 12 months in an 18,049-person Florida city, where the state rate implies roughly 30-40, and burglary 5 against larceny 43 is far off any normal ratio. That is the COMPOSITION-OVER-SLOPE signature: specific offense streams are missing from the NIBRS feed even though the batch header reports 12 complete months, so a 12mo label cannot be read as complete coverage here. The SPUB 58 is the same vector plus two larcenies, so it is a copy of the defective feed rather than independent corroboration, and the agency's last uncompromised year is 2020 at 284 \u2014 four years back and outside the own-history fill window.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0460200-fort-walton-beach",
+      "verdict": "token_reporting_flag",
+      "detail": "At most 6 months believable, and even those are under-covered. Mark 2024 non-observed; EST2024=93 is indefensible. Preferred repair: own-history fill from 2022 (465) and 2023 (439), both real 12-month NIBRS/SRS years inside the 2-year window, giving ~452. Treat the 6-month uplift (93 x 2 = 186) as a hard floor only, not the estimate \u2014 motor vehicle theft at exactly 0 over a nominal half-year in a 22,871-person city shows the six months are themselves missing offense streams, which is why the uplift under-shoots history by ~55%.",
+      "rationale": "The SPUB vector 1/11/2/23/11/45/0 is the same data as the NIB/SRS vector 1/7/2/23/11/45/0 \u2014 identical in six of seven offenses \u2014 so the SPUB's '12 months' is the same 6-month submission relabeled by the pipeline's period-less assumption, not an independent full year; it cannot corroborate a feed it was derived from. The FBI lanes measure 6 months for 2024 against clean 12-month years in 2022 and 2023, so the feed broke mid-year. MVT=0 across that nominal half-year is an offense-stream gap stacked on top of the month gap, so month-ratio uplift alone will not restore the year.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0460300-niceville",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not accept 40 as complete. Believable coverage is roughly 2-3 months (40/215 of a full year = 2.2 months). Mark 2024 missing and fill at ~222-225 \u2014 reassuringly, two independent anchors converge: 2019 own full year 215 at pop 15,947 = 1,348/100k scaled to 2024 pop 16,715 gives ~225, and the peer anchor 1,327.2/100k x 16,715 gives ~222. IMPORTANT downstream guard: the within-2-years own-history rule will find the 2023 (7/5mo) and 2022 (13/4mo) rows and fill from garbage \u2014 those years must be excluded from the fill basis. EST2024=40 observed is not defensible.",
+      "rationale": "The FBI records zero submitted months for 2024 (SRS 0/0mo); the sole 2024 row is a state-publication line whose 12mo/high/w=1 status is the pipeline's assumption for a table with no period field (artifact 2). The mix 0/3/0/2/5/30/0 carries MVT = 0 and burglary = 5 for a 16,715-population city \u2014 a partial feed, since MVT is the offense small agencies least often miss and would be expected at ~15-30. The agency has not filed a clean year since 2019 (20: 1mo, 21: 1mo, 22: 4mo, 23: 5mo) and nibrs_start is only 2023-05-01, so 40 is consistent with roughly two months of a still-stabilizing NIBRS feed. At 239.3/100k it sits at 18% of peers while its own 2019 full year was ~1,350/100k \u2014 the town did not change, the feed did.",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-FL0460400-valparaiso",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat 2024 as a non-report: zero months believable, mark missing rather than uplifting. EST2024=1 is not defensible. Own-history fill is barred (last real report 2020, four years back, fails the within-2-years rule), so 2024 must come from a peer/benchmark fill for FL local_police in the 5k-10k band \u2014 roughly 1096.9/100k x 5,941 = ~65, which also brackets its own 2018-19 level of 52-55.",
+      "rationale": "SRS records 0 months submitted for 2024, and for 2021, 2022 and 2023 as well \u2014 this agency has not fed the FBI since 2020, and its NIBRS start date is 2025-06-01, so it had no reporting pathway in 2024 at all. The single FDLE-published larceny survived _drop_state_publication_non_reports only because the rule catches all-zero rows, not all-but-one; it is a near-miss on the existing guard, not evidence of a submission. One larceny and nothing else for a 5,941-person city against an own-history median of 52 is a token, and because it is published as complete it gets no uplift and stands as-is. A partial-year value this close to zero cannot be rescued by scaling regardless.",
+      "confidence": "high",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-FL0480000-orange",
+      "verdict": "token_reporting_flag",
+      "detail": "Do NOT keep 3,772 as an observed full year. Mark FL0480000 2024 as partial/non-complete on all three lanes and correct the month labels: NIB should be 1 month (roster nibrs_start 2024-12-01), SPUB ~2 months, SRS <1 month. Best-grounded 2024 total is the December NIBRS fragment annualized: 1,804 x 12 = ~21,650, which lands on the 2022 full-year level of 21,130. The current EST2024 of 17,092 is right in magnitude but the vector is not defensible: it keeps murder=13 as 'observed' from a ~2-month SPUB fragment and splices it against six hist_median full-year values (larceny 10,126), producing an internally inconsistent record. Discard all seven 2024 observed values, or rebuild the whole vector from the December NIBRS month.",
+      "rationale": "Three lanes claim to be the same agency's same complete year yet report motor-vehicle-theft of 439 (SPUB), 14 (NIB) and 2 (SRS) \u2014 a 31x spread that no full year can accommodate, so at most one is right and none is complete. NIB 1,804 is almost exactly one month at the historical rate (21,130/12 = 1,761) and the roster's nibrs_start of 2024-12-01 confirms a single NIBRS month mislabeled as 12mo. A 960k-population sheriff cannot fall 82% in one year while the composition breaks (SPUB burglary 320 against larceny 2,237), so this is fragment coverage, not a trend. Own record is already thin \u2014 2021 and 2023 are 0-month non-reports and the last real full year is 2022 \u2014 so any own-history anchor is stale at exactly the 2-year boundary.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-FL0550100-st-augustine",
+      "verdict": "token_reporting_flag",
+      "detail": "At most 7 months believable, and under-covered within those. Mark 2024 non-observed; EST2024=139 is indefensible. Preferred repair: own-history fill from 2022 (516) and 2023 (457), both real 12-month NIBRS/SRS years inside the 2-year window, giving ~486. The 7-month uplift (139 x 12/7 = 238) is a floor only \u2014 it still sits at ~52% of 2023, so the seven months are themselves partial.",
+      "rationale": "The SPUB vector 0/1/1/9/19/102/7 is within a few counts of the NIB/SRS vector 0/1/1/8/18/90/4 on every single offense, so the SPUB's '12 months' is the same 6-7 month submission relabeled by the pipeline's period-less 12mo assumption (artifact 2), not an independent full-year measurement. The FBI lanes measure 7 (NIBRS) and 6 (SRS) months for 2024, against clean 12-month years in 2022 (516) and 2023 (457). The ladder promoted an assumed-complete publication row over the measured partial submission it was derived from \u2014 the same FDLE defect as Fort Walton Beach and Vero Beach in this batch.",
+      "confidence": "high",
+      "_source_agent": "a2447a01481f06dba"
+    },
+    {
+      "case_id": "c-FL0570100-milton",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not accept 37 as complete. Believable coverage is ~2 months (37/201 of a full year = 2.2 months; the FBI's own NIBRS row for 2024 is a 1-month stub). Best-supported repair in the whole batch: fill from own history at 2023 = 201 at 12mo, which is INSIDE the within-2-years rule, pop-scaled 11,194/10,909 -> ~206. Prefer this over the peer anchor (1,327.2/100k x 11,194 = 149), since Milton's own clean full years are 199 (2022) and 201 (2023). EST2024=37 observed deletes ~82% of Milton's crime from a w=1 exclusive municipal footprint.",
+      "rationale": "The mechanism is documented on the record: nibrs_start is 2025-02-01, so 2024 is Milton's SRS-to-NIBRS transition gap \u2014 SRS shows 0 months and NIBRS shows a single month carrying one larceny, leaving no FBI submission for the year. The only 2024 row is a state-publication line whose 12mo/high status is the pipeline's assumption for a table with no period field (artifact 2), and 37 is 18.4% of the agency's own 2023 full year. The mix 0/1/2/3/12/19/0 has MVT = 0 for an 11,194-population city, a partial-feed signature. Unlike the other Florida cases here, this agency was a clean full reporter immediately before the gap (2022: 199/12mo, 2023: 201/12mo), so both the diagnosis and the fill are unusually well determined.",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-GA0360100-grovetown",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 46 as observed. Believable coverage is roughly 4 months (46 vs the 2021-2022 level of ~144). Refill from own recent history anchored on 2022 (144 at 12mo, within the 2-year window) with population growth applied (17,161 -> 18,169), giving ~150; annualizing 46 x 3 gives ~138 and a peer-rate fill gives ~241. Recommend the own-history route at ~140-150. EST2024 = 46 [observed] is NOT defensible. Note 2023 (102) is itself likely partial and should carry a soft flag. All three lanes carry 46, so no larger submission was discarded.",
+      "rationale": "An 18,169-person Augusta-metro suburb reporting 5 burglaries, 30 larcenies and 1 motor vehicle theft for a full year is not a measurement \u2014 the larceny rate alone (165 per 100k) is about an eighth of any plausible suburban level, and 1 MVT next to Augusta is impossible. The population is rising (14,543 -> 18,169) while the count falls 200 -> 46, so the denominator is moving against the trend rather than explaining it, and the rate sits at 19.1% of the peer median. Composition confirms slope: the property side is hollowed out, so the smooth 200/190/147/145/141/102/46 decay is a decaying feed, not a decaying crime rate.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-GA0650000-grady",
+      "verdict": "unclear_escalate",
+      "detail": "Do not repair and do not certify. Hold the agency-year as low-confidence pending Grady's 2024 NIBRS monthly detail \u2014 specifically whether all twelve submitted months carry Group A incidents, or whether incidents cluster in roughly four months. If the months are populated, 63 stands as observed; if they cluster, treat as a ~4-month partial and uplift to ~180. Do not apply a peer fill either way: the peer arm did not fire.",
+      "rationale": "The two decisive tests disagree and neither dominates. Composition passes \u2014 all seven categories are populated in proportions normal for a rural Georgia sheriff (burglary 19 / larceny 20 / MVT 11) \u2014 and the peer-rate arm did not fire at 399/100k, so against same-type same-size peers 63 is not an outlier. Against that, coverage broke and returned (12mo 2021 \u2192 5mo 2022 \u2192 0mo 2023 \u2192 12mo 2024) and 63 is almost exactly 4/12 of the last comparable full year (182 x 4/12 = 61). A first year back after a total blackout is precisely where the 12mo label is least trustworthy, and nothing in the packet separates a truncated feed from a real decline.",
+      "confidence": "medium",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-GA0720000-harris",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not let 37 stand. Treat the 2024 agency-year as unreliable/missing and fill from own history (2021-2023 median 130, or a trend fit through 102/131/130/111). Do NOT uplift by a 12/n month ratio \u2014 n would have to be back-derived from the baseline, which is circular. EST2024=37 observed is not a defensible output.",
+      "rationale": "Four consecutive rock-stable full-year submissions (2020:102, 2021:131, 2022:130, 2023:111) then 37 \u2014 a 67% break with no population change (31,550 to 32,316) and no lane change. Both screen arms fired: 114.5 per 100k against a 706.2 sheriff peer median (16.2% of peers). The composition seals it: larceny 20 carries 54% of the year while burglary is 5 and aggravated assault is 3 for a 32k-population exurban Georgia county sheriff \u2014 5 burglaries in a full year at that footprint is a feed that stopped, not a crime drop.",
+      "confidence": "high",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "c-GA1020000-monroe",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not carry 46 as an observed full year; mark 2024 incomplete and fillable. Own 2022 full year (189, at the 2-year window boundary) and the peer rate (706.2/100k x 26,635 = 188) converge on ~188, which is a well-anchored fill target. EST2024=46 [observed] is not defensible. Also flag 2023 (41/12mo) as the same defect \u2014 the break is at 2022\u21922023, not at 2024, so repairing 2024 alone would leave a matching hole in the prior year.",
+      "rationale": "The vector is broken rather than merely small: zero murders, zero rapes and zero robberies across a 26,635-person county remainder, with burglary 4 sitting below MVT 11 \u2014 an inversion rural sheriff jurisdictions do not produce. Violent offences are absent while property is present but thin, which is category-selective loss, not a uniformly quiet year. The peer arm fires at 24.5% of the sheriff-band median and the drop is from a genuine 12-month 2022 of 189. Both 2024 lanes carry the identical 46, so the ladder did not discard a larger submission.",
+      "confidence": "medium",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-GA1110000-peach",
+      "verdict": "token_reporting_flag",
+      "detail": "Structural zero \u2014 treat as missing, not as a reported zero. Zero believable months. Fill from own history but anchor on 2022 (131 at 12mo in BOTH lanes) rather than 2023: 2023's 68 carries NIB 12mo against SRS 7mo, so it is itself depleted and annualizes to ~117. Recommend ~125-131 (pop essentially flat, 13,309 -> 13,298). Note the peer anchor is much lower (627.2/100k x 13,298 = 83), so record the 83-131 spread; own history is the better anchor for a sheriff whose own full years ran 131-237. EST2024=0 observed is indefensible.",
+      "rationale": "NIB shows a 12-month 2024 while SRS \u2014 the only lane able to record months \u2014 shows zero months, the zero-report-header fingerprint, and the selection reason 'greater_month_coverage' means the ladder picked the lane precisely on the strength of that fake coverage. Peach County SO ran 237/184/228/154/131 across 2018-2022 with full months in both lanes; against a lambda of roughly 130-230 a genuine full-year zero has probability on the order of e^-130, which is not a number any evidence in this packet can overcome. A sheriff's office serving 13,298 people in Georgia recording no murder, rape, robbery, assault, burglary, larceny or MVT for twelve months is not a crime fact. The 2023 step (68, with SRS at only 7 months) shows the feed was already failing a year before it went fully silent.",
+      "confidence": "high",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-GA1240100-sylvania",
+      "verdict": "token_reporting_flag",
+      "detail": "Flag as suspect-complete. Do NOT apply a month-ratio uplift \u2014 the months here are real (SRS 12/12), so the defect is under-compilation inside a genuinely filed year, and 12/n scaling would be unjustified. If a value is substituted, anchor to the recent own-history level (2021:43, 2022:90, 2023:32 at 10mo = ~38 annualized; median ~43) and record the flag rather than silently overwriting, since a real small-agency staffing collapse is a live alternative explanation.",
+      "rationale": "On a per-month basis 2024 runs 1.0/mo against 3.6/mo (2021), 7.5/mo (2022) and 3.2/mo (2023), so the break survives the months correction \u2014 it is a genuine drop in the reported rate, not a coverage artifact. The offense mix (9 larceny / 2 burglary / 1 agg assault) is normally shaped, but at n=12 that is exactly what a 4-month slice of a ~38/yr agency looks like, so the mix does not discriminate here. Working against the flag: SRS records a real 12 of 12 monthly Return-A submissions (not a CIUS default), and the peer-rate arm did not fire \u2014 which is why this is medium and not high. For a stable-population county seat of 2,628 with five prior full years at 43-149, a single-year fall to 12 is far more consistent with an agency that stopped compiling than with a 70% real crime drop.",
+      "confidence": "medium",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "c-IA0600000-lyon",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep EST2024 = 19 as observed. No repair. If a coverage concern remains it belongs to the sheriff-footprint question (the county's municipal PDs in Rock Rapids/George/Inwood are separate ORIs), not to a 2024 uplift.",
+      "rationale": "Both lanes report 12 months for 2024 and SRS \u2014 the lane that can record a literal month count \u2014 agrees at 12, so there is no submission-record contradiction of the completeness label. Composition passes the stated diagnostic in the strong direction: burglary 7 against larceny 8, plus MVT 3 and one agg assault, is a balanced property mix, not the burglary-collapse-while-larceny-carries-everything signature of a partial feed. The 82-to-37-to-19 slide is smooth, and per COMPOSITION OVER SLOPE I give the slope no weight either way \u2014 it is the intact mix and the full month count that carry the ruling. 151 per 100k is 24% of the sheriff peer median, low but not extreme for the unincorporated remainder of a very rural northwest Iowa county.",
+      "confidence": "medium",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-IL0167B00-western-springs",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep 37 as observed for the 2024 level; EST2024 = 37 is defensible. Record two separate items that are NOT reasons to alter 2024: (a) the 2019 -> 2022 level break (134 -> 49, with 2021 a 0-month non-report) should be flagged in the trend series as a regime discontinuity, not smoothed; (b) the 2020 row is a genuine data conflict \u2014 CIUS 22 at 6 offense rows versus SRS 312 \u2014 and 312 is an outlier against every neighbouring year, so 2020 should be treated as unreliable in the history.",
+      "rationale": "Unlike the other collapse cases here, 2024 is 87.1% of the 2021-2023 baseline: three consecutive full-coverage years at 49, 36, 37 is a stable settled level, and only the c1 arm anchored on the pre-2021 regime fires. The composition is coherent for the place \u2014 larceny 26 dominant, burglary 9, robbery 1, MVT 1 \u2014 with no hollowed category, and the zeros on murder/rape/agg assault are ordinary for a 13,200-person residential village with essentially no big-box retail. Western Springs is one of the lowest-crime municipalities in Illinois, which is exactly the situation the peer-rate floor cannot adjudicate on its own; the burden then falls on stability plus composition, and both pass.",
+      "confidence": "medium",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-IL0500100-la-salle",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep EST2024 = 19 as observed for the 2024 agency-year. SEPARATE MULTI-YEAR ISSUE to route, not fixable by a 2024 uplift: the 2020-to-2021 level break (103/109/67 then 3/21/18/19) coincides with nibrs_start 2021-11-01 and drops the agency from ~1,150 per 100k \u2014 dead on the peer median \u2014 to ~200 per 100k, where it has held for four years. That is a suspected chronic NIBRS-transition coverage loss spanning 2021-2024; uplifting 2024 alone would create a false discontinuity against 2022 and 2023.",
+      "rationale": "The c2 arm explicitly did not fire: 2024 is 97.4% of the agency's own 2021-2023 baseline of 19.5, so it is not anomalous within the current reporting regime \u2014 the c1 flag fired only against a stale six-year median dominated by the pre-transition SRS era. All three lanes agree at 19 with SRS independently recording 12 months. Composition passes the stated diagnostic strongly, spanning six of seven classes with burglary 5 against larceny 6, the healthy ratio rather than the larceny-carries-everything collapse. Rebuilding 2024 to the pre-2020 level of 67 would be fitting the result to a baseline the agency has not occupied since 2020.",
+      "confidence": "medium",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-IL0630000-mason",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 6 as observed; 2022 (0) and 2023 (1) should be flagged the same way. Effective coverage is at or near zero months despite the 12-month NIBRS header. Own-history fill is poisoned \u2014 the 2021-2023 baseline median is 0.5, and the last credible year (2020, SRS 104 at 12mo) is four years stale and fails the within-2-years rule \u2014 so the fill must be peer-based: the sheriff median of 593.1 per 100k on a served population of 5,617 gives ~33 offences. Flag the gap between that peer figure and the agency's own last-good level of ~100 for review. EST2024 = 6 [observed] is NOT defensible.",
+      "rationale": "Larceny 0 alongside agg assault 4 inverts the normal rural-sheriff mix, where larceny is the dominant category \u2014 this agency carried 100, 97 and 104 total offences in 2018-2020, so a year with literally no larceny is a broken feed, not a low year. The break lands exactly on the Illinois NIBRS transition (nibrs_start 2020-12-01): SRS coverage was solid through 2020, then 2021 gives 4 at 5 months and 2022-2024 give 0, 1 and 6 under nominal 12-month NIBRS headers. The peer arm agrees at 16.5% of median, and the c2 arm's absurd '1200% of baseline' reading is itself the tell that the recent history is garbage rather than a usable anchor.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-IL0700300-sullivan",
+      "verdict": "token_reporting_flag",
+      "detail": "Flag 2024 as not credible and flag 2022-2024 as a block \u2014 repairing 2024 alone against a 2021-2023 baseline of 12.5 just launders the same undercount. Own-history fill from 2022/2023 (17, 8) propagates the defect; the level must be re-derived from the pre-break regime (2018-2020 median ~95, i.e. ~2,200 per 100k) cross-checked against the peer band (929.7 per 100k x 4,230 = ~39). That 39-95 spread is wide and should be resolved deliberately, not asserted. EST2024=6 observed is not defensible.",
+      "rationale": "The series steps 95/103/86 (2018-2020) to 17/8/6 (2022-2024) across a 2021 total non-report (SRS 0 at 0 months), with the break landing on nibrs_start 2022-01-01 \u2014 the Illinois NIBRS-transition signature. The 2024 mix is 3 aggravated assaults, 1 burglary, 2 larcenies for a city of 4,230: larceny at 2 where the pre-break years implied roughly 60-70 is a dead feed, and SRS records only 9 months against the CIUS-assumed 12. This ORI's CIUS lane is independently shown to be lossy \u2014 in 2020 it printed 44 with only 6 offense rows while SRS carried 86 at 12 months \u2014 and CIUS is the lane that won the ladder for 2024.",
+      "confidence": "high",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "c-IL0850100-rushville",
+      "verdict": "genuine_low_crime",
+      "detail": "credible_low_crime \u2014 keep EST2024 = 21. No repair. Add to a watchlist rather than a fill queue: if 2025 also lands far below 65, the year to re-examine is 2023 (the agency's first full NIBRS year, 65) rather than 2024.",
+      "rationale": "The 2024 vector 0/1/0/1/5/13/1 is a textbook small-city mix \u2014 larceny at 62% of Part-I with every property class populated \u2014 so the composition test that catches partial feeds returns clean. The rate is 724/100k and the peer-rate arm did not fire; only the own-history arm did. All three lanes agree at 21 with 12mo headers and SRS at 11mo (uplift gives 23, immaterial), so the ladder discarded no larger or better-covered submission. The 65-to-21 drop is beyond Poisson noise and genuinely worth watching, but every completeness test available says measurement, and slope alone is explicitly not grounds to overturn a value.",
+      "confidence": "medium",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-IN0350100-huntington",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not carry 67 as an observed full year. The mechanism is a category-selective export/mapping defect, not month truncation, so a partial-year uplift is the WRONG repair \u2014 mark the agency-year unusable and fill instead. Own 2022 full year (206, inside the 2-year window) and the peer rate (1327.2/100k x 16,985 = 225) converge on ~206-225; fill at ~206. Also flag 2023 (68/9mo) as the same defect, since it appears first there. EST2024=67 is not defensible; all three lanes carry the identical 67, so lane choice is not the fault.",
+      "rationale": "The 2024 vector is internally impossible: 7 rapes against 1 aggravated assault and 0 robberies in a 16,985-person city. Aggravated assault always vastly outnumbers rape in real Part-I data, so this is neither a low-crime year nor a uniform month-truncation \u2014 rape sits at roughly its expected level while agg assault, robbery and burglary land at 0-8% of expectation. That category-selective pattern points at the offense-code export rather than at coverage, and it appears first in 2023 (68/9mo) immediately after a clean 12-month 2022 of 206. The peer arm's silence at 29.5% of the band median does not rescue it, because the defect is in the mix, not the level.",
+      "confidence": "high",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-IN0450500-gary",
+      "verdict": "token_reporting_flag",
+      "detail": "A genuine 3-month partial mislabeled complete, not a token report. Believable months: 3 (both NIB and SRS state months_reported=3). Correct repair is uniform annualization across all seven offenses: 612 x 12/3 = ~2,448, i.e. 4/16/11/106/67/305/103 x4 = 16/64/44/424/268/1220/412. That is 97% of the 2023 full year (2,514) and 113% of the 2021-2023 baseline median (2,162), confirming the multiplier. The current EST2024 of 1,527 is NOT defensible: it applied true_partial_month_ratio to larceny alone (305 -> 1,220) and left the other six offenses at 3-month values, yielding 62% of the true level and a vector where larceny is annualized and murder, robbery and burglary are not.",
+      "rationale": "Both 2024 lanes carry months_reported=3 explicitly, so partial-year status is measured, not inferred \u2014 the defect is the 'published as complete' classification that suppressed the uplift. The 3-month mix is proportionate across all seven offenses with no category-specific hole, unlike the Florida cases in this batch where violent counts collapse to zero while larceny carries the total. This is the same root-cause bug as c-LA0170200-baton-rouge with a different offense annualized, which points at one fix rather than two.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-LA0060000-beauregard",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep 113 as observed; no fill or uplift is defensible. Attach a watch flag for the -71% three-year drift (392\u2192330\u2192250\u2192113) so a further step down in 2025 gets re-examined, but do not let slope alone trigger a repair. EST2024=113 [observed] is the correct output.",
+      "rationale": "Composition is the affirmative test and it passes: larceny 59 is 52% of the index, all seven categories are populated, and the mix is normal for a parish-remainder sheriff. The peer arm did not fire \u2014 414/100k is roughly 59% of the ~706/100k sheriff-band median \u2014 so it is not deeply below same-type peers. Coverage is an unbroken 12-month NIBRS run across 2021-2024 with no gap or partial year, so this is not the returning-filer profile that makes a 12mo label suspect. That leaves only the slope, which under the composition-over-slope rule is not by itself evidence in either direction.",
+      "confidence": "medium",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-LA0170200-baton-rouge",
+      "verdict": "token_reporting_flag",
+      "detail": "This is not a token report \u2014 it is a clean 4-month partial that the pipeline labeled complete. Believable months: 4 (both NIB and SRS state months_reported=4 explicitly). Correct repair is uniform annualization across all seven offenses: 4,475 x 12/4 = ~13,425, i.e. 24/26/100/513/839/2214/759 x3 = 72/78/300/1539/2517/6642/2277. That lands at 94% of the 2021-2023 baseline median of 14,307, confirming the 4 months are genuine and complete. The current EST2024 of 4,523 is NOT defensible: it applied true_partial_month_ratio to murder alone (24 -> 72) and left the other six offenses at their 4-month values, producing a record where murder is at full-year scale and larceny is at one-third scale, and a total that is 34% of the true level.",
+      "rationale": "Both 2024 lanes carry months_reported=4, so there is no ambiguity that this is a partial year \u2014 the only error is the 'published as complete' classification that suppressed the uplift. The 4-month offense mix 24/26/100/513/829/2214/759 is proportionate across all seven categories with no offense-specific hole, which distinguishes a genuine time-truncated feed from the broken-composition partial feeds elsewhere in this batch. Uniform annualization reproducing 94% of the three-year baseline is strong independent confirmation that 12/4 is the right multiplier.",
+      "confidence": "high",
+      "_source_agent": "aa3db6e5d0cbb574b"
+    },
+    {
+      "case_id": "c-MD0010300-frostburg",
+      "verdict": "token_reporting_flag",
+      "detail": "Flag 2024 as not credible; do not ship 8 as observed. If repaired, anchor to the post-2021 regime only (2021-2023 median ~18 / most recent 16), never to the pre-2021 level of 156. Separately and more importantly: flag the 2020->2021 step (156 -> 24, a 6.5x drop landing exactly on nibrs_start 2021-01-01) as a transition-induced regime break covering 2021-2024, so the whole stretch is reviewed rather than 2024 patched alone.",
+      "rationale": "The 2024 offense mix is 6 burglaries against 1 larceny for a city of ~7,000 \u2014 an inverted ratio that no real full year produces, since larceny is the dominant Part-I category in every agency of this size; that is a broken feed, not a thin year. SRS records only 9 months while CIUS and NIBRS assert 12, and CIUS (the assumed-12mo, assumed-tier-high lane) is what won the ladder. Both screen arms fired, with 93.1 per 100k against a 1,096.9 peer median (8.5% of peers). The level break coinciding exactly with the NIBRS start date is the larger defect: the post-2021 baseline of 18 that makes 2024 look only halved is itself a depressed regime.",
+      "confidence": "medium",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "c-ME0100400-lincoln",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a ladder error \u2014 NIB 8 at 12mo vs SRS 8 at 10mo is the same value; nothing larger was discarded. Even the most generous partial-month uplift (12/10 x 8 = 9.6) gets nowhere near a credible year, so this is not a partial-year case. EST2024=8 observed is not defensible. Repair basis: the last clean own-years are 2021 (130) and 2022 (112) at full coverage in both lanes, giving ~110-120; peer cross-check gives 929.7/100k x 4,872 = ~45 as a floor, so the own-history anchor is the better basis for a town with this long a record. As with Crook, 2023 (26 at NIB 12mo) is already defective and must be excluded from the own-history fill basis rather than used as the nearest 'real report'.",
+      "rationale": "Lincoln ran 94-130 Part-I offences every year 2018-2022 with a stable population of ~4,870, then dropped to 26 and then 8 at unchanged full month coverage \u2014 7.1% of its own median, which no genuine crime trend produces in a town whose population did not move. The 2024 mix is 0/0/0/0/1/6/1: six larcenies and nothing else across an entire year for a town with its own police department, i.e. 123/100k larceny against a national ~1,300. The break follows nibrs_start 2020-12-01 by two years, the classic post-transition RMS feed failure where the state program keeps stamping full months while incident content stops flowing. Both screen arms fired independently (7.1% of own baseline, 17.6% of peers).",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-MN0130500-north-branch",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not carry 32 as an observed full year; mark 2024 incomplete and fillable. Own 2022 full year (157 CIUS / 158 NIB-SRS, inside the 2-year window) and the peer rate (1327.2/100k x 12,137 = 161) converge on ~158-161, so fill at ~160 \u2014 the convergence of two independent anchors makes that well-founded. Roughly 2-3 months of property reporting is the believable coverage. EST2024=32 [observed] is not defensible; all three lanes carry the identical 32, so lane choice is not the fault.",
+      "rationale": "The offense mix is decisive: 14 larcenies in a growing 12,137-person I-35 exurb (expect 150-250) with a single motor vehicle theft, while agg assault at 11 is 34% of the index against a national share near 7%. Property is gutted and violent is intact, which is a partial feed rather than a quiet year. The peer arm fires at 19.9% of the band median, and the run 258/188/256/181/158/72/32 across nominally 12-month years is the textbook smooth decay of a dying feed \u2014 which the composition-over-slope rule says must not be read as a genuine trend.",
+      "confidence": "high",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-MN0230000-fillmore",
+      "verdict": "token_reporting_flag",
+      "detail": "token_report_treat_as_partial \u2014 about 3-4 months of content is believable. Mark 2024 missing and fill from own 2021-2023 full years (98/61/54, median ~61); cross-check against the sheriff peer band (627.2/100k x 16,752 = ~105), which is higher, so own-history is the conservative basis. EST2024=16 observed is indefensible, and a month-ratio uplift is insufficient on its own: 16 x 12/9 = 21, still a third of the own-history level.",
+      "rationale": "The 2024 vector 0/0/0/8/2/6/0 is inverted \u2014 agg assault (8) exceeds larceny (6), burglary is 2, MVT is 0 \u2014 for a sheriff covering ~16,750 people. A functioning rural-sheriff feed is larceny-dominant; agg-assault dominance with MVT at zero is the signature of a feed carrying violent/arrest incidents while property offences fail to flow. Both screen arms fired: 26% of own history and 14% of the peer-band median. The 2021-2023 NIBRS years (98/61/54) ran clean on the same feed that started 2020-11-01, so 2024 is a break in a working feed, not a level shift.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-MN0660000-rice",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a ladder error \u2014 NIB and SRS both carry 40 at 12 months. The defect is inside the submission: the larceny feed is broken. Treat 2024 as materially incomplete; month-ratio uplift does not apply because coverage is genuinely full. EST2024=40 observed is not defensible. Repair basis: the 2021-2023 own-history baseline median of 128 for the Rice County unincorporated remainder (2021: 146, 2022: 128 both at full coverage), cross-checked against the sheriff band. Extend the review to 2023 as well \u2014 75 at 12mo is already ~59% of baseline, so the degradation begins in 2023, and note that an own-history fill anchored on 2023 would inherit the defect.",
+      "rationale": "The offense mix is impossible: 0/3/0/13/6/8/10 gives larceny 8 sitting BELOW agg assault 13 and below MVT 10 for a sheriff serving 17,420 people. Nationally larceny runs roughly 4-6x motor vehicle theft and 4x burglary, and far above aggravated assault; a larceny rate of 46/100k against a national ~1,300 is a missing feed, not a low-crime county. COMPOSITION OVER SLOPE is exactly the applicable test here \u2014 the smooth 146 -> 128 -> 75 -> 40 path is not evidence the 40 is genuine, and the category hole settles it independently of the slope. Full measured 12-month coverage in both lanes rules out a partial-year explanation and rules in a within-submission content failure.",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-MO0040000-audrain",
+      "verdict": "token_reporting_flag",
+      "detail": "Property-channel truncation on a one-year cliff. Person offences look complete (15 agg assault is consistent with an agency running ~120/yr); burglary (4) and larceny (14) are at roughly a quarter of expected. EST2024=34 observed is not defensible. Do not use a month-ratio uplift \u2014 the SRS 11mo label would give only 34 x 12/11 = 37, nowhere near the deficit, which confirms this is offence-channel loss and not month truncation. Recommended basis: own-history fill from 2022-2023 (119, 112; ~116), holding the person offences as observed and reconstructing the property side.",
+      "rationale": "Audrain sits on a stable three-year plateau (2021:171, 2022:119, 2023:112) and drops to 34 in one step while FBI population served is flat (11,728 -> 11,850), so no scope change is available as an explanation. The 2024 mix 0/0/0/15/4/14/1 puts agg assault (15) essentially level with larceny (14) and burglary at 4 \u2014 118/100k larceny and 34/100k burglary for a rural sheriff jurisdiction of 11,850, several times below rural norms. The peer arm did not fire (287/100k is 46% of the 627 sheriff-band median), but the agency's own record at the same population settles it without needing peers.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "c-MO0140500-holts-summit",
+      "verdict": "token_reporting_flag",
+      "detail": "token_report_treat_as_partial in effect, but the failure is content-completeness, not month-coverage: mark 2024 missing and fillable. 2023 (total 5, same signature) must be marked contaminated too, so the fill basis has to skip it \u2014 use own 2021-2022 full years (54, 38) or the peer band (1096.9/100k x 5,493 = ~60); both converge on ~40-60. EST2024=7 observed is not defensible, and a month-ratio repair is not either (7 x 12/10 = 8.4).",
+      "rationale": "The 2024 vector is 0/2/0/4/1/0/0 \u2014 zero larceny and zero motor vehicle theft in a 5,493-person city on the US-54/63 corridor, with rape and agg assault carrying the entire count. Larceny is never zero at that scale; this is the composition-over-slope signature of a selective feed, not a trend. 2023 shows the same collapse (5 against a 2021-2022 level of 54/38), so this is a two-year feed failure rather than an 87% crime decline. All three lanes carry the same 7, so the ladder discarded nothing larger; CIUS's 12mo is a pipeline assumption and the only measured month count (SRS 10mo) cannot rescue the value.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-MO0630000-maries",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep EST2024=30 observed. No repair. Optional: mark the own-history baseline as low-power (n=2 full-year rows) so the c2 arm does not re-fire on this ORI.",
+      "rationale": "The peer-rate arm did NOT fire here \u2014 only c2 (own-history), and that baseline is built on just two full-year rows (2021=64, 2022=165), with 165 the clear outlier for an 8k-population rural remainder. On a per-month basis the series is 4.2/mo (2018), 6.4/mo (2020), 5.3/mo (2021), 13.8/mo (2022), 1.8/mo (2023), 2.5/mo (2024): 2024 is an INCREASE over 2023, not a collapse. The offense mix (1 rape / 12 agg assault / 3 burglary / 14 larceny) is spread across all four major categories rather than one category carrying the year, which is a thin full feed, not a partial feed; NIB and SRS independently agree at 12 months with the identical vector, so the ladder discarded nothing larger.",
+      "confidence": "medium",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "c-MO0690000-monroe",
+      "verdict": "token_reporting_flag",
+      "detail": "token_report_treat_as_partial \u2014 roughly 3-4 months of content is believable (18 against an expected ~63-71). Mark 2024 missing and fill from own history: 2018-2023 median 63, 2021-2023 median 71. No month-ratio repair is available because both lanes report 12mo, so this requires a completeness override rather than an uplift. EST2024=18 observed is not defensible.",
+      "rationale": "The 2024 vector 0/0/0/8/3/5/2 puts agg assault at 44% of Part-I and property at only 55%, for a sheriff that historically ran 40-91 with the normal ~85% property share. Agg-assault dominance with larceny below it is the same inverted signature as Fillmore in this batch, and it appears alongside a 4x one-year collapse from a stable 2018-2023 band. Confidence is medium rather than high because both lanes carry a full 12 months and the peer-rate arm did not fire (271/100k), so composition and own-history level are the only failing tests. Those two together are still not something a genuine decline produces.",
+      "confidence": "medium",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-MO1100300-warrenton",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a credible full year. Treat as partial with roughly 3-4 months of believable coverage (66 x 4 = 264 lands on the agency's own 2021-2022 level of 268-285), or equivalently fill from own recent full years discounted for the genuine larceny trend \u2014 call it 200-270, not 66. EST2024=66 observed is not defensible. All three lanes carry the same 66, so the multi-lane hint is a non-issue; the defect is inside the single submission.",
+      "rationale": "Composition, not slope, condemns it: 0/0/0/3/3/56/4 puts 85% of Part-I in larceny while burglary sits at 3, robbery and rape at 0, for a 9,556-person I-70 city whose own recent totals were 285 and 268. Burglary-3-against-larceny-56 (ratio 0.05) is the stated partial-feed signature; the contrast with Newport in this same batch (ratio 0.26, complete mix, above peer floor) is exactly the discrimination the composition test is for. The 431->323->304->285->268->151->66 run tracks the post-2020 NIBRS onboarding and decays smoothly, which I treat as no evidence either way, and 691/100k is 63% of the band peer median.",
+      "confidence": "medium",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-MS0250700-edwards",
+      "verdict": "token_reporting_flag",
+      "detail": "Effectively a non-report \u2014 discard the SPUB 1 and mark 2024 missing. Do not uplift the fragment (1 x 12/3 = 4 is meaningless). Own-history fill is unavailable under the within-2-years rule since the last real submission was 2020. Fill from the local_police (1000, 2500] peer band but flag it hard: the peer median implies ~7 offences while Edwards' own last real years were 54, 35 and 18 (~3,500/100k), so a plain peer fill will understate badly \u2014 best marked low-confidence. Upstream: extend _drop_state_publication_non_reports to catch SPUB rows with fewer than 7 offence rows sitting on a 0-month FBI year, not only all-zero rows.",
+      "rationale": "The FBI record shows zero months submitted in 2021, 2022, 2023 and 2024 \u2014 four straight years of total non-report \u2014 and there is no NIBRS row because the roster shows nibrs_start 2024-10-01, meaning the agency only onboarded in October 2024. The sole 2024 value is a MS TOPS row with a single populated offence cell (larceny=1, NoF7 with 1 of 7 rows) that the pipeline stamped 12mo/high/weight-1.0 because SPUB carries no period field. It survived the existing non-report filter only because its total is 1 rather than 0 \u2014 the identical artifact one unit above the threshold. EST2024 = 1 publishes a one-offence year for a town whose last real measurement was 18-54.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-MS0620200-morton",
+      "verdict": "token_reporting_flag",
+      "detail": "token_report_treat_as_partial \u2014 exactly 3 months are believable, per the FBI lanes' own months_reported. Correct 2024 is ~60 (15 x 12/3), which lands on the agency's own 2021-2022 full years (54, 59). EST2024=15 (observed x5 + partial-ratio x2) is indefensible and internally incoherent. Upstream fix: demote SPUB below the FBI submission lanes whenever an FBI lane carries an explicit months_reported for the same agency-year and the totals are identical \u2014 identical totals prove derivation, not independence. 2023 carries the same artifact (NIB 15/3mo + SRS 15/3mo) and needs the same treatment.",
+      "rationale": "Both FBI lanes report the same 15 at 3 months; the MS TOPS row carries that identical 15 and is stamped 12mo/high/weight-1.0 only because SPUB has no period field and the pipeline defaults it. Identical totals across a 3-month FBI submission and a '12-month' state publication mean the state re-published the same three months under a full-year label \u2014 the canonical case of a 12mo label being a default, not a measurement. The SPUB row is itself incomplete (NoF7, 5 of 7 offence rows), which is why 2 offences fell through to the FBI lane and got a partial-ratio while 5 were kept observed. Annualizing the honest 3-month denominator reproduces the agency's own historical level (54, 59) almost exactly, which independently confirms the denominator.",
+      "confidence": "high",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-NJ0122300-south-river",
+      "verdict": "token_reporting_flag",
+      "detail": "Treat 2024 as partial, roughly 3 months believable (24 against a ~90-110/yr baseline is ~25% of a year). EST2024=24 observed is not defensible. All three lanes (CIUS/NIB/SRS) carry the identical 24 at 12mo, so CIUS is merely echoing the submission and lane reselection fixes nothing. Recommended basis: own-history fill from 2022-2023 (111, 83; ~95-100), or a 12/3 uplift of the observed 24 (~96). Both land near 95.",
+      "rationale": "A 16,237-population New Jersey borough with 13 larcenies and 2 burglaries for a full year is not a real crime distribution \u2014 larceny alone should run well over 100 at this size, and the all-offence rate of 147.8/100k is 11.1% of the peer median (1,327.2) for local police in the 10k-25k band. Own history confirms: 141, 137, 114, 57, 111, 83, then 24, on flat FBI population served (16,159 -> 16,237), so no scope change explains it. The agency has demonstrated feed instability before \u2014 its 2021 NIBRS conversion year dipped to 57 and then recovered to 111 in 2022 \u2014 which is the same mechanism recurring. Dual screen (own-history collapse plus peer floor) fired, and the composition check independently confirms a partial feed.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "c-NJ0153300-barnegat-township",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 38 as observed. This is a category-selective feed failure rather than a clean month truncation, so do not apply a month-ratio uplift and do not mix observed-violent with filled-property (that would reintroduce the per-offense lane selection the rule batch removed). Treat the whole agency-year as missing and fill from own recent history: 2023 = 95 at 12mo is inside the 2-year window, 2022 = 127, and scaling 95 by population growth (25,488 -> 26,713) gives ~100, so a fill of ~100-110 is the defensible repair. EST2024 = 38 [observed] is NOT defensible. All three lanes carry 38, so no larger submission was discarded.",
+      "rationale": "This is the composition test in its purest form: agg assault 16 out of 38 total is 42% of the index (normally ~10%) while burglary sits at 2 and motor vehicle theft at 0 for a 26,713-person Ocean County township \u2014 the violent side held at or above prior years while the property side collapsed, which no real crime pattern produces. Zero MVT in a New Jersey shore township during the 2022-2024 statewide auto-theft surge is by itself disqualifying. At 142.3 per 100k the agency is at 9.2% of its peer median, the lowest in this batch, and Barnegat is an ordinary middle-class township with none of the enclave characteristics that would justify a genuine floor.",
+      "confidence": "high",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-NMDI02200-pojoaque-tribal",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep EST2024 = 21 as observed. SEPARATE DEFECT worth routing: the crosswalk assigns this tribal ORI to 35:municipal:place:3570500 = Santa Fe city at w=1 exclusive, while census_name reads 'pueblo of pojoaque'. Pueblo of Pojoaque is ~20 miles north of and outside Santa Fe city, so tribal counts are being smeared onto an 88k-population municipality. That footprint error is more consequential than the count question.",
+      "rationale": "Both lanes report 12 months at the same value of 21, and SRS independently records 12 months, so the completeness label is not an assumption. The peer arm is structurally blind (FBIpop is 0/null, as it is for 4,133 of 18,728 2024 ORIs), so its silence is not evidence in either direction and I do not read it as such. Composition is consistent with the jurisdiction \u2014 agg assault 6 and larceny 14 fits a tribal PD whose call volume is dominated by the Buffalo Thunder casino/commercial corridor, where larceny-heavy and burglary-light is the expected profile rather than a partial-feed artifact. Only the own-history slope (76 to 44 to 21) fired, and slope alone is not disqualifying.",
+      "confidence": "medium",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-OK0160000-comanche",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a ladder error \u2014 NIB 36 and SRS 36 are the same value at the same 12-month coverage, so nothing larger was discarded. Treat 36 as a materially incomplete year, not a partial-month one: month coverage is genuinely full, so uplift by 12/months does not apply and would not fix it. EST2024=36 observed is not defensible. Repair basis: the 2021-2023 own-history baseline median of 138 for the unincorporated remainder of Comanche County, cross-checked against the sheriff peer band (10k-25k] median 627/100k x 21,029 = ~132. Flag the ORI for a submission-completeness review covering 2023 as well \u2014 the 2023 value of 82 already sits at ~60% of baseline, so the defect starts a year earlier than the screen fired.",
+      "rationale": "The two-year path 171 (2022) -> 82 (2023) -> 36 (2024) at full 12-month coverage in both lanes is a 79% collapse with no territory change (FBI population served is flat at 19.2k-21.2k throughout). The rate arm did not formally fire but lands at 171/100k against a 627 sheriff-band median (27%), just above the ~25% firing threshold, so peer evidence corroborates rather than exonerates. The violent block is the tell: 0 murder / 0 rape / 0 robbery / 1 agg assault for 21k people served in Oklahoma, where ~10-50 agg assaults would be the expectation even at a quarter of national rates. Medium confidence because the offense mix is proportionally shaped rather than category-holed, which leaves a genuine (if steep) staffing-driven decline as a live alternative.",
+      "confidence": "medium",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-OR0070000-crook",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a ladder error in the harmful direction \u2014 NIB 21 at 12mo was correctly preferred over SRS 21 at 11mo, but both are the same defective content. The property feed is dead. Treat 2024 (and 2023) as unusable; uplift does not apply since coverage is full. EST2024=21 observed is not defensible. Repair basis: the last clean own-years are 2021 (130) and 2022 (95) at full coverage in both lanes, giving ~95-110; cross-check against the sheriff band (10k-25k] median 627/100k x 15,894 = ~100, which agrees. IMPORTANT CONSTRAINT: the 'own-history fill requires a real report within 2 years' rule will try to anchor on 2023 (13) or 2024 (21) \u2014 both defective. This ORI needs an explicit exclusion of 2023-2024 from its own-history basis, or a peer-rate fill instead.",
+      "rationale": "The offense mix is decisive on its own: 0/0/0/18/0/2/1 means eighteen aggravated assaults with ZERO burglaries and TWO larcenies for a sheriff serving 15,894 people across rural Crook County, Oregon. No real jurisdiction has aggravated assault at nine times larceny and infinitely above burglary; the property-offence feed simply stopped while the violent feed continued. The break is datable to 2023, when the total fell from 95 to 13 at unchanged full month coverage. Full 12-month NIBRS coverage rules out a partial-year explanation, and both the own-history arm (16.6% of median) and the peer-rate arm (21.1% of peers) fired independently.",
+      "confidence": "high",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-PA0028500-plum",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not carry 56 as an observed full year \u2014 mark 2024 incomplete/low-confidence. A peer fill (1545.7/100k x 26,145 = ~404) would over-fabricate: Plum's only clean full year (2018, CIUS+SRS 215 = 807/100k) shows it genuinely runs at about half the peer median, so cap any fill at the agency's own historical rate (~200-215) rather than the band median. Roughly 6-8 months of property reporting is the believable coverage. EST2024=56 [observed] is not a defensible output; lane choice is not at fault (CIUS 56 = SRS 56, no larger submission was discarded).",
+      "rationale": "Offense mix, not slope, decides it: burglary 17 against larceny 22 (national ratio is ~1:5) and a single motor vehicle theft in a 26,145-person Allegheny County borough during the 2024 Kia/Hyundai theft wave. Property offences are gutted while agg assault at 15 sits at a normal suburban level \u2014 that is a partial property feed, not a quiet town. The peer arm fires at 13.3% of the band median and the agency filed 0-11 months in four of the six prior years, so the 12mo label rests on a chronically unreliable filer. Both 2024 lanes carry the identical 56, so the ladder did not discard a larger, equally complete submission.",
+      "confidence": "high",
+      "_source_agent": "a29319fb1ac0adceb"
+    },
+    {
+      "case_id": "c-PA0100400-zelienople",
+      "verdict": "token_reporting_flag",
+      "detail": "Structural non-report: set 2024 to MISSING, not zero, and make it fillable. Fill from own history \u2014 annualized recent level is ~31-37 (2019: 31/10mo=37, 2020: 28/11mo=31, 2022: 13/5mo=31, 2023: 24/8mo=36), so ~33; the last real report (2023) is inside the 2-year recency rule. EST2024=0 observed is indefensible: the footprint is municipal:cousub Zelienople borough at w=1 EXCLUSIVE, so the printed zero deletes the entire borough's crime from the national panel.",
+      "rationale": "This is the BLANK-AS-ZERO artifact in its cleanest form: SRS records months_reported = 0 for 2024 \u2014 the agency submitted nothing \u2014 while CIUS prints a full-year zero across all seven cells. CIUS is derived from the FBI submission, so it cannot corroborate it; publication without submission is not a measurement. The agency is is_nibrs False with no NIBRS lane at all, so there is no third source and nothing rescues the zero, and a 2-month or 0-month zero cannot be repaired by uplift. The borough PD was demonstrably live and filing in 2023 (24 offenses over 8 months), and the identical 2021 pattern (SRS 0 at 0 months) confirms this ORI's zeros are non-reports.",
+      "confidence": "high",
+      "_source_agent": "a68a631cc50fa53fd"
+    },
+    {
+      "case_id": "c-PA0380600-south-lebanon-township",
+      "verdict": "token_reporting_flag",
+      "detail": "6 months believable \u2014 the SRS submission record for the same agency-year. EST2024 = 17 as observed-complete is NOT defensible. Minimum repair is the partial-month ratio, 17 x 12/6 = 34; but because the offense mix is also category-incomplete, a peer-benchmark fill for PA local_police in the 10k-25k band (1327.2/100k x 10,598 = ~141) is the more defensible target, with the ratio value as a floor. The CIUS 12-month label must not override an SRS month count from the same year.",
+      "rationale": "This is the cleanest BLANK-AS-ZERO-family case in the batch: CIUS prints a row and the pipeline stamps months_reported=12 by assumption, while the only lane that measures months says 6 for the identical 17-count vector. The submission record has been decaying for five years \u2014 12, 11, 8, 2, 5, 6, 6 months \u2014 and the agency is is_nibrs False in a state whose SRS feed has largely collapsed, so this is a chronic partial filer, not a low-crime township. Composition is the textbook partial-feed signature named in the brief: larceny 16 carrying the entire year, burglary 1, and zero across all four violent classes in a 10,598-person township. A 12% -of-peers rate produced by a half-year feed with one live offense category is a coverage artifact, not a measurement.",
+      "confidence": "high",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-PA0550100-selinsgrove",
+      "verdict": "token_reporting_flag",
+      "detail": "Do not keep 16 as observed. Believable coverage is roughly 4-5 months (16/44 = 36% of the 2023 full-year level). Refill 2024 from own recent history: 2023 = 44 at 12mo is inside the 2-year window, 2022 = 43/10mo annualizes to ~52, so a hist_median fill of ~44-48 is the defensible repair; annualizing 16 x 12/4.5 lands at ~43, which converges. EST2024 = 16 [observed] is NOT defensible. All three lanes carry the same 16, so the ladder did not discard a larger submission \u2014 the flag is about the feed, not lane choice.",
+      "rationale": "2024 is the agency's first NIBRS year (nibrs_start 2024-01-01) and the count falls to 36% of the 2023 full-year value (44) and 24.5% of the peer rate floor, with all three lanes echoing one 12-month figure. The offense shape (larceny 10 / burglary 4 / agg assault 2) is internally coherent, so this is a uniform scale-down of everything rather than a real decline concentrated anywhere \u2014 the signature of a first-year NIBRS mapping that only passes part of the record through with a compliant 12-month header. This agency has a demonstrated feed-failure history (2021 SRS 0 at 0 months; 2022 only 10 months), which raises the prior on another feed failure over a genuine 64% one-year crime collapse in a 5,900-person borough with a university and a commercial corridor.",
+      "confidence": "medium",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-SC0460500-tega-cay",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a ladder error \u2014 CIUS 47, NIB 47 and SRS 47 are all the SAME underlying submission (CIUS derives from the FBI submission and is never independent corroboration), so nothing larger was discarded. This is a within-submission collapse on genuinely full month coverage, so partial-month uplift does not apply. EST2024=47 observed is not defensible. Repair basis: Tega Cay's own historical position against its peer band, not an absolute low-crime assumption \u2014 it ran at 1080/100k (2022) and 923/100k (2023), i.e. 70-80% of the 1327 peer median, so the 2024 anchor should be ~0.75 x 1327 x 14456/100k = ~145, which coincides with the 2021-2023 own-history median of 147. Flag for source review (likely 2024 RMS/vendor change) rather than accepting the value.",
+      "rationale": "The 'affluent low-crime suburb' defence fails on its own record: this agency was never a low-crime outlier within its band \u2014 it sat at 70-80% of the peer median for the two prior years, then dropped to 24.5% in 2024 while population grew from 14,087 to 14,456. Every category is depressed 5-20x below national norms simultaneously (burglary 21/100k, agg assault 14/100k, larceny 256/100k), which is a uniform submission shortfall, not a crime trend. The three-lane agreement at exactly 47 is one fact, not three. Confidence is medium because the mechanism is a within-submission gap that this packet cannot directly test \u2014 the month-coverage fields are genuinely 12 and are measured, not assumed.",
+      "confidence": "medium",
+      "_source_agent": "ad2f4a0a017306f2f"
+    },
+    {
+      "case_id": "c-SD0160000-custer",
+      "verdict": "genuine_low_crime",
+      "detail": "Keep 40 as observed; EST2024 = 40 is defensible. Attach a low-severity trend watch only (four-year monotone slide 178 -> 108 -> 75 -> 40), not a coverage flag. Both lanes (NIB 40/12mo, SRS 40/12mo) carry the identical value, so no larger equally complete submission was discarded by the ladder.",
+      "rationale": "Only the own-history arm fired; the peer-rate arm did not, and at 40/9,338 = 428 per 100k the agency sits at ~72% of the 593.1 sheriff median for its population band \u2014 squarely inside the normal distribution, unlike the 9-25% cases elsewhere in this batch. The composition test passes cleanly: every Part-I category is populated in a plausible shape (murder 2, agg assault 5, burglary 9, larceny 23, MVT 1) with larceny correctly dominant, so there is no hollowed-out category indicating a partial feed. Two homicides being carried through is direct proof the feed is live for serious offenses, and the footprint is the SD nonmunicipal remainder where a rural sheriff's true level is legitimately low.",
+      "confidence": "medium",
+      "_source_agent": "a2fc37bd83ea5c27b"
+    },
+    {
+      "case_id": "c-TN0040000-bledsoe",
+      "verdict": "genuine_low_crime",
+      "detail": "credible_low_crime \u2014 keep EST2024 = 36 as observed. No fill, no uplift. A 12/10 uplift on the SRS month count would give ~43, inside the same band and not worth applying. Watchlist only if 2025 also sits near 30.",
+      "rationale": "The 2024 vector 0/0/0/3/11/16/6 is a coherent rural-sheriff mix \u2014 larceny > burglary > MVT > agg assault, every property class populated in normal proportion \u2014 so it passes the composition test that Fillmore and Monroe in this same batch fail. 2023 is the decisive corroboration: 30 offences at SRS 12mo/hi, a fully-covered Return-A year that establishes the post-2022 level, with 2024's 36 sitting slightly above it. Only the c2 own-history arm fired; the peer-rate floor did not, and 271/100k is unremarkable for a sheriff in the 10-25k band. Confidence is medium rather than high because 2021 (125) and 2022 (117) were also 12mo/hi, so a 4x step between two fully-covered years remains partly unexplained.",
+      "confidence": "medium",
+      "_source_agent": "ad6a22b37c3f79158"
+    },
+    {
+      "case_id": "c-TN0260000-franklin",
+      "verdict": "token_reporting_flag",
+      "detail": "Not a credible full year \u2014 property-offence class dropout. Keep the person offences (agg assault 51 is already at full-year level) and treat burglary/larceny/MVT as missing, refilling them from the agency's own 2022-2023 property levels; that reconstructs a 2024 total near 250-300, not 77. EST2024=77 observed is not defensible. Note this is class dropout, not month truncation, so a 12/n uplift would be the wrong repair.",
+      "rationale": "The composition test is decisive: 0/0/0/51/3/15/8 puts 66% of Part-I in aggravated assault while burglary sits at 3 and larceny at 15 for a sheriff covering 26,354 people in unincorporated Franklin County. Agg assault 51 matches the full-year expectation implied by its own 2022-2023 totals (284, 211), so the violent lane came through complete while the property lane collapsed \u2014 the inverse of the burglary-2/larceny-100 signature, same mechanism. Three burglaries in a rural county of that size across twelve months is not a trend; the 292/100k rate against a 706 sheriff peer median is the downstream symptom.",
+      "confidence": "high",
+      "_source_agent": "a1b0e62fcfe349989"
+    },
+    {
+      "case_id": "c-TX1420000-la-salle",
+      "verdict": "token_reporting_flag",
+      "detail": "Effectively zero months believable \u2014 SRS records 1. Mark 2024 missing rather than uplifting; EST2024 = 1 is not defensible, and neither is the ratio repair (1 x 12/1 = 12 is still absurd for a 6,052-person sheriff's jurisdiction). Own-history fill is barred: the last credible full year is 2021 (60), three years back, and the intervening 9 and 4 are themselves degraded. Fill from the peer benchmark for TX sheriffs in the 5k-10k band: 593.1/100k x 6,052 = ~36.",
+      "rationale": "The NIBRS 12-month header is contradicted by SRS at 1 month for the same agency-year, and the lane selection reason 'greater_month_coverage' means the ladder preferred the header's asserted 12 over the measured 1 \u2014 the header is functioning as a zero-report shell. A single agg assault and nothing else, from a sheriff's office responsible for the entire unincorporated remainder of La Salle County plus jail operations in the Eagle Ford corridor, is not a crime rate; 14.1 per 100k is 2.4% of peers. The 60-to-9-to-4-to-1 decay is exactly the smooth collapse the brief warns cannot be read as a trend, and here the composition test cannot even be run because a single offense has no mix. A near-zero partial cannot be rescued by scaling, so the year must be treated as missing and benchmark-filled.",
+      "confidence": "high",
+      "_source_agent": "a524f03bbc9c763b4"
+    },
+    {
+      "case_id": "c-TX1790100-perryton",
+      "verdict": "token_reporting_flag",
+      "detail": "Offence-channel truncation on the property side, same shape as Logan. Hold the person offences as observed (rape 1, robbery 1, agg assault 17) and treat burglary/larceny/MVT as under-reported, reconstructing them from own 2021-2022 history; implied full-year total lands near 110-130. EST2024=37 observed is not defensible. Apply the same scrutiny to 2023 (79, already down from 128) \u2014 the decay starts there. All three lanes carry the identical 37 at 12mo, so lane reselection is not available as a fix.",
+      "rationale": "Ten larcenies for a city of 8,148 is 123/100k, roughly a tenfold deficit against small-city larceny norms, and the composition is inverted: agg assault (17, 46% of total) exceeds larceny (10, 27%), where a real small city runs larceny at 55-70% and agg assault at 8-15%. Own history is a stable 115-132 through 2022 on flat FBI population served (8,675 -> 8,148), so no scope change explains a drop to 37. The peer-rate arm did not fire, but the property-side deficit is independently decisive without needing a peer comparison \u2014 10 larcenies in a full year for a city this size is not a possible measurement regardless of what peers do.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "c-WA0290300-sedro-woolley",
+      "verdict": "genuine_low_crime",
+      "detail": "Let 91 stand; EST2024=91 observed is correct. Do not uplift (no months are missing) and do not fill (any fill would be fabrication over a real measurement). Recommend a separate agency-level data-quality NOTE rather than a value repair: the 285->143->91 halving-twice from 2022 runs ~5x the Washington statewide 2024 decline, and agg assault = 0 in a 13,103-population city is a plausible offense-level gap worth a targeted check with WASPC. Neither observation supports overwriting the number.",
+      "rationale": "Only the own-history arm fired; the peer arm did not, because 91/13,103 = 694 per 100k sits at 52% of the 1,327.2 peer median \u2014 squarely inside the normal band for a small city, unlike the 200-240/100k cases elsewhere in this batch. Both FBI lanes independently record twelve months WITH data (NIB 91/12mo AND SRS 91/12mo), which is the real-measurement fingerprint, not the NIB-12mo/SRS-0mo zero-report fingerprint. The offense mix is internally coherent \u2014 larceny 63 (69%), burglary 18, MVT 8 \u2014 with no partial-feed signature such as burglary collapsing while larceny carries the total. The screen's 'more than one lane' warning is neutralized: both lanes carry the identical 91, so the ladder discarded nothing.",
+      "confidence": "medium",
+      "_source_agent": "a886f0a0de6a0cd1d"
+    },
+    {
+      "case_id": "c-WI0690000-waupaca",
+      "verdict": "token_reporting_flag",
+      "detail": "Flag, but flag the REGIME not the year: the defect spans 2020-2024, not 2024 alone. Note that the c2 arm did not fire \u2014 2024 (41) is 78.8% of the 2021-2023 baseline (52) \u2014 so any single-year repair anchored on 2021-2023 would simply reproduce the defect. The only pre-break baseline is 2018-2019 (411, 350, SRS-only, before nibrs_start 2020-01-01), and a six-year-old anchor is itself unsafe given real national property-crime decline. Recommendation: mark 2020-2024 as a degraded NIBRS-transition block for this ORI and route to benchmark-constrained imputation rather than own-history fill; do not silently keep 41 as observed.",
+      "rationale": "The decline 411 -> 350 -> 169 -> 84 -> 52 -> 45 -> 41 breaks exactly at nibrs_start 2020-01-01, which is the classic NIBRS-transition attrition curve, and FBI population served is FLAT across the whole period (32,969 -> 32,501) \u2014 so the scope-narrowing explanation (SRS county-wide rollup replaced by a narrower NIBRS feed) is ruled out by the FBI's own population figure. Composition confirms the level is not real: 17 larcenies (52/100k) and 3 burglaries (9/100k) for 32,501 people, with agg assault (16) essentially matching larceny (17), the same inverted signature as Logan and Perryton. Confidence is medium because the smooth monotone shape means the correct repair unit and baseline are genuinely unresolved even though the level is clearly not a measurement.",
+      "confidence": "medium",
+      "_source_agent": "a769f03306b6a1711"
+    },
+    {
+      "case_id": "c-WV0230000-logan",
+      "verdict": "token_reporting_flag",
+      "detail": "This is OFFENCE-CHANNEL truncation, not month truncation \u2014 do not repair with a month-ratio uplift. The property channel is null: 0 burglary, 0 motor vehicle theft, 4 larceny for 26,783 population served. Recommended repair: hold the person offences as observed (rape 2, agg assault 18 \u2014 plausibly complete) and treat burglary/larceny/MVT as MISSING, filling those three from own 2021-2022 history; implied full-year total lands near 90-110. EST2024=24 observed is not defensible. The same treatment should be applied to 2023 (26 total) \u2014 the break starts there, not in 2024, so a repair anchored on the 2021-2023 baseline would partly reproduce the defect.",
+      "rationale": "The 2024 vector 0/2/0/18/0/4/0 is decisive: agg assault (18) is 75% of the total while burglary and MVT are exactly zero and larceny is 4, in a jurisdiction of 26,783 people. No real county produces zero burglaries and zero vehicle thefts in a year at that population \u2014 this is an RMS pushing Group A person offences with the property module unmapped. Own history confirms a normal mix at 84-141 through 2022 on flat population served (28,398 -> 26,783), so the 2023-2024 collapse is not a scope change. The all-offence rate of 84.5/100k is 12.0% of the sheriff-band peer median.",
+      "confidence": "high",
+      "_source_agent": "a769f03306b6a1711"
+    }
+  ]
+}

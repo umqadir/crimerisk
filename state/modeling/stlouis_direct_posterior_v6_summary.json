@@ -1,0 +1,151 @@
+{
+  "city_incident_share_surface": {
+    "block_groups": 314,
+    "offense_incident_counts": {
+      "aggravated_assault": 2482.0,
+      "burglary": 2145.0,
+      "larceny": 10203.0,
+      "motor_vehicle_theft": 4164.0,
+      "murder": 149.0,
+      "rape": 144.0,
+      "robbery": 705.0
+    },
+    "rows": 1628
+  },
+  "city_key": "st_louis_mo",
+  "city_name": "St. Louis",
+  "county_fips": "29510",
+  "delta_v6_minus_v5": {
+    "block_groups": 0,
+    "expected_count_total_sum": -3.637978807091713e-12,
+    "index_total_primary_event_weighted_mean": 7.953844062251278,
+    "index_total_primary_event_weighted_median": -7.5101302241673125,
+    "per_offense_expected_count_sum": {
+      "aggravated_assault": -4.547473508864641e-13,
+      "burglary": -4.547473508864641e-13,
+      "larceny": -1.8189894035458565e-12,
+      "motor_vehicle_theft": 0.0,
+      "murder": 0.0,
+      "rape": 0.0,
+      "robbery": -1.1368683772161603e-13
+    },
+    "per_offense_primary_rate_mean": {
+      "aggravated_assault": 76.60382773534616,
+      "burglary": 74.65035877523906,
+      "larceny": -52.17994736077662,
+      "motor_vehicle_theft": -23.83044940544096,
+      "murder": 22.57074334035756,
+      "rape": 27.688213602843696,
+      "robbery": 42.17083189908112
+    },
+    "resident_total_rate_per_100k": -9.094947017729282e-13
+  },
+  "jurisdiction_id": "29:municipal:place:2965000",
+  "v5_promoted": {
+    "bg_resident_total_rate_per_100k_mean": 7752.452331544375,
+    "bg_resident_total_rate_per_100k_median": 6136.793065932178,
+    "block_groups": 314,
+    "expected_count_total_sum": 19699.191226605173,
+    "index_total_primary_event_weighted_mean": 365.874807320734,
+    "index_total_primary_event_weighted_median": 312.6013852547451,
+    "index_total_primary_event_weighted_p95": 760.7210677277608,
+    "per_offense_expected_count_sum": {
+      "aggravated_assault": 2803.559618492772,
+      "burglary": 2279.1246028517926,
+      "larceny": 9511.632635657084,
+      "motor_vehicle_theft": 4099.517875648971,
+      "murder": 150.91369862240367,
+      "rape": 162.2361298001362,
+      "robbery": 692.2066655320112
+    },
+    "per_offense_primary_rate_mean": {
+      "aggravated_assault": 1002.5265066200495,
+      "burglary": 1215.2504373554825,
+      "larceny": 2750.4575128138304,
+      "motor_vehicle_theft": 2893.9097086605166,
+      "murder": 41.30463375206747,
+      "rape": 32.07039168203711,
+      "robbery": 211.74485800677482
+    },
+    "resident_secondary_denominator_sum": 279691.0,
+    "resident_total_rate_per_100k": 7043.198110273542,
+    "source_mode_counts": {
+      "aggravated_assault": {
+        "modeled_transfer": 314
+      },
+      "burglary": {
+        "modeled_transfer": 314
+      },
+      "larceny": {
+        "modeled_transfer": 314
+      },
+      "motor_vehicle_theft": {
+        "modeled_transfer": 314
+      },
+      "murder": {
+        "modeled_transfer": 314
+      },
+      "rape": {
+        "modeled_transfer": 314
+      },
+      "robbery": {
+        "modeled_transfer": 314
+      }
+    }
+  },
+  "v6_candidate": {
+    "bg_resident_total_rate_per_100k_mean": 7887.075343488106,
+    "bg_resident_total_rate_per_100k_median": 5987.346139095085,
+    "block_groups": 314,
+    "expected_count_total_sum": 19699.19122660517,
+    "index_total_primary_event_weighted_mean": 373.8286513829853,
+    "index_total_primary_event_weighted_median": 305.09125503057777,
+    "index_total_primary_event_weighted_p95": 771.7102159782369,
+    "per_offense_expected_count_sum": {
+      "aggravated_assault": 2803.5596184927717,
+      "burglary": 2279.124602851792,
+      "larceny": 9511.632635657083,
+      "motor_vehicle_theft": 4099.517875648971,
+      "murder": 150.91369862240367,
+      "rape": 162.2361298001362,
+      "robbery": 692.2066655320111
+    },
+    "per_offense_primary_rate_mean": {
+      "aggravated_assault": 1079.1303343553957,
+      "burglary": 1289.9007961307216,
+      "larceny": 2698.2775654530537,
+      "motor_vehicle_theft": 2870.0792592550756,
+      "murder": 63.875377092425026,
+      "rape": 59.75860528488081,
+      "robbery": 253.91568990585594
+    },
+    "resident_secondary_denominator_sum": 279691.0,
+    "resident_total_rate_per_100k": 7043.198110273541,
+    "source_mode_counts": {
+      "aggravated_assault": {
+        "direct_city_incident": 311,
+        "mixed": 3
+      },
+      "burglary": {
+        "direct_city_incident": 314
+      },
+      "larceny": {
+        "direct_city_incident": 314
+      },
+      "motor_vehicle_theft": {
+        "direct_city_incident": 314
+      },
+      "murder": {
+        "direct_city_incident": 281,
+        "modeled_transfer": 33
+      },
+      "rape": {
+        "direct_city_incident": 312,
+        "modeled_transfer": 2
+      },
+      "robbery": {
+        "direct_city_incident": 314
+      }
+    }
+  }
+}

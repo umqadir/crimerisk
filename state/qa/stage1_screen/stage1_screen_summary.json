@@ -1,0 +1,363 @@
+{
+ "b1_nibrs_submitted_absent_from_lane": {
+  "rows": 8306,
+  "oris": 3926,
+  "rows_2024": 1631,
+  "oris_2024_absent_from_both": 166,
+  "population_2024_absent_from_both": 0.0
+ },
+ "b2_publication_lane_full_year_zeros": {
+  "cius": {
+   "rows": 1211,
+   "rows_2024": 314,
+   "with_positive_history": 897
+  },
+  "state_publication": {
+   "rows": 19,
+   "rows_2024": 9,
+   "with_positive_history": 17
+  }
+ },
+ "b3_state_publication_assumed_12_months": {
+  "rows": 728,
+  "oris": 133,
+  "states": [
+   "MS"
+  ],
+  "mass": 32222.0
+ },
+ "e1_nibrs_partial_year_no_annualization": {
+  "rows": 8006,
+  "agencies": 1410,
+  "zero_count_rows": 5843,
+  "observed_mass": 11891.0,
+  "understated_mass": 4220.8645021645025
+ },
+ "e2_partial_year_nonuplifted_offenses": {
+  "rows": 3176,
+  "agencies": 829,
+  "zero_count_rows": 3164,
+  "rows_where_same_lane_as_the_uplifted_offenses": 1794,
+  "observed_mass_published_as_full_year": 4758.0
+ },
+ "e3_srs_nibrs_lane_fork": {
+  "full_population_rows": 30751,
+  "full_population_agencies": 4393,
+  "mixed_lane_within_agency_year_rows": 3213,
+  "mixed_lane_agencies": 459,
+  "mixed_nibrs_chosen_and_zero": 1412,
+  "mixed_srs_chosen_positive_uplifted": 1703
+ },
+ "d_defunct_agency_fills": {
+  "definition": "agency has >=1 filled offense in the 2024 estimates, ZERO usable 2024 observations, and its last usable year is <=2021",
+  "agencies": 2168,
+  "fill_mass": 163613.5060119909,
+  "total_estimated_mass": 168628.4705141554,
+  "all_filled_agencies": 3287,
+  "all_fill_mass": 316534.9268996062,
+  "gap_ge_4": 1937,
+  "gap_ge_4_mass": 150453.01535389872,
+  "gap_ge_6_last_2018": 423
+ },
+ "c_token_reporters": {
+  "population_full_year_usable_2024_agencies": 13446,
+  "review_both_triggers": 453,
+  "review_both_population": 3591416.0,
+  "review_both_observed_mass": 3160.0,
+  "review_peer_floor_no_history": 48,
+  "review_peer_floor_no_history_population": 125963.0,
+  "zero_total_full_year_2024": 318,
+  "zero_total_full_year_2024_with_positive_history": 201
+ },
+ "f_integrity": {
+  "panel_rows": 2056166,
+  "panel_oris": 26103,
+  "months_reported_gt_12": 0,
+  "months_reported_lt_0": 0,
+  "months_reported_null": 0,
+  "months_reported_plus_missing_ne_12": 0,
+  "negative_counts_rows": 29,
+  "negative_counts_oris": 29,
+  "negative_counts_mass": -37.0,
+  "duplicate_primary_key_rows": 0,
+  "agency_year_lane_with_fewer_than_7_offense_rows": 794,
+  "incomplete_by_lane": {
+   "cius_publication_annual": 700,
+   "local_publication_annual": 2,
+   "state_publication_annual": 92
+  },
+  "orphan_oris_not_in_agency_master": 0,
+  "orphan_rows": 0,
+  "orphan_mass": 0.0,
+  "oris_2024_preferred_but_absent_from_crosswalk": 1,
+  "mass_absent_from_crosswalk": 0.0,
+  "estimates_oris_not_in_2024_preferred_panel": 74,
+  "preferred_2024_oris_without_estimate_row": 561,
+  "panel_county_fips_999": 98,
+  "panel_county_fips_999_oris": 2,
+  "panel_county_fips_null_rows": 64127,
+  "panel_county_fips_null_oris": 1467,
+  "panel_retired_county_geoids_rows": 525,
+  "panel_retired_county_geoid_values": [
+   "02261",
+   "02270",
+   "46113",
+   "51515",
+   "57999"
+  ],
+  "panel_state_abbr_nonstandard": [
+   "CZ",
+   "GM",
+   "GU",
+   "NB",
+   "PR",
+   "VI"
+  ],
+  "nonstandard_state_abbr_rows": 2247,
+  "nonstandard_state_abbr_mass": 142960.0,
+  "panel_population_null_rows": 1666,
+  "2024_preferred_oris_with_population_0_or_null": 4133
+ },
+ "c2_collapse_vs_own_history": {
+  "definition": "2024 preferred agency total < 0.35x its own 2021-2023 median with baseline >= 50 counts",
+  "agencies": 298,
+  "history_minus_2024": 98891.0,
+  "estimator_recovered_after_fills": 78340.09832354361,
+  "residual_deficit_after_estimator": 36031.35167424113,
+  "published_as_full_year_12_months_all_offenses": 62,
+  "published_as_full_year_history_minus_2024": 25292.0,
+  "published_as_full_year_residual_after_estimator": 7224.1440719038055,
+  "by_preferred_lane_2024": {
+   "srs_return_a_annual": 158,
+   "nibrs_srs_equivalent_annual|srs_return_a_annual": 64,
+   "nibrs_srs_equivalent_annual": 39,
+   "cius_publication_annual": 24,
+   "state_publication_annual": 12,
+   "nibrs_srs_equivalent_annual|state_publication_annual": 1
+  },
+  "full_year_by_lane": {
+   "cius_publication_annual": 24,
+   "nibrs_srs_equivalent_annual": 16,
+   "state_publication_annual": 12,
+   "nibrs_srs_equivalent_annual|srs_return_a_annual": 10
+  }
+ },
+ "a_duplicates": {
+  "T1_same_ori7_identical_vector": [
+   {
+    "year": 2018,
+    "groups": 30,
+    "oris": 60,
+    "excess_mass": 1042.0
+   },
+   {
+    "year": 2019,
+    "groups": 37,
+    "oris": 74,
+    "excess_mass": 908.0
+   },
+   {
+    "year": 2020,
+    "groups": 70,
+    "oris": 140,
+    "excess_mass": 4840.0
+   },
+   {
+    "year": 2021,
+    "groups": 102,
+    "oris": 204,
+    "excess_mass": 10572.0
+   },
+   {
+    "year": 2022,
+    "groups": 114,
+    "oris": 228,
+    "excess_mass": 11276.0
+   },
+   {
+    "year": 2023,
+    "groups": 131,
+    "oris": 262,
+    "excess_mass": 18027.0
+   },
+   {
+    "year": 2024,
+    "groups": 125,
+    "oris": 250,
+    "excess_mass": 18579.0
+   }
+  ],
+  "T1_2024_same_ori7_different_counts_needs_review": 71,
+  "T1_2024_near_identical": 4,
+  "T2_different_ori7_identical_vector_min10": [
+   {
+    "year": 2018,
+    "groups": 40,
+    "oris": 79,
+    "excess_mass": 1202.0
+   },
+   {
+    "year": 2019,
+    "groups": 47,
+    "oris": 90,
+    "excess_mass": 1399.0
+   },
+   {
+    "year": 2020,
+    "groups": 40,
+    "oris": 78,
+    "excess_mass": 1024.0
+   },
+   {
+    "year": 2021,
+    "groups": 31,
+    "oris": 62,
+    "excess_mass": 1463.0
+   },
+   {
+    "year": 2022,
+    "groups": 87,
+    "oris": 171,
+    "excess_mass": 11141.0
+   },
+   {
+    "year": 2023,
+    "groups": 87,
+    "oris": 166,
+    "excess_mass": 12453.0
+   },
+   {
+    "year": 2024,
+    "groups": 70,
+    "oris": 133,
+    "excess_mass": 2769.0
+   }
+  ],
+  "T2_2024_all_totals_including_tiny": {
+   "groups": 436,
+   "excess_mass": 4987.0
+  },
+  "note": "excess_mass = group preferred-count total minus the largest single member; both twins carry weight-1.0 crosswalk rows and separate 2024 estimate rows"
+ },
+ "g_ori_succession_resurrected_by_fill": {
+  "definition": "a dead ORI (last usable year <=2022) and a live ORI (usable in 2023/24) both crosswalked at weight>0.5 to the SAME municipal jurisdiction, with the dead ORI still receiving a 2024 fill",
+  "municipal_pairs": 21,
+  "distinct_dead_oris": 20,
+  "fabricated_fill_mass": 32297.23898707275,
+  "clean_succession_shape": 5,
+  "same_agency_name": 2,
+  "fill_exceeds_25pct_of_live_2024_report": 9
+ },
+ "adjudication_shape": {
+  "a1_same_ori7_identical_vector": {
+   "shape": "RULE_SHAPED",
+   "cases_2024": 125,
+   "mass": 18579,
+   "rule": "within a state-year, two ORI9s sharing an ORI7 with identical 7-offense vectors are one agency-year; only one may carry mass"
+  },
+  "a2_same_ori7_different_counts": {
+   "shape": "AD_HOC_SHAPED",
+   "review_cases_2024": 71,
+   "review_cases_span": 450,
+   "evidence_per_case": [
+    "both ORIs 7-year count series by offense",
+    "NIBRS batch-header agency_indicator + city_name",
+    "FBI CDE 2024 roster rows",
+    "crosswalk jurisdiction + weight",
+    "agency_master name/type"
+   ],
+   "output_row": "(ori7, state, ori9_a, ori9_b, disposition, canonical_ori9, evidence, confidence)"
+  },
+  "a3_different_ori7_identical_vector": {
+   "shape": "AD_HOC_SHAPED",
+   "review_cases_2024": 70,
+   "review_cases_span": 240,
+   "note": "largest confirmed coincidence (248 counts) outranks most confirmed duplicates, so no count threshold separates the populations"
+  },
+  "b1_nibrs_submitted_absent_from_lane": {
+   "shape": "RULE_SHAPED",
+   "cases_2024": 1631,
+   "cases_span": 8306,
+   "rule": "complete the NIBRS offense set from the batch-header agency-year population, not from the offense rollup"
+  },
+  "b2_publication_lane_full_year_zeros": {
+   "shape": "AD_HOC_SHAPED",
+   "review_cases_2024": 314,
+   "review_cases_span": 1211,
+   "evidence_per_case": [
+    "published CIUS table cell (blank vs literal 0)",
+    "SRS and NIBRS values + months same year",
+    "7-year own series",
+    "population and agency type"
+   ],
+   "output_row": "(ori9, year, lane, verdict, evidence, confidence)"
+  },
+  "b3_state_publication_assumed_12_months": {
+   "shape": "RULE_SHAPED",
+   "cases": 728,
+   "mass": 32222,
+   "rule": "one documented coverage rule per state program; MS TOPS is the only lane currently defaulting"
+  },
+  "c_token_reporters": {
+   "shape": "AD_HOC_SHAPED",
+   "review_cases": 700,
+   "why": "a rate floor cannot separate a genuinely low-crime village from a token filer; each added arm needs an exception",
+   "evidence_per_case": [
+    "7-year own series by offense",
+    "per-lane months and counts 2024",
+    "other lanes same year",
+    "state publication if any",
+    "population, type, FBI 2024 roster status",
+    "crosswalk jurisdiction"
+   ],
+   "output_row": "(ori9, year, verdict, offenses_affected, months_believed, evidence, confidence)",
+   "screen_limitation": "4133 of 18728 2024 preferred ORIs have null/zero population; the peer-floor arm is blind to them"
+  },
+  "d_defunct_agency_fills": {
+   "shape": "SPLIT",
+   "rule_part": "maximum reference age for the hist_median rung (currently unbounded back to 2018)",
+   "ad_hoc_part_review_cases": 779,
+   "ad_hoc_part_mass": 63123,
+   "no_review_needed": 1389,
+   "no_review_reason": "on the FBI CDE 2024 roster = the v20 benchmark-imputation lane's population",
+   "output_row": "(ori9, verdict in {defunct_drop, superseded_by, absorbed_by, dormant_but_extant}, evidence, confidence)"
+  },
+  "g_ori_succession_resurrected_by_fill": {
+   "shape": "RULE_SHAPED_DETECTION",
+   "cases": 21,
+   "mass": 32297,
+   "rule": "a dead ORI and a live ORI both at crosswalk weight>0.5 on one municipal place is never legitimate coverage",
+   "note": "highest mass-per-case in the stage; Jacksonville FL alone is 25685 counts / +77% on the city total"
+  },
+  "e1_nibrs_partial_year_no_annualization": {
+   "shape": "RULE_SHAPED",
+   "cases_2024": 8006,
+   "rule": "true_partial is a property of months reported, not of lane family"
+  },
+  "e2_partial_year_nonuplifted_offenses": {
+   "shape": "RULE_SHAPED",
+   "cases_2024": 3164,
+   "constraint": "the count>0 guard also feeds _drop_silent_agency_estimates, so the rule is stated at the flag rather than by deleting the guard"
+  },
+  "e3_srs_nibrs_lane_fork": {
+   "shape": "RULE_SHAPED",
+   "cases_2024": 3213,
+   "rule": "lane chosen per agency-year, with configs/source_preference_overrides.csv as the declared per-offense exception",
+   "USER_CHECK_IN_REQUIRED": "selection is per-offense by construction (ori9 x offense); this is the one Stage 1 rule change that restructures the selection layer"
+  },
+  "f_integrity": {
+   "shape": "RULE_SHAPED",
+   "items": {
+    "negative_counts": 29,
+    "incomplete_offense_sets": 794,
+    "uncanonicalised_county_fips_rows": 623,
+    "nonstandard_state_code_rows": 2247
+   },
+   "accepted_without_change": {
+    "preferred_2024_oris_without_estimate": 561,
+    "preferred_oris_absent_from_crosswalk": 1
+   }
+  },
+  "total_ad_hoc_review_cases_stage1": 1935
+ }
+}

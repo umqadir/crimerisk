@@ -1,0 +1,795 @@
+ori9,year,source,n_offense_rows,agency_name_std,agency_type_norm,population_latest_nibrs,county_fips,place_fips,county_fips_source
+AR0040300,2018,cius_publication_annual,6,SILOAM SPRINGS,local_police,19985.0,007,64370,srs_agency_header
+AR0140100,2018,cius_publication_annual,6,MAGNOLIA,local_police,11440.0,027,43460,srs_agency_header
+AR0270100,2019,cius_publication_annual,6,SHERIDAN,local_police,5268.0,053,63710,srs_agency_header
+AR0350100,2019,cius_publication_annual,6,PINE BLUFF,local_police,42195.0,069,55310,srs_agency_header
+AR0500100,2019,cius_publication_annual,6,PRESCOTT,local_police,3010.0,099,57260,srs_agency_header
+AR0630100,2018,cius_publication_annual,6,BENTON,local_police,38408.0,125,05290,srs_agency_header
+AR0700100,2018,cius_publication_annual,6,EL DORADO,local_police,17916.0,139,21070,srs_agency_header
+AZ0111300,2019,cius_publication_annual,6,APACHE JUNCTION,local_police,44607.0,021,02830,srs_agency_header
+CO0070600,2018,cius_publication_annual,6,LOUISVILLE,local_police,21545.0,013,46355,srs_agency_header
+CO0510100,2019,cius_publication_annual,6,PUEBLO,local_police,113371.0,101,62000,srs_agency_header
+CO0621700,2018,cius_publication_annual,6,FREDERICK,local_police,18791.0,123,28360,srs_agency_header
+IA0090200,2019,cius_publication_annual,6,WAVERLY,local_police,10611.0,017,82875,srs_agency_header
+IA0290200,2019,cius_publication_annual,6,WEST BURLINGTON,local_police,3177.0,057,83685,srs_agency_header
+IL0010300,2020,cius_publication_annual,6,QUINCY,local_police,40249.0,001,62367,srs_agency_header
+IL0030100,2020,cius_publication_annual,6,GREENVILLE,local_police,7018.0,005,31589,srs_agency_header
+IL0030500,2020,cius_publication_annual,6,PIERRON,local_police,562.0,005,59709,srs_agency_header
+IL0060300,2020,cius_publication_annual,6,LADD,local_police,1576.0,011,40598,srs_agency_header
+IL0060400,2020,cius_publication_annual,6,PRINCETON,local_police,7673.0,011,61899,srs_agency_header
+IL0060600,2020,cius_publication_annual,6,SPRING VALLEY,local_police,5415.0,011,72156,srs_agency_header
+IL0090100,2020,cius_publication_annual,6,ASHLAND,local_police,1203.0,017,02505,srs_agency_header
+IL0090200,2020,cius_publication_annual,6,BEARDSTOWN,local_police,5764.0,017,04351,srs_agency_header
+IL0100100,2020,cius_publication_annual,6,CHAMPAIGN,local_police,90231.0,019,12385,srs_agency_header
+IL0100200,2020,cius_publication_annual,6,HOMER,local_police,1168.0,019,35814,srs_agency_header
+IL0100300,2020,cius_publication_annual,6,MAHOMET,local_police,10538.0,019,46136,srs_agency_header
+IL0100500,2020,cius_publication_annual,6,TOLONO,local_police,3499.0,019,75614,srs_agency_header
+IL0100600,2020,cius_publication_annual,5,URBANA,local_police,42211.0,019,77005,srs_agency_header
+IL0100800,2020,cius_publication_annual,6,FISHER,local_police,2013.0,019,26194,srs_agency_header
+IL0101100,2020,cius_publication_annual,6,GIFFORD,local_police,1100.0,019,29145,srs_agency_header
+IL0110200,2020,cius_publication_annual,6,TAYLORVILLE,local_police,10634.0,021,74574,srs_agency_header
+IL0110400,2020,cius_publication_annual,6,STONINGTON,local_police,859.0,021,72949,srs_agency_header
+IL0110500,2020,cius_publication_annual,6,ASSUMPTION,local_police,1172.0,021,02609,srs_agency_header
+IL0110600,2020,cius_publication_annual,6,EDINBURG,local_police,1112.0,021,22645,srs_agency_header
+IL0130200,2020,cius_publication_annual,6,FLORA,local_police,4860.0,025,26454,srs_agency_header
+IL0140300,2020,cius_publication_annual,6,CARLYLE,local_police,3203.0,027,11228,srs_agency_header
+IL0140400,2020,cius_publication_annual,6,NEW BADEN,local_police,3369.0,027,52142,srs_agency_header
+IL0140500,2020,cius_publication_annual,6,TRENTON,local_police,2643.0,027,75991,srs_agency_header
+IL0140600,2020,cius_publication_annual,6,ALBERS,local_police,1152.0,027,00555,srs_agency_header
+IL0140700,2020,cius_publication_annual,6,AVISTON,local_police,2446.0,027,03181,srs_agency_header
+IL0150300,2020,cius_publication_annual,6,MATTOON,local_police,17794.0,029,47553,srs_agency_header
+IL0150900,2020,cius_publication_annual,6,LAKE LAND COLLEGE,special_jurisdiction,0.0,029,47553,srs_agency_header
+IL0160100,2019,cius_publication_annual,6,ALSIP,local_police,19050.0,031,01010,srs_agency_header
+IL0160100,2020,cius_publication_annual,6,ALSIP,local_police,19050.0,031,01010,srs_agency_header
+IL0160200,2020,cius_publication_annual,6,ARLINGTON HEIGHTS,local_police,75688.0,031,02154,srs_agency_header
+IL0160300,2020,cius_publication_annual,6,BARRINGTON,local_police,10614.0,031,03844,srs_agency_header
+IL0160400,2020,cius_publication_annual,6,BARRINGTON HILLS,local_police,4219.0,031,03883,srs_agency_header
+IL0160500,2020,cius_publication_annual,6,BARTLETT,local_police,41140.0,031,04013,srs_agency_header
+IL0160700,2020,cius_publication_annual,6,BELLWOOD,local_police,19012.0,031,04975,srs_agency_header
+IL0161100,2020,cius_publication_annual,6,BRIDGEVIEW,local_police,16424.0,031,08225,srs_agency_header
+IL0161200,2020,cius_publication_annual,6,BROADVIEW,local_police,7961.0,031,08446,srs_agency_header
+IL0161400,2020,cius_publication_annual,6,BUFFALO GROVE,local_police,42468.0,031,09447,srs_agency_header
+IL0161700,2020,cius_publication_annual,6,CALUMET CITY,local_police,36560.0,031,10487,srs_agency_header
+IL0161900,2018,cius_publication_annual,6,CHICAGO HEIGHTS,local_police,29832.0,031,14026,srs_agency_header
+IL0161900,2020,cius_publication_annual,6,CHICAGO HEIGHTS,local_police,29832.0,031,14026,srs_agency_header
+IL0161A00,2018,cius_publication_annual,6,SAUK VILLAGE,local_police,10436.0,031,67769,srs_agency_header
+IL0161B00,2020,cius_publication_annual,6,STONE PARK,local_police,4884.0,031,72923,srs_agency_header
+IL0161C00,2020,cius_publication_annual,6,WILLOW SPRINGS,local_police,5698.0,031,82049,srs_agency_header
+IL0162000,2020,cius_publication_annual,6,CHICAGO RIDGE,local_police,14167.0,031,14065,srs_agency_header
+IL0162100,2020,cius_publication_annual,6,CICERO,local_police,82310.0,031,14351,srs_agency_header
+IL0162200,2020,cius_publication_annual,6,COUNTRY CLUB HILLS,local_police,16565.0,031,16691,srs_agency_header
+IL0162300,2020,cius_publication_annual,6,COUNTRYSIDE,local_police,6159.0,031,16873,srs_agency_header
+IL0162500,2020,cius_publication_annual,6,DES PLAINES,local_police,59023.0,031,19642,srs_agency_header
+IL0162900,2020,cius_publication_annual,6,EAST HAZEL CREST,local_police,1524.0,031,21904,srs_agency_header
+IL0162A00,2020,cius_publication_annual,6,SCHAUMBURG,local_police,75745.0,031,68003,srs_agency_header
+IL0162B00,2020,cius_publication_annual,6,STREAMWOOD,local_police,39988.0,031,73157,srs_agency_header
+IL0163000,2020,cius_publication_annual,6,ELK GROVE VILLAGE,local_police,32723.0,031,23256,srs_agency_header
+IL0163100,2020,cius_publication_annual,6,ELMWOOD PARK,local_police,24486.0,031,23724,srs_agency_header
+IL0163300,2020,cius_publication_annual,6,EVERGREEN PARK,local_police,19497.0,031,24634,srs_agency_header
+IL0163400,2020,cius_publication_annual,6,FLOSSMOOR,local_police,9315.0,031,26571,srs_agency_header
+IL0163700,2020,cius_publication_annual,6,FRANKLIN PARK,local_police,18230.0,031,27702,srs_agency_header
+IL0163800,2020,cius_publication_annual,6,GLENCOE,local_police,8925.0,031,29652,srs_agency_header
+IL0163900,2020,cius_publication_annual,6,GLENVIEW,local_police,48088.0,031,29938,srs_agency_header
+IL0163A00,2020,cius_publication_annual,6,SCHILLER PARK,local_police,11617.0,031,68081,srs_agency_header
+IL0163B00,2020,cius_publication_annual,6,SUMMIT,local_police,11310.0,031,73638,srs_agency_header
+IL0163C00,2020,cius_publication_annual,6,WINNETKA,local_police,12518.0,031,82530,srs_agency_header
+IL0164000,2020,cius_publication_annual,6,GLENWOOD,local_police,8864.0,031,30029,srs_agency_header
+IL0164100,2020,cius_publication_annual,6,GOLF,local_police,501.0,031,30328,srs_agency_header
+IL0164200,2020,cius_publication_annual,6,HANOVER PARK,local_police,37971.0,031,32746,srs_agency_header
+IL0164400,2020,cius_publication_annual,6,HARWOOD HEIGHTS,local_police,8664.0,031,33435,srs_agency_header
+IL0164500,2020,cius_publication_annual,6,HAZEL CREST,local_police,13811.0,031,33695,srs_agency_header
+IL0164600,2020,cius_publication_annual,6,HICKORY HILLS,local_police,13934.0,031,34514,srs_agency_header
+IL0164700,2020,cius_publication_annual,6,HILLSIDE,local_police,8026.0,031,35086,srs_agency_header
+IL0164900,2020,cius_publication_annual,6,HODGKINS,local_police,1979.0,031,35385,srs_agency_header
+IL0164A00,2020,cius_publication_annual,6,SKOKIE,local_police,65185.0,031,70122,srs_agency_header
+IL0164B00,2020,cius_publication_annual,6,THORNTON,local_police,2457.0,031,75185,srs_agency_header
+IL0165200,2020,cius_publication_annual,6,HOMEWOOD,local_police,19056.0,031,35879,srs_agency_header
+IL0165600,2020,cius_publication_annual,6,KENILWORTH,local_police,2521.0,031,39519,srs_agency_header
+IL0165700,2020,cius_publication_annual,6,LA GRANGE,local_police,15699.0,031,40767,srs_agency_header
+IL0165800,2020,cius_publication_annual,6,LA GRANGE PARK,local_police,13411.0,031,40793,srs_agency_header
+IL0165900,2020,cius_publication_annual,6,LANSING,local_police,27904.0,031,42028,srs_agency_header
+IL0165A00,2020,cius_publication_annual,6,SOUTH BARRINGTON,local_police,5047.0,031,70564,srs_agency_header
+IL0166000,2020,cius_publication_annual,6,LEMONT,local_police,17507.0,031,42795,srs_agency_header
+IL0166100,2020,cius_publication_annual,6,LINCOLNWOOD,local_police,12946.0,031,43744,srs_agency_header
+IL0166300,2020,cius_publication_annual,6,LYONS,local_police,10563.0,031,45434,srs_agency_header
+IL0166400,2020,cius_publication_annual,6,MCCOOK,local_police,238.0,031,45564,srs_agency_header
+IL0166500,2020,cius_publication_annual,6,MARKHAM,local_police,12537.0,031,47007,srs_agency_header
+IL0166600,2020,cius_publication_annual,6,MATTESON,local_police,19517.0,031,47540,srs_agency_header
+IL0166700,2020,cius_publication_annual,6,MAYWOOD,local_police,23573.0,031,47774,srs_agency_header
+IL0166800,2020,cius_publication_annual,6,MELROSE PARK,local_police,25164.0,031,48242,srs_agency_header
+IL0166A00,2020,cius_publication_annual,6,SOUTH CHICAGO HEIGHTS,local_police,4077.0,031,70629,srs_agency_header
+IL0166B00,2020,cius_publication_annual,6,WESTCHESTER,local_police,16423.0,031,80047,srs_agency_header
+IL0167000,2020,cius_publication_annual,6,MIDLOTHIAN,local_police,14607.0,031,48892,srs_agency_header
+IL0167100,2020,cius_publication_annual,6,MORTON GROVE,local_police,24238.0,031,50647,srs_agency_header
+IL0167200,2020,cius_publication_annual,6,MOUNT PROSPECT,local_police,54477.0,031,51089,srs_agency_header
+IL0167300,2020,cius_publication_annual,6,NILES,local_police,29784.0,031,53000,srs_agency_header
+IL0167500,2020,cius_publication_annual,6,NORTHBROOK,local_police,34039.0,031,53481,srs_agency_header
+IL0167600,2020,cius_publication_annual,6,NORTHFIELD,local_police,5534.0,031,53663,srs_agency_header
+IL0167700,2020,cius_publication_annual,6,NORTHLAKE,local_police,12440.0,031,53871,srs_agency_header
+IL0167800,2019,cius_publication_annual,6,NORTH RIVERSIDE,local_police,7106.0,031,54144,srs_agency_header
+IL0167800,2020,cius_publication_annual,6,NORTH RIVERSIDE,local_police,7106.0,031,54144,srs_agency_header
+IL0167900,2020,cius_publication_annual,6,OAK FOREST,local_police,27644.0,031,54638,srs_agency_header
+IL0167A00,2020,cius_publication_annual,6,SOUTH HOLLAND,local_police,21690.0,031,70850,srs_agency_header
+IL0167B00,2020,cius_publication_annual,6,WESTERN SPRINGS,local_police,13554.0,031,80242,srs_agency_header
+IL0167E00,2020,cius_publication_annual,6,OAKTON COMMUNITY COLLEGE,special_jurisdiction,0.0,031,19642,srs_agency_header
+IL0168000,2020,cius_publication_annual,6,OAK LAWN,local_police,55996.0,031,54820,srs_agency_header
+IL0168100,2018,cius_publication_annual,5,OAK PARK,local_police,52435.0,031,54885,srs_agency_header
+IL0168100,2020,cius_publication_annual,6,OAK PARK,local_police,52435.0,031,54885,srs_agency_header
+IL0168200,2020,cius_publication_annual,6,OLYMPIA FIELDS,local_police,4878.0,031,55938,srs_agency_header
+IL0168300,2020,cius_publication_annual,6,ORLAND PARK,local_police,59064.0,031,56640,srs_agency_header
+IL0168400,2020,cius_publication_annual,6,PALATINE,local_police,68648.0,031,57225,srs_agency_header
+IL0168500,2020,cius_publication_annual,6,PALOS HEIGHTS,local_police,12639.0,031,57381,srs_agency_header
+IL0168600,2020,cius_publication_annual,6,PALOS HILLS,local_police,17790.0,031,57394,srs_agency_header
+IL0168700,2020,cius_publication_annual,6,PALOS PARK,local_police,4822.0,031,57407,srs_agency_header
+IL0168800,2020,cius_publication_annual,6,PARK FOREST,local_police,21636.0,031,57732,srs_agency_header
+IL0168900,2020,cius_publication_annual,6,PARK RIDGE,local_police,38108.0,031,57875,srs_agency_header
+IL0168A00,2020,cius_publication_annual,6,STEGER,local_police,9388.0,197,72520,srs_agency_header
+IL0168C00,2020,cius_publication_annual,6,BURBANK,local_police,28771.0,031,09642,srs_agency_header
+IL0169000,2020,cius_publication_annual,6,PHOENIX,local_police,1944.0,031,59572,srs_agency_header
+IL0169100,2020,cius_publication_annual,6,POSEN,local_police,5903.0,031,61314,srs_agency_header
+IL0169200,2020,cius_publication_annual,6,RICHTON PARK,local_police,13485.0,031,63706,srs_agency_header
+IL0169300,2020,cius_publication_annual,6,RIVERDALE,local_police,13322.0,031,64278,srs_agency_header
+IL0169400,2020,cius_publication_annual,6,RIVER FOREST,local_police,11403.0,031,64304,srs_agency_header
+IL0169500,2020,cius_publication_annual,6,RIVER GROVE,local_police,10504.0,031,64343,srs_agency_header
+IL0169600,2020,cius_publication_annual,6,RIVERSIDE,local_police,8879.0,031,64421,srs_agency_header
+IL0169700,2020,cius_publication_annual,6,ROBBINS,local_police,5506.0,031,64616,srs_agency_header
+IL0169800,2020,cius_publication_annual,6,ROLLING MEADOWS,local_police,23970.0,031,65338,srs_agency_header
+IL0169900,2020,cius_publication_annual,6,ROSEMONT,local_police,4143.0,031,65819,srs_agency_header
+IL0169A00,2020,cius_publication_annual,6,STICKNEY,local_police,6841.0,031,72676,srs_agency_header
+IL0169B00,2020,cius_publication_annual,6,WHEELING,local_police,39087.0,031,81087,srs_agency_header
+IL0169C00,2020,cius_publication_annual,6,SOUTH SUBURBAN COLLEGE,special_jurisdiction,0.0,031,70850,srs_agency_header
+IL0169E00,2020,cius_publication_annual,6,TRITON COLLEGE,special_jurisdiction,0.0,031,64343,srs_agency_header
+IL0169F00,2020,cius_publication_annual,6,MORTON COLLEGE,special_jurisdiction,0.0,031,14351,srs_agency_header
+IL0169G00,2020,cius_publication_annual,6,PROSPECT HEIGHTS,local_police,16167.0,031,62016,srs_agency_header
+IL0170100,2020,cius_publication_annual,6,OBLONG,local_police,1381.0,033,55106,srs_agency_header
+IL0170200,2020,cius_publication_annual,6,PALESTINE,local_police,1285.0,033,57277,srs_agency_header
+IL0180100,2020,cius_publication_annual,6,GREENUP,local_police,1487.0,035,31524,srs_agency_header
+IL0190100,2020,cius_publication_annual,6,GENOA,local_police,5481.0,037,28898,srs_agency_header
+IL0190200,2020,cius_publication_annual,6,HINCKLEY,local_police,2048.0,037,35268,srs_agency_header
+IL0190300,2020,cius_publication_annual,6,SANDWICH,local_police,7418.0,037,67548,srs_agency_header
+IL0190500,2020,cius_publication_annual,6,SYCAMORE,local_police,18718.0,037,74223,srs_agency_header
+IL0190700,2020,cius_publication_annual,6,CORTLAND,local_police,4519.0,037,16470,srs_agency_header
+IL0190800,2020,cius_publication_annual,6,DEKALB,local_police,43064.0,037,19161,srs_agency_header
+IL0190900,2020,cius_publication_annual,6,KIRKLAND,local_police,1727.0,037,40156,srs_agency_header
+IL0200100,2020,cius_publication_annual,6,CLINTON,local_police,6927.0,039,15001,srs_agency_header
+IL0200200,2020,cius_publication_annual,6,FARMER CITY,local_police,1969.0,039,25414,srs_agency_header
+IL0210100,2020,cius_publication_annual,6,ARCOLA,local_police,2920.0,041,01881,srs_agency_header
+IL0210200,2020,cius_publication_annual,6,ARTHUR,local_police,2259.0,041,02414,srs_agency_header
+IL0210500,2020,cius_publication_annual,6,TUSCOLA,local_police,4656.0,041,76407,srs_agency_header
+IL0220100,2020,cius_publication_annual,6,ADDISON,local_police,36791.0,043,00243,srs_agency_header
+IL0220300,2020,cius_publication_annual,6,BLOOMINGDALE,local_police,22447.0,043,06587,srs_agency_header
+IL0220400,2020,cius_publication_annual,6,CAROL STREAM,local_police,40019.0,043,11332,srs_agency_header
+IL0220500,2020,cius_publication_annual,6,CLARENDON HILLS,local_police,8829.0,043,14572,srs_agency_header
+IL0220600,2020,cius_publication_annual,6,DOWNERS GROVE,local_police,49626.0,043,20591,srs_agency_header
+IL0220700,2020,cius_publication_annual,6,ELMHURST,local_police,47034.0,043,23620,srs_agency_header
+IL0220800,2020,cius_publication_annual,6,GLENDALE HEIGHTS,local_police,34030.0,043,29730,srs_agency_header
+IL0220900,2020,cius_publication_annual,6,GLEN ELLYN,local_police,28259.0,043,29756,srs_agency_header
+IL0221000,2020,cius_publication_annual,6,HINSDALE,local_police,17831.0,043,35307,srs_agency_header
+IL0221100,2020,cius_publication_annual,6,ITASCA,local_police,10032.0,043,37907,srs_agency_header
+IL0221300,2020,cius_publication_annual,6,LOMBARD,local_police,44672.0,043,44407,srs_agency_header
+IL0221400,2018,cius_publication_annual,6,NAPERVILLE,local_police,150521.0,043,51622,srs_agency_header
+IL0221400,2020,cius_publication_annual,6,NAPERVILLE,local_police,150521.0,043,51622,srs_agency_header
+IL0221500,2020,cius_publication_annual,6,OAK BROOK,local_police,8103.0,043,54534,srs_agency_header
+IL0221600,2020,cius_publication_annual,6,ROSELLE,local_police,22799.0,043,65806,srs_agency_header
+IL0221700,2020,cius_publication_annual,6,VILLA PARK,local_police,21806.0,043,77993,srs_agency_header
+IL0221800,2020,cius_publication_annual,6,WAYNE,local_police,2443.0,043,79397,srs_agency_header
+IL0221900,2020,cius_publication_annual,6,WEST CHICAGO,local_police,27174.0,043,80060,srs_agency_header
+IL0222000,2020,cius_publication_annual,6,WESTMONT,local_police,24766.0,043,80645,srs_agency_header
+IL0222100,2020,cius_publication_annual,6,WHEATON,local_police,53418.0,043,81048,srs_agency_header
+IL0222300,2020,cius_publication_annual,6,WOOD DALE,local_police,13800.0,043,82985,srs_agency_header
+IL0222400,2020,cius_publication_annual,6,WOODRIDGE,local_police,33681.0,043,83245,srs_agency_header
+IL0222500,2020,cius_publication_annual,6,WARRENVILLE,local_police,15747.0,043,78929,srs_agency_header
+IL0222700,2020,cius_publication_annual,6,DARIEN,local_police,22054.0,043,18628,srs_agency_header
+IL0222900,2020,cius_publication_annual,6,OAKBROOK TERRACE,local_police,2699.0,043,54560,srs_agency_header
+IL0223000,2020,cius_publication_annual,6,WILLOWBROOK,local_police,9037.0,043,81919,srs_agency_header
+IL0223100,2020,cius_publication_annual,6,BURR RIDGE,local_police,11069.0,043,09980,srs_agency_header
+IL0223700,2020,cius_publication_annual,6,COLLEGE OF DUPAGE,special_jurisdiction,0.0,043,29756,srs_agency_header
+IL0230200,2020,cius_publication_annual,6,KANSAS,local_police,721.0,045,38986,srs_agency_header
+IL0230300,2020,cius_publication_annual,6,PARIS,local_police,8288.0,045,57628,srs_agency_header
+IL0250100,2020,cius_publication_annual,6,ALTAMONT,local_police,2351.0,049,01049,srs_agency_header
+IL0250200,2020,cius_publication_annual,6,EFFINGHAM,local_police,12662.0,049,22736,srs_agency_header
+IL0270100,2020,cius_publication_annual,6,GIBSON CITY,local_police,3474.0,053,29125,srs_agency_header
+IL0270200,2020,cius_publication_annual,6,PAXTON,local_police,4444.0,053,58239,srs_agency_header
+IL0280100,2020,cius_publication_annual,6,BENTON,local_police,6946.0,055,05300,srs_agency_header
+IL0280200,2020,cius_publication_annual,6,CHRISTOPHER,local_police,2717.0,055,14286,srs_agency_header
+IL0280300,2020,cius_publication_annual,6,ROYALTON,local_police,1122.0,055,66209,srs_agency_header
+IL0290400,2020,cius_publication_annual,6,FARMINGTON,local_police,2321.0,057,25531,srs_agency_header
+IL0300200,2020,cius_publication_annual,6,SHAWNEETOWN,local_police,1116.0,059,69082,srs_agency_header
+IL0310200,2020,cius_publication_annual,6,GREENFIELD,local_police,1028.0,061,31368,srs_agency_header
+IL0310400,2020,cius_publication_annual,6,WHITE HALL,local_police,2352.0,061,81256,srs_agency_header
+IL0320100,2018,cius_publication_annual,6,COAL CITY,local_police,5813.0,063,15170,srs_agency_header
+IL0320100,2020,cius_publication_annual,6,COAL CITY,local_police,5813.0,063,15170,srs_agency_header
+IL0320300,2020,cius_publication_annual,6,MAZON,local_police,981.0,063,47787,srs_agency_header
+IL0320400,2020,cius_publication_annual,6,MORRIS,local_police,15321.0,063,50491,srs_agency_header
+IL0340100,2020,cius_publication_annual,6,CARTHAGE,local_police,2466.0,067,11527,srs_agency_header
+IL0340300,2020,cius_publication_annual,6,DALLAS CITY,local_police,880.0,067,18420,srs_agency_header
+IL0340600,2020,cius_publication_annual,6,LA HARPE,local_police,1161.0,067,40832,srs_agency_header
+IL0370200,2020,cius_publication_annual,6,ANNAWAN,local_police,874.0,073,01569,srs_agency_header
+IL0370400,2020,cius_publication_annual,6,CAMBRIDGE,local_police,2090.0,073,10643,srs_agency_header
+IL0371000,2020,cius_publication_annual,6,ORION,local_police,1810.0,073,56601,srs_agency_header
+IL0380100,2020,cius_publication_annual,6,WATSEKA,local_police,4868.0,075,79228,srs_agency_header
+IL0380400,2020,cius_publication_annual,6,ONARGA,local_police,1308.0,075,56081,srs_agency_header
+IL0390100,2020,cius_publication_annual,5,CARBONDALE,local_police,25816.0,077,11163,srs_agency_header
+IL0390200,2020,cius_publication_annual,6,MURPHYSBORO,local_police,7511.0,077,51453,srs_agency_header
+IL0390400,2020,cius_publication_annual,6,DE SOTO,local_police,1534.0,077,19616,srs_agency_header
+IL0410100,2020,cius_publication_annual,6,MOUNT VERNON,local_police,14914.0,081,51180,srs_agency_header
+IL0410300,2020,cius_publication_annual,6,REND LAKE COLLEGE,special_jurisdiction,0.0,081,37179,srs_agency_header
+IL0410700,2019,cius_publication_annual,6,INA,local_police,2349.0,081,,fbi_cde_agency_roster
+IL0410700,2020,cius_publication_annual,6,INA,local_police,2349.0,081,,fbi_cde_agency_roster
+IL0420100,2020,cius_publication_annual,6,GRAFTON,local_police,813.0,083,30653,srs_agency_header
+IL0420200,2020,cius_publication_annual,6,JERSEYVILLE,local_police,8271.0,083,38414,srs_agency_header
+IL0430200,2020,cius_publication_annual,6,ELIZABETH,local_police,729.0,085,23165,srs_agency_header
+IL0430300,2020,cius_publication_annual,6,GALENA,local_police,3261.0,085,28300,srs_agency_header
+IL0430500,2020,cius_publication_annual,6,STOCKTON,local_police,1730.0,085,72780,srs_agency_header
+IL0440100,2020,cius_publication_annual,6,VIENNA,local_police,1729.0,087,77863,srs_agency_header
+IL0450100,2020,cius_publication_annual,6,AURORA,local_police,201364.0,089,03012,srs_agency_header
+IL0450200,2020,cius_publication_annual,6,BATAVIA,local_police,26614.0,089,04078,srs_agency_header
+IL0450300,2020,cius_publication_annual,6,CARPENTERSVILLE,local_police,38220.0,089,11358,srs_agency_header
+IL0450500,2020,cius_publication_annual,6,ELBURN,local_police,6680.0,089,22931,srs_agency_header
+IL0450700,2020,cius_publication_annual,6,GENEVA,local_police,22082.0,089,28872,srs_agency_header
+IL0450800,2020,cius_publication_annual,6,HAMPSHIRE,local_police,8239.0,089,32525,srs_agency_header
+IL0450900,2020,cius_publication_annual,6,MONTGOMERY,local_police,22536.0,089,50218,srs_agency_header
+IL0451000,2020,cius_publication_annual,6,NORTH AURORA,local_police,19276.0,089,53442,srs_agency_header
+IL0451100,2020,cius_publication_annual,6,PINGREE GROVE,local_police,11395.0,089,59988,srs_agency_header
+IL0451200,2020,cius_publication_annual,6,SLEEPY HOLLOW,local_police,3314.0,089,70161,srs_agency_header
+IL0451400,2020,cius_publication_annual,6,ST CHARLES,local_police,33118.0,089,66703,srs_agency_header
+IL0451700,2020,cius_publication_annual,6,WEST DUNDEE,local_police,8938.0,089,80125,srs_agency_header
+IL0451800,2020,cius_publication_annual,6,MAPLE PARK,local_police,1511.0,089,46604,srs_agency_header
+IL0451900,2020,cius_publication_annual,6,WAUBONSEE COMM COLLEGE,special_jurisdiction,0.0,089,73391,srs_agency_header
+IL0452100,2020,cius_publication_annual,6,GILBERTS,local_police,8909.0,089,29171,srs_agency_header
+IL0453300,2020,cius_publication_annual,6,ELGIN COMMUNITY COLLEGE,special_jurisdiction,0.0,089,23074,srs_agency_header
+IL0453400,2020,cius_publication_annual,6,CAMPTON HILLS,local_police,11305.0,089,10906,srs_agency_header
+IL0460200,2020,cius_publication_annual,6,KANKAKEE,local_police,26032.0,091,38934,srs_agency_header
+IL0460300,2020,cius_publication_annual,6,BOURBONNAIS,local_police,19588.0,091,07471,srs_agency_header
+IL0460400,2020,cius_publication_annual,6,MOMENCE,local_police,3127.0,091,49893,srs_agency_header
+IL0461100,2020,cius_publication_annual,6,GRANT PARK,local_police,1275.0,091,30991,srs_agency_header
+IL0470100,2019,cius_publication_annual,6,PLANO,local_police,12942.0,093,60352,srs_agency_header
+IL0470100,2020,cius_publication_annual,6,PLANO,local_police,12942.0,093,60352,srs_agency_header
+IL0470200,2020,cius_publication_annual,6,YORKVILLE,local_police,25788.0,093,84038,srs_agency_header
+IL0470300,2020,cius_publication_annual,6,OSWEGO,local_police,37893.0,093,56887,srs_agency_header
+IL0480100,2020,cius_publication_annual,6,ABINGDON,local_police,3103.0,095,00113,srs_agency_header
+IL0480400,2020,cius_publication_annual,6,GALESBURG,local_police,30573.0,095,28326,srs_agency_header
+IL0480700,2020,cius_publication_annual,6,YATES CITY,local_police,659.0,095,83817,srs_agency_header
+IL0490100,2020,cius_publication_annual,6,ANTIOCH,local_police,15017.0,097,01595,srs_agency_header
+IL0490300,2020,cius_publication_annual,6,DEERFIELD,local_police,19049.0,097,18992,srs_agency_header
+IL0490400,2020,cius_publication_annual,6,FOX LAKE,local_police,10876.0,097,27442,srs_agency_header
+IL0490500,2020,cius_publication_annual,6,GRAYSLAKE,local_police,24519.0,097,31121,srs_agency_header
+IL0490600,2020,cius_publication_annual,6,GURNEE,local_police,30698.0,097,32018,srs_agency_header
+IL0490800,2020,cius_publication_annual,6,HIGHWOOD,local_police,5676.0,097,34865,srs_agency_header
+IL0490900,2020,cius_publication_annual,6,LAKE BLUFF,local_police,5654.0,097,40910,srs_agency_header
+IL0491000,2020,cius_publication_annual,6,LAKE FOREST,local_police,19644.0,097,41105,srs_agency_header
+IL0491100,2020,cius_publication_annual,6,LAKE VILLA,local_police,8726.0,097,41586,srs_agency_header
+IL0491200,2020,cius_publication_annual,6,LAKE ZURICH,local_police,20060.0,097,41742,srs_agency_header
+IL0491300,2020,cius_publication_annual,6,LIBERTYVILLE,local_police,20499.0,097,43250,srs_agency_header
+IL0491400,2020,cius_publication_annual,6,MUNDELEIN,local_police,31876.0,097,51349,srs_agency_header
+IL0491600,2020,cius_publication_annual,6,ROUND LAKE,local_police,18531.0,097,66027,srs_agency_header
+IL0491800,2020,cius_publication_annual,6,ROUND LAKE HEIGHTS,local_police,2689.0,097,66053,srs_agency_header
+IL0491900,2020,cius_publication_annual,6,ROUND LAKE PARK,local_police,7779.0,097,66066,srs_agency_header
+IL0492100,2020,cius_publication_annual,6,WAUKEGAN,local_police,88073.0,097,79293,srs_agency_header
+IL0492300,2020,cius_publication_annual,6,ZION,local_police,24348.0,097,84220,srs_agency_header
+IL0492400,2020,cius_publication_annual,6,ISLAND LAKE,local_police,8121.0,097,37894,srs_agency_header
+IL0492500,2020,cius_publication_annual,6,PARK CITY,local_police,7843.0,097,57654,srs_agency_header
+IL0492600,2020,cius_publication_annual,6,VERNON HILLS,local_police,26847.0,097,77694,srs_agency_header
+IL0492700,2020,cius_publication_annual,6,BANNOCKBURN,local_police,1605.0,097,03610,srs_agency_header
+IL0492800,2020,cius_publication_annual,6,HAINESVILLE,local_police,3640.0,097,32200,srs_agency_header
+IL0492900,2020,cius_publication_annual,6,LINCOLNSHIRE,local_police,8012.0,097,43666,srs_agency_header
+IL0493000,2020,cius_publication_annual,6,LINDENHURST,local_police,14450.0,097,43770,srs_agency_header
+IL0493200,2020,cius_publication_annual,6,COLLEGE OF LAKE COUNTY,special_jurisdiction,0.0,097,99097,srs_agency_header
+IL0493300,2020,cius_publication_annual,6,TOWER LAKES,local_police,1246.0,097,75874,srs_agency_header
+IL0493600,2020,cius_publication_annual,6,KILDEER,local_police,4481.0,097,39883,srs_agency_header
+IL0493800,2020,cius_publication_annual,6,HAWTHORN WOODS,local_police,9470.0,097,33630,srs_agency_header
+IL0500100,2020,cius_publication_annual,6,LA SALLE,local_police,9450.0,099,42184,srs_agency_header
+IL0500300,2020,cius_publication_annual,6,MARSEILLES,local_police,4869.0,099,47150,srs_agency_header
+IL0500400,2020,cius_publication_annual,6,MENDOTA,local_police,7062.0,099,48333,srs_agency_header
+IL0500700,2020,cius_publication_annual,6,OTTAWA,local_police,18722.0,099,56926,srs_agency_header
+IL0500800,2020,cius_publication_annual,6,PERU,local_police,9793.0,099,59234,srs_agency_header
+IL0500900,2020,cius_publication_annual,6,SENECA,local_police,2309.0,099,68640,srs_agency_header
+IL0501000,2020,cius_publication_annual,6,STREATOR,local_police,13100.0,099,73170,srs_agency_header
+IL0501300,2020,cius_publication_annual,6,GRAND RIDGE,local_police,525.0,099,30757,srs_agency_header
+IL0501600,2020,cius_publication_annual,6,TONICA,local_police,736.0,099,75718,srs_agency_header
+IL0520100,2020,cius_publication_annual,6,ASHTON,local_police,951.0,103,02583,srs_agency_header
+IL0520200,2020,cius_publication_annual,6,AMBOY,local_police,2323.0,103,01270,srs_agency_header
+IL0520300,2020,cius_publication_annual,6,DIXON,local_police,15396.0,103,20162,srs_agency_header
+IL0520400,2020,cius_publication_annual,6,FRANKLIN GROVE,local_police,948.0,103,27689,srs_agency_header
+IL0530200,2020,cius_publication_annual,6,PONTIAC,local_police,11795.0,105,61015,srs_agency_header
+IL0530300,2020,cius_publication_annual,6,FAIRBURY,local_police,3602.0,105,24764,srs_agency_header
+IL0550100,2020,cius_publication_annual,6,BLANDINSVILLE,local_police,605.0,109,06470,srs_agency_header
+IL0550300,2020,cius_publication_annual,6,COLCHESTER,local_police,1306.0,109,15378,srs_agency_header
+IL0550400,2020,cius_publication_annual,6,MACOMB,local_police,18124.0,109,45889,srs_agency_header
+IL0560100,2020,cius_publication_annual,6,ALGONQUIN,local_police,31156.0,111,00685,srs_agency_header
+IL0560200,2020,cius_publication_annual,6,CARY,local_police,18036.0,111,11592,srs_agency_header
+IL0560300,2020,cius_publication_annual,6,CRYSTAL LAKE,local_police,41074.0,111,17887,srs_agency_header
+IL0560400,2020,cius_publication_annual,6,FOX RIVER GROVE,local_police,4684.0,111,27533,srs_agency_header
+IL0560500,2020,cius_publication_annual,6,HARVARD,local_police,9461.0,111,33331,srs_agency_header
+IL0560700,2020,cius_publication_annual,6,HUNTLEY,local_police,28439.0,111,36750,srs_agency_header
+IL0560900,2020,cius_publication_annual,6,LAKE IN THE HILLS,local_police,28961.0,111,41183,srs_agency_header
+IL0561300,2020,cius_publication_annual,6,RICHMOND,local_police,2125.0,111,63641,srs_agency_header
+IL0561500,2020,cius_publication_annual,6,WOODSTOCK,local_police,25778.0,111,83349,srs_agency_header
+IL0561700,2020,cius_publication_annual,6,LAKEWOOD,local_police,4321.0,111,41651,srs_agency_header
+IL0561900,2020,cius_publication_annual,6,SPRING GROVE,local_police,5718.0,111,72052,srs_agency_header
+IL0562200,2020,cius_publication_annual,6,WONDER LAKE,local_police,5248.0,111,82855,srs_agency_header
+IL0562900,2020,cius_publication_annual,6,MCHENRY COUNTY COLLEGE,special_jurisdiction,0.0,111,17887,srs_agency_header
+IL0570100,2020,cius_publication_annual,6,BLOOMINGTON,local_police,78955.0,113,06613,srs_agency_header
+IL0570200,2020,cius_publication_annual,6,NORMAL,local_police,55013.0,113,53234,srs_agency_header
+IL0570300,2020,cius_publication_annual,6,CHENOA,local_police,3147.0,113,12931,srs_agency_header
+IL0570500,2020,cius_publication_annual,6,LE ROY,local_police,3542.0,113,42971,srs_agency_header
+IL0570800,2020,cius_publication_annual,6,COLFAX,local_police,1021.0,113,15495,srs_agency_header
+IL0571100,2020,cius_publication_annual,6,HUDSON,local_police,1823.0,113,36438,srs_agency_header
+IL0571200,2020,cius_publication_annual,6,MCLEAN,local_police,799.0,113,45811,srs_agency_header
+IL0571400,2020,cius_publication_annual,6,STANFORD,local_police,597.0,113,72260,srs_agency_header
+IL0580100,2020,cius_publication_annual,6,BLUE MOUND,local_police,1088.0,115,06756,srs_agency_header
+IL0580200,2020,cius_publication_annual,6,DECATUR,local_police,71625.0,115,18823,srs_agency_header
+IL0580400,2020,cius_publication_annual,6,MOUNT ZION,local_police,5874.0,115,51206,srs_agency_header
+IL0580900,2020,cius_publication_annual,6,WARRENSBURG,local_police,1133.0,115,78916,srs_agency_header
+IL0590400,2020,cius_publication_annual,6,CARLINVILLE,local_police,5520.0,117,11202,srs_agency_header
+IL0591000,2020,cius_publication_annual,6,VIRDEN,local_police,3344.0,117,78149,srs_agency_header
+IL0600100,2020,cius_publication_annual,6,ALTON,local_police,26563.0,119,01114,srs_agency_header
+IL0600200,2020,cius_publication_annual,6,BETHALTO,local_police,9311.0,119,05599,srs_agency_header
+IL0600400,2020,cius_publication_annual,6,EAST ALTON,local_police,6073.0,119,21553,srs_agency_header
+IL0600500,2020,cius_publication_annual,6,EDWARDSVILLE,local_police,26663.0,119,22697,srs_agency_header
+IL0600700,2020,cius_publication_annual,6,GRANITE CITY,local_police,28593.0,119,30926,srs_agency_header
+IL0600800,2020,cius_publication_annual,6,HARTFORD,local_police,1359.0,119,33279,srs_agency_header
+IL0600900,2020,cius_publication_annual,6,HIGHLAND,local_police,10026.0,119,34670,srs_agency_header
+IL0601200,2020,cius_publication_annual,6,MARYVILLE,local_police,8336.0,119,47397,srs_agency_header
+IL0601300,2020,cius_publication_annual,6,ROXANA,local_police,1455.0,119,66131,srs_agency_header
+IL0601400,2020,cius_publication_annual,6,TROY,local_police,11297.0,119,76199,srs_agency_header
+IL0601900,2020,cius_publication_annual,6,SOUTH ROXANA,local_police,1991.0,119,71240,srs_agency_header
+IL0602300,2020,cius_publication_annual,6,GLEN CARBON,local_police,13870.0,119,29639,srs_agency_header
+IL0602800,2020,cius_publication_annual,6,HAMEL,local_police,931.0,119,32408,srs_agency_header
+IL0603800,2020,cius_publication_annual,6,GRANTFORK,local_police,344.0,119,30978,srs_agency_header
+IL0610200,2020,cius_publication_annual,5,CENTRALIA,local_police,12372.0,121,12164,srs_agency_header
+IL0610400,2020,cius_publication_annual,6,SALEM,local_police,7136.0,121,67236,srs_agency_header
+IL0610500,2020,cius_publication_annual,6,SANDOVAL,local_police,1214.0,121,67444,srs_agency_header
+IL0620200,2020,cius_publication_annual,6,LACON,local_police,1861.0,123,40559,srs_agency_header
+IL0620300,2020,cius_publication_annual,6,TOLUCA,local_police,1334.0,123,75653,srs_agency_header
+IL0630100,2020,cius_publication_annual,6,HAVANA,local_police,3046.0,125,33513,srs_agency_header
+IL0630300,2020,cius_publication_annual,6,MANITO,local_police,1511.0,125,46383,srs_agency_header
+IL0630400,2020,cius_publication_annual,6,SAN JOSE,local_police,607.0,107,67613,srs_agency_header
+IL0640300,2020,cius_publication_annual,6,METROPOLIS,local_police,6076.0,127,48645,srs_agency_header
+IL0650100,2020,cius_publication_annual,6,PETERSBURG,local_police,2214.0,129,59312,srs_agency_header
+IL0650200,2020,cius_publication_annual,6,ATHENS,local_police,1923.0,129,02674,srs_agency_header
+IL0660700,2020,cius_publication_annual,6,VIOLA,local_police,891.0,131,78123,srs_agency_header
+IL0680100,2020,cius_publication_annual,6,HILLSBORO,local_police,6016.0,135,35047,srs_agency_header
+IL0680200,2020,cius_publication_annual,6,LITCHFIELD,local_police,6747.0,135,43965,srs_agency_header
+IL0680300,2020,cius_publication_annual,6,NOKOMIS,local_police,2124.0,135,53169,srs_agency_header
+IL0680500,2020,cius_publication_annual,6,WITT,local_police,852.0,135,82725,srs_agency_header
+IL0690100,2020,cius_publication_annual,6,JACKSONVILLE,local_police,18667.0,137,38115,srs_agency_header
+IL0700100,2020,cius_publication_annual,6,BETHANY,local_police,1265.0,139,05612,srs_agency_header
+IL0700200,2020,cius_publication_annual,6,LOVINGTON,local_police,1061.0,139,45044,srs_agency_header
+IL0700300,2020,cius_publication_annual,6,SULLIVAN,local_police,4487.0,139,73495,srs_agency_header
+IL0710200,2020,cius_publication_annual,6,MOUNT MORRIS,local_police,2810.0,141,50998,srs_agency_header
+IL0710500,2020,cius_publication_annual,6,ROCHELLE,local_police,9307.0,141,64746,srs_agency_header
+IL0710600,2020,cius_publication_annual,6,BYRON,local_police,3768.0,141,10240,srs_agency_header
+IL0720100,2020,cius_publication_annual,6,BARTONVILLE,local_police,6221.0,143,04039,srs_agency_header
+IL0720400,2020,cius_publication_annual,6,ELMWOOD,local_police,2054.0,143,23698,srs_agency_header
+IL0720700,2020,cius_publication_annual,6,PEORIA,local_police,112595.0,143,59000,srs_agency_header
+IL0720900,2020,cius_publication_annual,6,PEORIA HEIGHTS,local_police,5828.0,143,59026,srs_agency_header
+IL0730200,2020,cius_publication_annual,6,PINCKNEYVILLE,local_police,5404.0,145,59884,srs_agency_header
+IL0740300,2020,cius_publication_annual,6,MONTICELLO,local_police,6041.0,147,50244,srs_agency_header
+IL0750300,2020,cius_publication_annual,6,PITTSFIELD,local_police,4397.0,149,60222,srs_agency_header
+IL0790100,2020,cius_publication_annual,6,CHESTER,local_police,8505.0,157,13139,srs_agency_header
+IL0790200,2020,cius_publication_annual,6,RED BUD,local_police,3773.0,157,63043,srs_agency_header
+IL0790900,2020,cius_publication_annual,6,RUMA,local_police,311.0,157,66287,srs_agency_header
+IL0810300,2020,cius_publication_annual,6,COAL VALLEY,local_police,3820.0,161,15235,srs_agency_header
+IL0810400,2020,cius_publication_annual,6,EAST MOLINE,local_police,21081.0,161,22073,srs_agency_header
+IL0810500,2020,cius_publication_annual,6,MILAN,local_police,5046.0,161,49009,srs_agency_header
+IL0810600,2020,cius_publication_annual,6,MOLINE,local_police,42051.0,161,49867,srs_agency_header
+IL0810800,2020,cius_publication_annual,6,ROCK ISLAND,local_police,37985.0,161,65078,srs_agency_header
+IL0810900,2020,cius_publication_annual,6,SILVIS,local_police,7922.0,161,69979,srs_agency_header
+IL0811100,2020,cius_publication_annual,6,HAMPTON,local_police,1807.0,161,32564,srs_agency_header
+IL0820200,2020,cius_publication_annual,5,BELLEVILLE,local_police,41291.0,163,04845,srs_agency_header
+IL0820300,2020,cius_publication_annual,6,CAHOKIA,local_police,14004.0,163,10370,srs_agency_header
+IL0820400,2020,cius_publication_annual,6,CASEYVILLE,local_police,4391.0,163,11644,srs_agency_header
+IL0820600,2020,cius_publication_annual,6,DUPO,local_police,3896.0,163,21254,srs_agency_header
+IL0820700,2018,cius_publication_annual,6,EAST ST LOUIS,local_police,26630.0,163,22255,srs_agency_header
+IL0820800,2020,cius_publication_annual,6,FREEBURG,local_police,4501.0,163,27806,srs_agency_header
+IL0821000,2020,cius_publication_annual,6,MARISSA,local_police,1820.0,163,46955,srs_agency_header
+IL0821100,2020,cius_publication_annual,6,MASCOUTAH,local_police,8977.0,163,47423,srs_agency_header
+IL0821200,2020,cius_publication_annual,6,MILLSTADT,local_police,3986.0,163,49386,srs_agency_header
+IL0821500,2020,cius_publication_annual,6,NEW ATHENS,local_police,1903.0,163,52116,srs_agency_header
+IL0821600,2020,cius_publication_annual,6,O FALLON,local_police,32250.0,163,55249,srs_agency_header
+IL0822200,2020,cius_publication_annual,6,SAUGET,local_police,167.0,163,67756,srs_agency_header
+IL0822400,2020,cius_publication_annual,6,FAIRVIEW HEIGHTS,local_police,16516.0,163,25141,srs_agency_header
+IL0822500,2020,cius_publication_annual,6,SHILOH,local_police,14950.0,163,69524,srs_agency_header
+IL0822800,2020,cius_publication_annual,6,SMITHTON,local_police,3969.0,163,70252,srs_agency_header
+IL0824400,2020,cius_publication_annual,6,SOUTHWESTERN IL COLLEGE,special_jurisdiction,0.0,163,04845,srs_agency_header
+IL0830300,2020,cius_publication_annual,6,HARRISBURG,local_police,8697.0,165,33136,srs_agency_header
+IL0840200,2020,cius_publication_annual,6,SPRINGFIELD,local_police,114623.0,167,72000,srs_agency_header
+IL0840300,2020,cius_publication_annual,6,AUBURN,local_police,4695.0,167,02921,srs_agency_header
+IL0840400,2020,cius_publication_annual,6,CHATHAM,local_police,14562.0,167,12684,srs_agency_header
+IL0840600,2020,cius_publication_annual,6,PAWNEE,local_police,2754.0,167,58174,srs_agency_header
+IL0840700,2020,cius_publication_annual,6,RIVERTON,local_police,3474.0,167,64486,srs_agency_header
+IL0840800,2020,cius_publication_annual,6,WILLIAMSVILLE,local_police,1496.0,167,81854,srs_agency_header
+IL0841500,2020,cius_publication_annual,6,SOUTHERN VIEW,local_police,1590.0,167,70759,srs_agency_header
+IL0842400,2020,cius_publication_annual,6,PLEASANT PLAINS,local_police,806.0,167,60599,srs_agency_header
+IL0843000,2020,cius_publication_annual,6,THAYER,local_police,664.0,167,74860,srs_agency_header
+IL0870100,2020,cius_publication_annual,6,MOWEAQUA,local_police,1732.0,173,51232,srs_agency_header
+IL0890100,2020,cius_publication_annual,6,FREEPORT,local_police,23887.0,177,27884,srs_agency_header
+IL0900400,2020,cius_publication_annual,6,HOPEDALE,local_police,1101.0,179,36126,srs_agency_header
+IL0900500,2020,cius_publication_annual,6,MARQUETTE HEIGHTS,local_police,2669.0,179,47111,srs_agency_header
+IL0900600,2020,cius_publication_annual,6,MINIER,local_police,1196.0,179,49555,srs_agency_header
+IL0900700,2020,cius_publication_annual,6,MORTON,local_police,17592.0,179,50621,srs_agency_header
+IL0900800,2020,cius_publication_annual,6,NORTH PEKIN,local_police,1543.0,179,54092,srs_agency_header
+IL0900900,2018,cius_publication_annual,6,PEKIN,local_police,32541.0,179,58447,srs_agency_header
+IL0901000,2020,cius_publication_annual,6,WASHINGTON,local_police,17048.0,179,79033,srs_agency_header
+IL0901100,2020,cius_publication_annual,6,MACKINAW,local_police,1915.0,179,45785,srs_agency_header
+IL0901200,2020,cius_publication_annual,6,SOUTH PEKIN,local_police,1098.0,179,71175,srs_agency_header
+IL0901800,2020,cius_publication_annual,6,ARMINGTON,local_police,323.0,179,02206,srs_agency_header
+IL0901900,2020,cius_publication_annual,6,DEER CREEK,local_police,1611.0,179,18940,srs_agency_header
+IL0920100,2020,cius_publication_annual,6,BELGIUM,local_police,386.0,183,04689,srs_agency_header
+IL0920200,2020,cius_publication_annual,6,CATLIN,local_police,1958.0,183,11774,srs_agency_header
+IL0920300,2020,cius_publication_annual,6,DANVILLE,local_police,31203.0,183,18563,srs_agency_header
+IL0920400,2020,cius_publication_annual,6,FAIRMOUNT,local_police,612.0,183,24985,srs_agency_header
+IL0920500,2020,cius_publication_annual,6,GEORGETOWN,local_police,3265.0,183,28963,srs_agency_header
+IL0920700,2020,cius_publication_annual,6,POTOMAC,local_police,711.0,183,61366,srs_agency_header
+IL0920800,2020,cius_publication_annual,6,RANKIN,local_police,528.0,183,62744,srs_agency_header
+IL0920900,2020,cius_publication_annual,6,RIDGE FARM,local_police,828.0,183,63862,srs_agency_header
+IL0921000,2020,cius_publication_annual,6,ROSSVILLE,local_police,1247.0,183,65962,srs_agency_header
+IL0921100,2020,cius_publication_annual,6,TILTON,local_police,2683.0,183,75276,srs_agency_header
+IL0921200,2020,cius_publication_annual,6,WESTVILLE,local_police,3084.0,183,80931,srs_agency_header
+IL0921300,2020,cius_publication_annual,6,OAKWOOD,local_police,1523.0,183,55002,srs_agency_header
+IL0921600,2020,cius_publication_annual,6,SIDELL,local_police,579.0,183,69836,srs_agency_header
+IL0921800,2020,cius_publication_annual,6,FITHIAN,local_police,474.0,183,26233,srs_agency_header
+IL0921900,2020,cius_publication_annual,6,HENNING,local_police,236.0,183,34137,srs_agency_header
+IL0922000,2020,cius_publication_annual,6,INDIANOLA,local_police,263.0,183,37348,srs_agency_header
+IL0930100,2020,cius_publication_annual,6,MOUNT CARMEL,local_police,6988.0,185,50868,srs_agency_header
+IL0940100,2020,cius_publication_annual,6,ALEXIS,local_police,789.0,187,00672,srs_agency_header
+IL0940300,2020,cius_publication_annual,6,MONMOUTH,local_police,9042.0,187,50010,srs_agency_header
+IL0950300,2020,cius_publication_annual,6,OKAWVILLE,local_police,1368.0,189,55470,srs_agency_header
+IL0960100,2020,cius_publication_annual,6,FAIRFIELD,local_police,5013.0,191,24816,srs_agency_header
+IL0980200,2020,cius_publication_annual,6,FULTON,local_police,3609.0,195,28144,srs_agency_header
+IL0980400,2020,cius_publication_annual,6,MORRISON,local_police,4054.0,195,50530,srs_agency_header
+IL0980600,2020,cius_publication_annual,6,ROCK FALLS,local_police,8844.0,195,64928,srs_agency_header
+IL0980700,2020,cius_publication_annual,6,STERLING,local_police,14681.0,195,72546,srs_agency_header
+IL0980900,2020,cius_publication_annual,6,ERIE,local_police,1519.0,195,24374,srs_agency_header
+IL0990100,2020,cius_publication_annual,6,BEECHER,local_police,4681.0,197,04585,srs_agency_header
+IL0990200,2020,cius_publication_annual,6,BOLINGBROOK,local_police,75451.0,197,07133,srs_agency_header
+IL0990300,2020,cius_publication_annual,6,BRAIDWOOD,local_police,6217.0,197,07770,srs_agency_header
+IL0990400,2020,cius_publication_annual,6,CREST HILL,local_police,21221.0,197,17458,srs_agency_header
+IL0990500,2020,cius_publication_annual,6,CRETE,local_police,8371.0,197,17523,srs_agency_header
+IL0990600,2020,cius_publication_annual,6,FRANKFORT,local_police,21108.0,197,27624,srs_agency_header
+IL0990800,2020,cius_publication_annual,6,LOCKPORT,local_police,26668.0,197,44225,srs_agency_header
+IL0990900,2020,cius_publication_annual,6,MONEE,local_police,5118.0,197,49945,srs_agency_header
+IL0991000,2020,cius_publication_annual,6,PEOTONE,local_police,4209.0,197,59052,srs_agency_header
+IL0991200,2020,cius_publication_annual,6,ROCKDALE,local_police,1975.0,197,64902,srs_agency_header
+IL0991500,2020,cius_publication_annual,6,NEW LENOX,local_police,28315.0,197,52584,srs_agency_header
+IL0991700,2020,cius_publication_annual,6,ELWOOD,local_police,2262.0,197,23945,srs_agency_header
+IL0991800,2020,cius_publication_annual,6,CHANNAHON,local_police,14366.0,197,12476,srs_agency_header
+IL0992000,2020,cius_publication_annual,6,UNIVERSITY PARK,local_police,7038.0,197,76935,srs_agency_header
+IL0992100,2020,cius_publication_annual,6,SHOREWOOD,local_police,18433.0,197,69758,srs_agency_header
+IL0992200,2020,cius_publication_annual,6,MOKENA,local_police,20573.0,197,49854,srs_agency_header
+IL0993100,2020,cius_publication_annual,6,JOLIET JUNIOR COLLEGE,special_jurisdiction,0.0,197,38570,srs_agency_header
+IL0996000,2020,cius_publication_annual,6,DIAMOND,local_police,2701.0,063,19837,srs_agency_header
+IL0999000,2020,cius_publication_annual,6,HOMER GLEN,local_police,,197,35835,srs_agency_header
+IL0999200,2020,cius_publication_annual,6,LEWIS UNIVERSITY,special_jurisdiction,0.0,197,65442,srs_agency_header
+IL1000200,2020,cius_publication_annual,6,HERRIN,local_police,12930.0,199,34358,srs_agency_header
+IL1000400,2020,cius_publication_annual,6,MARION,local_police,17839.0,199,46916,srs_agency_header
+IL1000500,2020,cius_publication_annual,6,CAMBRIA,local_police,1988.0,199,10630,srs_agency_header
+IL1000800,2020,cius_publication_annual,6,ENERGY,local_police,1127.0,199,24166,srs_agency_header
+IL1010200,2020,cius_publication_annual,6,LOVES PARK,local_police,23348.0,201,45031,srs_agency_header
+IL1010600,2020,cius_publication_annual,6,ROSCOE,local_police,10829.0,201,65611,srs_agency_header
+IL1010700,2020,cius_publication_annual,6,SOUTH BELOIT,local_police,7893.0,201,70590,srs_agency_header
+IL1011000,2020,cius_publication_annual,6,DURAND,local_police,1393.0,201,21280,srs_agency_header
+IL1011200,2020,cius_publication_annual,6,ROCK VALLEY COLLEGE,special_jurisdiction,0.0,201,65000,srs_agency_header
+IL1020200,2020,cius_publication_annual,6,EUREKA,local_police,5335.0,203,24543,srs_agency_header
+IL1021300,2020,cius_publication_annual,6,GOODFIELD,local_police,1000.0,203,30445,srs_agency_header
+ILCPD0000,2020,cius_publication_annual,6,CHICAGO,local_police,2721948.0,031,14000,srs_agency_header
+IN0120100,2018,cius_publication_annual,6,FRANKFORT,local_police,16572.0,023,25324,srs_agency_header
+IN0450800,2018,cius_publication_annual,6,HIGHLAND,local_police,23498.0,089,33466,srs_agency_header
+KS0160100,2018,cius_publication_annual,6,BURLINGTON,local_police,2637.0,031,09400,srs_agency_header
+KS0190100,2019,cius_publication_annual,6,PITTSBURG,local_police,20774.0,037,56025,srs_agency_header
+KS0210200,2018,cius_publication_annual,6,HERINGTON,local_police,2305.0,041,31400,srs_agency_header
+KS0280100,2019,cius_publication_annual,6,GARDEN CITY,local_police,27701.0,055,25325,srs_agency_header
+KS0300100,2019,cius_publication_annual,6,OTTAWA,local_police,12702.0,059,53550,srs_agency_header
+KS0460900,2019,cius_publication_annual,6,SHAWNEE,local_police,70098.0,091,64500,srs_agency_header
+KS0520200,2019,cius_publication_annual,6,TONGANOXIE,local_police,6282.0,103,70800,srs_agency_header
+KS0570100,2018,cius_publication_annual,5,MCPHERSON,local_police,13855.0,113,43950,srs_agency_header
+KS0630200,2018,cius_publication_annual,6,INDEPENDENCE,local_police,8629.0,125,33875,srs_agency_header
+KS0750100,2019,cius_publication_annual,6,ST MARYS,local_police,2768.0,149,62400,srs_agency_header
+KS0870100,2019,cius_publication_annual,6,DERBY,local_police,26409.0,173,17800,srs_agency_header
+KY0180100,2018,cius_publication_annual,6,MURRAY,local_police,19605.0,035,54642,srs_agency_header
+KY0470200,2018,cius_publication_annual,6,RADCLIFF,local_police,22998.0,093,63912,srs_agency_header
+KY0510100,2018,cius_publication_annual,6,HENDERSON,local_police,28618.0,101,35866,srs_agency_header
+KY0540100,2018,cius_publication_annual,6,MADISONVILLE,local_police,19294.0,107,49368,srs_agency_header
+KY0560300,2018,cius_publication_annual,6,ST MATTHEWS,local_police,18275.0,111,67944,srs_agency_header
+KY0561000,2018,cius_publication_annual,6,JEFFERSONTOWN,local_police,28563.0,111,40222,srs_agency_header
+KY0900100,2018,cius_publication_annual,6,BARDSTOWN,local_police,13917.0,179,03628,srs_agency_header
+KY1070100,2018,cius_publication_annual,6,FRANKLIN,local_police,10556.0,213,28918,srs_agency_header
+LA0420200,2018,cius_publication_annual,5,RAYVILLE,local_police,3557.0,083,63680,srs_agency_header
+LANPD0000,2023,local_publication_annual,6,NEW ORLEANS,local_police,396374.0,071,55000,srs_agency_header
+LANPD0000,2024,local_publication_annual,6,NEW ORLEANS,local_police,396374.0,071,55000,srs_agency_header
+MI2539800,2019,cius_publication_annual,1,FLINT,local_police,95677.0,049,29000,srs_agency_header
+MI2583900,2019,cius_publication_annual,6,BURTON,local_police,29373.0,049,12060,srs_agency_header
+MI7254200,2018,cius_publication_annual,6,LYON TOWNSHIP,local_police,1353.0,143,49840,srs_agency_header
+MO0190500,2018,cius_publication_annual,6,PLEASANT HILL,local_police,8811.0,037,58394,srs_agency_header
+MO0460300,2018,cius_publication_annual,6,WILLOW SPRINGS,local_police,2233.0,091,80098,srs_agency_header
+MO0951800,2018,cius_publication_annual,6,CRESTWOOD,local_police,12267.0,189,17218,srs_agency_header
+MO0952800,2019,cius_publication_annual,6,FERGUSON,local_police,20664.0,189,23986,srs_agency_header
+MO1070300,2018,cius_publication_annual,6,HOLLISTER,local_police,4706.0,213,32662,srs_agency_header
+MS0020000,2024,state_publication_annual,6,ALCORN,sheriff,22567.0,003,99003,srs_agency_header
+MS0020100,2024,state_publication_annual,6,CORINTH,local_police,14652.0,003,15700,srs_agency_header
+MS0030000,2024,state_publication_annual,5,AMITE,sheriff,11746.0,005,99005,srs_agency_header
+MS0040000,2024,state_publication_annual,5,ATTALA,sheriff,11508.0,007,99007,srs_agency_header
+MS0060000,2024,state_publication_annual,6,BOLIVAR,sheriff,13217.0,011,99011,srs_agency_header
+MS0070000,2024,state_publication_annual,5,CALHOUN,sheriff,10904.0,013,99013,srs_agency_header
+MS0070100,2024,state_publication_annual,4,BRUCE,local_police,1834.0,013,09180,srs_agency_header
+MS0070400,2024,state_publication_annual,3,VARDAMAN,local_police,1275.0,013,76320,srs_agency_header
+MS0080000,2024,state_publication_annual,5,CARROLL,sheriff,9840.0,015,99015,srs_agency_header
+MS0090000,2024,state_publication_annual,5,CHICKASAW,sheriff,11123.0,017,99017,srs_agency_header
+MS0100000,2024,state_publication_annual,5,CHOCTAW,sheriff,6793.0,019,99019,srs_agency_header
+MS0100100,2024,state_publication_annual,3,ACKERMAN,local_police,1558.0,019,00300,srs_agency_header
+MS0110000,2024,state_publication_annual,6,CLAIBORNE,sheriff,7605.0,021,99021,srs_agency_header
+MS0110100,2024,state_publication_annual,5,PORT GIBSON,local_police,1339.0,021,59560,srs_agency_header
+MS0120100,2024,state_publication_annual,2,QUITMAN,local_police,2128.0,023,60720,srs_agency_header
+MS0130000,2024,state_publication_annual,6,CLAY,sheriff,8918.0,025,99025,srs_agency_header
+MS0140000,2024,state_publication_annual,5,COAHOMA,sheriff,7316.0,027,99027,srs_agency_header
+MS0150300,2024,state_publication_annual,5,WESSON,local_police,1785.0,029,78640,srs_agency_header
+MS0160100,2024,state_publication_annual,6,COLLINS,local_police,2466.0,031,15140,srs_agency_header
+MS0170200,2024,state_publication_annual,6,OLIVE BRANCH,local_police,47341.0,033,54040,srs_agency_header
+MS0170600,2024,state_publication_annual,1,WALLS,local_police,1476.0,033,,fbi_cde_agency_roster
+MS0180000,2024,state_publication_annual,6,FORREST,sheriff,25846.0,035,99035,srs_agency_header
+MS0180200,2024,state_publication_annual,6,PETAL,local_police,11580.0,035,56800,srs_agency_header
+MS0200100,2024,state_publication_annual,5,LUCEDALE,local_police,3179.0,039,42440,srs_agency_header
+MS0210000,2024,state_publication_annual,4,GREENE,sheriff,12129.0,041,99041,srs_agency_header
+MS0210100,2018,cius_publication_annual,6,LEAKESVILLE,local_police,3768.0,041,39840,srs_agency_header
+MS0230000,2024,state_publication_annual,6,HANCOCK,sheriff,28488.0,045,99045,srs_agency_header
+MS0230300,2018,cius_publication_annual,6,WAVELAND,local_police,6923.0,045,78200,srs_agency_header
+MS0230300,2024,state_publication_annual,4,WAVELAND,local_police,6923.0,045,78200,srs_agency_header
+MS0240300,2024,state_publication_annual,6,LONG BEACH,local_police,17251.0,047,41680,srs_agency_header
+MS0240400,2024,state_publication_annual,3,PASS CHRISTIAN,local_police,6724.0,047,55400,srs_agency_header
+MS0240800,2024,state_publication_annual,6,D IBERVILLE,local_police,14298.0,047,19180,srs_agency_header
+MS0250100,2018,cius_publication_annual,6,JACKSON,local_police,166024.0,049,36000,srs_agency_header
+MS0250100,2019,cius_publication_annual,6,JACKSON,local_police,166024.0,049,36000,srs_agency_header
+MS0250200,2024,state_publication_annual,3,RAYMOND,local_police,2591.0,049,61160,srs_agency_header
+MS0250300,2024,state_publication_annual,6,CLINTON,local_police,27001.0,049,14420,srs_agency_header
+MS0250700,2024,state_publication_annual,1,EDWARDS,local_police,1006.0,049,21580,srs_agency_header
+MS0251000,2024,state_publication_annual,3,JACKSON STATE UNIVERSITY,special_jurisdiction,0.0,049,36000,srs_agency_header
+MS0290100,2018,cius_publication_annual,6,FULTON,local_police,4537.0,057,26300,srs_agency_header
+MS0290100,2019,cius_publication_annual,6,FULTON,local_police,4537.0,057,26300,srs_agency_header
+MS0290100,2024,state_publication_annual,5,FULTON,local_police,4537.0,057,26300,srs_agency_header
+MS0300600,2024,state_publication_annual,6,GAUTIER,local_police,19023.0,059,26860,srs_agency_header
+MS0310000,2024,state_publication_annual,5,JASPER,sheriff,14134.0,061,99061,srs_agency_header
+MS0310100,2024,state_publication_annual,4,BAY SPRINGS,local_police,1714.0,061,04060,srs_agency_header
+MS0310200,2024,state_publication_annual,3,HEIDELBERG,local_police,672.0,061,31420,srs_agency_header
+MS0320000,2024,state_publication_annual,6,JEFFERSON,sheriff,5751.0,063,99063,srs_agency_header
+MS0340100,2024,state_publication_annual,6,ELLISVILLE,local_police,4975.0,067,22020,srs_agency_header
+MS0360000,2024,state_publication_annual,6,LAFAYETTE,sheriff,31996.0,071,99071,srs_agency_header
+MS0360100,2018,cius_publication_annual,6,OXFORD,local_police,29367.0,071,54840,srs_agency_header
+MS0370100,2024,state_publication_annual,4,PURVIS,local_police,2420.0,073,60480,srs_agency_header
+MS0370200,2024,state_publication_annual,6,LUMBERTON,local_police,2262.0,073,42640,srs_agency_header
+MS0370300,2024,state_publication_annual,3,SUMRALL,local_police,2171.0,073,71560,srs_agency_header
+MS0400000,2024,state_publication_annual,6,LEAKE,sheriff,17845.0,079,99079,srs_agency_header
+MS0410000,2024,state_publication_annual,6,LEE,sheriff,34494.0,081,99081,srs_agency_header
+MS0410700,2024,state_publication_annual,4,GUNTOWN,local_police,2882.0,081,29940,srs_agency_header
+MS0430000,2024,state_publication_annual,6,LINCOLN,sheriff,23197.0,085,99085,srs_agency_header
+MS0440000,2024,state_publication_annual,6,LOWNDES,sheriff,35211.0,087,99087,srs_agency_header
+MS0450400,2024,state_publication_annual,5,MADISON,local_police,28064.0,089,44520,srs_agency_header
+MS0460000,2024,state_publication_annual,6,MARION,sheriff,18836.0,091,99091,srs_agency_header
+MS0470100,2024,state_publication_annual,6,HOLLY SPRINGS,local_police,7799.0,093,33100,srs_agency_header
+MS0470300,2024,state_publication_annual,4,BYHALIA,local_police,1379.0,093,10060,srs_agency_header
+MS0480000,2024,state_publication_annual,6,MONROE,sheriff,23517.0,095,99095,srs_agency_header
+MS0480200,2024,state_publication_annual,5,AMORY,local_police,6911.0,095,01260,srs_agency_header
+MS0480400,2024,state_publication_annual,2,SMITHVILLE,local_police,722.0,095,,fbi_cde_agency_roster
+MS0500000,2024,state_publication_annual,5,NESHOBA,sheriff,22079.0,099,99099,srs_agency_header
+MS0500100,2024,state_publication_annual,6,PHILADELPHIA,local_police,7243.0,099,56960,srs_agency_header
+MS0510300,2024,state_publication_annual,2,UNION,local_police,1992.0,101,75360,srs_agency_header
+MS0520000,2024,state_publication_annual,4,NOXUBEE,sheriff,8130.0,103,99103,srs_agency_header
+MS0530000,2024,state_publication_annual,6,OKTIBBEHA,sheriff,27345.0,105,99105,srs_agency_header
+MS0540000,2024,state_publication_annual,6,PANOLA,sheriff,24964.0,107,99107,srs_agency_header
+MS0540100,2018,cius_publication_annual,6,BATESVILLE,local_police,7272.0,107,03620,srs_agency_header
+MS0550000,2024,state_publication_annual,6,PEARL RIVER,sheriff,44071.0,109,99109,srs_agency_header
+MS0550200,2024,state_publication_annual,6,POPLARVILLE,local_police,2945.0,109,59480,srs_agency_header
+MS0570000,2024,state_publication_annual,6,PIKE,sheriff,24313.0,113,99113,srs_agency_header
+MS0570300,2018,cius_publication_annual,6,SUMMIT,local_police,1593.0,113,71480,srs_agency_header
+MS0570300,2019,cius_publication_annual,6,SUMMIT,local_police,1593.0,113,71480,srs_agency_header
+MS0580100,2024,state_publication_annual,5,PONTOTOC,local_police,6297.0,115,59160,srs_agency_header
+MS0590000,2024,state_publication_annual,6,PRENTISS,sheriff,14668.0,117,99117,srs_agency_header
+MS0590100,2018,cius_publication_annual,6,BOONEVILLE,local_police,9075.0,117,07780,srs_agency_header
+MS0590100,2019,cius_publication_annual,6,BOONEVILLE,local_police,9075.0,117,07780,srs_agency_header
+MS0610200,2024,state_publication_annual,1,PEARL,local_police,28453.0,121,55760,srs_agency_header
+MS0610400,2024,state_publication_annual,6,FLOWOOD,local_police,10824.0,121,25100,srs_agency_header
+MS0610500,2024,state_publication_annual,5,RICHLAND,local_police,7486.0,121,62400,srs_agency_header
+MS0610600,2018,cius_publication_annual,6,FLORENCE,local_police,4811.0,121,24980,srs_agency_header
+MS0610600,2024,state_publication_annual,2,FLORENCE,local_police,4811.0,121,24980,srs_agency_header
+MS0620100,2024,state_publication_annual,6,FOREST,local_police,5648.0,123,25340,srs_agency_header
+MS0620200,2024,state_publication_annual,5,MORTON,local_police,3622.0,123,49080,srs_agency_header
+MS0630000,2024,state_publication_annual,1,SHARKEY,sheriff,2428.0,125,99125,srs_agency_header
+MS0640200,2024,state_publication_annual,5,MENDENHALL,local_police,2423.0,127,46600,srs_agency_header
+MS0650000,2024,state_publication_annual,5,SMITH,sheriff,16016.0,129,99129,srs_agency_header
+MS0660100,2018,cius_publication_annual,6,WIGGINS,local_police,4618.0,131,80160,srs_agency_header
+MS0660100,2024,state_publication_annual,6,WIGGINS,local_police,4618.0,131,80160,srs_agency_header
+MS0690000,2024,state_publication_annual,6,TATE,sheriff,19242.0,137,99137,srs_agency_header
+MS0690100,2024,state_publication_annual,5,SENATOBIA,local_police,8316.0,137,66440,srs_agency_header
+MS0700300,2024,state_publication_annual,3,WALNUT,local_police,733.0,139,77480,srs_agency_header
+MS0710000,2024,state_publication_annual,6,TISHOMINGO,sheriff,16573.0,141,99141,srs_agency_header
+MS0710100,2018,cius_publication_annual,6,IUKA,local_police,3073.0,141,35300,srs_agency_header
+MS0710100,2019,cius_publication_annual,6,IUKA,local_police,3073.0,141,35300,srs_agency_header
+MS0710100,2024,state_publication_annual,5,IUKA,local_police,3073.0,141,35300,srs_agency_header
+MS0720100,2024,state_publication_annual,4,TUNICA,local_police,958.0,143,74760,srs_agency_header
+MS0730100,2024,state_publication_annual,5,NEW ALBANY,local_police,8867.0,145,51000,srs_agency_header
+MS0750100,2018,cius_publication_annual,6,VICKSBURG,local_police,22298.0,149,76720,srs_agency_header
+MS0750100,2019,cius_publication_annual,6,VICKSBURG,local_police,22298.0,149,76720,srs_agency_header
+MS0770000,2024,state_publication_annual,5,WAYNE,sheriff,15515.0,153,99153,srs_agency_header
+MS0780000,2024,state_publication_annual,5,WEBSTER,sheriff,7668.0,155,99155,srs_agency_header
+MS0780100,2024,state_publication_annual,4,EUPORA,local_police,2098.0,155,23420,srs_agency_header
+MS0780300,2024,state_publication_annual,2,MATHISTON,local_police,863.0,155,45720,srs_agency_header
+MS0800100,2024,state_publication_annual,6,LOUISVILLE,local_police,6231.0,159,42280,srs_agency_header
+MS0810100,2024,state_publication_annual,6,WATER VALLEY,local_police,3384.0,161,78000,srs_agency_header
+MS0810300,2024,state_publication_annual,4,OAKLAND,local_police,499.0,161,,fbi_cde_agency_roster
+MT0160100,2019,cius_publication_annual,6,BOZEMAN,local_police,58509.0,031,08950,srs_agency_header
+MT0210100,2019,cius_publication_annual,6,HAVRE,local_police,9821.0,041,35050,srs_agency_header
+MT0560100,2019,cius_publication_annual,6,BILLINGS,local_police,122105.0,111,06550,srs_agency_header
+NC0010100,2018,cius_publication_annual,6,BURLINGTON,local_police,60906.0,001,09060,srs_agency_header
+NC0070400,2018,cius_publication_annual,6,CHOCOWINITY,local_police,794.0,013,12580,srs_agency_header
+NC0080200,2018,cius_publication_annual,6,WINDSOR,local_police,3485.0,015,74680,srs_agency_header
+NC0100200,2018,cius_publication_annual,6,SHALLOTTE,local_police,5548.0,019,60800,srs_agency_header
+NC0100800,2018,cius_publication_annual,6,OCEAN ISLE BEACH,local_police,1019.0,019,48700,srs_agency_header
+NC0101300,2018,cius_publication_annual,6,LELAND,local_police,33162.0,019,37680,srs_agency_header
+NC0110100,2018,cius_publication_annual,6,ASHEVILLE,local_police,95219.0,021,02140,srs_agency_header
+NC0110300,2018,cius_publication_annual,6,BILTMORE FOREST,local_police,1448.0,021,05880,srs_agency_header
+NC0110400,2018,cius_publication_annual,6,WEAVERVILLE,local_police,4732.0,021,71560,srs_agency_header
+NC0110600,2018,cius_publication_annual,6,WOODFIN,local_police,8133.0,021,75280,srs_agency_header
+NC0120200,2018,cius_publication_annual,6,VALDESE,local_police,4703.0,023,69520,srs_agency_header
+NC0120300,2018,cius_publication_annual,6,DREXEL,local_police,1859.0,023,17860,srs_agency_header
+NC0130100,2018,cius_publication_annual,6,CONCORD,local_police,111922.0,025,14100,srs_agency_header
+NC0130200,2018,cius_publication_annual,6,KANNAPOLIS,local_police,60725.0,025,35200,srs_agency_header
+NC0140100,2018,cius_publication_annual,6,GRANITE FALLS,local_police,4923.0,027,27420,srs_agency_header
+NC0140200,2018,cius_publication_annual,6,LENOIR,local_police,18208.0,027,37760,srs_agency_header
+NC0160100,2018,cius_publication_annual,6,BEAUFORT,local_police,4920.0,031,04260,srs_agency_header
+NC0160200,2018,cius_publication_annual,6,MOREHEAD CITY,local_police,10001.0,031,44320,srs_agency_header
+NC0160300,2018,cius_publication_annual,6,ATLANTIC BEACH,local_police,1516.0,031,02500,srs_agency_header
+NC0160400,2018,cius_publication_annual,6,NEWPORT,local_police,4691.0,031,46860,srs_agency_header
+NC0160600,2018,cius_publication_annual,6,EMERALD ISLE,local_police,4007.0,031,21160,srs_agency_header
+NC0160700,2018,cius_publication_annual,6,PINE KNOLL SHORES,local_police,1440.0,031,52000,srs_agency_header
+NC0180100,2018,cius_publication_annual,6,CONOVER,local_police,8701.0,035,14340,srs_agency_header
+NC0180200,2018,cius_publication_annual,6,HICKORY,local_police,44682.0,035,31060,srs_agency_header
+NC0180400,2018,cius_publication_annual,6,NEWTON,local_police,13479.0,035,47000,srs_agency_header
+NC0190100,2018,cius_publication_annual,6,SILER CITY,local_police,8473.0,037,61860,srs_agency_header
+NC0190200,2018,cius_publication_annual,6,PITTSBORO,local_police,4934.0,037,52660,srs_agency_header
+NC0200200,2018,cius_publication_annual,6,MURPHY,local_police,1673.0,039,45660,srs_agency_header
+NC0210100,2018,cius_publication_annual,6,EDENTON,local_police,4671.0,041,20120,srs_agency_header
+NC0230100,2018,cius_publication_annual,6,KINGS MOUNTAIN,local_police,12045.0,045,35880,srs_agency_header
+NC0240200,2018,cius_publication_annual,6,CHADBOURN,local_police,1730.0,047,11640,srs_agency_header
+NC0240500,2018,cius_publication_annual,6,WHITEVILLE,local_police,5401.0,047,73660,srs_agency_header
+NC0250100,2018,cius_publication_annual,6,HAVELOCK,local_police,20128.0,049,30120,srs_agency_header
+NC0250200,2018,cius_publication_annual,6,NEW BERN,local_police,32548.0,049,46340,srs_agency_header
+NC0250400,2018,cius_publication_annual,6,TRENT WOODS,local_police,4118.0,049,68340,srs_agency_header
+NC0260200,2018,cius_publication_annual,6,HOPE MILLS,local_police,18030.0,051,32640,srs_agency_header
+NC0280300,2018,cius_publication_annual,6,NAGS HEAD,local_police,3218.0,055,45880,srs_agency_header
+NC0280500,2018,cius_publication_annual,6,KITTY HAWK,local_police,3813.0,055,36060,srs_agency_header
+NC0280700,2018,cius_publication_annual,6,DUCK,local_police,770.0,055,18060,srs_agency_header
+NC0290100,2018,cius_publication_annual,6,LEXINGTON,local_police,19899.0,057,38060,srs_agency_header
+NC0290200,2018,cius_publication_annual,6,THOMASVILLE,local_police,27525.0,057,67420,srs_agency_header
+NC0300100,2018,cius_publication_annual,6,MOCKSVILLE,local_police,6222.0,059,43720,srs_agency_header
+NC0320100,2018,cius_publication_annual,6,DURHAM,local_police,300208.0,063,19000,srs_agency_header
+NC0320300,2018,cius_publication_annual,6,DUKE UNIVERSITY,special_jurisdiction,,063,19000,srs_agency_header
+NC0330100,2018,cius_publication_annual,6,ROCKY MOUNT,local_police,54223.0,127,57500,srs_agency_header
+NC0340100,2018,cius_publication_annual,6,KERNERSVILLE,local_police,28522.0,067,35600,srs_agency_header
+NC0350300,2018,cius_publication_annual,6,YOUNGSVILLE,local_police,2368.0,069,76200,srs_agency_header
+NC0360100,2018,cius_publication_annual,6,BELMONT,local_police,15672.0,071,04840,srs_agency_header
+NC0360600,2018,cius_publication_annual,6,GASTONIA,local_police,85112.0,071,25580,srs_agency_header
+NC0360700,2018,cius_publication_annual,6,STANLEY,local_police,4095.0,071,64500,srs_agency_header
+NC0360900,2018,cius_publication_annual,6,MOUNT HOLLY,local_police,18581.0,071,44960,srs_agency_header
+NC0390100,2018,cius_publication_annual,6,OXFORD,local_police,9032.0,077,49800,srs_agency_header
+NC0390200,2018,cius_publication_annual,6,BUTNER,local_police,8618.0,077,09360,srs_agency_header
+NC0390300,2018,cius_publication_annual,6,CREEDMOOR,local_police,5095.0,077,15320,srs_agency_header
+NC0400200,2018,cius_publication_annual,6,SNOW HILL,local_police,1532.0,079,62760,srs_agency_header
+NC0410100,2018,cius_publication_annual,6,GIBSONVILLE,local_police,9619.0,081,25980,srs_agency_header
+NC0410200,2018,cius_publication_annual,6,GREENSBORO,local_police,304306.0,081,28000,srs_agency_header
+NC0410300,2018,cius_publication_annual,6,HIGH POINT,local_police,117629.0,081,31400,srs_agency_header
+NC0420300,2018,cius_publication_annual,6,SCOTLAND NECK,local_police,1880.0,083,59780,srs_agency_header
+NC0430400,2018,cius_publication_annual,6,LILLINGTON,local_police,4648.0,085,38220,srs_agency_header
+NC0440200,2018,cius_publication_annual,6,WAYNESVILLE,local_police,10813.0,087,71500,srs_agency_header
+NC0450300,2018,cius_publication_annual,6,FLETCHER,local_police,8573.0,089,23760,srs_agency_header
+NC0460200,2018,cius_publication_annual,6,MURFREESBORO,local_police,3072.0,091,45640,srs_agency_header
+NC0470100,2018,cius_publication_annual,6,RAEFORD,local_police,5001.0,093,54580,srs_agency_header
+NC0490100,2018,cius_publication_annual,6,MOORESVILLE,local_police,54823.0,097,44220,srs_agency_header
+NC0510100,2018,cius_publication_annual,6,SMITHFIELD,local_police,13581.0,101,62520,srs_agency_header
+NC0510200,2018,cius_publication_annual,6,BENSON,local_police,4542.0,101,05040,srs_agency_header
+NC0510300,2018,cius_publication_annual,6,CLAYTON,local_police,31494.0,101,12860,srs_agency_header
+NC0510400,2018,cius_publication_annual,6,FOUR OAKS,local_police,2624.0,101,24520,srs_agency_header
+NC0510800,2018,cius_publication_annual,6,SELMA,local_police,7454.0,101,60320,srs_agency_header
+NC0520200,2018,cius_publication_annual,6,MAYSVILLE,local_police,955.0,103,42100,srs_agency_header
+NC0530100,2018,cius_publication_annual,6,SANFORD,local_police,32687.0,105,59280,srs_agency_header
+NC0540100,2018,cius_publication_annual,6,KINSTON,local_police,20341.0,107,35920,srs_agency_header
+NC0570200,2018,cius_publication_annual,6,HIGHLANDS,local_police,1122.0,113,31360,srs_agency_header
+NC0580300,2018,cius_publication_annual,6,MARS HILL,local_police,2276.0,115,41620,srs_agency_header
+NC0600500,2018,cius_publication_annual,6,DAVIDSON,local_police,16089.0,119,16400,srs_agency_header
+NC0600600,2018,cius_publication_annual,6,HUNTERSVILLE,local_police,65752.0,119,33120,srs_agency_header
+NC0600700,2018,cius_publication_annual,6,MATTHEWS,local_police,34438.0,119,41960,srs_agency_header
+NC0602900,2018,cius_publication_annual,6,MINT HILL,local_police,28701.0,119,43480,srs_agency_header
+NC0620100,2018,cius_publication_annual,6,TROY,local_police,3326.0,123,68520,srs_agency_header
+NC0620200,2018,cius_publication_annual,6,BISCOE,local_police,1868.0,123,06000,srs_agency_header
+NC0620400,2018,cius_publication_annual,6,MOUNT GILEAD,local_police,1181.0,123,44900,srs_agency_header
+NC0620500,2018,cius_publication_annual,6,STAR,local_police,855.0,123,64580,srs_agency_header
+NC0630100,2018,cius_publication_annual,6,ABERDEEN,local_police,9795.0,125,00160,srs_agency_header
+NC0630200,2018,cius_publication_annual,6,PINEHURST,local_police,18802.0,125,51940,srs_agency_header
+NC0630300,2018,cius_publication_annual,6,ROBBINS,local_police,1281.0,125,57000,srs_agency_header
+NC0630400,2018,cius_publication_annual,6,SOUTHERN PINES,local_police,17092.0,125,63120,srs_agency_header
+NC0630500,2018,cius_publication_annual,6,CARTHAGE,local_police,3011.0,125,10680,srs_agency_header
+NC0630600,2018,cius_publication_annual,6,PINEBLUFF,local_police,1686.0,125,51840,srs_agency_header
+NC0630800,2018,cius_publication_annual,6,WHISPERING PINES,local_police,5431.0,125,73140,srs_agency_header
+NC0650100,2018,cius_publication_annual,6,CAROLINA BEACH,local_police,6917.0,129,10500,srs_agency_header
+NC0650200,2018,cius_publication_annual,6,WILMINGTON,local_police,126759.0,129,74440,srs_agency_header
+NC0650300,2018,cius_publication_annual,6,WRIGHTSVILLE BEACH,local_police,2563.0,129,75820,srs_agency_header
+NC0670100,2018,cius_publication_annual,6,JACKSONVILLE,local_police,76130.0,133,34200,srs_agency_header
+NC0670200,2018,cius_publication_annual,6,HOLLY RIDGE,local_police,5523.0,133,32180,srs_agency_header
+NC0670300,2018,cius_publication_annual,6,RICHLANDS,local_police,2457.0,133,56360,srs_agency_header
+NC0670400,2018,cius_publication_annual,6,SWANSBORO,local_police,4273.0,133,66360,srs_agency_header
+NC0670800,2018,cius_publication_annual,6,NORTH TOPSAIL BEACH,local_police,1090.0,133,47845,srs_agency_header
+NC0680200,2018,cius_publication_annual,6,HILLSBOROUGH,local_police,9812.0,135,31620,srs_agency_header
+NC0680300,2018,cius_publication_annual,6,CARRBORO,local_police,21841.0,135,10620,srs_agency_header
+NC0700100,2018,cius_publication_annual,6,ELIZABETH CITY,local_police,19064.0,139,20580,srs_agency_header
+NC0710100,2018,cius_publication_annual,6,BURGAW,local_police,4182.0,141,08960,srs_agency_header
+NC0710300,2018,cius_publication_annual,6,SURF CITY,local_police,5120.0,141,66040,srs_agency_header
+NC0730100,2018,cius_publication_annual,6,ROXBORO,local_police,8387.0,145,58160,srs_agency_header
+NC0740100,2018,cius_publication_annual,6,AYDEN,local_police,5174.0,147,02840,srs_agency_header
+NC0740200,2018,cius_publication_annual,6,FARMVILLE,local_police,4775.0,147,22820,srs_agency_header
+NC0740300,2018,cius_publication_annual,6,GREENVILLE,local_police,95815.0,147,28080,srs_agency_header
+NC0740800,2018,cius_publication_annual,6,WINTERVILLE,local_police,10926.0,147,75060,srs_agency_header
+NC0740900,2018,cius_publication_annual,6,EAST CAROLINA UNIVERSITY,special_jurisdiction,0.0,147,28080,srs_agency_header
+NC0750300,2018,cius_publication_annual,6,COLUMBUS,local_police,1109.0,149,13980,srs_agency_header
+NC0760100,2018,cius_publication_annual,6,ASHEBORO,local_police,27896.0,151,02080,srs_agency_header
+NC0760400,2018,cius_publication_annual,6,RAMSEUR,local_police,1790.0,151,55040,srs_agency_header
+NC0760500,2018,cius_publication_annual,6,RANDLEMAN,local_police,4697.0,151,55080,srs_agency_header
+NC0760600,2018,cius_publication_annual,6,ARCHDALE,local_police,12143.0,151,01720,srs_agency_header
+NC0770300,2018,cius_publication_annual,6,ROCKINGHAM,local_police,8913.0,153,57260,srs_agency_header
+NC0780400,2018,cius_publication_annual,6,ST PAULS,local_police,2344.0,155,58720,srs_agency_header
+NC0780800,2018,cius_publication_annual,6,ROWLAND,local_police,1010.0,155,58140,srs_agency_header
+NC0790100,2018,cius_publication_annual,6,EDEN,local_police,15307.0,157,20080,srs_agency_header
+NC0790300,2018,cius_publication_annual,6,MADISON,local_police,2165.0,157,40560,srs_agency_header
+NC0790400,2018,cius_publication_annual,6,MAYODAN,local_police,2464.0,157,42060,srs_agency_header
+NC0790500,2018,cius_publication_annual,6,REIDSVILLE,local_police,14584.0,157,55900,srs_agency_header
+NC0800100,2018,cius_publication_annual,6,CHINA GROVE,local_police,4612.0,159,12480,srs_agency_header
+NC0800500,2018,cius_publication_annual,6,SALISBURY,local_police,36564.0,159,58860,srs_agency_header
+NC0800600,2018,cius_publication_annual,6,ROCKWELL,local_police,2391.0,159,57340,srs_agency_header
+NC0800700,2018,cius_publication_annual,6,SPENCER,local_police,3372.0,159,63760,srs_agency_header
+NC0800900,2018,cius_publication_annual,6,CLEVELAND,local_police,888.0,159,13000,srs_agency_header
+NC0810200,2018,cius_publication_annual,6,RUTHERFORDTON,local_police,4081.0,161,58460,srs_agency_header
+NC0810400,2018,cius_publication_annual,6,LAKE LURE,local_police,1393.0,161,36500,srs_agency_header
+NC0840100,2018,cius_publication_annual,6,ALBEMARLE,local_police,17126.0,167,00680,srs_agency_header
+NC0850300,2018,cius_publication_annual,6,KING,local_police,7680.0,169,35760,srs_agency_header
+NC0860300,2018,cius_publication_annual,6,PILOT MOUNTAIN,local_police,1432.0,171,51820,srs_agency_header
+NC0880100,2018,cius_publication_annual,6,BREVARD,local_police,7954.0,175,07720,srs_agency_header
+NC0900100,2018,cius_publication_annual,6,MARSHVILLE,local_police,2875.0,179,41640,srs_agency_header
+NC0900400,2018,cius_publication_annual,6,WINGATE,local_police,4873.0,179,74760,srs_agency_header
+NC0910100,2018,cius_publication_annual,6,HENDERSON,local_police,15067.0,181,30660,srs_agency_header
+NC0920200,2018,cius_publication_annual,6,APEX,local_police,74774.0,183,01520,srs_agency_header
+NC0920300,2018,cius_publication_annual,6,CARY,local_police,182878.0,183,10740,srs_agency_header
+NC0920700,2018,cius_publication_annual,6,WAKE FOREST,local_police,55872.0,183,70540,srs_agency_header
+NC0921700,2018,cius_publication_annual,6,HOLLY SPRINGS,local_police,48199.0,183,32260,srs_agency_header
+NC0923500,2018,cius_publication_annual,6,MEREDITH COLLEGE,special_jurisdiction,0.0,183,,fbi_cde_agency_roster
+NC0940100,2018,cius_publication_annual,6,PLYMOUTH,local_police,3448.0,187,53040,srs_agency_header
+NC0950100,2018,cius_publication_annual,6,BOONE,local_police,20321.0,189,07080,srs_agency_header
+NC0950200,2018,cius_publication_annual,6,BLOWING ROCK,local_police,1399.0,189,06500,srs_agency_header
+NC0970100,2018,cius_publication_annual,6,NORTH WILKESBORO,local_police,4323.0,193,47880,srs_agency_header
+NC0970200,2018,cius_publication_annual,6,WILKESBORO,local_police,3652.0,193,74020,srs_agency_header
+NC0980100,2018,cius_publication_annual,6,WILSON,local_police,49507.0,195,74540,srs_agency_header
+NC0990200,2018,cius_publication_annual,6,YADKINVILLE,local_police,3025.0,197,75960,srs_agency_header
+NY0514100,2018,cius_publication_annual,6,NISSEQUOGUE VILLAGE,local_police,1751.0,103,51286,srs_agency_header
+OH0020200,2018,cius_publication_annual,6,DELPHOS,local_police,7077.0,003,21602,srs_agency_header
+OH0020200,2019,cius_publication_annual,6,DELPHOS,local_police,7077.0,003,21602,srs_agency_header
+OH0181000,2018,cius_publication_annual,6,BROOKLYN,local_police,11043.0,035,09246,srs_agency_header
+OH0182300,2018,cius_publication_annual,6,HIGHLAND HEIGHTS,local_police,8554.0,035,35252,srs_agency_header
+OH0280300,2019,cius_publication_annual,6,BURTON,local_police,1454.0,055,10436,srs_agency_header
+OH0280500,2018,cius_publication_annual,6,MIDDLEFIELD,local_police,2755.0,055,49700,srs_agency_header
+OH0280500,2019,cius_publication_annual,6,MIDDLEFIELD,local_police,2755.0,055,49700,srs_agency_header
+OH0300100,2018,cius_publication_annual,6,CAMBRIDGE,local_police,10369.0,059,10996,srs_agency_header
+OH0300100,2019,cius_publication_annual,6,CAMBRIDGE,local_police,10369.0,059,10996,srs_agency_header
+OH0430400,2019,cius_publication_annual,6,KIRTLAND HILLS,local_police,691.0,085,40670,srs_agency_header
+OH0720300,2018,cius_publication_annual,6,FREMONT,local_police,16125.0,143,28826,srs_agency_header
+OH0720300,2019,cius_publication_annual,6,FREMONT,local_police,16125.0,143,28826,srs_agency_header
+OH0770800,2018,cius_publication_annual,6,MOGADORE,local_police,3832.0,153,51058,srs_agency_header
+OH0770800,2019,cius_publication_annual,6,MOGADORE,local_police,3832.0,153,51058,srs_agency_header
+OH0790300,2018,cius_publication_annual,6,NEWCOMERSTOWN,local_police,3756.0,157,54432,srs_agency_header
+OH0790300,2019,cius_publication_annual,6,NEWCOMERSTOWN,local_police,3756.0,157,54432,srs_agency_header
+OR0150100,2019,cius_publication_annual,6,ASHLAND,local_police,21797.0,029,03050,srs_agency_header
+SC0020100,2018,cius_publication_annual,6,AIKEN,local_police,33221.0,003,00550,srs_agency_header
+SC0150100,2018,cius_publication_annual,6,WALTERBORO,local_police,5465.0,029,74275,srs_agency_header
+SC0260700,2018,cius_publication_annual,6,NORTH MYRTLE BEACH,local_police,20790.0,051,51280,srs_agency_header
+TX0610800,2018,cius_publication_annual,6,SANGER,local_police,10153.0,121,65408,srs_agency_header
+TX0890100,2018,cius_publication_annual,6,GONZALES,local_police,7687.0,177,30116,srs_agency_header
+TX1020100,2018,cius_publication_annual,6,HALLSVILLE,local_police,4997.0,203,31904,srs_agency_header
+TX1020200,2019,cius_publication_annual,6,MARSHALL,local_police,24382.0,203,46776,srs_agency_header
+TX1130100,2018,cius_publication_annual,6,CROCKETT,local_police,6484.0,225,17744,srs_agency_header
+VA1110000,2018,cius_publication_annual,6,HAMPTON,local_police,138843.0,650,35000,srs_agency_header

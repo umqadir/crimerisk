@@ -1,0 +1,152 @@
+{
+  "classification_csv": "state/modeling/burglary_exposure_duplicate_feature_classification_2024.csv",
+  "counts_by_classification": {
+    "mass-duplicate": 75,
+    "residual": 221
+  },
+  "counts_by_group_and_classification": [
+    {
+      "classification": "mass-duplicate",
+      "count": 42,
+      "feature_group": "activity_exposure_commercial"
+    },
+    {
+      "classification": "residual",
+      "count": 25,
+      "feature_group": "activity_exposure_commercial"
+    },
+    {
+      "classification": "residual",
+      "count": 11,
+      "feature_group": "commute_transport_exposure"
+    },
+    {
+      "classification": "residual",
+      "count": 12,
+      "feature_group": "digital_access_proxy"
+    },
+    {
+      "classification": "residual",
+      "count": 5,
+      "feature_group": "education_attainment"
+    },
+    {
+      "classification": "residual",
+      "count": 4,
+      "feature_group": "employment_labor"
+    },
+    {
+      "classification": "residual",
+      "count": 13,
+      "feature_group": "familial_status_composition"
+    },
+    {
+      "classification": "residual",
+      "count": 4,
+      "feature_group": "household_composition_other"
+    },
+    {
+      "classification": "residual",
+      "count": 26,
+      "feature_group": "housing_tenure_overcrowding"
+    },
+    {
+      "classification": "residual",
+      "count": 9,
+      "feature_group": "income_wealth"
+    },
+    {
+      "classification": "residual",
+      "count": 5,
+      "feature_group": "institutional_anchors"
+    },
+    {
+      "classification": "mass-duplicate",
+      "count": 6,
+      "feature_group": "land_cover"
+    },
+    {
+      "classification": "residual",
+      "count": 24,
+      "feature_group": "land_cover"
+    },
+    {
+      "classification": "residual",
+      "count": 3,
+      "feature_group": "lodes_age"
+    },
+    {
+      "classification": "residual",
+      "count": 3,
+      "feature_group": "lodes_earnings"
+    },
+    {
+      "classification": "residual",
+      "count": 4,
+      "feature_group": "lodes_education"
+    },
+    {
+      "classification": "residual",
+      "count": 20,
+      "feature_group": "lodes_industry_activity"
+    },
+    {
+      "classification": "residual",
+      "count": 1,
+      "feature_group": "national_origin_proxy"
+    },
+    {
+      "classification": "residual",
+      "count": 1,
+      "feature_group": "other_covariate"
+    },
+    {
+      "classification": "mass-duplicate",
+      "count": 6,
+      "feature_group": "population_density"
+    },
+    {
+      "classification": "residual",
+      "count": 2,
+      "feature_group": "population_density"
+    },
+    {
+      "classification": "residual",
+      "count": 2,
+      "feature_group": "poverty_snap"
+    },
+    {
+      "classification": "residual",
+      "count": 4,
+      "feature_group": "rent_burden"
+    },
+    {
+      "classification": "residual",
+      "count": 4,
+      "feature_group": "residential_mobility_domestic"
+    },
+    {
+      "classification": "mass-duplicate",
+      "count": 21,
+      "feature_group": "roads_transport"
+    },
+    {
+      "classification": "residual",
+      "count": 12,
+      "feature_group": "roads_transport"
+    },
+    {
+      "classification": "residual",
+      "count": 13,
+      "feature_group": "sex_composition"
+    },
+    {
+      "classification": "residual",
+      "count": 14,
+      "feature_group": "vehicle_availability"
+    }
+  ],
+  "created_at_utc": "2026-07-02T16:28:20.977633+00:00",
+  "feature_count": 296,
+  "rule": "Drop burglary within-share features that measure raw mass/volume of residential premises, workplace/commercial premises/activity, developed-land mass, or road/traffic volume already represented by D_burglary; keep composition, type/mix, accessibility, average intensity, and land-use/network character."
+}

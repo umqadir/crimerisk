@@ -1,0 +1,41 @@
+{
+  "murder": {
+    "bg_index_non_null": 0,
+    "bg_rate_non_null": 0,
+    "bg_ci_fields_non_null": {
+      "index_murder_primary_ci95_lower": 0,
+      "index_murder_primary_ci95_upper": 0,
+      "index_murder_primary_ci95_width": 0,
+      "index_murder_primary_ci95_width_ratio": 0,
+      "rate_murder_primary_ci95_lower": 0,
+      "rate_murder_primary_ci95_upper": 0
+    },
+    "bg_expected_count_non_null": 238193,
+    "bg_expected_count_sum": 17033.27932877052,
+    "bg_resident_index_non_null": 0,
+    "tract_index_non_null": 82568,
+    "tract_expected_count_sum": 17033.279328770524,
+    "bg_vs_tract_count_abs_diff": 3.637978807091713e-12,
+    "bg_reliability_tier_retained": 238193
+  },
+  "rape": {
+    "bg_index_non_null": 0,
+    "bg_rate_non_null": 0,
+    "bg_ci_fields_non_null": {
+      "index_rape_primary_ci95_lower": 0,
+      "index_rape_primary_ci95_upper": 0,
+      "index_rape_primary_ci95_width": 0,
+      "index_rape_primary_ci95_width_ratio": 0,
+      "rate_rape_primary_ci95_lower": 0,
+      "rate_rape_primary_ci95_upper": 0
+    },
+    "bg_expected_count_non_null": 238193,
+    "bg_expected_count_sum": 129499.2154618188,
+    "bg_resident_index_non_null": 0,
+    "tract_index_non_null": 82568,
+    "tract_expected_count_sum": 129499.2154618188,
+    "bg_vs_tract_count_abs_diff": 0.0,
+    "bg_reliability_tier_retained": 238193
+  },
+  "_note": "RARE_OFFENSE_TRACT_SUPPORT nulls the BG murder/rape index+rate point fields and their CIs (allocation.py _rare_offense_published_point_fields). The RESIDENT index for those offenses is checked separately here -- if it is non-null at BG the policy has a hole."
+}

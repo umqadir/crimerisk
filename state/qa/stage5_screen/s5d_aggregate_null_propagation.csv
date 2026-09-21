@@ -1,0 +1,13 @@
+level,field,n,n_null,pct_null,expected_basis,n_component_null,n_field_null_but_no_component_null,n_component_null_but_field_published
+block_group,index_total_primary_event_weighted,238193,3230,1.356,all seven primary indices (BG: rare terms substituted from parent tract),3230.0,0.0,0.0
+block_group,index_total_equal_offense,238193,3230,1.356,all seven primary indices (BG: rare terms substituted from parent tract),3230.0,0.0,0.0
+block_group,index_total_harm,238193,2943,1.2356,person-exposure publishable rule only (independent of component indices),,,
+block_group,index_total_part1_resident,238193,3305,1.3875,all seven resident indices,238193.0,0.0,234888.0
+block_group,index_personal_part1_resident,238193,3033,1.2733,four personal resident indices,238193.0,0.0,235160.0
+block_group,index_property_part1_resident,238193,3305,1.3875,three property resident indices,3305.0,0.0,0.0
+tract,index_total_primary_event_weighted,83776,1213,1.4479,all seven primary indices (BG: rare terms substituted from parent tract),1213.0,0.0,0.0
+tract,index_total_equal_offense,83776,1213,1.4479,all seven primary indices (BG: rare terms substituted from parent tract),1213.0,0.0,0.0
+tract,index_total_harm,83776,1208,1.4419,person-exposure publishable rule only (independent of component indices),,,
+tract,index_total_part1_resident,83776,1222,1.4587,all seven resident indices,1222.0,0.0,0.0
+tract,index_personal_part1_resident,83776,1218,1.4539,four personal resident indices,1218.0,0.0,0.0
+tract,index_property_part1_resident,83776,1222,1.4587,three property resident indices,1222.0,0.0,0.0

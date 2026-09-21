@@ -1,0 +1,280 @@
+{
+ "final_rulings_loaded": 2,
+ "final_verdicts": {
+  "same_agency_merge": 1,
+  "distinct_agencies": 1
+ },
+ "final_downstream": {
+  "merge_dedupe": 1,
+  "keep_all_oris": 1
+ },
+ "superseded_by_final": [
+  "a3-CO-durango-vs-fort-lewis-college"
+ ],
+ "final_partial_overlap": [],
+ "ori_scope_narrowed": [
+  {
+   "case_id": "c-CA0409945-chp-san-luis-obispo",
+   "case_class": "token_reporter",
+   "arm": "gold",
+   "verdict": "token_reporting_flag",
+   "kept": [
+    "CA0409945"
+   ],
+   "released": [
+    "CA0169940",
+    "CA0479945"
+   ],
+   "released_to": [
+    [
+     "c-CA0169940-highway-patrol-hanford-area"
+    ],
+    [
+     "c-CA0479945-highway-patrol-yreka-area"
+    ]
+   ]
+  }
+ ],
+ "ori_scope_narrow_refused": [],
+ "released_bundle_stance_conflicts": [
+  {
+   "ori": "CA0479945",
+   "bundle": "c-CA0409945-chp-san-luis-obispo",
+   "bundle_arm": "gold",
+   "bundle_verdict": "token_reporting_flag",
+   "bundle_stance": "REJECT",
+   "solo": "c-CA0479945-highway-patrol-yreka-area",
+   "solo_arm": "sol",
+   "solo_verdict": "genuine_low_crime",
+   "solo_stance": "ACCEPT"
+  }
+ ],
+ "wholesale_kind": "cleanup_explicit_escalate",
+ "wholesale_max_mass": 1.0,
+ "wholesale_action": "retain_current_flag_review",
+ "wholesale_applied": 13,
+ "wholesale_rows": [
+  {
+   "case_id": "b2-GA0290900-athens-technical-college",
+   "registry": "zeros",
+   "state": "GA",
+   "oris": "GA0290900",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "b2-IL0501600-tonica",
+   "registry": "zeros",
+   "state": "IL",
+   "oris": "IL0501600",
+   "mass_hint": "1.0"
+  },
+  {
+   "case_id": "b2-KY1140400-woodburn",
+   "registry": "zeros",
+   "state": "KY",
+   "oris": "KY1140400",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "b2-LA0190300-wilson",
+   "registry": "zeros",
+   "state": "LA",
+   "oris": "LA0190300",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "b2-MN0010200-mcgregor",
+   "registry": "zeros",
+   "state": "MN",
+   "oris": "MN0010200",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "b2-MN0340200-atwater",
+   "registry": "zeros",
+   "state": "MN",
+   "oris": "MN0340200",
+   "mass_hint": "1.0"
+  },
+  {
+   "case_id": "b2-SC0019E00-erskine-college",
+   "registry": "zeros",
+   "state": "SC",
+   "oris": "SC0019E00",
+   "mass_hint": "1.0"
+  },
+  {
+   "case_id": "b2-TX0191400-texarkana-college",
+   "registry": "zeros",
+   "state": "TX",
+   "oris": "TX0191400",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "b2-TX0201700-alvin-community-college",
+   "registry": "zeros",
+   "state": "TX",
+   "oris": "TX0201700",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "x-IA0060400-urbana",
+   "registry": "zeros",
+   "state": "IA",
+   "oris": "IA0060400",
+   "mass_hint": "1.0"
+  },
+  {
+   "case_id": "x-IL0601000-livingston",
+   "registry": "zeros",
+   "state": "IL",
+   "oris": "IL0601000",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "x-KY0520400-campbellsburg",
+   "registry": "zeros",
+   "state": "KY",
+   "oris": "KY0520400",
+   "mass_hint": "0.0"
+  },
+  {
+   "case_id": "x-KY0960200-butler",
+   "registry": "zeros",
+   "state": "KY",
+   "oris": "KY0960200",
+   "mass_hint": "0.0"
+  }
+ ],
+ "above_mass_action": "retain_current_flag_review",
+ "above_mass_applied": 4,
+ "above_mass_rows": [
+  {
+   "case_id": "b2-IL0451900-waubonsee-comm-college",
+   "registry": "zeros",
+   "state": "IL",
+   "oris": "IL0451900",
+   "mass_hint": "4.5",
+   "note": "Supervisor disposition: retain the current published value and carry flag_review. The reviewer's unclear_escalate verdict remains visible; only the disposition is supervised."
+  },
+  {
+   "case_id": "b2-SC0231900-bob-jones-university",
+   "registry": "zeros",
+   "state": "SC",
+   "oris": "SC0231900",
+   "mass_hint": "6.5",
+   "note": "Supervisor disposition: retain the current published value and carry flag_review. The reviewer's unclear_escalate verdict remains visible; only the disposition is supervised."
+  },
+  {
+   "case_id": "c-DCVA00000-united-states-department",
+   "registry": "tokens",
+   "state": "DC",
+   "oris": "DCVA00000",
+   "mass_hint": "705.0",
+   "note": "Supervisor disposition: retain 291 unuplifted pending FBI ORI master/facility mapping; carry flag_review. The reviewer's unclear_escalate verdict remains visible; only the disposition is supervised."
+  },
+  {
+   "case_id": "x-MN0110700-pillager",
+   "registry": "zeros",
+   "state": "MN",
+   "oris": "MN0110700",
+   "mass_hint": "8.5",
+   "note": "Supervisor disposition: retain the current published value and carry flag_review. The reviewer's unclear_escalate verdict remains visible; only the disposition is supervised."
+  }
+ ],
+ "ledger_rows": 1372,
+ "ledger_active": 806,
+ "registry_totals": {
+  "twins": 106,
+  "zeros": 262,
+  "tokens": 431
+ },
+ "registry_final_rows": {
+  "twins": 2,
+  "zeros": 0,
+  "tokens": 0
+ },
+ "twins_by_action": {
+  "keep_all_oris": 80,
+  "merge_dedupe": 26
+ },
+ "twin_merge_cases": 26,
+ "twin_merge_oris_dropped": 29,
+ "zeros_by_action": {
+  "treat_missing_repair": 124,
+  "retain_zero": 119,
+  "retain_current_flag_review": 16,
+  "partial_year_uplift": 3
+ },
+ "tokens_by_action": {
+  "treat_missing_repair": 114,
+  "partial_year_uplift": 159,
+  "accept_observed": 108,
+  "flag_review": 45,
+  "retain_current_flag_review": 1,
+  "retain_zero": 4
+ },
+ "needs_review": {
+  "twins": 0,
+  "zeros": 23,
+  "tokens": 2
+ },
+ "escalations_pre_final": 25,
+ "escalations_retired": 20,
+ "escalations_retired_by_kind": {
+  "cleanup_explicit_escalate/resolved_by_supervisor_above_mass_disposition": 4,
+  "cleanup_explicit_escalate/resolved_by_supervisor_wholesale_ruling": 13,
+  "partial_ori_overlap_not_superseded/resolved_by_ori_scope_narrowing": 1,
+  "residue_case_unruled/resolved_by_final_ruling": 2
+ },
+ "escalations_open": 5,
+ "escalations_open_by_kind": {
+  "cleanup_replicate_conflict": 4,
+  "residue_replicate_conflict": 1
+ },
+ "escalations_open_rows": [
+  {
+   "case_id": "x-MN0610200-starbuck",
+   "kind": "cleanup_replicate_conflict",
+   "oris": "MN0610200",
+   "mass_hint": "28.5",
+   "verdict": "misread_missing"
+  },
+  {
+   "case_id": "x-KY0110200-junction-city",
+   "kind": "cleanup_replicate_conflict",
+   "oris": "KY0110200",
+   "mass_hint": "12.5",
+   "verdict": "misread_missing"
+  },
+  {
+   "case_id": "x-OH0070300-bridgeport",
+   "kind": "cleanup_replicate_conflict",
+   "oris": "OH0070300",
+   "mass_hint": "11.0",
+   "verdict": "misread_missing"
+  },
+  {
+   "case_id": "x-KY1130300-uniontown",
+   "kind": "cleanup_replicate_conflict",
+   "oris": "KY1130300",
+   "mass_hint": "10.0",
+   "verdict": "misread_missing"
+  },
+  {
+   "case_id": "r-NY0502900-wayland-village",
+   "kind": "residue_replicate_conflict",
+   "oris": "NY0502900",
+   "mass_hint": "4.5",
+   "verdict": "misread_missing"
+  }
+ ],
+ "oris_multi_live_zero_token_ruling": {},
+ "oris_multi_live_already_queued": [],
+ "twin_pairs_live": 364,
+ "twin_pairs_multi_ruled": {},
+ "twin_pairs_merge_distinct_split": {},
+ "cross_class_contradictions_unqueued": [],
+ "cross_class_contradictions_queued": [],
+ "problems": []
+}

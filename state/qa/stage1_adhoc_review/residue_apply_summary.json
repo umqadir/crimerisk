@@ -1,0 +1,1160 @@
+{
+ "residue_rulings_loaded": 45,
+ "residue_cases_ruled": 37,
+ "residue_cases_dispatched": 39,
+ "residue_cases_unruled": [
+  "a2-CA04099-highway-patrol-templeton",
+  "a3-CO-durango-vs-fort-lewis-college"
+ ],
+ "replicate_pairs": 8,
+ "replicate_token_only_conflicts": [
+  "r-NY0192200-coxsackie-village",
+  "r-NY0353600-tuxedo-park-village"
+ ],
+ "replicate_action_conflicts": [
+  "r-NY0502900-wayland-village"
+ ],
+ "verdicts": {
+  "misread_missing": 35,
+  "genuine_zero_year": 1,
+  "genuine_low_crime": 1
+ },
+ "confidence": {
+  "high": 25,
+  "medium": 12
+ },
+ "downstream": {
+  "treat_missing_repair": 35,
+  "retain_zero": 1,
+  "accept_observed": 1
+ },
+ "by_residue_reason": {
+  "merged_double_framing": 34,
+  "qc_rerule": 2,
+  "no_disposition": 1
+ },
+ "routed_to": {
+  "zeros": 36,
+  "tokens": 1
+ },
+ "prior_rows": 1333,
+ "superseded_by_residue": 70,
+ "dedupe_pairs": 54,
+ "dedupe_dropped": 54,
+ "dedupe_by_subtype": {
+  "both_reject_same_repair": 45,
+  "both_accept": 9
+ },
+ "dedupe_kept_arm": {
+  "opus": 29,
+  "sol": 25
+ },
+ "dedupe_dropped_arm": {
+  "gold": 1,
+  "sol": 5,
+  "opus": 7,
+  "luna": 41
+ },
+ "dedupe_actions_identical": 45,
+ "dedupe_skipped": [],
+ "dedupe_log": [
+  {
+   "ori": "PA0100400",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0100400-zelienople",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0100400-zelienople"
+   ],
+   "dropped_arms": [
+    "gold"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0032200",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-PA0032200-east-franklin-township",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-PA0032200-east-franklin-township"
+   ],
+   "dropped_arms": [
+    "sol"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "IL0170200",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-IL0170200-palestine",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-IL0170200-palestine"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0021H00",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-PA0021H00-crescent-township",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-PA0021H00-crescent-township"
+   ],
+   "dropped_arms": [
+    "sol"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "VT0141000",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-VT0141000-norwich",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-VT0141000-norwich"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "MN0120200",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-MN0120200-montevideo",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-MN0120200-montevideo"
+   ],
+   "dropped_arms": [
+    "sol"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "AL0530100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-AL0530100-marion",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-AL0530100-marion"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "OK0340800",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-OK0340800-ringling",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-OK0340800-ringling"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0071000",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-PA0071000-williamsburg",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-PA0071000-williamsburg"
+   ],
+   "dropped_arms": [
+    "sol"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "SD0290100",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-SD0290100-miller",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "medium",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-SD0290100-miller"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0420800",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0420800-smethport",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0420800-smethport"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "MN0540100",
+   "subtype": "both_reject_same_repair",
+   "kept": "b2-MN0540100-ada",
+   "kept_class": "published_zero",
+   "kept_arm": "opus",
+   "kept_confidence": "medium",
+   "kept_verdict": "misread_missing",
+   "dropped": [
+    "c-MN0540100-ada"
+   ],
+   "dropped_arms": [
+    "sol"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "CA0470700",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-CA0470700-tulelake",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-CA0470700-tulelake"
+   ],
+   "dropped_arms": [
+    "opus"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0195100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0195100-durham-town",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0195100-durham-town"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0095200",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0095200-ivyland",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0095200-ivyland"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0200500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0200500-cochranton",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0200500-cochranton"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0221800",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0221800-wiconisco-township",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0221800-wiconisco-township"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0482100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0482100-portland",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0482100-portland"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0092500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0092500-hulmeville",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0092500-hulmeville"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0543400",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0543400-ryan-township",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0543400-ryan-township"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0222300",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0222300-brownville-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0222300-brownville-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0094100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0094100-langhorne-manor",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0094100-langhorne-manor"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0294700",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0294700-centre-island-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0294700-centre-island-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0032500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0032500-worthington",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0032500-worthington"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0063200",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0063200-bernville",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0063200-bernville"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0131600",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0131600-weissport",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0131600-weissport"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0221600",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0221600-halifax",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0221600-halifax"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0261100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0261100-everson",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0261100-everson"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0371800",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0371800-new-beaver",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0371800-new-beaver"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0635000",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0635000-west-pike-run",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0635000-west-pike-run"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0031100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0031100-rural-valley",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0031100-rural-valley"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0544500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0544500-walker-township",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0544500-walker-township"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "GA1100400",
+   "subtype": "both_accept",
+   "kept": "c-GA1100400-braswell",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "medium",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-GA1100400-braswell"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "KS0160400",
+   "subtype": "both_accept",
+   "kept": "c-KS0160400-waverly",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "medium",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-KS0160400-waverly"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "KS0440300",
+   "subtype": "both_accept",
+   "kept": "c-KS0440300-meriden",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "low",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-KS0440300-meriden"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "KS0720100",
+   "subtype": "both_accept",
+   "kept": "c-KS0720100-delphos",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "medium",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-KS0720100-delphos"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "KY1000300",
+   "subtype": "both_accept",
+   "kept": "c-KY1000300-eubank",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-KY1000300-eubank"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "MO0270400",
+   "subtype": "both_accept",
+   "kept": "c-MO0270400-prairie-home",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-MO0270400-prairie-home"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "MO0540700",
+   "subtype": "both_accept",
+   "kept": "c-MO0540700-waverly",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "medium",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-MO0540700-waverly"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "MO0830300",
+   "subtype": "both_accept",
+   "kept": "c-MO0830300-platte-woods",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-MO0830300-platte-woods"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "MO1050300",
+   "subtype": "both_accept",
+   "kept": "c-MO1050300-reeds-spring",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "medium",
+   "kept_verdict": "genuine_low_crime",
+   "dropped": [
+    "b2-MO1050300-reeds-spring"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 0,
+   "actions": [
+    "accept_observed",
+    "retain_zero"
+   ]
+  },
+  {
+   "ori": "NY0082000",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0082000-afton-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0082000-afton-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0182500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0182500-corfu-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0182500-corfu-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0222500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0222500-glen-park-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0222500-glen-park-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0503400",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0503400-north-hornell-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "medium",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0503400-north-hornell-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "NY0582100",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-NY0582100-wolcott-village",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "medium",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-NY0582100-wolcott-village"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0031000",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0031000-parks-township",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0031000-parks-township"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0032000",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0032000-west-kittanning",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0032000-west-kittanning"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0044900",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0044900-south-heights",
+   "kept_class": "token_reporter",
+   "kept_arm": "sol",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0044900-south-heights"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0131200",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0131200-beaver-meadows",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0131200-beaver-meadows"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0320200",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0320200-homer-city",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0320200-homer-city"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0320500",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0320500-cherry-tree",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0320500-cherry-tree"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0351700",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0351700-mayfield",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0351700-mayfield"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  },
+  {
+   "ori": "PA0544200",
+   "subtype": "both_reject_same_repair",
+   "kept": "c-PA0544200-north-union-township",
+   "kept_class": "token_reporter",
+   "kept_arm": "opus",
+   "kept_confidence": "high",
+   "kept_verdict": "token_reporting_flag",
+   "dropped": [
+    "b2-PA0544200-north-union-township"
+   ],
+   "dropped_arms": [
+    "luna"
+   ],
+   "actions_identical": 1,
+   "actions": [
+    "treat_missing_repair"
+   ]
+  }
+ ],
+ "ledger_rows": 1370,
+ "ledger_active": 805,
+ "registry_totals": {
+  "twins": 105,
+  "zeros": 262,
+  "tokens": 431
+ },
+ "registry_residue_rows": {
+  "twins": 0,
+  "zeros": 36,
+  "tokens": 1
+ },
+ "escalations_pre_residue": 115,
+ "escalations_retired": 91,
+ "escalations_retired_by_kind": {
+  "qc_flagged_for_reread/resolved_by_residue_ruling": 2,
+  "same_ori_double_framing_outside_cleanup/resolved_by_mechanical_dedupe": 54,
+  "same_ori_double_framing_outside_cleanup/resolved_by_residue_ruling": 34,
+  "unadjudicated_no_zero_token_ruling/resolved_by_residue_ruling": 1
+ },
+ "escalations_open": 25,
+ "escalations_open_by_kind": {
+  "cleanup_explicit_escalate": 17,
+  "cleanup_replicate_conflict": 4,
+  "partial_ori_overlap_not_superseded": 1,
+  "residue_case_unruled": 2,
+  "residue_replicate_conflict": 1
+ },
+ "oris_multi_live_zero_token_ruling": {
+  "zero_token:CA0169940": [
+   "c-CA0169940-highway-patrol-hanford-area(token_reporter/opus):token_reporting_flag",
+   "c-CA0409945-chp-san-luis-obispo(token_reporter/gold):token_reporting_flag"
+  ],
+  "zero_token:CA0479945": [
+   "c-CA0409945-chp-san-luis-obispo(token_reporter/gold):token_reporting_flag",
+   "c-CA0479945-highway-patrol-yreka-area(token_zero_shaped/sol):genuine_low_crime"
+  ]
+ },
+ "oris_multi_live_already_queued": [
+  "zero_token:CA0169940",
+  "zero_token:CA0479945"
+ ],
+ "twin_pairs_live": 361,
+ "twin_pairs_multi_ruled": {},
+ "twin_pairs_merge_distinct_split": {},
+ "cross_class_contradictions_unqueued": [],
+ "cross_class_contradictions_queued": [
+  [
+   "CA0479945",
+   [
+    "a2-CA04799-highway-patrol-yreka(ambiguous_twin/opus):distinct_agencies",
+    "c-CA0409945-chp-san-luis-obispo(token_reporter/gold):token_reporting_flag",
+    "c-CA0479945-highway-patrol-yreka-area(token_zero_shaped/sol):genuine_low_crime"
+   ]
+  ]
+ ],
+ "problems": [],
+ "qc_sample": [
+  "r-AR063019E-ar063019e",
+  "r-PA0111900-blacklick-township",
+  "r-PA0155300-west-nottingham-township",
+  "r-PA0654200-west-leechburg"
+ ]
+}

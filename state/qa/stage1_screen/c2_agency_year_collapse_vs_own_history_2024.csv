@@ -1,0 +1,299 @@
+ori9,state_abbr,2018,2019,2020,2021,2022,2023,2024,max_months,min_months,n_usable,n_partial,src,baseline_median_2021_2023,ratio_2024_vs_baseline,estimated_2024,fill_sources,agency_name_std,agency_type_norm,population_latest_nibrs,published_as_full_year
+LA0170200,LA,14032.0,13739.0,12667.0,12520.0,15130.0,14307.0,4475.0,4.0,4.0,6,1,srs_return_a_annual,14307.0,0.31278395191165165,4523.0,observed|true_partial_month_ratio,BATON ROUGE,local_police,224790.0,False
+FL0360000,FL,3683.0,5868.0,5562.0,0.0,5912.0,6355.0,258.0,12.0,12.0,7,0,state_publication_annual,5912.0,0.043640054127198916,7187.779629201084,observed|trend_log_linear,LEE,sheriff,531625.0,True
+UT0180000,UT,9887.0,8733.0,9617.0,7491.0,5729.0,4716.0,1560.0,11.0,11.0,0,7,srs_return_a_annual,5729.0,0.27229883051143305,1701.8181818181818,true_partial_month_ratio,SALT LAKE CNTY UNIFD PD,local_police,315234.0,False
+GA0250300,GA,6942.0,5118.0,0.0,6029.0,4855.0,0.0,49.0,12.0,12.0,7,0,cius_publication_annual,4855.0,0.010092687950566427,5582.482418454728,hist_median|observed,SAVANNAH CHATHAM METRO,local_police,242265.0,True
+MA0146000,MA,5250.0,4957.0,4873.0,4745.0,4689.0,2196.0,35.0,12.0,12.0,7,0,cius_publication_annual,4689.0,0.007464278097675411,4669.857647066464,hist_median|observed,WORCESTER,local_police,212425.0,True
+CA0192000,CA,2982.0,2825.0,2454.0,0.0,3398.0,3591.0,0.0,0.0,0.0,0,0,srs_return_a_annual,3398.0,0.0,3696.595250420021,trend_log_linear,DOWNEY,local_police,113277.0,False
+NC0260000,NC,2934.0,2422.0,2871.0,2756.0,1987.0,1.0,1.0,1.0,1.0,6,1,nibrs_srs_equivalent_annual|srs_return_a_annual,1987.0,0.0005032712632108706,12.0,observed|true_partial_month_ratio,CUMBERLAND,sheriff,100381.0,False
+IN0450500,IN,3097.0,3070.0,2646.0,0.0,1810.0,2514.0,612.0,3.0,3.0,6,1,srs_return_a_annual,1810.0,0.33812154696132596,1527.0,observed|true_partial_month_ratio,GARY,local_police,75426.0,False
+AZ0070000,AZ,6814.0,1185.0,6962.0,5520.0,1557.0,0.0,454.0,1.0,1.0,0,7,srs_return_a_annual,1557.0,0.2915863840719332,5448.0,true_partial_month_ratio,MARICOPA,sheriff,458571.0,False
+FL0030000,FL,1206.0,2552.0,2192.0,0.0,1588.0,1531.0,63.0,12.0,12.0,7,0,state_publication_annual,1531.0,0.041149575440888306,1533.282373796202,observed|trend_log_linear,BAY,sheriff,107874.0,True
+LA0530100,LA,2423.0,1945.0,1362.0,1481.0,1629.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,1481.0,0.0,1338.3979415705362,hist_median,HAMMOND,local_police,23557.0,False
+NC0290000,NC,1682.0,789.0,1446.0,1381.0,1351.0,384.0,57.0,1.0,1.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,1351.0,0.04219096965210955,684.0,observed|true_partial_month_ratio,DAVIDSON,sheriff,123983.0,False
+MI6160300,MI,1968.0,1601.0,1262.0,1260.0,1334.0,1426.0,407.0,6.0,6.0,7,0,nibrs_srs_equivalent_annual,1334.0,0.30509745127436283,407.0,observed,MUSKEGON,local_police,38188.0,False
+OH0780700,OH,1745.0,1690.0,1270.0,1200.0,1286.0,1021.0,0.0,0.0,0.0,0,0,srs_return_a_annual,1200.0,0.0,1189.9854556981988,hist_median,WARREN,local_police,39280.0,False
+CO0510000,CO,1178.0,1103.0,1072.0,1195.0,1255.0,662.0,174.0,5.0,5.0,7,0,nibrs_srs_equivalent_annual,1195.0,0.14560669456066946,174.0,observed,PUEBLO,sheriff,60352.0,False
+FL0030100,FL,2384.0,2142.0,1756.0,0.0,1269.0,1182.0,31.0,12.0,12.0,7,0,state_publication_annual,1182.0,0.02622673434856176,898.8855271547976,observed|trend_log_linear,PANAMA CITY,local_police,37318.0,True
+NC0180000,NC,1221.0,741.0,1207.0,1245.0,990.0,390.0,0.0,0.0,0.0,0,0,srs_return_a_annual,990.0,0.0,1113.223519456515,hist_median|trend_log_linear,CATAWBA,sheriff,89091.0,False
+NJ0090700,NJ,715.0,715.0,519.0,418.0,914.0,1069.0,259.0,3.0,3.0,0,5,srs_return_a_annual,914.0,0.2833698030634573,1036.5704334317809,trend_log_linear|true_partial_month_ratio,KEARNY,local_police,42339.0,False
+FL0580300,FL,1303.0,1062.0,860.0,0.0,898.0,971.0,7.0,12.0,12.0,7,0,state_publication_annual,898.0,0.0077951002227171495,644.1127538749329,observed|trend_log_linear,NORTH PORT,local_police,93930.0,True
+AZ0111500,AZ,1046.0,1000.0,526.0,868.0,932.0,614.0,0.0,0.0,0.0,0,0,srs_return_a_annual,868.0,0.0,860.371472132105,hist_median,GILA RIVER INDIAN COMNTY,local_police,0.0,False
+IL0900900,IL,898.0,750.0,768.0,680.0,827.0,834.0,212.0,4.0,4.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,827.0,0.25634824667472794,636.0,observed|true_partial_month_ratio,PEKIN,local_police,32541.0,False
+NC0530100,NC,848.0,886.0,987.0,824.0,828.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,824.0,0.0,812.4165360823679,hist_median,SANFORD,local_police,32687.0,False
+LA0490000,LA,1142.0,905.0,890.0,884.0,809.0,820.0,240.0,4.0,4.0,0,7,srs_return_a_annual,820.0,0.2926829268292683,720.0,true_partial_month_ratio,ST LANDRY,sheriff,53184.0,False
+NY309SB00,NY,699.0,774.0,813.0,0.0,772.0,880.0,0.0,0.0,0.0,0,0,srs_return_a_annual,772.0,0.0,888.6226626264353,trend_log_linear,SP CLINTON COUNTY,state_law_enforcement,0.0,False
+OR0230200,OR,633.0,755.0,708.0,737.0,797.0,584.0,115.0,4.0,4.0,7,0,nibrs_srs_equivalent_annual,737.0,0.1560379918588874,115.0,observed,ONTARIO,local_police,11908.0,False
+NY313SK00,NY,640.0,576.0,603.0,0.0,657.0,701.0,0.0,0.0,0.0,0,0,srs_return_a_annual,657.0,0.0,685.669207815939,trend_log_linear,SP DUTCHESS COUNTY,state_law_enforcement,0.0,False
+FL0350300,FL,781.0,757.0,705.0,0.0,643.0,880.0,0.0,0.0,0.0,0,0,srs_return_a_annual,643.0,0.0,771.1849078995097,trend_log_linear,CLERMONT,local_police,50524.0,False
+NY359SK00,NY,415.0,339.0,440.0,0.0,667.0,635.0,0.0,0.0,0.0,0,0,srs_return_a_annual,635.0,0.0,775.193062745604,trend_log_linear,SP WESTCHESTER COUNTY,state_law_enforcement,0.0,False
+SC0020300,SC,936.0,706.0,771.0,623.0,612.0,381.0,117.0,12.0,12.0,7,0,cius_publication_annual,612.0,0.19117647058823528,117.0,observed,NORTH AUGUSTA,local_police,26377.0,True
+OH0120000,OH,668.0,812.0,771.0,762.0,605.0,331.0,0.0,0.0,0.0,0,0,srs_return_a_annual,605.0,0.0,412.0269398371999,trend_log_linear,CLARK,sheriff,65146.0,False
+NY345SG00,NY,686.0,572.0,535.0,0.0,598.0,674.0,0.0,0.0,0.0,0,0,srs_return_a_annual,598.0,0.0,622.4823323106392,trend_log_linear,SP SARATOGA COUNTY,state_law_enforcement,0.0,False
+VA0SI0200,VA,,1.0,1138.0,1114.0,575.0,130.0,9.0,9.0,9.0,0,3,srs_return_a_annual,575.0,0.01565217391304348,14.23745556223189,trend_log_linear|true_partial_month_ratio,UNITED STATES AIR FORCE,unknown,,False
+NY322SD00,NY,554.0,482.0,585.0,0.0,579.0,574.0,0.0,0.0,0.0,0,0,srs_return_a_annual,574.0,0.0,591.7511636005547,trend_log_linear,SP JEFFERSON COUNTY,state_law_enforcement,0.0,False
+NY333SD00,NY,594.0,651.0,649.0,0.0,556.0,573.0,0.0,0.0,0.0,0,0,srs_return_a_annual,556.0,0.0,557.6615612991059,trend_log_linear,SP ONONDAGA COUNTY,state_law_enforcement,0.0,False
+KS0870100,KS,542.0,383.0,511.0,554.0,625.0,115.0,3.0,2.0,2.0,5,2,nibrs_srs_equivalent_annual|srs_return_a_annual,554.0,0.005415162454873646,18.0,observed|true_partial_month_ratio,DERBY,local_police,26409.0,False
+UT0060100,UT,685.0,483.0,399.0,552.0,590.0,157.0,0.0,0.0,0.0,0,0,srs_return_a_annual,552.0,0.0,408.50076364084646,hist_median|trend_log_linear,BOUNTIFUL,local_police,45098.0,False
+FL0290300,FL,638.0,636.0,555.0,0.0,586.0,539.0,111.0,12.0,12.0,7,0,state_publication_annual,539.0,0.20593692022263452,111.0,observed,TEMPLE TERRACE,local_police,27462.0,True
+NM0010200,NM,671.0,578.0,384.0,466.0,591.0,529.0,0.0,0.0,0.0,0,0,srs_return_a_annual,529.0,0.0,482.2801657970391,trend_log_linear,UNIVERSITY OF NEW MEXICO,special_jurisdiction,0.0,False
+GA1061900,GA,,7.0,97.0,517.0,495.0,956.0,30.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,517.0,0.058027079303675046,30.0,observed,MUSCOGEE COUNTY SCHOOLS,unknown,0.0,True
+OH0181000,OH,588.0,222.0,491.0,513.0,529.0,17.0,176.0,6.0,6.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,513.0,0.34307992202729043,352.0,observed|true_partial_month_ratio,BROOKLYN,local_police,11043.0,False
+NC0921700,NC,292.0,281.0,406.0,455.0,486.0,535.0,150.0,5.0,5.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,486.0,0.30864197530864196,359.99999999999994,observed|true_partial_month_ratio,HOLLY SPRINGS,local_police,48199.0,False
+MI7317300,MI,622.0,621.0,470.0,485.0,472.0,481.0,149.0,5.0,5.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,481.0,0.3097713097713098,357.59999999999997,observed|true_partial_month_ratio,SAGINAW,sheriff,43023.0,False
+NY335SF00,NY,802.0,646.0,495.0,0.0,476.0,492.0,0.0,0.0,0.0,0,0,srs_return_a_annual,476.0,0.0,411.7341079278853,trend_log_linear,SP ORANGE COUNTY,state_law_enforcement,0.0,False
+NY358SE00,NY,566.0,434.0,429.0,0.0,506.0,475.0,0.0,0.0,0.0,0,0,srs_return_a_annual,475.0,0.0,474.8439642422004,trend_log_linear,SP WAYNE COUNTY,state_law_enforcement,0.0,False
+NY303SC00,NY,528.0,445.0,458.0,0.0,470.0,472.0,0.0,0.0,0.0,0,0,srs_return_a_annual,470.0,0.0,456.4929559511924,trend_log_linear,SP BROOME COUNTY,state_law_enforcement,0.0,False
+NY0310100,NY,0.0,0.0,606.0,468.0,519.0,125.0,0.0,0.0,0.0,0,0,srs_return_a_annual,468.0,0.0,114.19744592828829,trend_log_linear,LOCKPORT,local_police,20642.0,False
+FL0550100,FL,320.0,547.0,533.0,22.0,516.0,457.0,139.0,12.0,12.0,7,0,state_publication_annual,457.0,0.3041575492341357,139.0,observed,ST AUGUSTINE,local_police,16914.0,True
+NC0350000,NC,610.0,693.0,581.0,715.0,454.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,454.0,0.0,591.4152291981118,hist_median,FRANKLIN,sheriff,65611.0,False
+NY316SB00,NY,296.0,273.0,363.0,0.0,482.0,449.0,0.0,0.0,0.0,0,0,srs_return_a_annual,449.0,0.0,537.0459046795528,trend_log_linear,SP FRANKLIN COUNTY,state_law_enforcement,0.0,False
+NY350SE00,NY,399.0,352.0,375.0,0.0,443.0,470.0,0.0,0.0,0.0,0,0,srs_return_a_annual,443.0,0.0,478.1858836160044,trend_log_linear,SP STEUBEN COUNTY,state_law_enforcement,0.0,False
+GA1510000,GA,865.0,542.0,226.0,608.0,441.0,374.0,37.0,4.0,4.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,441.0,0.08390022675736962,111.0,observed|true_partial_month_ratio,WAYNE,sheriff,20964.0,False
+FL0460200,FL,724.0,543.0,536.0,168.0,465.0,439.0,93.0,12.0,12.0,7,0,state_publication_annual,439.0,0.21184510250569477,93.0,observed,FORT WALTON BEACH,local_police,22871.0,True
+OH0572200,OH,312.0,378.0,426.0,436.0,438.0,478.0,29.0,3.0,3.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,438.0,0.06621004566210045,116.0,observed|true_partial_month_ratio,RIVERSIDE,local_police,25168.0,False
+MS0430100,MS,439.0,432.0,447.0,432.0,513.0,383.0,0.0,0.0,0.0,0,0,srs_return_a_annual,432.0,0.0,435.5354830931357,trend_log_linear,BROOKHAVEN,local_police,12125.0,False
+NY337SD00,NY,611.0,519.0,527.0,0.0,430.0,462.0,0.0,0.0,0.0,0,0,srs_return_a_annual,430.0,0.0,436.5106734623042,trend_log_linear,SP OSWEGO COUNTY,state_law_enforcement,0.0,False
+MS0300200,MS,625.0,515.0,466.0,428.0,434.0,308.0,0.0,0.0,0.0,0,0,srs_return_a_annual,428.0,0.0,376.04380567144585,hist_median|trend_log_linear,OCEAN SPRINGS,local_police,19191.0,False
+OH0440000,OH,569.0,511.0,444.0,427.0,429.0,197.0,0.0,0.0,0.0,0,0,srs_return_a_annual,427.0,0.0,414.35661481045844,hist_median|trend_log_linear,LAWRENCE,sheriff,42464.0,False
+NY332SD00,NY,468.0,417.0,444.0,0.0,473.0,419.0,0.0,0.0,0.0,0,0,srs_return_a_annual,419.0,0.0,442.09129791868355,trend_log_linear,SP ONEIDA COUNTY,state_law_enforcement,0.0,False
+IL0570100,IL,1532.0,1483.0,1275.0,1050.0,418.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,418.0,0.0,1279.960539320606,hist_median,BLOOMINGTON,local_police,78955.0,False
+GA0640100,GA,542.0,420.0,552.0,416.0,518.0,104.0,0.0,0.0,0.0,0,0,srs_return_a_annual,416.0,0.0,431.0738843980124,hist_median|trend_log_linear,CALHOUN,local_police,19560.0,False
+GA0060000,GA,447.0,245.0,355.0,416.0,414.0,143.0,0.0,0.0,0.0,0,0,srs_return_a_annual,414.0,0.0,423.3932878772551,hist_median|trend_log_linear,BANKS,sheriff,18053.0,False
+SD0600200,SD,197.0,78.0,88.0,410.0,546.0,251.0,0.0,2.0,2.0,0,0,srs_return_a_annual,410.0,0.0,451.8299614958326,hist_median|trend_log_linear,ROSEBUD TRIBAL,local_police,0.0,False
+NY338SC00,NY,400.0,360.0,373.0,0.0,424.0,405.0,0.0,0.0,0.0,0,0,srs_return_a_annual,405.0,0.0,416.8592101034432,trend_log_linear,SP OTSEGO COUNTY,state_law_enforcement,0.0,False
+GA0440500,GA,478.0,450.0,329.0,370.0,402.0,440.0,0.0,0.0,0.0,0,0,srs_return_a_annual,402.0,0.0,371.9440529772764,hist_median,CLARKSTON,local_police,14442.0,False
+NY344SB00,NY,388.0,312.0,373.0,0.0,459.0,401.0,0.0,0.0,0.0,0,0,srs_return_a_annual,401.0,0.0,447.1785825377619,trend_log_linear,SP ST LAWRENCE COUNTY,state_law_enforcement,0.0,False
+MI1811800,MI,327.0,181.0,367.0,463.0,348.0,391.0,0.0,2.0,2.0,0,0,srs_return_a_annual,391.0,0.0,449.6301902664405,trend_log_linear,CLARE,sheriff,28623.0,False
+NY314SA00,NY,261.0,299.0,325.0,0.0,380.0,379.0,0.0,0.0,0.0,0,0,srs_return_a_annual,379.0,0.0,429.3331050369147,trend_log_linear,SP ERIE COUNTY,state_law_enforcement,0.0,False
+NC0180100,NC,315.0,338.0,446.0,371.0,373.0,160.0,0.0,0.0,0.0,0,0,srs_return_a_annual,371.0,0.0,335.8747244874361,hist_median|trend_log_linear,CONOVER,local_police,8701.0,False
+HI0010000,HI,5440.0,1281.0,4643.0,4706.0,370.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,370.0,0.0,4464.976105769738,hist_median,HAWAII POLICE DEPARTMENT,local_police,212335.0,False
+MI8237000,MI,390.0,223.0,406.0,364.0,345.0,373.0,43.0,3.0,3.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,364.0,0.11813186813186813,172.0,observed|true_partial_month_ratio,ECORSE,local_police,9635.0,False
+AR0470200,AR,472.0,488.0,491.0,397.0,342.0,79.0,0.0,0.0,0.0,0,0,srs_return_a_annual,342.0,0.0,118.93787418079573,trend_log_linear,OSCEOLA,local_police,6819.0,False
+LA0060000,LA,174.0,259.0,279.0,392.0,330.0,250.0,113.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,330.0,0.3424242424242424,113.0,observed,BEAUREGARD,sheriff,27254.0,True
+OH0090700,OH,486.0,374.0,421.0,327.0,383.0,243.0,28.0,2.0,2.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,327.0,0.0856269113149847,168.0,observed|true_partial_month_ratio,OXFORD,local_police,23732.0,False
+NC0840000,NC,427.0,505.0,444.0,324.0,371.0,266.0,0.0,0.0,0.0,0,0,srs_return_a_annual,324.0,0.0,300.4922879023693,trend_log_linear,STANLY,sheriff,35754.0,False
+LA0570100,LA,330.0,416.0,432.0,358.0,319.0,42.0,0.0,0.0,0.0,0,0,srs_return_a_annual,319.0,0.0,91.91977908223554,trend_log_linear,ABBEVILLE,local_police,12279.0,False
+NY334SE00,NY,286.0,251.0,279.0,0.0,318.0,325.0,0.0,0.0,0.0,0,0,srs_return_a_annual,318.0,0.0,338.4610520754123,trend_log_linear,SP ONTARIO COUNTY,state_law_enforcement,0.0,False
+CA0320000,CA,442.0,422.0,441.0,0.0,424.0,315.0,30.0,1.0,1.0,0,6,srs_return_a_annual,315.0,0.09523809523809523,360.7022487342825,trend_log_linear|true_partial_month_ratio,PLUMAS,sheriff,20084.0,False
+ND0360100,ND,299.0,291.0,303.0,307.0,328.0,132.0,26.0,9.0,9.0,7,0,nibrs_srs_equivalent_annual,307.0,0.08469055374592833,26.0,observed,DEVILS LAKE,local_police,7339.0,False
+GA1110100,GA,355.0,89.0,305.0,303.0,413.0,211.0,0.0,0.0,0.0,0,0,srs_return_a_annual,303.0,0.0,335.45253316032654,hist_median,FORT VALLEY,local_police,8946.0,False
+AL0640000,AL,595.0,438.0,228.0,469.0,301.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,301.0,0.0,458.321356534232,hist_median,WALKER,sheriff,41418.0,False
+AL0010800,AL,477.0,306.0,316.0,294.0,419.0,60.0,0.0,0.0,0.0,0,0,srs_return_a_annual,294.0,0.0,108.4101402284657,trend_log_linear,TARRANT,local_police,6175.0,False
+OH0182800,OH,0.0,159.0,311.0,252.0,329.0,290.0,0.0,0.0,0.0,0,0,srs_return_a_annual,290.0,0.0,306.94855440926744,trend_log_linear,MAPLE HEIGHTS,local_police,23048.0,False
+NY304SA00,NY,231.0,213.0,238.0,0.0,344.0,287.0,0.0,0.0,0.0,0,0,srs_return_a_annual,287.0,0.0,339.15704984295996,trend_log_linear,SP CATTARAUGUS COUNTY,state_law_enforcement,0.0,False
+WA0290300,WA,321.0,230.0,264.0,318.0,285.0,143.0,91.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,285.0,0.3192982456140351,91.0,observed,SEDRO WOOLLEY,local_police,13147.0,True
+TN0260000,TN,401.0,336.0,354.0,304.0,284.0,211.0,77.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,284.0,0.2711267605633803,77.0,observed,FRANKLIN,sheriff,26354.0,True
+SC0090000,SC,359.0,356.0,292.0,280.0,335.0,194.0,45.0,8.0,8.0,7,0,nibrs_srs_equivalent_annual,280.0,0.16071428571428573,45.0,observed,CALHOUN,sheriff,12310.0,False
+NY356SG00,NY,254.0,198.0,263.0,0.0,314.0,271.0,0.0,0.0,0.0,0,0,srs_return_a_annual,271.0,0.0,308.2913551326559,trend_log_linear,SP WARREN COUNTY,state_law_enforcement,0.0,False
+OR0010100,OR,343.0,346.0,378.0,307.0,268.0,123.0,69.0,8.0,8.0,7,0,nibrs_srs_equivalent_annual,268.0,0.2574626865671642,69.0,observed,BAKER CITY,local_police,10305.0,False
+NY352SF00,NY,362.0,308.0,275.0,0.0,300.0,265.0,0.0,0.0,0.0,0,0,srs_return_a_annual,265.0,0.0,260.4603145483768,trend_log_linear,SP SULLIVAN COUNTY,state_law_enforcement,0.0,False
+MO1100300,MO,431.0,323.0,304.0,285.0,265.0,151.0,66.0,12.0,12.0,7,0,cius_publication_annual,265.0,0.2490566037735849,66.0,observed,WARRENTON,local_police,9556.0,True
+NY0082400,NY,201.0,214.0,197.0,263.0,289.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,263.0,0.0,257.0159465384101,hist_median,NORWICH,local_police,6718.0,False
+CO0340100,CO,742.0,686.0,1026.0,659.0,262.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,262.0,0.0,661.2671539873213,hist_median,DURANGO,local_police,19995.0,False
+NY307SE00,NY,254.0,295.0,253.0,0.0,303.0,262.0,0.0,0.0,0.0,0,0,srs_return_a_annual,262.0,0.0,280.94819419289894,trend_log_linear,SP CHEMUNG COUNTY,state_law_enforcement,0.0,False
+MI8018000,MI,573.0,473.0,473.0,425.0,256.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,256.0,0.0,435.828058693865,hist_median,VAN BUREN,sheriff,55128.0,False
+FL0030500,FL,320.0,360.0,305.0,0.0,262.0,256.0,7.0,12.0,12.0,7,0,state_publication_annual,256.0,0.02734375,7.0,observed,SPRINGFIELD,local_police,9517.0,True
+AZ0098900,AZ,663.0,807.0,715.0,651.0,250.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,250.0,0.0,642.9946757646799,hist_median,WHITE MOUNTAIN APACHE TR,local_police,0.0,False
+NY331SA00,NY,249.0,224.0,252.0,0.0,241.0,269.0,0.0,0.0,0.0,0,0,srs_return_a_annual,241.0,0.0,268.6615380473804,trend_log_linear,SP NIAGARA COUNTY,state_law_enforcement,0.0,False
+NY310SK00,NY,190.0,218.0,192.0,0.0,263.0,239.0,0.0,0.0,0.0,0,0,srs_return_a_annual,239.0,0.0,263.1014840238067,trend_log_linear,SP COLUMBIA COUNTY,state_law_enforcement,0.0,False
+WV0020100,WV,595.0,306.0,551.0,378.0,197.0,232.0,0.0,0.0,0.0,0,0,srs_return_a_annual,232.0,0.0,179.19832250915704,trend_log_linear,MARTINSBURG,local_police,19044.0,False
+LA0390000,LA,474.0,440.0,380.0,291.0,232.0,190.0,29.0,2.0,2.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,232.0,0.125,174.0,observed|true_partial_month_ratio,POINTE COUPEE,sheriff,20546.0,False
+NC0860100,NC,225.0,0.0,230.0,225.0,228.0,198.0,0.0,0.0,0.0,0,0,srs_return_a_annual,225.0,0.0,213.53825583781747,trend_log_linear,ELKIN,local_police,4077.0,False
+NY321SD00,NY,213.0,205.0,216.0,0.0,221.0,241.0,0.0,0.0,0.0,0,0,srs_return_a_annual,221.0,0.0,240.73633871399588,trend_log_linear,SP HERKIMER COUNTY,state_law_enforcement,0.0,False
+OH0772700,OH,202.0,206.0,239.0,221.0,209.0,226.0,59.0,8.0,8.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,221.0,0.2669683257918552,88.5,observed|true_partial_month_ratio,COPLEY TOWNSHIP,local_police,18287.0,False
+NY354SC00,NY,291.0,273.0,248.0,0.0,274.0,219.0,0.0,0.0,0.0,0,0,srs_return_a_annual,219.0,0.0,225.9643490338005,trend_log_linear,SP TOMPKINS COUNTY,state_law_enforcement,0.0,False
+NY302SA00,NY,262.0,291.0,269.0,0.0,218.0,229.0,0.0,0.0,0.0,0,0,srs_return_a_annual,218.0,0.0,216.3044127055317,trend_log_linear,SP ALLEGANY COUNTY,state_law_enforcement,0.0,False
+MO1110000,MO,530.0,466.0,548.0,215.0,139.0,245.0,17.0,8.0,8.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,215.0,0.07906976744186046,25.5,observed|true_partial_month_ratio,WASHINGTON,sheriff,22355.0,False
+IN0494700,IN,,8.0,278.0,212.0,230.0,92.0,0.0,2.0,2.0,0,0,srs_return_a_annual,212.0,0.0,378.06774447547957,trend_log_linear,INDIANA GAMING COMMISSIO,unknown,0.0,False
+NY315SB00,NY,218.0,258.0,250.0,0.0,207.0,250.0,0.0,0.0,0.0,0,0,srs_return_a_annual,207.0,0.0,235.83262441532366,trend_log_linear,SP ESSEX COUNTY,state_law_enforcement,0.0,False
+NJ0133600,NJ,187.0,251.0,248.0,238.0,204.0,196.0,0.0,0.0,0.0,0,0,srs_return_a_annual,204.0,0.0,255.83679234624853,hist_median,TINTON FALLS,local_police,19628.0,False
+NY308SC00,NY,185.0,205.0,209.0,0.0,203.0,203.0,0.0,0.0,0.0,0,0,srs_return_a_annual,203.0,0.0,209.07933359935507,trend_log_linear,SP CHENANGO COUNTY,state_law_enforcement,0.0,False
+NY305SE00,NY,181.0,219.0,246.0,0.0,202.0,224.0,0.0,0.0,0.0,0,0,srs_return_a_annual,202.0,0.0,228.25553417369696,trend_log_linear,SP CAYUGA COUNTY,state_law_enforcement,0.0,False
+FL0570100,FL,213.0,207.0,136.0,0.0,199.0,201.0,37.0,12.0,12.0,7,0,state_publication_annual,199.0,0.18592964824120603,37.0,observed,MILTON,local_police,11194.0,True
+WI0371300,WI,217.0,277.0,248.0,229.0,197.0,174.0,54.0,5.0,5.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,197.0,0.27411167512690354,129.6,observed|true_partial_month_ratio,EVEREST METROPOLITAN,local_police,18014.0,False
+CT0016600,CT,248.0,202.0,203.0,277.0,194.0,42.0,33.0,12.0,12.0,7,0,cius_publication_annual,194.0,0.17010309278350516,33.0,observed,WOLCOTT,local_police,16666.0,True
+OH0370100,OH,412.0,457.0,342.0,169.0,269.0,191.0,0.0,0.0,0.0,0,0,srs_return_a_annual,191.0,0.0,269.5992162369846,hist_median|trend_log_linear,LOGAN,local_police,7377.0,False
+NY306SA00,NY,179.0,168.0,158.0,0.0,210.0,186.0,0.0,0.0,0.0,0,0,srs_return_a_annual,186.0,0.0,198.8591985564965,trend_log_linear,SP CHAUTAUQUA COUNTY,state_law_enforcement,0.0,False
+SC0040200,SC,140.0,171.0,164.0,156.0,260.0,185.0,38.0,6.0,6.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,185.0,0.20540540540540542,76.0,observed|true_partial_month_ratio,BELTON,local_police,4568.0,False
+NC0380000,NC,266.0,112.0,258.0,190.0,183.0,132.0,0.0,0.0,0.0,0,0,srs_return_a_annual,183.0,0.0,184.7801937074436,hist_median|trend_log_linear,GRAHAM,sheriff,8497.0,False
+AZ0150000,AZ,472.0,350.0,410.0,163.0,220.0,181.0,49.0,3.0,3.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,181.0,0.27071823204419887,196.0,observed|true_partial_month_ratio,LA PAZ,sheriff,14288.0,False
+NY312SC00,NY,179.0,158.0,163.0,0.0,216.0,180.0,0.0,0.0,0.0,0,0,srs_return_a_annual,180.0,0.0,199.81681478083496,trend_log_linear,SP DELAWARE COUNTY,state_law_enforcement,0.0,False
+GA1090000,GA,205.0,198.0,168.0,191.0,179.0,1.0,0.0,0.0,0.0,0,0,srs_return_a_annual,179.0,0.0,12.986419064456197,trend_log_linear,OGLETHORPE,sheriff,16130.0,False
+OH0260000,OH,238.0,181.0,186.0,198.0,176.0,79.0,1.0,2.0,2.0,7,0,nibrs_srs_equivalent_annual,176.0,0.005681818181818182,1.0,observed,FULTON,sheriff,22507.0,False
+WV0310900,WV,1.0,0.0,0.0,325.0,171.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,171.0,0.0,151.76704766001373,hist_median,GRANVILLE,local_police,3767.0,False
+OR0230000,OR,204.0,209.0,151.0,202.0,170.0,169.0,18.0,2.0,2.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,170.0,0.10588235294117647,108.0,observed|true_partial_month_ratio,MALHEUR,sheriff,17327.0,False
+FL0481400,FL,93.0,261.0,153.0,0.0,196.0,167.0,2.0,12.0,12.0,7,0,state_publication_annual,167.0,0.011976047904191617,2.0,observed,UNIVERSITY OF CENTRAL FL,special_jurisdiction,0.0,True
+NY326SD00,NY,200.0,184.0,165.0,0.0,167.0,165.0,0.0,0.0,0.0,0,0,srs_return_a_annual,165.0,0.0,156.07586527418252,trend_log_linear,SP MADISON COUNTY,state_law_enforcement,0.0,False
+MO0080000,MO,166.0,236.0,224.0,190.0,164.0,113.0,54.0,11.0,11.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,164.0,0.32926829268292684,58.90909090909091,observed|true_partial_month_ratio,BENTON,sheriff,16283.0,False
+VA0970000,VA,172.0,219.0,212.0,155.0,164.0,158.0,39.0,4.0,4.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,158.0,0.2468354430379747,117.0,observed|true_partial_month_ratio,WYTHE,sheriff,19332.0,False
+AL0510100,AL,10.0,12.0,9.0,138.0,190.0,158.0,47.0,12.0,12.0,7,0,cius_publication_annual,158.0,0.2974683544303797,47.0,observed,MONROEVILLE,local_police,5852.0,True
+MN0130500,MN,258.0,188.0,256.0,181.0,157.0,72.0,32.0,12.0,12.0,7,0,cius_publication_annual,157.0,0.20382165605095542,32.0,observed,NORTH BRANCH,local_police,12137.0,True
+WI0110200,WI,156.0,143.0,119.0,163.0,157.0,39.0,0.0,0.0,0.0,0,0,srs_return_a_annual,157.0,0.0,118.79549686005372,hist_median|trend_log_linear,WISCONSIN DELLS,local_police,3480.0,False
+NY357SG00,NY,126.0,102.0,121.0,0.0,164.0,156.0,0.0,0.0,0.0,0,0,srs_return_a_annual,156.0,0.0,172.35634274639537,trend_log_linear,SP WASHINGTON COUNTY,state_law_enforcement,0.0,False
+NC0090300,NC,0.0,242.0,158.0,152.0,139.0,186.0,52.0,6.0,6.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,152.0,0.34210526315789475,104.0,observed|true_partial_month_ratio,ELIZABETHTOWN,local_police,3452.0,False
+NJ0026200,NJ,138.0,102.0,89.0,92.0,149.0,202.0,0.0,0.0,0.0,0,0,srs_return_a_annual,149.0,0.0,185.98180263499285,trend_log_linear,TETERBORO,local_police,73.0,False
+GA0450000,GA,210.0,144.0,216.0,203.0,149.0,49.0,0.0,0.0,0.0,0,0,srs_return_a_annual,149.0,0.0,174.40626303741763,hist_median|trend_log_linear,DODGE,sheriff,15161.0,False
+SC0460500,SC,226.0,170.0,232.0,177.0,147.0,130.0,47.0,12.0,12.0,7,0,cius_publication_annual,147.0,0.3197278911564626,47.0,observed,TEGA CAY,local_police,14456.0,True
+NC0180700,NC,147.0,93.0,194.0,149.0,147.0,72.0,0.0,0.0,0.0,0,0,srs_return_a_annual,147.0,0.0,148.78807021069355,hist_median|trend_log_linear,LONG VIEW,local_police,5245.0,False
+AZ0109700,AZ,639.0,688.0,395.0,0.0,772.0,146.0,0.0,0.0,0.0,0,0,srs_return_a_annual,146.0,0.0,493.7308180641904,hist_median,UNIVERSITY OF ARIZONA,special_jurisdiction,0.0,False
+OH0781300,OH,1.0,12.0,50.0,144.0,141.0,157.0,37.0,4.0,4.0,7,0,nibrs_srs_equivalent_annual,144.0,0.2569444444444444,37.0,observed,BROOKFIELD TOWNSHIP,local_police,8434.0,False
+WV0310600,WV,242.0,206.0,133.0,142.0,143.0,99.0,36.0,4.0,4.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,142.0,0.2535211267605634,108.0,observed|true_partial_month_ratio,WEST VIRGINIA UNIVERSITY,special_jurisdiction,0.0,False
+IN0470100,IN,299.0,321.0,293.0,234.0,142.0,81.0,42.0,12.0,12.0,7,0,cius_publication_annual,142.0,0.29577464788732394,42.0,observed,BEDFORD,local_police,13947.0,True
+GA1500000,GA,141.0,111.0,143.0,153.0,141.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,141.0,0.0,161.01088637893744,hist_median,WASHINGTON,sheriff,12714.0,False
+GA0360100,GA,200.0,190.0,147.0,145.0,141.0,102.0,46.0,12.0,12.0,7,0,cius_publication_annual,141.0,0.3262411347517731,46.0,observed,GROVETOWN,local_police,18169.0,True
+OH0040200,OH,275.0,251.0,157.0,144.0,140.0,93.0,12.0,3.0,3.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,140.0,0.08571428571428572,48.0,observed|true_partial_month_ratio,CONNEAUT,local_police,12616.0,False
+GA1460200,GA,353.0,174.0,214.0,147.0,139.0,91.0,0.0,0.0,0.0,0,0,srs_return_a_annual,139.0,0.0,73.2522041161029,trend_log_linear,ROSSVILLE,local_police,4007.0,False
+OH0470700,OH,106.0,125.0,102.0,138.0,160.0,129.0,0.0,0.0,0.0,0,0,srs_return_a_annual,138.0,0.0,155.6819188774391,trend_log_linear,NORTH RIDGEVILLE,local_police,37612.0,False
+OK0160000,OK,266.0,232.0,148.0,138.0,171.0,82.0,36.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,138.0,0.2608695652173913,36.0,observed,COMANCHE,sheriff,21157.0,True
+MO0957500,MO,59.0,55.0,151.0,124.0,134.0,167.0,5.0,2.0,2.0,7,0,nibrs_srs_equivalent_annual,134.0,0.03731343283582089,5.0,observed,VELDA CITY,local_police,1378.0,False
+NY349SE00,NY,129.0,122.0,107.0,0.0,154.0,133.0,0.0,0.0,0.0,0,0,srs_return_a_annual,133.0,0.0,142.82452999857355,trend_log_linear,SP SENECA COUNTY,state_law_enforcement,0.0,False
+OH0451100,OH,0.0,1.0,3.0,140.0,132.0,6.0,0.0,0.0,0.0,0,0,srs_return_a_annual,132.0,0.0,58.014117242880445,hist_median|trend_log_linear,PATASKALA,local_police,18493.0,False
+GA1110000,GA,237.0,181.0,215.0,154.0,131.0,68.0,0.0,0.0,0.0,0,0,srs_return_a_annual,131.0,0.0,73.23938580010642,trend_log_linear,PEACH,sheriff,13309.0,False
+GA0720000,GA,119.0,98.0,102.0,131.0,130.0,111.0,37.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,130.0,0.2846153846153846,37.0,observed,HARRIS,sheriff,32316.0,True
+NJ0121800,NJ,128.0,160.0,98.0,95.0,157.0,130.0,15.0,2.0,2.0,0,4,srs_return_a_annual,130.0,0.11538461538461539,92.63847123493841,trend_log_linear|true_partial_month_ratio,PLAINSBORO TOWNSHIP,local_police,24344.0,False
+VA103SP00,VA,22.0,18.0,24.0,26.0,170.0,130.0,15.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,130.0,0.11538461538461539,15.0,observed,SP CHESAPEAKE,state_law_enforcement,0.0,True
+MN0660000,MN,225.0,160.0,167.0,146.0,128.0,75.0,40.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,128.0,0.3125,40.0,observed,RICE,sheriff,17907.0,True
+WI0131000,WI,198.0,159.0,156.0,189.0,127.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,127.0,0.0,134.99245800068095,hist_median,TOWN OF MADISON,local_police,6942.0,False
+NJ0082100,NJ,123.0,129.0,102.0,116.0,126.0,128.0,14.0,2.0,2.0,0,4,srs_return_a_annual,126.0,0.1111111111111111,86.61794066102995,trend_log_linear|true_partial_month_ratio,WESTVILLE,local_police,4428.0,False
+OH0420100,OH,530.0,342.0,50.0,143.0,126.0,77.0,32.0,10.0,10.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,126.0,0.25396825396825395,38.4,observed|true_partial_month_ratio,MOUNT VERNON,local_police,16860.0,False
+NY311SC00,NY,140.0,128.0,104.0,0.0,144.0,125.0,0.0,0.0,0.0,0,0,srs_return_a_annual,125.0,0.0,126.77405612086412,trend_log_linear,SP CORTLAND COUNTY,state_law_enforcement,0.0,False
+OR0200400,OR,7.0,55.0,168.0,152.0,124.0,32.0,0.0,0.0,0.0,0,0,srs_return_a_annual,124.0,0.0,106.15491237406334,hist_median|trend_log_linear,JUNCTION CITY,local_police,7442.0,False
+LA0020000,LA,154.0,303.0,415.0,189.0,124.0,71.0,0.0,0.0,0.0,0,0,srs_return_a_annual,124.0,0.0,85.40273152579026,trend_log_linear,ALLEN,sheriff,13906.0,False
+FL0350700,FL,128.0,178.0,206.0,0.0,123.0,143.0,0.0,0.0,0.0,0,0,srs_return_a_annual,123.0,0.0,144.01987719619885,trend_log_linear,MASCOTTE,local_police,9242.0,False
+AL0260200,AL,64.0,7.0,114.0,123.0,123.0,40.0,0.0,0.0,0.0,0,0,srs_return_a_annual,123.0,0.0,116.26727606552669,hist_median|trend_log_linear,DALEVILLE,local_police,5096.0,False
+FL0131300,FL,108.0,136.0,132.0,0.0,123.0,154.0,0.0,0.0,0.0,0,0,srs_return_a_annual,123.0,0.0,151.32324269105274,trend_log_linear,SURFSIDE,local_police,5878.0,False
+NVDI05800,NV,75.0,8.0,110.0,147.0,122.0,14.0,1.0,7.0,7.0,7,0,nibrs_srs_equivalent_annual,122.0,0.00819672131147541,1.0,observed,MOAPA TRIBAL,local_police,0.0,False
+NY318SA00,NY,116.0,126.0,99.0,0.0,130.0,122.0,0.0,0.0,0.0,0,0,srs_return_a_annual,122.0,0.0,122.7943804395923,trend_log_linear,SP GENESEE COUNTY,state_law_enforcement,0.0,False
+OR0050400,OR,75.0,76.0,131.0,140.0,121.0,104.0,5.0,1.0,1.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,121.0,0.04132231404958678,60.0,observed|true_partial_month_ratio,SCAPPOOSE,local_police,8341.0,False
+LA0190000,LA,220.0,201.0,163.0,97.0,155.0,120.0,0.0,0.0,0.0,0,0,srs_return_a_annual,120.0,0.0,165.7887410594707,hist_median|trend_log_linear,EAST FELICIANA,sheriff,17428.0,False
+MO0040000,MO,100.0,87.0,158.0,171.0,119.0,112.0,34.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,119.0,0.2857142857142857,34.0,observed,AUDRAIN,sheriff,12749.0,True
+OH0184800,OH,0.0,14.0,38.0,100.0,183.0,118.0,0.0,0.0,0.0,0,0,srs_return_a_annual,118.0,0.0,155.69140639925445,hist_median|trend_log_linear,SHAKER HEIGHTS,local_police,28615.0,False
+AR0620000,AR,299.0,326.0,199.0,117.0,139.0,118.0,36.0,7.0,7.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,118.0,0.3050847457627119,61.714285714285715,observed|true_partial_month_ratio,ST FRANCIS,sheriff,9511.0,False
+TN0040000,TN,92.0,73.0,66.0,125.0,117.0,30.0,36.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,117.0,0.3076923076923077,36.0,observed,BLEDSOE,sheriff,13750.0,True
+NJ0153300,NJ,133.0,136.0,136.0,117.0,126.0,95.0,38.0,12.0,12.0,7,0,cius_publication_annual,117.0,0.3247863247863248,38.0,observed,BARNEGAT TOWNSHIP,local_police,26713.0,True
+TX1790100,TX,194.0,115.0,132.0,117.0,128.0,79.0,37.0,12.0,12.0,7,0,cius_publication_annual,117.0,0.3162393162393162,37.0,observed,PERRYTON,local_police,8675.0,True
+OH0260500,OH,222.0,156.0,155.0,141.0,116.0,103.0,0.0,0.0,0.0,0,0,srs_return_a_annual,116.0,0.0,126.95376341148645,hist_median|trend_log_linear,WAUSEON,local_police,7492.0,False
+OH0431300,OH,0.0,0.0,0.0,95.0,126.0,115.0,20.0,4.0,4.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,115.0,0.17391304347826086,60.0,observed|true_partial_month_ratio,WILLOUGHBY HILLS,local_police,9943.0,False
+NY347SG00,NY,127.0,128.0,118.0,0.0,119.0,115.0,0.0,0.0,0.0,0,0,srs_return_a_annual,115.0,0.0,113.86893980448623,trend_log_linear,SP SCHOHARIE COUNTY,state_law_enforcement,0.0,False
+ME0100400,ME,94.0,114.0,125.0,130.0,112.0,26.0,8.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,112.0,0.07142857142857142,8.0,observed,LINCOLN,local_police,4891.0,True
+AL0240000,AL,17.0,113.0,75.0,94.0,112.0,115.0,23.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,112.0,0.20535714285714285,23.0,observed,CRENSHAW,sheriff,10190.0,True
+NC0430400,NC,142.0,111.0,94.0,85.0,111.0,111.0,34.0,4.0,4.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,111.0,0.3063063063063063,102.0,observed|true_partial_month_ratio,LILLINGTON,local_police,4648.0,False
+CO0280000,CO,142.0,175.0,200.0,214.0,109.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,109.0,0.0,181.3773028667131,hist_median,HUERFANO,sheriff,6331.0,False
+NC0780200,NC,97.0,94.0,93.0,118.0,109.0,73.0,26.0,12.0,12.0,7,0,cius_publication_annual,109.0,0.23853211009174313,26.0,observed,MAXTON,local_police,2375.0,True
+NC0030000,NC,38.0,91.0,117.0,61.0,108.0,108.0,32.0,9.0,9.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,108.0,0.2962962962962963,42.666666666666664,observed|true_partial_month_ratio,ALLEGHANY,sheriff,9662.0,False
+ID0030000,ID,51.0,42.0,57.0,102.0,114.0,82.0,27.0,4.0,4.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,102.0,0.2647058823529412,81.0,observed|true_partial_month_ratio,BANNOCK,sheriff,18131.0,False
+OH0140100,OH,162.0,102.0,97.0,102.0,122.0,81.0,35.0,12.0,12.0,7,0,cius_publication_annual,102.0,0.3431372549019608,35.0,observed,BLANCHESTER,local_police,4264.0,True
+CA0409945,CA,,,,18.0,102.0,101.0,8.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,101.0,0.07920792079207921,8.0,observed,HIGHWAY PATROL SAN LUIS OBISPO AREA OFFICE,state_law_enforcement,0.0,True
+MS0160000,MS,0.0,0.0,0.0,0.0,146.0,99.0,0.0,0.0,0.0,0,0,srs_return_a_annual,99.0,0.0,87.12857268311164,carryforward_state_trend,COVINGTON,sheriff,15610.0,False
+TN0270300,TN,111.0,211.0,190.0,185.0,99.0,76.0,30.0,10.0,10.0,7,0,nibrs_srs_equivalent_annual,99.0,0.30303030303030304,30.0,observed,TRENTON,local_police,4243.0,False
+AR0300000,AR,0.0,0.0,0.0,146.0,97.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,97.0,0.0,92.8718629766802,hist_median,HOT SPRING,sheriff,22866.0,False
+AL0640500,AL,49.0,41.0,39.0,96.0,69.0,158.0,24.0,12.0,12.0,7,0,cius_publication_annual,96.0,0.25,24.0,observed,SUMITON,local_police,2513.0,True
+FL0032600,FL,160.0,121.0,78.0,0.0,96.0,152.0,2.0,12.0,12.0,7,0,state_publication_annual,96.0,0.020833333333333332,2.0,observed,PARKER,local_police,5096.0,True
+NC0410400,NC,86.0,87.0,87.0,82.0,96.0,113.0,4.0,1.0,1.0,6,1,nibrs_srs_equivalent_annual|srs_return_a_annual,96.0,0.041666666666666664,48.0,observed|true_partial_month_ratio,NORTH CAROLINA A T ST UN,special_jurisdiction,0.0,False
+OR0070000,OR,180.0,144.0,123.0,130.0,95.0,13.0,21.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,95.0,0.22105263157894736,21.0,observed,CROOK,sheriff,15894.0,True
+AL0340100,AL,124.0,93.0,43.0,201.0,95.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,95.0,0.0,111.0088344442506,hist_median,GENEVA,local_police,4353.0,False
+NJ0180500,NJ,84.0,87.0,81.0,81.0,111.0,93.0,26.0,4.0,2.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,93.0,0.27956989247311825,78.0,observed|true_partial_month_ratio,BRANCHBURG TOWNSHIP,local_police,15751.0,False
+OH0521400,OH,100.0,129.0,102.0,98.0,92.0,52.0,0.0,0.0,0.0,0,0,srs_return_a_annual,92.0,0.0,84.1120777229784,hist_median|trend_log_linear,MEDINA TOWNSHIP,local_police,9380.0,False
+ID0340000,ID,164.0,94.0,117.0,91.0,116.0,38.0,14.0,4.0,4.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,91.0,0.15384615384615385,42.0,observed|true_partial_month_ratio,MINIDOKA,sheriff,12585.0,False
+NY328SG00,NY,128.0,105.0,106.0,0.0,100.0,91.0,0.0,0.0,0.0,0,0,srs_return_a_annual,91.0,0.0,85.77815251963872,trend_log_linear,SP MONTGOMERY CNTY,state_law_enforcement,0.0,False
+NC0360700,NC,131.0,74.0,97.0,96.0,76.0,89.0,0.0,0.0,0.0,0,0,srs_return_a_annual,89.0,0.0,75.79788525083838,trend_log_linear,STANLEY,local_police,4095.0,False
+NY327SE00,NY,99.0,131.0,94.0,0.0,92.0,88.0,0.0,0.0,0.0,0,0,srs_return_a_annual,88.0,0.0,91.31658213218961,trend_log_linear,SP MONROE COUNTY,state_law_enforcement,0.0,False
+AR0380100,AR,89.0,80.0,83.0,97.0,70.0,88.0,27.0,6.0,6.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,88.0,0.3068181818181818,54.0,observed|true_partial_month_ratio,WALNUT RIDGE,local_police,5575.0,False
+GA0250600,GA,170.0,89.0,93.0,159.0,88.0,52.0,25.0,8.0,8.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,88.0,0.2840909090909091,37.5,observed|true_partial_month_ratio,TYBEE ISLAND,local_police,3148.0,False
+CA0169940,CA,,,,28.0,107.0,88.0,1.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,88.0,0.011363636363636364,1.0,observed,HIGHWAY PATROL HANFORD AREA OFFICE,state_law_enforcement,0.0,True
+LADI00600,LA,74.0,104.0,35.0,105.0,88.0,51.0,30.0,5.0,5.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,88.0,0.3409090909090909,72.0,observed|true_partial_month_ratio,COUSHATTA TRIBAL,local_police,0.0,False
+FL0132100,FL,89.0,105.0,110.0,0.0,87.0,108.0,0.0,0.0,0.0,0,0,srs_return_a_annual,87.0,0.0,104.84043103552366,trend_log_linear,WEST MIAMI,local_police,9154.0,False
+NY324SD00,NY,98.0,75.0,91.0,0.0,87.0,93.0,0.0,0.0,0.0,0,0,srs_return_a_annual,87.0,0.0,90.7186817111332,trend_log_linear,SP LEWIS COUNTY,state_law_enforcement,0.0,False
+NM0300300,NM,58.0,59.0,55.0,87.0,93.0,24.0,0.0,0.0,0.0,0,0,srs_return_a_annual,87.0,0.0,63.153508392412164,hist_median|trend_log_linear,MORIARTY,local_police,2033.0,False
+OKDI15000,OK,127.0,135.0,72.0,87.0,90.0,51.0,28.0,7.0,7.0,7,0,nibrs_srs_equivalent_annual,87.0,0.3218390804597701,28.0,observed,COMANCHE NATION,local_police,0.0,False
+CO0600000,CO,136.0,66.0,111.0,95.0,86.0,37.0,7.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,86.0,0.08139534883720931,7.0,observed,TELLER,sheriff,16188.0,True
+MO0280300,MO,97.0,102.0,79.0,75.0,86.0,91.0,30.0,12.0,12.0,7,0,cius_publication_annual,86.0,0.3488372093023256,30.0,observed,STEELVILLE,local_police,1677.0,True
+SC0200100,SC,77.0,101.0,100.0,85.0,85.0,7.0,0.0,0.0,0.0,0,0,srs_return_a_annual,85.0,0.0,73.82703939857176,hist_median|trend_log_linear,WINNSBORO,local_police,3231.0,False
+GA0850000,GA,136.0,67.0,89.0,88.0,85.0,43.0,7.0,3.0,3.0,7,0,nibrs_srs_equivalent_annual,85.0,0.08235294117647059,7.0,observed,LAMAR,sheriff,13915.0,False
+WV0230000,WV,116.0,135.0,104.0,120.0,84.0,26.0,24.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,84.0,0.2857142857142857,24.0,observed,LOGAN,sheriff,28398.0,True
+NY353SC00,NY,92.0,105.0,96.0,0.0,97.0,84.0,0.0,0.0,0.0,0,0,srs_return_a_annual,84.0,0.0,88.85266569707257,trend_log_linear,SP TIOGA COUNTY,state_law_enforcement,0.0,False
+OKDI06200,OK,20.0,27.0,24.0,88.0,83.0,59.0,20.0,5.0,5.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,83.0,0.24096385542168675,47.99999999999999,observed|true_partial_month_ratio,SEMINOLE NATN LIGHTHORSE,local_police,0.0,False
+NJ0122300,NJ,141.0,137.0,114.0,57.0,111.0,83.0,24.0,12.0,12.0,7,0,cius_publication_annual,83.0,0.2891566265060241,24.0,observed,SOUTH RIVER,local_police,16240.0,True
+NC0900400,NC,75.0,81.0,101.0,87.0,82.0,31.0,0.0,0.0,0.0,0,0,srs_return_a_annual,82.0,0.0,77.70696131304742,hist_median|trend_log_linear,WINGATE,local_police,4873.0,False
+NY317SG00,NY,101.0,83.0,81.0,0.0,84.0,82.0,0.0,0.0,0.0,0,0,srs_return_a_annual,82.0,0.0,76.75558727767297,trend_log_linear,SP FULTON COUNTY,state_law_enforcement,0.0,False
+ID0370000,ID,110.0,90.0,67.0,101.0,81.0,39.0,23.0,11.0,11.0,7,0,nibrs_srs_equivalent_annual,81.0,0.2839506172839506,23.0,observed,OWYHEE,sheriff,9725.0,False
+OH0640200,OH,126.0,130.0,114.0,108.0,81.0,20.0,0.0,0.0,0.0,0,0,srs_return_a_annual,81.0,0.0,96.81208727920949,hist_median|trend_log_linear,NEW LEXINGTON,local_police,4697.0,False
+AL0340000,AL,242.0,142.0,111.0,178.0,81.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,81.0,0.0,160.6894580715012,hist_median,GENEVA,sheriff,16315.0,False
+NYDI02100,NY,160.0,68.0,52.0,72.0,97.0,79.0,0.0,0.0,0.0,0,0,srs_return_a_annual,79.0,0.0,68.52214143067967,trend_log_linear,ONEIDA INDIAN NATION,local_police,0.0,False
+IN0090000,IN,0.0,0.0,0.0,77.0,77.0,3.0,0.0,0.0,0.0,0,0,srs_return_a_annual,77.0,0.0,64.29322431009872,hist_median|trend_log_linear,CASS,sheriff,20243.0,False
+NC0800700,NC,115.0,84.0,80.0,86.0,77.0,69.0,0.0,0.0,0.0,0,0,srs_return_a_annual,77.0,0.0,79.24607652129384,hist_median,SPENCER,local_police,3372.0,False
+IA0600000,IA,7.0,68.0,66.0,77.0,82.0,37.0,19.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,77.0,0.24675324675324675,19.0,observed,LYON,sheriff,12569.0,True
+GA0710200,GA,136.0,99.0,88.0,76.0,81.0,9.0,19.0,2.0,2.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,76.0,0.25,114.0,observed|true_partial_month_ratio,TALLAPOOSA,local_police,3306.0,False
+OH0100000,OH,103.0,76.0,74.0,104.0,76.0,13.0,19.0,7.0,7.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,76.0,0.25,32.57142857142857,observed|true_partial_month_ratio,CARROLL,sheriff,22184.0,False
+NY0072200,NY,95.0,105.0,111.0,114.0,76.0,37.0,0.0,0.0,0.0,0,0,srs_return_a_annual,76.0,0.0,51.882280276144655,trend_log_linear,HORSEHEADS VILLAGE,local_police,6464.0,False
+NV0150000,NV,130.0,105.0,122.0,93.0,75.0,46.0,15.0,5.0,5.0,7,0,nibrs_srs_equivalent_annual,75.0,0.2,15.0,observed,STOREY,sheriff,4261.0,False
+MO0610000,MO,78.0,70.0,60.0,75.0,75.0,57.0,23.0,11.0,11.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,75.0,0.30666666666666664,25.09090909090909,observed|true_partial_month_ratio,MACON,sheriff,8503.0,False
+PA0021A00,PA,97.0,107.0,2.0,0.0,75.0,87.0,0.0,0.0,0.0,0,0,srs_return_a_annual,75.0,0.0,86.57388808326266,carryforward_state_trend,OHIO TOWNSHIP,local_police,15439.0,False
+KS0810200,KS,128.0,71.0,100.0,100.0,75.0,34.0,0.0,0.0,0.0,0,0,srs_return_a_annual,75.0,0.0,74.01987175493639,hist_median|trend_log_linear,KANSAS STATE UNIVERSITY,special_jurisdiction,0.0,False
+MO0950E00,MO,50.0,83.0,0.0,0.0,73.0,89.0,0.0,0.0,0.0,0,0,srs_return_a_annual,73.0,0.0,95.84635397673699,trend_log_linear,WASHINGTON UNIVERSITY,special_jurisdiction,,False
+NY339SK00,NY,111.0,98.0,88.0,0.0,85.0,72.0,0.0,0.0,0.0,0,0,srs_return_a_annual,72.0,0.0,70.44309204191273,trend_log_linear,SP PUTNAM COUNTY,state_law_enforcement,0.0,False
+MO0770000,MO,75.0,65.0,76.0,75.0,72.0,50.0,20.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,72.0,0.2777777777777778,20.0,observed,OZARK,sheriff,9177.0,True
+CO0530000,CO,102.0,58.0,66.0,79.0,72.0,0.0,15.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,72.0,0.20833333333333334,15.0,observed,RIO GRANDE,sheriff,5204.0,True
+CO0470000,CO,58.0,106.0,88.0,98.0,71.0,0.0,2.0,3.0,3.0,7,0,nibrs_srs_equivalent_annual,71.0,0.028169014084507043,2.0,observed,PARK,sheriff,18236.0,False
+MO0690000,MO,57.0,55.0,40.0,71.0,91.0,63.0,18.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual|srs_return_a_annual,71.0,0.2535211267605634,18.0,observed,MONROE,sheriff,6738.0,True
+NC0630500,NC,90.0,76.0,97.0,81.0,69.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,69.0,0.0,80.02654291501871,hist_median,CARTHAGE,local_police,3011.0,False
+WA0130700,WA,80.0,70.0,66.0,75.0,69.0,41.0,14.0,7.0,7.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,69.0,0.2028985507246377,24.0,observed|true_partial_month_ratio,GRAND COULEE,local_police,2079.0,False
+NC0650500,NC,0.0,6.0,162.0,138.0,68.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,68.0,0.0,67.38375875806862,hist_median,UNIV OF NC WILMINGTON,special_jurisdiction,0.0,False
+OH0782100,OH,97.0,107.0,67.0,61.0,68.0,78.0,0.0,0.0,0.0,0,0,srs_return_a_annual,68.0,0.0,70.453750592072,hist_median|trend_log_linear,WARREN TOWNSHIP,local_police,5169.0,False
+NM0270000,NM,87.0,114.0,88.0,92.0,39.0,68.0,8.0,2.0,2.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,68.0,0.11764705882352941,48.0,observed|true_partial_month_ratio,SIERRA,sheriff,5570.0,False
+NC0940000,NC,0.0,129.0,108.0,67.0,73.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,67.0,0.0,76.02747489045453,hist_median,WASHINGTON,sheriff,8413.0,False
+MNDI05000,MN,171.0,367.0,34.0,269.0,67.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,67.0,0.0,218.4627819593443,hist_median,RED LAKE AGENCY,local_police,0.0,False
+MO0300000,MO,47.0,28.0,41.0,67.0,124.0,66.0,0.0,0.0,0.0,0,0,srs_return_a_annual,67.0,0.0,108.82029346931816,trend_log_linear,DALLAS,sheriff,14166.0,False
+WI0690100,WI,161.0,113.0,91.0,0.0,66.0,76.0,0.0,0.0,0.0,0,0,srs_return_a_annual,66.0,0.0,61.09549811803782,trend_log_linear,CLINTONVILLE,local_police,4511.0,False
+NB0340000,NE,89.0,89.0,57.0,65.0,70.0,31.0,2.0,2.0,2.0,5,2,nibrs_srs_equivalent_annual|srs_return_a_annual,65.0,0.03076923076923077,12.0,observed|true_partial_month_ratio,GAGE,sheriff,8258.0,False
+AL0260600,AL,83.0,32.0,7.0,42.0,79.0,65.0,16.0,12.0,12.0,7,0,cius_publication_annual,65.0,0.24615384615384617,16.0,observed,MIDLAND CITY,local_police,2396.0,True
+TN0540300,TN,68.0,102.0,104.0,112.0,65.0,33.0,21.0,12.0,12.0,7,0,cius_publication_annual,65.0,0.3230769230769231,21.0,observed,ETOWAH,local_police,3720.0,True
+NC0950300,NC,53.0,0.0,50.0,45.0,65.0,70.0,0.0,0.0,0.0,0,0,srs_return_a_annual,65.0,0.0,47.83475165225165,hist_median|trend_log_linear,APPALACHIAN STATE UNIVER,special_jurisdiction,0.0,False
+MI7486700,MI,75.0,78.0,100.0,101.0,63.0,27.0,0.0,0.0,0.0,0,0,srs_return_a_annual,63.0,0.0,78.55640932066233,hist_median|trend_log_linear,CLAY TOWNSHIP,local_police,8902.0,False
+NY360SA00,NY,38.0,43.0,38.0,0.0,62.0,63.0,0.0,0.0,0.0,0,0,srs_return_a_annual,62.0,0.0,71.30569656892776,trend_log_linear,SP WYOMING COUNTY,state_law_enforcement,0.0,False
+NC0420100,NC,46.0,88.0,103.0,85.0,62.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,62.0,0.0,75.64043567045053,hist_median,ENFIELD,local_police,2322.0,False
+GA0700000,GA,100.0,65.0,64.0,67.0,62.0,26.0,0.0,0.0,0.0,0,0,srs_return_a_annual,62.0,0.0,34.64114840977279,trend_log_linear,HANCOCK,sheriff,7395.0,False
+WI0370100,WI,53.0,58.0,53.0,62.0,37.0,91.0,20.0,5.0,5.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,62.0,0.3225806451612903,47.99999999999999,observed|true_partial_month_ratio,ROTHSCHILD,local_police,5522.0,False
+AL0230300,AL,14.0,5.0,18.0,63.0,62.0,18.0,7.0,11.0,11.0,7,0,nibrs_srs_equivalent_annual,62.0,0.11290322580645161,7.0,observed,FLORALA,local_police,1939.0,False
+MO0430000,MO,92.0,82.0,70.0,72.0,62.0,43.0,15.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,62.0,0.24193548387096775,15.0,observed,HICKORY,sheriff,9579.0,True
+MI3832600,MI,91.0,61.0,51.0,66.0,61.0,62.0,10.0,4.0,4.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,62.0,0.16129032258064516,30.0,observed|true_partial_month_ratio,COLUMBIA TOWNSHIP,local_police,7470.0,False
+MI0381100,MI,84.0,72.0,50.0,62.0,65.0,36.0,0.0,0.0,0.0,0,0,srs_return_a_annual,62.0,0.0,57.187381612811855,hist_median|trend_log_linear,WAYLAND,local_police,4502.0,False
+MN0230000,MN,56.0,68.0,50.0,98.0,61.0,54.0,16.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,61.0,0.26229508196721313,16.0,observed,FILLMORE,sheriff,18048.0,True
+IL0561400,IL,114.0,36.0,0.0,63.0,61.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,61.0,0.0,72.23472063730243,hist_median,JOHNSBURG,local_police,6395.0,False
+FL0101200,FL,,44.0,30.0,87.0,57.0,60.0,16.0,6.0,6.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,60.0,0.26666666666666666,32.0,observed|true_partial_month_ratio,CLAY COUNTY SCHOOL BOARD,unknown,0.0,False
+AL0210100,AL,191.0,119.0,67.0,104.0,47.0,60.0,19.0,11.0,11.0,7,0,nibrs_srs_equivalent_annual,60.0,0.31666666666666665,19.0,observed,EVERGREEN,local_police,3639.0,False
+MS0680100,MS,0.0,0.0,36.0,105.0,59.0,4.0,0.0,0.0,0.0,0,0,srs_return_a_annual,59.0,0.0,28.42106523519625,hist_median|trend_log_linear,CHARLESTON,local_police,1928.0,False
+KS0870500,KS,89.0,44.0,56.0,59.0,82.0,47.0,9.0,2.0,2.0,4,3,nibrs_srs_equivalent_annual|srs_return_a_annual,59.0,0.15254237288135594,54.0,observed|true_partial_month_ratio,VALLEY CENTER,local_police,7463.0,False
+CA0479945,CA,,,,13.0,77.0,59.0,16.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,59.0,0.2711864406779661,16.0,observed,HIGHWAY PATROL YREKA AREA OFFICE,state_law_enforcement,0.0,True
+OH0060100,OH,94.0,83.0,91.0,65.0,58.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,58.0,0.0,67.33068950506623,hist_median,ST MARYS,local_police,8425.0,False
+NY0322100,NY,16.0,12.0,20.0,69.0,58.0,10.0,14.0,12.0,12.0,7,0,cius_publication_annual,58.0,0.2413793103448276,14.0,observed,BOONVILLE VILLAGE,local_police,2022.0,True
+CO0140000,CO,91.0,75.0,90.0,69.0,58.0,48.0,16.0,5.0,5.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,58.0,0.27586206896551724,38.4,observed|true_partial_month_ratio,CUSTER,sheriff,5882.0,False
+ME0020100,ME,88.0,134.0,152.0,57.0,49.0,58.0,0.0,0.0,0.0,0,0,srs_return_a_annual,57.0,0.0,45.17144461785911,trend_log_linear,CARIBOU,local_police,7617.0,False
+NY0282400,NY,124.0,62.0,60.0,58.0,57.0,23.0,5.0,12.0,12.0,7,0,cius_publication_annual,57.0,0.08771929824561403,5.0,observed,FORT PLAIN VILLAGE,local_police,2224.0,True
+KY1160000,KY,49.0,43.0,50.0,56.0,56.0,41.0,16.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,56.0,0.2857142857142857,16.0,observed,WAYNE,sheriff,14587.0,True
+IN0100400,IN,95.0,81.0,79.0,68.0,56.0,50.0,0.0,0.0,0.0,0,0,srs_return_a_annual,56.0,0.0,72.59295508584658,hist_median|trend_log_linear,SELLERSBURG,local_police,10417.0,False
+NY0152700,NY,49.0,40.0,29.0,35.0,56.0,81.0,12.0,12.0,12.0,7,0,state_publication_annual,56.0,0.21428571428571427,12.0,observed,TICONDEROGA TOWN,local_police,4853.0,True
+GA0800000,GA,131.0,101.0,88.0,55.0,59.0,45.0,0.0,0.0,0.0,0,0,srs_return_a_annual,55.0,0.0,92.42401572155829,hist_median|trend_log_linear,JEFF DAVIS,sheriff,11123.0,False
+OH0450300,OH,26.0,32.0,75.0,55.0,34.0,70.0,3.0,2.0,2.0,5,2,nibrs_srs_equivalent_annual|srs_return_a_annual,55.0,0.05454545454545454,18.0,observed|true_partial_month_ratio,GRANVILLE,local_police,6405.0,False
+PA0380300,PA,107.0,96.0,70.0,38.0,71.0,54.0,18.0,5.0,5.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,54.0,0.3333333333333333,43.2,observed|true_partial_month_ratio,PALMYRA,local_police,7714.0,False
+NY301SG00,NY,158.0,150.0,103.0,0.0,131.0,54.0,0.0,0.0,0.0,0,0,srs_return_a_annual,54.0,0.0,65.6920558919282,trend_log_linear,SP ALBANY COUNTY,state_law_enforcement,0.0,False
+GA0252700,GA,,,0.0,0.0,54.0,73.0,17.0,7.0,7.0,7,0,nibrs_srs_equivalent_annual,54.0,0.3148148148148148,17.0,observed,SAVANNAH AIRPORT,unknown,0.0,False
+GA0445100,GA,424.0,230.0,19.0,54.0,96.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,54.0,0.0,37.47429179536528,hist_median,DEKALB CO SCHOOL SYSTEM,special_jurisdiction,0.0,False
+MS0620200,MS,0.0,0.0,105.0,54.0,59.0,15.0,15.0,12.0,3.0,7,0,nibrs_srs_equivalent_annual|state_publication_annual,54.0,0.2777777777777778,15.0,observed,MORTON,local_police,3622.0,False
+WV0180100,WV,50.0,68.0,43.0,53.0,64.0,35.0,8.0,11.0,11.0,7,0,nibrs_srs_equivalent_annual,53.0,0.1509433962264151,8.0,observed,RAVENSWOOD,local_police,3838.0,False
+MO0540600,MO,76.0,52.0,98.0,54.0,53.0,40.0,18.0,12.0,12.0,7,0,cius_publication_annual,53.0,0.33962264150943394,18.0,observed,ODESSA,local_police,5648.0,True
+TX0800200,TX,,,2.0,53.0,131.0,19.0,16.0,12.0,12.0,7,0,cius_publication_annual,53.0,0.3018867924528302,16.0,observed,MOUNT VERNON,local_police,2765.0,True
+IN0190000,IN,0.0,42.0,63.0,72.0,53.0,44.0,0.0,0.0,0.0,0,0,srs_return_a_annual,53.0,0.0,49.13644949760783,hist_median|trend_log_linear,DUBOIS,sheriff,20970.0,False
+GA1400000,GA,50.0,39.0,49.0,53.0,59.0,27.0,5.0,2.0,2.0,3,4,nibrs_srs_equivalent_annual|srs_return_a_annual,53.0,0.09433962264150944,30.0,observed|true_partial_month_ratio,TREUTLEN,sheriff,3740.0,False
+GA1390000,GA,183.0,111.0,74.0,53.0,55.0,36.0,18.0,8.0,8.0,7,0,nibrs_srs_equivalent_annual,53.0,0.33962264150943394,18.0,observed,TOWNS,sheriff,12252.0,False
+TX2030100,TX,6.0,0.0,2.0,105.0,52.0,16.0,18.0,12.0,12.0,7,0,cius_publication_annual,52.0,0.34615384615384615,18.0,observed,SAN AUGUSTINE,local_police,1868.0,True
+NC0520000,NC,0.0,0.0,0.0,0.0,52.0,57.0,0.0,0.0,0.0,0,0,srs_return_a_annual,52.0,0.0,0.0,hist_median|trend_log_linear,JONES,sheriff,8707.0,False
+IA0430000,IA,90.0,50.0,68.0,53.0,52.0,0.0,0.0,0.0,0.0,0,0,srs_return_a_annual,52.0,0.0,51.51962608695086,hist_median,HARRISON,sheriff,12186.0,False
+WV0130100,WV,96.0,84.0,63.0,52.0,55.0,31.0,5.0,3.0,3.0,7,0,nibrs_srs_equivalent_annual,52.0,0.09615384615384616,5.0,observed,LEWISBURG,local_police,3917.0,False
+NJ0190400,NJ,48.0,73.0,32.0,52.0,68.0,7.0,4.0,5.0,5.0,7,0,nibrs_srs_equivalent_annual,52.0,0.07692307692307693,4.0,observed,BYRAM TOWNSHIP,local_police,8202.0,False
+TX2230000,TX,25.0,31.0,48.0,51.0,58.0,30.0,16.0,12.0,12.0,7,0,nibrs_srs_equivalent_annual,51.0,0.3137254901960784,16.0,observed,TERRY,sheriff,3023.0,True
+MO0320000,MO,37.0,56.0,87.0,50.0,62.0,35.0,8.0,5.0,5.0,5,2,nibrs_srs_equivalent_annual|srs_return_a_annual,50.0,0.16,19.2,observed|true_partial_month_ratio,DEKALB,sheriff,7102.0,False
+NM0200100,NM,0.0,0.0,73.0,68.0,50.0,10.0,0.0,0.0,0.0,0,0,srs_return_a_annual,50.0,0.0,46.701618225968396,carryforward_state_trend|hist_median|trend_log_linear,TUCUMCARI,local_police,5162.0,False
+GA1560000,GA,61.0,53.0,68.0,50.0,62.0,41.0,13.0,5.0,5.0,2,5,nibrs_srs_equivalent_annual|srs_return_a_annual,50.0,0.26,31.199999999999996,observed|true_partial_month_ratio,WILCOX,sheriff,4499.0,False
+GA1470300,GA,84.0,80.0,89.0,50.0,102.0,46.0,14.0,4.0,4.0,1,6,nibrs_srs_equivalent_annual|srs_return_a_annual,50.0,0.28,42.0,observed|true_partial_month_ratio,SOCIAL CIRCLE,local_police,5442.0,False

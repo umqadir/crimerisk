@@ -1,0 +1,562 @@
+ori9,agency_name_std,agency_type_norm,population_latest_nibrs,county_fips,place_fips,county_fips_source
+AL0031400,STATE FIRE MARSHAL,special_jurisdiction,0.0,101,51000,srs_agency_header
+AL0100000,BUTLER,sheriff,10410.0,013,99013,srs_agency_header
+AL0290700,CENTRAL AL DRUG TASK FOR,unknown,0.0,051,,fbi_cde_agency_roster
+AL0400300,KENNEDY,local_police,426.0,075,39520,srs_agency_header
+AL0420600,LAWRENCE CNTY DRG VCTF,unknown,0.0,079,,fbi_cde_agency_roster
+AL0440000,LIMESTONE,sheriff,67853.0,083,99083,srs_agency_header
+AL0480700,17TH JUD CIRCUIT DRUG TF,special_jurisdiction,0.0,091,99091,srs_agency_header
+AL0521100,CALHOUN COMMUNITY COLLEG,special_jurisdiction,,103,20104,srs_agency_header
+AL0530000,PERRY,sheriff,3638.0,105,99105,srs_agency_header
+AL0620800,CENTRAL ALABAMA COMMUNIT,special_jurisdiction,0.0,123,,fbi_cde_agency_roster
+AL0630500,TAYLOR HARDIN SECURE MED,special_jurisdiction,0.0,125,77256,srs_agency_header
+AL0640900,SIPSEY,local_police,412.0,127,70704,srs_agency_header
+AR0341000,STATE PARK JACKSONPORT,unknown,0.0,067,,fbi_cde_agency_roster
+AZ0060100,CLIFTON,local_police,3774.0,011,14380,srs_agency_header
+AZ0101200,TOHONO O ODHAM NATION,local_police,0.0,019,65490,srs_agency_header
+AZ0141000,QUECHAN TRIBAL,local_police,0.0,027,85540,srs_agency_header
+AZDI06200,FORT APACHE AGENCY,local_police,0.0,009,82530,srs_agency_header
+CA0191N00,BALDWIN PARK UNIFIED SCH,special_jurisdiction,0.0,037,03666,srs_agency_header
+CADI03900,BLUE LAKE TRIBAL,special_jurisdiction,0.0,,,
+CADIT0500,LOS COYOTES TRIBAL,special_jurisdiction,0.0,,,
+CO0200300,KIOWA,local_police,837.0,039,40790,srs_agency_header
+DCD0T0700,UNITED STATES DEPARTMENT,unknown,,,,
+DCDI00500,US DOI BUREAU OF RECLAM,unknown,,,,
+DCDI00600,US DOI FISH AND WILDLIF,unknown,,,,
+DCGSA0000,US GENERAL SERVICES ADMI,unknown,,,,
+DE0013000,AG KENT COUNTY,special_jurisdiction,,001,99001,srs_agency_header
+DE0033500,AG SUSSEX COUNTY,special_jurisdiction,,005,99005,srs_agency_header
+FL0190200,CARRABELLE,local_police,2876.0,037,10725,srs_agency_header
+FL0460500,SHALIMAR,local_police,854.0,091,65425,srs_agency_header
+GA0010400,APPLING CNTY BOARD ED,unknown,0.0,001,,fbi_cde_agency_roster
+GA0020100,PEARSON,local_police,2091.0,003,59808,srs_agency_header
+GA0040000,BAKER,sheriff,2569.0,007,99007,srs_agency_header
+GA0140200,MORVEN,local_police,547.0,027,53032,srs_agency_header
+GA0160300,PORTAL,local_police,715.0,031,62216,srs_agency_header
+GA0160500,REGISTER,local_police,199.0,031,64372,srs_agency_header
+GA0190000,CALHOUN,sheriff,3370.0,037,99037,srs_agency_header
+GA0250000,CHATHAM,sheriff,0.0,051,99051,srs_agency_header
+GA0250100,CHATHAM COUNTY POL DEPT,local_police,0.0,051,99051,srs_agency_header
+GA0251000,SAVANNAH STATE UNIVERSIT,special_jurisdiction,0.0,051,69000,srs_agency_header
+GA0251100,ARMSTRONG STATE UNIVERSI,special_jurisdiction,,051,69000,srs_agency_header
+GA0252500,SAVANNAH F ES ARSON UNIT,special_jurisdiction,0.0,051,69000,srs_agency_header
+GA0260000,CHATTAHOOCHEE,sheriff,10873.0,053,21017,srs_agency_header
+GA0270200,TRION,local_police,1972.0,055,77540,srs_agency_header
+GA0280600,NELSON,local_police,1403.0,227,54572,srs_agency_header
+GA0280900,CHEROKEE COUNTY MARSHAL,constable_marshal,0.0,057,99057,srs_agency_header
+GA0310000,CLAYTON,sheriff,0.0,063,99063,srs_agency_header
+GA0311700,CLAYTON COUNTY SCHOOLS,unknown,0.0,063,,fbi_cde_agency_roster
+GA0340400,NICHOLLS,local_police,3371.0,069,55440,srs_agency_header
+GA0350000,COLQUITT,sheriff,29666.0,071,99071,srs_agency_header
+GA0350200,BERLIN,local_police,561.0,071,07304,srs_agency_header
+GA0370100,ADEL,local_police,5740.0,075,00576,srs_agency_header
+GA0370200,LENOX,local_police,851.0,075,45936,srs_agency_header
+GA0530500,STILLMORE,local_police,523.0,107,73620,srs_agency_header
+GA0550100,MCCAYSVILLE,local_police,1229.0,111,48428,srs_agency_header
+GA0560400,FAYETTE COUNTY MARSHAL,constable_marshal,0.0,113,99113,srs_agency_header
+GA0580100,CUMMING,local_police,10345.0,117,20932,srs_agency_header
+GA0580300,FORSYTH CO FIRE INVES UN,special_jurisdiction,0.0,117,99117,srs_agency_header
+GA0590300,ROYSTON,local_police,2678.0,119,67452,srs_agency_header
+GA0600600,UNION CITY,local_police,28414.0,121,78324,srs_agency_header
+GA0602000,GA DEPT TRANS OFF INVEST,special_jurisdiction,0.0,121,04000,srs_agency_header
+GA0604500,MORRIS BROWN COLLEGE,special_jurisdiction,,121,04000,srs_agency_header
+GA0604900,ST BRD WRKRS COMP FID,special_jurisdiction,,121,04000,srs_agency_header
+GA0606200,MOREHOUSE SCHL OF MEDICN,special_jurisdiction,0.0,121,04000,srs_agency_header
+GA0630000,GLYNN,sheriff,0.0,127,99127,srs_agency_header
+GA0640200,FAIRMOUNT,local_police,775.0,129,28492,srs_agency_header
+GA0650200,WHIGHAM,local_police,548.0,131,82412,srs_agency_header
+GA0660200,UNION POINT,local_police,2016.0,133,78380,srs_agency_header
+GA0671800,GWINNETT TECHNICAL COL,special_jurisdiction,0.0,135,,fbi_cde_agency_roster
+GA0681000,NORTH GEORGIA TECHNICAL,special_jurisdiction,0.0,137,,fbi_cde_agency_roster
+GA0740200,EPHESUS,local_police,502.0,149,27708,srs_agency_header
+GA0780500,HOSCHTON,local_police,6747.0,157,40056,srs_agency_header
+GA0790100,MONTICELLO,local_police,2935.0,159,52416,srs_agency_header
+GA0830000,JOHNSON,sheriff,5722.0,167,99167,srs_agency_header
+GA0830100,WRIGHTSVILLE,local_police,3643.0,167,84512,srs_agency_header
+GA0830200,ADRIAN,local_police,710.0,167,00660,srs_agency_header
+GA0860200,LANIER COUNTY BOARD OF E,unknown,0.0,173,,fbi_cde_agency_roster
+GA0870200,EAST DUBLIN,local_police,2502.0,175,25300,srs_agency_header
+GA0890500,WALTHOURVILLE,local_police,4114.0,179,80256,srs_agency_header
+GA0900100,LINCOLNTON,local_police,1502.0,181,46552,srs_agency_header
+GA0950200,MCINTOSH COUNTY SCHOOLS,unknown,0.0,191,,leaic_crosswalk
+GA0960000,MACON,sheriff,7218.0,193,99193,srs_agency_header
+GA0960200,IDEAL,local_police,444.0,193,40812,srs_agency_header
+GA0990300,LUTHERSVILLE,local_police,827.0,199,48008,srs_agency_header
+GA1000000,MILLER,sheriff,3962.0,201,99201,srs_agency_header
+GA1020300,GA PUB SAFETY TRAIN CTR,special_jurisdiction,0.0,207,30732,srs_agency_header
+GA1030100,MOUNT VERNON,local_police,2389.0,209,53508,srs_agency_header
+GA1040000,MORGAN,sheriff,16837.0,211,99211,srs_agency_header
+GA1060500,MUSCOGEE CITY MARSHAL,constable_marshal,0.0,215,19000,srs_agency_header
+GA1080100,WATKINSVILLE,local_police,3921.0,219,80788,srs_agency_header
+GA1120300,PICKENS CO BOARD OF EDUC,special_jurisdiction,0.0,227,99227,srs_agency_header
+GA1180000,QUITMAN,sheriff,2333.0,239,32528,srs_agency_header
+GA1190300,TALLULAH FALLS,local_police,210.0,137,75328,srs_agency_header
+GA1190500,SKY VALLEY,local_police,488.0,241,71282,srs_agency_header
+GA1210700,RICHMOND COUNTY MARSHAL,constable_marshal,0.0,245,04204,srs_agency_header
+GA1211500,PAINE COLLEGE,special_jurisdiction,,245,04196,srs_agency_header
+GA1240400,OLIVER,local_police,229.0,251,58100,srs_agency_header
+GA1280200,RICHLAND,local_police,1676.0,259,65016,srs_agency_header
+GA1300200,WOODLAND,local_police,356.0,263,83952,srs_agency_header
+GA1320200,REIDSVILLE,local_police,2668.0,267,64512,srs_agency_header
+GA1340000,TELFAIR,sheriff,5825.0,271,99271,srs_agency_header
+GA1340400,MILAN,local_police,772.0,271,51408,srs_agency_header
+GA1360400,MEIGS,local_police,1032.0,275,50680,srs_agency_header
+GA1360600,PAVO,local_police,624.0,275,59556,srs_agency_header
+GA1361100,SOUTHERN REGIONAL TECHNI,special_jurisdiction,0.0,,,
+GA1370100,TIFTON,local_police,17441.0,277,76476,srs_agency_header
+GA1410400,TROUP COUNTY MARSHAL,constable_marshal,0.0,285,99285,srs_agency_header
+GA1420200,SYCAMORE,local_police,766.0,287,75104,srs_agency_header
+GA1420300,TURNER COUNTY SCHOOLS,unknown,0.0,287,,fbi_cde_agency_roster
+GA1430400,TWIGGS CNTY BOARD OF ED,special_jurisdiction,0.0,289,99289,srs_agency_header
+GA1500500,OCONEE,local_police,243.0,303,57456,srs_agency_header
+GA1500600,WASHINGTON CO BD OF EDUC,special_jurisdiction,0.0,303,99303,srs_agency_header
+GA1520000,WEBSTER,sheriff,2588.0,307,81128,srs_agency_header
+GA1560300,PINEVIEW,local_police,501.0,315,61320,srs_agency_header
+GA1570200,TIGNALL,local_police,509.0,317,76532,srs_agency_header
+GAGSP3500,SP JEKYLL ISLAND,state_law_enforcement,0.0,127,91599,srs_agency_header
+IAIHP0600,STATE PATROL DISTRICT 6,state_law_enforcement,0.0,041,,leaic_crosswalk
+IL0080100,CHADWICK,local_police,519.0,015,12294,srs_agency_header
+IL0162W00,NORTHWESTERN UNIV EVANST,special_jurisdiction,0.0,031,24582,srs_agency_header
+IL0164X00,CANADIAN NATIONAL RAILWA,special_jurisdiction,0.0,031,35879,srs_agency_header
+IL016PP00,CHICAGO HEIGHTS PARK DIS,unknown,0.0,031,,fbi_cde_agency_roster
+IL0170400,HUTSONVILLE,local_police,536.0,033,36841,srs_agency_header
+IL0350000,HARDIN,sheriff,3991.0,069,99069,srs_agency_header
+IL0371100,WOODHULL,local_police,779.0,073,83063,srs_agency_header
+IL0371200,BLACK HAWK COL KEWANEE,special_jurisdiction,0.0,073,39727,srs_agency_header
+IL0562100,HOLIDAY HILLS,local_police,618.0,111,35515,srs_agency_header
+IL0601700,SOUTHERN IL U EDWARDSVIL,special_jurisdiction,0.0,119,22697,srs_agency_header
+IL0620400,WENONA,local_police,967.0,123,79813,srs_agency_header
+IL0790800,PRAIRIE DU ROCHER,local_police,559.0,157,61639,srs_agency_header
+IL0811300,BLACK HAWK COL MOLINE,special_jurisdiction,0.0,161,49867,srs_agency_header
+IL0821700,WASHINGTON PARK,local_police,3897.0,163,79085,srs_agency_header
+IL0830600,RALEIGH,local_police,336.0,165,62601,srs_agency_header
+IL0910300,JONESBORO,local_police,1711.0,181,38635,srs_agency_header
+IL0992400,GOVERNORS STATE UNIVERSI,special_jurisdiction,0.0,197,76935,srs_agency_header
+IL1021400,EUREKA COLLEGE,unknown,,,,
+IN0130000,CRAWFORD,sheriff,10543.0,025,99025,srs_agency_header
+IN0150100,AURORA,local_police,3697.0,029,02782,srs_agency_header
+IN0150300,GREENDALE,local_police,4566.0,029,29448,srs_agency_header
+IN0320600,COATESVILLE,local_police,572.0,063,14050,srs_agency_header
+IN0320900,LIZTON,local_police,515.0,063,44442,srs_agency_header
+IN0494000,BUTLER UNIVERSITY,special_jurisdiction,,097,36003,srs_agency_header
+IN0550200,MOORESVILLE,local_police,10001.0,109,50976,srs_agency_header
+IN0720100,SCOTTSBURG,local_police,7384.0,143,68526,srs_agency_header
+IN0850000,WABASH,sheriff,15400.0,169,99169,srs_agency_header
+IN0910100,MONTICELLO,local_police,5554.0,181,50760,srs_agency_header
+INISP1300,STATE POLICE LOWELL,unknown,,089,,leaic_crosswalk
+INISP1600,STATE POLICE PERU,unknown,,103,,leaic_crosswalk
+INISP2200,STATE POLICE FORT WAYNE,unknown,,003,,leaic_crosswalk
+INISP2400,STATE POLICE BREMEN,unknown,,099,,leaic_crosswalk
+INISP3500,STATE POLICE EVANSVILLE,unknown,,163,,leaic_crosswalk
+INISP4200,STATE POLICE VERSAILLES,unknown,,137,,leaic_crosswalk
+INISP5100,STATE POLICE DISTRICT 51,unknown,,095,,leaic_crosswalk
+KS0100200,CEDAR VALE,local_police,519.0,019,11450,srs_agency_header
+KS0780900,RENO COUNTY DRUG ENFORCE,unknown,0.0,155,,fbi_cde_agency_roster
+KS0892700,KS ATTORNEY GENERAL CRIM,unknown,0.0,,,
+KY0071000,BELL COUNTY SCHOOL DISTR,unknown,0.0,013,,fbi_cde_agency_roster
+KY0100900,NORTHEAST KENTUCKY DRUG,unknown,0.0,019,,fbi_cde_agency_roster
+KY0330700,ESTILL COUNTY SCHOOLS,unknown,0.0,065,,fbi_cde_agency_roster
+KY0400200,GARRARD CNTY CONSTABLE D,unknown,0.0,079,,leaic_crosswalk
+KY0671000,JENKINS INDEPENDENT SCHO,unknown,0.0,133,,fbi_cde_agency_roster
+KY0830400,MENIFEE COUNTY SCHOOLS,unknown,0.0,165,,fbi_cde_agency_roster
+KY0890700,MUHLENBERG COUNTY PD,sheriff,0.0,177,,leaic_crosswalk
+KY0900600,NELSON COUNTY SCHOOLS,unknown,0.0,179,,fbi_cde_agency_roster
+KYKSP2500,SP CANNABIS SUPPRSSN SE,state_law_enforcement,0.0,067,46000,srs_agency_header
+KYKSP2900,SP SPECIAL OPERATIONS,state_law_enforcement,0.0,067,,leaic_crosswalk
+LA0230200,JEANERETTE,local_police,5305.0,045,38075,srs_agency_header
+LA0430200,ZWOLLE,local_police,1932.0,085,83685,srs_agency_header
+LA0530200,KENTWOOD,local_police,2478.0,105,39545,srs_agency_header
+MA0062700,GREENFIELD COMMUNITY COL,special_jurisdiction,0.0,011,,fbi_cde_agency_roster
+MA0072600,HOLYOKE COMMUNITY COLLEG,special_jurisdiction,,013,30840,srs_agency_header
+MA0097600,REGIS COLLEGE,unknown,,,,
+MA304SP00,SP DUKES COUNTY,state_law_enforcement,74.0,007,99007,srs_agency_header
+MI7250500,KIRTLAND COMMUNITY COLL,special_jurisdiction,0.0,143,69540,srs_agency_header
+MI7362900,OAKLEY,local_police,285.0,145,59860,srs_agency_header
+MI7802100,GREAT LAKES CENTRAL RAIL,unknown,,,,
+MIDI05200,SAULT STE MARIE TRIBAL,local_police,0.0,033,71740,srs_agency_header
+MN0021400,HILLTOP,local_police,958.0,003,29258,srs_agency_header
+MNMHP0000,MINNESOTA STATE PATROL,state_law_enforcement,,123,58000,srs_agency_header
+MNMHP1200,STATE PATROL MANKATO,state_law_enforcement,0.0,013,39878,srs_agency_header
+MO0100300,STURGEON,local_police,972.0,019,71224,srs_agency_header
+MO0100600,HALLSVILLE,local_police,1772.0,019,29998,srs_agency_header
+MO0242000,CLAY CNTY DRUG TASK FO,special_jurisdiction,0.0,047,99047,srs_agency_header
+MO0261300,DIV ALCOHOL TBCC CNTRL,special_jurisdiction,0.0,051,37000,srs_agency_header
+MO0290600,EVERTON,local_police,306.0,057,22996,srs_agency_header
+MO0350200,CARDWELL,local_police,658.0,069,11350,srs_agency_header
+MO0360100,BERGER,local_police,262.0,071,,fbi_cde_agency_roster
+MO0482700,JACKSON COUNTY DRUG T F,special_jurisdiction,,095,99095,srs_agency_header
+MO0510600,CHILHOWEE,local_police,323.0,101,,leaic_crosswalk
+MO0550300,MILLER,local_police,719.0,109,48242,srs_agency_header
+MO0600400,SOUTHWEST CITY,local_police,986.0,119,69230,srs_agency_header
+MO0780600,WARDELL,local_police,383.0,155,76966,srs_agency_header
+MO0832000,PLATTE CO M JUR ENF GRP,special_jurisdiction,0.0,165,99165,srs_agency_header
+MO0832100,WESTERN MO CYBER CRMS TF,special_jurisdiction,0.0,165,58178,srs_agency_header
+MO0842400,MORRISVILLE,local_police,400.0,167,,fbi_cde_agency_roster
+MO0891100,WOOD HEIGHTS,local_police,755.0,177,80767,srs_agency_header
+MO0891300,CRYSTAL LAKES,local_police,398.0,177,17660,srs_agency_header
+MO0922000,ST CHARLES CNTY PRK RGRS,special_jurisdiction,0.0,183,99183,srs_agency_header
+MO0942100,IRON MOUNTAIN LAKE,local_police,752.0,187,35450,srs_agency_header
+MO0980200,SLATER,local_police,1880.0,195,68204,srs_agency_header
+MO1000000,SCOTLAND,sheriff,3002.0,199,99199,srs_agency_header
+MO1010000,SCOTT,sheriff,14344.0,201,99201,srs_agency_header
+MO1010800,MORLEY,local_police,687.0,201,49988,srs_agency_header
+MO1020100,BIRCH TREE,local_police,653.0,203,05734,srs_agency_header
+MODOAKC00,US DEPT OF AGRICULTURE O,unknown,,,,
+MOMHPAA00,ST HWY PTRL LEE S SUMMIT,state_law_enforcement,0.0,095,41348,srs_agency_header
+MOMHPBB00,ST HWY PTRL MACON,state_law_enforcement,0.0,121,45326,srs_agency_header
+MOMHPCC00,ST HWY PTRL KIRKWOOD,state_law_enforcement,0.0,183,78314,srs_agency_header
+MOMHPDD00,ST HWY PTRL SPRINGFIELD,state_law_enforcement,0.0,077,70000,srs_agency_header
+MOMHPEE00,ST HWY PTRL POPLAR BLUFF,state_law_enforcement,0.0,023,59096,srs_agency_header
+MOMHPFF00,ST HWY PTRL JEFFERSON CI,state_law_enforcement,0.0,051,37000,srs_agency_header
+MOMHPGG00,ST HWY PTRL WILLOW SPRGS,state_law_enforcement,0.0,091,80098,srs_agency_header
+MOMHPHH00,ST HWY PTRL ST JOSEPH,state_law_enforcement,0.0,021,64550,srs_agency_header
+MOMHPII00,ST HWY PTRL ROLLA,state_law_enforcement,0.0,161,62912,srs_agency_header
+MS0240500,DEPT OF MARINE RESOURCES,unknown,0.0,047,,fbi_cde_agency_roster
+MS0420100,GREENWOOD,local_police,13714.0,083,29340,srs_agency_header
+MS0470000,MARSHALL,sheriff,26580.0,093,99093,srs_agency_header
+MS0570100,MAGNOLIA,local_police,2264.0,113,44680,srs_agency_header
+MS0570200,MCCOMB,local_police,13076.0,113,43280,srs_agency_header
+MS0620000,SCOTT,sheriff,19364.0,123,99123,srs_agency_header
+MSMHP0300,HIGHWAY PATROL BATESVIL,state_law_enforcement,0.0,107,,leaic_crosswalk
+NB0180200,SUTTON,local_police,1454.0,035,47955,srs_agency_header
+NB0380000,GRANT,sheriff,663.0,075,99075,srs_agency_header
+NB0550900,NEBRASKA STATE FIRE MARS,unknown,0.0,109,,fbi_cde_agency_roster
+NB0750000,ROCK,sheriff,1421.0,149,99149,srs_agency_header
+NBNSP4900,ST PTRL JOHNSON COUNTY,state_law_enforcement,0.0,097,99097,srs_agency_header
+NBNSP7300,ST PTRL RED WILLOW CNTY,state_law_enforcement,0.0,145,99145,srs_agency_header
+NH0010100,SP BELKNAP COUNTY,state_law_enforcement,,001,99001,srs_agency_header
+NM0030500,LAKE ARTHUR,local_police,380.0,005,,fbi_cde_agency_roster
+NM0080300,LOVING,local_police,1394.0,015,44420,srs_agency_header
+NM0210100,ESPANOLA,local_police,10460.0,039,25170,srs_agency_header
+NM0300400,MOUNTAINAIR,local_police,919.0,057,50370,srs_agency_header
+NV0031000,WASHOE TRIBAL,local_police,0.0,005,26300,srs_agency_header
+NV0100200,YERINGTON PAIUTE TRIBAL,local_police,0.0,019,85400,srs_agency_header
+NV0162000,UNION PACIFIC RAILROAD,unknown,0.0,031,,fbi_cde_agency_roster
+NV0167800,RENO MUNICIPAL COURT MAR,unknown,,,,
+NV0180600,ATTORNEY GENERAL INVEST,unknown,,,,
+NVDI06500,SOUTH FORK BAND TRIBAL,local_police,0.0,007,68550,srs_agency_header
+NVDI06600,DUCKWATER TRIBAL,local_police,0.0,033,99033,srs_agency_header
+NY0049000,ST PRK ALLEGANY REGION,special_jurisdiction,0.0,009,99009,srs_agency_header
+NY0102500,STOCKPORT TOWN,special_jurisdiction,2679.0,021,35969,srs_agency_header
+NY0139000,ST PRK TACONIC REGION,special_jurisdiction,0.0,027,99027,srs_agency_header
+NY0192000,ATHENS VILLAGE,local_police,1609.0,039,02902,srs_agency_header
+NY0229000,ST PRK THOUSAND ISLND R,special_jurisdiction,0.0,045,01187,srs_agency_header
+NY0256000,NUNDA TOWN AND VILLAGE,local_police,2925.0,051,54089,srs_agency_header
+NY0319000,ST PRK NIAGARA REGION,special_jurisdiction,0.0,063,51055,srs_agency_header
+NY0339000,ST PRK CENTRAL REGION,special_jurisdiction,0.0,067,38286,srs_agency_header
+NY0439000,ST PRK PALISADES REGION,special_jurisdiction,0.0,087,99087,srs_agency_header
+NY0452900,ST PRK SARATOGA CAPTL R,special_jurisdiction,0.0,091,65255,srs_agency_header
+NY0519000,ST PRK LONG ISLAND REG,special_jurisdiction,0.0,103,99103,srs_agency_header
+NY0549000,ST PRK FINGER LAKES REG,special_jurisdiction,0.0,109,99109,srs_agency_header
+NY0550300,ULSTER REG GNG ENF NRC T,special_jurisdiction,0.0,111,99111,srs_agency_header
+NY0582900,SODUS POINT VILLAGE,local_police,876.0,117,68242,srs_agency_header
+NY0609000,ST PRK GENESEE REGION,special_jurisdiction,0.0,121,99121,srs_agency_header
+NY241UR00,RENSSELAER POLYTECHNIC I,special_jurisdiction,,083,75484,srs_agency_header
+OH0080900,SARDINIA,local_police,1140.0,015,70534,srs_agency_header
+OH0081300,LAKE WAYNOKA RANGERS,local_police,,015,70534,srs_agency_header
+OH018A100,NOTRE DAME COLLEGE,special_jurisdiction,,035,16000,srs_agency_header
+OH0254700,OHIO INVESTIGATIVE UNIT,special_jurisdiction,0.0,049,18000,srs_agency_header
+OH0430200,FAIRPORT HARBOR,local_police,3080.0,085,26306,srs_agency_header
+OH0432400,LAKE METROPARKS,special_jurisdiction,0.0,085,99085,srs_agency_header
+OH0520700,WESTFIELD CENTER,local_police,1207.0,103,83468,srs_agency_header
+OH0600300,DRESDEN,local_police,1715.0,119,22610,srs_agency_header
+OH0680600,LEWISBURG,local_police,1744.0,135,42938,srs_agency_header
+OH0710900,ADENA HEALTH SYSTEM,unknown,,,,
+OH0763400,MALONE UNIVERSITY,unknown,,,,
+OH0790500,SUGARCREEK,local_police,2320.0,157,75210,srs_agency_header
+OH0791900,TUSCARAWAS,local_police,1053.0,157,77924,srs_agency_header
+OH0840800,MARIETTA COLLEGE,special_jurisdiction,,167,47628,srs_agency_header
+OH0850200,RITTMAN,local_police,6574.0,169,67356,srs_agency_header
+OK0512200,BACONE COLLEGE,unknown,,,,
+PA0010000,ADAMS,sheriff,0.0,001,99001,srs_agency_header
+PA0011000,COUNTY DET ADAMS COUNTY,unknown,0.0,001,,leaic_crosswalk
+PA0012100,BENDERSVILLE,local_police,752.0,001,05536,srs_agency_header
+PA0022H00,CHATHAM UNIVERSITY,unknown,,003,,leaic_crosswalk
+PA0026400,EAST PITTSBURGH,local_police,1875.0,003,21712,srs_agency_header
+PA0029K00,POINT PARK UNIVERSITY,unknown,,,,
+PA0031300,GILPIN TOWNSHIP,local_police,2380.0,005,29184,srs_agency_header
+PA003BF00,BF ARMSTRONG COUNTY,special_jurisdiction,0.0,005,99005,srs_agency_header
+PA003DE00,BN ARMSTRONG COUNTY,special_jurisdiction,0.0,005,99005,srs_agency_header
+PA0040000,BEAVER,sheriff,0.0,007,99007,srs_agency_header
+PA004BF00,BF BEAVER COUNTY,special_jurisdiction,0.0,007,99007,srs_agency_header
+PA0050000,BEDFORD,sheriff,0.0,009,99009,srs_agency_header
+PA0050900,SPR BLUE KNOB,unknown,0.0,009,,fbi_cde_agency_roster
+PA0051000,SPR SHAWNEE,unknown,0.0,009,,fbi_cde_agency_roster
+PA005BF00,BF BEDFORD COUNTY,special_jurisdiction,0.0,009,99009,srs_agency_header
+PA005DE00,BN BEDFORD COUNTY,special_jurisdiction,0.0,009,99009,srs_agency_header
+PA0065400,MARION TOWNSHIP,local_police,2002.0,011,47440,srs_agency_header
+PA0066500,SPR FRENCH CREEK,unknown,0.0,011,,fbi_cde_agency_roster
+PA006BF00,BF BERKS COUNTY,special_jurisdiction,0.0,011,99011,srs_agency_header
+PA0070000,BLAIR,sheriff,0.0,013,99013,srs_agency_header
+PA007BF00,BF BLAIR COUNTY,special_jurisdiction,0.0,013,99013,srs_agency_header
+PA007DE00,BN BLAIR COUNTY,special_jurisdiction,0.0,013,99013,srs_agency_header
+PA0080000,BRADFORD,sheriff,0.0,015,99015,srs_agency_header
+PA0082000,SPR MOUNT PISGAH,unknown,0.0,015,,fbi_cde_agency_roster
+PA008BF00,BF BRADFORD COUNTY,special_jurisdiction,0.0,015,99015,srs_agency_header
+PA0094000,SPR NOCKAMIXON,special_jurisdiction,0.0,017,63048,srs_agency_header
+PA009BF00,BF BUCKS COUNTY,special_jurisdiction,0.0,017,99017,srs_agency_header
+PA009DE00,BN BUCKS COUNTY,special_jurisdiction,0.0,017,99017,srs_agency_header
+PA0100000,BUTLER,sheriff,0.0,019,99019,srs_agency_header
+PA0101700,COUNTY DET BUTLER CNTY,special_jurisdiction,0.0,019,99019,srs_agency_header
+PA0103800,SPR MORAINE,unknown,0.0,019,,fbi_cde_agency_roster
+PA0103900,SPR JENNINGS ENV ED CTR,unknown,0.0,019,,fbi_cde_agency_roster
+PA0104000,EVANS CTY SEVEN FLDS REG,local_police,4529.0,,,
+PA010BF00,BF BUTLER COUNTY,special_jurisdiction,0.0,019,99019,srs_agency_header
+PA010DE00,BN BUTLER COUNTY,special_jurisdiction,0.0,019,99019,srs_agency_header
+PA0112800,ELDER TOWNSHIP,local_police,1025.0,021,22808,srs_agency_header
+PA0115000,SUSQUEHANNA TOWNSHIP,local_police,1858.0,021,75520,srs_agency_header
+PA0116800,SPR PRINCE GALLITZIN,special_jurisdiction,0.0,021,99021,srs_agency_header
+PA0118000,MOUNT ALOYSIUS UNIVERSIT,unknown,,,,
+PA011BF00,BF CAMBRIA COUNTY,special_jurisdiction,0.0,021,99021,srs_agency_header
+PA011DE00,BN CAMBRIA COUNTY,special_jurisdiction,0.0,021,99021,srs_agency_header
+PA012BF00,BF CAMERON COUNTY,special_jurisdiction,0.0,023,99023,srs_agency_header
+PA012DE00,BN CAMERON COUNTY,special_jurisdiction,0.0,023,99023,srs_agency_header
+PA0132000,SPR BELTZVILLE,unknown,0.0,025,,fbi_cde_agency_roster
+PA013BF00,BF CARBON COUNTY,special_jurisdiction,0.0,025,99025,srs_agency_header
+PA013DE00,BN CARBON COUNTY,special_jurisdiction,0.0,025,99025,srs_agency_header
+PA0140000,CENTRE,sheriff,0.0,027,99027,srs_agency_header
+PA0141700,SPR BLACK MOSHANNON,unknown,0.0,027,,fbi_cde_agency_roster
+PA014BF00,BF CENTRE COUNTY,special_jurisdiction,0.0,027,99027,srs_agency_header
+PA014DE00,BN CENTRE COUNTY,special_jurisdiction,0.0,027,99027,srs_agency_header
+PA0150000,CHESTER,sheriff,0.0,029,99029,srs_agency_header
+PA0156600,PA STATE UNIV GREAT VAL,special_jurisdiction,0.0,029,,fbi_cde_agency_roster
+PA015DE00,BN CHESTER COUNTY,special_jurisdiction,0.0,029,99029,srs_agency_header
+PA0160000,CLARION,sheriff,0.0,031,99031,srs_agency_header
+PA0161100,SPR COOK FOREST,unknown,0.0,031,,fbi_cde_agency_roster
+PA016BF00,BF CLARION COUNTY,special_jurisdiction,0.0,031,99031,srs_agency_header
+PA016DE00,BN CLARION COUNTY,special_jurisdiction,0.0,031,99031,srs_agency_header
+PA0171600,MORRIS COOPER REGIONAL,local_police,0.0,033,99991,srs_agency_header
+PA0171800,SPR PARKER DAM,unknown,0.0,033,,fbi_cde_agency_roster
+PA017BF00,BF CLEARFIELD COUNTY,special_jurisdiction,0.0,033,99033,srs_agency_header
+PA0182500,SPR KETTLE CREEK,unknown,0.0,035,,fbi_cde_agency_roster
+PA018BF00,BF CLINTON COUNTY,special_jurisdiction,0.0,035,99035,srs_agency_header
+PA018DE00,BN CLINTON COUNTY,special_jurisdiction,0.0,035,99035,srs_agency_header
+PA0201900,UNIV OF PITT TITUSVILLE,special_jurisdiction,0.0,039,76904,srs_agency_header
+PA020BF00,BF CRAWFORD COUNTY,special_jurisdiction,0.0,039,99039,srs_agency_header
+PA020DE00,BN CRAWFORD COUNTY,special_jurisdiction,0.0,039,99039,srs_agency_header
+PA0210000,CUMBERLAND,sheriff,0.0,041,99041,srs_agency_header
+PA0212100,COUNTY DET CUMBERLAND C,special_jurisdiction,0.0,041,99041,srs_agency_header
+PA021DE00,BN CUMBERLAND COUNTY,special_jurisdiction,0.0,041,99041,srs_agency_header
+PA022BF00,BF DAUPHIN COUNTY,special_jurisdiction,0.0,043,99043,srs_agency_header
+PA022DE00,BN DAUPHIN COUNTY,special_jurisdiction,0.0,043,99043,srs_agency_header
+PA023DE00,BN DELAWARE COUNTY,special_jurisdiction,0.0,045,99045,srs_agency_header
+PA0242500,SPR BENDIGO,unknown,0.0,047,,fbi_cde_agency_roster
+PA024BF00,BF ELK COUNTY,special_jurisdiction,0.0,047,99047,srs_agency_header
+PA024DE00,BN ELK COUNTY,special_jurisdiction,0.0,047,99047,srs_agency_header
+PA0252400,ERIE CITY SCHOOL DISTRIC,special_jurisdiction,,049,24000,srs_agency_header
+PA0252800,ERIE CITY SCHOOL DISTRIC,unknown,0.0,,,
+PA025BF00,BF ERIE COUNTY,special_jurisdiction,0.0,049,99049,srs_agency_header
+PA0262500,SMITHFIELD,local_police,835.0,051,71320,srs_agency_header
+PA026DE00,BN FAYETTE COUNTY,special_jurisdiction,0.0,051,99051,srs_agency_header
+PA027BF00,BF FOREST COUNTY,special_jurisdiction,0.0,053,99053,srs_agency_header
+PA027DE00,BN FOREST COUNTY,special_jurisdiction,0.0,053,99053,srs_agency_header
+PA0280000,FRANKLIN,sheriff,0.0,055,99055,srs_agency_header
+PA0281400,FRANKLIN COUNTY DRUG TF,unknown,0.0,055,,fbi_cde_agency_roster
+PA0281800,GREENCASTLE ANTRIM SCHOO,unknown,0.0,,,
+PA028BF00,BF FRANKLIN COUNTY,special_jurisdiction,0.0,055,99055,srs_agency_header
+PA029BF00,BF FULTON COUNTY,special_jurisdiction,0.0,057,99057,srs_agency_header
+PA029DE00,BN FULTON COUNTY,special_jurisdiction,0.0,057,99057,srs_agency_header
+PA0300000,GREENE,sheriff,0.0,059,99059,srs_agency_header
+PA030BF00,BF GREENE COUNTY,special_jurisdiction,0.0,059,99059,srs_agency_header
+PA030DE00,BN GREENE COUNTY,special_jurisdiction,0.0,059,99059,srs_agency_header
+PA0310900,SPR TROUGH CREEK,unknown,0.0,061,,fbi_cde_agency_roster
+PA0311000,SPR GREENWOOD FURNACE,unknown,0.0,061,,fbi_cde_agency_roster
+PA031BF00,BF HUNTINGDON COUNTY,special_jurisdiction,0.0,061,99061,srs_agency_header
+PA0320000,INDIANA,sheriff,0.0,063,99063,srs_agency_header
+PA032BF00,BF INDIANA COUNTY,special_jurisdiction,0.0,063,99063,srs_agency_header
+PA032DE00,BN INDIANA COUNTY,special_jurisdiction,0.0,063,99063,srs_agency_header
+PA0330000,JEFFERSON,sheriff,0.0,065,99065,srs_agency_header
+PA0331300,SPR CLEAR CREEK,unknown,0.0,065,,fbi_cde_agency_roster
+PA033BF00,BF JEFFERSON COUNTY,special_jurisdiction,0.0,065,99065,srs_agency_header
+PA0340000,JUNIATA,sheriff,0.0,067,99067,srs_agency_header
+PA0340400,MIFFLIN,local_police,619.0,067,49272,srs_agency_header
+PA034BF00,BF JUNIATA COUNTY,special_jurisdiction,0.0,067,99067,srs_agency_header
+PA034DE00,BN JUNIATA COUNTY,special_jurisdiction,0.0,067,99067,srs_agency_header
+PA0352100,SPR LACKAWANNA,unknown,0.0,069,,fbi_cde_agency_roster
+PA0353600,JEFFERSON TOWNSHIP LACK,local_police,3890.0,069,37896,srs_agency_header
+PA035BF00,BF LACKAWANNA COUNTY,special_jurisdiction,0.0,069,99069,srs_agency_header
+PA035DE00,BN LACKAWANNA COUNTY,special_jurisdiction,0.0,069,99069,srs_agency_header
+PA0364500,COUNTY DET LANCASTER CO,special_jurisdiction,0.0,071,99071,srs_agency_header
+PA036BF00,BF LANCASTER COUNTY,special_jurisdiction,0.0,071,99071,srs_agency_header
+PA0370000,LAWRENCE,sheriff,0.0,073,99073,srs_agency_header
+PA037BF00,BF LAWRENCE COUNTY,special_jurisdiction,0.0,073,99073,srs_agency_header
+PA037DE00,BN LAWRENCE COUNTY,special_jurisdiction,0.0,073,99073,srs_agency_header
+PA038BF00,BF LEBANON COUNTY,special_jurisdiction,0.0,075,99075,srs_agency_header
+PA0392400,DESALES UNIVERSITY,unknown,,,,
+PA039BF00,BF LEHIGH COUNTY,special_jurisdiction,0.0,077,99077,srs_agency_header
+PA0403000,SPR RICKETTS GLEN,unknown,0.0,079,,fbi_cde_agency_roster
+PA0403700,SHICKSHINNY,local_police,821.0,079,70224,srs_agency_header
+PA0404400,EXETER TOWNSHIP,local_police,2359.0,079,24400,srs_agency_header
+PA0407800,WILKES BARRE AR SCH DIST,special_jurisdiction,0.0,079,99079,srs_agency_header
+PA040BF00,BF LUZERNE COUNTY,special_jurisdiction,0.0,079,99079,srs_agency_header
+PA040DE00,BN LUZERNE COUNTY,special_jurisdiction,0.0,079,99079,srs_agency_header
+PA0412600,MONTGOMERY AREA SCHOOL D,unknown,0.0,,,
+PA041BF00,BF LYCOMING COUNTY,special_jurisdiction,0.0,081,99081,srs_agency_header
+PA041DE00,BN LYCOMING COUNTY,special_jurisdiction,0.0,081,99081,srs_agency_header
+PA0421100,COUNTY DET MCKEAN CNTY,unknown,0.0,083,,fbi_cde_agency_roster
+PA042DE00,BN MCKEAN COUNTY,special_jurisdiction,0.0,083,99083,srs_agency_header
+PA0430000,MERCER,sheriff,0.0,085,99085,srs_agency_header
+PA043BF00,BF MERCER COUNTY,special_jurisdiction,0.0,085,99085,srs_agency_header
+PA043DE00,BN MERCER COUNTY,special_jurisdiction,0.0,085,99085,srs_agency_header
+PA0441100,SPR REEDS GAP,unknown,0.0,087,,fbi_cde_agency_roster
+PA044BF00,BF MIFFLIN COUNTY,special_jurisdiction,0.0,087,99087,srs_agency_header
+PA0451000,COUNTY DET MONROE CNTY,special_jurisdiction,0.0,089,99089,srs_agency_header
+PA0451200,SPR TOBYHANNA,unknown,0.0,089,,fbi_cde_agency_roster
+PA045BF00,BF MONROE COUNTY,special_jurisdiction,0.0,089,99089,srs_agency_header
+PA045DE00,BN MONROE COUNTY,special_jurisdiction,0.0,089,99089,srs_agency_header
+PA046BF00,BF MONTGOMERY COUNTY,special_jurisdiction,0.0,091,99091,srs_agency_header
+PA0470300,COUNTY DET MONTOUR CNTY,special_jurisdiction,0.0,093,18136,srs_agency_header
+PA047BF00,BF MONTOUR COUNTY,special_jurisdiction,0.0,093,99093,srs_agency_header
+PA0483700,BANGOR AREA SCHOOL DIST,special_jurisdiction,0.0,095,04032,srs_agency_header
+PA0483800,SPR JACOBSBURG ENVIR ED,unknown,0.0,095,,fbi_cde_agency_roster
+PA0484100,EASTON AREA SCHOOL DIST,special_jurisdiction,0.0,095,21648,srs_agency_header
+PA048BF00,BF NORTHAMPTON COUNTY,special_jurisdiction,0.0,095,99095,srs_agency_header
+PA0490000,NORTHUMBERLAND,sheriff,0.0,097,99097,srs_agency_header
+PA0492100,SPR SHIKELLAMY,unknown,0.0,097,,fbi_cde_agency_roster
+PA049BF00,BF NORTHUMBERLAND CNTY,special_jurisdiction,0.0,097,99097,srs_agency_header
+PA049DE00,BN NORTHUMBERLAND CNTY,special_jurisdiction,0.0,097,99097,srs_agency_header
+PA0501500,SPR LITTLE BUFFALO,unknown,0.0,099,,fbi_cde_agency_roster
+PA050BF00,BF PERRY COUNTY,special_jurisdiction,0.0,099,99099,srs_agency_header
+PA050DE00,BN PERRY COUNTY,special_jurisdiction,0.0,099,99099,srs_agency_header
+PA051BF00,BF PHILADELPHIA COUNTY,special_jurisdiction,0.0,101,99101,srs_agency_header
+PA051DE00,BN PHILADELPHIA COUNTY,special_jurisdiction,0.0,101,99101,srs_agency_header
+PA0520000,PIKE,sheriff,0.0,103,99103,srs_agency_header
+PA0520700,SPR PROMISED LAND,unknown,0.0,103,,fbi_cde_agency_roster
+PA052BF00,BF PIKE COUNTY,special_jurisdiction,0.0,103,99103,srs_agency_header
+PA052DE00,BN PIKE COUNTY,special_jurisdiction,0.0,103,99103,srs_agency_header
+PA0531400,SPR OLE BULL,unknown,0.0,105,,fbi_cde_agency_roster
+PA053BF00,BF POTTER COUNTY,special_jurisdiction,0.0,105,99105,srs_agency_header
+PA053DE00,BN POTTER COUNTY,special_jurisdiction,0.0,105,99105,srs_agency_header
+PA0540100,CRESSONA,local_police,1614.0,107,17152,srs_agency_header
+PA0541600,NEW PHILADELPHIA,local_police,1067.0,107,53944,srs_agency_header
+PA0543000,UNION TOWNSHIP,local_police,1234.0,107,78400,srs_agency_header
+PA0543500,COUNTY DET SCHUYLKILL C,special_jurisdiction,0.0,107,99107,srs_agency_header
+PA0545200,PA ST UNIV SCHUYLKILL,special_jurisdiction,0.0,107,78704,srs_agency_header
+PA054BF00,BF SCHUYLKILL COUNTY,special_jurisdiction,0.0,107,99107,srs_agency_header
+PA054DE00,BN SCHUYLKILL COUNTY,special_jurisdiction,0.0,107,99107,srs_agency_header
+PA055DE00,BN SNYDER COUNTY,special_jurisdiction,0.0,109,99109,srs_agency_header
+PA0560600,CENTRAL CITY,local_police,1045.0,111,12296,srs_agency_header
+PA056BF00,BF SOMERSET COUNTY,special_jurisdiction,0.0,111,99111,srs_agency_header
+PA056DE00,BN SOMERSET COUNTY,special_jurisdiction,0.0,111,99111,srs_agency_header
+PA057BF00,BF SULLIVAN COUNTY,special_jurisdiction,0.0,113,99113,srs_agency_header
+PA057DE00,BN SULLIVAN COUNTY,special_jurisdiction,0.0,113,99113,srs_agency_header
+PA0581500,HOP BOTTOM BOROUGH,local_police,310.0,115,35624,srs_agency_header
+PA058BF00,BF SUSQUEHANNA COUNTY,special_jurisdiction,0.0,115,99115,srs_agency_header
+PA058DE00,BN SUSQUEHANNA COUNTY,special_jurisdiction,0.0,115,99115,srs_agency_header
+PA0590000,TIOGA,sheriff,0.0,117,99117,srs_agency_header
+PA059BF00,BF TIOGA COUNTY,special_jurisdiction,0.0,117,99117,srs_agency_header
+PA0600000,UNION,sheriff,0.0,119,99119,srs_agency_header
+PA0600900,SPR RAYMOND B WINTER,unknown,0.0,119,,fbi_cde_agency_roster
+PA060BF00,BF UNION COUNTY,special_jurisdiction,0.0,119,99119,srs_agency_header
+PA0611500,SPR OIL CREEK,unknown,0.0,121,,fbi_cde_agency_roster
+PA061BF00,BF VENANGO COUNTY,special_jurisdiction,0.0,121,99121,srs_agency_header
+PA0620000,WARREN,sheriff,0.0,123,99123,srs_agency_header
+PA0620700,COUNTY DET WARREN CNTY,special_jurisdiction,0.0,123,99123,srs_agency_header
+PA0621200,SPR CHAPMAN,unknown,0.0,123,,fbi_cde_agency_roster
+PA062BF00,BF WARREN COUNTY,special_jurisdiction,0.0,123,99123,srs_agency_header
+PA0631200,BEALLSVILLE,local_police,463.0,125,04568,srs_agency_header
+PA0632700,INDEPENDENCE TOWNSHIP,local_police,1507.0,125,36800,srs_agency_header
+PA0633000,NORTH FRANKLIN TOWNSHIP,local_police,4776.0,125,55040,srs_agency_header
+PA0634300,WASHINGTON COUNTY DISTRI,special_jurisdiction,0.0,125,99125,srs_agency_header
+PA0635300,JEFFERSON TOWNSHIP WASH,local_police,1137.0,125,37936,srs_agency_header
+PA063BF00,BF WASHINGTON COUNTY,special_jurisdiction,0.0,125,99125,srs_agency_header
+PA063DE00,BN WASHINGTON COUNTY,special_jurisdiction,0.0,125,99125,srs_agency_header
+PA064BF00,BF WAYNE COUNTY,special_jurisdiction,0.0,127,99127,srs_agency_header
+PA064DE00,BN WAYNE COUNTY,special_jurisdiction,0.0,127,99127,srs_agency_header
+PA0650000,WESTMORELAND,sheriff,0.0,129,99129,srs_agency_header
+PA065BF00,BF WESTMORELAND COUNTY,special_jurisdiction,0.0,129,99129,srs_agency_header
+PA065DE00,BN WESTMORELAND COUNTY,special_jurisdiction,0.0,129,99129,srs_agency_header
+PA0660000,WYOMING,sheriff,0.0,131,99131,srs_agency_header
+PA066BF00,BF WYOMING COUNTY,special_jurisdiction,0.0,131,99131,srs_agency_header
+PA0673000,WRIGHTSVILLE,local_police,2294.0,133,86640,srs_agency_header
+PA0676100,DOVER BOROUGH,local_police,,133,19696,srs_agency_header
+PA0676400,SPR SAMUEL S LEWIS,unknown,0.0,133,,fbi_cde_agency_roster
+PA067BF00,BF YORK COUNTY,special_jurisdiction,0.0,133,99133,srs_agency_header
+PA067DE00,BN YORK COUNTY,special_jurisdiction,0.0,133,99133,srs_agency_header
+PA10BCI00,SP BCI BUTLER COUNTY,state_law_enforcement,,019,99019,srs_agency_header
+PA16BCI00,SP BCI CLARION COUNTY,state_law_enforcement,,031,99031,srs_agency_header
+PA40BCI00,SP BCI LUZERNE COUNTY,state_law_enforcement,,079,99079,srs_agency_header
+PA42BCI00,SP BCI MCKEAN COUNTY,state_law_enforcement,,083,99083,srs_agency_header
+PA45BCI00,SP BCI MONROE COUNTY,state_law_enforcement,,089,99089,srs_agency_header
+PA56BCI00,SP BCI SOMERSET COUNTY,state_law_enforcement,,111,99111,srs_agency_header
+PA59BCI00,SP BCI TIOGA COUNTY,state_law_enforcement,,117,99117,srs_agency_header
+PA61BCI00,SP BCI VENANGO COUNTY,state_law_enforcement,,121,99121,srs_agency_header
+PA66BCI00,SP BCI WYOMING COUNTY,state_law_enforcement,,131,99131,srs_agency_header
+PAGEA0700,SP GAMING ENFORCEMENT,special_jurisdiction,0.0,077,32800,srs_agency_header
+PAPDH0200,COUNTY DET ADAMS COUNTY,unknown,,,,
+PAPDN1900,MIFFLIN TOWNSHIP,unknown,,,,
+RIDI00300,NARRAGANSETT TRIBAL,local_police,0.0,009,14320,srs_agency_header
+SC0029900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0049900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0079900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0089900,DEPT OF HEALTH ENV CON,unknown,,,,
+SC0099900,DEPT OF HEALTH ENV CON,unknown,,,,
+SC0119900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0149900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0219900,DEPT OF HEALTH ENV CON,unknown,,,,
+SC0239900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0289900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0319900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0322800,ATLANTIC RAILWAYS,unknown,,,,
+SC0329900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0349900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0389900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0399900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0429900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0439900,DEPT OF HEALTH ENV CON,unknown,,,,
+SC0459900,DEPARTMENT OF HEALTH AND,unknown,,,,
+SC0469900,DEPT OF HEALTH ENV CON,unknown,,,,
+TN0192100,TN DEPT OF REVENUE SIU,special_jurisdiction,0.0,037,52000,srs_agency_header
+TN0229900,SPR HARPETH SCNC RIVERS,special_jurisdiction,,043,99043,srs_agency_header
+TN0300300,DTF 3RD JUDICIAL DISTRIC,special_jurisdiction,0.0,059,30980,srs_agency_header
+TN0490500,SPR FORT PILLOW ST HST P,special_jurisdiction,0.0,097,33360,srs_agency_header
+TN0550400,SPR BIG HILL POND,special_jurisdiction,0.0,109,99109,srs_agency_header
+TX0031500,INDEPENDENT SCHOOL DISTR,unknown,0.0,005,,fbi_cde_agency_roster
+TX0130600,INDEPENDENT SCHOOL DISTR,unknown,0.0,025,,fbi_cde_agency_roster
+TX0192000,INDEPENDENT SCHOOL DISTR,unknown,0.0,037,,fbi_cde_agency_roster
+TX0192400,INDEPENDENT SCHOOL DISTR,unknown,0.0,037,,fbi_cde_agency_roster
+TX0313100,INDEPENDENT SCHOOL DISTR,unknown,0.0,061,,fbi_cde_agency_roster
+TX0431300,COLLIN COUNTY CONSTABLE,unknown,0.0,085,,fbi_cde_agency_roster
+TX0578400,ISD HIGHLAND PARK,unknown,0.0,113,,fbi_cde_agency_roster
+TX0614800,INDEPENDENT SCHOOL DISTR,unknown,0.0,121,,fbi_cde_agency_roster
+TX0615200,INDEPENDENT SCHOOL DISTR,unknown,0.0,121,,fbi_cde_agency_roster
+TX0741800,INDEPENDENT SCHOOL DISTR,unknown,0.0,147,,fbi_cde_agency_roster
+TX0912700,INDEPENDENT SCHOOL DISTR,unknown,0.0,181,,fbi_cde_agency_roster
+TX0913400,INDEPENDENT SCHOOL DISTR,unknown,0.0,181,,fbi_cde_agency_roster
+TX1001200,INDEPENDENT SCHOOL DISTR,unknown,0.0,199,,fbi_cde_agency_roster
+TX1001400,INDEPENDENT SCHOOL DISTR,unknown,0.0,199,,fbi_cde_agency_roster
+TX1131100,INDEPENDENT SCHOOL DISTR,unknown,0.0,225,,fbi_cde_agency_roster
+TX1261700,INDEPENDENT SCHOOL DISTR,unknown,0.0,251,,fbi_cde_agency_roster
+TX1261800,INDEPENDENT SCHOOL DISTR,unknown,0.0,251,,fbi_cde_agency_roster
+TX1292000,INDEPENDENT SCHOOL DISTR,unknown,0.0,257,,fbi_cde_agency_roster
+TX1471100,ISD MEXIA,special_jurisdiction,0.0,293,47916,srs_agency_header
+TX1500900,INDEPENDENT SCHOOL DISTR,unknown,0.0,299,,fbi_cde_agency_roster
+TX2100900,INDEPENDENT SCHOOL DISTR,special_jurisdiction,0.0,419,13732,srs_agency_header
+TX2274000,CONCORDIA UNIVERSITY,unknown,,,,
+TX2275800,INDEPENDENT SCHOOL DISTR,unknown,0.0,453,,fbi_cde_agency_roster
+TX2420100,SHAMROCK,local_police,1866.0,483,67160,srs_agency_header
+UT0200400,FOUNTAIN GREEN,local_police,1302.0,039,26720,srs_agency_header
+UT0200500,GUNNISON,local_police,3564.0,039,32660,srs_agency_header
+UT0230500,STOCKTON,local_police,691.0,045,73050,srs_agency_header
+VA0070500,U S FEDERAL DEPOSIT INS,unknown,,,,
+VA0260300,CLINCHCO,local_police,302.0,051,17504,srs_agency_header
+VA0820900,BRIDGEWATER COLLEGE,unknown,,,,
+VA108SP00,SP FALLS CHURCH,state_law_enforcement,0.0,610,27200,srs_agency_header
+WA0342200,ST INSUR CMSNR SPC INV U,special_jurisdiction,,067,72905,srs_agency_header
+WADI06300,SAUK SUIATTLE TRIBAL,local_police,0.0,061,16690,srs_agency_header
+WAWSP0000,WASHINGTON STATE PATROL,state_law_enforcement,0.0,067,51300,srs_agency_header
+WI0710500,TOWN OF MENASHA,local_police,0.0,139,50850,srs_agency_header
+WV0050500,BETHANY,local_police,869.0,009,06844,srs_agency_header
+WV0061000,HUNTINGTON DRUG VCTF,special_jurisdiction,0.0,011,39460,srs_agency_header
+WV0140200,DNR HAMPSHIRE COUNTY,special_jurisdiction,0.0,027,70084,srs_agency_header
+WV0170700,NUTTER FORT,local_police,1532.0,033,59836,srs_agency_header
+WV0230400,DNR LOGAN COUNTY,special_jurisdiction,0.0,045,99045,srs_agency_header
+WV0250900,DNR MARION COUNTY,special_jurisdiction,0.0,049,99049,srs_agency_header
+WV0260600,DNR MARSHALL COUNTY,special_jurisdiction,0.0,051,99051,srs_agency_header
+WV0310700,DNR MONONGALIA COUNTY,special_jurisdiction,0.0,061,99061,srs_agency_header
+WV0380200,DNR POCAHONTAS COUNTY,special_jurisdiction,0.0,075,99075,srs_agency_header
+WV0390800,DNR PRESTON COUNTY,special_jurisdiction,0.0,077,99077,srs_agency_header
+WV0470300,DNR TUCKER COUNTY,special_jurisdiction,0.0,093,99093,srs_agency_header
+WV0550200,PINEVILLE,local_police,630.0,109,63940,srs_agency_header
+WVWSP8800,SP BCI BECKLEY,state_law_enforcement,0.0,081,05332,srs_agency_header
+WVWSP9300,SP BCI BLUEFIELD,state_law_enforcement,0.0,055,08524,srs_agency_header

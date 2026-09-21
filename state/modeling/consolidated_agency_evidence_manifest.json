@@ -1,0 +1,20 @@
+{
+  "before_after_path": "state/modeling/consolidated_agency_before_after.csv",
+  "invariance_path": "state/modeling/consolidated_agency_county_invariance.csv",
+  "renders": [
+    {
+      "path": "state/modeling/consolidated_agency_las_vegas_v4_v5.png",
+      "bytes": 303674
+    },
+    {
+      "path": "state/modeling/consolidated_agency_louisville_v4_v5.png",
+      "bytes": 680966
+    }
+  ],
+  "validation_summary_path": "state/candidates/consolidated-agency-v5/validation_summary.json",
+  "rows_before_after": 24,
+  "rows_invariance": 3108,
+  "per_county_nonexcluded_max_pct_delta": 0.0,
+  "per_county_nonexcluded_max_abs_delta": 0.0,
+  "per_county_nonexcluded_failures": 0
+}

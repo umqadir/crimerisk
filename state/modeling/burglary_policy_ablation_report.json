@@ -1,0 +1,2828 @@
+{
+  "created_at_utc": "2026-07-03T10:08:25.205077+00:00",
+  "scope": "O3 analysis only; no estimator, design, or gate edits; no commit",
+  "outputs": {
+    "json": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/burglary_policy_ablation_report.json",
+    "csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/burglary_policy_ablation_gradients.csv"
+  },
+  "hard_invariants": {
+    "state_surface_expected_count_v6_minus_v5": {
+      "rows": 343,
+      "moved_rows_abs_gt_tol": 0,
+      "max_abs_delta": 5.820766091346741e-11,
+      "sum_abs_delta": 1.3346834748517722e-10,
+      "net_delta": -4.331468517193571e-11,
+      "tolerance": 1e-07
+    },
+    "state_surface_expected_count_vs_adjusted_count_ags_core_v6": {
+      "rows": 343,
+      "moved_rows_abs_gt_tol": 0,
+      "max_abs_delta": 1.4551915228366852e-11,
+      "sum_abs_delta": 1.794973059077165e-10,
+      "net_delta": 1.0543033113208367e-10,
+      "tolerance": 1e-07
+    },
+    "component_jurisdiction_total_v6_minus_v5": {
+      "rows": 116100,
+      "moved_rows_abs_gt_tol": 0,
+      "max_abs_delta": 3.637978807091713e-12,
+      "sum_abs_delta": 2.3077786556746638e-10,
+      "net_delta": 8.149977220872628e-12,
+      "tolerance": 1e-07
+    },
+    "component_jurisdiction_total_moved_rows": 0,
+    "component_jurisdiction_total_moved_non_st_louis_rows": 0,
+    "component_jurisdiction_total_moved_non_st_louis_sample": [],
+    "interpretation": "No non-St. Louis jurisdiction total movement detected above tolerance; state totals reconcile to adjusted_count_ags_core within floating point."
+  },
+  "county_deltas": {
+    "county_invariance_csv": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/policy_stlouis_v6_county_invariance.csv",
+    "county_rows": 3108,
+    "county_failures_total": 504,
+    "non_st_louis_failures": 504,
+    "mechanism_net_deltas": [
+      {
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": -7.178937999618995e-12
+      },
+      {
+        "mechanism": "single_county_or_other_component",
+        "delta": 8.174350085710103e-12
+      },
+      {
+        "mechanism": "st_louis_direct_posterior_internal_shift",
+        "delta": -2.369215934550084e-13
+      },
+      {
+        "mechanism": "state_remainder_or_overlap_residual_pool_redistribution",
+        "delta": 1.3029022305488525e-12
+      }
+    ],
+    "mechanism_abs_row_deltas": [
+      {
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "abs_delta": 118106.85947266352
+      },
+      {
+        "mechanism": "single_county_or_other_component",
+        "abs_delta": 503649.8764524669
+      },
+      {
+        "mechanism": "st_louis_direct_posterior_internal_shift",
+        "abs_delta": 8022.498192342877
+      },
+      {
+        "mechanism": "state_remainder_or_overlap_residual_pool_redistribution",
+        "abs_delta": 175961.10910880702
+      }
+    ],
+    "max_delta_county": {
+      "county_fips": "48201",
+      "total_delta": 1311.3702773484333,
+      "abs_total_delta": 1311.3702773484333,
+      "multi_county_municipal_internal_texture_shift": 1311.3702773484347,
+      "single_county_or_other_component": -1.042499420123022e-13,
+      "st_louis_direct_posterior_internal_shift": 0.0,
+      "state_remainder_or_overlap_residual_pool_redistribution": -1.3250511798901243e-12,
+      "expected_count_total_delta": 1311.37027734844,
+      "expected_count_total_abs_delta": 1311.37027734844,
+      "expected_count_total_pct_delta": 0.0067304911417805,
+      "passes_0p1pct_or_0p01_abs": false,
+      "two_named_mechanisms_delta": 1311.3702773484333,
+      "other_delta": 0.0,
+      "county_name": "Harris County, TX"
+    },
+    "max_delta_county_top_component_jurisdictions": [
+      {
+        "jurisdiction_id": "48:municipal:place:4835000",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 1074.429291602099,
+        "abs_delta": 1074.429291602099
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4838476",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 101.9975938883572,
+        "abs_delta": 101.9975938883572
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4806128",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 36.08028805383801,
+        "abs_delta": 36.08028805383801
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4856348",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 35.60611063205687,
+        "abs_delta": 35.60611063205687
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4848804",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 24.368001824414737,
+        "abs_delta": 24.368001824414737
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4841980",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 13.182017876935916,
+        "abs_delta": 13.182017876935916
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4876228",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 12.775855888384614,
+        "abs_delta": 12.775855888384614
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4827648",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 12.595748607475986,
+        "abs_delta": 12.595748607475986
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4866392",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": -0.5402876303531026,
+        "abs_delta": 0.5402876303531026
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4869908",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 0.4391718681161007,
+        "abs_delta": 0.4391718681161007
+      },
+      {
+        "jurisdiction_id": "48:municipal:place:4873316",
+        "jurisdiction_type": "municipal",
+        "mechanism": "multi_county_municipal_internal_texture_shift",
+        "delta": 0.43648473710941466,
+        "abs_delta": 0.43648473710941466
+      },
+      {
+        "jurisdiction_id": "48:state_nonmunicipal_remainder:county:48201",
+        "jurisdiction_type": "localized_remainder_county_layer",
+        "mechanism": "state_remainder_or_overlap_residual_pool_redistribution",
+        "delta": -1.3250511798901243e-12,
+        "abs_delta": 1.3250511798901243e-12
+      }
+    ],
+    "top_counties_by_abs_delta": [
+      {
+        "county_fips": "48201",
+        "total_delta": 1311.3702773484333,
+        "abs_total_delta": 1311.3702773484333,
+        "multi_county_municipal_internal_texture_shift": 1311.3702773484347,
+        "single_county_or_other_component": -1.042499420123022e-13,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -1.3250511798901243e-12,
+        "expected_count_total_delta": 1311.37027734844,
+        "expected_count_total_abs_delta": 1311.37027734844,
+        "expected_count_total_pct_delta": 0.0067304911417805,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 1311.3702773484333,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "48157",
+        "total_delta": -823.767354346376,
+        "abs_total_delta": 823.767354346376,
+        "multi_county_municipal_internal_texture_shift": -823.7673543463766,
+        "single_county_or_other_component": 1.0369396313825163e-13,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 5.317413176442187e-13,
+        "expected_count_total_delta": -823.7673543463752,
+        "expected_count_total_abs_delta": 823.7673543463752,
+        "expected_count_total_pct_delta": -0.062501189628905,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -823.767354346376,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "48339",
+        "total_delta": -307.91488586886317,
+        "abs_total_delta": 307.91488586886317,
+        "multi_county_municipal_internal_texture_shift": -307.91488586886254,
+        "single_county_or_other_component": -1.160235102437568e-13,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -5.137001934940599e-13,
+        "expected_count_total_delta": -307.91488586886226,
+        "expected_count_total_abs_delta": 307.91488586886226,
+        "expected_count_total_pct_delta": -0.0288439593516769,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -307.91488586886305,
+        "other_delta": -1.1368683772161603e-13
+      },
+      {
+        "county_fips": "40109",
+        "total_delta": 215.38969673337624,
+        "abs_total_delta": 215.38969673337624,
+        "multi_county_municipal_internal_texture_shift": 215.3896967333763,
+        "single_county_or_other_component": -6.458722445756848e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 8.965050923848139e-15,
+        "expected_count_total_delta": 215.3896967333785,
+        "expected_count_total_abs_delta": 215.3896967333785,
+        "expected_count_total_pct_delta": 0.0075326169843397,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 215.3896967333763,
+        "other_delta": -5.684341886080802e-14
+      },
+      {
+        "county_fips": "40017",
+        "total_delta": -207.52955002395376,
+        "abs_total_delta": 207.52955002395376,
+        "multi_county_municipal_internal_texture_shift": -207.52955002395376,
+        "single_county_or_other_component": 6.439293542825908e-15,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 2.2620794126737565e-15,
+        "expected_count_total_delta": -207.52955002395356,
+        "expected_count_total_abs_delta": 207.52955002395356,
+        "expected_count_total_pct_delta": -0.0984016699349741,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -207.52955002395376,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "48439",
+        "total_delta": 186.77396249465883,
+        "abs_total_delta": 186.77396249465883,
+        "multi_county_municipal_internal_texture_shift": 186.77396249465892,
+        "single_county_or_other_component": -8.459899447643693e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -2.7252072126726645e-14,
+        "expected_count_total_delta": 186.77396249466256,
+        "expected_count_total_abs_delta": 186.77396249466256,
+        "expected_count_total_pct_delta": 0.003131510156685,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 186.7739624946589,
+        "other_delta": -5.684341886080802e-14
+      },
+      {
+        "county_fips": "29095",
+        "total_delta": -176.91069634150648,
+        "abs_total_delta": 176.91069634150648,
+        "multi_county_municipal_internal_texture_shift": -176.91069634150637,
+        "single_county_or_other_component": -1.189027175330093e-13,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 3.9871534893154426e-15,
+        "expected_count_total_delta": -176.91069634151063,
+        "expected_count_total_abs_delta": 176.91069634151063,
+        "expected_count_total_pct_delta": -0.0045998873525958,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -176.91069634150637,
+        "other_delta": -1.1368683772161603e-13
+      },
+      {
+        "county_fips": "19153",
+        "total_delta": 172.45586491338813,
+        "abs_total_delta": 172.45586491338813,
+        "multi_county_municipal_internal_texture_shift": 172.45586491338807,
+        "single_county_or_other_component": 5.876549247219032e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 5.655198531684391e-15,
+        "expected_count_total_delta": 172.4558649133869,
+        "expected_count_total_abs_delta": 172.4558649133869,
+        "expected_count_total_pct_delta": 0.0142409943036016,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 172.45586491338807,
+        "other_delta": 5.684341886080802e-14
+      },
+      {
+        "county_fips": "19049",
+        "total_delta": -170.20335092885054,
+        "abs_total_delta": 170.20335092885054,
+        "multi_county_municipal_internal_texture_shift": -170.20335092885054,
+        "single_county_or_other_component": 9.089951014118469e-15,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 3.0531133177191805e-15,
+        "expected_count_total_delta": -170.20335092885057,
+        "expected_count_total_abs_delta": 170.20335092885057,
+        "expected_count_total_pct_delta": -0.1605372815504526,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -170.20335092885054,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "45015",
+        "total_delta": -121.16614044625308,
+        "abs_total_delta": 121.16614044625308,
+        "multi_county_municipal_internal_texture_shift": -121.16614044625308,
+        "single_county_or_other_component": 6.525249091060559e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -6.256106743762757e-14,
+        "expected_count_total_delta": -121.16614044625294,
+        "expected_count_total_abs_delta": 121.16614044625294,
+        "expected_count_total_pct_delta": -0.0238051643233354,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -121.16614044625314,
+        "other_delta": 5.684341886080802e-14
+      },
+      {
+        "county_fips": "29165",
+        "total_delta": 103.10782904196044,
+        "abs_total_delta": 103.10782904196044,
+        "multi_county_municipal_internal_texture_shift": 103.10782904196041,
+        "single_county_or_other_component": 2.892998340886521e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -3.670674875166924e-15,
+        "expected_count_total_delta": 103.10782904196004,
+        "expected_count_total_abs_delta": 103.10782904196004,
+        "expected_count_total_pct_delta": 0.0387669304096723,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 103.10782904196041,
+        "other_delta": 2.842170943040401e-14
+      },
+      {
+        "county_fips": "08123",
+        "total_delta": -100.8467250025523,
+        "abs_total_delta": 100.8467250025523,
+        "multi_county_municipal_internal_texture_shift": -100.84672500255252,
+        "single_county_or_other_component": 2.1352971474319915e-13,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 3.8163916471489756e-16,
+        "expected_count_total_delta": -100.84672500255238,
+        "expected_count_total_abs_delta": 100.84672500255238,
+        "expected_count_total_pct_delta": -0.0136884510002856,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -100.84672500255252,
+        "other_delta": 2.1316282072803006e-13
+      },
+      {
+        "county_fips": "28073",
+        "total_delta": 100.64224729323789,
+        "abs_total_delta": 100.64224729323789,
+        "multi_county_municipal_internal_texture_shift": 100.6422472932379,
+        "single_county_or_other_component": 2.0261570199409107e-15,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -2.4139978210824253e-14,
+        "expected_count_total_delta": 100.64224729323792,
+        "expected_count_total_abs_delta": 100.64224729323792,
+        "expected_count_total_pct_delta": 0.1193684397132099,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 100.64224729323787,
+        "other_delta": 1.4210854715202004e-14
+      },
+      {
+        "county_fips": "28035",
+        "total_delta": -100.62426164468786,
+        "abs_total_delta": 100.62426164468786,
+        "multi_county_municipal_internal_texture_shift": -100.62426164468785,
+        "single_county_or_other_component": -2.9976021664879227e-15,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -5.551115123125783e-15,
+        "expected_count_total_delta": -100.62426164468776,
+        "expected_count_total_abs_delta": 100.62426164468776,
+        "expected_count_total_pct_delta": -0.0592801552277349,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -100.62426164468785,
+        "other_delta": -1.4210854715202004e-14
+      },
+      {
+        "county_fips": "48085",
+        "total_delta": 99.4768735891024,
+        "abs_total_delta": 99.4768735891024,
+        "multi_county_municipal_internal_texture_shift": 99.4768735891023,
+        "single_county_or_other_component": 8.39502078964216e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 1.541822225448186e-14,
+        "expected_count_total_delta": 99.47687358910116,
+        "expected_count_total_abs_delta": 99.47687358910116,
+        "expected_count_total_pct_delta": 0.0064968833046706,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 99.47687358910231,
+        "other_delta": 8.526512829121202e-14
+      },
+      {
+        "county_fips": "48473",
+        "total_delta": -89.87127172766371,
+        "abs_total_delta": 89.87127172766371,
+        "multi_county_municipal_internal_texture_shift": -89.87127172766372,
+        "single_county_or_other_component": -1.675048988403205e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 1.7926632400744325e-14,
+        "expected_count_total_delta": -89.87127172766372,
+        "expected_count_total_abs_delta": 89.87127172766372,
+        "expected_count_total_pct_delta": -0.0668135540015133,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -89.87127172766371,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "46083",
+        "total_delta": -87.14469772087094,
+        "abs_total_delta": 87.14469772087094,
+        "multi_county_municipal_internal_texture_shift": -87.14469772087094,
+        "single_county_or_other_component": 3.937822290467352e-15,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -2.6645352591003757e-15,
+        "expected_count_total_delta": -87.14469772087091,
+        "expected_count_total_abs_delta": 87.14469772087091,
+        "expected_count_total_pct_delta": -0.0899226125431403,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -87.14469772087094,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "08059",
+        "total_delta": -87.13094741234599,
+        "abs_total_delta": 87.13094741234599,
+        "multi_county_municipal_internal_texture_shift": -87.13094741234568,
+        "single_county_or_other_component": -3.3514857555871913e-13,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": 1.4155343563970746e-15,
+        "expected_count_total_delta": -87.13094741234818,
+        "expected_count_total_abs_delta": 87.13094741234818,
+        "expected_count_total_pct_delta": -0.0043528553123711,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": -87.13094741234568,
+        "other_delta": -3.126388037344441e-13
+      },
+      {
+        "county_fips": "46099",
+        "total_delta": 85.36470105012687,
+        "abs_total_delta": 85.36470105012687,
+        "multi_county_municipal_internal_texture_shift": 85.36470105012687,
+        "single_county_or_other_component": -1.942890293094024e-15,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -1.893450674028685e-15,
+        "expected_count_total_delta": 85.36470105012722,
+        "expected_count_total_abs_delta": 85.36470105012722,
+        "expected_count_total_pct_delta": 0.0123308192320313,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 85.36470105012687,
+        "other_delta": 0.0
+      },
+      {
+        "county_fips": "08001",
+        "total_delta": 78.53768749688378,
+        "abs_total_delta": 78.53768749688378,
+        "multi_county_municipal_internal_texture_shift": 78.53768749688389,
+        "single_county_or_other_component": -1.3572476476042539e-14,
+        "st_louis_direct_posterior_internal_shift": 0.0,
+        "state_remainder_or_overlap_residual_pool_redistribution": -1.1862733018119798e-13,
+        "expected_count_total_delta": 78.53768749688606,
+        "expected_count_total_abs_delta": 78.53768749688606,
+        "expected_count_total_pct_delta": 0.0043209931760477,
+        "passes_0p1pct_or_0p01_abs": false,
+        "two_named_mechanisms_delta": 78.53768749688378,
+        "other_delta": 0.0
+      }
+    ],
+    "interpretation": "County deltas decompose into fixed-control within-jurisdiction redistribution: multi-county municipal internal texture shifts and state/county remainder or overlap residual-pool redistribution. The max county is Harris County, TX (48201), explained by multi-county municipal internal texture movement, dominated by Houston city (48:municipal:place:4835000).",
+    "mechanism_county_level_abs_deltas": {
+      "multi_county_municipal_internal_texture_shift": 8254.412404174425,
+      "state_remainder_or_overlap_residual_pool_redistribution": 461.17848010159366,
+      "single_county_or_other_component": 9.15875634610163e-11,
+      "st_louis_direct_posterior_internal_shift": 2.369215934550084e-13
+    },
+    "max_abs_county_delta_unexplained_by_two_named_mechanisms": 3.204547738278052e-12,
+    "county_failures_abs_gt_0p01_not_explained_by_two_named_mechanisms_gt_1e_6": 0
+  },
+  "burglary_ablation": {
+    "design_used": "add-one-between_only-group-back from the policy-enforced burglary residual feature set; retrained burglary-only residual model per ablation using production pooled residual-training city shares; no full builds",
+    "csv_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/burglary_policy_ablation_gradients.csv",
+    "stored_v5_gradient_from_manifest": {
+      "after_denominator": "primary_denominator_burglary",
+      "after_q5_q1_mean": 1.3293454162076994,
+      "after_q5_q1_mean_direct": 1.1533514187689755,
+      "after_q5_q1_mean_modeled": 1.3417469422815722,
+      "before_denominator": "households_total + commercial_premises_total",
+      "before_q5_q1_mean": 3.353206249094983,
+      "ok": true,
+      "quintile_basis": "commercial_premises_total / (households_total + commercial_premises_total) over published burglary rows",
+      "quintiles": [
+        {
+          "after_index_mean": 90.3997481017159,
+          "after_index_median": 59.3119170536074,
+          "before_index_mean": 64.00815415157703,
+          "before_index_median": 41.9962047407607,
+          "commercial_share_mean": 0.0,
+          "quintile": 1,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 87.43439229968847,
+          "after_index_median": 57.79170228810222,
+          "before_index_mean": 66.17307969859982,
+          "before_index_median": 43.53252023805567,
+          "commercial_share_mean": 0.0024900143846770667,
+          "quintile": 2,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 106.09187968653347,
+          "after_index_median": 69.72814295703321,
+          "before_index_mean": 91.50069943311755,
+          "before_index_median": 59.880546671688194,
+          "commercial_share_mean": 0.008255625905836854,
+          "quintile": 3,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 111.92329406137299,
+          "after_index_median": 74.42891480676968,
+          "before_index_mean": 117.44531056270274,
+          "before_index_median": 77.73692584548891,
+          "commercial_share_mean": 0.0183242633356292,
+          "quintile": 4,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 120.17249076534671,
+          "after_index_median": 81.00381070112824,
+          "before_index_mean": 214.6325424941031,
+          "before_index_median": 132.8989078736281,
+          "commercial_share_mean": 0.05685829102094854,
+          "quintile": 5,
+          "rows": 47044
+        }
+      ],
+      "regime_policy": "direct_city_incident rows are direct; mixed and other rows are evaluated as modeled_transfer",
+      "regime_quintiles": {
+        "direct_city_incident": [
+          {
+            "after_index_mean": 113.28624293641958,
+            "after_index_median": 69.85452505572871,
+            "commercial_share_mean": 0.0,
+            "quintile": 1,
+            "rows": 2494
+          },
+          {
+            "after_index_mean": 132.8179252911214,
+            "after_index_median": 86.76562986988151,
+            "commercial_share_mean": 0.002616625816151314,
+            "quintile": 2,
+            "rows": 2524
+          },
+          {
+            "after_index_mean": 134.97863434931654,
+            "after_index_median": 90.05448875243246,
+            "commercial_share_mean": 0.008249478241581168,
+            "quintile": 3,
+            "rows": 2890
+          },
+          {
+            "after_index_mean": 129.3832066761204,
+            "after_index_median": 86.32330775094806,
+            "commercial_share_mean": 0.01829544950990351,
+            "quintile": 4,
+            "rows": 2904
+          },
+          {
+            "after_index_mean": 130.65884901772637,
+            "after_index_median": 84.00928603134977,
+            "commercial_share_mean": 0.05825567115693045,
+            "quintile": 5,
+            "rows": 2538
+          }
+        ],
+        "modeled_transfer": [
+          {
+            "after_index_mean": 89.11851537180003,
+            "after_index_median": 58.8039341110544,
+            "commercial_share_mean": 0.0,
+            "quintile": 1,
+            "rows": 44550
+          },
+          {
+            "after_index_mean": 84.86143548768541,
+            "after_index_median": 56.42880641295024,
+            "commercial_share_mean": 0.0024828363241864784,
+            "quintile": 2,
+            "rows": 44520
+          },
+          {
+            "after_index_mean": 104.2011626286125,
+            "after_index_median": 68.35262220078039,
+            "commercial_share_mean": 0.00825602828726773,
+            "quintile": 3,
+            "rows": 44154
+          },
+          {
+            "after_index_mean": 110.7745947810552,
+            "after_index_median": 73.41703625001281,
+            "commercial_share_mean": 0.0183261590164155,
+            "quintile": 4,
+            "rows": 44140
+          },
+          {
+            "after_index_mean": 119.57449550078597,
+            "after_index_median": 80.76052016551606,
+            "commercial_share_mean": 0.056778603994814485,
+            "quintile": 5,
+            "rows": 44506
+          }
+        ]
+      },
+      "rows": 235220
+    },
+    "stored_v6_gradient_from_manifest": {
+      "after_denominator": "primary_denominator_burglary",
+      "after_q5_q1_mean": 1.3947864445336537,
+      "after_q5_q1_mean_direct": 1.1619104696094,
+      "after_q5_q1_mean_modeled": 1.4123971253681566,
+      "before_denominator": "households_total + commercial_premises_total",
+      "before_q5_q1_mean": 3.516270825612126,
+      "ok": true,
+      "quintile_basis": "commercial_premises_total / (households_total + commercial_premises_total) over published burglary rows",
+      "quintiles": [
+        {
+          "after_index_mean": 88.18774181597293,
+          "after_index_median": 57.06754807782741,
+          "before_index_mean": 62.595039356187335,
+          "before_index_median": 40.50614455404639,
+          "commercial_share_mean": 0.0,
+          "quintile": 1,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 85.7450256797589,
+          "after_index_median": 56.536029791872,
+          "before_index_mean": 65.0313596500552,
+          "before_index_median": 42.62744860533034,
+          "commercial_share_mean": 0.0024900143846770667,
+          "quintile": 2,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 104.87900459175499,
+          "after_index_median": 68.78228832037895,
+          "before_index_mean": 90.54810797162398,
+          "before_index_median": 59.13174733249563,
+          "commercial_share_mean": 0.008255625905836854,
+          "quintile": 3,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 111.84251044521943,
+          "after_index_median": 74.57888183040723,
+          "before_index_mean": 117.35764222959759,
+          "before_index_median": 77.80254694726175,
+          "commercial_share_mean": 0.0183242633356292,
+          "quintile": 4,
+          "rows": 47044
+        },
+        {
+          "after_index_mean": 123.0030668589527,
+          "after_index_median": 83.57139769622506,
+          "before_index_mean": 220.10111071620435,
+          "before_index_median": 136.8802302914009,
+          "commercial_share_mean": 0.05685829102094854,
+          "quintile": 5,
+          "rows": 47044
+        }
+      ],
+      "regime_policy": "direct_city_incident rows are direct; mixed and other rows are evaluated as modeled_transfer",
+      "regime_quintiles": {
+        "direct_city_incident": [
+          {
+            "after_index_mean": 116.36188469966795,
+            "after_index_median": 70.5289574858748,
+            "commercial_share_mean": 0.0,
+            "quintile": 1,
+            "rows": 2535
+          },
+          {
+            "after_index_mean": 135.3832394561739,
+            "after_index_median": 87.87131630401493,
+            "commercial_share_mean": 0.002626749715009208,
+            "quintile": 2,
+            "rows": 2575
+          },
+          {
+            "after_index_mean": 139.44822658160587,
+            "after_index_median": 91.84890984259157,
+            "commercial_share_mean": 0.008251099426788573,
+            "quintile": 3,
+            "rows": 2956
+          },
+          {
+            "after_index_mean": 134.97472975495407,
+            "after_index_median": 88.76750968402892,
+            "commercial_share_mean": 0.018296969323013366,
+            "quintile": 4,
+            "rows": 2994
+          },
+          {
+            "after_index_mean": 135.20209209602606,
+            "after_index_median": 86.33118806321245,
+            "commercial_share_mean": 0.05806870449754118,
+            "quintile": 5,
+            "rows": 2599
+          }
+        ],
+        "modeled_transfer": [
+          {
+            "after_index_mean": 86.5830898981548,
+            "after_index_median": 56.41568191007712,
+            "commercial_share_mean": 0.0,
+            "quintile": 1,
+            "rows": 44509
+          },
+          {
+            "after_index_mean": 82.87069973417279,
+            "after_index_median": 54.94405603582962,
+            "commercial_share_mean": 0.0024820966560210305,
+            "quintile": 2,
+            "rows": 44469
+          },
+          {
+            "after_index_mean": 102.5612169805683,
+            "after_index_median": 67.39449425031037,
+            "commercial_share_mean": 0.008255929395949053,
+            "quintile": 3,
+            "rows": 44088
+          },
+          {
+            "after_index_mean": 110.2702547218745,
+            "after_index_median": 73.41807084996276,
+            "commercial_share_mean": 0.01832611846102697,
+            "quintile": 4,
+            "rows": 44050
+          },
+          {
+            "after_index_mean": 122.28970727764651,
+            "after_index_median": 83.32538462540906,
+            "commercial_share_mean": 0.056787509951634466,
+            "quintile": 5,
+            "rows": 44445
+          }
+        ]
+      },
+      "rows": 235220
+    },
+    "existing_v6_surface_gradient_recomputed": {
+      "ok": true,
+      "rows": 235220,
+      "after_q5_q1_mean": 1.3947864445336537,
+      "after_q5_q1_mean_direct": 1.1619104696094,
+      "after_q5_q1_mean_modeled": 1.4123971253681566,
+      "quintiles": [
+        {
+          "quintile": 1,
+          "rows": 47044,
+          "commercial_share_mean": 0.0,
+          "after_index_mean": 88.18774181597293,
+          "after_index_median": 57.06754807782741
+        },
+        {
+          "quintile": 2,
+          "rows": 47044,
+          "commercial_share_mean": 0.0024900143846770667,
+          "after_index_mean": 85.7450256797589,
+          "after_index_median": 56.536029791872
+        },
+        {
+          "quintile": 3,
+          "rows": 47044,
+          "commercial_share_mean": 0.008255625905836854,
+          "after_index_mean": 104.87900459175499,
+          "after_index_median": 68.78228832037895
+        },
+        {
+          "quintile": 4,
+          "rows": 47044,
+          "commercial_share_mean": 0.0183242633356292,
+          "after_index_mean": 111.84251044521943,
+          "after_index_median": 74.57888183040723
+        },
+        {
+          "quintile": 5,
+          "rows": 47044,
+          "commercial_share_mean": 0.05685829102094854,
+          "after_index_mean": 123.0030668589527,
+          "after_index_median": 83.57139769622506
+        }
+      ],
+      "regime_quintiles": {
+        "direct_city_incident": [
+          {
+            "quintile": 1,
+            "rows": 2535,
+            "commercial_share_mean": 0.0,
+            "after_index_mean": 116.36188469966795,
+            "after_index_median": 70.5289574858748
+          },
+          {
+            "quintile": 2,
+            "rows": 2575,
+            "commercial_share_mean": 0.002626749715009208,
+            "after_index_mean": 135.3832394561739,
+            "after_index_median": 87.87131630401493
+          },
+          {
+            "quintile": 3,
+            "rows": 2956,
+            "commercial_share_mean": 0.008251099426788573,
+            "after_index_mean": 139.44822658160587,
+            "after_index_median": 91.84890984259157
+          },
+          {
+            "quintile": 4,
+            "rows": 2994,
+            "commercial_share_mean": 0.018296969323013366,
+            "after_index_mean": 134.97472975495407,
+            "after_index_median": 88.76750968402892
+          },
+          {
+            "quintile": 5,
+            "rows": 2599,
+            "commercial_share_mean": 0.05806870449754118,
+            "after_index_mean": 135.20209209602606,
+            "after_index_median": 86.33118806321245
+          }
+        ],
+        "modeled_transfer": [
+          {
+            "quintile": 1,
+            "rows": 44509,
+            "commercial_share_mean": 0.0,
+            "after_index_mean": 86.5830898981548,
+            "after_index_median": 56.41568191007712
+          },
+          {
+            "quintile": 2,
+            "rows": 44469,
+            "commercial_share_mean": 0.0024820966560210305,
+            "after_index_mean": 82.87069973417279,
+            "after_index_median": 54.94405603582962
+          },
+          {
+            "quintile": 3,
+            "rows": 44088,
+            "commercial_share_mean": 0.008255929395949053,
+            "after_index_mean": 102.5612169805683,
+            "after_index_median": 67.39449425031037
+          },
+          {
+            "quintile": 4,
+            "rows": 44050,
+            "commercial_share_mean": 0.01832611846102697,
+            "after_index_mean": 110.2702547218745,
+            "after_index_median": 73.41807084996276
+          },
+          {
+            "quintile": 5,
+            "rows": 44445,
+            "commercial_share_mean": 0.056787509951634466,
+            "after_index_mean": 122.28970727764651,
+            "after_index_median": 83.32538462540906
+          }
+        ]
+      },
+      "national_rate_per_100k": 419.8814143861277
+    },
+    "recompute_formula_check_using_existing_v6_prior_raw": {
+      "max_abs_bg_count_diff_vs_v6_surface": 19.444073846424907,
+      "gradient": {
+        "ok": true,
+        "rows": 235220,
+        "after_q5_q1_mean": 1.3941308021942271,
+        "after_q5_q1_mean_direct": 1.1609569618488125,
+        "after_q5_q1_mean_modeled": 1.4119537276471623,
+        "quintiles": [
+          {
+            "quintile": 1,
+            "rows": 47044,
+            "commercial_share_mean": 0.0,
+            "after_index_mean": 88.36355184828956,
+            "after_index_median": 56.89174015859129
+          },
+          {
+            "quintile": 2,
+            "rows": 47044,
+            "commercial_share_mean": 0.0024900143846770667,
+            "after_index_mean": 85.54813411604921,
+            "after_index_median": 55.84634599833001
+          },
+          {
+            "quintile": 3,
+            "rows": 47044,
+            "commercial_share_mean": 0.008255625905836854,
+            "after_index_mean": 104.66755761882139,
+            "after_index_median": 68.32005538267245
+          },
+          {
+            "quintile": 4,
+            "rows": 47044,
+            "commercial_share_mean": 0.0183242633356292,
+            "after_index_mean": 111.84911842207627,
+            "after_index_median": 74.00834384476741
+          },
+          {
+            "quintile": 5,
+            "rows": 47044,
+            "commercial_share_mean": 0.05685829102094854,
+            "after_index_mean": 123.19034942298711,
+            "after_index_median": 83.14111376158266
+          }
+        ],
+        "regime_quintiles": {
+          "direct_city_incident": [
+            {
+              "quintile": 1,
+              "rows": 2535,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 117.89923924046316,
+              "after_index_median": 70.8296305889856
+            },
+            {
+              "quintile": 2,
+              "rows": 2575,
+              "commercial_share_mean": 0.002626749715009208,
+              "after_index_mean": 137.03636879821613,
+              "after_index_median": 88.73631878880747
+            },
+            {
+              "quintile": 3,
+              "rows": 2956,
+              "commercial_share_mean": 0.008251099426788573,
+              "after_index_mean": 141.33831415211654,
+              "after_index_median": 92.65553123669471
+            },
+            {
+              "quintile": 4,
+              "rows": 2994,
+              "commercial_share_mean": 0.018296969323013366,
+              "after_index_mean": 136.82488133094557,
+              "after_index_median": 89.99331662301151
+            },
+            {
+              "quintile": 5,
+              "rows": 2599,
+              "commercial_share_mean": 0.05806870449754118,
+              "after_index_mean": 136.8759425928944,
+              "after_index_median": 87.21228372005126
+            }
+          ],
+          "modeled_transfer": [
+            {
+              "quintile": 1,
+              "rows": 44509,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 86.68135347180032,
+              "after_index_median": 56.08041014135568
+            },
+            {
+              "quintile": 2,
+              "rows": 44469,
+              "commercial_share_mean": 0.0024820966560210305,
+              "after_index_mean": 82.56668177157148,
+              "after_index_median": 54.20740835256132
+            },
+            {
+              "quintile": 3,
+              "rows": 44088,
+              "commercial_share_mean": 0.008255929395949053,
+              "after_index_mean": 102.20886690224498,
+              "after_index_median": 66.76135937462502
+            },
+            {
+              "quintile": 4,
+              "rows": 44050,
+              "commercial_share_mean": 0.01832611846102697,
+              "after_index_mean": 110.15156032561418,
+              "after_index_median": 72.78860289997093
+            },
+            {
+              "quintile": 5,
+              "rows": 44445,
+              "commercial_share_mean": 0.056787509951634466,
+              "after_index_mean": 122.39006015200975,
+              "after_index_median": 82.79481940970558
+            }
+          ]
+        },
+        "national_rate_per_100k": 410.4281466869607
+      }
+    },
+    "ablation_rows": [
+      {
+        "ablation": "existing_policy_stlouis_v6_surface_no_retrain",
+        "design": "existing_candidate_surface_no_retrain",
+        "feature_group": null,
+        "group_present_in_policy": true,
+        "group_features_in_policy": 0,
+        "group_features_selected_in_residual_model": 0,
+        "selected_feature_count": 228,
+        "burglary_duplicate_neutralized_feature_count": null,
+        "training_rows": null,
+        "training_incident_total": null,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.3947864445336537,
+        "after_q5_q1_mean_direct": 1.1619104696094,
+        "after_q5_q1_mean_modeled": 1.4123971253681566,
+        "national_rate_per_100k": 419.8814143861277,
+        "total_burglary_count_all_rows": 775930.7790938038,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": null
+      },
+      {
+        "ablation": "policy_enforced_retrained_burglary_only",
+        "design": "policy_enforced_baseline",
+        "feature_group": null,
+        "group_present_in_policy": true,
+        "group_features_in_policy": 0,
+        "group_features_selected_in_residual_model": 0,
+        "selected_feature_count": 228,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.3941308021942271,
+        "after_q5_q1_mean_direct": 1.1609569618488125,
+        "after_q5_q1_mean_modeled": 1.4119537276471623,
+        "national_rate_per_100k": 410.4281466869607,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": 0.0
+      },
+      {
+        "ablation": "add_back_commute_transport_exposure",
+        "design": "add_back_between_only_group",
+        "feature_group": "commute_transport_exposure",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 11,
+        "group_features_selected_in_residual_model": 11,
+        "selected_feature_count": 239,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.4042712595211908,
+        "after_q5_q1_mean_direct": 1.161555301666899,
+        "after_q5_q1_mean_modeled": 1.4228461324710024,
+        "national_rate_per_100k": 410.40225859297306,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": 0.01089240482384013
+      },
+      {
+        "ablation": "add_back_household_composition_other",
+        "design": "add_back_between_only_group",
+        "feature_group": "household_composition_other",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 4,
+        "group_features_selected_in_residual_model": 4,
+        "selected_feature_count": 232,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.393732579786818,
+        "after_q5_q1_mean_direct": 1.1610226239639825,
+        "after_q5_q1_mean_modeled": 1.4115299727881112,
+        "national_rate_per_100k": 410.45231182329394,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": -0.00042375485905110644
+      },
+      {
+        "ablation": "add_back_institutional_anchors",
+        "design": "add_back_between_only_group",
+        "feature_group": "institutional_anchors",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 5,
+        "group_features_selected_in_residual_model": 5,
+        "selected_feature_count": 233,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.386515775324973,
+        "after_q5_q1_mean_direct": 1.1611018349338578,
+        "after_q5_q1_mean_modeled": 1.4035832777765798,
+        "national_rate_per_100k": 410.4761103982197,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": -0.008370449870582553
+      },
+      {
+        "ablation": "add_back_lodes_age",
+        "design": "add_back_between_only_group",
+        "feature_group": "lodes_age",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 3,
+        "group_features_selected_in_residual_model": 3,
+        "selected_feature_count": 231,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.3771298507950909,
+        "after_q5_q1_mean_direct": 1.1609501754668374,
+        "after_q5_q1_mean_modeled": 1.3934801155545478,
+        "national_rate_per_100k": 410.43953491547467,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": -0.018473612092614555
+      },
+      {
+        "ablation": "add_back_residential_mobility_domestic",
+        "design": "add_back_between_only_group",
+        "feature_group": "residential_mobility_domestic",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 4,
+        "group_features_selected_in_residual_model": 4,
+        "selected_feature_count": 232,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.3800972778002427,
+        "after_q5_q1_mean_direct": 1.1612257433159408,
+        "after_q5_q1_mean_modeled": 1.39670449031276,
+        "national_rate_per_100k": 410.4085353805312,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": -0.015249237334402421
+      },
+      {
+        "ablation": "add_back_state_fixed_effect",
+        "design": "add_back_between_only_group",
+        "feature_group": "state_fixed_effect",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 50,
+        "group_features_selected_in_residual_model": 0,
+        "selected_feature_count": 228,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.3941308021942271,
+        "after_q5_q1_mean_direct": 1.1609569618488125,
+        "after_q5_q1_mean_modeled": 1.4119537276471623,
+        "national_rate_per_100k": 410.4281466869607,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": 0.0
+      },
+      {
+        "ablation": "add_back_vehicle_availability",
+        "design": "add_back_between_only_group",
+        "feature_group": "vehicle_availability",
+        "group_present_in_policy": true,
+        "group_features_in_policy": 14,
+        "group_features_selected_in_residual_model": 14,
+        "selected_feature_count": 242,
+        "burglary_duplicate_neutralized_feature_count": 75,
+        "training_rows": 18642,
+        "training_incident_total": 356713.0,
+        "published_burglary_rows": 235220,
+        "after_q5_q1_mean_all": 1.384652782021469,
+        "after_q5_q1_mean_direct": 1.1613243061500078,
+        "after_q5_q1_mean_modeled": 1.4016309368581588,
+        "national_rate_per_100k": 410.475510404039,
+        "total_burglary_count_all_rows": 758441.6791643464,
+        "modeled_gradient_delta_vs_policy_enforced_retrained": -0.010322790789003555
+      }
+    ],
+    "details_by_ablation": {
+      "policy_enforced_retrained_burglary_only": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.3941308021942271,
+          "after_q5_q1_mean_direct": 1.1609569618488125,
+          "after_q5_q1_mean_modeled": 1.4119537276471623,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 88.36355184828956,
+              "after_index_median": 56.89174015859129
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 85.54813411604921,
+              "after_index_median": 55.84634599833001
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.66755761882139,
+              "after_index_median": 68.32005538267245
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 111.84911842207627,
+              "after_index_median": 74.00834384476741
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 123.19034942298711,
+              "after_index_median": 83.14111376158266
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.89923924046316,
+                "after_index_median": 70.8296305889856
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.03636879821613,
+                "after_index_median": 88.73631878880747
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.33831415211654,
+                "after_index_median": 92.65553123669471
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.82488133094557,
+                "after_index_median": 89.99331662301151
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.8759425928944,
+                "after_index_median": 87.21228372005126
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 86.68135347180032,
+                "after_index_median": 56.08041014135568
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 82.56668177157148,
+                "after_index_median": 54.20740835256132
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.20886690224498,
+                "after_index_median": 66.76135937462502
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.15156032561418,
+                "after_index_median": 72.78860289997093
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 122.39006015200975,
+                "after_index_median": 82.79481940970558
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.4281466869607
+        },
+        "selected_group_features": [],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 228,
+          "excluded_feature_count": 68,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_only": 41,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_commute_transport_exposure": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.4042712595211908,
+          "after_q5_q1_mean_direct": 1.161555301666899,
+          "after_q5_q1_mean_modeled": 1.4228461324710024,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 88.3280551284183,
+              "after_index_median": 56.82286238330247
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 84.81465551888526,
+              "after_index_median": 55.22672698425289
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.26024487944056,
+              "after_index_median": 67.76825174234571
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 111.82170933449788,
+              "after_index_median": 73.82123477474569
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 124.03654922624114,
+              "after_index_median": 83.55541522645473
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.8403538019795,
+                "after_index_median": 70.98510773855536
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.05049007766965,
+                "after_index_median": 88.71326248416527
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.34897369967052,
+                "after_index_median": 92.73433296856084
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.81562201147807,
+                "after_index_median": 89.92336508074783
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.8780877089924,
+                "after_index_median": 87.11563045634327
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 86.64718885109286,
+                "after_index_median": 56.00683778892552
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 81.78991302436391,
+                "after_index_median": 53.68514671969372
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 101.77353007285829,
+                "after_index_median": 66.11521156869003
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.1229176306414,
+                "after_index_median": 72.53330892773008
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 123.28561754626205,
+                "after_index_median": 83.25504920861196
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.40225859297306
+        },
+        "selected_group_features": [
+          "commute_45_59_share",
+          "commute_45plus_share",
+          "commute_60plus_share",
+          "commute_bicycle_share",
+          "commute_carpool_share",
+          "commute_drive_alone_share",
+          "commute_taxi_ridehail_share",
+          "commute_transit_share",
+          "commute_walk_share",
+          "commute_work_from_home_share",
+          "resident_same_bg_commute_share"
+        ],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 239,
+          "excluded_feature_count": 57,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 11,
+            "between_only": 30,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 11,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_household_composition_other": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.393732579786818,
+          "after_q5_q1_mean_direct": 1.1610226239639825,
+          "after_q5_q1_mean_modeled": 1.4115299727881112,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 88.28885799523783,
+              "after_index_median": 56.941481869855224
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 85.3571991322642,
+              "after_index_median": 55.948203072142206
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.5307516456068,
+              "after_index_median": 67.90948064018133
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 111.67946905628762,
+              "after_index_median": 73.8356386161973
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 123.05105782013486,
+              "after_index_median": 82.83008980655097
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.87687831213759,
+                "after_index_median": 70.92067615447948
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.0339835840511,
+                "after_index_median": 88.84346848965383
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.32313261489617,
+                "after_index_median": 92.57970861412437
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.81331865074398,
+                "after_index_median": 89.86265486568564
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.85772256264104,
+                "after_index_median": 87.21558704466274
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 86.60367900889032,
+                "after_index_median": 56.1731774234238
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 82.36482871774281,
+                "after_index_median": 54.35315149036315
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.06390628756789,
+                "after_index_median": 66.38781930762073
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 109.97116608952703,
+                "after_index_median": 72.53445072419356
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 122.24368867476927,
+                "after_index_median": 82.5166415508691
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.45231182329394
+        },
+        "selected_group_features": [
+          "avg_household_size_owner",
+          "avg_household_size_renter",
+          "hh_access_without_subscription_share",
+          "hh_other_service_only_share"
+        ],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 232,
+          "excluded_feature_count": 64,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 4,
+            "between_only": 37,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 4,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_institutional_anchors": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.386515775324973,
+          "after_q5_q1_mean_direct": 1.1611018349338578,
+          "after_q5_q1_mean_modeled": 1.4035832777765798,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 89.10929502847115,
+              "after_index_median": 57.427383111097086
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 85.5876913121901,
+              "after_index_median": 56.01138611109644
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.77028371064617,
+              "after_index_median": 68.32363208023057
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 112.05337923906619,
+              "after_index_median": 74.1504901143158
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 123.55144328506245,
+              "after_index_median": 83.17172074968785
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.86231899034983,
+                "after_index_median": 71.1887955025794
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.0236725780868,
+                "after_index_median": 88.55360181367853
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.31619875258477,
+                "after_index_median": 92.55590137384891
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.81387073544516,
+                "after_index_median": 89.94069320543048
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.85015484925486,
+                "after_index_median": 87.28318699593113
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 87.47167307013997,
+                "after_index_median": 56.72951332888802
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 82.60926472828483,
+                "after_index_median": 54.51558068461957
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.31996333176825,
+                "after_index_median": 66.72736015110917
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.37045275688324,
+                "after_index_median": 72.86345716244742
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 122.77377760038844,
+                "after_index_median": 82.81731908537232
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.4761103982197
+        },
+        "selected_group_features": [
+          "education_anchor_density_sqkm",
+          "nearest_acute_care_hospital_km",
+          "nearest_emergency_hospital_km",
+          "postsecondary_density_sqkm",
+          "public_school_density_sqkm"
+        ],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 233,
+          "excluded_feature_count": 63,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 5,
+            "between_only": 36,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 5,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_lodes_age": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.3771298507950909,
+          "after_q5_q1_mean_direct": 1.1609501754668374,
+          "after_q5_q1_mean_modeled": 1.3934801155545478,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 89.09645048636953,
+              "after_index_median": 57.351416629369794
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 86.19124405300619,
+              "after_index_median": 56.567620288336
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 105.22413787574659,
+              "after_index_median": 68.69401505139615
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 112.13439269636831,
+              "after_index_median": 74.29821848502894
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 122.69738156466629,
+              "after_index_median": 82.82415438598464
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.88851926652072,
+                "after_index_median": 71.1506234490651
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.04338989074557,
+                "after_index_median": 88.65269180520718
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.34283902958802,
+                "after_index_median": 92.81082146065154
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.8110059669674,
+                "after_index_median": 89.92516157469521
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.86269712799287,
+                "after_index_median": 87.21474795112769
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 87.45660473926932,
+                "after_index_median": 56.674500294483124
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 83.24662475569393,
+                "after_index_median": 55.07501615612506
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.8024612151869,
+                "after_index_median": 67.25424847137407
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.4571672677151,
+                "after_index_median": 72.99677386218981
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 121.86903967808543,
+                "after_index_median": 82.50594122320938
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.43953491547467
+        },
+        "selected_group_features": [
+          "lodes_ca01_share",
+          "lodes_ca02_share",
+          "lodes_ca03_share"
+        ],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 231,
+          "excluded_feature_count": 65,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 3,
+            "between_only": 38,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 3,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_residential_mobility_domestic": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.3800972778002427,
+          "after_q5_q1_mean_direct": 1.1612257433159408,
+          "after_q5_q1_mean_modeled": 1.39670449031276,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 88.83499731733409,
+              "after_index_median": 57.37838465438266
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 85.65986082971627,
+              "after_index_median": 56.226735870534526
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.89159955268578,
+              "after_index_median": 68.61991564052781
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 112.00595262186988,
+              "after_index_median": 74.06936210367061
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 122.60093797104464,
+              "after_index_median": 82.08419280938652
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.8889241951071,
+                "after_index_median": 70.88927653169331
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.05106808345184,
+                "after_index_median": 88.69438108605988
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.36459017592017,
+                "after_index_median": 92.65391166531495
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.82651867713153,
+                "after_index_median": 89.86984370977737
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.89565362717983,
+                "after_index_median": 87.09152155440847
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 87.18023750167534,
+                "after_index_median": 56.598955547204966
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 82.68402690769489,
+                "after_index_median": 54.514542366926406
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.44616859001384,
+                "after_index_median": 67.15578824312331
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.31894297897651,
+                "after_index_median": 72.79691082437583
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 121.76502918512281,
+                "after_index_median": 81.67645271205689
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.4085353805312
+        },
+        "selected_group_features": [
+          "tract_mobility_diff_county_same_state_share",
+          "tract_mobility_diff_house_same_county_share",
+          "tract_mobility_diff_state_share",
+          "tract_mobility_same_house_share"
+        ],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 232,
+          "excluded_feature_count": 64,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 4,
+            "between_only": 37,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 4,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_state_fixed_effect": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.3941308021942271,
+          "after_q5_q1_mean_direct": 1.1609569618488125,
+          "after_q5_q1_mean_modeled": 1.4119537276471623,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 88.36355184828956,
+              "after_index_median": 56.89174015859129
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 85.54813411604921,
+              "after_index_median": 55.84634599833001
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.66755761882139,
+              "after_index_median": 68.32005538267245
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 111.84911842207627,
+              "after_index_median": 74.00834384476741
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 123.19034942298711,
+              "after_index_median": 83.14111376158266
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.89923924046316,
+                "after_index_median": 70.8296305889856
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 137.03636879821613,
+                "after_index_median": 88.73631878880747
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.33831415211654,
+                "after_index_median": 92.65553123669471
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.82488133094557,
+                "after_index_median": 89.99331662301151
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.8759425928944,
+                "after_index_median": 87.21228372005126
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 86.68135347180032,
+                "after_index_median": 56.08041014135568
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 82.56668177157148,
+                "after_index_median": 54.20740835256132
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.20886690224498,
+                "after_index_median": 66.76135937462502
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.15156032561418,
+                "after_index_median": 72.78860289997093
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 122.39006015200975,
+                "after_index_median": 82.79481940970558
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.4281466869607
+        },
+        "selected_group_features": [],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 228,
+          "excluded_feature_count": 68,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_only": 41,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      },
+      "add_back_vehicle_availability": {
+        "gradient": {
+          "ok": true,
+          "rows": 235220,
+          "after_q5_q1_mean": 1.384652782021469,
+          "after_q5_q1_mean_direct": 1.1613243061500078,
+          "after_q5_q1_mean_modeled": 1.4016309368581588,
+          "quintiles": [
+            {
+              "quintile": 1,
+              "rows": 47044,
+              "commercial_share_mean": 0.0,
+              "after_index_mean": 88.68345619333611,
+              "after_index_median": 57.403552527714695
+            },
+            {
+              "quintile": 2,
+              "rows": 47044,
+              "commercial_share_mean": 0.0024900143846770667,
+              "after_index_mean": 85.99659847753286,
+              "after_index_median": 56.39190285842387
+            },
+            {
+              "quintile": 3,
+              "rows": 47044,
+              "commercial_share_mean": 0.008255625905836854,
+              "after_index_mean": 104.87210364753032,
+              "after_index_median": 68.39294427204348
+            },
+            {
+              "quintile": 4,
+              "rows": 47044,
+              "commercial_share_mean": 0.0183242633356292,
+              "after_index_mean": 111.72536142152616,
+              "after_index_median": 73.91986197450684
+            },
+            {
+              "quintile": 5,
+              "rows": 47044,
+              "commercial_share_mean": 0.05685829102094854,
+              "after_index_mean": 122.79579433738192,
+              "after_index_median": 82.59334936277625
+            }
+          ],
+          "regime_quintiles": {
+            "direct_city_incident": [
+              {
+                "quintile": 1,
+                "rows": 2535,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 117.83985337038459,
+                "after_index_median": 70.82784037809581
+              },
+              {
+                "quintile": 2,
+                "rows": 2575,
+                "commercial_share_mean": 0.002626749715009208,
+                "after_index_mean": 136.99527708356246,
+                "after_index_median": 88.70823320735931
+              },
+              {
+                "quintile": 3,
+                "rows": 2956,
+                "commercial_share_mean": 0.008251099426788573,
+                "after_index_mean": 141.30152759196443,
+                "after_index_median": 92.48494002138418
+              },
+              {
+                "quintile": 4,
+                "rows": 2994,
+                "commercial_share_mean": 0.018296969323013366,
+                "after_index_mean": 136.78424862858134,
+                "after_index_median": 89.73930853135471
+              },
+              {
+                "quintile": 5,
+                "rows": 2599,
+                "commercial_share_mean": 0.05806870449754118,
+                "after_index_mean": 136.85028595218054,
+                "after_index_median": 87.10018052818349
+              }
+            ],
+            "modeled_transfer": [
+              {
+                "quintile": 1,
+                "rows": 44509,
+                "commercial_share_mean": 0.0,
+                "after_index_mean": 87.02286020502322,
+                "after_index_median": 56.64626388781607
+              },
+              {
+                "quintile": 2,
+                "rows": 44469,
+                "commercial_share_mean": 0.0024820966560210305,
+                "after_index_mean": 83.04349412595026,
+                "after_index_median": 54.85909129259093
+              },
+              {
+                "quintile": 3,
+                "rows": 44088,
+                "commercial_share_mean": 0.008255929395949053,
+                "after_index_mean": 102.42959373145915,
+                "after_index_median": 66.82159217072382
+              },
+              {
+                "quintile": 4,
+                "rows": 44050,
+                "commercial_share_mean": 0.01832611846102697,
+                "after_index_mean": 110.02215351464935,
+                "after_index_median": 72.48438035644587
+              },
+              {
+                "quintile": 5,
+                "rows": 44445,
+                "commercial_share_mean": 0.056787509951634466,
+                "after_index_mean": 121.97393307724329,
+                "after_index_median": 82.24353648348811
+              }
+            ]
+          },
+          "national_rate_per_100k": 410.475510404039
+        },
+        "selected_group_features": [
+          "avg_vehicles_owner",
+          "avg_vehicles_per_household",
+          "avg_vehicles_renter",
+          "hh_1_vehicle_share",
+          "hh_2_vehicle_share",
+          "hh_2plus_vehicle_share",
+          "hh_3_vehicle_share",
+          "hh_3plus_vehicle_share",
+          "hh_4plus_vehicle_share",
+          "hh_no_vehicle_share",
+          "owner_2plus_vehicle_share",
+          "owner_no_vehicle_share",
+          "renter_2plus_vehicle_share",
+          "renter_no_vehicle_share"
+        ],
+        "feature_policy_application_summary": {
+          "candidate_feature_count": 296,
+          "selected_feature_count": 242,
+          "excluded_feature_count": 54,
+          "candidate_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 14,
+            "between_only": 27,
+            "excluded_protected": 27,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          },
+          "selected_feature_class_counts": {
+            "between_and_within": 158,
+            "between_and_within_ablation_addback": 14,
+            "proxy_review": 69,
+            "unstable_drop": 1
+          }
+        }
+      }
+    },
+    "moderating_groups_lowest_modeled_gradient": [
+      "lodes_age",
+      "residential_mobility_domestic",
+      "vehicle_availability",
+      "institutional_anchors"
+    ]
+  },
+  "feature_transfer_policy_evidence": {
+    "policy_path": "/Users/uzairqadir/Projects/data-projects/national/crimerisk-clone/state/modeling/feature_transfer_policy_2024.parquet",
+    "reported_column_names": [
+      "delta_tvd_burglary",
+      "delta_tvd_ci95_low_burglary",
+      "delta_tvd_ci95_high_burglary",
+      "delta_tvd_transfers_burglary",
+      "delta_tvd_unit_count_burglary",
+      "delta_deviance_burglary",
+      "delta_deviance_ci95_low_burglary",
+      "delta_deviance_ci95_high_burglary",
+      "delta_deviance_transfers_burglary",
+      "delta_deviance_unit_count_burglary"
+    ],
+    "between_only_groups": [
+      {
+        "feature_group": "commute_transport_exposure",
+        "feature_count": 11,
+        "final_class": "between_only",
+        "feature_columns": [
+          "commute_45_59_share",
+          "commute_45plus_share",
+          "commute_60plus_share",
+          "commute_bicycle_share",
+          "commute_carpool_share",
+          "commute_drive_alone_share",
+          "commute_taxi_ridehail_share",
+          "commute_transit_share",
+          "commute_walk_share",
+          "commute_work_from_home_share",
+          "resident_same_bg_commute_share"
+        ],
+        "delta_tvd_burglary": 0.0003528010613075855,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": 5.544497201653781e-05,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 0.0006846408591290563,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 1.0640698273340565,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": 0.35162795043520645,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 1.9120369800967316,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": true,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      },
+      {
+        "feature_group": "household_composition_other",
+        "feature_count": 4,
+        "final_class": "between_only",
+        "feature_columns": [
+          "avg_household_size_owner",
+          "avg_household_size_renter",
+          "hh_access_without_subscription_share",
+          "hh_other_service_only_share"
+        ],
+        "delta_tvd_burglary": -2.7486953466950657e-05,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": -0.0001725739263428214,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 9.840829290918566e-05,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 0.25598147452398806,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": 0.07327895281597085,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 0.459148572844625,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": true,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      },
+      {
+        "feature_group": "institutional_anchors",
+        "feature_count": 5,
+        "final_class": "between_only",
+        "feature_columns": [
+          "education_anchor_density_sqkm",
+          "nearest_acute_care_hospital_km",
+          "nearest_emergency_hospital_km",
+          "postsecondary_density_sqkm",
+          "public_school_density_sqkm"
+        ],
+        "delta_tvd_burglary": 0.0001913160981189937,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": -0.000368761185467908,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 0.000708113846934464,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 1.0849107099173214,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": 0.27334866534831587,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 2.025298265058229,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": true,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      },
+      {
+        "feature_group": "lodes_age",
+        "feature_count": 3,
+        "final_class": "between_only",
+        "feature_columns": [
+          "lodes_ca01_share",
+          "lodes_ca02_share",
+          "lodes_ca03_share"
+        ],
+        "delta_tvd_burglary": 0.0007942520273405409,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": -7.281335739013507e-05,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 0.0016590855374086322,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 1.4353963504058451,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": 0.28035608754384966,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 3.000290982027527,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": true,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      },
+      {
+        "feature_group": "residential_mobility_domestic",
+        "feature_count": 4,
+        "final_class": "between_only",
+        "feature_columns": [
+          "tract_mobility_diff_county_same_state_share",
+          "tract_mobility_diff_house_same_county_share",
+          "tract_mobility_diff_state_share",
+          "tract_mobility_same_house_share"
+        ],
+        "delta_tvd_burglary": 0.00034640008805552963,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": -0.00021708607147713553,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 0.0009247290872900505,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 0.6951528077737424,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": -0.028490014805835823,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 1.4514051052801764,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": false,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      },
+      {
+        "feature_group": "state_fixed_effect",
+        "feature_count": 50,
+        "final_class": "between_only",
+        "feature_columns": [
+          "state_01",
+          "state_04",
+          "state_05",
+          "state_06",
+          "state_08",
+          "state_09",
+          "state_10",
+          "state_11",
+          "state_12",
+          "state_13",
+          "state_16",
+          "state_17",
+          "state_18",
+          "state_19",
+          "state_20",
+          "state_21",
+          "state_22",
+          "state_23",
+          "state_24",
+          "state_25",
+          "state_26",
+          "state_27",
+          "state_28",
+          "state_29",
+          "state_30",
+          "state_31",
+          "state_32",
+          "state_33",
+          "state_34",
+          "state_35",
+          "state_36",
+          "state_37",
+          "state_38",
+          "state_39",
+          "state_40",
+          "state_41",
+          "state_42",
+          "state_44",
+          "state_45",
+          "state_46",
+          "state_47",
+          "state_48",
+          "state_49",
+          "state_50",
+          "state_51",
+          "state_53",
+          "state_54",
+          "state_55",
+          "state_56",
+          "state_nan"
+        ],
+        "delta_tvd_burglary": 0.0,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": 0.0,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 0.0,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 11.252847997575401,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": 6.636185126226832,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 16.43763844510796,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": true,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      },
+      {
+        "feature_group": "vehicle_availability",
+        "feature_count": 14,
+        "final_class": "between_only",
+        "feature_columns": [
+          "avg_vehicles_owner",
+          "avg_vehicles_per_household",
+          "avg_vehicles_renter",
+          "hh_1_vehicle_share",
+          "hh_2_vehicle_share",
+          "hh_2plus_vehicle_share",
+          "hh_3_vehicle_share",
+          "hh_3plus_vehicle_share",
+          "hh_4plus_vehicle_share",
+          "hh_no_vehicle_share",
+          "owner_2plus_vehicle_share",
+          "owner_no_vehicle_share",
+          "renter_2plus_vehicle_share",
+          "renter_no_vehicle_share"
+        ],
+        "delta_tvd_burglary": 0.0002629560294877458,
+        "column_name__delta_tvd_burglary": "delta_tvd_burglary",
+        "delta_tvd_ci95_low_burglary": -0.00018087765055950465,
+        "column_name__delta_tvd_ci95_low_burglary": "delta_tvd_ci95_low_burglary",
+        "delta_tvd_ci95_high_burglary": 0.0008092934049103959,
+        "column_name__delta_tvd_ci95_high_burglary": "delta_tvd_ci95_high_burglary",
+        "delta_tvd_transfers_burglary": false,
+        "column_name__delta_tvd_transfers_burglary": "delta_tvd_transfers_burglary",
+        "delta_tvd_unit_count_burglary": 28,
+        "column_name__delta_tvd_unit_count_burglary": "delta_tvd_unit_count_burglary",
+        "delta_deviance_burglary": 1.1190847073725303,
+        "column_name__delta_deviance_burglary": "delta_deviance_burglary",
+        "delta_deviance_ci95_low_burglary": 0.26815862410704217,
+        "column_name__delta_deviance_ci95_low_burglary": "delta_deviance_ci95_low_burglary",
+        "delta_deviance_ci95_high_burglary": 1.942854751745087,
+        "column_name__delta_deviance_ci95_high_burglary": "delta_deviance_ci95_high_burglary",
+        "delta_deviance_transfers_burglary": true,
+        "column_name__delta_deviance_transfers_burglary": "delta_deviance_transfers_burglary",
+        "delta_deviance_unit_count_burglary": 3488,
+        "column_name__delta_deviance_unit_count_burglary": "delta_deviance_unit_count_burglary"
+      }
+    ]
+  },
+  "sanity": {
+    "v6_direct_city_burglary_gradient": 1.1619104696094,
+    "v6_modeled_transfer_burglary_gradient": 1.4123971253681566,
+    "v5_direct_city_burglary_gradient": 1.1533514187689755,
+    "six_non_burglary_state_total_v6_minus_v5": {
+      "rows": 294,
+      "moved_rows_abs_gt_tol": 0,
+      "max_abs_delta": 5.820766091346741e-11,
+      "sum_abs_delta": 1.2528289516922086e-10,
+      "net_delta": -5.0590642786119133e-11,
+      "tolerance": 1e-07
+    },
+    "six_non_burglary_suppression_mode_counts_unchanged": [
+      {
+        "offense": "murder",
+        "v5": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "v6": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "identical": true
+      },
+      {
+        "offense": "rape",
+        "v5": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "v6": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "identical": true
+      },
+      {
+        "offense": "robbery",
+        "v5": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "v6": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "identical": true
+      },
+      {
+        "offense": "aggravated_assault",
+        "v5": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "v6": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "identical": true
+      },
+      {
+        "offense": "larceny",
+        "v5": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "v6": {
+          "count_derived": 235312,
+          "insufficient_exposure": 45,
+          "non_residential": 2836,
+          "special_use": 0,
+          "suppressed_cells": 2881,
+          "vehicle_denominator_invalid": 0,
+          "zero_primary_denominator": 0
+        },
+        "identical": true
+      },
+      {
+        "offense": "motor_vehicle_theft",
+        "v5": {
+          "count_derived": 234741,
+          "insufficient_exposure": 0,
+          "non_residential": 2836,
+          "special_use": 133,
+          "suppressed_cells": 3452,
+          "vehicle_denominator_invalid": 483,
+          "zero_primary_denominator": 0
+        },
+        "v6": {
+          "count_derived": 234741,
+          "insufficient_exposure": 0,
+          "non_residential": 2836,
+          "special_use": 133,
+          "suppressed_cells": 3452,
+          "vehicle_denominator_invalid": 483,
+          "zero_primary_denominator": 0
+        },
+        "identical": true
+      }
+    ],
+    "v6_validation_issues": [
+      "block_group_ags_core burglary modeled-transfer commercial-share gradient outside approved range [0.8, 1.39]: 1.4123971253681566"
+    ],
+    "v5_validation_issues": []
+  }
+}

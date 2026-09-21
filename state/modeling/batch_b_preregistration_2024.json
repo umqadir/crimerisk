@@ -1,0 +1,630 @@
+{
+  "artifact": "batch_b_preregistration_2024",
+  "purpose": "Pre-registration of the promoted v11 (acs-vocab-v11) block-group model's predicted within-jurisdiction offense-share distributions for five cities about to be onboarded (Jacksonville FL, Memphis TN, Oakland CA, Aurora CO, Henderson NV), whose incident data has NOT been accessed or downloaded as of this artifact's creation. Predictions and quantitative expectations are frozen now so post-onboarding scoring cannot be goalpost-moved.",
+  "declaration": "These predictions were frozen from the promoted v11 (acs-vocab-v11) block-group surface BEFORE any incident data for Jacksonville FL, Memphis TN, Oakland CA, Aurora CO, or Henderson NV was accessed, downloaded, or inspected in any form. Scoring against onboarded truth happens strictly after onboarding, using this artifact and this artifact only, with NO revision of the predicted shares, the expected bands, or the scoring protocol recorded here. Any revision of this artifact after truth data is seen constitutes a FAILED pre-registration for the affected city/offense and must be reported as such, not silently corrected.",
+  "created_at_utc": "2026-07-08T02:13:02.925600+00:00",
+  "source_model": {
+    "candidate_run_id": "acs-vocab-v11",
+    "promoted_manifest_path": "state/output/crimerisk_output_build_2024.json",
+    "promoting_git_sha": "b825e31e874a2595624341de4ecdc70a74a35cce",
+    "promoted_at_utc": "2026-07-08T00:54:10.646951+00:00",
+    "promoted_block_group_parquet_path": "state/output/crimerisk_block_group_2024_ags_core.parquet",
+    "promoted_block_group_parquet_sha256": "3ef70cab3c4081438b72707073e62a1f307e49590a8da75318961f17210ac2b7",
+    "promoted_block_group_parquet_size_bytes": 360373036
+  },
+  "companion_shares_parquet": {
+    "path": "state/modeling/batch_b_preregistration_shares_2024.parquet",
+    "sha256": "77199787457a0752d04a0c568905f8810daf22fb95487d0d340e8d0d64840bc5",
+    "row_count": 12915,
+    "schema": [
+      "city_key",
+      "offense",
+      "block_group_geoid",
+      "predicted_share"
+    ]
+  },
+  "cities": [
+    {
+      "city_key": "jacksonville_fl",
+      "city_name": "Jacksonville, Florida",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "1235000",
+      "resolution_note": "Jacksonville is a consolidated city-county government (City of Jacksonville / Duval County). The pipeline represents the whole consolidated jurisdiction under the single municipal place jurisdiction_id 12:municipal:place:1235000 -- there is no separate Duval County jurisdiction row. This is confirmed by configs/local_resolution_overrides.csv (ORI FL0160000): 'Jacksonville Sheriff's Office is the consolidated primary law-enforcement surface for Jacksonville/Duval and should route to the Jacksonville municipal control row rather than state nonmunicipal remainder.' Jacksonville Beach (12:municipal:place:1235050) is a separate incorporated municipality within Duval County and is explicitly excluded.",
+      "n_block_groups": 549
+    },
+    {
+      "city_key": "memphis_tn",
+      "city_name": "Memphis, Tennessee",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "4748000",
+      "resolution_note": "Standard municipal place jurisdiction; no consolidation or overlap override found for Memphis/Shelby County.",
+      "n_block_groups": 516
+    },
+    {
+      "city_key": "oakland_ca",
+      "city_name": "Oakland, California",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "0653000",
+      "resolution_note": "Standard municipal place jurisdiction. Nearby overlap overrides exist for BART police and UC Berkeley PD (multi-county/campus custom footprints) but neither absorbs or is absorbed by the Oakland city jurisdiction.",
+      "n_block_groups": 354
+    },
+    {
+      "city_key": "aurora_co",
+      "city_name": "Aurora, Colorado",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "0804000",
+      "resolution_note": "Standard municipal place jurisdiction (spans Arapahoe/Adams/Douglas counties in TIGER geometry, handled by the place-level BG crosswalk regardless of county lines). One unrelated overlap override exists for CU Anschutz campus PD (localized to Aurora as a place proxy for a small campus footprint) -- this does not affect the city jurisdiction_id used here.",
+      "n_block_groups": 242
+    },
+    {
+      "city_key": "henderson_nv",
+      "city_name": "Henderson, Nevada",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "3231900",
+      "resolution_note": "Henderson NV is a separate municipal jurisdiction (Henderson Police Department) and is explicitly NOT part of the Las Vegas Metropolitan Police Department (LVMPD) consolidated footprint. configs/consolidated_agency_footprints.csv (ORI NV0020100) states LVMPD is allocated over 'Las Vegas city plus Clark County state-remainder BG shares while excluding separately reporting Boulder City, Henderson, Mesquite and North Las Vegas places.' Henderson's jurisdiction_id 32:municipal:place:3231900 is confirmed distinct from the LVMPD principal jurisdiction 32:municipal:place:3240000 (Las Vegas city).",
+      "n_block_groups": 184
+    }
+  ],
+  "bg_jurisdiction_assignment_method": "Dominant BG assignment: eb_jurisdiction_id / eb_jurisdiction_type columns already present on the promoted block-group parquet, produced by src/crimerisk/allocation.py::_dominant_bg_jurisdiction (highest allocation_share per BG from state/geometry/block_group_to_jurisdiction_crosswalk.parquet). This is the same dominant-jurisdiction assignment the allocator uses elsewhere in the pipeline (e.g. for the EB jurisdiction prior). For each city, predicted_share is expected_count_<offense> for every BG with eb_jurisdiction_id == the city's jurisdiction_id, normalized to sum to 1 within that BG set. Cross-checked against the raw crosswalk allocation_share for exclusivity (see sanity_checks).",
+  "scoring_protocol": {
+    "metric_name": "incident_weighted_tvd",
+    "definition": "Per (city, offense): TVD = 0.5 * sum_over_BG(|predicted_share - truth_share|), where truth_share is the onboarded incident-count share by BG (same BG universe as predicted_share, both normalized to sum to 1 by scripts/diagnostics/nested_city_cv_harness.py::_normalize_share). Aggregated across cities per offense as the incident-count-weighted mean (scripts/diagnostics/nested_city_cv_harness.py::_weighted_mean applied to the tvd column with incident_total weights, i.e. the tvd_incident_weighted_mean field produced by _summarize_group).",
+    "function_module_path": "scripts/diagnostics/nested_city_cv_harness.py:_score_variant (per-city-offense TVD), :_weighted_mean + :_summarize_group (incident-weighted aggregation)",
+    "identical_to_nested_cv": true,
+    "bg_universe": "Same BG set as predicted_share (city's eb_jurisdiction_id-assigned block groups); truth incidents falling outside this BG set after geocoding must be documented, not silently dropped."
+  },
+  "expected_bands_by_offense": {
+    "murder": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.73278,
+      "v11_nested_cv_se": 0.02687,
+      "v11_nested_cv_outer_city_count": 22,
+      "expected_band_tvd_pm_2se": [
+        0.67904,
+        0.78652
+      ],
+      "low_confidence_band": false
+    },
+    "rape": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.63431,
+      "v11_nested_cv_se": 0.01671,
+      "v11_nested_cv_outer_city_count": 4,
+      "expected_band_tvd_pm_2se": [
+        0.60089,
+        0.66773
+      ],
+      "low_confidence_band": true
+    },
+    "robbery": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.4282,
+      "v11_nested_cv_se": 0.00901,
+      "v11_nested_cv_outer_city_count": 28,
+      "expected_band_tvd_pm_2se": [
+        0.41018,
+        0.44622
+      ],
+      "low_confidence_band": false
+    },
+    "aggravated_assault": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.34366,
+      "v11_nested_cv_se": 0.01151,
+      "v11_nested_cv_outer_city_count": 24,
+      "expected_band_tvd_pm_2se": [
+        0.32064,
+        0.36668
+      ],
+      "low_confidence_band": false
+    },
+    "burglary": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.34043,
+      "v11_nested_cv_se": 0.01333,
+      "v11_nested_cv_outer_city_count": 28,
+      "expected_band_tvd_pm_2se": [
+        0.31377,
+        0.36709
+      ],
+      "low_confidence_band": false
+    },
+    "larceny": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.32736,
+      "v11_nested_cv_se": 0.01489,
+      "v11_nested_cv_outer_city_count": 29,
+      "expected_band_tvd_pm_2se": [
+        0.29758,
+        0.35714
+      ],
+      "low_confidence_band": false
+    },
+    "motor_vehicle_theft": {
+      "v11_nested_cv_tvd_incident_weighted_mean": 0.31473,
+      "v11_nested_cv_se": 0.012,
+      "v11_nested_cv_outer_city_count": 28,
+      "expected_band_tvd_pm_2se": [
+        0.29073,
+        0.33873
+      ],
+      "low_confidence_band": false
+    }
+  },
+  "expected_bands_source": {
+    "path": "state/candidates/acs-vocab-v11/acs_vocab_v11_evidence/nested_cv_v11_vs_baseline.csv",
+    "gate": "nested_city_cv_30v30",
+    "verdict": "PASS",
+    "outer_cities_in_gate": 30,
+    "definition": "v11 held-out (outer-fold) per-offense incident-weighted TVD +/- 2x bootstrap SE from the acs-vocab-v11 nested 30-vs-30 city CV gate. Bands are descriptive priors from a disjoint city set, not a hard pass/fail threshold for the five Batch B cities.",
+    "caveat_rape_low_n": "rape's v11 nested-CV band is built from only 4 outer cities (v11_cities=4); treat as low-confidence relative to the other six offenses."
+  },
+  "sanity_checks": [
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "murder",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 62.246505802291246,
+      "max_bg_share": 0.0360470824207555,
+      "top10_bg_share": 0.17760249736061046,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "rape",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 647.7294570800246,
+      "max_bg_share": 0.03663233101127135,
+      "top10_bg_share": 0.14893876849839754,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "robbery",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 726.1325599712902,
+      "max_bg_share": 0.02063310684957965,
+      "top10_bg_share": 0.11470879115941332,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "aggravated_assault",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 4669.6726980530975,
+      "max_bg_share": 0.013887918593376918,
+      "top10_bg_share": 0.09437535347873045,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "burglary",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 3228.085058640181,
+      "max_bg_share": 0.015781953307878512,
+      "top10_bg_share": 0.09567613111262183,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "larceny",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 20503.058382578605,
+      "max_bg_share": 0.02156951899530521,
+      "top10_bg_share": 0.13765352567497152,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "jacksonville_fl",
+      "jurisdiction_id": "12:municipal:place:1235000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 549,
+      "n_bg_exclusive_ge_0_999999": 546,
+      "crosswalk_mean_allocation_share": 0.9988012036526865,
+      "crosswalk_min_allocation_share": 0.5,
+      "expected_count_total": 4067.4673162437834,
+      "max_bg_share": 0.019776191753201264,
+      "top10_bg_share": 0.11027888875703117,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "murder",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 251.80567731793832,
+      "max_bg_share": 0.01854735106680159,
+      "top10_bg_share": 0.11953180286430529,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "rape",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 432.1679256491012,
+      "max_bg_share": 0.08681507275196197,
+      "top10_bg_share": 0.18790296142585197,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "robbery",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 2131.0815499416676,
+      "max_bg_share": 0.012237616524435207,
+      "top10_bg_share": 0.09120421976145421,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "aggravated_assault",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 12555.170815430407,
+      "max_bg_share": 0.011377934950542533,
+      "top10_bg_share": 0.06819580344373352,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "burglary",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 5662.624673310902,
+      "max_bg_share": 0.017469460067729942,
+      "top10_bg_share": 0.07488720366963393,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "larceny",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 27080.62914551468,
+      "max_bg_share": 0.01841252437108245,
+      "top10_bg_share": 0.10292245668906058,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "memphis_tn",
+      "jurisdiction_id": "47:municipal:place:4748000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 516,
+      "n_bg_exclusive_ge_0_999999": 488,
+      "crosswalk_mean_allocation_share": 0.990651951301091,
+      "crosswalk_min_allocation_share": 0.5450733752620545,
+      "expected_count_total": 9894.072497872501,
+      "max_bg_share": 0.038015447977645896,
+      "top10_bg_share": 0.11879890273984603,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "murder",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 82.11922554871764,
+      "max_bg_share": 0.06157271129690541,
+      "top10_bg_share": 0.23988828312426252,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "rape",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 298.37383367342164,
+      "max_bg_share": 0.0291652093464854,
+      "top10_bg_share": 0.18959402127093952,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "robbery",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 3056.6632246373015,
+      "max_bg_share": 0.02443031530535,
+      "top10_bg_share": 0.1598293702701944,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "aggravated_assault",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 5102.606955209193,
+      "max_bg_share": 0.019198885263615597,
+      "top10_bg_share": 0.13452944500494407,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "burglary",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 3450.0065758431965,
+      "max_bg_share": 0.043743756504329205,
+      "top10_bg_share": 0.17832610535966303,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "larceny",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 18471.446973913196,
+      "max_bg_share": 0.04064290653645051,
+      "top10_bg_share": 0.1780932727790697,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "oakland_ca",
+      "jurisdiction_id": "06:municipal:place:0653000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 354,
+      "n_bg_exclusive_ge_0_999999": 354,
+      "crosswalk_mean_allocation_share": 1.0,
+      "crosswalk_min_allocation_share": 1.0,
+      "expected_count_total": 10053.367272318083,
+      "max_bg_share": 0.022052476717705917,
+      "top10_bg_share": 0.12634464905830306,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "murder",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 40.91840926944113,
+      "max_bg_share": 0.03375776597773499,
+      "top10_bg_share": 0.22630039178356992,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "rape",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 290.8064127217923,
+      "max_bg_share": 0.031390777956390566,
+      "top10_bg_share": 0.22832133883254918,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "robbery",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 537.5248530623485,
+      "max_bg_share": 0.036131644887655426,
+      "top10_bg_share": 0.2290396290678228,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "aggravated_assault",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 2866.5961083378998,
+      "max_bg_share": 0.02029681043573357,
+      "top10_bg_share": 0.16779549730438845,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "burglary",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 1480.2188816759567,
+      "max_bg_share": 0.03687426905296207,
+      "top10_bg_share": 0.16920833110976416,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "larceny",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 7289.3334961380915,
+      "max_bg_share": 0.038235895086264474,
+      "top10_bg_share": 0.20240087400184203,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "aurora_co",
+      "jurisdiction_id": "08:municipal:place:0804000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 242,
+      "n_bg_exclusive_ge_0_999999": 215,
+      "crosswalk_mean_allocation_share": 0.9833923971463953,
+      "crosswalk_min_allocation_share": 0.504180664427025,
+      "expected_count_total": 3549.385023530393,
+      "max_bg_share": 0.039051811908488894,
+      "top10_bg_share": 0.1936863150273782,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "murder",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 8.394478527135714,
+      "max_bg_share": 0.054647203155593974,
+      "top10_bg_share": 0.3261860597693261,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "rape",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 108.97057052847832,
+      "max_bg_share": 0.07466454498863559,
+      "top10_bg_share": 0.32348287547963395,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "robbery",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 180.5827459591604,
+      "max_bg_share": 0.08458809807975137,
+      "top10_bg_share": 0.33174954242157384,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "aggravated_assault",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 649.4356158930179,
+      "max_bg_share": 0.038853995904952664,
+      "top10_bg_share": 0.25574727854402424,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "burglary",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 792.4480466243514,
+      "max_bg_share": 0.06482032656480556,
+      "top10_bg_share": 0.3098187185733722,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "larceny",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 3956.9278570692722,
+      "max_bg_share": 0.12791323078814038,
+      "top10_bg_share": 0.3741668171714538,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "henderson_nv",
+      "jurisdiction_id": "32:municipal:place:3231900",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 184,
+      "n_bg_exclusive_ge_0_999999": 169,
+      "crosswalk_mean_allocation_share": 0.989236374413889,
+      "crosswalk_min_allocation_share": 0.625,
+      "expected_count_total": 1259.6166486743148,
+      "max_bg_share": 0.13645173666240606,
+      "top10_bg_share": 0.3330451252791588,
+      "degenerate_flag": false
+    }
+  ],
+  "zero_coverage_confirmation": {
+    "city_role_inventory_path": "state/modeling/city_role_inventory_2024.csv",
+    "city_incident_sources_path": "configs/city_incident_sources.csv",
+    "overlap_city_keys_found": [],
+    "clean": true
+  },
+  "known_limitations_inherited_from_v11": "This pre-registration inherits every known limitation of the promoted v11 surface documented in docs/STATE.md (county-anchoring-is-a-proxy, large-city blocked-transfer weakness, murder/rape no national covariate transfer, LandScan not promoted, city feed category inconsistency, temporal mismatch, etc). It does not certify v11 as correct for these five cities -- it freezes what v11 predicts for them so that onboarding can score it honestly."
+}

@@ -1,0 +1,466 @@
+{
+ "cleanup_rulings_loaded": 254,
+ "cleanup_cases_ruled": 244,
+ "cleanup_cases_dispatched": 246,
+ "cleanup_cases_unruled": [
+  "a2-CA04099-highway-patrol-templeton",
+  "a3-CO-durango-vs-fort-lewis-college"
+ ],
+ "replicate_conflicts": [
+  "x-KY0110200-junction-city",
+  "x-KY1130300-uniontown",
+  "x-MN0110700-pillager",
+  "x-MN0610200-starbuck",
+  "x-OH0070300-bridgeport"
+ ],
+ "verdicts": {
+  "misread_missing": 87,
+  "unclear_escalate": 17,
+  "token_reporting_flag": 8,
+  "genuine_zero_year": 121,
+  "genuine_low_crime": 11
+ },
+ "verdicts_by_arm": {
+  "opus|misread_missing": 53,
+  "sol|misread_missing": 34,
+  "opus|unclear_escalate": 5,
+  "sol|token_reporting_flag": 5,
+  "sol|genuine_zero_year": 57,
+  "sol|unclear_escalate": 12,
+  "opus|genuine_zero_year": 64,
+  "sol|genuine_low_crime": 8,
+  "opus|genuine_low_crime": 3,
+  "opus|token_reporting_flag": 3
+ },
+ "confidence": {
+  "high": 83,
+  "medium": 144,
+  "low": 17
+ },
+ "downstream": {
+  "treat_missing_repair": 87,
+  "escalate_hold": 17,
+  "partial_year_uplift": 5,
+  "retain_zero": 121,
+  "accept_observed": 11,
+  "flag_review": 3
+ },
+ "routed_to": {
+  "zeros": 210,
+  "tokens": 34
+ },
+ "prior_rows": 1089,
+ "prior_superseded": 441,
+ "prior_retained": 648,
+ "ledger_rows": 1333,
+ "ledger_active": 892,
+ "registry_totals": {
+  "twins": 105,
+  "zeros": 228,
+  "tokens": 430
+ },
+ "supervisor_escalations": {
+  "cleanup_case_unruled": 2,
+  "cleanup_explicit_escalate": 17,
+  "cleanup_replicate_conflict": 4,
+  "partial_ori_overlap_not_superseded": 1,
+  "qc_flagged_for_reread": 2,
+  "same_ori_double_framing_outside_cleanup": 88,
+  "unadjudicated_no_zero_token_ruling": 1
+ },
+ "oris_with_no_zero_token_disposition": [
+  "c-AR063019E-ar063019e"
+ ],
+ "pre_cleanup_escalations": 223,
+ "pre_cleanup_resolved": 213,
+ "pre_cleanup_still_open": 10,
+ "residual_cross_class_ori_contradictions": [
+  [
+   "CA0479945",
+   [
+    "a2-CA04799-highway-patrol-yreka(ambiguous_twin):distinct_agencies",
+    "c-CA0409945-chp-san-luis-obispo(token_reporter):token_reporting_flag",
+    "c-CA0479945-highway-patrol-yreka-area(token_zero_shaped):genuine_low_crime"
+   ]
+  ]
+ ],
+ "oris_double_framed_outside_cleanup": 88,
+ "oris_double_framed_actions_agree": 45,
+ "oris_double_framed_triage": {
+  "both_reject_same_repair": 45,
+  "both_reject_DIFFERENT_repair": 22,
+  "disposition_conflict_FLAG/REJECT": 12,
+  "both_accept": 9
+ },
+ "oris_double_framed_detail": {
+  "AL0080200": [
+   "b2-AL0080200-blountsville:misread_missing->treat_missing_repair",
+   "c-AL0080200-blountsville:token_reporting_flag->partial_year_uplift"
+  ],
+  "AL0530100": [
+   "b2-AL0530100-marion:misread_missing->treat_missing_repair",
+   "c-AL0530100-marion:token_reporting_flag->treat_missing_repair"
+  ],
+  "CA0470700": [
+   "b2-CA0470700-tulelake:misread_missing->treat_missing_repair",
+   "c-CA0470700-tulelake:token_reporting_flag->treat_missing_repair"
+  ],
+  "GA0710300": [
+   "b2-GA0710300-buchanan:misread_missing->treat_missing_repair",
+   "c-GA0710300-buchanan:token_reporting_flag->flag_review"
+  ],
+  "GA1100400": [
+   "b2-GA1100400-braswell:genuine_zero_year->retain_zero",
+   "c-GA1100400-braswell:genuine_low_crime->accept_observed"
+  ],
+  "IL0170200": [
+   "b2-IL0170200-palestine:misread_missing->treat_missing_repair",
+   "c-IL0170200-palestine:token_reporting_flag->treat_missing_repair"
+  ],
+  "KS0160400": [
+   "b2-KS0160400-waverly:genuine_zero_year->retain_zero",
+   "c-KS0160400-waverly:genuine_low_crime->accept_observed"
+  ],
+  "KS0440300": [
+   "b2-KS0440300-meriden:genuine_zero_year->retain_zero",
+   "c-KS0440300-meriden:genuine_low_crime->accept_observed"
+  ],
+  "KS0720100": [
+   "b2-KS0720100-delphos:genuine_zero_year->retain_zero",
+   "c-KS0720100-delphos:genuine_low_crime->accept_observed"
+  ],
+  "KY1000300": [
+   "b2-KY1000300-eubank:genuine_zero_year->retain_zero",
+   "c-KY1000300-eubank:genuine_low_crime->accept_observed"
+  ],
+  "MN0120200": [
+   "b2-MN0120200-montevideo:misread_missing->treat_missing_repair",
+   "c-MN0120200-montevideo:token_reporting_flag->treat_missing_repair"
+  ],
+  "MN0540100": [
+   "b2-MN0540100-ada:misread_missing->treat_missing_repair",
+   "c-MN0540100-ada:token_reporting_flag->treat_missing_repair"
+  ],
+  "MO0270400": [
+   "b2-MO0270400-prairie-home:genuine_zero_year->retain_zero",
+   "c-MO0270400-prairie-home:genuine_low_crime->accept_observed"
+  ],
+  "MO0540700": [
+   "b2-MO0540700-waverly:genuine_zero_year->retain_zero",
+   "c-MO0540700-waverly:genuine_low_crime->accept_observed"
+  ],
+  "MO0830300": [
+   "b2-MO0830300-platte-woods:genuine_zero_year->retain_zero",
+   "c-MO0830300-platte-woods:genuine_low_crime->accept_observed"
+  ],
+  "MO1050300": [
+   "b2-MO1050300-reeds-spring:genuine_zero_year->retain_zero",
+   "c-MO1050300-reeds-spring:genuine_low_crime->accept_observed"
+  ],
+  "NY0022200": [
+   "b2-NY0022200-andover-village:misread_missing->treat_missing_repair",
+   "c-NY0022200-andover-village:token_reporting_flag->partial_year_uplift"
+  ],
+  "NY0082000": [
+   "b2-NY0082000-afton-village:misread_missing->treat_missing_repair",
+   "c-NY0082000-afton-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0182500": [
+   "b2-NY0182500-corfu-village:misread_missing->treat_missing_repair",
+   "c-NY0182500-corfu-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0192200": [
+   "b2-NY0192200-coxsackie-village:misread_missing->partial_year_uplift",
+   "c-NY0192200-coxsackie-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0195100": [
+   "b2-NY0195100-durham-town:misread_missing->treat_missing_repair",
+   "c-NY0195100-durham-town:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0222300": [
+   "b2-NY0222300-brownville-village:misread_missing->treat_missing_repair",
+   "c-NY0222300-brownville-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0222500": [
+   "b2-NY0222500-glen-park-village:misread_missing->treat_missing_repair",
+   "c-NY0222500-glen-park-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0223300": [
+   "b2-NY0223300-sackets-harbor-village:misread_missing->partial_year_uplift",
+   "c-NY0223300-sackets-harbor-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0294700": [
+   "b2-NY0294700-centre-island-village:misread_missing->treat_missing_repair",
+   "c-NY0294700-centre-island-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0353600": [
+   "b2-NY0353600-tuxedo-park-village:misread_missing->partial_year_uplift",
+   "c-NY0353600-tuxedo-park-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0492000": [
+   "b2-NY0492000-interlaken-village:misread_missing->partial_year_uplift",
+   "c-NY0492000-interlaken-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0502900": [
+   "b2-NY0502900-wayland-village:misread_missing->partial_year_uplift",
+   "c-NY0502900-wayland-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0503400": [
+   "b2-NY0503400-north-hornell-village:misread_missing->treat_missing_repair",
+   "c-NY0503400-north-hornell-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "NY0582100": [
+   "b2-NY0582100-wolcott-village:misread_missing->treat_missing_repair",
+   "c-NY0582100-wolcott-village:token_reporting_flag->treat_missing_repair"
+  ],
+  "OK0120500": [
+   "b2-OK0120500-fort-towson:misread_missing->treat_missing_repair",
+   "c-OK0120500-fort-towson:token_reporting_flag->partial_year_uplift"
+  ],
+  "OK0340800": [
+   "b2-OK0340800-ringling:misread_missing->treat_missing_repair",
+   "c-OK0340800-ringling:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0021H00": [
+   "b2-PA0021H00-crescent-township:misread_missing->treat_missing_repair",
+   "c-PA0021H00-crescent-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0031000": [
+   "b2-PA0031000-parks-township:misread_missing->treat_missing_repair",
+   "c-PA0031000-parks-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0031100": [
+   "b2-PA0031100-rural-valley:misread_missing->treat_missing_repair",
+   "c-PA0031100-rural-valley:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0032000": [
+   "b2-PA0032000-west-kittanning:misread_missing->treat_missing_repair",
+   "c-PA0032000-west-kittanning:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0032200": [
+   "b2-PA0032200-east-franklin-township:misread_missing->treat_missing_repair",
+   "c-PA0032200-east-franklin-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0032500": [
+   "b2-PA0032500-worthington:misread_missing->treat_missing_repair",
+   "c-PA0032500-worthington:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0044900": [
+   "b2-PA0044900-south-heights:misread_missing->treat_missing_repair",
+   "c-PA0044900-south-heights:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0063200": [
+   "b2-PA0063200-bernville:misread_missing->treat_missing_repair",
+   "c-PA0063200-bernville:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0071000": [
+   "b2-PA0071000-williamsburg:misread_missing->treat_missing_repair",
+   "c-PA0071000-williamsburg:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0092500": [
+   "b2-PA0092500-hulmeville:misread_missing->treat_missing_repair",
+   "c-PA0092500-hulmeville:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0094100": [
+   "b2-PA0094100-langhorne-manor:misread_missing->treat_missing_repair",
+   "c-PA0094100-langhorne-manor:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0095200": [
+   "b2-PA0095200-ivyland:misread_missing->treat_missing_repair",
+   "c-PA0095200-ivyland:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0100400": [
+   "b2-PA0100400-zelienople:misread_missing->treat_missing_repair",
+   "c-PA0100400-zelienople:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0100800": [
+   "b2-PA0100800-mars:misread_missing->treat_missing_repair",
+   "c-PA0100800-mars:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0102900": [
+   "b2-PA0102900-harrisville:misread_missing->partial_year_uplift",
+   "c-PA0102900-harrisville:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0103000": [
+   "b2-PA0103000-prospect:misread_missing->treat_missing_repair",
+   "c-PA0103000-prospect:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0111900": [
+   "b2-PA0111900-blacklick-township:misread_missing->partial_year_uplift",
+   "c-PA0111900-blacklick-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0113500": [
+   "b2-PA0113500-loretto:misread_missing->treat_missing_repair",
+   "c-PA0113500-loretto:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0131200": [
+   "b2-PA0131200-beaver-meadows:misread_missing->treat_missing_repair",
+   "c-PA0131200-beaver-meadows:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0131600": [
+   "b2-PA0131600-weissport:misread_missing->treat_missing_repair",
+   "c-PA0131600-weissport:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0155300": [
+   "b2-PA0155300-west-nottingham-township:misread_missing->treat_missing_repair",
+   "c-PA0155300-west-nottingham-township:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0200500": [
+   "b2-PA0200500-cochranton:misread_missing->treat_missing_repair",
+   "c-PA0200500-cochranton:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0211000": [
+   "b2-PA0211000-shiremanstown:misread_missing->partial_year_uplift",
+   "c-PA0211000-shiremanstown:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0221600": [
+   "b2-PA0221600-halifax:misread_missing->treat_missing_repair",
+   "c-PA0221600-halifax:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0221800": [
+   "b2-PA0221800-wiconisco-township:misread_missing->treat_missing_repair",
+   "c-PA0221800-wiconisco-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0261100": [
+   "b2-PA0261100-everson:misread_missing->treat_missing_repair",
+   "c-PA0261100-everson:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0261500": [
+   "b2-PA0261500-luzerne-township:misread_missing->partial_year_uplift",
+   "c-PA0261500-luzerne-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0320200": [
+   "b2-PA0320200-homer-city:misread_missing->treat_missing_repair",
+   "c-PA0320200-homer-city:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0320500": [
+   "b2-PA0320500-cherry-tree:misread_missing->treat_missing_repair",
+   "c-PA0320500-cherry-tree:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0351700": [
+   "b2-PA0351700-mayfield:misread_missing->treat_missing_repair",
+   "c-PA0351700-mayfield:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0371800": [
+   "b2-PA0371800-new-beaver:misread_missing->treat_missing_repair",
+   "c-PA0371800-new-beaver:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0372100": [
+   "b2-PA0372100-little-beaver-township:misread_missing->treat_missing_repair",
+   "c-PA0372100-little-beaver-township:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0420800": [
+   "b2-PA0420800-smethport:misread_missing->treat_missing_repair",
+   "c-PA0420800-smethport:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0482100": [
+   "b2-PA0482100-portland:misread_missing->treat_missing_repair",
+   "c-PA0482100-portland:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0482800": [
+   "b2-PA0482800-walnutport:misread_missing->partial_year_uplift",
+   "c-PA0482800-walnutport:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0543400": [
+   "b2-PA0543400-ryan-township:misread_missing->treat_missing_repair",
+   "c-PA0543400-ryan-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0544200": [
+   "b2-PA0544200-north-union-township:misread_missing->treat_missing_repair",
+   "c-PA0544200-north-union-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0544500": [
+   "b2-PA0544500-walker-township:misread_missing->treat_missing_repair",
+   "c-PA0544500-walker-township:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0544700": [
+   "b2-PA0544700-branch-township:misread_missing->treat_missing_repair",
+   "c-PA0544700-branch-township:token_reporting_flag->flag_review"
+  ],
+  "PA0545000": [
+   "b2-PA0545000-reilly-township:misread_missing->treat_missing_repair",
+   "c-PA0545000-reilly-township:token_reporting_flag->flag_review"
+  ],
+  "PA0560100": [
+   "b2-PA0560100-meyersdale:misread_missing->treat_missing_repair",
+   "c-PA0560100-meyersdale:token_reporting_flag->flag_review"
+  ],
+  "PA0560500": [
+   "b2-PA0560500-boswell:misread_missing->treat_missing_repair",
+   "c-PA0560500-boswell:token_reporting_flag->flag_review"
+  ],
+  "PA0561100": [
+   "b2-PA0561100-jennerstown:misread_missing->treat_missing_repair",
+   "c-PA0561100-jennerstown:token_reporting_flag->flag_review"
+  ],
+  "PA0561700": [
+   "b2-PA0561700-indian-lake:misread_missing->treat_missing_repair",
+   "c-PA0561700-indian-lake:token_reporting_flag->flag_review"
+  ],
+  "PA0561800": [
+   "b2-PA0561800-rockwood:misread_missing->treat_missing_repair",
+   "c-PA0561800-rockwood:token_reporting_flag->flag_review"
+  ],
+  "PA0562600": [
+   "b2-PA0562600-summit-township:misread_missing->treat_missing_repair",
+   "c-PA0562600-summit-township:token_reporting_flag->flag_review"
+  ],
+  "PA0580300": [
+   "b2-PA0580300-lanesboro:misread_missing->treat_missing_repair",
+   "c-PA0580300-lanesboro:token_reporting_flag->flag_review"
+  ],
+  "PA0580400": [
+   "b2-PA0580400-montrose:misread_missing->treat_missing_repair",
+   "c-PA0580400-montrose:token_reporting_flag->flag_review"
+  ],
+  "PA0591700": [
+   "b2-PA0591700-osceola-township:misread_missing->treat_missing_repair",
+   "c-PA0591700-osceola-township:token_reporting_flag->flag_review"
+  ],
+  "PA0600600": [
+   "b2-PA0600600-new-berlin:misread_missing->partial_year_uplift",
+   "c-PA0600600-new-berlin:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0635000": [
+   "b2-PA0635000-west-pike-run:misread_missing->treat_missing_repair",
+   "c-PA0635000-west-pike-run:token_reporting_flag->treat_missing_repair"
+  ],
+  "PA0640300": [
+   "b2-PA0640300-waymart:misread_missing->treat_missing_repair",
+   "c-PA0640300-waymart:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0652900": [
+   "b2-PA0652900-avonmore-boro:misread_missing->treat_missing_repair",
+   "c-PA0652900-avonmore-boro:token_reporting_flag->partial_year_uplift"
+  ],
+  "PA0654200": [
+   "b2-PA0654200-west-leechburg:misread_missing->treat_missing_repair",
+   "c-PA0654200-west-leechburg:token_reporting_flag->partial_year_uplift"
+  ],
+  "SD0290100": [
+   "b2-SD0290100-miller:misread_missing->treat_missing_repair",
+   "c-SD0290100-miller:token_reporting_flag->treat_missing_repair"
+  ],
+  "VT0141000": [
+   "b2-VT0141000-norwich:misread_missing->treat_missing_repair",
+   "c-VT0141000-norwich:token_reporting_flag->treat_missing_repair"
+  ]
+ },
+ "oris_multi_live_in_cleanup_population": {
+  "CA0479945": [
+   "c-CA0409945-chp-san-luis-obispo:token_reporting_flag",
+   "c-CA0479945-highway-patrol-yreka-area:genuine_low_crime"
+  ]
+ },
+ "problems": [],
+ "qc_sample": [
+  "b2-GA1550500-dalton-state-college",
+  "b2-KY0980200-elkhorn-city",
+  "b2-KY1020100-livingston",
+  "b2-MO0050700-washburn",
+  "c-NY0262500-hamilton-village",
+  "x-GA0850200-milner",
+  "x-KY0110200-junction-city",
+  "x-KY0470400-west-point"
+ ]
+}

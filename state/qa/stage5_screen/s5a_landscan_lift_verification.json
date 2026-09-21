@@ -1,0 +1,335 @@
+{
+  "surface": "state/output/crimerisk_block_group_2024_ags_core.parquet (promoted v20)",
+  "n_block_groups": 238193,
+  "recorded_claim_docs_STATE_md_line_954": {
+    "text": "58,668 of 238,193 BGs lift (24.6304%)",
+    "n_lifted": 58668,
+    "pct": 24.6304
+  },
+  "measured_on_promoted_surface": {
+    "flag_landscan_day_lifted_person_exposure_true": 58683,
+    "pct_flag": 24.6367,
+    "recomputed_landscan_gt_jobs_proxy": 58683,
+    "pct_recomputed": 24.6367,
+    "flag_vs_recomputed_disagreements": 0
+  },
+  "claim_verdict": "CONFIRMED (recorded 58,668 / 24.6304% was measured on the ambient-denominator-v7 candidate; the promoted v20 surface measures 58,683 / 24.6367% \u2014 15 block groups apart, 0.0063 pp)",
+  "exposure_sums": {
+    "population_2024": 337832297.0,
+    "daytime_population_jobs_proxy": 419736887.0,
+    "landscan_day_pop": 329734055.0,
+    "exposure_proxy_2024_published": 471595078.0,
+    "max(jobs,landscan)_recomputed_pre_cap": 472192618.0,
+    "person_exposure_before_hq_jobs_cap_published": 472192618.0,
+    "pre_cap_recompute_max_abs_dev": 0.0
+  },
+  "hq_jobs_cap": {
+    "candidates": 177,
+    "applied": 149,
+    "exposure_removed_by_cap": 597540.0,
+    "note": "cap = 3 x max(landscan_day_pop, population); candidate needs jobs_wac>=5000"
+  },
+  "lift_material_effect": {
+    "bgs_lifted_from_below_50_to_at_or_above_50": 320,
+    "bgs_still_below_50_after_lift": 793,
+    "median_lift_ratio_where_lifted": 1.3509933774834437,
+    "p99_lift_ratio_where_lifted": 5.5753134145190435
+  },
+  "landscan_vintage": "LandScan USA 2021 (data/LandScan-USA/block_group_landscan_usa_2021.parquet); denominator year is 2024",
+  "lift_by_state": [
+    {
+      "state_fips": "01",
+      "n_bgs": 3925,
+      "n_lifted": 1011,
+      "pct_lifted": 25.758
+    },
+    {
+      "state_fips": "04",
+      "n_bgs": 4773,
+      "n_lifted": 1056,
+      "pct_lifted": 22.124
+    },
+    {
+      "state_fips": "05",
+      "n_bgs": 2294,
+      "n_lifted": 628,
+      "pct_lifted": 27.376
+    },
+    {
+      "state_fips": "06",
+      "n_bgs": 25607,
+      "n_lifted": 6140,
+      "pct_lifted": 23.978
+    },
+    {
+      "state_fips": "08",
+      "n_bgs": 4058,
+      "n_lifted": 932,
+      "pct_lifted": 22.967
+    },
+    {
+      "state_fips": "09",
+      "n_bgs": 2716,
+      "n_lifted": 670,
+      "pct_lifted": 24.669
+    },
+    {
+      "state_fips": "10",
+      "n_bgs": 706,
+      "n_lifted": 178,
+      "pct_lifted": 25.212
+    },
+    {
+      "state_fips": "11",
+      "n_bgs": 571,
+      "n_lifted": 160,
+      "pct_lifted": 28.021
+    },
+    {
+      "state_fips": "12",
+      "n_bgs": 13388,
+      "n_lifted": 2966,
+      "pct_lifted": 22.154
+    },
+    {
+      "state_fips": "13",
+      "n_bgs": 7446,
+      "n_lifted": 1818,
+      "pct_lifted": 24.416
+    },
+    {
+      "state_fips": "16",
+      "n_bgs": 1284,
+      "n_lifted": 306,
+      "pct_lifted": 23.832
+    },
+    {
+      "state_fips": "17",
+      "n_bgs": 9898,
+      "n_lifted": 2412,
+      "pct_lifted": 24.369
+    },
+    {
+      "state_fips": "18",
+      "n_bgs": 5290,
+      "n_lifted": 1276,
+      "pct_lifted": 24.121
+    },
+    {
+      "state_fips": "19",
+      "n_bgs": 2703,
+      "n_lifted": 678,
+      "pct_lifted": 25.083
+    },
+    {
+      "state_fips": "20",
+      "n_bgs": 2461,
+      "n_lifted": 635,
+      "pct_lifted": 25.803
+    },
+    {
+      "state_fips": "21",
+      "n_bgs": 3581,
+      "n_lifted": 931,
+      "pct_lifted": 25.998
+    },
+    {
+      "state_fips": "22",
+      "n_bgs": 4294,
+      "n_lifted": 1209,
+      "pct_lifted": 28.156
+    },
+    {
+      "state_fips": "23",
+      "n_bgs": 1184,
+      "n_lifted": 289,
+      "pct_lifted": 24.409
+    },
+    {
+      "state_fips": "24",
+      "n_bgs": 4079,
+      "n_lifted": 977,
+      "pct_lifted": 23.952
+    },
+    {
+      "state_fips": "25",
+      "n_bgs": 5116,
+      "n_lifted": 1229,
+      "pct_lifted": 24.023
+    },
+    {
+      "state_fips": "26",
+      "n_bgs": 8386,
+      "n_lifted": 2080,
+      "pct_lifted": 24.803
+    },
+    {
+      "state_fips": "27",
+      "n_bgs": 4706,
+      "n_lifted": 1124,
+      "pct_lifted": 23.884
+    },
+    {
+      "state_fips": "28",
+      "n_bgs": 2445,
+      "n_lifted": 738,
+      "pct_lifted": 30.184
+    },
+    {
+      "state_fips": "29",
+      "n_bgs": 5031,
+      "n_lifted": 1269,
+      "pct_lifted": 25.224
+    },
+    {
+      "state_fips": "30",
+      "n_bgs": 900,
+      "n_lifted": 214,
+      "pct_lifted": 23.778
+    },
+    {
+      "state_fips": "31",
+      "n_bgs": 1648,
+      "n_lifted": 399,
+      "pct_lifted": 24.211
+    },
+    {
+      "state_fips": "32",
+      "n_bgs": 1963,
+      "n_lifted": 430,
+      "pct_lifted": 21.905
+    },
+    {
+      "state_fips": "33",
+      "n_bgs": 997,
+      "n_lifted": 249,
+      "pct_lifted": 24.975
+    },
+    {
+      "state_fips": "34",
+      "n_bgs": 6599,
+      "n_lifted": 1642,
+      "pct_lifted": 24.883
+    },
+    {
+      "state_fips": "35",
+      "n_bgs": 1614,
+      "n_lifted": 478,
+      "pct_lifted": 29.616
+    },
+    {
+      "state_fips": "36",
+      "n_bgs": 16070,
+      "n_lifted": 4133,
+      "pct_lifted": 25.719
+    },
+    {
+      "state_fips": "37",
+      "n_bgs": 7111,
+      "n_lifted": 1726,
+      "pct_lifted": 24.272
+    },
+    {
+      "state_fips": "38",
+      "n_bgs": 632,
+      "n_lifted": 171,
+      "pct_lifted": 27.057
+    },
+    {
+      "state_fips": "39",
+      "n_bgs": 9472,
+      "n_lifted": 2480,
+      "pct_lifted": 26.182
+    },
+    {
+      "state_fips": "40",
+      "n_bgs": 3374,
+      "n_lifted": 846,
+      "pct_lifted": 25.074
+    },
+    {
+      "state_fips": "41",
+      "n_bgs": 2970,
+      "n_lifted": 734,
+      "pct_lifted": 24.714
+    },
+    {
+      "state_fips": "42",
+      "n_bgs": 10173,
+      "n_lifted": 2498,
+      "pct_lifted": 24.555
+    },
+    {
+      "state_fips": "44",
+      "n_bgs": 792,
+      "n_lifted": 192,
+      "pct_lifted": 24.242
+    },
+    {
+      "state_fips": "45",
+      "n_bgs": 3408,
+      "n_lifted": 880,
+      "pct_lifted": 25.822
+    },
+    {
+      "state_fips": "46",
+      "n_bgs": 694,
+      "n_lifted": 167,
+      "pct_lifted": 24.063
+    },
+    {
+      "state_fips": "47",
+      "n_bgs": 4562,
+      "n_lifted": 1093,
+      "pct_lifted": 23.959
+    },
+    {
+      "state_fips": "48",
+      "n_bgs": 18638,
+      "n_lifted": 4597,
+      "pct_lifted": 24.665
+    },
+    {
+      "state_fips": "49",
+      "n_bgs": 2020,
+      "n_lifted": 489,
+      "pct_lifted": 24.208
+    },
+    {
+      "state_fips": "50",
+      "n_bgs": 552,
+      "n_lifted": 150,
+      "pct_lifted": 27.174
+    },
+    {
+      "state_fips": "51",
+      "n_bgs": 5963,
+      "n_lifted": 1450,
+      "pct_lifted": 24.317
+    },
+    {
+      "state_fips": "53",
+      "n_bgs": 5311,
+      "n_lifted": 1202,
+      "pct_lifted": 22.632
+    },
+    {
+      "state_fips": "54",
+      "n_bgs": 1639,
+      "n_lifted": 476,
+      "pct_lifted": 29.042
+    },
+    {
+      "state_fips": "55",
+      "n_bgs": 4692,
+      "n_lifted": 1152,
+      "pct_lifted": 24.552
+    },
+    {
+      "state_fips": "56",
+      "n_bgs": 457,
+      "n_lifted": 123,
+      "pct_lifted": 26.915
+    }
+  ]
+}

@@ -1,0 +1,531 @@
+{
+  "artifact": "batch_c_preregistration_2024",
+  "purpose": "Pre-registration of the promoted v14 (overture-taxonomy-v14) block-group model's predicted within-jurisdiction offense-share distributions for four candidate cities (Houston TX, Phoenix AZ, San Antonio TX, Las Vegas NV) whose incident data has NOT been accessed or downloaded as of this artifact's creation. Predictions and quantitative expectations are frozen now so post-onboarding scoring cannot be goalpost-moved. These four cities are PARTIAL-geocoding-tier candidates; the geocoding-onboarding decision itself is explicitly out of scope for this artifact.",
+  "declaration": "These predictions were frozen from the promoted v14 (overture-taxonomy-v14) block-group surface BEFORE any incident data for Houston TX, Phoenix AZ, San Antonio TX, or Las Vegas NV was accessed, downloaded, or inspected in any form. Scoring against onboarded truth happens strictly after onboarding, using this artifact and this artifact only, with NO revision of the predicted shares, the expected bands, or the scoring protocol recorded here. Any revision of this artifact after truth data is seen constitutes a FAILED pre-registration for the affected city/offense and must be reported as such, not silently corrected.",
+  "created_at_utc": "2026-07-09T08:09:58.849593+00:00",
+  "source_model": {
+    "candidate_run_id": "overture-taxonomy-v14",
+    "promoted_manifest_path": "state/output/crimerisk_output_build_2024.json",
+    "promoting_git_sha": "066633e44d06b6d1bb7ac00743d238781107fa26",
+    "promoted_block_group_parquet_path": "state/output/crimerisk_block_group_2024_ags_core.parquet",
+    "promoted_block_group_parquet_sha256": "3b31488c649a1e4043cedbe1758d9c3d7fa9b484c451a7d3829c6e17e7e170b0"
+  },
+  "companion_shares_parquet": {
+    "path": "state/modeling/batch_c_preregistration_shares_2024.parquet",
+    "sha256": "aa90b05bebf5494a02d0c8e31b9ae98153047a98ea276b0f2c1e0e8d1d7f32bc",
+    "row_count": 27979,
+    "schema": [
+      "city_key",
+      "offense",
+      "block_group_geoid",
+      "predicted_share"
+    ]
+  },
+  "cities": [
+    {
+      "city_key": "houston_tx",
+      "city_name": "Houston, Texas",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "4835000",
+      "resolution_note": "Standard municipal place jurisdiction (48:municipal:place:4835000). No consolidation or principal-jurisdiction override applies to Houston itself in configs/consolidated_agency_footprints.csv. One unrelated entry exists in configs/local_resolution_overrides.csv (ORI TX1012400, 'reclassify_nonmunicipal'): it keeps Memorial Villages (a separate small enclave PD) OUT of the municipal layer as a false place-preferred route into Houston city; it does not add territory to or subtract territory from Houston's own jurisdiction_id.",
+      "n_block_groups": 1587
+    },
+    {
+      "city_key": "phoenix_az",
+      "city_name": "Phoenix, Arizona",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "0455000",
+      "resolution_note": "Standard municipal place jurisdiction (04:municipal:place:0455000). No consolidation or override found in configs/local_resolution_overrides.csv or configs/consolidated_agency_footprints.csv.",
+      "n_block_groups": 1041
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "city_name": "San Antonio, Texas",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "4865000",
+      "resolution_note": "Standard municipal place jurisdiction (48:municipal:place:4865000). No consolidation or override found in configs/local_resolution_overrides.csv or configs/consolidated_agency_footprints.csv. (A distinct San Antonio city row, 12:municipal:place:1263375 in Florida, exists in the controls table and is unrelated.)",
+      "n_block_groups": 920
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "city_name": "Las Vegas, Nevada",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "jurisdiction_type": "municipal",
+      "geo_type": "place",
+      "geoid": "3240000",
+      "resolution_note": "LVMPD (ORI NV0020100) is a consolidated agency whose principal_jurisdiction_id in configs/consolidated_agency_footprints.csv is 32:municipal:place:3240000 (Las Vegas city), with geometry_source_type 'canonical_principal_place_plus_county_remainder' covering Las Vegas city plus unincorporated Clark County state-remainder BG shares, EXCLUDING excluded_place_geoids 3206500|3231900|3246000|3251800 (Boulder City, Henderson, Mesquite, North Las Vegas). HOWEVER: this pre-registration uses eb_jurisdiction_id, produced by src/crimerisk/allocation.py::_dominant_bg_jurisdiction operating directly on the raw geometric block_group_to_jurisdiction_crosswalk.parquet -- this function does NOT consume configs/consolidated_agency_footprints.csv at all (that file is only read inside _build_jurisdiction_component_allocations, several steps downstream, to retarget county-remainder allocation totals -- it never rewrites the BG-level jurisdiction tag). Verified: eb_jurisdiction_id == 32:municipal:place:3240000 selects 449 block groups, consistent with Las Vegas city's geometric place boundary alone (Henderson's 184 BGs at ~325k population is the nearest scale comparison; a full LVMPD consolidated Clark County footprint at ~2.3M population would imply roughly 1,150-1,300 BGs at the same density, an order of magnitude more than 449). CONCLUSION: the dominant eb_jurisdiction assignment does NOT reflect the LVMPD consolidated footprint -- it is the plain Las Vegas CITY place polygon only. This Batch C prediction therefore covers Las Vegas city proper (449 BGs), NOT the broader unincorporated-Clark-County area LVMPD actually polices. This is a narrower footprint than LVMPD's real service area and should be treated as a scope caveat when scoring against truth incident data, which may be reported at the LVMPD-consolidated-agency scale.",
+      "n_block_groups": 449
+    }
+  ],
+  "bg_jurisdiction_assignment_method": "Dominant BG assignment: eb_jurisdiction_id / eb_jurisdiction_type columns already present on the promoted block-group parquet, produced by src/crimerisk/allocation.py::_dominant_bg_jurisdiction (highest allocation_share per BG from state/geometry/block_group_to_jurisdiction_crosswalk.parquet). This is the same dominant-jurisdiction assignment the allocator uses elsewhere in the pipeline (e.g. for the EB jurisdiction prior). For each city, predicted_share is expected_count_<offense> for every BG with eb_jurisdiction_id == the city's jurisdiction_id, normalized to sum to 1 within that BG set. Cross-checked against the raw crosswalk allocation_share for exclusivity (see sanity_checks). NOTE (Las Vegas only): this method is purely geometric and does NOT incorporate configs/consolidated_agency_footprints.csv -- see the las_vegas_nv resolution_note for the full LVMPD footprint-scope caveat.",
+  "scoring_protocol": {
+    "metric_name": "incident_weighted_tvd",
+    "definition": "Per (city, offense): TVD = 0.5 * sum_over_BG(|predicted_share - truth_share|), where truth_share is the onboarded incident-count share by BG (same BG universe as predicted_share, both normalized to sum to 1 by scripts/diagnostics/nested_city_cv_harness.py::_normalize_share). Aggregated across cities per offense as the incident-count-weighted mean (scripts/diagnostics/nested_city_cv_harness.py::_weighted_mean applied to the tvd column with incident_total weights, i.e. the tvd_incident_weighted_mean field produced by :_summarize_group).",
+    "function_module_path": "scripts/diagnostics/nested_city_cv_harness.py:_score_variant (per-city-offense TVD), :_weighted_mean + :_summarize_group (incident-weighted aggregation)",
+    "identical_to_nested_cv": true,
+    "bg_universe": "Same BG set as predicted_share (city's eb_jurisdiction_id-assigned block groups); truth incidents falling outside this BG set after geocoding must be documented, not silently dropped."
+  },
+  "expected_bands_by_offense": {
+    "murder": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.7203365233674018,
+      "v14_nested_cv_se": 0.026090603689340453,
+      "v14_nested_cv_outer_city_count": 26,
+      "expected_band_tvd_pm_2se": [
+        0.6681553159887209,
+        0.7725177307460828
+      ],
+      "low_confidence_band": false
+    },
+    "rape": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.6362734990019876,
+      "v14_nested_cv_se": 0.01673125138755985,
+      "v14_nested_cv_outer_city_count": 4,
+      "expected_band_tvd_pm_2se": [
+        0.6028109962268678,
+        0.6697360017771073
+      ],
+      "low_confidence_band": true
+    },
+    "robbery": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.4037622918750016,
+      "v14_nested_cv_se": 0.009332037931023506,
+      "v14_nested_cv_outer_city_count": 32,
+      "expected_band_tvd_pm_2se": [
+        0.38509821601295463,
+        0.4224263677370486
+      ],
+      "low_confidence_band": false
+    },
+    "aggravated_assault": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.32942904493932157,
+      "v14_nested_cv_se": 0.011046222725675956,
+      "v14_nested_cv_outer_city_count": 27,
+      "expected_band_tvd_pm_2se": [
+        0.30733659948796965,
+        0.3515214903906735
+      ],
+      "low_confidence_band": false
+    },
+    "burglary": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.32729993253673567,
+      "v14_nested_cv_se": 0.013050170170793126,
+      "v14_nested_cv_outer_city_count": 32,
+      "expected_band_tvd_pm_2se": [
+        0.3011995921951494,
+        0.35340027287832193
+      ],
+      "low_confidence_band": false
+    },
+    "larceny": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.30856762307210384,
+      "v14_nested_cv_se": 0.013866857846992356,
+      "v14_nested_cv_outer_city_count": 33,
+      "expected_band_tvd_pm_2se": [
+        0.28083390737811914,
+        0.33630133876608853
+      ],
+      "low_confidence_band": false
+    },
+    "motor_vehicle_theft": {
+      "v14_nested_cv_tvd_incident_weighted_mean": 0.28420060750426107,
+      "v14_nested_cv_se": 0.010418897922606429,
+      "v14_nested_cv_outer_city_count": 32,
+      "expected_band_tvd_pm_2se": [
+        0.26336281165904823,
+        0.3050384033494739
+      ],
+      "low_confidence_band": false
+    }
+  },
+  "expected_bands_source": {
+    "path": "state/candidates/overture-taxonomy-v14/overture_taxonomy_v14_evidence/nested_city_cv_overture_taxonomy_v14.json",
+    "variant": "nested_selected_policy",
+    "definition": "v14 held-out (outer-fold) per-offense incident-weighted TVD +/- 2x bootstrap SE from the overture-taxonomy-v14 nested city CV, model_variant == 'nested_selected_policy', field tvd_incident_weighted_mean and tvd_incident_weighted_city_bootstrap_ci95 (SE = (ci_high - ci_low) / (2*1.96)). Bands are descriptive priors from a disjoint city set, not a hard pass/fail threshold for the four Batch C cities.",
+    "caveat_rape_low_n": "rape's v14 nested-CV band is built from only 4 outer cities; treat as low-confidence relative to the other six offenses."
+  },
+  "sanity_checks": [
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "murder",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 316.4400051070929,
+      "max_bg_share": 0.008031141842028047,
+      "top10_bg_share": 0.06253812002510084,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "rape",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 1758.4538531728297,
+      "max_bg_share": 0.018799542665411246,
+      "top10_bg_share": 0.07925639400103618,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "robbery",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 5732.054851427847,
+      "max_bg_share": 0.0063513427388987905,
+      "top10_bg_share": 0.039552684295650925,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "aggravated_assault",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 17162.02488866035,
+      "max_bg_share": 0.005741254171580887,
+      "top10_bg_share": 0.03606443699877312,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "burglary",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 14930.845635278016,
+      "max_bg_share": 0.009549853351353204,
+      "top10_bg_share": 0.04807879913327471,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "larceny",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 69355.4040028869,
+      "max_bg_share": 0.010065220173951027,
+      "top10_bg_share": 0.05777953313291496,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "houston_tx",
+      "jurisdiction_id": "48:municipal:place:4835000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 1587,
+      "n_bg_exclusive_ge_0_999999": 1481,
+      "crosswalk_mean_allocation_share": 0.9871087841565004,
+      "crosswalk_min_allocation_share": 0.4286810656726236,
+      "expected_count_total": 16304.833911873422,
+      "max_bg_share": 0.008743521697725364,
+      "top10_bg_share": 0.05275818452998356,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "murder",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 140.8866150844995,
+      "max_bg_share": 0.03926943988575869,
+      "top10_bg_share": 0.14517996114606205,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "rape",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 1082.1695277963622,
+      "max_bg_share": 0.031450956567051845,
+      "top10_bg_share": 0.10942591310101724,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "robbery",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 3008.792780198246,
+      "max_bg_share": 0.007522224606031163,
+      "top10_bg_share": 0.0523879473766477,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "aggravated_assault",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 9178.237285082621,
+      "max_bg_share": 0.0061334279014255465,
+      "top10_bg_share": 0.05090779671327917,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "burglary",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 5325.735515497717,
+      "max_bg_share": 0.009542057604385359,
+      "top10_bg_share": 0.05538638427082738,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "larceny",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 26419.809659599872,
+      "max_bg_share": 0.009267742362754168,
+      "top10_bg_share": 0.06712120050712221,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "phoenix_az",
+      "jurisdiction_id": "04:municipal:place:0455000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 1041,
+      "n_bg_exclusive_ge_0_999999": 948,
+      "crosswalk_mean_allocation_share": 0.9895396563761245,
+      "crosswalk_min_allocation_share": 0.5115321252059308,
+      "expected_count_total": 7141.901568647721,
+      "max_bg_share": 0.00788144670759022,
+      "top10_bg_share": 0.055398136406105865,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "murder",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 129.68920596799626,
+      "max_bg_share": 0.02272269138918532,
+      "top10_bg_share": 0.11482002440204403,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "rape",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 1302.1275595123984,
+      "max_bg_share": 0.016717665004619763,
+      "top10_bg_share": 0.10138842150303595,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "robbery",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 1647.4475620568483,
+      "max_bg_share": 0.007070591533829575,
+      "top10_bg_share": 0.0587000056241954,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "aggravated_assault",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 6012.065372396882,
+      "max_bg_share": 0.008437709854971696,
+      "top10_bg_share": 0.05801763325389399,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "burglary",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 7556.471170856282,
+      "max_bg_share": 0.00984913168399302,
+      "top10_bg_share": 0.07291372619041603,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "larceny",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 50027.5320784924,
+      "max_bg_share": 0.019276343131428973,
+      "top10_bg_share": 0.09495011282720917,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "san_antonio_tx",
+      "jurisdiction_id": "48:municipal:place:4865000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 920,
+      "n_bg_exclusive_ge_0_999999": 875,
+      "crosswalk_mean_allocation_share": 0.990369760279003,
+      "crosswalk_min_allocation_share": 0.35417577612592915,
+      "expected_count_total": 12606.685758430227,
+      "max_bg_share": 0.006738180283436305,
+      "top10_bg_share": 0.05551889057874679,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "murder",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 44.838304538987,
+      "max_bg_share": 0.023963181588946898,
+      "top10_bg_share": 0.1527047062702557,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "rape",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 318.2181021248591,
+      "max_bg_share": 0.025311413921861446,
+      "top10_bg_share": 0.1353145513400029,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "robbery",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 470.86577703720627,
+      "max_bg_share": 0.01123338664741984,
+      "top10_bg_share": 0.094059166052958,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "aggravated_assault",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 2121.786101784646,
+      "max_bg_share": 0.011466509532166694,
+      "top10_bg_share": 0.09269816512874737,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "burglary",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 2873.170913481354,
+      "max_bg_share": 0.018858608711423214,
+      "top10_bg_share": 0.1032800224463596,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "larceny",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 10493.441172905497,
+      "max_bg_share": 0.01968960254329948,
+      "top10_bg_share": 0.1223204329137979,
+      "degenerate_flag": false
+    },
+    {
+      "city_key": "las_vegas_nv",
+      "jurisdiction_id": "32:municipal:place:3240000",
+      "offense": "motor_vehicle_theft",
+      "n_bg": 449,
+      "n_bg_exclusive_ge_0_999999": 384,
+      "crosswalk_mean_allocation_share": 0.9835958904630715,
+      "crosswalk_min_allocation_share": 0.5041528239202658,
+      "expected_count_total": 3994.296924757618,
+      "max_bg_share": 0.01337282533226229,
+      "top10_bg_share": 0.08899503933622442,
+      "degenerate_flag": false
+    }
+  ],
+  "zero_coverage_confirmation": {
+    "city_role_inventory_path": "state/modeling/city_role_inventory_2024.csv",
+    "city_incident_sources_path": "configs/city_incident_sources.csv",
+    "gate17_city_offense_admissions_path": "configs/gate17_city_offense_admissions.csv",
+    "overlap_city_keys_found": {
+      "city_role_inventory": [],
+      "city_incident_sources": [],
+      "gate17_city_offense_admissions": []
+    },
+    "clean": true,
+    "note": "houston_tx, phoenix_az, san_antonio_tx, and las_vegas_nv are PARTIAL-geocoding-tier onboarding candidates; whether/how to onboard them (geocoding tier decision) is explicitly out of scope for this pre-registration artifact."
+  },
+  "known_limitations_inherited_from_v14": "This pre-registration inherits every known limitation of the promoted v14 surface documented in docs/STATE.md (county-anchoring-is-a-proxy, large-city blocked-transfer weakness, murder/rape no national covariate transfer, city feed category inconsistency, temporal mismatch, etc). It does not certify v14 as correct for these four cities -- it freezes what v14 predicts for them so that onboarding can score it honestly. For Las Vegas specifically, it freezes predictions for the Las Vegas CITY place polygon only (449 BGs), not the broader LVMPD consolidated service footprint -- see the las_vegas_nv resolution_note."
+}

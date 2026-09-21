@@ -1,0 +1,521 @@
+Verdict
+CityProduction choiceRole of the coarser dataPhoenixA2+ as the default: grid-aware change-of-support using the frozen BG model plus a fixed sub-BG exposure measure. Add only pre-specified, high-confidence address-support matches as A3′.Strong fine-areal texture; likely materially better than model-only.San AntonioSoft, support-aware calibration, preferably using the joint ZIP × patrol-service-area observation. Hard ZIP raking should be a benchmark, not the default.Limited coarse-areal calibration; retain model-only as the fail-closed outcome.BothAdd a third architectural lane between coordinate-direct and model-only.Do not represent allocated fractional incidents as if they were observed BG incidents.
+The most important correction to the framing is that these are not degraded point data. They are observations on a different spatial support, a classic change-of-support problem. OUP Academic
+1. A non-negotiable validation correction
+Do not use a model-informed grid→BG or ZIP→BG allocation as the “truth” against which you score the same frozen BG model.
+Suppose the frozen model is pbp_bpb​, and you allocate a grid total among its overlapping BGs partly in proportion to pbp_bpb​. The resulting pseudo-truth is mechanically attracted toward pbp_bpb​. A low BG-level TVD then partly measures the allocation rule’s reuse of the model, not predictive accuracy. ZIP raking has the same problem: within each ZIP, the pseudo-truth usually preserves the model’s relative BG shares by construction.
+For coordinate-free targets, separate three evaluations:
+
+
+Target-city native-support score. Compare observed grid, ZIP, or ZIP×service-area shares with the corresponding predictions from a crosswalk/exposure operator that was frozen before examining those counts.
+
+
+BG recovery score. Estimate this only in other cities where coordinates supply independent BG truth, after synthetically degrading those observations.
+
+
+Production posterior. Combine the frozen model and target-city areal evidence, but do not call its allocated BG counts “truth.”
+
+
+The native-support score is still valuable: it can show that the model misses the east–west, central–peripheral, or other coarse pattern. It simply is not a BG-accuracy estimate.
+There is a related information issue. San Antonio’s 153,889 rows make its roughly 80–90 ZIP totals precise, but ZIPs alone provide at most roughly 79–89 independent geographic contrasts after conditioning on the city total—not 153,889 BG observations. More than 800 contrasts among the 920 BGs remain unidentified. Phoenix’s much finer grid has a far larger geographic information budget. A good posterior updates only the contrasts visible at the reported support and leaves the unobserved contrasts near the prior.
+2. Phoenix: use A2+, with an address-support hybrid as a conditional upgrade
+My production choice
+I would pre-register A2+, defined as:
+
+Condition the frozen model on the observed Phoenix grid totals using a fixed grid×BG change-of-support matrix based on developed/addressable exposure within each BG.
+
+I would not pre-register A1’s hundred-block midpoint method as the principal mechanism.
+A3 can improve absolute accuracy, but it should be implemented as A3′: support-aware geocoding, not “geocode everything to a point and use successful rows as coordinate incidents.”
+A principled grid allocation
+Let:
+
+
+pbp_bpb​ be the frozen model share for BG bbb;
+
+
+egbe_{gb}egb​ be the amount of a pre-selected fine-scale exposure measure in g∩bg\cap bg∩b;
+
+
+hgb=egb/∑g′eg′bh_{gb}=e_{gb}/\sum_{g'}e_{g'b}hgb​=egb​/∑g′​eg′b​, the fraction of BG bbb’s exposure lying in grid ggg;
+
+
+mgb=pbhgbm_{gb}=p_bh_{gb}mgb​=pb​hgb​, the prior mass in the grid×BG intersection;
+
+
+rg=yg/Nr_g=y_g/Nrg​=yg​/N, the observed incident share in grid ggg.
+
+
+The simplest auditable update is
+zgb=rg mgb∑b′mgb′,qbgrid=∑gzgb.z_{gb}
+=
+r_g\,
+\frac{m_{gb}}{\sum_{b'}m_{gb'}},
+\qquad
+q_b^{\text{grid}}
+=
+\sum_g z_{gb}.zgb​=rg​∑b′​mgb′​mgb​​,qbgrid​=g∑​zgb​.
+This exactly honors each observed grid total in the latent grid×BG table and preserves the prior relative allocation only where the grid itself cannot distinguish BGs. It is the minimum-relative-entropy update from the frozen prior intersection surface to the observed grid margins.
+This is superior to “area-weight every incident within its grid” because it uses:
+
+
+the observed grid distribution for between-grid variation;
+
+
+the frozen crime model for between-BG variation within ambiguous grids;
+
+
+a separate exposure measure only for locating a BG’s mass among the grids crossing that BG.
+
+
+What egbe_{gb}egb​ should be
+I would not use total land area or residential population as the production default.
+
+
+Total area will systematically push incidents into desert, mountain, canal, airport-field, freeway-right-of-way, and other low-opportunity land.
+
+
+Population will systematically suppress commercial, industrial, parking, nightlife, roadway, and visitor destinations—especially damaging for larceny and vehicle theft.
+
+
+The full BG crime model alone is not enough because it has no sub-BG information.
+
+
+The robust default is a generic developed/addressable activity mask: address points, building or parcel footprint, developed land, and perhaps road frontage. Since the BG model is already offense-specific, this within-BG measure need not initially become a second elaborate offense model.
+Offense-family micro-exposures are defensible only if selected externally:
+
+
+burglary: structures or addressable premises;
+
+
+motor vehicle theft and destination larceny: roads, parking, jobs, and destinations;
+
+
+robbery and assault: developed activity and pedestrian/destination proxies.
+
+
+Choose among these recipes in coordinate-city nested validation. Do not choose Phoenix’s weights by seeing which result looks plausible.
+Why A2+ wins per unit of engineering risk
+On your stated geometry, geocoding can improve only incidents in grids that overlap multiple BGs materially. For grids lying wholly within one BG, the grid already determines the BG. Before building the geocoder, compute:
+Mmixed=∑g: ∣B(g)∣>1rgM_{\text{mixed}}
+=
+\sum_{g:\,|B(g)|>1}r_gMmixed​=g:∣B(g)∣>1∑​rg​
+and the more informative prior ambiguity
+U=∑grg(1−max⁡bπb∣g),πb∣g=mgb∑b′mgb′.U
+=
+\sum_g r_g
+\left(1-\max_b \pi_{b\mid g}\right),
+\qquad
+\pi_{b\mid g}
+=
+\frac{m_{gb}}{\sum_{b'}m_{gb'}}.U=g∑​rg​(1−bmax​πb∣g​),πb∣g​=∑b′​mgb′​mgb​​.
+These are ex-ante engineering-value diagnostics. If UUU is small, even a perfect geocoder has little citywide TVD headroom over A2+. If it is large, address refinement may be worth the effort.
+The right hybrid: address strings as uncertain spatial supports
+For [code], the data do not identify a point. They identify one or more street-segment portions corresponding to an anonymized address range. Treat that as a linear or buffered support:
+
+
+Normalize the street name and find all candidate centerline segments.
+
+
+Restrict candidates to the reported Phoenix grid first.
+
+
+Use address-range overlap, address-point density, parcel frontage, or segment length to weight candidate portions.
+
+
+Intersect the candidate support with BGs.
+
+
+Assign the record exactly only when essentially all candidate mass lies in one BG; otherwise retain fractional support.
+
+
+For an intersection, use the crossing node only when it is unambiguous and not on a BG boundary; otherwise distribute over the touching road/corner support.
+
+
+The Census documentation itself warns against treating a TIGER interpolation as an observed location: TIGER ranges may include possible structure numbers even where structures do not exist, and returned coordinates are interpolated or approximated along the range. Census.gov
+A city-maintained, versioned 2024 street centerline and address-range layer would generally be preferable to TIGER where available, with TIGER as a documented fallback.
+A practical confidence hierarchy would be:
+
+
+Gold: unique candidate support, consistent with grid, essentially one BG.
+
+
+Silver: unique street support but overlaps multiple BGs; use fractional BG weights.
+
+
+Ambiguous: multiple plausible supports; use the grid allocation.
+
+
+Conflict: geocoder and grid disagree materially; retain grid, flag the record, and investigate systematically.
+
+
+For the hybrid estimate, subtract the accepted address-supported records from their grid totals and allocate only the remaining records by the grid prior. Do not use the successful geocodes to infer the spatial distribution of failed geocodes unless that selection model has itself been validated.
+Why A1 midpoint-only is dominated
+A1 alone gives up the grid’s near-complete coverage and introduces several avoidable risks:
+
+
+false precision within the hundred block;
+
+
+false unique matches;
+
+
+spatially selective nonmatching;
+
+
+centerline/BG-boundary assignment artifacts;
+
+
+street-layer vintage and alias maintenance;
+
+
+the temptation to treat hit rate as accuracy.
+
+
+The relevant metric is incremental BG-share improvement over A2+, not geocoder hit rate and not improvement over model-only. Unless A3′ beats A2+ in an untouched coordinate-city lockbox, A2+ should remain production.
+Posterior treatment
+Fractions are not themselves a problem. False certainty is.
+The preferred posterior directly uses the grid observation:
+ygrid∣q∼Multinomial⁡ ⁣(N, Aq),y^{\text{grid}}\mid q
+\sim
+\operatorname{Multinomial}\!\left(N,\,Aq\right),ygrid∣q∼Multinomial(N,Aq),
+or an overdispersed/tempered equivalent, where AAA is the frozen support operator. Clean address-supported records contribute their own BG-support likelihoods.
+If the existing pipeline can accept only fractional BG counts and a scalar evidence strength, use qgridq^{\text{grid}}qgrid as a point estimate but calibrate its concentration from the synthetic coordinate-city experiments. Do not give it an effective direct sample size of 52,803 simply because that many rows were present.
+3. San Antonio: ZIP evidence is useful only as coarse calibration
+Hard raking is coherent—but not guaranteed to help BG TVD
+For a perfect disjoint ZIP partition, hard raking solves
+min⁡qDKL(q∥p)subject to∑b∈zqb=rz.\min_q D_{\mathrm{KL}}(q\|p)
+\quad\text{subject to}\quad
+\sum_{b\in z}q_b=r_z.qmin​DKL​(q∥p)subject tob∈z∑​qb​=rz​.
+Its solution is
+qb=pbrzPz,Pz=∑b∈zpb.q_b
+=
+p_b\frac{r_z}{P_z},
+\qquad
+P_z=\sum_{b\in z}p_b.qb​=pb​Pz​rz​​,Pz​=b∈z∑​pb​.
+So hard raking is not arbitrary: it is the smallest relative-entropy change that exactly matches ZIP totals while retaining the model’s within-ZIP proportions.
+But it does not have a monotonic BG-TVD guarantee. A small counterexample illustrates the issue. Suppose the true BG shares in two ZIPs are
+(0.15,0.35∣0.01,0.49)(0.15,0.35\mid0.01,0.49)(0.15,0.35∣0.01,0.49)
+and the model predicts
+(0.25,0.10∣0.12,0.53).(0.25,0.10\mid0.12,0.53).(0.25,0.10∣0.12,0.53).
+The model TVD is 0.250.250.25. Hard-raking the two ZIP totals from 0.35/0.650.35/0.650.35/0.65 to the true 0.50/0.500.50/0.500.50/0.50 produces approximately
+(0.357,0.143∣0.092,0.408),(0.357,0.143\mid0.092,0.408),(0.357,0.143∣0.092,0.408),
+whose TVD is about 0.2890.2890.289. Correcting the ZIP marginals removed an accidental compensation for the severe within-ZIP directional error and made BG accuracy worse.
+The empirical question is therefore not “are ZIP totals true?” They may be exact for the feed. It is:
+
+Does updating the model’s coarse error improve more than it disrupts the model’s within-ZIP error pattern?
+
+Only coordinate-city degradation tests answer that.
+ZCTA mapping is observation error, not just GIS plumbing
+Do not equate a five-digit record ZIP with a polygonal ZCTA. Census describes ZCTAs as generalized, block-based representations of point-based USPS ZIP delivery information. The 2020 product can leave some uninhabited areas unassigned, can be noncontiguous, does not represent every valid ZIP, and can include unique institutional, business, or PO-box ZIPs. Census.gov The Census glossary also notes that USPS ZIPs change over time and that predominantly nonresidential or PO-box ZIPs may lack corresponding ZCTAs. Census.gov
+Thus the observation matrix should be interpreted as
+Azb=P(reported ZIP=z∣incident in BG b),A_{zb}
+=
+P(\text{reported ZIP}=z\mid\text{incident in BG }b),Azb​=P(reported ZIP=z∣incident in BG b),
+not merely “fraction of BG area in ZCTA zzz.”
+At minimum:
+
+
+operate on BG×ZCTA intersections, not modal-ZIP BG assignments;
+
+
+include unmapped, unique, PO-box, and out-of-city ZIP categories explicitly;
+
+
+use an addressable/developed exposure crosswalk rather than raw land area;
+
+
+freeze the ZCTA vintage and document its mismatch with 2024 reported ZIPs.
+
+
+Do not discard the patrol service area
+Because each record has both ZIP and service area, the observed support should be the joint pair
+s=(ZIP,service area)s=(\text{ZIP},\text{service area})s=(ZIP,service area)
+whenever the service-area field is truly location-derived and versioned 2024 polygons are available.
+A ZIP crossing two service areas becomes two smaller observation cells. The joint counts are strictly more informative than separately raking to ZIP totals and seven service-area totals. They also provide a powerful QC check: ZIP–service-area combinations whose polygons do not intersect reveal label, vintage, or field-semantic problems.
+If the patrol area indicates responding unit or administrative assignment rather than incident location, it should instead be modeled as a noisy category or omitted.
+Recommended posterior: smooth aggregate evidence, not ZIP multipliers
+Use a common-refinement surface consisting of BG×ZCTA×service-area pieces. Let pbp_bpb​ be the frozen model and AAA map the BG/intersection surface to reported joint supports. Define
+qb(u)=pbexp⁡(ub)∑jpjexp⁡(uj).q_b(u)
+=
+\frac{p_b\exp(u_b)}
+{\sum_j p_j\exp(u_j)}.qb​(u)=∑j​pj​exp(uj​)pb​exp(ub​)​.
+Then fit
+y∣u∼Dirichlet-Multinomial⁡(N, Aq(u), ϕ),y\mid u
+\sim
+\operatorname{Dirichlet\text{-}Multinomial}
+\left(N,\,Aq(u),\,\phi\right),y∣u∼Dirichlet-Multinomial(N,Aq(u),ϕ),
+with
+u=Bβ,β∼N(0,Σβ).u=B\beta,
+\qquad
+\beta\sim N(0,\Sigma_\beta).u=Bβ,β∼N(0,Σβ​).
+Here:
+
+
+BBB contains low-frequency BG graph or spatial basis functions;
+
+
+higher-frequency modes are heavily shrunk or omitted;
+
+
+ϕ\phiϕ absorbs ZIP-label, crosswalk, coverage, and counting-rule discrepancies;
+
+
+Σβ\Sigma_\betaΣβ​ is estimated from other coordinate cities.
+
+
+This does three useful things:
+
+
+It updates only broad patterns that ZIP/service-area evidence can see.
+
+
+It leaves unsupported within-ZIP contrasts close to the frozen model.
+
+
+It produces a smooth correction field rather than a constant multiplier that jumps at every ZIP boundary.
+
+
+I would go one step further and permit only correction modes that are both spatially low-frequency and reasonably visible through AAA. Modes near the null space of AAA should remain at prior.
+Simpler engineering compromise
+If a full aggregate-likelihood model is too large a change, use smoothed partial raking:
+
+
+Compute raw support residuals
+ds=log⁡ys+aNr^s+a.d_s=\log\frac{y_s+a}{N\hat r_s+a}.ds​=logNr^s​+ays​+a​.
+
+
+Empirically shrink dsd_sds​ toward zero based on count and externally estimated support-error variance.
+
+
+Smooth neighboring support residuals with a fixed graph penalty.
+
+
+Map the smoothed residual back through fractional BG×support intersections.
+
+
+Adjust
+qb∝pbexp⁡(d~b).q_b\propto p_b\exp(\tilde d_b).qb​∝pb​exp(d~b​).
+
+
+A still simpler benchmark is
+q(α)=(1−α)p+αqhard,q^{(\alpha)}
+=
+(1-\alpha)p+\alpha q^{\text{hard}},q(α)=(1−α)p+αqhard,
+with α\alphaα fixed externally. This attenuates seams but does not eliminate the ZIP-step assumption.
+Do not hard-rake and then blur the finished map. Put smoothness inside the inference so that evidence, totals, and uncertainty remain coherent.
+Seams are a modeling assumption, not merely a display problem
+Hard raking creates a correction field
+cb=log⁡(qb/pb)c_b=\log(q_b/p_b)cb​=log(qb​/pb​)
+that is constant within a ZIP and discontinuous at its border. For adjacent BGs on opposite sides, the induced jump includes
+log⁡(cz)−log⁡(cz′).\log(c_z)-\log(c_{z'}).log(cz​)−log(cz′​).
+That is an implicit claim that crime-model residuals jump at a postal boundary. Shrinking the ZIP factors reduces the amplitude, while a smooth latent field removes the piecewise-constant assumption.
+Evaluate seams on the rendered risk quantity, not only on shares. A modest share multiplier can create a conspicuous risk-rate jump in a low-population BG.
+For murder and other very low-count offenses, I would expect the externally calibrated update strength to be near zero for ZIP-only evidence. Phoenix’s fine grid can still localize a small number of murders meaningfully; San Antonio’s ZIP evidence generally cannot.
+4. Validation and knob selection
+Your proposed synthetic degradation protocol is the right basic idea, but Houston alone and idealized censoring would be too optimistic.
+The nested city-level protocol I would pre-register
+
+
+Freeze each held-out city’s BG prediction.
+The city must be excluded from both the national covariate model and any sub-BG exposure or raking calibration used in that fold.
+
+
+Construct target-matched observation operators.
+
+
+Phoenix: repeated 0.5-mile-square lattices with multiple phases and orientations, matching Phoenix’s distribution of grid/BG overlap counts, entropy, border clipping, and outside-city cells.
+
+
+San Antonio: actual ZCTA geometries in the validation city, plus seven-area partitions or actual location-based patrol districts.
+
+
+Match offense-specific count totals, missingness, and support coverage.
+
+
+
+
+Apply the complete production mechanism.
+This includes crosswalk construction, unmapped buckets, posterior strength, smoothing, and all fail-closed rules—not an idealized version.
+
+
+Compare to uncensored coordinate BG truth.
+Evaluate A3′ incrementally against A2+, and San Antonio’s method against model-only.
+
+
+Tune only in inner city folds.
+Crosswalk weights, power-raking strength, spatial range, overdispersion, and geocoder confidence thresholds are selected without using the outer city.
+
+
+Use an untouched lockbox if feasible.
+Nested CV reduces leakage, but once many candidate mechanisms and metrics have been inspected, an untouched group of direct cities is valuable.
+
+
+Freeze a deterministic target decision rule.
+Phoenix and San Antonio truth must not enter the choice.
+
+
+Critical simulation corrections
+Do not validate a block-address geocoder by reverse-geocoding known points to TIGER hundred blocks and then geocoding them back with TIGER. That is circular and omits real source-string errors. A3′ needs cities containing both actual published address strings and independent coordinates or parcel/address-point truth. Without such a validation set, keep address refinement experimental.
+For ZIPs, assigning each known point to its Census ZCTA tests only an idealized geometry. It omits:
+
+
+reported-ZIP versus ZCTA disagreement;
+
+
+unique and PO-box ZIPs;
+
+
+mailing versus incident-location ZIPs;
+
+
+vintage changes;
+
+
+nongeographic placeholders;
+
+
+city-boundary and annexation effects.
+
+
+Use cities that publish both coordinates and record ZIP wherever possible. Treat ideal point-in-ZCTA censoring as an upper-bound experiment, not the expected production result.
+For grids, randomize lattice phase and orientation. A single lattice can produce a lucky or unlucky alignment with BG boundaries and the street network.
+If the coordinate “truth” city publishes only block centroids, records near BG borders should be represented as uncertain supports rather than treated as exact points. Otherwise the validation target itself contains deterministic boundary bias.
+Selecting crosswalk weights by principle
+The principled route is to estimate variance components and fine-scale exposure transfer from other cities:
+
+
+Fit the within-BG exposure recipe on direct cities only.
+
+
+Estimate how much true model residual exists at grid, ZIP, and service-area scales.
+
+
+Estimate how much of the observed support discrepancy comes from labeling, crosswalk, and feed-definition noise.
+
+
+Let those signal and noise variances determine posterior shrinkage.
+
+
+In a simplified normal approximation, the update strength resembles
+τrecoverable2τrecoverable2+σsupport error2.\frac{\tau_{\text{recoverable}}^2}
+{\tau_{\text{recoverable}}^2+\sigma_{\text{support error}}^2}.τrecoverable2​+σsupport error2​τrecoverable2​​.
+This is preferable to choosing an α\alphaα because Phoenix or San Antonio “looks better” at a particular setting.
+You may still choose among a finite set of mechanisms by outer-fold performance. That is principled model selection, provided the final evaluation cities were not used for the choice.
+Evaluation metrics
+Keep TVD as the primary metric, but it is insufficient for the failure mode you care about. TVD assigns the same loss whether mass is misplaced across one street or across the city.
+I would require:
+
+
+BG TVD, equal-weighted by city as the primary selection statistic;
+
+
+Wasserstein/earth-mover distance, normalized by city scale;
+
+
+native-support TVD, to show whether coarse evidence is actually being used;
+
+
+within-support conditional TVD, especially within ZIP;
+
+
+boundary-jump inflation on the final displayed risk;
+
+
+signed error by pre-specified strata such as city-border distance, commercial intensity, low-population/high-job BGs, new development, and road-boundary BGs;
+
+
+hotspot/top-decile stability, if map ranking is user-facing.
+
+
+A seam statistic can be based on the correction field:
+JZIP=E ⁣[∣cb−cb′∣∣b,b′ adjacent across ZIP border]−E ⁣[∣cb−cb′∣∣matched non-border edge].J_{\text{ZIP}}
+=
+E\!\left[|c_b-c_{b'}|
+\mid b,b' \text{ adjacent across ZIP border}\right]
+-
+E\!\left[|c_b-c_{b'}|
+\mid \text{matched non-border edge}\right].JZIP​=E[∣cb​−cb′​∣∣b,b′ adjacent across ZIP border]−E[∣cb​−cb′​∣∣matched non-border edge].
+In coordinate cities, compare this with the same statistic for the true residual field. A method should not earn lower TVD by creating correction jumps absent from truth.
+Fail-closed acceptance
+I would use “central superiority plus tail non-inferiority”:
+
+
+the city-clustered one-sided confidence bound for mean or median paired TVD improvement must exceed zero;
+
+
+the lower tail of paired improvement must not show material harm—for example, no more than a pre-specified fraction of matched cities worsening by more than roughly 0.02 TVD;
+
+
+Wasserstein distance and seam inflation must be noninferior;
+
+
+the target’s support geometry, missingness, and mismatch diagnostics must lie within the validation envelope.
+
+
+Use equal city weights for the principal decision. Keep incident-weighted results as a secondary product-relevance summary; otherwise one or two enormous cities can hide systematic failure elsewhere.
+5. Spatially biased failure modes
+Block-address and intersection geocoding
+Spatially selective match failure. New subdivisions, private streets, mobile-home parks, alleys, informal locations, freeways, parks, and renamed roads may fail disproportionately. A located-only subset then overrepresents older, regular-grid neighborhoods.
+False unique directional or alias match. Missing or mishandled [code], frontage-road names, aliases, suffixes, or duplicate street names can move incidents to another part of the city rather than add random noise.
+Hundred-block midpoint displacement. The implied range may span several centerline segments or BGs; collapsing all records to one midpoint systematically concentrates them.
+Centerline boundary bias. BG boundaries often follow roads. A centerline point can lie exactly on the boundary, and GIS tie-breaking may send every road incident to the same side. Split or buffer boundary-street supports when the address side is unknown.
+Intersection corner bias. An intersection node can touch three or four BGs. Assigning the node to one polygon creates deterministic corner favoritism.
+Facility-entrance collapse. Malls, campuses, apartment complexes, hospitals, airports, and large parcels may use one street entrance while incidents occur across a multi-BG footprint.
+Street-layer vintage drift. New streets and renamings create a suburban/outskirt bias rather than uniform noise.
+Grid-constrained false matching. Restricting candidates to GRID is helpful, but if the reported grid is itself wrong, it can force a plausible-looking wrong address. Retain a pre-constraint conflict diagnostic.
+Address-field semantic error. Verify that the string is the incident location, not reporting-party, victim, owner, station, or administrative address.
+Redaction mechanism differences. Sensitive offenses or certain report channels may receive more aggressive location masking, making geocode quality offense- and neighborhood-dependent.
+Grid allocation
+Boundary clipping and jurisdiction leakage. A grid can straddle Phoenix and non-Phoenix territory. Do not normalize the entire cell into city BGs. Include an explicit outside-universe component and reconcile it to the feed’s actual jurisdiction semantics.
+Grid-layer vintage or ID drift. A current ArcGIS layer may not represent the geometry used to generate 2024 record IDs. Monthly discontinuities in grid frequencies are a useful warning.
+Wrong within-cell exposure. Area weighting pushes mass into empty land; population weighting pushes it away from retail, roads, parking, and employment districts.
+Large-facility smearing. An airport, stadium, mall, jail, or campus can dominate a grid while occupying only one portion or BG.
+Grid assignment not based on incident point. Dispatch systems may assign by caller address, nearest address, reporting location, or a snapped centroid.
+Nonrandom missing GRID. The 0.24% missing may disproportionately involve online reports, uncertain locations, highways, or sensitive incidents.
+Topological slivers and boundary convention. Small grid/BG slivers can receive implausible probability if the overlay is not thresholded and mass-conserving.
+Model-induced circular confidence. Model-weighted allocation followed by full-count posterior weighting can paint the prior back onto the map with enormous apparent certainty.
+ZIP and service-area allocation
+Reported ZIP versus ZCTA mismatch. This includes mailing routes, unique institutions, businesses, PO boxes, and areas with no ZCTA representation.
+2020-versus-2024 vintage drift. A 2020 ZCTA polygon is not an exact representation of all ZIP assignments in a 2024 record feed.
+Noncontiguous ZIPs. Treating one ZIP as a compact polygon can silently join unrelated areas.
+Mailing address versus event location. Campuses, complexes, corporate facilities, and centralized mailrooms can place incidents in a ZIP different from their physical point.
+City-crossing ZIPs. Hard normalization can pull suburban or unincorporated share into the San Antonio BG universe, or discard legitimate city portions.
+Modal-ZIP BG assignment. Assigning each BG to one ZIP moves the entirety of crossing BGs across boundaries and maximizes seams. Use intersection pieces.
+Small-ZIP multiplier explosions. A small expected ZIP count with a moderate observed count produces a huge hard-raking factor.
+Postal-boundary seams. Constant within-ZIP multipliers create unsupported step functions in the correction field.
+Service-area semantic mismatch. The field may indicate responding unit, report desk, or organizational ownership rather than location.
+Impossible ZIP×area combinations. Do not force these into the nearest overlap. Preserve them as a mismatch category; their frequency is an observation-error estimate.
+Shared feed-to-level risks
+The geography mechanism cannot repair a spatially nonexchangeable counting-rule mismatch.
+Phoenix’s primary-offense-only texture and San Antonio’s Group-A offense rows should be checked against the definition of each official LEVEL series. Multi-offense incidents, hierarchy suppression, duplicate offense rows, and differing incident-versus-offense definitions can vary spatially—for example, around nightlife locations, commercial theft destinations, or complex violent incidents. Simulate those counting rules in coordinate cities where possible.
+Also verify:
+
+
+occurrence date versus report date;
+
+
+city boundary and police-service jurisdiction;
+
+
+records at airports, transit systems, schools, or other special jurisdictions;
+
+
+duplicate and amended reports;
+
+
+offense-specific location redaction;
+
+
+month-to-month appearance or disappearance of support codes.
+
+
+What I would put in the preregistration
+Phoenix
+
+Use the versioned 2024 Phoenix grid as the primary reported support. Construct a BG×grid prior using the frozen offense-specific BG model and a fixed developed/addressable within-BG exposure measure selected in nested coordinate-city validation. Apply the support-aware grid update to all valid grid records. Address strings may replace the grid allocation only under frozen gold/silver support rules validated incrementally against grid-only recovery; no hundred-block midpoint is treated as an observed coordinate. Records failing those rules remain grid-supported. Target-city performance is scored at grid support only.
+
+San Antonio
+
+Use the joint reported ZIP×service-area support when the service-area field is verified as location-derived and its 2024 polygons are available; otherwise use ZIP. Construct fractional BG×ZCTA×area intersections with explicit mismatch and unmapped categories. Fit a low-frequency, spatially smooth correction to the frozen BG prior through an overdispersed aggregate-count likelihood whose hyperparameters were selected in nested coordinate-city degradation tests. Hard raking is retained as a benchmark only. For each offense, apply the coarse update only if it passes external BG-TVD superiority, tail non-inferiority, seam, and target-domain gates; otherwise retain model-only texture.
+
+That gives Phoenix a strong, low-risk fine-areal lane and makes San Antonio earn its way out of model-only without granting ZIP-scale evidence fake BG precision.

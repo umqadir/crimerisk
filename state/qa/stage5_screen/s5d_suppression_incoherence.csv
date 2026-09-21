@@ -1,0 +1,44 @@
+level,offense,check,n
+block_group,murder,estimate_mode says non_residential but denominator_reason says publishable,2306
+block_group,rape,estimate_mode says non_residential but denominator_reason says publishable,2306
+block_group,robbery,index NULL but denominator_reason still says 'publishable' (non_residential rows),2306
+block_group,robbery,estimate_mode says non_residential but denominator_reason says publishable,2306
+block_group,robbery,resident index NULL but resident_denominator_reason says publishable,771
+block_group,aggravated_assault,index NULL but denominator_reason still says 'publishable' (non_residential rows),2306
+block_group,aggravated_assault,estimate_mode says non_residential but denominator_reason says publishable,2306
+block_group,aggravated_assault,resident index NULL but resident_denominator_reason says publishable,771
+block_group,burglary,index NULL but denominator_reason still says 'publishable' (non_residential rows),1652
+block_group,burglary,estimate_mode says non_residential but denominator_reason says publishable,1652
+block_group,burglary,resident index NULL but resident_denominator_reason says publishable,771
+block_group,larceny,index NULL but denominator_reason still says 'publishable' (non_residential rows),2306
+block_group,larceny,estimate_mode says non_residential but denominator_reason says publishable,2306
+block_group,larceny,resident index NULL but resident_denominator_reason says publishable,771
+block_group,motor_vehicle_theft,index NULL but denominator_reason still says 'publishable' (non_residential rows),1892
+block_group,motor_vehicle_theft,estimate_mode says non_residential but denominator_reason says publishable,1892
+block_group,motor_vehicle_theft,resident index NULL but resident_denominator_reason says publishable,771
+block_group,motor_vehicle_theft,resident-arm MVT floor tests vehicle denominator not resident pop (by construction),76
+block_group,(all),estimate_mode value 'zero_primary_denominator' is emitted by _estimate_mode but occurs 0 times (dead branch),0
+block_group,(all),estimate_mode value 'below_legacy_min_denominator' is emitted by _estimate_mode but occurs 0 times (dead branch),0
+block_group,(all),estimate_mode value 'vehicle_denominator_invalid' is emitted by _estimate_mode but occurs 0 times (dead branch),0
+tract,murder,index NULL but denominator_reason still says 'publishable' (non_residential rows),781
+tract,murder,estimate_mode says non_residential but denominator_reason says publishable,781
+tract,murder,resident index NULL but resident_denominator_reason says publishable,327
+tract,rape,index NULL but denominator_reason still says 'publishable' (non_residential rows),781
+tract,rape,estimate_mode says non_residential but denominator_reason says publishable,781
+tract,rape,resident index NULL but resident_denominator_reason says publishable,327
+tract,robbery,index NULL but denominator_reason still says 'publishable' (non_residential rows),781
+tract,robbery,estimate_mode says non_residential but denominator_reason says publishable,781
+tract,robbery,resident index NULL but resident_denominator_reason says publishable,327
+tract,aggravated_assault,index NULL but denominator_reason still says 'publishable' (non_residential rows),781
+tract,aggravated_assault,estimate_mode says non_residential but denominator_reason says publishable,781
+tract,aggravated_assault,resident index NULL but resident_denominator_reason says publishable,327
+tract,burglary,index NULL but denominator_reason still says 'publishable' (non_residential rows),557
+tract,burglary,estimate_mode says non_residential but denominator_reason says publishable,557
+tract,burglary,resident index NULL but resident_denominator_reason says publishable,327
+tract,larceny,index NULL but denominator_reason still says 'publishable' (non_residential rows),781
+tract,larceny,estimate_mode says non_residential but denominator_reason says publishable,781
+tract,larceny,resident index NULL but resident_denominator_reason says publishable,327
+tract,motor_vehicle_theft,index NULL but denominator_reason still says 'publishable' (non_residential rows),661
+tract,motor_vehicle_theft,estimate_mode says non_residential but denominator_reason says publishable,661
+tract,motor_vehicle_theft,resident index NULL but resident_denominator_reason says publishable,327
+tract,motor_vehicle_theft,resident-arm MVT floor tests vehicle denominator not resident pop (by construction),9
