@@ -7,13 +7,13 @@ bash            frontend/build/03_tiles.sh all  # three PMTiles archives
 uv run python frontend/build/04_shards.py       # GEOID lookup shards + per-state benchmarks
 uv run python frontend/build/05_download.py     # public CSV / Parquet / GeoParquet package
 uv run python frontend/build/06_stage_site.py   # bootstrap manifest + staged site
-uv run python frontend/serve.py 8777 /Users/uzairqadir/Projects/data-projects/national/crimerisk-tiles/dist/site
+uv run python frontend/serve.py 8777 "$CRIMERISK_TILES_ROOT/dist/site"
 ```
 
 Field contract: `frontend/build/crschema.py`.
 Source parquet and data year: `frontend/build/snapshot_config.env`.
-Generated artifacts root: `CRIMERISK_TILES_ROOT`, default
-`/Users/uzairqadir/Projects/data-projects/national/crimerisk-tiles`.
+Generated artifacts root: `CRIMERISK_TILES_ROOT`, default `../crimerisk-tiles`
+relative to the repository.
 
 | Layer | Geography | Zooms | Source |
 |---|---|---|---|

@@ -27,7 +27,8 @@ set -euo pipefail
 
 REPO="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 source "$REPO/frontend/build/snapshot_config.env"
-TILES_ROOT="${CRIMERISK_TILES_ROOT:-/Users/uzairqadir/Projects/data-projects/national/crimerisk-tiles}"
+# Same default as crschema.py: a sibling of the repository.
+TILES_ROOT="${CRIMERISK_TILES_ROOT:-$(dirname "$REPO")/crimerisk-tiles}"
 WORK="$TILES_ROOT/work"
 DIST="$TILES_ROOT/dist"
 LOGS="$TILES_ROOT/logs"

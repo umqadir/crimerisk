@@ -14,7 +14,7 @@ present for violent offenses, premises for burglary, vehicles for motor vehicle 
 
 | Field | Value |
 |---|---|
-| Edition | 2025.1 |
+| Edition | 2025.1.1 (data, tiles and download files unchanged from 2025.1) |
 | Data year | 2025 |
 | History window | 2018 to 2025 |
 | Offenses | Murder, rape, robbery, aggravated assault, burglary, larceny, motor vehicle theft |
@@ -35,8 +35,13 @@ https://umqadir.github.io/crimerisk-map/
 One table per geography, nationwide and per state. The schema is 64 columns at block
 group and 63 at tract. See [docs/FIELDS.md](docs/FIELDS.md).
 
+Download page, including per-state tables and checksums:
+https://umqadir.github.io/crimerisk-map/download.html. The object host serves files
+only; `https://tiles.qqlab.io/2025.1/downloads/` has no listing.
+
 | File | Link |
 |---|---|
+| **Download page (all files)** | https://umqadir.github.io/crimerisk-map/download.html |
 | Block group, CSV | https://tiles.qqlab.io/2025.1/downloads/crimerisk_2025_block_group.csv.gz |
 | Block group, Parquet | https://tiles.qqlab.io/2025.1/downloads/crimerisk_2025_block_group.parquet |
 | Block group, GeoParquet | https://tiles.qqlab.io/2025.1/downloads/crimerisk_2025_block_group.geoparquet |

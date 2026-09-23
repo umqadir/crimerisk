@@ -113,14 +113,19 @@ MIXTURE_ARTIFACT = repo_root() / "state" / "modeling" / "bg_mixture_experts_2025
 def test_the_real_mixture_expert_stamp_decides_the_same_under_any_repo_root(tmp_path: Path) -> None:
     """The stage-10 stamp, on the artifact the trap cost the most on.
 
-    It was written under a different checkout, so every recorded key is a foreign absolute path.
-    The verdict must not depend on that: the same artifact and the same dependency bytes have to
-    decide the same way whichever root the stamp names.
+    A stamp may be written under one checkout and read under another, and the verdict must
+    not depend on that: the same artifact and the same dependency bytes have to decide the
+    same way whichever root the stamp names. The real stamp supplies the shape of the case
+    -- how many dependencies it records and what their digests are -- and the two stamps
+    below differ only in the root their keys name.
+
+    Whether the stamp in THIS checkout happens to hold foreign keys is not the property
+    under test: it holds local keys after a local build and foreign ones after a build
+    somewhere else, and the invariant has to hold either way.
     """
     stamp_path = dependency_stamp_path(MIXTURE_ARTIFACT)
     recorded = json.loads(stamp_path.read_text())["dependencies"]
-    foreign = [key for key in recorded if key.startswith("/") and not key.startswith(str(repo_root()))]
-    assert foreign, "this stamp already uses local keys, so it cannot exercise a foreign root"
+    assert recorded, "the mixture expert stamp records no dependencies"
 
     artifact = tmp_path / MIXTURE_ARTIFACT.name
     artifact.write_bytes(b"stand-in for the reviewed expert table")

@@ -37,6 +37,9 @@ from crschema import (  # noqa: E402
     BG_SRC,
     COMPOSITES,
     CRIME_ORDER,
+    DENOMINATOR_EXPOSURE,
+    DENOMINATOR_EXPOSURE_COMPOSITE,
+    DENOMINATOR_RESIDENT,
     DIRECT_SHARE_THRESHOLD,
     DIST,
     FIPS_TO_USPS,
@@ -45,6 +48,9 @@ from crschema import (  # noqa: E402
     NO_ESTIMATE_COLOR,
     NO_ESTIMATE_LABEL,
     MEASURE_ORDER,
+    LEVEL_TOTAL_ESTIMATED,
+    LEVEL_TOTAL_MIXED,
+    LEVEL_TOTAL_REPORTED,
     MEASURE_SUBCOPY,
     MEASURES,
     OFFENSES,
@@ -72,9 +78,18 @@ TILE_DIR = SITE / "data" / "tiles"
 # site. One knob: set CRIMERISK_ASSET_BASE_URL to stage against a different host or
 # edition, or to a local origin when serving the site for verification.
 EDITION = f"{YEAR}.1"
+# The patch release ships corrected copy, a corrected card and a corrected evaluation
+# gate against the SAME data, so the object-host prefix stays at the minor edition and
+# only the displayed label moves. Bump EDITION when the data changes.
+EDITION_LABEL = f"{YEAR}.1.1"
 DEFAULT_ASSET_BASE_URL = f"https://tiles.qqlab.io/{EDITION}"
 ASSET_BASE_URL = os.environ.get("CRIMERISK_ASSET_BASE_URL", DEFAULT_ASSET_BASE_URL).rstrip("/")
 DOWNLOAD_BASE_URL = f"{ASSET_BASE_URL}/downloads"
+
+# Coverage box for search: the 48 contiguous states and DC. Alaska, Hawaii and the
+# territories are excluded from the edition, so a search that lands outside this box
+# is told so rather than shown "no match".
+COVERAGE_BOUNDS = [-124.85, 24.35, -66.85, 49.45]
 
 BASEMAP = {
     "style": "https://tiles.openfreemap.org/styles/positron",
@@ -322,7 +337,7 @@ def main() -> None:
 
     bounds = mbtiles_bounds("blockgroups") or [-124.8, 24.4, -66.9, 49.4]
 
-    edition = EDITION
+    edition = EDITION_LABEL
     # The footer and the download page carry the edition. The source commit is
     # provenance, not front-page copy, so it appears only under Technical
     # methods.
@@ -365,6 +380,8 @@ def main() -> None:
         },
         # Position of each composite in the shard's direct-share array.
         "composite_index": {"ov": 0, "vi": 1, "pr": 2},
+        "denominator_exposure": {SHORT[o]: DENOMINATOR_EXPOSURE[o] for o in OFFENSES},
+        "coverage_bounds": COVERAGE_BOUNDS,
         "mode_direct_weight": {"0": 1.0, "1": 0.5, "2": 0.0},
         "direct_share_threshold": DIRECT_SHARE_THRESHOLD,
         "legend": LEGEND,
@@ -382,6 +399,20 @@ def main() -> None:
             "source_modeled": SOURCE_PHRASE_MODELED,
             "source_mostly_direct": SOURCE_PHRASE_MOSTLY_DIRECT,
             "source_mostly_modeled": SOURCE_PHRASE_MOSTLY_MODELED,
+            "denominator_resident": DENOMINATOR_RESIDENT,
+            "denominator_exposure_composite": DENOMINATOR_EXPOSURE_COMPOSITE,
+            "total_reported": LEVEL_TOTAL_REPORTED.format(year=YEAR),
+            "total_estimated": LEVEL_TOTAL_ESTIMATED.format(year=YEAR),
+            "total_mixed": LEVEL_TOTAL_MIXED.format(year=YEAR),
+            "search_no_match": "No match found.",
+            "search_unavailable": (
+                "Search is unavailable right now. This is a problem with the address "
+                "lookup service, not with the address."
+            ),
+            "search_outside_coverage": (
+                "That place is outside this map. It covers the 48 contiguous states "
+                "and DC; Alaska, Hawaii and the territories are not published."
+            ),
             "county_chip": "County average · zoom in for neighborhoods",
             "county_note": (
                 "County rate, built from the offense counts and denominators of "

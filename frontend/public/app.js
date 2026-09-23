@@ -35,11 +35,6 @@
     return Math.round(v).toLocaleString("en-US");
   }
 
-  function fmt1(v) {
-    if (v === null || v === undefined || isNaN(v)) return "—";
-    return v.toFixed(1);
-  }
-
   function legendClass(v) {
     if (v === null || v === undefined || isNaN(v)) return null;
     for (var i = M.legend.length - 1; i >= 0; i--) {
@@ -516,6 +511,38 @@
     return share >= 0.5 ? M.copy.source_mostly_direct : M.copy.source_mostly_modeled;
   }
 
+  /* The denominator the displayed number is divided by, in words. Every exposure
+     denominator is modeled, so the phrase says so; a composite divides each offence
+     by that offence's own base and has no single denominator of its own. */
+  function denomPhrase() {
+    if (state.measure === "resident") return M.copy.denominator_resident;
+    var d = M.denominator_exposure[state.crime];
+    return d || M.copy.denominator_exposure_composite;
+  }
+
+  /* Whether the agency total this neighbourhood's share was cut from was filed in
+     full for the data year or estimated. Different question from the source
+     phrase, which is about how that total was spread WITHIN the jurisdiction: a cell
+     can be modelled from a reported total, or allocated from an estimated one. */
+  function totalPhrase(rec, level) {
+    if (level === "county") return "";
+    var arr = rec && rec[10];
+    if (!arr) return "";
+    var oi = M.offense_index[state.crime];
+    var members = oi !== undefined ? [oi] : M.composite_members[state.crime];
+    var seen = false, anyReported = false, anyEstimated = false;
+    members.forEach(function (i) {
+      var v = arr[i];
+      if (v === null || v === undefined) return;
+      seen = true;
+      if (v === 1) anyReported = true; else anyEstimated = true;
+    });
+    if (!seen) return "";
+    if (!anyEstimated) return M.copy.total_reported;
+    if (!anyReported) return M.copy.total_estimated;
+    return M.copy.total_mixed;
+  }
+
   function expectedCount(rec) {
     if (!rec || !rec[7]) return null;
     var idx = M.offense_index[state.crime];
@@ -618,9 +645,18 @@
     var counts = document.createElement("p");
     counts.className = "row";
     var ec = expectedCount(rec);
+    // Whole offences. A tenth of an offence is not a thing the model knows.
     counts.textContent = ec === null
       ? ""
-      : "Estimated " + M.data_year + " offenses: " + fmt1(ec);
+      : "Estimated " + M.data_year + " offenses: " + (ec < 0.5 ? "under 1" : fmt(ec));
+
+    var denom = document.createElement("p");
+    denom.className = "row";
+    denom.textContent = r.value === null || r.value === undefined ? "" : denomPhrase();
+
+    var total = document.createElement("p");
+    total.className = "row";
+    total.textContent = totalPhrase(rec, r.level);
 
     var benchRow = document.createElement("p");
     benchRow.className = "row";
@@ -651,6 +687,8 @@
     frag.appendChild(head);
     frag.appendChild(times);
     if (counts.textContent) frag.appendChild(counts);
+    if (denom.textContent) frag.appendChild(denom);
+    if (total.textContent) frag.appendChild(total);
     frag.appendChild(benchRow);
     frag.appendChild(gid);
     if (src.textContent) frag.appendChild(src);
@@ -877,15 +915,36 @@
 
   var lastRequest = 0;
 
+  /* The published map is the 48 contiguous states and DC. Anything outside that
+     box is a real place the map has no data for, which is a different answer from
+     "no such place" and from "the geocoder did not respond". */
+  function inCoverage(item) {
+    var b = M.coverage_bounds;
+    var lng = parseFloat(item.lon), lat = parseFloat(item.lat);
+    if (isNaN(lng) || isNaN(lat)) return false;
+    return lng >= b[0] && lng <= b[2] && lat >= b[1] && lat <= b[3];
+  }
+
+  /* Resolves to {ok, items}. `ok:false` means the geocoding service failed; it is
+     never reported as a bad address. The viewbox biases the service towards the
+     published area; the coverage test above is what actually restricts it. */
   function geocode(q) {
     var wait = Math.max(0, 1000 - (Date.now() - lastRequest));
     return new Promise(function (res) { setTimeout(res, wait); }).then(function () {
       lastRequest = Date.now();
-      var url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=us&q=" +
-        encodeURIComponent(q);
+      var b = M.coverage_bounds;
+      var url = "https://nominatim.openstreetmap.org/search?format=jsonv2&limit=6&countrycodes=us" +
+        "&viewbox=" + [b[0], b[3], b[2], b[1]].join(",") +
+        "&q=" + encodeURIComponent(q);
       return fetch(url, { headers: { "Accept": "application/json" } })
-        .then(function (r) { return r.ok ? r.json() : []; })
-        .catch(function () { return []; });
+        .then(function (r) {
+          if (!r.ok) throw new Error("geocoder http " + r.status);
+          return r.json();
+        })
+        .then(function (items) {
+          return { ok: true, items: Array.isArray(items) ? items : [] };
+        })
+        .catch(function () { return { ok: false, items: [] }; });
     });
   }
 
@@ -906,6 +965,10 @@
   }
 
   function pick(item) {
+    if (!inCoverage(item)) {
+      $("search-note").textContent = M.copy.search_outside_coverage;
+      return;
+    }
     $("results").innerHTML = "";
     $("q").setAttribute("aria-expanded", "false");
     $("q").value = item.display_name.split(",").slice(0, 2).join(",").trim();
@@ -960,10 +1023,22 @@
       var q = input.value.trim();
       if (!q) return;
       $("search-note").textContent = "Searching…";
-      geocode(q).then(function (items) {
-        $("search-note").textContent = items.length ? "" : "No match found.";
-        renderResults(items);
-        if (items.length === 1) pick(items[0]);
+      geocode(q).then(function (res) {
+        if (!res.ok) {
+          $("search-note").textContent = M.copy.search_unavailable;
+          renderResults([]);
+          return;
+        }
+        var inside = res.items.filter(inCoverage);
+        if (inside.length) {
+          $("search-note").textContent = "";
+        } else if (res.items.length) {
+          $("search-note").textContent = M.copy.search_outside_coverage;
+        } else {
+          $("search-note").textContent = M.copy.search_no_match;
+        }
+        renderResults(inside);
+        if (inside.length === 1) pick(inside[0]);
       });
     });
 

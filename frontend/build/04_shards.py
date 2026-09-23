@@ -12,7 +12,14 @@ Shard record (array, positional - see FIELDS below):
   [name, county_name, jurisdiction_id, population, land_area_sq_mi,
    special_use_code, [measure value x20], [expected_count x7],
    [source_mode_code x7],
-   [direct expected-count share x3: overall, violent, property]]
+   [direct expected-count share x3: overall, violent, property],
+   [level total reported x7: 1 reported, 0 estimated, null unknown]]
+
+The last array answers a question the source mode does not: whether the AGENCY
+TOTAL this neighborhood's share was cut from was filed for the data year, or
+reconstructed from its own history, peer agencies, a partial year or a benchmark.
+A cell can be modeled from a reported total, or allocated from an estimated one,
+and the card says both.
 
 2025.1 withholds the p10/p90 index range and the reliability tier, so neither
 appears in the record. Positions after `expected_count` moved accordingly.
@@ -46,11 +53,15 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from crschema import (  # noqa: E402
+    BG_SRC,
     DIST,
+    LEVEL_REPORTED_REPAIR_MODES,
+    LEVEL_REPORTED_STATUS,
     MEASURE_ORDER,
     OFFENSES,
     SOURCE_MODE_CODE,
     STATE_NAME,
+    TRACT_SRC,
     WORK,
 )
 
@@ -71,6 +82,7 @@ FIELDS = [
     "expected_count",
     "source_mode_code",
     "direct_share",
+    "level_total_reported",
 ]
 
 # Composite membership, by index into OFFENSES.
@@ -123,7 +135,52 @@ def direct_shares(ec: dict, sm: dict, n: int) -> dict:
     return out
 
 
-def build_records(core: pd.DataFrame, id_col: str, names: dict, county_names: dict, tract_names: dict | None) -> dict:
+def level_total_reported(src, id_col: str) -> dict:
+    """Per-offense two-state flag: was the jurisdiction total filed for the data year?
+
+    1  the agency filed a complete year and it was admitted as observed.
+    0  the total was repaired: decayed own history, a pooled peer unit, an
+       annualized partial, or benchmark mass. The card calls all of these
+       "estimated, not reported in full", because from a reader's point of view
+       they are the same fact -- nobody filed this year's complete number.
+    None  no jurisdiction total applies to the cell at all, which is the statewide
+       non-municipal remainder.
+
+    Read straight from the published parquet rather than from `bg_core`, so the
+    flag cannot drift from the surface it describes.
+    """
+    columns = [id_col] + [
+        f"level_{part}_{offense}"
+        for offense in OFFENSES
+        for part in ("admission_status", "repair_mode")
+    ]
+    frame = pd.read_parquet(src, columns=columns)
+    ids = frame[id_col].astype(str).to_numpy()
+    flags = []
+    for offense in OFFENSES:
+        status = frame[f"level_admission_status_{offense}"].astype("string")
+        repair = frame[f"level_repair_mode_{offense}"].astype("string")
+        known = status.notna()
+        reported = status.eq(LEVEL_REPORTED_STATUS) & repair.fillna("none").isin(
+            LEVEL_REPORTED_REPAIR_MODES
+        )
+        value = pd.Series(pd.NA, index=frame.index, dtype="Int8")
+        value[known] = reported[known].astype("int8")
+        flags.append(value.to_numpy(dtype=object, na_value=None))
+    return {
+        ids[i]: [None if flags[j][i] is None else int(flags[j][i]) for j in range(len(OFFENSES))]
+        for i in range(len(frame))
+    }
+
+
+def build_records(
+    core: pd.DataFrame,
+    id_col: str,
+    names: dict,
+    county_names: dict,
+    tract_names: dict | None,
+    level_reported: dict,
+) -> dict:
     vals = {m: core[m].to_numpy(dtype="float64") for m in MEASURE_ORDER}
     ec = {o: core[f"expected_count_{o}"].to_numpy(dtype="float64") for o in OFFENSES}
     sm = {
@@ -156,6 +213,7 @@ def build_records(core: pd.DataFrame, id_col: str, names: dict, county_names: di
             [num(ec[o][i], 2) for o in OFFENSES],
             [int(sm[o][i]) for o in OFFENSES],
             [num(ds[k][i], 3) for k in COMPOSITE_ORDER],
+            level_reported.get(gid),
         ]
     return out
 
@@ -267,6 +325,9 @@ def main() -> None:
             None,
             None,
             [county_ds.get(cids[i], {}).get(k) for k in COMPOSITE_ORDER],
+            # A county spans many agencies, so there is no one jurisdiction total
+            # to describe; the county card says so in its own note instead.
+            None,
         ]
         for i in range(len(county))
     }
@@ -275,15 +336,21 @@ def main() -> None:
 
     print("Tract shards")
     tr = pd.read_parquet(WORK / "tract_core.parquet")
+    tract_level = level_total_reported(TRACT_SRC, "tract_id")
     stats["tract"] = shard(
-        build_records(tr, "tract_id", tract_names, county_names, None), "tract"
+        build_records(tr, "tract_id", tract_names, county_names, None, tract_level),
+        "tract",
     )
     print(f"  {stats['tract']}")
 
     print("Block-group shards")
     bg = pd.read_parquet(WORK / "bg_core.parquet")
+    bg_level = level_total_reported(BG_SRC, "block_group_geoid")
     stats["blockgroup"] = shard(
-        build_records(bg, "block_group_geoid", bg_names, county_names, tract_names), "bg"
+        build_records(
+            bg, "block_group_geoid", bg_names, county_names, tract_names, bg_level
+        ),
+        "bg",
     )
     print(f"  {stats['blockgroup']}")
 

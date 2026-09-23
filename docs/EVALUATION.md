@@ -7,8 +7,8 @@
 | Run ID | `gold_v53r2` |
 | Build year | 2025 |
 | Candidate | `state/candidates/v53-2025` |
-| Spatial folds | 5 leave-one-feed-city-out: the AGS feed-free cities San Francisco, Washington, Denver, Minneapolis and St. Louis |
-| Temporal folds | feeds through 2021; feeds through 2023 |
+| Spatial folds | 5 leave-one-feed-city-out: the AGS feed-free cities San Francisco, Washington, Denver, Minneapolis and St. Louis. Four cities score each offense except rape, which has one |
+| Temporal folds | Feed-truncation experiments, not historical forecasts: feeds truncated at 2021 and at 2023, everything else 2025 |
 | Model fold | not rerun for 2025.1; the `gold_v1` model rows below remain the reference |
 | Bootstrap | 1,000 city-cluster resamples, seed 20260921 |
 | Fold wall time | 2,981.3 seconds |
@@ -19,8 +19,8 @@
 | Run manifest | `state/eval/gold_v53r2/run_manifest.json` |
 
 `gold_v53r2` scores the code and artifacts the 2025.1 surface is built from, with the
-stage-10 expert table and the stage-11 normalizer surface retrained from current
-inputs rather than pinned. The spatial folds are restricted to the five cities AGS
+stage-10 normalizer surface and the stage-11 expert table retrained from current
+inputs rather than pinned (stage numbers as in `docs/BUILD.md`). The spatial folds are restricted to the five cities AGS
 does not take a feed from, so `ours` and AGS are compared on the same held-out ground.
 Every fold surface was deleted after scoring. At the end of the run the harness
 re-hashed the shared city-feed artifacts and the other `state/modeling` parquets it
@@ -35,31 +35,62 @@ expert table was retrained.
 
 ## Baseline arms
 
-TVD values are city means. `ours` uses published support: tracts for murder and rape, block groups otherwise. Past counts use the training window only. AGS is reported in the tract table below.
+TVD values are city means; lower is better. `ours` uses published support: tracts for
+murder and rape, block groups otherwise. `ours`, population and primary exposure in a
+row are scored on the same cities and cells. Past counts use the training window only
+and are scored only in the cities that have them (Past-counts n); the last column is
+`ours` on those cities. AGS is reported in the tract table below.
 
-| Fold | Offense | n cities | Ours TVD | Population TVD | Primary-exposure TVD | Past-counts TVD |
-|---|---|---:|---:|---:|---:|---:|
-| spatial | aggravated_assault | 4 | 0.357 | 0.449 | 0.423 | — |
-| spatial | burglary | 4 | 0.287 | 0.321 | 0.280 | — |
-| spatial | larceny | 4 | 0.255 | 0.384 | 0.270 | — |
-| spatial | motor_vehicle_theft | 4 | 0.298 | 0.287 | 0.332 | — |
-| spatial | murder | 4 | 0.471 | 0.602 | 0.601 | — |
-| spatial | rape | 1 | 0.461 | 0.479 | 0.469 | — |
-| spatial | robbery | 4 | 0.409 | 0.475 | 0.438 | — |
-| temporal_2021 | aggravated_assault | 8 | 0.347 | 0.494 | 0.474 | 0.356 |
-| temporal_2021 | burglary | 10 | 0.293 | 0.399 | 0.352 | 0.296 |
-| temporal_2021 | larceny | 11 | 0.228 | 0.399 | 0.300 | 0.251 |
-| temporal_2021 | motor_vehicle_theft | 10 | 0.310 | 0.388 | 0.430 | 0.311 |
-| temporal_2021 | murder | 7 | 0.476 | 0.618 | 0.615 | 0.441 |
-| temporal_2021 | rape | 1 | 0.461 | 0.479 | 0.469 | — |
-| temporal_2021 | robbery | 10 | 0.370 | 0.526 | 0.491 | 0.355 |
-| temporal_2023 | aggravated_assault | 8 | 0.364 | 0.501 | 0.482 | 0.377 |
-| temporal_2023 | burglary | 10 | 0.330 | 0.427 | 0.384 | 0.345 |
-| temporal_2023 | larceny | 11 | 0.245 | 0.410 | 0.314 | 0.259 |
-| temporal_2023 | motor_vehicle_theft | 10 | 0.337 | 0.416 | 0.453 | 0.347 |
-| temporal_2023 | murder | 7 | 0.534 | 0.656 | 0.653 | 0.541 |
-| temporal_2023 | rape | 1 | 0.461 | 0.479 | 0.469 | — |
-| temporal_2023 | robbery | 10 | 0.409 | 0.550 | 0.518 | 0.406 |
+| Fold | Offense | n cities | Ours TVD | Population TVD | Primary-exposure TVD | Past-counts n | Past-counts TVD | Ours TVD, past-counts cities |
+|---|---|---:|---:|---:|---:|---:|---:|---:|
+| spatial | aggravated_assault | 4 | 0.357 | 0.449 | 0.423 | — | — | — |
+| spatial | burglary | 4 | 0.287 | 0.321 | 0.280 | — | — | — |
+| spatial | larceny | 4 | 0.255 | 0.384 | 0.270 | — | — | — |
+| spatial | motor_vehicle_theft | 4 | 0.298 | 0.287 | 0.332 | — | — | — |
+| spatial | murder | 4 | 0.471 | 0.602 | 0.601 | — | — | — |
+| spatial | rape | 1 | 0.461 | 0.479 | 0.469 | — | — | — |
+| spatial | robbery | 4 | 0.409 | 0.475 | 0.438 | — | — | — |
+| temporal_2021 | aggravated_assault | 8 | 0.347 | 0.494 | 0.474 | 4 | 0.356 | 0.366 |
+| temporal_2021 | burglary | 10 | 0.293 | 0.399 | 0.352 | 7 | 0.296 | 0.291 |
+| temporal_2021 | larceny | 11 | 0.228 | 0.399 | 0.300 | 7 | 0.251 | 0.221 |
+| temporal_2021 | motor_vehicle_theft | 10 | 0.310 | 0.388 | 0.430 | 7 | 0.311 | 0.316 |
+| temporal_2021 | murder | 7 | 0.476 | 0.618 | 0.615 | 4 | 0.441 | 0.436 |
+| temporal_2021 | rape | 1 | 0.461 | 0.479 | 0.469 | — | — | — |
+| temporal_2021 | robbery | 10 | 0.370 | 0.526 | 0.491 | 6 | 0.355 | 0.350 |
+| temporal_2023 | aggravated_assault | 8 | 0.364 | 0.501 | 0.482 | 4 | 0.377 | 0.399 |
+| temporal_2023 | burglary | 10 | 0.330 | 0.427 | 0.384 | 7 | 0.345 | 0.344 |
+| temporal_2023 | larceny | 11 | 0.245 | 0.410 | 0.314 | 7 | 0.259 | 0.248 |
+| temporal_2023 | motor_vehicle_theft | 10 | 0.337 | 0.416 | 0.453 | 7 | 0.347 | 0.353 |
+| temporal_2023 | murder | 7 | 0.534 | 0.656 | 0.653 | 4 | 0.541 | 0.538 |
+| temporal_2023 | rape | 1 | 0.461 | 0.479 | 0.469 | — | — | — |
+| temporal_2023 | robbery | 10 | 0.409 | 0.550 | 0.518 | 6 | 0.406 | 0.415 |
+
+Rows where a baseline has lower TVD than `ours`:
+
+| Fold | Offense | Baseline | Baseline TVD | Ours TVD |
+|---|---|---|---:|---:|
+| spatial | motor_vehicle_theft | Population | 0.287 | 0.298 |
+| spatial | burglary | Primary exposure | 0.280 | 0.287 |
+| temporal_2021 | aggravated_assault | Past counts, same cities | 0.356 | 0.366 |
+| temporal_2021 | motor_vehicle_theft | Past counts, same cities | 0.311 | 0.316 |
+| temporal_2023 | aggravated_assault | Past counts, same cities | 0.377 | 0.399 |
+| temporal_2023 | motor_vehicle_theft | Past counts, same cities | 0.347 | 0.353 |
+| temporal_2023 | robbery | Past counts, same cities | 0.406 | 0.415 |
+
+Past counts are not scored in Denver, Minneapolis or St. Louis in either temporal fold,
+nor in Baltimore for aggravated assault, larceny and robbery.
+
+## Release evaluation check
+
+`_check_release_evaluation` in `scripts/diagnostics/validate_release_outputs.py`.
+
+| Requirement | Status in 2025.1.1 | Result |
+|---|---|---|
+| `gold_v53r2` results and manifest present, run id and build year match | Blocking | Pass |
+| Evaluated candidate equals the published candidate (`v53-2025`) | Blocking | Pass |
+| Spatial TVD: `ours` below population for every offense except rape | Reported, not blocking (`RELEASE_GOLD_TVD_BLOCKING = False`) | Fail: motor vehicle theft, 0.2983 against 0.2873 |
+
+Rape (one eligible city) is reported and not gated: 0.461 against 0.479.
 
 ## AGS 2022A tract comparison
 
@@ -110,22 +141,38 @@ Each cell reports empirical coverage [95% interval] / log-width factor [95% inte
 
 ## Protocol
 
-Spatial folds remove one admitted feed city from direct allocation, residual training, and uncertainty training. Held-out pooled 2018–2024 incidents supply truth. Temporal folds truncate all feeds at 2021 or 2023 and score later incidents. `gold_v53r2` runs no model fold; mixture weights v3, soft shrinkage, the rape triple, exposure ensemble weights, murder K and tau are the constants selected on the `gold_v1` model corpus and are named in `reuse_flags` when reused.
+Spatial folds remove one admitted feed city from direct allocation, residual training, and uncertainty training. Held-out pooled 2018–2024 incidents supply truth.
+
+Temporal folds truncate the city incident feeds at 2021 or 2023 and score later
+incidents. Every other fold input (jurisdiction totals, denominators, covariates,
+admission and repair rules, tuned constants) is the 2025 edition's. They are
+feed-truncation experiments, not historical forecasts; no input has been rebuilt as of
+a forecast origin.
+
+`gold_v53r2` runs no model fold; mixture weights v3, soft shrinkage, the rape triple, exposure ensemble weights, murder K and tau are the constants selected on the `gold_v1` model corpus and are named in `reuse_flags` when reused.
 
 Metrics are TVD, Spearman correlation, top-decile capture, exact spatial Wasserstein skill against the population null, and interval coverage. Confidence intervals resample cities. Negative skill and losses remain in the output.
 
-## Not validated
+## What the spatial evidence covers
 
+Four cities per offense, one for rape. Not measured:
+
+- Transfer outside the feed cities. Feed-city performance is not a bound on
+  performance elsewhere.
 - Allocation outside the 13 feed cities: about 95% of block groups.
 - 98.1% of the edition's block groups outside the jurisdiction-panel training hull.
 - Direct and benchmark interval calibration under spatial holdout.
 - Spatial rape performance beyond one eligible feed city.
 - Spatial performance in the eight cities AGS also takes a feed from; `gold_v1` below covers those.
+- Jurisdiction totals, the national-relative indexes and the Overall categories. Gold
+  scores within-city shares only.
+- Suburban, small-city and rural allocation: no incident dataset outside the 13 feed
+  cities is scored.
 
 ## Previous candidate: `gold_v53`, the pinned-artifact build
 
-`gold_v53` is the same seven folds on the same code, scored before the stage-10 expert
-table and the stage-11 normalizer surface were retrained. Only the held-out TVD table
+`gold_v53` is the same seven folds on the same code, scored before the stage-10
+normalizer surface and the stage-11 expert table were retrained. Only the held-out TVD table
 is kept here; its full results, AGS comparison and interval calibration remain in
 `state/eval/gold_v53/`. Fold wall time was 3,032.4 seconds.
 

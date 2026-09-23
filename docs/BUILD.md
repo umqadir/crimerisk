@@ -109,9 +109,19 @@ uv run python scripts/diagnostics/validate_release_outputs.py --year 2025 \
 ```
 
 The gate exits non-zero on any issue. Its blocking blocks are total-lane integrity,
-allocation coherence, index coherence, held-out performance, spatial artifacts, the
-feature and redlining audit, and frontend readiness. Promotion to `state/output/`
-requires a green gate.
+allocation coherence, index coherence, spatial artifacts, the feature and redlining
+audit, frontend readiness, and the release evaluation's presence and candidate
+binding. Promotion to `state/output/` requires a green gate.
+
+`_check_release_evaluation`:
+
+| Requirement | 2025.1.1 |
+|---|---|
+| Results and manifest for `RELEASE_GOLD_RUN_ID` present; run id and build year match | Blocking |
+| Evaluated candidate equals the candidate `frontend/build/snapshot_config.env` publishes | Blocking |
+| Spatial TVD: `ours` below the population arm for every offense except rape | Reported in `release_evaluation.failures`, not blocking (`RELEASE_GOLD_TVD_BLOCKING = False`) |
+
+Rape is reported and not gated: one eligible fold city.
 
 ## Tiles and site
 
@@ -184,12 +194,14 @@ Results are written to `state/eval/<eval-run-id>/`:
 | `fold_record.json` | Per-fold build manifest and artifact hashes |
 | `run_manifest.json` | Run configuration, completion time, result hashes |
 
-Runtime is 3h 37m 11.2s for the full 16-fold set (`gold_v1`) and 50m 32s for the
-2025.1 release set (`gold_v53`: five feed-free spatial folds plus two temporal folds),
-which is the run in `docs/EVALUATION.md`:
+Runtime is 3h 37m 11.2s for the full 16-fold set (`gold_v1`) and about 50 minutes for
+the 2025.1 release set: five feed-free spatial folds plus two temporal folds. The
+release run is **`gold_v53r2`**, the one tabled in `docs/EVALUATION.md`. `gold_v53` is
+the same seven folds scored before the stage-10 normalizer surface and the stage-11
+expert table were retrained; it is kept as the previous candidate.
 
 ```bash
-uv run python scripts/eval/gold_eval.py --run-id gold_v53 \
+uv run python scripts/eval/gold_eval.py --run-id gold_v53r2 \
   --folds spatial --folds temporal \
   --cities san_francisco,washington_dc,denver,minneapolis,st_louis_mo
 ```

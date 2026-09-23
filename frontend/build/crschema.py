@@ -11,13 +11,12 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 
-# Large generated artifacts never land in the repo.
+# Large generated artifacts never land in the repo. The default is a sibling of the
+# repository, derived from the repository's own location, so a checkout anywhere
+# works without configuration; set CRIMERISK_TILES_ROOT to put them elsewhere.
 TILES_ROOT = Path(
-    os.environ.get(
-        "CRIMERISK_TILES_ROOT",
-        "/Users/uzairqadir/Projects/data-projects/national/crimerisk-tiles",
-    )
-)
+    os.environ.get("CRIMERISK_TILES_ROOT") or (REPO.parent / "crimerisk-tiles")
+).expanduser().resolve()
 WORK = TILES_ROOT / "work"
 DIST = TILES_ROOT / "dist"
 LOGS = TILES_ROOT / "logs"
@@ -174,6 +173,41 @@ DIRECT_SOURCE_MODES = {"direct_city_incident"}
 # 98.6% of cells, including direct-feed cells, so it separated nothing. 2025.1
 # withholds it and the p10/p90 range from the public surface as well: held-out
 # coverage of the internal intervals is below nominal (docs/EVALUATION.md).
+# Card line 6. The denominator the displayed number is divided by, in words. The
+# exposure denominators are offense-specific mixtures of modeled population and
+# activity proxies, each rescaled so its national total is resident population, so
+# the phrase says "modeled" every time and never implies a measured count. The line
+# names the denominator, not a unit: the headline is an index, and the line sits
+# under the offense count, so "per 100,000" here would read as a rate of that count.
+DENOMINATOR_RESIDENT = "Denominator: residents"
+DENOMINATOR_EXPOSURE = {
+    "murder": "Denominator: people present, modeled",
+    "rape": "Denominator: people present, modeled",
+    "robbery": "Denominator: people present, modeled",
+    "aggravated_assault": "Denominator: people present, modeled",
+    "burglary": "Denominator: premises, modeled",
+    "larceny": "Denominator: people and destinations present, modeled",
+    "motor_vehicle_theft": "Denominator: vehicles present, modeled",
+}
+# A composite divides each offense by that offense's own denominator, so it has no
+# single one of its own.
+DENOMINATOR_EXPOSURE_COMPOSITE = (
+    "Denominator: each offense's own modeled base (people, premises or vehicles present)"
+)
+
+# Card line 8. Whether the jurisdiction total the neighborhood share was cut from
+# was filed for the data year or reconstructed. This is a different question from
+# the source phrase above, which is about how the total was spread within the
+# jurisdiction.
+LEVEL_TOTAL_REPORTED = "Jurisdiction total: reported for {year}"
+# "Estimated" covers own-history carry-forward, a pooled peer-unit rate, an annualized
+# partial year and benchmark reconciliation, so the phrase does not name a method.
+LEVEL_TOTAL_ESTIMATED = "Jurisdiction total: estimated, not reported in full for {year}"
+LEVEL_TOTAL_MIXED = "Jurisdiction total: reported for {year} on some offenses, estimated on others"
+# The admission status that means the agency filed a complete, accepted year.
+LEVEL_REPORTED_STATUS = "valid_complete_year"
+LEVEL_REPORTED_REPAIR_MODES = {"none"}
+
 SOURCE_PHRASE_DIRECT = "From local police incident records"
 SOURCE_PHRASE_MODELED = "Modeled from jurisdiction totals and regional patterns"
 SOURCE_PHRASE_MOSTLY_DIRECT = "Mostly from local police incident records"

@@ -439,13 +439,21 @@ def run_agency_holdout_combined(
         paths=paths, year=int(config.year), agency_panel=admitted
     )
     results = [
-        _score_masked(
-            truth=truth,
-            estimates=estimates,
-            masked=masked,
-            arm=arm,
-            fold=arm_folds[arm],
-            label=label,
+        # The pooled fallback is scored here, against the panel this pass actually
+        # estimated from, so no arm's prediction can be informed by its own hidden
+        # target-year counts.
+        pooled_silent_unit_backfill(
+            _score_masked(
+                truth=truth,
+                estimates=estimates,
+                masked=masked,
+                arm=arm,
+                fold=arm_folds[arm],
+                label=label,
+            ),
+            panel=admitted,
+            year=config.year,
+            exclude_oris=masked,
         )
         for arm, masked in masked_by_arm.items()
         if masked
@@ -520,6 +528,9 @@ def run_agency_holdout(
             joined["arm"] = arm
             joined["fold"] = fold
             joined["config"] = label
+            joined = pooled_silent_unit_backfill(
+                joined, panel=masked_panel, year=config.year, exclude_oris=masked
+            )
             results.append(joined)
             print(
                 f"  [{label}] arm={arm} fold={fold} masked_agencies={len(masked)} "
@@ -533,19 +544,33 @@ def run_agency_holdout(
 
 
 def pooled_silent_unit_backfill(
-    scored: pd.DataFrame, *, panel: pd.DataFrame, year: int
+    scored: pd.DataFrame,
+    *,
+    panel: pd.DataFrame,
+    year: int,
+    exclude_oris: set[str] | None = None,
 ) -> pd.DataFrame:
     """Give a ladder-dropped agency the pooled rate its jurisdiction would inherit.
 
     The rate is the target-year complete-reporter rate for the agency's own state, type
     and offense -- the same pool the ladder itself uses -- so a dropped row is scored
     against the control its absence actually produces rather than silently excluded.
+
+    `panel` must be the fold's own training panel, the one the estimator was handed,
+    and `exclude_oris` the agencies that fold hides. Handing this the unmasked panel
+    puts a held-out agency's target-year truth in the pool that predicts it: with one
+    large masked agency in a small state pool its own hidden count drives its own
+    prediction almost one for one. The masked panel already refuses those rows, and
+    the explicit exclusion holds for the corrupted arm too, where the held-out row is
+    still admitted -- wrong, but admitted.
     """
     out = scored.copy()
     missing = out["predicted_count"].isna()
     if not missing.any():
         return out
     target = panel[pd.to_numeric(panel["year"], errors="coerce").eq(int(year))]
+    if exclude_oris:
+        target = target[~target["ori9"].astype(str).isin(set(exclude_oris))]
     pool = target[
         target["usable_as_observed"].fillna(False).astype(bool)
         & target["level1_admission_status"].astype("string").eq("valid_complete_year")
@@ -883,7 +908,8 @@ def main() -> int:
         label=str(args.label),
     )
     if not agency.empty:
-        agency = pooled_silent_unit_backfill(agency, panel=panel, year=config.year)
+        # The pooled fallback is applied inside the runner, per fold, against that
+        # fold's training panel. Applying it here would use the unmasked panel.
         agency = score(agency)
 
     remainder = (

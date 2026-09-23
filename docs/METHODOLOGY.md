@@ -35,7 +35,7 @@ opportunity denominator. Per resident uses resident population.
 | City open-data incident feeds, 13 jurisdictions | 2018 to 2025 | Geocoded within-jurisdiction offense shares |
 | Census TIGER/Line | 2020 | Block, block group, tract and place boundaries |
 | Decennial Census | 2020 | Block population for police-service footprint ownership |
-| Census Population Estimates | Vintage 2024 | Resident population control |
+| Census Population Estimates | Vintage 2025 | Resident population control |
 | ACS 5-year | 2020 to 2024 | Household and socioeconomic covariates |
 | LEHD LODES | 2023 | Workplace jobs and commuting flows |
 | BLS QCEW | 2024 | County employment scaling |
@@ -174,8 +174,29 @@ w_o             = national expected count of offense o / national expected count
 ```
 
 The exposure composite averages the exposure indexes. The resident composite averages
-the resident indexes. A composite publishes only when every component offense index
-publishes. No harm-weighted composite and no multi-offense relative score is published.
+the resident indexes over a shared denominator, count first.
+
+Support recipe by measure:
+
+| Measure | Support | Murder and rape term | Withheld when |
+|---|---|---|---|
+| Crime exposure | Tract | The tract's own index | Any of the seven component indexes is absent |
+| Crime exposure | Block group | The parent tract's index | Any of the five volume-offense indexes is absent, or the parent tract has no murder or rape index |
+| Per resident | Tract | The tract's own count | Any of the seven components is unpublishable |
+| Per resident | Block group | The block group's own count; murder and rape do not gate | Any of the five volume offenses is unpublishable |
+
+A suppressed volume-offense index is not filled from the parent tract. A block-group
+exposure composite is recomputable from the block-group row (five volume offenses) and
+the parent tract row (murder and rape).
+
+No harm-weighted composite is published. Public composite names and their internal
+fields:
+
+| Public | Crime exposure field | Per resident field |
+|---|---|---|
+| Overall | `multi_offense_relative_score_event_weighted` | `index_event_burden_resident` |
+| Violent | `multi_offense_relative_score_personal_event_weighted` | `index_personal_burden_resident` |
+| Property | `multi_offense_relative_score_property_event_weighted` | `index_property_burden_resident` |
 
 ## Support rules
 
@@ -184,7 +205,7 @@ publishes. No harm-weighted composite and no multi-offense relative score is pub
 | Robbery, aggravated assault, burglary, larceny, motor vehicle theft | Published at block group and tract |
 | Murder and rape | Published at tract only |
 | Murder and rape at block group | Expected count only, for reconciliation; rate and index are null |
-| Composites at block group | Published from the block-group component indexes |
+| Composites at block group | Exposure: block-group indexes for the five volume offenses, the parent tract's index for murder and rape. Per resident: block-group counts, with murder and rape not gating |
 | County display rollup | At least 2 tracts and at least 2,500 residents |
 | Jurisdiction and state comparison values | At least 2 block groups and at least 2,500 residents |
 | Map layers | County z3 to z7, tract z5 to z12, block group z8 to z12 |
@@ -217,7 +238,8 @@ download, the lookup shards or the map.
 - Neighborhood values are modeled shares of agency totals, not counted incidents.
 - Allocation outside the 13 feed cities is modeled, covering about 95% of block groups.
 - 233,584 of the edition's 238,193 block groups, 98.1%, sit outside the jurisdiction-panel training hull on at least one governed covariate (`extrapolation_flag` in `state/modeling/bg_mixture_experts_2025.parquet`).
-- Held-out evaluation is possible only in feed cities. It is an upper bound on accuracy elsewhere.
+- Held-out evaluation is possible only in feed cities. Feed-city performance is not a bound on performance elsewhere.
+- Spatial held-out TVD: the population null is lower on motor vehicle theft (0.287 against 0.298) and the primary-exposure null on burglary (0.280 against 0.287). Temporal rows where past counts are lower are listed in `docs/EVALUATION.md`.
 - Agencies that filed no 2025 row receive an imputed total. Residents under a control imputed from a pooled peer unit (`level_repair_mode = pooled_silent_unit`) are 2.08% of the published population on larceny and 2.00% to 2.15% across the seven offenses; including controls carried from the agency's own clean history (`decayed_own_history_or_pooled`) the range is 3.88% to 5.86%.
 - Murder and rape have no block-group rate or index.
 - Exposure denominators do not represent tourist and event populations.

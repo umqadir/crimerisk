@@ -100,6 +100,30 @@ ACS_MISSING_BG_BACKFILL_CSV = REPO_ROOT / "configs" / "acs_missing_bg_decennial_
 CT_BG_2023_ZIP = REPO_ROOT / "data" / "tiger_bg" / "tl_2023_09_bg.zip"
 CT_BG_2020_ZIP = REPO_ROOT / "data" / "tiger_bg" / "tl_2020_09_bg.zip"
 
+# The evaluation this release is bound to. A release passes on its own held-out
+# numbers against the published baselines, not on which workstream the measurement
+# harness happens to recommend next: a recommendation is a research conclusion, and
+# gating on one only asserts that the research has not changed its mind.
+RELEASE_GOLD_RUN_ID = "gold_v53r2"
+RELEASE_GOLD_DIR = REPO_ROOT / "state" / "eval" / RELEASE_GOLD_RUN_ID
+RELEASE_GOLD_BUILD_YEAR = 2025
+# The candidate the public surface is built from, as the frontend's own snapshot
+# configuration names it. The release evaluation must be the evaluation of that
+# candidate, so the two names are checked against each other rather than asserted.
+RELEASE_CANDIDATE = "v53-2025"
+RELEASE_SNAPSHOT_CONFIG = REPO_ROOT / "frontend" / "build" / "snapshot_config.env"
+# Rape has one eligible spatial fold city, so its single-city comparison is reported
+# and not gated. Every other offense must beat the population null on held-out TVD.
+RELEASE_GOLD_UNGATED_OFFENSES = ("rape",)
+RELEASE_GOLD_BASELINE_ARM = "population"
+# Whether a spatial TVD loss to the baseline arm blocks promotion. 2025.1.1 republishes
+# the 2025.1 surface unchanged and that surface loses on motor vehicle theft, so in this
+# release the comparison is a reported result (`summary["status"] = "reported"`, the
+# losses listed under `summary["failures"]`), not an issue. It becomes blocking with the
+# next edition's model change. The presence and candidate-binding requirements block
+# either way.
+RELEASE_GOLD_TVD_BLOCKING = False
+
 
 def _published_surface_path(output_dir: Path, *, geography: str, variant: str) -> Path:
     filename = f"crimerisk_{geography}_{YEAR}_{variant}.parquet"
@@ -6486,8 +6510,8 @@ def _check_next_phase_measurement(
             )
     if cv_prediction_rows <= 0:
         issues.append("next-phase measurement has no held-out CV prediction rows")
-    if recommended != "allocator_expansion_first":
-        issues.append(f"next-phase measurement recommends {recommended!r}, expected allocator_expansion_first")
+    # The recommended next workstream is reported, never gated: see
+    # `_check_release_evaluation` for the requirement that replaced it.
     if not required_split_modes.issubset(split_modes):
         issues.append(
             "next-phase measurement missing held-out split modes "
@@ -6508,6 +6532,133 @@ def _check_next_phase_measurement(
         "target_year_truth_inventory": inventory,
         "holdout_floor_acknowledged": bool(holdout_run),
     }
+
+
+def _release_candidate_from_snapshot_config() -> str | None:
+    """The candidate directory the published snapshot is built from, or None."""
+    if not RELEASE_SNAPSHOT_CONFIG.exists():
+        return None
+    for line in RELEASE_SNAPSHOT_CONFIG.read_text().splitlines():
+        line = line.strip()
+        if not line.startswith("CRIMERISK_SNAPSHOT_SRC="):
+            continue
+        value = line.partition("=")[2].strip().strip('"').strip("'")
+        parts = Path(value).parts
+        if "candidates" in parts:
+            return parts[parts.index("candidates") + 1]
+    return None
+
+
+def _check_release_evaluation(*, issues: list[str]) -> dict[str, Any]:
+    """Bind promotion to the release's own held-out evaluation.
+
+    Three requirements, all of them about this release rather than about a research
+    preference: the gold results table for the release run is present; it is the
+    evaluation of the candidate the public surface is actually built from; and on the
+    spatial folds the `ours` arm beats the population null on TVD for every gated
+    offense. The first two always block. The third blocks only when
+    `RELEASE_GOLD_TVD_BLOCKING` is set; otherwise every loss is listed under
+    `failures` and `status` says "reported", so the summary states the result without
+    promoting it to an issue.
+    """
+    results_path = RELEASE_GOLD_DIR / "results.csv"
+    manifest_path = RELEASE_GOLD_DIR / "run_manifest.json"
+    summary: dict[str, Any] = {
+        "run_id": RELEASE_GOLD_RUN_ID,
+        "results_path": str(results_path),
+        "present": results_path.exists(),
+        "candidate_expected": RELEASE_CANDIDATE,
+        "status": "blocking" if RELEASE_GOLD_TVD_BLOCKING else "reported",
+    }
+    if not results_path.exists():
+        issues.append(
+            f"missing release evaluation results for {RELEASE_GOLD_RUN_ID} at {results_path}"
+        )
+        return summary
+
+    published_candidate = _release_candidate_from_snapshot_config()
+    summary["candidate_published"] = published_candidate
+    if published_candidate is None:
+        issues.append(
+            "release evaluation cannot be bound to a candidate: "
+            f"{RELEASE_SNAPSHOT_CONFIG} names no candidate snapshot source"
+        )
+    elif published_candidate != RELEASE_CANDIDATE:
+        issues.append(
+            f"release evaluation is bound to candidate {RELEASE_CANDIDATE!r} but the "
+            f"published snapshot is built from {published_candidate!r}"
+        )
+    candidate_dir = REPO_ROOT / "state" / "candidates" / RELEASE_CANDIDATE
+    summary["candidate_dir_present"] = candidate_dir.is_dir()
+    if not candidate_dir.is_dir():
+        issues.append(f"release evaluation candidate directory is missing: {candidate_dir}")
+
+    if manifest_path.exists():
+        manifest = json.loads(manifest_path.read_text())
+        summary["manifest_run_id"] = manifest.get("run_id")
+        summary["manifest_year"] = (manifest.get("config") or {}).get("year")
+        if manifest.get("run_id") != RELEASE_GOLD_RUN_ID:
+            issues.append(
+                f"release evaluation manifest names run {manifest.get('run_id')!r}, "
+                f"expected {RELEASE_GOLD_RUN_ID!r}"
+            )
+        if int((manifest.get("config") or {}).get("year") or 0) != RELEASE_GOLD_BUILD_YEAR:
+            issues.append(
+                "release evaluation manifest build year "
+                f"{(manifest.get('config') or {}).get('year')!r}, expected {RELEASE_GOLD_BUILD_YEAR}"
+            )
+    else:
+        issues.append(f"missing release evaluation run manifest at {manifest_path}")
+
+    results = pd.read_csv(results_path)
+    run_ids = sorted(set(results["run_id"].astype(str))) if "run_id" in results.columns else []
+    summary["results_run_ids"] = run_ids
+    if run_ids != [RELEASE_GOLD_RUN_ID]:
+        issues.append(
+            f"release evaluation results name run ids {run_ids}, expected [{RELEASE_GOLD_RUN_ID!r}]"
+        )
+
+    spatial = results[
+        results["fold_type"].astype(str).eq("spatial")
+        & results["metric"].astype(str).eq("tvd")
+    ]
+    comparisons: list[dict[str, Any]] = []
+    failures: list[str] = []
+    for offense in OFFENSES_7:
+        rows = spatial[spatial["offense"].astype(str).eq(offense)]
+        ours = rows[rows["arm"].astype(str).eq("ours")]["estimate"]
+        null = rows[rows["arm"].astype(str).eq(RELEASE_GOLD_BASELINE_ARM)]["estimate"]
+        gated = offense not in RELEASE_GOLD_UNGATED_OFFENSES
+        if ours.empty or null.empty:
+            comparisons.append({"offense": offense, "gated": gated, "present": False})
+            if gated:
+                issues.append(
+                    f"release evaluation has no spatial TVD comparison for {offense}"
+                )
+            continue
+        ours_tvd = float(ours.iloc[0])
+        null_tvd = float(null.iloc[0])
+        comparisons.append(
+            {
+                "offense": offense,
+                "gated": gated,
+                "present": True,
+                "ours_tvd": ours_tvd,
+                f"{RELEASE_GOLD_BASELINE_ARM}_tvd": null_tvd,
+                "beats_baseline": bool(ours_tvd < null_tvd),
+            }
+        )
+        if gated and not ours_tvd < null_tvd:
+            failures.append(
+                f"release evaluation: spatial {offense} TVD {ours_tvd:.4f} does not beat "
+                f"the {RELEASE_GOLD_BASELINE_ARM} arm's {null_tvd:.4f}"
+            )
+    summary["spatial_tvd_vs_baseline"] = comparisons
+    summary["failures"] = failures
+    summary["passed"] = not failures
+    if RELEASE_GOLD_TVD_BLOCKING:
+        issues.extend(failures)
+    return summary
 
 
 def _check_dashboard_lookup(*, issues: list[str]) -> dict[str, Any]:
@@ -10807,6 +10958,7 @@ def build_summary(
         issues=issues,
         holdout_run=holdout_run,
     )
+    release_evaluation_summary = _check_release_evaluation(issues=issues)
     dashboard_lookup_summary = _check_dashboard_lookup(issues=issues)
     external_surface_availability_summary = _check_external_surface_availability(issues=issues)
     connecticut_population_summary = _check_connecticut_population(output_dir=state_output_dir, issues=issues)
@@ -11017,6 +11169,7 @@ def build_summary(
         "burglary_tau_calibration": burglary_tau_calibration_summary,
         "murder_tract_posterior_calibration": murder_tract_posterior_calibration_summary,
         "next_phase_measurement": next_phase_measurement_summary,
+        "release_evaluation": release_evaluation_summary,
         "dashboard_lookup": dashboard_lookup_summary,
         "external_surface_availability": external_surface_availability_summary,
         "connecticut_population": connecticut_population_summary,

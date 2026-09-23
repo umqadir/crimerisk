@@ -22,10 +22,16 @@
   being a victim.</p>
 
   <h2>Two measures</h2>
-  <p><strong>Crime exposure</strong> divides recorded offenses by what each crime happens to:
-  the people present for assault and robbery, homes and businesses for burglary, parked and
-  commuting vehicles for car theft. A downtown block with 40 residents and 30,000 daily visitors
-  is measured against the 30,000.</p>
+  <p><strong>Crime exposure</strong> divides recorded offenses by what each crime happens to.
+  Each offense has its own denominator, and every one of them is modeled rather than counted.
+  Murder, rape, robbery and assault use a fixed blend of modeled resident population, modeled
+  daytime population and workplace jobs. Burglary uses residential and weighted commercial
+  premises. Car theft uses household and commuter vehicle exposure. Larceny adds shopping and
+  other destinations and retail jobs to the person blend. Every denominator is then rescaled so
+  that its national total equals U.S. resident population, which is what keeps 100 the national
+  average. So a downtown block is measured against a modeled activity base that can be far
+  larger than the number of people who sleep there &mdash; but that base is an estimate, not a
+  count of visitors, and no part of this map measures footfall.</p>
   <p><strong>Per resident</strong> divides the same offenses by the people who live there. It
   answers a different question, and it gives very high scores to commercial districts, campuses
   and transit hubs where few people sleep. Both measures are scaled so 100 is the U.S. average.</p>
@@ -36,6 +42,17 @@
   tracts only: a single year holds too few of them to say anything about an area as small as a
   block group. Zoomed out, the map shows tracts, then county averages.</p>
 
+  <h2>The three composites</h2>
+  <p>Overall, Violent and Property combine the single-offense numbers, weighted by how common
+  each offense is nationally. The two measures build them differently, and neither is simply
+  &ldquo;all seven offenses published together&rdquo;. On the crime-exposure measure a block
+  group has no murder or rape value of its own, so those two terms are taken from the block
+  group's parent tract; if the tract publishes no value the composite is withheld. On the
+  per-resident measure the composites are built from offense counts over a shared denominator,
+  and murder and rape do not veto a block-group composite at all, because their block-group
+  counts are published even where their rates are not. A missing value for any of the other five
+  offenses withholds the composite on both measures.</p>
+
   <h2>Where the numbers come from</h2>
   <p>Police agencies report offense totals to the FBI. Those totals cover a whole city or county,
   not a neighborhood. We spread each agency's total across the neighborhoods it patrols using what
@@ -43,7 +60,11 @@
   roads &mdash; and we calibrate that against the cities that publish incident-level data. Where an
   agency did not report a full year, its total is estimated from its own history and from
   comparable agencies in the same state.</p>
-  <p>Each area's card says which of those two paths produced most of the number it is showing.</p>
+  <p>The card reports both steps, separately. The source line says whether the neighborhood
+  number is built mainly from incident records located in that neighborhood or from modeled
+  allocation of an agency total. The jurisdiction line says whether the agency total behind it
+  was reported in full for the data year or estimated; it is absent where no single agency total
+  applies, as in areas covered only by a statewide remainder.</p>
 
   <h2>How certain this is</h2>
   <p>Most block-group values rest on modeled distribution rather than on incidents counted in that
@@ -59,8 +80,11 @@
     <li>Neighborhood values are modeled shares of agency totals, not counts of incidents.</li>
     <li>Murder and rape exist at tract level only; there is no block-group value to show.</li>
     <li>Boundaries are 2020 census geographies, which is not how people describe neighborhoods.</li>
-    <li>A high score for a park, campus, prison or industrial area usually reflects few residents
-      or many visitors rather than danger to a household. Those areas can be marked on the map.</li>
+    <li>Parks, campuses, prisons, airports and industrial areas have unusual denominators: very
+      few residents, or an activity base much larger than the residential one. Their scores need
+      separate interpretation and are not comparable with a residential block. Those areas can be
+      marked on the map; the marking is an annotation, and it does not explain any individual
+      score.</li>
   </ol>
 
   <h2>Updates and citation</h2>
@@ -73,8 +97,12 @@
   three-expert allocation mixture and its weights, denominator construction, special-use
   classification, reconciliation to national offense anchors and the validation tables &mdash; is
   published separately in the project's technical documentation:
-  <code>docs/METHODOLOGY.md</code>, <code>docs/FIELDS.md</code> and
-  <code>docs/EVALUATION.md</code>. Field-level definitions for every published column are also in
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/METHODOLOGY.md">methodology</a>,
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/FIELDS.md">field dictionary</a>,
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/EVALUATION.md">evaluation</a> and
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/BUILD.md">build</a>, in the
+  <a href="https://github.com/umqadir/crimerisk">source repository</a>.
+  Field-level definitions for every published column are also in
   <a href="downloads/fields_block_group.csv">fields_block_group.csv</a> and
   <a href="downloads/fields_tract.csv">fields_tract.csv</a>.</p>
 
