@@ -1,0 +1,195 @@
+{
+  "city_key": "detroit",
+  "city_name": "Detroit",
+  "jurisdiction_id": "26:municipal:place:2622000",
+  "state_abbr": "MI",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "counts_usable_not_city_share_promotable",
+    "packet_status": "research_complete",
+    "city_share_integration_status": "do_not_promote_counting_semantics_not_defended",
+    "reconciliation_status": "extract_validated_but_incident_vs_victim_vehicle_semantics_not_defended"
+  },
+  "official_sources": {
+    "incident_surface": [
+      "https://data.detroitmi.gov/pages/crime-viewer/",
+      "https://data.detroitmi.gov/datasets/detroitmi::rms-crime-incidents/about",
+      "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer",
+      "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer/0/query"
+    ],
+    "aggregate_anchors": [
+      "https://detroitmi.gov/sites/detroitmi.localhost/files/news/2025-01/2024YearEndStats_DraftV4.pdf"
+    ]
+  },
+  "source_contract_findings": {
+    "public_2024_incidents_available": true,
+    "service_contract_locked": true,
+    "service_item_title": "RMS Crime Incidents 2024",
+    "dataset_about_url": "https://data.detroitmi.gov/datasets/detroitmi::rms-crime-incidents/about",
+    "service_item_url": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer",
+    "service_item_id": "ed7646f5c75c4de4ae0281054b9300a9",
+    "service_query_url": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer/0/query",
+    "geometry_type": "esriGeometryPoint",
+    "supported_export_formats": [
+      "csv",
+      "shapefile",
+      "sqlite",
+      "geoPackage",
+      "filegdb",
+      "featureCollection",
+      "geojson",
+      "kml",
+      "excel"
+    ],
+    "documented_update_cadence": "daily",
+    "row_semantics": "one row per offense charge within a crime incident; multiple charges can share an incident number",
+    "service_fields": [
+      "incident_entry_id",
+      "report_number",
+      "offense_category",
+      "offense_description",
+      "state_offense_code",
+      "incident_occurred_at",
+      "incident_year",
+      "nearest_intersection",
+      "census_block_2020_geoid",
+      "neighborhood",
+      "police_precinct",
+      "latitude",
+      "longitude"
+    ],
+    "service_2024_row_count": 88626,
+    "service_latlon_null_count": 264,
+    "service_census_block_null_count": 420,
+    "spatial_fields_present": [
+      "nearest_intersection",
+      "census_block_2020_geoid",
+      "neighborhood",
+      "latitude",
+      "longitude"
+    ],
+    "notes": [
+      "Detroit's public crime-viewer page resolves to a city-operated ArcGIS incident service rather than only a narrative dashboard.",
+      "The exact public 2024 bulk service is now pinned at the RMS Crime Incidents 2024 FeatureServer.",
+      "The exact public machine contract is the FeatureServer query endpoint rather than an inferred static CSV URL.",
+      "The service exposes point geometry, latitude/longitude, nearest intersection, police precinct, neighborhood, and a 2020 census block GEOID.",
+      "The service description states that incident locations are generalized to the nearest intersection for privacy and that each row represents one offense charge tied to a crime incident.",
+      "The packet is no longer blocked on source discovery; it is now a doctrine decision about whether the row-per-charge public feed can be defended against the official victim-based and vehicle-based year-end anchors.",
+      "Extract-backed code-plus-description review materially tightened several Detroit families: rape lands at 614 unique reports versus the official 616, motor-vehicle theft at 8,308 versus 8,408, and burglary at 4,642 versus 4,766, while aggravated assault and larceny remain materially off.",
+      "The current clean judgment is negative for city-share promotion: only burglary and secondarily robbery are semantically plausible incident-style report-dedupe comparators, and neither clears the repo promotion bar."
+    ]
+  },
+  "promotion_bar_assessment": {
+    "does_clear_offense_selective_bar": false,
+    "why_not": [
+      "The packet offense crosswalk is now sharp enough for review, but the public feed is still row-per-charge while the official anchors are partly victim-based or vehicle-based.",
+      "Rape and motor-vehicle theft are near exact numerically under description-filtered report-deduped candidates, but they are not semantically exact-comparable because the official anchors are victim-based or vehicle-based.",
+      "Burglary and robbery are the only incident-style report-dedupe comparators that are semantically plausible, and they still land at 4,642 vs 4,766 and 1,269 vs 1,210 respectively.",
+      "No offense currently has an exact-comparable packet line that satisfies the repo's offense-selective promotion bar."
+    ]
+  },
+  "first_pass_offense_comparisons_2024": {
+    "murder": {
+      "official_count": 203,
+      "candidate_counts": {
+        "0901_only_row_count": 213,
+        "0901_only_report_count": 212,
+        "0901_0902_0903_row_count": 238
+      }
+    },
+    "rape": {
+      "official_count": 616,
+      "candidate_counts": {
+        "1101_1106_plus_1171_1176_row_count": 643,
+        "1101_1106_plus_1171_1176_csc_only_row_count": 629,
+        "1101_1106_plus_1171_1176_csc_only_report_count": 614
+      }
+    },
+    "robbery": {
+      "official_count": 1210,
+      "candidate_counts": {
+        "1200_plus_1201_row_count": 1288,
+        "1200_plus_1201_robbery_or_carjacking_row_count": 1270,
+        "1200_plus_1201_robbery_or_carjacking_report_count": 1269
+      }
+    },
+    "aggravated_assault": {
+      "official_count": 9797,
+      "candidate_counts": {
+        "1302_only_row_count": 7545,
+        "1302_plus_1304_felonious_or_nonfatal_row_count": 7874,
+        "1302_plus_1304_felonious_or_nonfatal_report_count": 7802,
+        "1302_plus_1303_plus_1304_report_count_not_defended": 9214
+      }
+    },
+    "burglary": {
+      "official_count": 4766,
+      "candidate_counts": {
+        "2201_plus_2202_row_count": 4914,
+        "2201_plus_2202_burglary_description_row_count": 4645,
+        "2201_plus_2202_burglary_description_report_count": 4642
+      }
+    },
+    "larceny": {
+      "official_count": 15623,
+      "candidate_counts": {
+        "2301_2307_row_count": 12716,
+        "2301_2307_larceny_description_row_count": 12244,
+        "2301_2307_larceny_description_report_count": 12163
+      }
+    },
+    "motor_vehicle_theft": {
+      "official_count": 8408,
+      "candidate_counts": {
+        "2401_only_row_count": 8506,
+        "2401_motor_vehicle_theft_description_row_count": 8309,
+        "2401_motor_vehicle_theft_description_report_count": 8308
+      }
+    }
+  },
+  "crosswalk_outlook": {
+    "likely_first_pass_offenses": [
+      "burglary",
+      "robbery"
+    ],
+    "review_dependent_offenses": [
+      "murder",
+      "rape",
+      "aggravated_assault",
+      "motor_vehicle_theft"
+    ],
+    "notes": [
+      "The official 2024 Detroit year-end table exposes all seven repo offense families.",
+      "The service-level offense ontology is rich enough to support a seven-offense crosswalk, but it is not a clean one-column mapping.",
+      "Observed category mismatches are now concrete rather than speculative: homicide rows include negligent homicide variants; robbery includes carjacking; burglary includes entry-without-permission rows; sexual-assault-related rows are split across SEXUAL ASSAULT and SEX OFFENSES; and the official year-end table treats homicide, sex assault, and aggravated assault as victim-based and motor-vehicle theft as vehicle-based.",
+      "Extract-backed code-plus-description review now makes the outlook more specific: rape and motor_vehicle_theft are near exact numerically under description-filtered report-deduped candidates, but they stay semantically blocked because the official anchors are victim-based or vehicle-based.",
+      "Burglary is the cleanest incident-style report-deduped candidate and robbery is a secondary incident-style candidate, but both still miss the repo promotion bar numerically."
+    ]
+  },
+  "reconciliation_anchor": {
+    "usable": true,
+    "sources": [
+      "Detroit Police Department 2024 Year End Stats"
+    ],
+    "notes": [
+      "The official year-end PDF includes a page-4 Part 1 offense table with 2023 and 2024 counts for homicide, sex assault, aggravated assault, robbery, burglary, larceny, and motor vehicle theft.",
+      "The packet now carries those extracted rows in published_reference_extract.csv and reconciliation_summary.csv.",
+      "The counts are labeled preliminary, with homicide, sex assault, and aggravated assault footnoted as victim-based and motor vehicle theft footnoted as vehicle-based.",
+      "Even if the within-city share lane stalls, the same official table is a plausible local_publication annual control candidate."
+    ]
+  },
+  "judgment": {
+    "production_ready": "no",
+    "why_not_ready": [
+      "Victim-based and vehicle-based official counting semantics are not defendably matched against the row-based or report-deduped incident-charge export.",
+      "The only incident-style report-dedupe comparators that are semantically plausible, burglary and robbery, still do not clear the repo promotion bar numerically.",
+      "No offense currently has an extract-backed exact-comparable packet line that clears the repo's offense-selective promotion bar."
+    ],
+    "minimum_change_to_unblock": [
+      "Only reopen Detroit as a live city-share candidate if a future packet review yields an incident-style offense that is both semantically defendable and numerically within the repo bar.",
+      "Do not add a generic report-number-dedupe loader path unless that future packet outcome actually requires live code support.",
+      "Until then, treat the official Detroit year-end table as the packet's usable bounded annual anchor rather than a city-share promotion lane."
+    ]
+  }
+}

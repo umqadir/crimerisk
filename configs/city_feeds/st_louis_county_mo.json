@@ -1,0 +1,227 @@
+{
+  "city_key": "st_louis_county_mo",
+  "city_name": "St. Louis County Police",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/st_louis_county_mo/packet.json (case_text: date filter, ORI MO0950000, count unit offense)",
+    "state/review/packets/city/st_louis_county_mo/evidence/registry_row.json",
+    "state/review/packets/city/st_louis_county_mo/evidence/doc_68a755c436.json (fields, timeInfo, spatialReference 102696, maxRecordCount 2000, objectIdField OBJECTID)",
+    "state/review/packets/city/st_louis_county_mo/evidence/doc_f55cc96fe3.html (portal homepage; no data documentation or redaction statement)",
+    "state/review/packets/city/st_louis_county_mo/evidence/doc_index.csv",
+    "state/review/packets/city/st_louis_county_mo/evidence/raw_cache_profile.json (NIBRSCode, OffenseName, reportingJuris, forJuris distinct values; latitude/longitude non-null 178279)",
+    "state/review/packets/city/st_louis_county_mo/evidence/scope_candidates.csv",
+    "state/review/packets/city/st_louis_county_mo/evidence/official_totals.csv",
+    "state/review/packets/city/st_louis_county_mo/raw_cache.parquet via scripts/agents/query.py (reportingJuris, forJuris, duplicate keys, sex-offense locations, monthly counts, date parse, coordinate checks)",
+    "src/crimerisk/city_contracts.py (map_rows, funnel; dry-run of this contract against raw_cache.parquet)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "29:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "29"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "The layer is a multi-agency NIBRS table, not only St. Louis County PD: reportingJuris has 43 values and 'SAINT LOUIS COUNTY' holds 98631 of 180967 rows (raw_cache_profile.json, reportingJuris). The other 82336 rows are municipal departments with their own ORIs (Chesterfield, Kirkwood, Richmond Heights, ...), and one is 'ST. LO. CO. PARKS DEPT.'. The official totals are for ori:MO0950000 (official_totals.csv), so every rule also requires reportingJuris = 'SAINT LOUIS COUNTY'. Contract-city work (forJuris JENNINGS 9806 rows, FENTON 2762, WILDWOOD 1628, BLACK JACK 1424, ...) is reported under that value and is kept.",
+    "Unit: one row per NIBRS offense row, not per incident. Crimes against persons repeat identically within a report and code, apparently once per victim. Report 23-40804 has nine identical 13A rows, OBJECTID 95534-95542 (query on Report_Number, NIBRSCode). Larceny never repeats: for SLCPD 2021-2025, rows equal distinct Report_Number|NIBRSCode in every year. The rows are kept (id OBJECTID, which is unique: 180967 distinct of 180967) because the SRS counts murder, rape and aggravated assault per victim. For SLCPD 13A in 2021, all rows give 1654, distinct report|code gives 1153, and the official total is 1584.",
+    "No hierarchy rule. Every mapped offense in a multi-offense incident counts, e.g. a robbery plus an aggravated assault in one report counts once in each, where SRS keeps only the higher. For rape, 11A, 11B and 11C in one report each count; SLCPD 2021 has 149 rape rows against an official 128.",
+    "Sex offenses are published with no location. All 11A (767), 11B (224), 11C (77), 11D (481), 36A, 36B and 64A rows have a blank address and null latitude/longitude (query on NIBRSCode, latitude, address). The rape rule therefore maps 778 SLCPD rows, 686 of them in 2018-2025, and every one is lost at the located stage. Rape cannot be placed in block groups from this feed. The publisher does not state this redaction; it is observed in the pull.",
+    "Published data gap in early 2023: SLCPD rows by occurred month are 1697 in 2022-12, 278 in 2023-01, 65 in 2023-02 and 1416 in 2023-03. A dry run of the contract gives 2023 footprint/official ratios of 0.86 (aggravated assault 1344/1569), 0.86 (larceny 3768/4370), 0.83 (motor vehicle theft 1806/2187) and 0.81 (robbery 191/237). In 2021, 2022, 2024 and 2025 the ratios fall between 0.89 and 1.05.",
+    "The feed starts 2021-01-01 (dtCalledIntoCad min 1609481040000 = 2021-01-01 06:04 UTC; layer timeInfo in doc_68a755c436.json). Occurrence years 2018-2020 hold only offenses reported from 2021 on, e.g. 95 larceny rows for 2020 against an official 5132. Those years do not reconcile. Because the pull is bounded by CAD date, 2025 also lacks 2025 offenses first reported in 2026.",
+    "The survey says the feed is NIBRS. Offense codes follow the FBI list, so 09B, 09C, 11D, 13B, 13C, 36A and 36B are left unmapped. OffenseName occasionally disagrees with NIBRSCode: 5 rows coded 13A are named 'Forcible Sex Offenses' (1 SLCPD), and 1 row coded 26A is named 'Motor Vehicle Theft' (0 SLCPD). The rules follow the code."
+  ],
+  "mapping": {
+    "date_field": "occurred",
+    "date_format": "%Y-%m-%d",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "OBJECTID"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRSCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "reportingJuris",
+            "op": "eq",
+            "value": "SAINT LOUIS COUNTY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Mapping: the rules key on NIBRSCode (09A murder; 11A/11B/11C rape, 11D excluded; 120 robbery; 13A aggravated assault; 220 burglary; 23A-23H larceny; 240 motor vehicle theft), each restricted to reportingJuris = 'SAINT LOUIS COUNTY'. Every mapped code is present in the pull (raw_cache_profile.json NIBRSCode). Count unit is the publisher's offense row. id_fields OBJECTID is unique, so dedupe_on_id is a no-op, and the per-victim repeats of person offenses are kept on purpose (see known differences). Date: occurred, the occurrence date, a DateOnly field (doc_68a755c436.json fields) delivered as 'YYYY-MM-DD'; 0 SLCPD rows fail to parse with %Y-%m-%d. It differs in year from the CAD call date for 1735 SLCPD rows. The source where keeps the registry's dtCalledIntoCad filter, which is the filter the archive was pulled with (packet.json case_text); 24 archived rows have a UTC CAD year of 2026, from the layer's time-zone handling. Coordinates: the published latitude/longitude fields, from which the layer's XYTableToPoint geometry is built. They equal __arcgis_latitude/__arcgis_longitude on every SLCPD row where both exist (0 differ), and most carry 7-8 decimals. The publisher states no rounding or offset. 2175 SLCPD rows have no point (1934 null, 241 at 0,0), and 247 SLCPD rows fall outside a 38.3-38.95 N, 90.1-90.8 W box. Exclusions stated by publisher: none. The registry's redactions field is empty, and the layer description and portal homepage (doc_68a755c436.json, doc_f55cc96fe3.html) state none. Scope: 29:state_nonmunicipal_remainder is the only scope candidate (scope_candidates.csv) and is the registry's jurisdiction_ids. The county PD also polices contract municipalities (registry reason, forJuris values; the homepage lists 'Police Contract Services' with no list), but none has a scope candidate. In a dry run of this contract through src/crimerisk/city_contracts.py funnel on raw_cache.parquet, 43826 of 44001 in-state rows (99.6%) fell in the remainder footprint, so contract-city points are not being lost there. Separate place ids in scope_candidates.csv would be needed to report those cities as their own jurisdictions. Dry-run funnel for 2018-2025: raw 180967, mapped 44942, dated 44942, in years 44845, located 44003, in state 44001, in footprint 43826, deduplicated 43826. Rape is the main located-stage loss (686 rows). Excluding 2023 and rape, per-year footprint counts are 0.89-1.05 of the official totals for 2021-2025.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/w657bnjzrjguNyOy/arcgis/rest/services/crimedata2023_XYTableToPoint2/FeatureServer/0",
+      "name": "St. Louis County PD NIBRS crime data (published as crimedata2023_XYTableToPoint2)",
+      "order": "OBJECTID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "st_louis_county_mo",
+      "source_url": "https://stlouiscountypolice.com/",
+      "where": "dtCalledIntoCad >= DATE '{start}' AND dtCalledIntoCad < DATE '{end}'"
+    }
+  ]
+}

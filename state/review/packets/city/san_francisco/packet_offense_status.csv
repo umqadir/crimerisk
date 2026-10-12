@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,no,blocked,public_data_limit,"Official SFPD December 2025 CompStat shows 35 homicides in revised 2024 and 28 in 2025, but hardened allocable public-feed rows are only 9 and 8 (-74.3 and -71.4 percent). Keep blocked."
+rape,no,blocked,public_data_limit,"Official SFPD December 2025 CompStat shows 259 rapes in revised 2024 and 215 in 2025, but hardened allocable public-feed rows are only 26 and 15 (-90.0 and -93.0 percent). Keep blocked."
+robbery,yes,offense_selective,exact_comparable_after_hardening,"Hardened allocable rows land at 2,017 versus 2,154 in revised 2024 (-6.4 percent) and 1,547 versus 1,642 in 2025 (-5.8 percent). Promote."
+aggravated_assault,yes,offense_selective,exact_comparable_after_hardening,"Hardened allocable rows land at 2,274 versus 2,348 in revised 2024 (-3.2 percent) and 1,977 versus 2,063 in 2025 (-4.2 percent). Promote."
+burglary,yes,offense_selective,exact_comparable_after_hardening,"Hardened allocable rows land at 4,976 versus 5,176 in revised 2024 (-3.9 percent) and 3,679 versus 3,744 in 2025 (-1.7 percent). Promote."
+larceny,yes,offense_selective,exact_comparable_after_hardening_with_geocode_loss,"Hardened allocable rows land at 22,263 versus 21,260 in revised 2024 (+4.7 percent) and 17,359 versus 16,909 in 2025 (+2.7 percent). Promote on allocable rows only; missing-coordinate loss remains 7.4 and 6.4 percent."
+motor_vehicle_theft,yes,offense_selective,close_exact_after_hardening,"Hardened allocable rows land at 5,839 versus 5,440 in revised 2024 (+7.3 percent) and 3,330 versus 3,054 in 2025 (+9.0 percent). Promote as the outer edge of the selective path."

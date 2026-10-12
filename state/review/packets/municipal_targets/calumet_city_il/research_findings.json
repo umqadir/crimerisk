@@ -1,0 +1,75 @@
+{
+  "case_key": "calumet_city_il",
+  "jurisdiction_id": "17:municipal:place:1710487",
+  "jurisdiction_name": "Calumet City city",
+  "state_abbr": "IL",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_repair_2024_from_official_illinois_nibrs_agency_summary_report",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Calumet City remains a valid standalone municipal police target. Official city governance, budget, hiring, and police-department pages all show an active Calumet City Police Department rather than a county-replacement or defunct municipal policing structure.",
+    "Illinois's official Crime in Illinois portal exposes a public Offense and Arrest Summary Report for NIBRS agencies, and that report returns a direct Calumet City 2024 agency row when queried for Incident Date From 01/01/2024, Incident Date To 12/31/2024, Report By Agency, and Agency IL0161700 - CALUMET CITY.",
+    "The official 2024 Illinois agency report yields exact Group A offense totals for the seven project offenses: murder 0, rape 20, robbery 35, aggravated assault 61, burglary 66, larceny 305, and motor vehicle theft 199. The same viewer also publishes 2023 comparison counts for those offenses.",
+    "The current repo 2024 Calumet City controls are fully estimator-backed and materially differ from the official state-report totals, so this is a real observed-data recovery rather than a cosmetic packet completion."
+  ],
+  "source_contract": {
+    "source_name": "Offense and Arrest Summary Report - NIBRS Agencies only",
+    "source_url": "https://ilucr.nibrs.com/Report/AgencySummaryReport",
+    "publisher": "Illinois State Police / Illinois UCR Program",
+    "public_query_steps": [
+      "Open the public Crime in Illinois Offense and Arrest Summary Report.",
+      "Set Incident Date From to 01/01/2024.",
+      "Set Incident Date To to 12/31/2024.",
+      "Keep Report By = Agency.",
+      "Select Agency = IL0161700 - CALUMET CITY.",
+      "Generate the report and read the Offense Reporting Group A table."
+    ],
+    "notes": [
+      "The report is public but rendered through the Illinois report viewer rather than a static downloadable annual PDF.",
+      "The packet extracts the Group A Offense Reporting totals directly from the public viewer because that is the offense-total surface comparable to the project control rows."
+    ]
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "reporting_ori9": "IL0161700",
+    "recommended_handling": [
+      "Retain the standalone Calumet City municipal control row 17:municipal:place:1710487.",
+      "Use the official Illinois Crime in Illinois NIBRS agency summary report as the 2024 repair surface for murder, rape, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft.",
+      "Treat the current all-fill condition as a reporting/publication continuity failure on IL0161700 rather than as evidence of contract policing, county replacement, or target invalidity."
+    ],
+    "published_2024_counts": {
+      "murder": 0,
+      "rape": 20,
+      "robbery": 35,
+      "aggravated_assault": 61,
+      "burglary": 66,
+      "larceny": 305,
+      "motor_vehicle_theft": 199
+    },
+    "published_2023_comparison_counts": {
+      "murder": 3,
+      "rape": 16,
+      "robbery": 41,
+      "aggravated_assault": 75,
+      "burglary": 62,
+      "larceny": 321,
+      "motor_vehicle_theft": 311
+    },
+    "repo_2024_estimated_counts": {
+      "murder": 5,
+      "rape": 30,
+      "robbery": 99,
+      "aggravated_assault": 44,
+      "burglary": 158,
+      "larceny": 586,
+      "motor_vehicle_theft": 202
+    }
+  },
+  "likely_issue_class": "official_state_reporting_portal_repair_ready",
+  "open_questions": [
+    "If later panel-repair work reaches back to 2023, the same Illinois report path should be reused to anchor the continuity year before 2024."
+  ]
+}

@@ -1,0 +1,7 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""crimecode"", ""op"": ""eq"", ""value"": ""09A"", ""values"": []}]",[]
+robbery,"[{""field"": ""crimecode"", ""op"": ""eq"", ""value"": ""120"", ""values"": []}]",[]
+aggravated_assault,"[{""field"": ""crimecode"", ""op"": ""eq"", ""value"": ""13A"", ""values"": []}]",[]
+burglary,"[{""field"": ""crimecode"", ""op"": ""eq"", ""value"": ""220"", ""values"": []}]",[]
+larceny,"[{""field"": ""crimecode"", ""op"": ""in"", ""value"": """", ""values"": [""23A"", ""23B"", ""23C"", ""23D"", ""23E"", ""23F"", ""23G"", ""23H""]}]",[]
+motor_vehicle_theft,"[{""field"": ""crimecode"", ""op"": ""eq"", ""value"": ""240"", ""values"": []}]",[]

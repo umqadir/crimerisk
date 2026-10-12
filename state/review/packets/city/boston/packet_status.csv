@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,state_abbr,priority_bucket,priority_rank,packet_status,current_owner,production_ready,city_share_integration_status,reconciliation_status,notes
+boston,Boston,25:municipal:place:2507000,MA,first_wave,3,reviewed,codex,partial,offense_selective,2024_public_reconciliation_complete_larceny_and_mvt_ready_others_not_ready,"Reviewed 2026-03-24 against official Analyze Boston/BPD exports and the official BPD 2024 year-end Part One PDF. Boston is a real offense-selective candidate, not a city-wide-ready overlay."

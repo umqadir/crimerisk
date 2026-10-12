@@ -1,0 +1,160 @@
+{
+  "city_key": "nashville",
+  "city_name": "Nashville",
+  "jurisdiction_id": "47:municipal:place:4752006",
+  "state_abbr": "TN",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "counts_usable_not_city_share_promotable",
+    "packet_status": "research_complete",
+    "city_share_integration_status": "do_not_promote_public_bulk_geometry_too_coarse",
+    "reconciliation_status": "precise_mark_export_validated_but_bulk_geometry_too_coarse"
+  },
+  "official_sources": {
+    "incident_surface": [
+      "https://www.nashville.gov/departments/police/data-dashboard/ucr-incidents-map",
+      "https://www.nashville.gov/departments/police/download-police-dashboard-data",
+      "https://policepublicdata.nashville.gov/t/Police/views/UCRPartICounts_16286288901850/IncidentsMap"
+    ],
+    "aggregate_anchors": [
+      "https://www.nashville.gov/departments/police/news-and-reports/crime-statistics",
+      "https://www.nashville.gov/sites/default/files/2025-12/CJP-Criminal-Justice-Trends-2024.pdf?ct=1765199758"
+    ]
+  },
+  "source_contract_findings": {
+    "public_2024_incidents_available": true,
+    "mark_level_export_validated": true,
+    "mark_level_export_format": "UTF-16 tab-delimited file from Tableau View Data -> Full Data download",
+    "mark_level_validated_coordinate_precision": "validated sample preserves four-decimal point coordinates",
+    "whole_view_public_data_export_available": false,
+    "whole_view_public_download_menu": [
+      "Image",
+      "Crosstab",
+      "PDF",
+      "PowerPoint"
+    ],
+    "whole_view_public_data_export_state": "disabled_until_mark_selection",
+    "whole_view_map_crosstab_export_validated": true,
+    "whole_view_map_crosstab_export_format": "UTF-16 tab-delimited CSV from Tableau Download -> Crosstab -> Map -> CSV",
+    "whole_view_map_crosstab_fields": [
+      "Ucr Offense Desc",
+      "Unique ID",
+      "Reported On",
+      "Complaint Number",
+      "Address",
+      "Latitude",
+      "Longitude"
+    ],
+    "whole_view_map_crosstab_sample_rows": 332,
+    "whole_view_map_crosstab_sample_unique_ids": 332,
+    "whole_view_map_crosstab_sample_complaint_numbers": 328,
+    "whole_view_map_crosstab_sample_window_start": "2026-03-29 00:12:00",
+    "whole_view_map_crosstab_sample_window_end": "2026-04-02 20:11:00",
+    "whole_view_map_crosstab_latlon_precision": "validated sample rounds latitude/longitude to 0.1 degrees",
+    "mark_level_export_fields": [
+      "Address",
+      "Complaint Number",
+      "Reported On",
+      "Ucr Offense Desc",
+      "Unique ID",
+      "c_selected_offense",
+      "c_selected_pzc",
+      "Latitude",
+      "Longitude"
+    ],
+    "mark_level_available_fields": [
+      "Address",
+      "Complaint Number",
+      "Council",
+      "Excluded",
+      "Excluded Reason",
+      "Latitude",
+      "Longitude",
+      "Precinct",
+      "Reported On",
+      "Rpa",
+      "Satellite City",
+      "Sdd Updated On",
+      "UCR Offense Count",
+      "Ucr Offense Desc",
+      "Unique ID",
+      "Victim Number",
+      "Zip",
+      "Zone",
+      "c_selected_offense",
+      "c_selected_pzc"
+    ],
+    "spatial_fields_present": [
+      "dashboard map geometry",
+      "address",
+      "latitude",
+      "longitude",
+      "precinct",
+      "sector",
+      "block"
+    ],
+    "notes": [
+      "MNPD exposes a public UCR incidents map rather than only aggregate charts.",
+      "The police site provides explicit instructions for downloading source data from the dashboards.",
+      "The exact Tableau view behind the public UCR incidents map is now pinned.",
+      "A live browser check confirmed that selecting a map mark and opening View Data -> Full Data exposes a downloadable UTF-16 tab-delimited export with direct latitude/longitude, address, complaint number, and offense fields.",
+      "A second live browser check confirmed that the public Tableau Download menu disables whole-view Data export unless a mark is selected, but Download -> Crosstab -> Map -> CSV does return a whole-view row-level export.",
+      "The validated bulk Map crosstab exposes offense, unique ID, reported timestamp, complaint number, address, latitude, and longitude, but the bulk latitude/longitude are rounded to 0.1 degrees.",
+      "That means the current public contract now includes both a precise mark-level row export and a row-level bulk extract, but the bulk geometry is still too coarse to treat as clean BG-allocation truth.",
+      "The precise mark-level export is useful for spot validation, but not as a scalable canonical citywide pull because it requires Tableau interaction per selected mark rather than a stable whole-view bulk contract."
+    ]
+  },
+  "crosswalk_outlook": {
+    "likely_first_pass_offenses": [
+      "murder",
+      "rape",
+      "robbery",
+      "aggravated_assault",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "review_dependent_offenses": [
+      "murder",
+      "rape",
+      "robbery",
+      "aggravated_assault",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "notes": [
+      "The 2024 Nashville criminal-justice trends report explicitly defines the crime index as the repo's seven offense families.",
+      "This makes Nashville useful for counts-side packet work and annual anchors, but only if the downloadable incident table can be matched cleanly to those same categories.",
+      "The mark-level Full Data export is precise enough spatially for spot checks, but it does not provide a clean citywide bulk contract.",
+      "The remaining question is no longer whether a public bulk contract exists; it is resolved that the validated whole-view Map crosstab is not spatially defensible enough for repo city-share use."
+    ]
+  },
+  "reconciliation_anchor": {
+    "usable": true,
+    "sources": [
+      "MNPD Crime Analysis Reports page",
+      "Annual Criminal Justice Trends 2015-2024 report"
+    ],
+    "notes": [
+      "The published 2024 trends report states that its seven-offense crime index is sourced from the Metropolitan Nashville Police Department Strategic Development Division Crime Analysis Section.",
+      "The packet now carries the extracted 2023-2024 seven-offense reference rows in published_reference_extract.csv and reconciliation_summary.csv.",
+      "If the dashboard export turns out to be too coarse for city-share use, the same official crime-analysis tables are still plausible local_publication annual control anchors.",
+      "Nashville now has a validated whole-view bulk export path, and it is too coarse for defensible BG allocation because the bulk latitude/longitude are rounded to 0.1 degrees."
+    ]
+  },
+  "judgment": {
+    "production_ready": "no",
+    "why_not_ready": [
+      "The validated whole-view Map crosstab rounds latitude/longitude to 0.1 degrees, which is too coarse for clean BG allocation under the current repo doctrine.",
+      "The only precise public export path is mark-level Tableau Full Data, which requires interactive selection and does not scale as a stable canonical citywide bulk contract.",
+      "The packet still lacks a clean 2024 offense-by-offense reconciliation from the validated bulk extract to the official crime-analysis anchor."
+    ],
+    "minimum_change_to_unblock": [
+      "Find a true whole-view public bulk export with precise geometry rather than rounded 0.1-degree latitude/longitude.",
+      "Otherwise treat the dashboard only as counts-side support plus annual-anchor support rather than a city-share promotion lane.",
+      "If a stronger bulk export ever appears, then reconcile the 2024 bulk incident extract to the extracted official crime-analysis anchor offense by offense."
+    ]
+  }
+}

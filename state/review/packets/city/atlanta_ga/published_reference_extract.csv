@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,aggravated_assault,2444.0,local_publication_annual,high
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,burglary,1704.0,local_publication_annual,high
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,larceny,13208.0,local_publication_annual,high
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,motor_vehicle_theft,3673.0,local_publication_annual,high
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,murder,126.0,local_publication_annual,high
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,rape,79.0,local_publication_annual,high
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,robbery,506.0,local_publication_annual,high

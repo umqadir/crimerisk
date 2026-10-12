@@ -1,0 +1,148 @@
+{
+  "city_key": "oakland_ca",
+  "city_name": "Oakland, California",
+  "geography": {
+    "bounds": {
+      "max_latitude": 37.9128,
+      "max_longitude": -122.024587,
+      "min_latitude": 37.4389,
+      "min_longitude": -122.393782
+    },
+    "jurisdiction_id": "06:municipal:place:0653000",
+    "state_fips": "06"
+  },
+  "mapping": {
+    "date_field": "datetime",
+    "id_field": "casenumber",
+    "id_fields": [
+      "casenumber",
+      "description"
+    ],
+    "latitude_field": "lat",
+    "longitude_field": "lon",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?MURDER",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?(RAPE|SODOMY|ORAL COPULATION|SEXUAL PENETRATION W/FOREIGN OBJ)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?(ROBBERY|ATTEMPTED ROBBERY|ATTEMPT ROBBERY|CARJACKING)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?(ASSAULT WITH FIREARM|ASLT W/FIREARM|ADW |FORCE/ADW|INFLICT CORPORAL INJURY|INFLICT CRPL INJ)|BATTERY W/SERIOUS BODILY INJURY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?(VEHICLE THEFT|STOLEN VEHICLE)|^ATTEMPT(ED)? VEHICLE THEFT|^GRAND THEFT:AUTO$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?(ATTEMPTED )?BURGLARY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "AUTO",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "description",
+            "op": "regex",
+            "value": "^(SC )?(GRAND THEFT|PETTY THEFT|THEFT|SHOPLIFTING|MAIL/ETC THEFT|ATTEMPT(ED)? (GRAND )?THEFT)|^(SC )?BURGLARY[ -]AUTO$|^ATTEMPTED BURGLARY-AUTO$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://data.oaklandca.gov/resource/ppgh-7dqv.json",
+    "name": "Oakland Police Department CrimeWatch Data (Socrata ppgh-7dqv)",
+    "order": "datetime ASC, casenumber ASC",
+    "page_size": 50000,
+    "portal_type": "socrata",
+    "select": [
+      "crimetype",
+      "datetime",
+      "casenumber",
+      "description",
+      "policebeat",
+      "address",
+      "city",
+      "state",
+      "location.latitude as lat",
+      "location.longitude as lon"
+    ],
+    "source_url": "https://data.oaklandca.gov/Public-Safety/CrimeWatch-Data/ppgh-7dqv",
+    "where": "datetime >= '2024-01-01T00:00:00' AND datetime < '2025-01-01T00:00:00'"
+  },
+  "sources_checked": [
+    "https://data.oaklandca.gov/resource/ppgh-7dqv.json",
+    "https://data.oaklandca.gov/api/views/ppgh-7dqv",
+    "https://data.oaklandca.gov/Public-Safety/CrimeWatch-Data/ppgh-7dqv",
+    "state/controls/jurisdiction_controls_2024.parquet",
+    "state/geometry/block_group_to_jurisdiction_crosswalk.parquet",
+    "state/modeling/batch_b_preregistration_2024.json"
+  ],
+  "worker_judgment_notes": "Source identity was pre-verified 2026-07-08 (see scratchpad/batchb_reverify/): Socrata dataset ppgh-7dqv on data.oaklandca.gov ('CrimeWatch Data', attribution Oakland Police Department, tableAuthor 'Oakland Support Team'), full 2024 pull returned exactly 58,423 rows matching the pre-verified count, city field 100% 'Oakland'. Schema supports portal_type 'socrata' directly (already in the generic-runner schema enum and _download_socrata is implemented) -- no new fetcher was needed. GEOMETRY CAVEAT: unlike Jacksonville's ArcGIS feed (which exposes flat x/y via the __arcgis_latitude/__arcgis_longitude convention baked into the runner), Oakland's 'location' column is a Socrata geospatial Point type returned as nested GeoJSON ({type,coordinates}) with no separate flat lat/lon columns in the published schema. Resolved config-only (no Python changes) by selecting Socrata SoQL dot-accessors 'location.latitude as lat' and 'location.longitude as lon' in the contract's source.select list, verified working via direct curl before use; mapping.latitude_field/longitude_field point at the resulting 'lat'/'lon' aliases. TAXONOMY: Oakland's 'crimetype' field is an OPD desk/queue-routing label, not a reliable per-incident offense classifier -- confirmed by inspection: crimetype='HOMICIDE' has 862 rows in 2024, but only 62 have description 'MURDER' or 'MURDER:FIRST DEGREE'; the other 736 are 'SC UNEXPLAINED DEATH' (undetermined-cause deaths investigated by the homicide unit, not adjudicated murders), plus scattered non-homicide charges (assault, burglary, vehicle theft) attached to the same case number. Similarly the 'ROBBERY' crimetype bucket contains 111 rows of 'ASSAULT WITH FIREARM ON PERSON' (an aggravated-assault charge, not robbery) and the 'FELONY ASSAULT' bucket contains 11 rows of 'ROBBERY-FIREARM'. All offense_rules therefore key off the free-text 'description' field (the underlying CA Penal Code charge, e.g. 'ROBBERY-FIREARM', 'BURGLARY-FORCIBLE ENTRY'), not 'crimetype'. 'description' has ~676 distinct values in 2024 and roughly a third of them are duplicated with a 'SC ' prefix (e.g. 'SC RAPE' alongside 'RAPE BY FORCE/FEAR/ETC'); all seven offense_rules regexes account for the optional 'SC ' prefix. RULE RATIONALE: murder = description matches ^(SC )?MURDER (excludes ATTEMPTED MURDER* per UCR murder = completed criminal homicide only). rape = ^(SC )?(RAPE|SODOMY|ORAL COPULATION|SEXUAL PENETRATION W/FOREIGN OBJ), i.e. the revised 2013 UCR/NIBRS 11A+11B+11C definition per docs/FBI-DATA-GUIDE.md; 'SEXUAL BATTERY' (86 rows, CA PC243.4 fondling, NIBRS 11D) is deliberately excluded, matching both the FBI-DATA-GUIDE revised-rape-definition rule and the San Francisco packet's own crosswalk precedent (state/review/packets/city/san_francisco/offense_crosswalk.csv excludes 'Battery, Sexual' as 11D). Anchoring the regex at the start of the string also correctly excludes 'ASSAULT TO COMMIT RAPE/SODOMY/ORAL COPULATION' (7+2+1 rows, an assault-statute charge, not a completed or attempted sex offense per se) and 'KIDNAP TO COMMIT ROBBERY/RAPE/...' (3 rows, a kidnapping charge). robbery = ^(SC )?(ROBBERY|ATTEMPTED ROBBERY|ATTEMPT ROBBERY|CARJACKING) -- carjacking is charged as its own CA statute (PC215) but is functionally robbery-of-a-vehicle and is folded in, consistent with standard NIBRS 120 practice. aggravated_assault includes only description patterns that denote an actual assault/battery on a person with a weapon or resulting injury (ASSAULT WITH FIREARM ON PERSON, ADW/FORCE-ADW-*-GBI, BATTERY W/SERIOUS BODILY INJURY, INFLICT CORPORAL INJURY ON SPOUSE/COHABITANT); it deliberately EXCLUDES the large 'WILLFUL DISCHARGE FIREARM IN NEGLIGENT MANNER' (1,089 rows), 'SHOOT AT INHABITED/UNOCCUPIED DWELLING/VEHICLE' (221+196 rows), 'EXHIBIT FIREARM'/'EXHIBIT DEADLY WEAPON' (534+348 rows) and 'CRIMINAL THREATS' (830 rows) description groups -- these are reckless-discharge and weapon-exhibition/intimidation charges (FBI NIBRS 520 Weapon Law Violations / 13C Intimidation), not assault on a person, matching the San Francisco packet's identical exclusion of 'Firearm, Discharging...' descriptions from its 13A aggravated-assault mapping. This exclusion is the main driver of aggravated_assault's large reconciliation shortfall (raw 2,601 vs SRS control 5,039, ratio 0.52) -- reclassifying the excluded weapon/threat rows would close most of the gap numerically but would contradict the repo's own established NIBRS convention, so it was not done; the shortfall is reported as a probable feed-completeness gap between OPD's public CrimeWatch export and its DOJ/FBI SRS submission, not a mapping defect. burglary = ^(SC )?(ATTEMPTED )?BURGLARY excluding anything containing 'AUTO' (CA burglary-of-a-vehicle charges, e.g. 'BURGLARY-AUTO', are NOT burglary under UCR/NIBRS -- unlawful entry into a vehicle for theft is larceny/theft-from-vehicle, matching Jacksonville's use of NIBRS 23F for the same fact pattern) -- those AUTO-excluded rows are instead captured by the larceny rule. larceny includes GRAND/PETTY THEFT/THEFT/SHOPLIFTING/MAIL-THEFT variants plus the BURGLARY-AUTO/ATTEMPTED BURGLARY-AUTO rows just described; 'GRAND THEFT:AUTO' (14 rows, CA PC487(d)(1) grand theft of a whole vehicle, functionally identical to VC10851 vehicle theft) is instead routed to motor_vehicle_theft by rule ORDER -- offense_rules lists motor_vehicle_theft before larceny and the runner's rule engine only fills unset offense cells, so GRAND THEFT:AUTO is claimed by the motor_vehicle_theft rule first and the larceny rule's broader 'GRAND THEFT' prefix never reaches it. motor_vehicle_theft = ^(SC )?(VEHICLE THEFT|STOLEN VEHICLE) or ^ATTEMPT(ED)? VEHICLE THEFT or exactly GRAND THEFT:AUTO; 'POSS STOLEN VEH/VES/ETC' (258 rows, possession of already-stolen property) and 'EMBEZZLE LEASED/RENTED VEHICLE' (65 rows, embezzlement, a distinct NIBRS 270 category) are deliberately excluded as judgment calls, not new thefts. UNMAPPED TAIL: of 58,423 raw 2024 rows, ~35,659 rows of description-mass are mapped to the seven offenses pre-geometry-filter; the largest unmapped buckets are VANDALISM (3,825+multiple $-threshold variants), simple BATTERY/'BATTERY:SPOUSE...' (2,226+1,042, CA PC242/243(e)(1) with no injury element, NIBRS 13B simple assault, correctly out of scope), WILLFUL DISCHARGE FIREARM (1,089), CRIMINAL THREATS (830), identity-theft/forgery/DUI/drug-possession/probation-violation charges -- none of these are Part-I legacy-seven offenses and none were reclassified. DEDUP / OVER-COUNT RISK: id_fields=[casenumber,description] was used (not casenumber alone) because ~9.9% of 2024 cases (4,972/50,316) carry more than one distinct 'description' value under the same case number, and many of those are genuinely distinct charges within one incident (e.g. a carjacking case also charged with attempted-robbery-with-weapon) that should both count. There are zero exact (casenumber,description) duplicate rows in the 2024 feed, so no de-duplication actually fired. However, of the cases contributing >=1 mapped row, 1,063 cases have more than one mapped row, and of those, 343 cases (~1% of the ~34,500 mapped cases) have multiple mapped rows that all resolve to the SAME target offense -- overwhelmingly domestic-violence cases charged with both 'FORCE/ADW-...GBI' and 'INFLICT CORPORAL INJURY ON SPOUSE/COHABITANT' for what is very likely one underlying assault act. This is a small (~1%), left-uncorrected over-count risk concentrated in aggravated_assault/larceny/robbery, reported here rather than patched, since collapsing to one row per (casenumber, offense) would also silently drop genuine multi-victim same-offense-type incidents under one case number, which the public feed does not let us distinguish. EXACT-POINT QA (reported, not whitelisted): coordinate coverage is 55,944/58,423 = 95.76% (2,479 null, consistent with OPD's documented block-level address redaction). The single most frequent exact coordinate in 2024, (37.79908, -122.27313) = '400 7TH ST', accounts for 474 of 55,944 geocoded rows (0.85%) and spans an unusually heterogeneous mix of crime types (stolen vehicle, forgery, missing persons, disorderly conduct, domestic violence) -- a pattern consistent with a walk-in-report / administrative default location (this block is adjacent to OPD Headquarters) rather than 474 independent true incident locations. The next five most frequent points (400/500 Hegenberger Rd, 3200 Lakeshore Ave, 3000 E 9th St, and one unresolved-address point) are dominated by a single plausible crime type each (auto burglary, grand theft) consistent with real high-crime commercial/parking-lot blocks, not administrative defaults. RECONCILIATION (feed raw rows / SRS control, all quality_tier_preferred=high, preferred_source=srs_return_a_annual): murder 61/81=0.75, rape 220/296=0.74, robbery 2609/2960=0.88, aggravated_assault 2601/5039=0.52, burglary 3231/3423=0.94 (passes strict 10pct gate), larceny 15193/18118=0.84, motor_vehicle_theft 10012/9914=1.01 (passes strict 10pct gate). Only burglary and motor_vehicle_theft clear the strict 10% total-lane reconciliation gate (feed_total_candidate); all seven offenses clear the >=80% BG-match-share and exact-1.0 share-sum gates and are therefore share-lane admitted per the standard generic-runner convention (share only, not total). Bounds are the raw crosswalk-touching Oakland block-group envelope (356 BGs) padded ~0.02 degrees; this is intentionally broader than the 354-BG eb-jurisdiction-dominant set used by the frozen batch_b_preregistration_2024.json scoring artifact, matching the same envelope-vs-dominant-assignment gap documented in the Jacksonville contract (553 crosswalk BGs vs 549 eb-dominant BGs there).",
+  "year": 2024
+}

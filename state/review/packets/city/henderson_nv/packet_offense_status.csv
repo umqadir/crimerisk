@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,admission_mode,share_lane_disposition,total_lane_disposition
+henderson_nv,aggravated_assault,False,False,False,reject,rejected,reject_share,official_control
+henderson_nv,burglary,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+henderson_nv,larceny,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+henderson_nv,motor_vehicle_theft,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+henderson_nv,murder,False,False,False,reject,rejected,reject_share,official_control
+henderson_nv,rape,True,False,True,pass_share_only,share_only,admit_share_only,official_control
+henderson_nv,robbery,True,False,True,pass_share_only,share_only,admit_share_only,official_control

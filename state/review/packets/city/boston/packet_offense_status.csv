@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,no,hold_pending_policy,small_n_occurrence_year_mismatch,"The public feed is spatially usable for homicide, but the official BPD year-end total includes ruled-in prior-year cases and the small-N policy choice should be made explicitly before promotion."
+rape,no,blocked,missing_public_family,"The reviewed 2024 public export contains no rape-related public rows even though the official offense workbook lists many rape codes and the official BPD PDF reports rape totals."
+robbery,no,blocked,attempt_family_missing,"The official BPD comparator is robbery and attempted robbery, while the reviewed 2024 public export exposes only code 301 and no robbery-attempt codes."
+aggravated_assault,no,blocked,material_gap_and_missing_subtypes,"The reviewed 2024 public export exposes only code 423 and lands about 34.6 percent below the official BPD aggravated-assault total."
+burglary,no,blocked,missing_no_force_and_attempt_subtypes,"The reviewed 2024 public export exposes only residential and commercial force-coded burglary rows and omits the no-force, other, and attempt burglary families listed in the official offense workbook."
+larceny,yes,offense_selective,strong_source_count_moderate_geocode_loss,"The public export retains the core 611-619 larceny family and the raw source count is within about 3.9 percent of the official BPD larceny total. Geocode loss is real but still leaves a usable city-share surface."
+motor_vehicle_theft,yes,offense_selective,close_geocoded_reconciliation,"The reviewed 2024 public export retains the direct theft codes and geocoded motor-vehicle-theft rows are within about 0.7 percent of the official BPD auto-theft total."

@@ -1,0 +1,65 @@
+{
+  "case_key": "macon_bibb_ga",
+  "jurisdiction_id": "13:municipal:place:1349008",
+  "jurisdiction_name": "Macon-Bibb County",
+  "state_abbr": "GA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_as_consolidated_primary_jurisdiction_and_route_bibb_sheriff_reporting_here",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Macon-Bibb County is the post-2014 consolidated government created by House Bill 1171, which combined the former City of Macon and Bibb County into a single restructured local government.",
+    "Official Macon-Bibb materials treat the sheriff as the primary law-enforcement institution of the consolidated government. The sheriff's office is the active law-enforcement arm on the county government site, and official budget materials state that the Bibb County Sheriff's Office merged with the Macon Police Department in January 2014.",
+    "Official municipal-court materials also treat Macon-Bibb as a consolidated city-county jurisdiction with countywide jurisdiction over traffic and code violations, which is consistent with a real consolidated primary local government rather than a fake municipal target.",
+    "Repo evidence shows a clean reporting handoff rather than an invalid target. The old Macon local-police ORI `GA0110100` is zero for every panel year, while `GA0110000` Bibb County sheriff carries large active SRS and NIBRS crime totals from 2018 through 2024 and is currently routed only to state nonmunicipal remainder.",
+    "That pattern matches the Jacksonville-style consolidated-primary-jurisdiction problem: the target is real, but the active sheriff reporting row is sitting in county remainder rather than feeding the consolidated municipal target."
+  ],
+  "governance_structure": {
+    "municipal_status": "consolidated_city_county_primary_jurisdiction",
+    "official_basis": [
+      "House Bill 1171 consolidated the governments of the City of Macon and Bibb County effective January 1, 2014.",
+      "Macon-Bibb County Municipal Court is described as the continuation of the former City of Macon court under the restructured government and has jurisdiction over traffic and code violations occurring in Macon-Bibb County."
+    ],
+    "important_interpretation": "Macon-Bibb is not just a county remainder label; it is the consolidated local government that replaced the old City of Macon structure."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Bibb County Sheriff's Office",
+    "official_evidence": [
+      "The county government's sheriff page treats the Bibb County Sheriff's Office as the live law-enforcement agency for filing police reports, daily crime reports, accident reports, and related law-enforcement services.",
+      "Official Macon-Bibb budget materials state that the Bibb County Sheriff's Office merged with the Macon Police Department in January 2014.",
+      "Official county news releases discuss increasing the number of deputies on patrol throughout the county, which is consistent with a consolidated sheriff-led policing surface."
+    ],
+    "separate_old_city_police_department_still_active": false,
+    "likely_reporting_continuity": "former Macon police function absorbed into Bibb County sheriff after consolidation"
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": {
+      "GA0110100": "exclusive to 13:municipal:place:1349008",
+      "GA0110000": "exclusive to 13:state_nonmunicipal_remainder"
+    },
+    "current_observation_state": {
+      "GA0110100": "zero in every panel year 2018-2024",
+      "GA0110000": "active SRS and NIBRS totals across 2018-2024"
+    },
+    "interpretation": "The old Macon local-police code is dead, while the sheriff code is the live consolidated reporting surface."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Macon-Bibb is a real consolidated primary jurisdiction created by formal city-county consolidation.",
+      "Official materials show the sheriff absorbed the old city police function after consolidation.",
+      "The current issue is mis-routed reporting continuity, not an invalid target."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Macon-Bibb municipal control row 13:municipal:place:1349008.",
+      "Treat the row as a consolidated primary jurisdiction rather than as an ordinary municipal-police case.",
+      "Route the active Bibb County sheriff reporting continuity from GA0110000 into the Macon-Bibb target instead of leaving it in state nonmunicipal remainder."
+    ]
+  },
+  "likely_issue_class": "broken_consolidated_reporting_continuity_not_invalid_target",
+  "open_questions": [
+    "A later implementation pass should decide the exact override mechanics for moving GA0110000 out of state remainder and into the consolidated Macon-Bibb target, but the keep/remove question is already closed."
+  ]
+}

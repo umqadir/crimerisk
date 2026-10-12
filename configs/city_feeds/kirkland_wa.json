@@ -1,0 +1,288 @@
+{
+  "city_key": "kirkland_wa",
+  "city_name": "Kirkland",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/kirkland_wa/packet.json (case_text: 'Survey notes: years 2021-2025, count unit offense, coordinates point, redactions: none stated'; date filter from_date)",
+    "state/review/packets/city/kirkland_wa/evidence/registry_row.json (api_endpoint, portal_type arcgis_feature_service, probe_where, probe_order '', page_size '', jurisdiction_ids 53:municipal:place:5335940, state_fips 53, ori9 WA0170800)",
+    "state/review/packets/city/kirkland_wa/evidence/doc_7bae5b4381.json (fields list incl. nibrs_code, from_date, case_num, submitoffenseflag; viewDefinitionQuery; maxRecordCount 1000; dateFieldsTimeReference UTC; geometryType esriGeometryPoint)",
+    "state/review/packets/city/kirkland_wa/evidence/doc_f637fbca46.error.txt (portal home page HTTP 403)",
+    "state/review/packets/city/kirkland_wa/evidence/doc_index.csv",
+    "state/review/packets/city/kirkland_wa/evidence/raw_cache_profile.json (rows 27375; nibrs_code distinct values; report_date/offense_date minimums; __arcgis_latitude non_null 26898; crimeclass, case_stat, disposition distinct values)",
+    "state/review/packets/city/kirkland_wa/evidence/scope_candidates.csv (53:municipal:place:5335940 Kirkland city)",
+    "state/review/packets/city/kirkland_wa/evidence/official_totals.csv (2018-2025 by offense, ori:WA0170800)",
+    "state/review/packets/city/kirkland_wa/raw_cache.parquet (queries via scripts/agents/query.py: uniqueness of off_id/objectid/case_num, case_num|nibrs_code counts by year and offense, grid snapping of points, NR statute_desc, submitoffenseflag patterns)",
+    "state/review/packets/city/kirkland_wa/live/raw_kirkland_wa_2018_2025_42f9014d78f3.parquet (archive digest matched by this contract's source object)",
+    "src/crimerisk/city_contracts.py (download: cache digest of the source object; run_contract: dedupe after mapping, year and coordinate filters)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "The public layer is a view restricted to crimeclass = 'FELONY' OR crimeclass = 'MISDEMEANOR' (viewDefinitionQuery in evidence/doc_7bae5b4381.json); offenses of any other class are not published. The pull holds MISDEMEANOR 17901 and FELONY 9474 rows.",
+    "No redactions are stated: the registry row's redactions field is empty and the portal home page returned HTTP 403 (evidence/doc_f637fbca46.error.txt), so no further publisher documentation was available."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "53:municipal:place:5335940"
+    ],
+    "state_fips": [
+      "53"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the source lists statute charges; the contract counts one offense per NIBRS code per case. The official totals are SRS-equivalent, which count at most one larceny per incident and apply the hierarchy rule; cases carrying several larceny codes (the most common pattern is 23F vehicle prowling plus 23H theft, 1401 cases in the pull carry both 23F and 23H) count once officially but two or more times here, so larceny runs about 35% above the official totals for 2021-2025 (9615 vs 7144 with geometry before the unfounded exclusion and footprint; 9559 after the unfounded exclusion, via run_contract).",
+    "No hierarchy rule: a case with, e.g., burglary and larceny contributes to both offenses here; official SRS-equivalent counts keep only the highest.",
+    "Coverage: the layer holds cases reported 2021 onward (report_date and offense_date minimums are 2021-01-01), so 2018-2020 counts are only late reports of older occurrences and will fall far below the official totals for those years.",
+    "Year basis: years come from from_date (occurrence start), while official annual totals count by the year the offense was reported/submitted; late reports shift counts across year boundaries.",
+    "Rape: 11A/11B/11C follow the revised SRS definition; 11D fondling (38 rows) is excluded. 11C does not appear in the pull.",
+    "Points are snapped by the publisher to a 0.001-degree grid, so points near the city boundary can fall in the wrong block group or outside the footprint.",
+    "Rows with no geometry (227 among the seven offenses' codes) are dropped by require_coordinates."
+  ],
+  "mapping": {
+    "date_field": "from_date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "case_num",
+      "nibrs_code"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrs_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_stat",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "disposition",
+            "op": "eq",
+            "value": "NO CRIME OCCURRED",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: Kirkland PD RMS offense layer OFFENSES_PUBLIC (FeatureServer/3), a view over the RMS offense table (evidence/doc_7bae5b4381.json: isView true, viewDefinitionQuery \"crimeclass = 'FELONY' OR crimeclass = 'MISDEMEANOR'\"). Row grain: one row per statute charge within a case. objectid, off_id and globalid are each unique (27375 distinct of 27375 rows); case_num and case_id each have 18276 distinct values and map 1:1 (0 case_num with more than one case_id). Offenses: mapped on the publisher's own nibrs_code field (profile distinct values: 09A 4, 11A 93, 11B 38, 11D 38, 120 100, 13A 220, 13B 1549, 13C 539, 220 1040, 23A 78, 23B 42, 23C 1438, 23D 666, 23E 2, 23F 2132, 23G 713, 23H 4982, 240 1025, 09B 3; 11C is absent from the pull, kept in the rule for completeness). 11D fondling, 09B negligent manslaughter, 13B simple assault and 13C intimidation are left unmapped, as is NR (2139 rows, 'NOT REPORTABLE': outside warrants, DWLS, hit and run, eluding; query on statute_desc where nibrs_code='NR'). 09C is not present. Attempts (attempt='ATTEMPT') are kept, as NIBRS counts attempted robbery/burglary/larceny/MVT/rape under the completed code. Every rule excludes case_stat='UNFOUNDED' and disposition='NO CRIME OCCURRED' (UCR excludes unfounded reports): 85 rows among the seven offenses' codes (query: 5 UNFOUNDED, 80 NO CRIME OCCURRED). count_unit offense: id_fields [case_num, nibrs_code] with dedupe_on_id true keeps one row per NIBRS offense code per case (NIBRS reports each offense code at most once per incident). Two charges with the same code in one case (e.g. THEFT 3RD and THEFT 2ND, both 23H) collapse to one; the first row in pull order is kept, and within a case|code the year never differs (0 case_num|nibrs_code pairs span two from_date years) and the point never differs (0 cases with more than one distinct latitude), so the choice of row does not change year, offense or location. Different codes in one case stay separate offenses (e.g. 23F vehicle prowl plus 23H theft in one case are two larceny rows). No hierarchy is applied. Dates: from_date (FROM_DATE, the start of the occurrence window) parsed as epoch_ms UTC (dateFieldsTimeReference UTC); this is the registry's own filter field. report_date and offense_date both start 2021-01-01 (profile min 1609464503000 and 1609459200000) and offenses_year runs 2021-2026, so the layer holds cases reported from 2021 on: 2018-2020 from_date years contain only 71 late-reported rows (2 in 2018, 13 in 2019, 56 in 2020 by UTC year of from_date) and will not reconcile to the official totals for those years. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, outSR 4326). The publisher snaps points to a 0.001-degree grid (about 111 m north-south, 75 m east-west) with a constant small offset: 26898 located rows have 3350 distinct points and 3350 distinct points after rounding to 3 decimals; sample latitudes 47.678005636, 47.653005634. Block-group assignment near block-group edges is therefore approximate. 477 rows have no geometry (profile non_null 26898 of 27375), 227 of them among the seven offenses' codes (65 23F, 149 23H, 7 23G, 2 23D, one each 11B, 13A, 220, 240). Scope: Kirkland city (53:municipal:place:5335940), the only candidate in evidence/scope_candidates.csv and the registry's jurisdiction; some points fall outside the city (profile city field lists BELLEVUE 33, REDMOND 28, BOTHELL 23 and others) and are dropped by the footprint stage. Source settings: select [], where, order '' and page_size 1000 are the registry's probe values; this source object hashes to the archive's digest 42f9014d78f3 (live/raw_kirkland_wa_2018_2025_42f9014d78f3.parquet), so a live pull reproduces the archived rows. Reconciliation expectation (computed on raw_cache, rows with geometry, dedupe on case_num|nibrs_code, before the unfounded exclusion and footprint): 2021-2025 sums vs official: larceny 9615 vs 7144 (1.35), MVT 1.04, burglary 0.98, aggravated assault 1.06, robbery 1.04, rape 1.14, murder 4 vs 2. After the unfounded exclusion (run_contract on raw_cache, no footprint): larceny 9559 (1.34), MVT 1012 vs 985 (1.03), burglary 1021 vs 1048 (0.97), aggravated assault 208 vs 201 (1.04), robbery 98 vs 95 (1.03), rape 124 vs 112 (1.11), murder 4 vs 2. The larceny excess is a unit difference (see known differences), not a mapping error. The field submitoffenseflag (alias SubmitOffenseFlag, 0 on 2385 rows) is undocumented; it is 0 on the 23H row in 784 of the 23H+23F cases, which suggests it marks offenses not submitted to NIBRS, but it is also 0 on 482 cases whose only larceny row it is and 1 on nearly all NR rows, so it is not used as a filter.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://maps.kirklandwa.gov/host/rest/services/Hosted/CrimeAnalysis_(Public)/FeatureServer/3",
+      "name": "Kirkland CrimeAnalysis (Public): OFFENSES_PUBLIC",
+      "order": "",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "kirkland_wa",
+      "source_url": "https://www.kirklandwa.gov/",
+      "where": "from_date >= DATE '{start}' AND from_date < DATE '{end}'"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,yes,offense_selective,approximate_but_empirically_close,"Beat-aware fallback recovers all mapped murders; the remaining 1-incident gap versus WASPC appears methodological or late-classification, not spatial."
+rape,yes,offense_selective,approximate_but_empirically_close,"Beat-aware fallback recovers nearly all mapped rapes; the remaining 12-incident overage versus WASPC is small and reflects person-crime counting differences rather than a spatial blocker."
+robbery,yes,offense_selective,approximate_but_empirically_close,"Beat-aware fallback closes the redaction gap; robbery remains approximate because WASPC counts crimes against person per victim, but Seattle still lands within 11 incidents in final 2024 counts."
+aggravated_assault,no,blocked,approximate_material_gap,"Beat fallback removes the spatial blocker, but the final 2024 count stays about 15.7 percent below WASPC because the public feed lacks victim counts."
+burglary,yes,offense_selective,exact,"Beat-aware fallback yields an exact-grade 2024 published check versus WASPC; the remaining gap is 6 incidents."
+larceny,yes,offense_selective,exact,"Beat-aware fallback yields an exact-grade 2024 published check versus WASPC; the remaining gap is 59 incidents."
+motor_vehicle_theft,yes,offense_selective,exact,"Beat-aware fallback yields an exact-grade 2024 published check versus WASPC; the remaining gap is 26 incidents."

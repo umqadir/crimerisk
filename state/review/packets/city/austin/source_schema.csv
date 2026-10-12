@@ -1,0 +1,20 @@
+position,column_name,field_name,data_type,description,non_null_count,null_count,cardinality
+1,Incident Number,incident_report_number,number,Incident report number,2627424,0,2627424
+2,Highest Offense Description,crime_type,text,Description,2627424,0,2627424
+3,Highest Offense Code,ucr_code,number,Code,2627424,0,2627424
+4,Family Violence,family_violence,text,Incident involves family violence? Y = yes N = no,2627424,0,2627424
+5,Occurred Date Time,occ_date_time,text,Date and time combined incident occurred,2627360,64,2627424
+6,Occurred Date,occ_date,calendar_date,Date the incident occurred,2627424,0,2627424
+7,Occurred Time,occ_time,number,Time the incident occurred,2627364,60,2627424
+8,Report Date Time,rep_date_time,text,Date and time combined incident was reported,2627423,1,2627424
+9,Report Date,rep_date,calendar_date,Date the incident was reported,2627424,0,2627424
+10,Report Time,rep_time,number,Time the incident was reported,2627423,1,2627424
+11,Location Type,location_type,text,General description of the premise where the incident occurred,2611648,15776,2627424
+12,Council District,council_district,number,Austin city council district where incident occurred,2585290,42134,2627424
+13,APD Sector,sector,text,APD sector where incident occurred,2623759,3665,2627424
+14,APD District,district,text,APD district where incident occurred,2622935,4489,2627424
+15,Clearance Status,clearance_status,text,How or whether crime was solved see lookup,1994333,633091,2627424
+16,Clearance Date,clearance_date,calendar_date,Date crime was solved,2262942,364482,2627424
+17,UCR Category,ucr_category,text,Code for the most serious crimes identified by the FBI as part of its Uniform Crime Reporting program,972639,1654785,2627424
+18,Category Description,category_description,text,Description for the most serious crimes identified by the FBI as part of its Uniform Crime Reporting program,972639,1654785,2627424
+19,Census Block Group,census_block_group,text,A number that indicates the census block group where the incident occurred,2565602,61822,2627424

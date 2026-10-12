@@ -1,0 +1,126 @@
+{
+  "case_key": "melbourne_fl",
+  "jurisdiction_id": "12:municipal:place:1243975",
+  "jurisdiction_name": "Melbourne city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Melbourne is a real incorporated Florida city with an active Melbourne Police Department. Official city police pages show a dedicated municipal police department, a named law-enforcement center, non-emergency contact channels, and a city crime map updated daily.",
+    "Official FDLE county-and-municipal offense publications list Melbourne Police Department as a separate Brevard municipal reporting row in 2019, 2020, and 2021, alongside distinct rows for Brevard County Sheriff's Office, West Melbourne Police Department, Melbourne Beach Police Department, and Melbourne International Airport PD.",
+    "The official FDLE 2021 county-and-municipal offense report still gives Melbourne Police Department a nonzero index-crime total of 2,925. That directly contradicts the repo observation layer, which drops FL0050700 to zero beginning in 2021.",
+    "The repo crosswalk already routes FL0050700 exclusively to Melbourne city, and the Florida 2024 source-packet spotcheck says no Melbourne workbook row was located in the official 2024 FDLE workbook. Together, that pattern indicates a state-surface continuity or extraction problem, not an invalid municipal target or a sheriff-replacement service structure."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Melbourne maintains a dedicated Police Department department page within the city government site.",
+      "The city budget page includes repeated police-department budget actions and Law Enforcement Trust Fund actions, which is consistent with an active city-run policing function."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Melbourne Police Department",
+    "active_city_police_department_found": true,
+    "county_or_contract_replacement_found": false,
+    "official_evidence": [
+      "The official police page says the Melbourne Police Department is dedicated to the citizens of Melbourne and provides department links, non-emergency contacts, and headquarters at the Joseph Pellicano Law Enforcement Center.",
+      "A June 5, 2025 city news release says the Melbourne Police Department launched an interactive community crime map for reported crime in the City of Melbourne, with data updated daily.",
+      "FDLE publishes Melbourne Police Department separately from Brevard County Sheriff's Office and other Brevard municipal agencies, which is inconsistent with sheriff-only replacement of city policing."
+    ]
+  },
+  "official_reporting_evidence": {
+    "fdle_county_and_municipal_offense_reports": [
+      {
+        "year": 2019,
+        "agency": "Melbourne Police Department",
+        "official_index_total": 3381
+      },
+      {
+        "year": 2020,
+        "agency": "Melbourne Police Department",
+        "official_index_total": 3288
+      },
+      {
+        "year": 2021,
+        "agency": "Melbourne Police Department",
+        "official_index_total": 2925
+      }
+    ],
+    "interpretation": "Florida's own annual county-and-municipal offense publications show Melbourne as a live municipal law-enforcement reporting surface through 2021, so the municipal target is real and continuity did not legitimately end after 2020.",
+    "likely_current_backfill_surface": {
+      "name": "FDLE UCR Incident-Based Reports / FIBRS Offense Data workbook",
+      "why": [
+        "FDLE's official incident-based reporting portal says downloadable Excel reports cover the 2021-2024 and 2025 Q1 reporting cycles.",
+        "That portal is the most likely official state backfill surface for post-2021 Melbourne Police Department data if the Melbourne row is published or can be extracted cleanly from the state workbook pipeline."
+      ]
+    }
+  },
+  "repo_continuity_evidence": {
+    "crosswalk_state": "FL0050700 is currently routed exclusively to 12:municipal:place:1243975",
+    "observation_pattern": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 3542.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 3381.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 3288.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      }
+    ],
+    "source_packet_2024_note": "official_fibrs_spotcheck_2024_reconciled.csv records FL0050700 as not_found_in_workbook with the note 'No 2024 workbook row located for this spotcheck agency.'",
+    "interpretation": "The repo drops Melbourne to zero exactly where the official state evidence still shows a live municipal row. That is a continuity/publication or ingestion failure, not a target-validity failure."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Melbourne has an active city police department and current city-operated policing surfaces.",
+      "FDLE treats Melbourne Police Department as a separate municipal reporting agency rather than folding it into Brevard County Sheriff's Office.",
+      "The observed break is in the reporting pipeline, not in the city's service structure."
+    ],
+    "most_likely_issue_class": "valid_target_with_reporting_continuity_failure",
+    "most_likely_official_backfill_surface": [
+      "Primary: FDLE UCR Incident-Based Reports / FIBRS Offense Data workbook for Melbourne Police Department (ORI FL0050700).",
+      "Secondary: FDLE County and Municipal Offense Data annual reports, especially 2021A, for pre-break truth and transition validation."
+    ],
+    "recommended_handling": [
+      "Retain Melbourne city as a standalone municipal control row.",
+      "Do not replace Melbourne with Brevard County Sheriff's Office, county remainder, or another service-structure surrogate.",
+      "Treat the all-fill state as a Florida reporting continuity / extraction problem on FL0050700.",
+      "Use official FDLE annual county-and-municipal reports to restore the pre-break and 2021 truth surface, and use the official FDLE FIBRS offense publication path as the leading post-2021 backfill surface."
+    ]
+  },
+  "open_questions": [
+    "This packet resolves the target-validity question. A later Florida source audit still has to determine whether Melbourne's absence from the 2024 workbook is a true state-publication omission, an extraction miss, or a naming/ORI reconciliation problem."
+  ]
+}

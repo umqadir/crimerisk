@@ -1,0 +1,514 @@
+{
+  "city_key": "nola",
+  "city_name": "New Orleans",
+  "evidence_refs": [
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:58-67",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:75-129",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:133",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:135-139",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:142-178",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:196-201",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:203-206",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:208-242",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:244-251",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:262-266",
+    "state/review/packets/city/nola/evidence/README.md:5-20",
+    "state/review/packets/city/nola/evidence/README.md:41-50",
+    "state/review/packets/city/nola/evidence/README.md:76-81",
+    "state/review/packets/city/nola/evidence/README.md:110-121",
+    "state/review/packets/city/nola/evidence/README.md:130-139",
+    "state/review/packets/city/nola/evidence/README.md:144-154",
+    "state/review/packets/city/nola/evidence/offense_mapping.csv",
+    "state/review/packets/city/nola/evidence/jurisdictions.csv",
+    "state/review/packets/city/nola/evidence/raw_cache_profile.json",
+    "state/review/packets/city/nola/raw_cache.parquet",
+    "state/review/packets/city/nola/packet.json case_text: \"an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_nola.py\"",
+    "state/review/packets/city/nola/evidence/01_fetch_nola.py:208-242 (extract_coords: both location shapes)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "NOPD's Calls for Service dataset description states that type_/typetext can be reclassified for up to 36 hours after the call is closed; the feed is a CAD classification, not a filed offense (README.md:46).",
+    "The same dataset description cites Louisiana public-records law for juvenile-call redactions (README.md:150).",
+    "block_address is published redacted to the 100-block (README.md:179; raw_cache_profile.json block_address examples, e.g. \"018XX St Charles Av\")."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "22:municipal:place:2255000"
+    ],
+    "state_fips": [
+      "22"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Coordinates: the script (01_fetch_nola.py:208-237) parses lat/lon per row from the Socrata `location` column, which has two shapes (raw_cache.parquet schema: struct<coordinates: list<double>, human_address, latitude: string, longitude: string, type>): 2018-2019 rows carry legacy `latitude`/`longitude` strings with `coordinates` null; 2020-2024 rows carry a GeoJSON Point `coordinates` [lon, lat] with latitude/longitude null. The revised contract uses `location#point` for both coordinate fields, which reads either shape per row (GeoJSON `coordinates` or Socrata `latitude`/`longitude`), and `require_coordinates` drops nulls and (0,0) as the script does (01_fetch_nola.py:231-232, 239-242). Counted on raw_cache.parquet by applying the per-row shape test to every row: coordinates-shaped 156,930 (all of the 2020-2024 files), latitude/longitude-shaped 65,087 (2018: 30,376; 2019: 34,711), non-dict 16 (2018: 14; 2019: 2), neither shape 348 (2019); 0 rows carry both shapes, so the order in which the runner checks the two shapes cannot change the result. The previous contract's `location.latitude` failed because the runner does not resolve dotted struct paths (check error: KeyError 'none of location.latitude in the pull'). A live Socrata pull returns `location` as the same two JSON shapes by dataset, which `#point` also reads.",
+    "Block-group join: the script left-joins (01_fetch_nola.py:262) and keeps points that fall in no Louisiana 2020 block group. One kept row does: nopd_item H0995923 (2023 file, type_ VEHSTO, coordinates [-90.47422562, 28.49213913], offshore in the Gulf; README.md:130-131). If the runner drops unmatched points, it keeps 197,688 rows instead of 197,689.",
+    "De-duplication: the script de-duplicates on incident_id (= nopd_item) after the spatial join (01_fetch_nola.py:266); the contract de-duplicates on the id after the coordinate filter and before the join. On the archived pull this changes nothing: 343 nopd_item values appear twice (once in the 2019 file, once in the 2020 file, identical type_ and disposition, timecreate in 2020); every 2019-file copy has only a garbled `location.human_address` and no lat/lon, so the coordinate filter drops it and de-duplication removes 0 rows in the replay.",
+    "Live-pull where clause: the script sent only `type_ in(<70 codes>)` to each per-year dataset (01_fetch_nola.py:143-144) and took the whole file; the contract adds a timecreate range with {start}/{end}. The script's year filter (2018-2024 on the year of timecreate, 01_fetch_nola.py:244-247) is reproduced by the runner's year step. Rows whose timecreate falls in a different year than their source file (348 rows in the 2019 file with timecreate in 2020) are not lost by the range because year assignment comes from timecreate in both.",
+    "The script adds a computed `source_year_file` column (01_fetch_nola.py:177) and renames output columns (policedistrict->district, type_->signal_type, typetext->signal_description; 01_fetch_nola.py:277-279); neither affects which rows are kept or the id."
+  ],
+  "mapping": {
+    "date_field": "timecreate",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "nopd_item"
+    ],
+    "latitude_field": "location#point",
+    "longitude_field": "location#point",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "30",
+              "30C",
+              "30D",
+              "30S",
+              "MURDER",
+              "MURDERSB",
+              "MURDERST"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "42",
+              "42M",
+              "43",
+              "43M",
+              "27-42",
+              "27-43",
+              "RAPE"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "64",
+              "64G",
+              "64J",
+              "64K",
+              "65",
+              "65J",
+              "65P",
+              "27-64",
+              "27-64J",
+              "27-65",
+              "27-65J",
+              "ROB",
+              "ROBW",
+              "ROBCJ"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "34",
+              "34C",
+              "34D",
+              "34S",
+              "37",
+              "37D",
+              "27-30",
+              "ASLTWP"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "60",
+              "60D",
+              "62",
+              "62B",
+              "62D",
+              "62H",
+              "62R",
+              "62S",
+              "27-62",
+              "BURGC",
+              "BURGOC",
+              "BURGR",
+              "HOMEIV"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "67",
+              "67B",
+              "67C",
+              "67P",
+              "67S",
+              "67D",
+              "27-67",
+              "27-67C",
+              "62C",
+              "27-62C",
+              "BURGV",
+              "THEFT",
+              "SHOP",
+              "61"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "type_",
+            "op": "in",
+            "value": "",
+            "values": [
+              "67A",
+              "27-67A",
+              "68",
+              "VEHSTO",
+              "VEHUU",
+              "67AR",
+              "VEHSTRC"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "disposition",
+            "op": "in",
+            "value": "",
+            "values": [
+              "VOI",
+              "UNF",
+              "DUP",
+              "TST",
+              "CBC"
+            ]
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Revision after the failed check (KeyError on `location.latitude`): the coordinate fields are now `location#point`; nothing else changed. Replay of the contract's chain on raw_cache.parquet with a per-row point read of `location` (GeoJSON coordinates -> (lat=coords[1], lon=coords[0]); else float latitude/longitude), year from timecreate kept to 2018-2024, offense by the case-sensitive type_ map in offense_mapping.csv, disposition exclusion {VOI,UNF,DUP,TST,CBC}, drop null and (0,0) coordinates, de-dup on nopd_item: 197,689 rows kept. Per-cell comparison (pandas groupby year x offense on the replay) against the 40 oracle cells listed in the check result: 39 match exactly (e.g. 2018 aggravated_assault 1,908; 2021 larceny 15,020; 2024 burglary 2,009); 2023 motor_vehicle_theft is 8,952 vs oracle 8,951. The two cells not listed (2024 murder, 2024 robbery) replay to 110 and 722. The oracle total is 197,688; the 1-row difference is nopd_item H0995923 (2023, motor_vehicle_theft), the offshore point at [-90.47422562, 28.49213913] that falls in no Louisiana block group (README.md:130-131) and is dropped by the block-group join; well inside the 1% per-cell tolerance (1 of 8,951 in 2023 motor_vehicle_theft). Earlier findings stand: 222,381 raw rows; 0 unmapped type_; 18,470 dropped by disposition (README.md:78); 6,222 dropped for missing or (0,0) coordinates; 0 by year; 0 by de-dup; the rape rule yields 0 rows because every rape-coded row lacks coordinates (README.md:147); the 12 rows with disposition literal \"None\" are kept as in the script. Jurisdiction: NOPD feed (README.md:5-8), so New Orleans city only (197,585 incidents in evidence/jurisdictions.csv); the 108 others (nonmunicipal remainder 65, Gretna 37, Westwego 3, Kenner 2, Slidell 1) are edge spillover. source_kind is cad_dispatch: the feed is Calls for Service (01_fetch_nola.py:3-20; README.md:41-50).",
+  "source_kind": "cad_dispatch",
+  "sources": [
+    {
+      "api_endpoint": "https://data.nola.gov/resource/9san-ivhk.json",
+      "name": "NOPD Calls for Service 2018",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2018",
+      "source_url": "https://data.nola.gov/resource/9san-ivhk",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.nola.gov/resource/qf6q-pp4b.json",
+      "name": "NOPD Calls for Service 2019",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2019",
+      "source_url": "https://data.nola.gov/resource/qf6q-pp4b",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.nola.gov/resource/hp7u-i9hf.json",
+      "name": "NOPD Calls for Service 2020",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2020",
+      "source_url": "https://data.nola.gov/resource/hp7u-i9hf",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.nola.gov/resource/3pha-hum9.json",
+      "name": "NOPD Calls for Service 2021",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2021",
+      "source_url": "https://data.nola.gov/resource/3pha-hum9",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.nola.gov/resource/nci8-thrr.json",
+      "name": "NOPD Calls for Service 2022",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2022",
+      "source_url": "https://data.nola.gov/resource/nci8-thrr",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.nola.gov/resource/pc5d-tvaw.json",
+      "name": "NOPD Calls for Service 2023",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2023",
+      "source_url": "https://data.nola.gov/resource/pc5d-tvaw",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.nola.gov/resource/2zcj-b6ts.json",
+      "name": "NOPD Calls for Service 2024",
+      "order": "nopd_item",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "nopd_item",
+        "type_",
+        "typetext",
+        "initialtype",
+        "initialtypetext",
+        "timecreate",
+        "disposition",
+        "dispositiontext",
+        "selfinitiated",
+        "beat",
+        "block_address",
+        "zip",
+        "policedistrict",
+        "location"
+      ],
+      "slug": "nopd_cfs_2024",
+      "source_url": "https://data.nola.gov/resource/2zcj-b6ts",
+      "where": "type_ in('30','30C','30D','30S','MURDER','MURDERSB','MURDERST','42','42M','43','43M','27-42','27-43','RAPE','64','64G','64J','64K','65','65J','65P','27-64','27-64J','27-65','27-65J','ROB','ROBW','ROBCJ','34','34C','34D','34S','37','37D','27-30','ASLTWP','60','60D','62','62B','62D','62H','62R','62S','27-62','BURGC','BURGOC','BURGR','HOMEIV','67','67B','67C','67P','67S','67D','27-67','27-67C','62C','27-62C','BURGV','THEFT','SHOP','61','67A','27-67A','68','VEHSTO','VEHUU','67AR','VEHSTRC') AND timecreate >= '{start}T00:00:00' AND timecreate < '{end}T00:00:00'"
+    }
+  ]
+}

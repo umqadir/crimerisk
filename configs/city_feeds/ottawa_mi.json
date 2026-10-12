@@ -1,0 +1,306 @@
+{
+  "city_key": "ottawa_mi",
+  "city_name": "Ottawa County Sheriff, MI",
+  "evidence_refs": [
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:47-60",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:66",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:71-79",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:81-92",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:97-105",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:113",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:121-133",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:144-147",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:166",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:173-178",
+    "state/review/packets/city/ottawa_mi/evidence/01_fetch_ottawa.py:189-192",
+    "state/review/packets/city/ottawa_mi/evidence/README.md:5-7",
+    "state/review/packets/city/ottawa_mi/evidence/README.md:12-16",
+    "state/review/packets/city/ottawa_mi/evidence/README.md:45-55",
+    "state/review/packets/city/ottawa_mi/evidence/README.md:59-80",
+    "state/review/packets/city/ottawa_mi/evidence/README.md:112-121",
+    "state/review/packets/city/ottawa_mi/evidence/README.md:138-145",
+    "state/review/packets/city/ottawa_mi/evidence/jurisdictions.csv",
+    "state/review/packets/city/ottawa_mi/evidence/raw_cache_profile.json",
+    "state/review/packets/city/ottawa_mi/raw_cache.parquet",
+    "state/review/packets/city/ottawa_mi/packet.json (case_text: 'an E4 truth-corpus city incident feed (2018-2024)')",
+    "state/review/packets/city/ottawa_mi/live/raw_ottawa_sheriff_incidents_2024_2025_2025_fd72af3e5f0e.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "26:state_nonmunicipal_remainder",
+      "26:municipal:place:2639800",
+      "26:municipal:place:2618020",
+      "26:municipal:place:2675820",
+      "26:municipal:place:2627960"
+    ],
+    "state_fips": [
+      "26"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Year: the script sets year to the FeatureServer item's year, not a date (01_fetch_ottawa.py:147); that 'year' column exists only in raw_cache.parquet, not in a live pull (live columns in the check result lack it, and live/raw_ottawa_sheriff_incidents_2024_2025_2025_fd72af3e5f0e.parquet has no 'year'). The revised contract leaves year_field empty and derives year from CombinedDateTime (epoch_ms, UTC). Recomputed on raw_cache.parquet with pandas (pd.to_datetime(CombinedDateTime, unit='ms', utc=True).dt.year vs year): exactly 1 row differs, OBJECTID 79156, IncidentNumber 2024-12310134, Retail Fraud/Shoplifting (larceny), 2025-01-01 01:24:41 UTC, from the 2024 item. It moves to 2025 and is dropped for 2018-2024, so the replay gives 2024 larceny 1,588 vs the script's 1,589 (README.md:120; 1105 Larceny + 481 Retail Fraud/Shoplifting + 3 Shoplifting with coordinates), a 1/1589 = 0.063% delta, and 14,799 vs 14,800 rows overall; every other year x offense cell is unchanged. The live 2025-2025 pull confirms this row is returned for 2025 (live/raw_ottawa_sheriff_incidents_2024_2025_2025_fd72af3e5f0e.parquet: 1 row, OBJECTID 79156). Converting to America/Detroit instead would move 2 different rows (OBJECTID 1863800 in 2019, 38 in 2021), so UTC is the closer reading.",
+    "Date range in where: the script sends no date predicate; it pulls every row of each year's item (01_fetch_ottawa.py:113). The contract's where adds CombinedDateTime >= TIMESTAMP '{start}' AND < TIMESTAMP '{end}'. The service evaluates TIMESTAMP in UTC: the live 2025-2025 pull returned OBJECTID 79156 (2025-01-01 01:24:41 UTC) from the 2024 item and 0 rows from the 2018-2023 items (packet live/*.parquet), so a live 2018-2024 pull omits that one row, consistent with the year derivation above.",
+    "Layer ids: the script resolves each item's single layer id live (01_fetch_ottawa.py:97-105, 110-111). The contract hardcodes the ids recorded in README.md:15 (2018=0, 2019=4, 2020=5, 2021=0, 2022=3, 2023=7, 2024=0); if the county republishes an item and the id changes, the contract endpoint breaks where the script would not.",
+    "Coordinates: the script derives latitude/longitude from the returned geometry with outSR=4326 (01_fetch_ottawa.py:128, 144-146) and drops only null coordinates (line 178); the contract also drops (0,0). The archived pull has no (0,0) rows (checked: 0) and all 144 Mapped='UnMapped' rows have null latitude, so the kept set is identical (14,800 rows). A live pull must request outSR=4326 for __arcgis_latitude/__arcgis_longitude to be WGS84.",
+    "Department scope: the script applies it only server-side (01_fetch_ottawa.py:66, 113). The contract applies it in where and also as a case-sensitive regex condition on every offense rule; on the archived pull all 14,944 rows pass (Department values: Ottawa County Sheriff, OCS-Hudsonville, OCS-Coopersville, OCS-Spring Lake/Ferrysburg).",
+    "Block-group join: the script uses a left sjoin and keeps unmatched points (01_fetch_ottawa.py:192); the contract joins with within. README.md:142 reports 14,800/14,800 matched, so no row differs on the archived pull.",
+    "Computed field combined_datetime_utc (01_fetch_ottawa.py:166) is not reproduced; it is a derived output column, not a filter."
+  ],
+  "mapping": {
+    "date_field": "CombinedDateTime",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": false,
+    "id_fields": [
+      "IncidentNumber"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IncidentTypeDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Larceny",
+              "Retail Fraud/Shoplifting",
+              "Shoplifting"
+            ]
+          },
+          {
+            "case_sensitive": true,
+            "field": "Department",
+            "op": "regex",
+            "value": "^(Ottawa County Sheriff$|OCS-)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IncidentTypeDesc",
+            "op": "eq",
+            "value": "Breaking and Entering",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "Department",
+            "op": "regex",
+            "value": "^(Ottawa County Sheriff$|OCS-)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IncidentTypeDesc",
+            "op": "eq",
+            "value": "Stolen Vehicle",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "Department",
+            "op": "regex",
+            "value": "^(Ottawa County Sheriff$|OCS-)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IncidentTypeDesc",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "Department",
+            "op": "regex",
+            "value": "^(Ottawa County Sheriff$|OCS-)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Translation of 01_fetch_ottawa.py. Offense map copied from OFFENSE_MAP (01_fetch_ottawa.py:71-78): Larceny, Retail Fraud/Shoplifting, Shoplifting -> larceny; Breaking and Entering -> burglary; Stolen Vehicle -> motor_vehicle_theft; Robbery -> robbery. Matching is case_sensitive to mirror the exact dict lookup at line 174. Murder, rape and aggravated_assault have no source category (README.md:59-80), so no rule emits them. Revision: the prior contract used year_field='year', which passed replay (28 cells, 0 failing) but failed the live pull with KeyError 'none of year in the pull'; year_field is now empty so year comes from CombinedDateTime (epoch_ms), which both pulls carry. Recomputed on raw_cache.parquet with pandas: 14,944 rows; IncidentNumber has 14,944 distinct non-null values, so dedupe_on_id=false (the script does not de-duplicate) and true give the same result; 144 rows have null latitude (all Mapped='UnMapped'); kept rows = 14,800, per year 2018 1939, 2019 2073, 2020 2136, 2021 2180, 2022 2254, 2023 2096, 2024 2122; per offense larceny 10,956 (8,089+2,828+39), burglary 2,735, motor_vehicle_theft 1,008, robbery 101. These match README.md:112-121 under the script's item year; with year derived from CombinedDateTime in UTC, 2024 larceny becomes 1,588 and total 14,799 (1 row, OBJECTID 79156, moves to 2025; see known differences). source_kind is cad_dispatch: README.md:6-7 describes an Incident Responses CAD/dispatch feed, not an RMS export. Jurisdictions: the Sheriff patrols unincorporated townships (26:state_nonmunicipal_remainder, 13,751 incidents) and the contract municipalities named by the OCS-* departments (README.md:48): Hudsonville city 2639800 (767), Coopersville city 2618020 (477), Spring Lake village 2675820 (474), Ferrysburg city 2627960 (185). Excluded: Grand Haven city (755), Holland city (90) and Zeeland city (81), which README.md:49-51 lists as served by their own departments, and Norton Shores city (4), Sparta village (4), Casnovia village (2), which fall outside the county. The 755 sheriff-scope points inside Grand Haven city are large relative to the 26 rows with VenueLabel 'Grand Haven City' (raw_cache_profile.json); the evidence does not show whether the Sheriff serves any part of that place, so this exclusion follows the README's agency table. exclusions_stated_by_publisher is empty: the packet contains no statement from the county publisher; the README's block-redacted addresses (README.md:161-164) and excluded categories are observations and repo decisions, not publisher statements.",
+  "source_kind": "cad_dispatch",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2018incidents_gdb/FeatureServer/0",
+      "name": "2018 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2018",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2019_Ottawa_County_Sheriff_Incident_Responses/FeatureServer/4",
+      "name": "2019 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2019",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2020_Ottawa_County_Sheriff_Incident_Responses/FeatureServer/5",
+      "name": "2020 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2020",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2021_Ottawa_County_Sheriff_Incident_Responses/FeatureServer/0",
+      "name": "2021 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2021",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2022_Ottawa_County_Sheriff_Incident_Responses/FeatureServer/3",
+      "name": "2022 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2022",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2023_Ottawa_County_Sheriff_Incident_Responses/FeatureServer/7",
+      "name": "2023 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2023",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://services2.arcgis.com/ixRLoNIl4gmM9jgg/arcgis/rest/services/2024_Ottawa_County_Sheriff_Incident_Responses/FeatureServer/0",
+      "name": "2024 Ottawa County Sheriff Incident Responses",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Mapped",
+        "IncidentNumber",
+        "CombinedDateTime",
+        "CategoryPublic",
+        "IncidentTypeDesc",
+        "Department",
+        "IncidentAddress",
+        "VenueLabel",
+        "NatureofCall"
+      ],
+      "slug": "ottawa_sheriff_incidents_2024",
+      "source_url": "https://sheriffincidents-ottawacountymi.hub.arcgis.com/",
+      "where": "(Department='Ottawa County Sheriff' OR Department LIKE 'OCS-%') AND IncidentTypeDesc IN ('Larceny','Retail Fraud/Shoplifting','Shoplifting','Breaking and Entering','Stolen Vehicle','Robbery') AND CombinedDateTime >= TIMESTAMP '{start} 00:00:00' AND CombinedDateTime < TIMESTAMP '{end} 00:00:00'"
+    }
+  ]
+}

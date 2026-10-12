@@ -1,0 +1,11 @@
+column,dtype
+OBJECTID,int64
+IncidentNumber,object
+ReportNumber,object
+ReportDate,int64
+OccurredFromDate,int64
+NibrsUcrCode,object
+NIBRS_Offense,object
+NIBRS_Bucket,object
+__arcgis_longitude,float64
+__arcgis_latitude,float64

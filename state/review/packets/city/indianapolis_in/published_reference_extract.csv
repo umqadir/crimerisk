@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,aggravated_assault,5885.0,nibrs_srs_equivalent_annual,high
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,burglary,4626.0,nibrs_srs_equivalent_annual,high
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,larceny,18646.0,nibrs_srs_equivalent_annual,high
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,motor_vehicle_theft,6727.0,nibrs_srs_equivalent_annual,high
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,murder,178.0,nibrs_srs_equivalent_annual,high
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,rape,527.0,nibrs_srs_equivalent_annual,high
+indianapolis_in,"Indianapolis, Indiana",18:municipal:place:1836003,robbery,1280.0,nibrs_srs_equivalent_annual,high

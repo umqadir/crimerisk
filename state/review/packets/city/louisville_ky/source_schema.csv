@@ -1,0 +1,16 @@
+column,dtype
+ObjectId,int64
+Case_Number,object
+DateTime,int64
+Address,object
+Neighborhood,object
+Council_District,object
+Latitude,float64
+Longitude,float64
+ZIP_Code,object
+Crime_Type,object
+Cause,object
+Division_Name,object
+DateText,object
+__arcgis_longitude,float64
+__arcgis_latitude,float64

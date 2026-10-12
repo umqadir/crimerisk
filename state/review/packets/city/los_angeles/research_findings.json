@@ -1,0 +1,129 @@
+{
+  "city_key": "los_angeles",
+  "city_name": "Los Angeles",
+  "jurisdiction_id": "06:municipal:place:0644000",
+  "state_abbr": "CA",
+  "review_date": "2026-03-22",
+  "artifacts": {
+    "source_contract_notes": "source_contract_notes.json",
+    "source_schema": "source_schema.csv",
+    "offense_crosswalk": "offense_crosswalk.csv",
+    "published_reference_extract": "published_reference_extract.csv",
+    "reconciliation_summary": "reconciliation_summary.csv",
+    "packet_offense_status": "packet_offense_status.csv"
+  },
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "blocked",
+    "packet_status": "review_complete",
+    "city_share_integration_status": "blocked",
+    "reconciliation_status": "fragmented_public_contract_blocked"
+  },
+  "best_current_public_sources": {
+    "legacy_geocoded_series": {
+      "datasets": [
+        "https://data.lacity.org/api/views/63jg-8b9z/rows.csv?accessType=DOWNLOAD",
+        "https://data.lacity.org/api/views/2nrs-mtv8/rows.csv?accessType=DOWNLOAD"
+      ],
+      "coverage": "2010-01-01 through 2024-12-30",
+      "strengths": [
+        "Has 100-block address text plus lat/lon fields.",
+        "Can be block-group joined directly with standard point-in-polygon handling.",
+        "Historical dual-dataset continuity exists back to 2010."
+      ],
+      "weaknesses": [
+        "The 2020-to-2024 dataset is explicitly marked historical-only after the RMS transition.",
+        "The 2024 feed undercounts most exact-comparable published 2024 lines badly even before spatial loss.",
+        "The local LA code family requires a custom offense crosswalk instead of direct FBI/NIBRS codes."
+      ]
+    },
+    "nibrs_offenses": {
+      "dataset": "https://data.lacity.org/api/views/y8y3-fqfu/rows.csv?accessType=DOWNLOAD",
+      "coverage": "2024-03-07 baseline with some earlier backfill rows; live through 2025",
+      "strengths": [
+        "Uses direct NIBRS offense codes and descriptions.",
+        "Conceptually closer to the V2 offense frame than the legacy local-code feed."
+      ],
+      "weaknesses": [
+        "No latitude, longitude, point geometry, or address field is exposed publicly.",
+        "Only AREA and RPT Dist No survive as spatial hints, and no clear public reporting-district polygon layer was found in catalog review.",
+        "2024 offense counts still diverge materially from the official LAPD year-end public totals."
+      ]
+    },
+    "nibrs_victims": {
+      "dataset": "https://data.lacity.org/api/views/gqf2-vm2j/rows.csv?accessType=DOWNLOAD",
+      "role": "supporting_only",
+      "finding": "Victims feed adds victim fields but does not restore geometry or offense coding needed for a spatial city-share layer."
+    }
+  },
+  "source_contract_findings": {
+    "legacy_dataset_description": "The legacy 2020-to-2024 dataset says LAPD completed its transition to NIBRS, the old RMS is no longer active, and the legacy dataset will remain only for historical reference.",
+    "nibrs_dataset_description": "The public NIBRS offenses and victims datasets were introduced in late 2024 and reflect the new RMS/NIBRS baseline from March 7, 2024 forward.",
+    "official_reporting_methodology": "LAPD's August 2024 reinstatement notice says 2024 public citywide person/property stats are blended SRS/NIBRS statistics and that YTD totals cannot be directly compared across years because of the reporting-method change.",
+    "implication": "There is no single clean public LA city-incidents contract for 2024 analogous to NYC, Chicago, Seattle, or Austin. The city's public surface is explicitly fractured by the SRS-to-NIBRS transition."
+  },
+  "spatial_contract": {
+    "legacy_path": {
+      "latlon_present": true,
+      "address_present": true,
+      "join_quality": "high",
+      "privacy_note": "Legacy address fields are already blurred to the nearest hundred block."
+    },
+    "nibrs_path": {
+      "latlon_present": false,
+      "address_present": false,
+      "spatial_fields_remaining": [
+        "area",
+        "area_name",
+        "rpt_dist_no",
+        "premis_desc"
+      ],
+      "join_quality": "not_block_group_ready"
+    },
+    "critical_blocker": "The post-transition public NIBRS feeds are not geocodable and no clearly documented public boundary companion was found for RPT Dist No."
+  },
+  "published_reconciliation": {
+    "reference_source_name": "LAPD 2024 year-end public crime reporting",
+    "reference_source_url": "https://mayor.lacity.gov/news/lapd-releases-2024-end-year-crime-statistics-city-los-angeles",
+    "supporting_methodology_url": "https://www.lapdonline.org/newsroom/lapd-reinstates-public-crime-data-on-www-lapdonline-org-nr24247ma/",
+    "summary_file": "reconciliation_summary.csv",
+    "key_findings": [
+      "Legacy 2024 larceny is the only line that is even directionally close to one public proxy bucket, but the comparison is ambiguous because LAPD separates theft from theft-from-motor-vehicle.",
+      "Public NIBRS offense rows are conceptually cleaner but still materially low on 2024 robbery, aggravated assault, burglary, and motor vehicle theft, and they cannot be spatially assigned below the reporting-area level because geometry is absent.",
+      "A simple cutover blend of pre-transition legacy rows plus post-transition NIBRS rows also remains materially low on most comparable 2024 lines."
+    ]
+  },
+  "judgment": {
+    "production_ready": "no",
+    "city_share_integration_status": "blocked",
+    "reconciliation_status": "fragmented_public_contract_blocked",
+    "why_not_ready": [
+      "No single current public LA feed is both offense-comparable and spatially usable.",
+      "The geocoded legacy feed is explicitly historical-only after the RMS/NIBRS transition and does not reconcile cleanly on most 2024 exact-comparable lines.",
+      "The public NIBRS feeds are non-spatial and do not have an obvious public polygon companion for trustworthy block-group allocation."
+    ],
+    "minimum_change_to_unblock": [
+      "A public post-transition LAPD incidents feed with coordinates or stable blurred address/point fields, or",
+      "A public machine-readable boundary layer that cleanly supports RPT Dist No allocation plus empirical validation against official 2024 citywide counts, or",
+      "An official LAPD bulk spatial incident export analogous to the citywide profiles but at a geography usable for block-group shares."
+    ],
+    "historical_only_note": "The 2010-2024 legacy geocoded series is still useful for historical exploratory analysis, but it should not be promoted as the current V2 city-share contract."
+  },
+  "promotable_findings": [
+    {
+      "category": "source_selection",
+      "finding": "A large city can publish both a geocoded historical incident feed and a conceptually cleaner live NIBRS feed while still lacking a single production-worthy city-share contract.",
+      "evidence_from_los_angeles": "LA's legacy feed has coordinates but is explicitly historical-only after the transition; the live NIBRS feeds are cleaner conceptually but non-spatial."
+    },
+    {
+      "category": "gating",
+      "finding": "Do not promote a post-transition NIBRS feed if it drops all usable geometry and there is no public, validated polygon companion for the remaining district identifiers.",
+      "evidence_from_los_angeles": "The public NIBRS offenses and victims datasets expose AREA and RPT Dist No but no lat/lon or address, and no clear public reporting-district polygon dataset surfaced in catalog searches."
+    },
+    {
+      "category": "reconciliation",
+      "finding": "Exact or near-exact public reconciliation must be demonstrated on at least the clearly comparable offense lines before a city with a transition break can be promoted.",
+      "evidence_from_los_angeles": "Legacy, NIBRS, and simple cutover-blend counts all remain materially below LAPD's published 2024 robbery, aggravated assault, burglary, and motor-vehicle-theft totals."
+    }
+  ]
+}

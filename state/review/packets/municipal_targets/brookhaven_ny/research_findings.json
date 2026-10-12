@@ -1,0 +1,78 @@
+{
+  "case_key": "brookhaven_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610310000",
+  "jurisdiction_name": "Brookhaven town",
+  "state_abbr": "NY",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_municipal_control_row_36_municipal_cousub_3610310000_and_treat_brookhaven_as_suffolk_county_primary_service_structure_with_village_specific_handling",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Official Town of Brookhaven sources show a Public Safety Department and Code Enforcement division, not a Brookhaven town police department. The Town's Code Enforcement page says Code Enforcement is the Town's uniformed security force and works in conjunction with local law enforcement rather than serving as the police agency.",
+    "Official Suffolk County sources place Brookhaven inside the Suffolk County Police District. Suffolk County's police materials say the Department provides police services for the western police district towns including Brookhaven, and county precinct materials place different parts of Brookhaven in the 5th, 6th, and 7th precinct structure.",
+    "Official Brookhaven planning material shows the town is not a single undivided municipal service unit: it contains eight incorporated villages and about 50 hamlets. The Town Clerk's disability-permit page separately routes residents of Patchogue, Port Jefferson, and Bellport to their village halls rather than the Town Clerk.",
+    "Official village public-safety pages inside Brookhaven do not support a town-level police row. Bellport and Port Jefferson both direct police matters to the Suffolk County Police Department while using village code-enforcement/public-safety staff for ordinance and quality-of-life functions.",
+    "Internal repo artifacts show the current Brookhaven town row is not an observed annual policing surface. The crosswalk routes only NY0510600 to the town by provisional auto logic, jurisdiction observations are zero in every panel year 2018-2024, and the 2024 control row is entirely current-year fill."
+  ],
+  "governance_structure": {
+    "municipal_status": "town_with_mixed_unincorporated_and_incorporated_village_service_structure",
+    "official_basis": [
+      "Brookhaven's own planning document says the Town contains eight incorporated villages and approximately 50 hamlets.",
+      "Brookhaven's Town Clerk page separately directs residents of certain incorporated villages to village hall rather than to the Town for disability parking permits."
+    ],
+    "incorporated_villages_named_by_town": [
+      "Belle Terre",
+      "Bellport",
+      "Lake Grove",
+      "Old Field",
+      "Patchogue",
+      "Poquott",
+      "Port Jefferson",
+      "Shoreham"
+    ]
+  },
+  "policing_structure": {
+    "town_police_department_found": false,
+    "town_public_safety_found": true,
+    "town_public_safety_character": [
+      "code enforcement",
+      "uniformed security for town facilities",
+      "parking and quality-of-life enforcement",
+      "radio and communications center",
+      "coordination with law enforcement rather than replacement of law enforcement"
+    ],
+    "primary_policing_entity_for_unincorporated_brookhaven": "Suffolk County Police Department",
+    "county_precinct_evidence": [
+      "Suffolk County police event page identifies the 7th Precinct as Brookhaven (East) to Riverhead and Southampton.",
+      "Suffolk County police map shows Brookhaven spanning Suffolk County Police 5th, 6th, and 7th precinct geography rather than a Brookhaven town police department."
+    ],
+    "village_interaction": [
+      "Bellport official page routes crimes and emergencies to Suffolk County Police and reserves village personnel for code enforcement.",
+      "Port Jefferson official public-safety pages distinguish Suffolk County Police from village code enforcement and state that only police officers can enforce the Penal Law."
+    ]
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "NY0510600 is currently auto-routed exclusively to Brookhaven town",
+    "current_observation_state": "Brookhaven town jurisdiction observations are zero for all seven offenses in every year 2018-2024",
+    "current_control_state": "Brookhaven town 2024 controls are entirely fill-driven with no observed local annual row"
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_row_exists_for_town": false,
+    "why_not": [
+      "The Town does not appear to maintain an official police department or a usable town-level annual police reporting surface.",
+      "County policing, incorporated-village governance, and village-level public-safety/code arrangements split the service structure inside Brookhaven.",
+      "The current repo row is effectively a synthetic filled town target anchored to a provisional Brookhaven PD label rather than to a verified policing jurisdiction."
+    ],
+    "recommended_handling": [
+      "Do not retain the standalone Brookhaven town municipal control row 36:municipal:cousub:3610310000.",
+      "Treat unincorporated Brookhaven as part of the Suffolk County Police District service structure rather than as an independent municipal police jurisdiction.",
+      "Preserve village-specific treatment separately where a village has its own meaningful public-safety or police arrangement; do not collapse those arrangements into a fake town-wide row."
+    ]
+  },
+  "open_questions": [
+    "A later village-by-village packet pass can sort which Brookhaven villages deserve separate local handling versus county-plus-code-enforcement treatment, but that does not rescue a Brookhaven town-wide annual control row."
+  ]
+}

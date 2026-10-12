@@ -1,0 +1,342 @@
+{
+  "generated_on": "2026-03-24",
+  "scope": "Airport and airport-authority custom-footprint overlap cases already accepted into production",
+  "cases": [
+    {
+      "case_id": "TX2203600",
+      "agency": "DFW Airport Police",
+      "status": "buildable_now",
+      "recommended_exactness": "exact_after_county_parcel_assembly_and_official_map_qa",
+      "recommended_build_method": "Build a two-county airport property polygon by joining Tarrant and Dallas cadastral geometry to their appraisal-roll ownership tables, selecting airport-board-owned airport-campus parcels on both sides of the county line, dissolving them into one multipart polygon, and validating parcel inclusion against the official DFW tract map and land-use map.",
+      "recommended_build_path": [
+        "Tarrant County side: use https://www.tad.org/content/gis-data/2025ESRI_Parcels.zip together with https://www.tad.org/content/data-download/PropertyData_2025(Certified).ZIP to recover owner-linked parcel polygons.",
+        "Dallas County side: use https://www.dallascad.org/ViewPDFs.aspx?type=3&id=%5C%5CDCAD.ORG%5CWEB%5CWEBDATA%5CWEBFORMS%5CGIS%20PRODUCTS%5CPARCEL_GEOM.zip and follow https://www.dallascad.org/PARCEL_GEOM.pdf to join geometry back to appraisal attributes.",
+        "QA and cleanup: compare the dissolved parcel bundle to the official DFW tract map https://dfwairport-prd-dfw-vip.dfwairport.com/cs/groups/webcontent/documents/webasset/p2_139343.pdf and land-use map https://dfwairport-prd-dfw-vip.dfwairport.com/cs/groups/webcontent/documents/webasset/p3_102231.pdf before computing block-group weight shares."
+      ],
+      "source_hierarchy": [
+        {
+          "rank": 1,
+          "available": true,
+          "source_type": "official_downloadable_gis",
+          "sources": [
+            {
+              "title": "Tarrant Appraisal District parcel package",
+              "url": "https://www.tad.org/content/gis-data/2025ESRI_Parcels.zip",
+              "format": "ZIP parcel package",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Tarrant Appraisal District certified property roll",
+              "url": "https://www.tad.org/content/data-download/PropertyData_2025(Certified).ZIP",
+              "format": "ZIP appraisal-roll table",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Dallas CAD PARCEL_GEOM",
+              "url": "https://www.dallascad.org/ViewPDFs.aspx?type=3&id=%5C%5CDCAD.ORG%5CWEB%5CWEBDATA%5CWEBFORMS%5CGIS%20PRODUCTS%5CPARCEL_GEOM.zip",
+              "format": "ZIP parcel geometry",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes"
+        },
+        {
+          "rank": 2,
+          "available": true,
+          "source_type": "official_pdf_map",
+          "sources": [
+            {
+              "title": "DFW tract map",
+              "url": "https://dfwairport-prd-dfw-vip.dfwairport.com/cs/groups/webcontent/documents/webasset/p2_139343.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "DFW land-use map",
+              "url": "https://dfwairport-prd-dfw-vip.dfwairport.com/cs/groups/webcontent/documents/webasset/p3_102231.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes"
+        },
+        {
+          "rank": 3,
+          "available": false,
+          "source_type": "public_fallback",
+          "production_use": "no",
+          "reason": "Official county cadastral geometry and official airport maps are sufficient; no public fallback is needed."
+        }
+      ],
+      "validation_notes": [
+        "I did not find a public single-file official DFW property-boundary polygon. The parcel-assembly path is still production-usable because both counties publish official parcel geometry and DFW publishes tract and land-use maps for QA.",
+        "Treat the tract map as the arbitration source if owner-name matching captures airport-related but non-campus holdings."
+      ]
+    },
+    {
+      "case_id": "MD0020300",
+      "agency": "BWI / Maryland Aviation Administration airport case",
+      "status": "buildable_now",
+      "recommended_exactness": "exact_after_owner_filtered_parcel_union_and_official_map_qa",
+      "recommended_build_method": "Build the footprint from the official Anne Arundel County parcel layer by selecting contiguous BWI campus parcels owned by Maryland Aviation Administration or equivalent State of Maryland aviation-owner variants, dissolve them, and use the official BWI environmental-review figures to confirm the airport property edge and remove any off-campus owner matches.",
+      "recommended_build_path": [
+        "Primary geometry: https://gis.aacounty.org/arcgis/rest/services/OpenData/Planning_OpenData/MapServer/34 queried through owner fields such as ASST_FIRST_OWNER and ASST_SECND_OWNER.",
+        "QA and cleanup: validate the parcel union against the official 2020 Final EA/FONSI-ROD https://marylandaviation.com/wp-content/uploads/2020/11/111220_Final%20EA%20and%20Section%204f%20Determination%20and%20Finding%20of%20No%20Significant%20Impact%20%20Record%20of%20Decision.pdf and Appendix H https://marylandaviation.com/wp-content/uploads/2020/11/111220_Appendix%20H%20-%20Biological.pdf.",
+        "Final geometry: dissolved airport property polygon ready for block-group intersection."
+      ],
+      "source_hierarchy": [
+        {
+          "rank": 1,
+          "available": true,
+          "source_type": "official_downloadable_gis",
+          "sources": [
+            {
+              "title": "Anne Arundel County Parcels",
+              "url": "https://gis.aacounty.org/arcgis/rest/services/OpenData/Planning_OpenData/MapServer/34",
+              "format": "ArcGIS REST polygon layer with JSON and geoJSON query support",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes"
+        },
+        {
+          "rank": 2,
+          "available": true,
+          "source_type": "official_pdf_map",
+          "sources": [
+            {
+              "title": "Final EA / FONSI-ROD",
+              "url": "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Final%20EA%20and%20Section%204f%20Determination%20and%20Finding%20of%20No%20Significant%20Impact%20%20Record%20of%20Decision.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Appendix H - Biological",
+              "url": "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Appendix%20H%20-%20Biological.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes"
+        },
+        {
+          "rank": 3,
+          "available": false,
+          "source_type": "public_fallback",
+          "production_use": "no",
+          "reason": "Official parcel geometry and official airport-property maps are already available."
+        }
+      ],
+      "validation_notes": [
+        "This is the cleanest airport case in the batch because the official county parcel layer exposes owner fields directly and the airport authority is a visible owner in the assessor data.",
+        "If an owner-name query pulls remote support holdings, keep only the continuous airport campus confirmed by the EA figures."
+      ]
+    },
+    {
+      "case_id": "GA0602400",
+      "agency": "Hartsfield-Jackson airport case",
+      "status": "buildable_now",
+      "recommended_exactness": "near_exact",
+      "recommended_build_method": "Build a near-exact airport-campus polygon from the official airport ArcGIS organization by unioning the ATL_Airfield operational polygons with official ATL surface-transportation and building polygons, then use the official Clayton County parcel layer to validate airport ownership and fill landside airport parcels. This is production-usable even though I did not find a single public legal property-boundary polygon.",
+      "recommended_build_path": [
+        "Operational footprint: https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Airfield/FeatureServer with emphasis on AirOperationsArea Apron Infield MovementArea RunwaySafetyAreaBoundary and RW_TW_SafetyZoneMerge.",
+        "Landside fill: https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Surface_Transportation/FeatureServer and https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Buildings/FeatureServer.",
+        "Ownership QA: https://gis.claytoncountyga.gov/server/rest/services/TaxAssessor/Parcels/MapServer/0 filtered with airport parcel signatures such as OWNERNME = CITY OF ATLANTA, SITEADDRES = ATLANTA INTL AIRPORT, APPRAREA = 333, and airport land-use categories.",
+        "Final geometry: dissolve the unioned airport-operated polygons and parcel-backed landside polygons into one multipart footprint."
+      ],
+      "source_hierarchy": [
+        {
+          "rank": 1,
+          "available": true,
+          "source_type": "official_downloadable_gis",
+          "sources": [
+            {
+              "title": "ATL_Airfield FeatureServer",
+              "url": "https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Airfield/FeatureServer",
+              "format": "ArcGIS FeatureServer exportable to shapefile geojson sqlite geopackage and filegdb",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "ATL_Surface_Transportation FeatureServer",
+              "url": "https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Surface_Transportation/FeatureServer",
+              "format": "ArcGIS FeatureServer exportable to shapefile geojson sqlite geopackage and filegdb",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "ATL_Buildings FeatureServer",
+              "url": "https://services5.arcgis.com/62o2qANhRqripAuB/arcgis/rest/services/ATL_Buildings/FeatureServer",
+              "format": "ArcGIS FeatureServer exportable to shapefile geojson sqlite geopackage and filegdb",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Clayton County Tax Parcels",
+              "url": "https://gis.claytoncountyga.gov/server/rest/services/TaxAssessor/Parcels/MapServer/0",
+              "format": "ArcGIS REST polygon layer",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes"
+        },
+        {
+          "rank": 2,
+          "available": false,
+          "source_type": "official_pdf_map",
+          "production_use": "not_required_for_recommended_path",
+          "reason": "The official airport ArcGIS services are strong enough to build a production geometry without depending on a passenger-facing PDF map. I did not independently verify a public legal-boundary PDF for ATL."
+        },
+        {
+          "rank": 3,
+          "available": false,
+          "source_type": "public_fallback",
+          "production_use": "no",
+          "reason": "Official airport GIS and official county parcels are already available."
+        }
+      ],
+      "validation_notes": [
+        "This is near-exact, not parcel-perfect legal title, because the airport publishes rich official operational GIS but not a single public whole-property boundary polygon.",
+        "If a future pass finds a public Fulton-side cadastral source that clearly tags airport property, it should be layered in as a precision upgrade rather than a blocker."
+      ]
+    },
+    {
+      "case_id": "VAMWA0000",
+      "agency": "MWAA Police (Reagan National + Dulles + Dulles roadway facilities)",
+      "status": "buildable_now",
+      "recommended_exactness": "near_exact",
+      "recommended_build_method": "Build a multi-facility authority footprint by using bounded Reagan and Dulles airport-campus proxies from the live Virginia block-group lattice, validating those proxies against the official DCA EA and Dulles master-plan / ALP materials, extracting the Dulles roadway facilities from official VDOT Route 267 GIS, buffering those routes conservatively, and unioning the airport and roadway geometries into one multipart MWAA police footprint.",
+      "recommended_build_path": [
+        "Reagan airport component: use special Virginia block group 510139802001 as the bounded public Reagan campus proxy after validating its shape and acreage against https://www.mwaa.com/sites/mwaa.com/files/2024-03/dca_roadway_ea_v1_final_ea_20231213_signed.pdf and https://www.mwaa.com/sites/mwaa.com/files/2024-03/dca_roadway_ea_v2_final_ea_appendices_20240111.pdf.",
+        "Dulles airport component: use special Virginia block groups 510599802001 and 511079801001 as the bounded public Dulles campus proxy after validating their combined acreage and map fit against https://www.flydulles.com/airport-overview and the Dulles master-plan / ALP materials.",
+        "Roadway facilities: extract Route 267 segments from https://services.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/VDOT_Routes/FeatureServer inside the Dulles corridor and buffer them conservatively to represent the MWAA-policed Dulles Access Road and Dulles Toll Road facilities.",
+        "Final geometry: multipart union of the Reagan proxy BG, the two Dulles proxy BGs, and the buffered Dulles roadway corridor, then intersect that union with 2020 Virginia TIGER block groups."
+      ],
+      "source_hierarchy": [
+        {
+          "rank": 1,
+          "available": true,
+          "source_type": "official_downloadable_gis",
+          "sources": [
+            {
+              "title": "VDOT_Routes FeatureServer",
+              "url": "https://services.arcgis.com/p5v98VHDX9Atv3l7/arcgis/rest/services/VDOT_Routes/FeatureServer",
+              "format": "ArcGIS FeatureServer exportable to shapefile geojson sqlite geopackage and filegdb",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes",
+          "note": "This is the primary buildable roadway-geometry source for the Dulles facilities component; the airport components close through official-doc QA against bounded airport-campus proxies."
+        },
+        {
+          "rank": 2,
+          "available": true,
+          "source_type": "official_pdf_map",
+          "sources": [
+            {
+              "title": "DCA Final EA",
+              "url": "https://www.mwaa.com/sites/mwaa.com/files/2024-03/dca_roadway_ea_v1_final_ea_20231213_signed.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "DCA Final EA Appendices",
+              "url": "https://www.mwaa.com/sites/mwaa.com/files/2024-03/dca_roadway_ea_v2_final_ea_appendices_20240111.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "IAD Airport Layout Plan drawing set",
+              "url": "https://www.flydulles.com/sites/flydulles.com/files/2025-07/IAD_MP_ALP_Full%20Size%20Set_May2025_Optimized.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Dulles Toll Road print map",
+              "url": "https://www.dullestollroad.com/sites/dullestollroad.com/files/legacyfiles/dtr_map_2014.jpg",
+              "format": "JPG",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "yes"
+        },
+        {
+          "rank": 3,
+          "available": false,
+          "source_type": "public_fallback",
+          "production_use": "no",
+          "reason": "Official GIS and official airport-authority plan documents are sufficient for a production build."
+        }
+      ],
+      "validation_notes": [
+        "The roadway piece is near-exact rather than exact because the public VDOT source is a centerline layer, not a surveyed right-of-way polygon; a conservative buffer is therefore preferable to pretending there is a legal corridor polygon.",
+        "The airport components are not hand-digitized polygons; they are bounded special airport block-group proxies whose acreage closely matches the official Reagan and Dulles campus figures and whose shapes align to the official map context.",
+        "Fairfax and Loudoun parcel/land-use inventories are useful corroboration, but they materially undercount the full Dulles property and therefore are not sufficient as the primary build geometry."
+      ]
+    },
+    {
+      "case_id": "NJNYPOA00 / NY0300300",
+      "agency": "Port Authority system",
+      "status": "later_geometry_project",
+      "recommended_exactness": "deferred",
+      "recommended_build_method": "Do not build a production Port Authority police footprint from the currently public geometry sources. Keep the already-accepted broad overlap handling until a dedicated facility-by-facility geometry project is funded.",
+      "recommended_build_path": [
+        "Use official documents such as the 2025 Budget Book https://www.panynj.gov/content/dam/corporate/budgets-pdfs/2025-Budget-Book.pdf, the police-services RFP https://www.panynj.gov/content/dam/port-authority/pdfs/goods-and-services-pdfs/RFPQDOC_6000000799.pdf, and the official statement https://www.panynj.gov/content/dam/corporate/consolidated-bonds-%26-notes-pdfs/port-authority-OS-series-251.pdf only to define system scope.",
+        "Do not rely on the public PANYNJ Facility layer https://geoapps.gis.panynj.gov/arcgis/rest/services/Hosted/Facility/FeatureServer/0 for production geometry. It is named Facility Old and exposes only department and facility codes, not facility names or boundary semantics.",
+        "Future geometry work will need separate build programs for airports, PATH, bridges and tunnels, bus terminal, World Trade Center, and marine-terminal assets, with facility-specific parcel or right-of-way methods."
+      ],
+      "source_hierarchy": [
+        {
+          "rank": 1,
+          "available": true,
+          "source_type": "official_downloadable_gis_candidate",
+          "sources": [
+            {
+              "title": "PANYNJ Hosted Facility layer",
+              "url": "https://geoapps.gis.panynj.gov/arcgis/rest/services/Hosted/Facility/FeatureServer/0",
+              "format": "ArcGIS REST polygon layer with JSON and geoJSON query support",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "no",
+          "reason": "The layer is underdocumented, named Facility Old, has only four fields, uses opaque codes such as TB&T LT and RE BIP, includes duplicates, and does not prove that the polygons are property boundaries or police-jurisdiction extents."
+        },
+        {
+          "rank": 2,
+          "available": true,
+          "source_type": "official_pdf_map",
+          "sources": [
+            {
+              "title": "Port Authority 2025 Budget Book",
+              "url": "https://www.panynj.gov/content/dam/corporate/budgets-pdfs/2025-Budget-Book.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Police services RFP",
+              "url": "https://www.panynj.gov/content/dam/port-authority/pdfs/goods-and-services-pdfs/RFPQDOC_6000000799.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            },
+            {
+              "title": "Official statement series 251",
+              "url": "https://www.panynj.gov/content/dam/corporate/consolidated-bonds-%26-notes-pdfs/port-authority-OS-series-251.pdf",
+              "format": "PDF",
+              "live_as_of": "2026-03-24"
+            }
+          ],
+          "production_use": "no",
+          "reason": "These documents establish which facilities belong to the Port Authority system, but they do not provide property-accurate geometry."
+        },
+        {
+          "rank": 3,
+          "available": false,
+          "source_type": "public_fallback",
+          "production_use": "no",
+          "reason": "A systemwide OSM fallback is not defensible here because airports, PATH, bridges, tunnels, ports, and the World Trade Center all require different official validation methods and the public official geometry package is incomplete."
+        }
+      ],
+      "validation_notes": [
+        "This remains a later geometry project for a precise reason, not because the agency scope is unclear. Scope is clear; buildable public facility geometry is not.",
+        "The public Facility layer is evidence that PANYNJ maintains internal GIS, but the publicly exposed version is not documented well enough to convert into production overlap weights."
+      ]
+    }
+  ]
+}

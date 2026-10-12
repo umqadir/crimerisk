@@ -1,0 +1,394 @@
+{
+  "city_key": "henderson_nv",
+  "city_name": "Henderson, NV",
+  "evidence_refs": [
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:43",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:49-56",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:58-61",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:66-77",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:83-100",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:111-114",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:143-147",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:161",
+    "state/review/packets/city/henderson_nv/evidence/01_fetch_henderson.py:168-173",
+    "state/review/packets/city/henderson_nv/evidence/README.md:5-8",
+    "state/review/packets/city/henderson_nv/evidence/README.md:15-26",
+    "state/review/packets/city/henderson_nv/evidence/README.md:28-35",
+    "state/review/packets/city/henderson_nv/evidence/README.md:37-39",
+    "state/review/packets/city/henderson_nv/evidence/README.md:46-69",
+    "state/review/packets/city/henderson_nv/evidence/README.md:73-82",
+    "state/review/packets/city/henderson_nv/evidence/README.md:106-125",
+    "state/review/packets/city/henderson_nv/evidence/README.md:170-172",
+    "state/review/packets/city/henderson_nv/evidence/raw_cache_profile.json: EVENT__ distinct_count 51595 of rows 51595",
+    "state/review/packets/city/henderson_nv/evidence/raw_cache_profile.json: INC_PRIMAR distinct",
+    "state/review/packets/city/henderson_nv/evidence/raw_cache_profile.json: latitude min -37.495828409291974",
+    "state/review/packets/city/henderson_nv/evidence/jurisdictions.csv:2-4",
+    "state/review/packets/city/henderson_nv/raw_cache.parquet",
+    "packet.json case_text: \"an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_henderson.py\"",
+    "state/review/packets/city/henderson_nv/raw_cache.parquet: latitude == -37.495828409291974 for 119 of 26,907 offense-mapped rows"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Publisher licensing text describes the feed as preliminary HPD data that may change when reported to the FBI after verification; not official UCR data (README.md lines 37-39).",
+    "INC_ADDRESS is published block-redacted, e.g. '300 BLOCK N ARROYO GRANDE BLVD' (README.md lines 31-32, 140-146).",
+    "Incidents whose address could not be geocoded upstream are published at a placeholder coordinate (-37.495828, -117.845097), the layer extent minimum corner, rather than with null geometry (README.md lines 115-125)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "32:municipal:place:3231900"
+    ],
+    "state_fips": [
+      "32"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Year: the script sets `year` from the layer it fetched (01_fetch_henderson.py line 114), a computed field a live pull does not return. The contract derives year from OCCURRED_S (epoch_ms). On raw_cache.parquet, year(OCCURRED_S as UTC) equals the layer year for all 51,595 rows (recomputed: pd.to_datetime(OCCURRED_S, unit='ms', utc=True).dt.year != year -> 0 rows; per-year counts 2018=9489, 2019=8335, 2020=6793, 2021=6336, 2022=6545, 2023=7692, 2024=6405, all on the diagonal).",
+    "Layer resolution: the script resolves layer ids by name 'Crime Data <year>' at run time (lines 66-77); the contract hard-codes layers 10-16 as listed in README.md lines 15-23. A renumbered MapServer would need the endpoints updated.",
+    "Live where clause: the script queries each layer with where '1=1' (lines 83, 93); the contract sends an OCCURRED_S date range with DATE literals. Each layer holds one calendar year, so the result per requested year is the same, but the DATE-literal syntax against this MapServer date field has not been tested live.",
+    "Coordinates: the script takes lon/lat from the feature geometry with outSR=4326 (lines 95, 111-113); the contract reads archived `latitude`/`longitude` and falls back to `__arcgis_latitude`/`__arcgis_longitude` on a live pull.",
+    "Coordinate filter: the script drops only null lat/lon (line 147); the runner also drops (0,0). On raw_cache.parquet the 26,907 offense-mapped rows have 0 null and 0 (0,0) coordinates, so the kept set is identical.",
+    "Sentinel coordinate: the replay target is the integrator-cleaned incidents_bg.parquet (26,788 rows; README.md lines 170-172), not the script's 26,907-row output. The script keeps 119 offense-mapped rows at the placeholder (-37.495828409291974, -117.84509685738746) (README.md lines 115-125); the runner kept them too (previous check: replay_rows 26907 vs oracle_rows 26788). Every offense rule now carries exclude_conditions `latitude` regex '^-37\\.4958' and `__arcgis_latitude` regex '^-37\\.4958', so a row at the sentinel gets no offense and is dropped, on the archived pull (column `latitude`) and on a live pull (geometry as `__arcgis_latitude`). Recomputed on raw_cache.parquet: str(latitude) matches '^-37\\.4958' for 119 of 26,907 offense-mapped rows, all at one coordinate pair; no other offense-mapped row has latitude < 0 (min of the rest is > 35); by year 2018=25, 2019=20, 2020=19, 2021=7, 2022=31, 2023=16, 2024=1. Kept after exclusion = 26,788, and the five previously failing cells now equal the oracle: 2019 rape 101-3=98, 2020 rape 94-4=90, 2022 burglary 385-5=380, larceny 1659-19=1640, motor_vehicle_theft 468-7=461. Assumptions not verifiable from the packet: the runner applies regex to the string form of a float column ('-37.495828409291974'), and a condition on a column absent from the pull (`__arcgis_latitude` in the archive, `latitude` in a live pull) evaluates as not matching rather than raising. If either fails, the fallback is a single exclude on whichever column the runner resolves.",
+    "De-duplication: the script does no de-duplication; dedupe_on_id is false. EVENT__ has 51,595 distinct values in 51,595 rows (raw_cache_profile.json; recomputed duplicated() -> 0), so setting it true would not change the output.",
+    "Output columns: the script also writes OCCURRED_S_utc, BEAT, CITY, STATE, INC_ADDRESS, INC_PRIMAR and renames EVENT__ to incident_id (lines 168-173); these are passthrough fields, not filters.",
+    "Offense match: the script uses a case-sensitive exact dict lookup (line 143); the rules use eq with case_sensitive true. All INC_PRIMAR values in the raw pull are upper case (raw_cache_profile.json), so case handling has no effect on this data."
+  ],
+  "mapping": {
+    "date_field": "OCCURRED_S",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": false,
+    "id_fields": [
+      "EVENT__"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "INC_PRIMAR",
+            "op": "eq",
+            "value": "MURDER",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "INC_PRIMAR",
+            "op": "eq",
+            "value": "SEX ASSAULT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "INC_PRIMAR",
+            "op": "eq",
+            "value": "ROBBERY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "INC_PRIMAR",
+            "op": "eq",
+            "value": "BURGLARY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "INC_PRIMAR",
+            "op": "eq",
+            "value": "LARCENY/THEFT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "INC_PRIMAR",
+            "op": "eq",
+            "value": "MOTOR VEHICLE THEFT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_latitude",
+            "op": "regex",
+            "value": "^-37\\.4958",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Direct translation of 01_fetch_henderson.py. Offense mapping (lines 49-56): MURDER->murder, SEX ASSAULT->rape, ROBBERY->robbery, BURGLARY->burglary, LARCENY/THEFT->larceny, MOTOR VEHICLE THEFT->motor_vehicle_theft. ASSAULT/BATTERY (21,128 raw rows), NARCOTICS (3,508) and ARSON (52) are unmapped, so aggravated_assault has no rule; the script and README (lines 58-69) exclude ASSAULT/BATTERY because the schema has no aggravated/simple split. Recomputed on raw_cache.parquet: rows kept by offense = 26,907 (by year 2018=6365, 2019=5527, 2020=4086, 2021=2472, 2022=2652, 2023=3362, 2024=2443), matching the README table (lines 73-82) and the INC_PRIMAR distinct counts in raw_cache_profile.json (33+408+864+3803+17251+4548 = 26,907). All offense-mapped rows have coordinates; 119 are the sentinel point, excluded by exclude_conditions on every offense rule (revision after the replay check reported replay 26,907 vs oracle 26,788 with failing cells 2019/2020 rape and 2022 burglary/larceny/motor_vehicle_theft). Recomputed kept rows after exclusion: 26,788 (by year 2018=6340, 2019=5507, 2020=4067, 2021=2465, 2022=2621, 2023=3346, 2024=2442), matching README line 109 and lines 170-172. Jurisdiction: Henderson PD is a city PD, so jurisdiction_ids is Henderson city (32:municipal:place:3231900). jurisdictions.csv also lists points in the Nevada nonmunicipal remainder (5,379) and Boulder City (101); these are treated as points of the Henderson feed falling outside the city polygon, not as other jurisdictions the publisher serves. The README gives no statement that HPD serves any other jurisdiction. MapServer layers 5-9 and 17 (daily feed, 2014-2017, 2025) exist but are not fetched by the script (README lines 25-26) and are not included.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/10/query",
+      "name": "Henderson PD Crime Data 2018",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2018",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/11/query",
+      "name": "Henderson PD Crime Data 2019",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2019",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/12/query",
+      "name": "Henderson PD Crime Data 2020",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2020",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/13/query",
+      "name": "Henderson PD Crime Data 2021",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2021",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/14/query",
+      "name": "Henderson PD Crime Data 2022",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2022",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/15/query",
+      "name": "Henderson PD Crime Data 2023",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2023",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://maps.cityofhenderson.com/arcgis/rest/services/public/OpenDataPublicSafety/MapServer/16/query",
+      "name": "Henderson PD Crime Data 2024",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "EVENT__",
+        "CITY",
+        "STATE",
+        "BEAT",
+        "OCCURRED_S",
+        "OCCURRED_END",
+        "PROC_DATE",
+        "INC_ADDRESS",
+        "INC_PRIMAR"
+      ],
+      "slug": "henderson_crime_data_2024",
+      "source_url": "https://gis-hendersonnv.opendata.arcgis.com/",
+      "where": "OCCURRED_S >= DATE '{start}' AND OCCURRED_S < DATE '{end}'"
+    }
+  ]
+}

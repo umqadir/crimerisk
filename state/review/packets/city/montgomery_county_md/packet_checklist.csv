@@ -1,0 +1,6 @@
+check,status
+official_total_lane_present,fail
+share_geography_gate,fail
+share_sum_gate,pass
+strict_reconciliation_recorded,pass
+incident_feed_not_used_as_total,pass

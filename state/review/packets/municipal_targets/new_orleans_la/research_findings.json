@@ -1,0 +1,150 @@
+{
+  "case_key": "new_orleans_la",
+  "jurisdiction_id": "22:municipal:place:2255000",
+  "jurisdiction_name": "New Orleans city",
+  "state_abbr": "LA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_2024_as_broken_local_continuity_requiring_nopd_override",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "New Orleans is a real primary local policing surface, not a fake municipal target. The City of New Orleans operates the New Orleans Police Department as an official city department, and the city says New Orleans is divided into eight NOPD police districts.",
+    "The repo crosswalk is structurally simple rather than suspect: LANPD0000 maps exclusively to 22:municipal:place:2255000, and there is no competing local police row routed into the municipal target.",
+    "Repo history shows real reporting continuity through 2018-2023 rather than a routing artifact. The New Orleans municipal row carries positive seven-offense annual observations in every year from 2018 through 2023, then collapses to seven zero-count annual SRS rows in 2024 with months_reported = 0 and quality_tier = unknown.",
+    "That 2024 collapse is not because New Orleans stopped existing as a local public-safety surface. City-run NOPD sources continued publishing 2024 police incident data and official annual preliminary crime statistics.",
+    "The best official 2024 local publication anchor is NOPD's own annual preliminary crime statistics, supplemented by the Special Victims Division annual report for UCR rape counts. The City/NOPD Electronic Police Report dataset is useful as secondary audit evidence, not as the production count source.",
+    "Louisiana's statewide public path is too lagged to anchor a 2024 New Orleans municipal row. The public LCLE 'Crime in Louisiana' annual report currently available is a 2023 report released later and is useful as a continuity benchmark, not as the primary 2024 city-level production source."
+  ],
+  "governance_structure": {
+    "municipal_status": "valid_primary_municipal_policing_surface",
+    "official_basis": [
+      "NOPD is an official City of New Orleans department.",
+      "The city states that New Orleans is divided into eight NOPD police districts, which is direct evidence of a citywide primary municipal policing structure."
+    ],
+    "repo_crosswalk_status": {
+      "ori9": "LANPD0000",
+      "mapping": "exclusive_to_new_orleans_city",
+      "evidence": "The current agency-to-jurisdiction crosswalk maps only LANPD0000 to 22:municipal:place:2255000."
+    }
+  },
+  "local_publication_structure": {
+    "official_city_and_nopd_surfaces": [
+      {
+        "surface": "NOPD Annual Preliminary Crime Statistics",
+        "coverage": "citywide annual major-offense publication",
+        "why_it_matters": "This is the strongest official local 2024 annual publication surface for New Orleans. It is already grouped into major-offense categories and publishes year-over-year counts."
+      },
+      {
+        "surface": "NOPD Special Victims Division 2024 Annual Summary",
+        "coverage": "rape-specific annual publication",
+        "why_it_matters": "This provides an explicit UCR rape count and explains that UCR rape classifications are broader than simple Louisiana rape-statute tallies."
+      },
+      {
+        "surface": "Data.NOLA Electronic Police Report 2024",
+        "coverage": "city-published incident-report dataset attributed to Police Department (NOPD)",
+        "why_it_matters": "This is the underlying current-year local incident publication surface showing that NOPD continued publishing 2024 police-report data even though the repo's federal summary path went to zero. Treat it as secondary audit/reconciliation support rather than as the production count source."
+      }
+    ],
+    "state_publication_path": {
+      "surface": "Crime in Louisiana 2023 annual report",
+      "role": "secondary continuity benchmark only",
+      "why_not_primary_for_2024": "The Louisiana public annual report path is lagged and not a ready 2024 city-level production source. It remains useful for statewide continuity context and confirms that New Orleans P.D. remained a real Louisiana reporting entity."
+    }
+  },
+  "repo_internal_evidence": {
+    "historical_observation_totals": {
+      "2018": 22674.0,
+      "2019": 25395.0,
+      "2020": 23091.0,
+      "2021": 21664.0,
+      "2022": 22522.0,
+      "2023": 23493.0,
+      "2024": 0.0
+    },
+    "2024_agency_observation_status": {
+      "ori9": "LANPD0000",
+      "source": "srs_return_a_annual",
+      "source_origin": "srs",
+      "raw_data_source": "kaplan_openicpsr_srs_return_a",
+      "counts": "seven zero-count annual rows",
+      "months_reported": 0.0,
+      "quality_tier": "unknown",
+      "interpretation": "The repo's 2024 municipal failure is a broken continuity / ingest problem in the federal summary lane, not evidence that the municipal target is invalid."
+    },
+    "2024_control_status": {
+      "estimate_source": "trend_log_linear",
+      "usable_history_years": 6,
+      "last_usable_year": 2023,
+      "reported_count_preferred": 0.0,
+      "current_live_adjusted_total": 22991.204649872747,
+      "offense_level_fill": {
+        "aggravated_assault": 4146.319846682784,
+        "burglary": 1776.4718377208146,
+        "larceny": 9343.085113378651,
+        "motor_vehicle_theft": 6192.667396998898,
+        "murder": 270.50617700668295,
+        "rape": 558.4792361372959,
+        "robbery": 703.6750419476176
+      }
+    }
+  },
+  "official_2024_publication_evidence": {
+    "nopd_annual_preliminary_2024_compared_to_2023": {
+      "persons_total_2024": 2543,
+      "property_total_2024": 14079,
+      "major_offense_total_2024": 16622,
+      "major_offense_total_2023": 22376,
+      "published_change_2024_vs_2023": "-26%",
+      "selected_2024_categories": {
+        "murder": 124,
+        "armed_robbery": 306,
+        "simple_robbery": 189,
+        "auto_theft": 3560,
+        "theft": 4725,
+        "shoplifting": 2123,
+        "vehicle_burglary": 2220
+      }
+    },
+    "nopd_special_victims_division_2024": {
+      "ucr_rape_2024": 708,
+      "ucr_rape_2023": 683,
+      "reported_change": "+4%",
+      "method_note": "NOPD says UCR rape classifications include all Louisiana rape-statute definitions plus a subset of sexual battery and indecent behavior incidents."
+    },
+    "comparison_to_repo_target": {
+      "repo_2023_observed_total": 23493.0,
+      "official_2023_major_offense_total": 22376,
+      "gap_2023_repo_minus_official": 1117.0,
+      "gap_2023_pct_of_official": 0.04992045048266089,
+      "repo_2024_filled_total": 22991.204649872747,
+      "official_2024_major_offense_total": 16622,
+      "gap_2024_repo_minus_official": 6369.204649872747,
+      "gap_2024_pct_of_official": 0.3831789557125905,
+      "interpretation": "The 2023 repo continuity is close enough to the local annual publication to confirm that New Orleans is a real municipal crime surface. The 2024 fully filled row is materially too high relative to NOPD's own 2024 publication and should not be treated as a final anchored production row."
+    }
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "deeper_routing_problem_found": false,
+    "why": [
+      "Official city materials show that NOPD is a citywide municipal department with eight police districts.",
+      "The repo crosswalk has a single, exclusive local police mapping to the New Orleans city target rather than a confusing multi-agency routing structure.",
+      "The historical row is strong through 2018-2023 and aligns directionally with official NOPD annual publications.",
+      "The 2024 failure is that the federal summary continuity path collapsed to zero while official local city data continued."
+    ],
+    "recommended_handling": [
+      "Retain New Orleans as a true standalone municipal control row.",
+      "Do not collapse New Orleans into state remainder, county/nonmunicipal handling, or a generic service-structure exception.",
+      "Treat the 2024 full-fill target as provisional and methodologically insufficient as a final production anchor.",
+      "Queue a targeted New Orleans local-source override using the official NOPD annual publication contract: NOPD Annual Preliminary Crime Statistics for murder, robbery, burglary, larceny, and motor vehicle theft; NOPD SVD annual reporting for UCR rape; and the Data.NOLA Electronic Police Report dataset only as secondary audit/reconciliation support.",
+      "Use Louisiana statewide publications only as secondary continuity validation, not as the primary 2024 anchor."
+    ]
+  },
+  "blockers_or_followups": [
+    "The official local publication surfaces are strong enough to resolve the keep/remove question, but they are not a plug-and-play FBI seven-offense table. A production override still needs a documented local-category-to-project-offense crosswalk, especially for aggravated assault.",
+    "Because the city's own 2024 annual publication is preliminary and subject to revision, any final local override should store the exact extraction date and source snapshot used.",
+    "This packet resolves the municipal-target truth question. The remaining work is implementation: build the local New Orleans override rather than relying on trend-only fill."
+  ]
+}

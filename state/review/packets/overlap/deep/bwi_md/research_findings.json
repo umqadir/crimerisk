@@ -1,0 +1,108 @@
+{
+  "case_key": "bwi_md",
+  "ori": "MD0020300",
+  "agency_name_raw": "Baltimore/Washington International Airport",
+  "state_abbr": "MD",
+  "question": "What is the defensible overlap treatment for MD0020300, Baltimore/Washington International Airport / BALT WASH INTL AIRPORT: bounded airport-property footprint, broader authority/network footprint, county/place proxy, or absorb-into-primary outcome?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "transport_hub",
+    "footprint_type": "airport_property_and_operational_facilities",
+    "confidence": 0.98
+  },
+  "provider_distinction": {
+    "maa_bwi_role": "BWI is owned by the State of Maryland and operated by the Maryland Aviation Administration. COMAR defines the Airport, On-Airport property, and Airport police as the BWI-specific airport function carried out on behalf of MAA.",
+    "mdta_police_role": "MDTA Police are the current law-enforcement provider for that airport function. Transportation Article Section 4-208 requires the Maryland Transportation Authority Police Force to provide police services to MAA, and MDTA publicly maintains a dedicated BWI airport detachment.",
+    "overlap_implication": "The row should follow the BWI facility footprint that MDTA Police serve for MAA, not the statewide MDTA transportation-facility system."
+  },
+  "verified_findings": [
+    {
+      "topic": "Official BWI owner/operator and airport scale",
+      "finding": "BWI's official Facts and Figures page says the airport is operated by the Maryland Aviation Administration and is 3,596.3 acres, confirming that the row points to a bounded airport campus rather than a county or municipal police geography."
+    },
+    {
+      "topic": "Official MAA distinction between contiguous BWI property and other offsite holdings",
+      "finding": "An official MAA appendix to the BWI ALP Phase I environmental review says MAA owns and maintains approximately 3,500 acres of contiguous property tied to airside operations, landside facilities, parking areas, maintenance buildings, and a consolidated rental car facility, while separately identifying approximately 400 acres of offsite properties. That supports a contiguous BWI facility footprint and argues against sweeping in all MAA-owned parcels."
+    },
+    {
+      "topic": "Official airport-boundary map evidence",
+      "finding": "The official MAA Final Environmental Assessment for BWI repeatedly uses figures labeled Airport Property Boundary or BWI Airport Property Boundary, showing that MAA treats BWI as a mapped property footprint for planning and regulatory purposes."
+    },
+    {
+      "topic": "Regulatory definition of the airport police function",
+      "finding": "COMAR 11.03.01.01 defines the Airport as BWI, owned by the State and operated by MAA; defines Airport police as persons with arrest power on the Airport providing police services on behalf of MAA, either as employees or under contract; and defines Air operations area, On-Airport property, and Terminal in facility terms."
+    },
+    {
+      "topic": "Current operational provider for BWI policing",
+      "finding": "Official MDTA pages say Maryland Transportation Authority Police provide law-enforcement services at BWI and traffic management at the terminal, and MDTA's contact page lists Baltimore/Washington International Thurgood Marshall Airport as a dedicated detachment with its own commander."
+    },
+    {
+      "topic": "Operational coverage inside the BWI footprint",
+      "finding": "MDTA's 2025 audited financial statements say MDTA Police provide law-enforcement services to MAA at BWI and protect the main terminal, all surrounding roadways, parking garages and lots, and the rental-car and cargo facilities. That is the best official description of the day-to-day service footprint."
+    },
+    {
+      "topic": "Rental-car facility is part of the BWI facility footprint, not a reason to use a place proxy",
+      "finding": "BWI's official rental-car page places the facility at Stoney Run Road and New Ridge Road in Hanover, while the official MAA appendix still treats the consolidated rental car facility as part of BWI's contiguous property. This shows why a single municipal place proxy is especially misleading: the airport function follows the BWI facility system, not one place boundary."
+    },
+    {
+      "topic": "Statutory authority and the MDTA-MAA relationship",
+      "finding": "Transportation Article Section 4-208 gives MDTA police authority on property owned, leased, or operated by or under the control of MAA, requires the MDTA Police Force to provide police services to MAA, and preserves continuity from the former Maryland Aviation Administration Police Force. The same statute's 500-foot perimeter language is a special perimeter-security power triggered by additional conditions, not the ordinary baseline footprint."
+    }
+  ],
+  "exact_service_footprint_for_production": {
+    "type": "custom BWI contiguous airport-property footprint",
+    "include": [
+      "the BWI airport property boundary / contiguous BWI property controlled by the Maryland Aviation Administration",
+      "the passenger terminal and terminal-associated roadways, parking garages, and parking lots",
+      "the air operations area, including runways, taxiways, aprons, cargo areas, and vehicle service roads within the airport operations area",
+      "aviation support facilities on the BWI campus, including maintenance areas and the consolidated rental-car facility that MAA identifies as part of its contiguous BWI property",
+      "other on-airport property owned by the State and operated by MAA as BWI exists or may be developed"
+    ],
+    "exclude": [
+      "Anne Arundel County or any other countywide proxy",
+      "Baltimore, Linthicum, Hanover, or any other single-place proxy",
+      "the statewide MDTA facility network",
+      "MAA's separately identified offsite noise-safety / Part 150 holdings unless a parcel is explicitly inside the BWI airport property boundary used for production geometry",
+      "a default 500-foot perimeter buffer under Transportation Article Section 4-208(b)(2)-(3)"
+    ],
+    "legal_basis": "COMAR 11.03.01.01 defines Airport, Airport police, On-Airport, Air operations area, and Terminal in BWI-specific facility terms. Transportation Article Section 4-208 places MDTA police authority on property owned, leased, operated by, or under the control of MAA and requires MDTA Police to provide police services to MAA.",
+    "implementation_note": "Use authoritative BWI airport-property / contiguous-property geometry from official MAA sources. Include the consolidated rental-car facility because official MAA materials treat it as part of contiguous BWI property, but do not automatically include MAA's other offsite holdings that are shown separately from the BWI boundary."
+  },
+  "proxy_assessment": {
+    "broader_mdta_network_or_authority_system": {
+      "defensible": false,
+      "why_not": "MDTA Police are a broader statewide transportation police force, but the ORI row is explicitly the BWI airport row. Official sources separate BWI as a dedicated airport detachment and describe the mission as police services provided to MAA at BWI."
+    },
+    "single_county_proxy": {
+      "defensible": false,
+      "why_not": "Anne Arundel County is too broad. Official sources tie the service footprint to BWI property and operational facilities, not to general county territory."
+    },
+    "single_place_proxy": {
+      "defensible": false,
+      "why_not": "BWI is not coterminous with Baltimore or any one local place. Official BWI and MAA sources show a multi-component airport campus whose service footprint follows airport property and facilities, including the consolidated rental-car facility, not a municipal boundary."
+    },
+    "absorb_into_primary_jurisdiction": {
+      "defensible": false,
+      "why_not": "Absorbing MD0020300 into a county or municipal primary would erase a real airport-specific special-jurisdiction layer. Maryland regulations define Airport police for BWI, and Maryland statutes preserve that function inside the MDTA Police structure rather than eliminating it."
+    }
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "transport_hub",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "airport_property_and_operational_facilities",
+    "geometry_sources": [
+      "https://bwiairport.com/flying-with-us/about-bwi/facts-figures/",
+      "https://bwiairport.com/to-from-bwi/transportation/rental-cars/",
+      "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Appendix%20H%20-%20Biological.pdf",
+      "https://marylandaviation.com/wp-content/uploads/2020/11/111220_Final%20EA%20and%20Section%204f%20Determination%20and%20Finding%20of%20No%20Significant%20Impact%20%20Record%20of%20Decision.pdf",
+      "https://regs.maryland.gov/us/md/exec/comar/11.03.01.01",
+      "https://www.mdta.maryland.gov/Police/BWI_Travel_Tips.html",
+      "https://mdta.maryland.gov/index.php/Police/Contact_Info.html",
+      "https://mdta.maryland.gov/sites/default/files/Files/Financial_Statements/2025%20Financial%20Statements%20and%20Supplemental%20Exhibits.pdf",
+      "https://mgaleg.maryland.gov/mgawebsite/laws/StatuteText?article=gtr&section=4-208",
+      "https://mgaleg.maryland.gov/mgawebsite/laws/StatuteText?article=gcp&section=2-102"
+    ],
+    "implementation_note": "Localize MD0020300 to a custom BWI contiguous airport-property footprint. If parcel-complete geometry is temporarily unavailable, broad overlap is safer than collapsing the row into county/place geography or inflating it to the full MDTA network."
+  }
+}

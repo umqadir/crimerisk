@@ -1,0 +1,179 @@
+{
+  "city_key": "fort_lauderdale_fl",
+  "city_name": "Fort Lauderdale",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/fort_lauderdale_fl/packet.json",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/registry_row.json",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/doc_0188e41645.json",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/doc_de8812d816.html",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/doc_index.csv",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/raw_cache_profile.json",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/scope_candidates.csv",
+    "state/review/packets/city/fort_lauderdale_fl/evidence/official_totals.csv",
+    "state/review/packets/city/fort_lauderdale_fl/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "No redaction, suppression or location-offset policy is stated: the registry row has redactions empty (evidence/registry_row.json \"redactions\": \"\") and the Socrata metadata carries no column descriptions or redaction note (evidence/doc_0188e41645.json columns[].description all empty).",
+    "The dataset description restricts scope to Part 1 offenses: \"Homicide, Sex Offenses Forcible, Robbery, Aggravated Assault, Vehicle Burglary, Business Burglary, Conveyance Burglary, Hotel/Motel Burglary, Residential Burglary, School Burglary, Larceny (All), Vehicle Theft, Arson\" (evidence/doc_0188e41645.json \"description\"). The pull nonetheless carries non-Part 1 labels (BATTERY 7,776 rows, TRESPASSING 7,193, FRAUD - ALL OTHER 4,316; evidence/raw_cache_profile.json offense.distinct), which the rules leave unmapped."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "12:municipal:place:1224000"
+    ],
+    "state_fips": [
+      "12"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: one row per incident with a single published offense label. incidentid is unique in the pull (73,666 distinct of 73,666 rows, evidence/raw_cache_profile.json); portal-wide it has 124,056 distinct of 124,060 (evidence/doc_0188e41645.json incidentid.cachedContents), the duplicates being 2015 case numbers outside 2018-2025. The publisher does not say how the one label is chosen when an incident has several offenses, so multi-offense incidents count once under that label (hierarchy-like), not once per offense as NIBRS would.",
+    "Burglary is effectively absent. Of the burglary types the description names, only BURGLARY CONVEYANCE (9,578 rows), one BURGLARY BUSINESS and one BURGL-CONVEYANCE UNOCCUPIED/UNARMED appear in the pull (raw_cache_profile.json offense.distinct); there is no residential, hotel/motel or school burglary label, and none among the 161 portal-wide labels shown in the metadata. Structure burglary mapped: 0 rows by occurrence year 2019 against official 1,275 (evidence/official_totals.csv).",
+    "Burglary of conveyance (Florida's vehicle/vessel break-in offense) is mapped to larceny, as FBI theft from motor vehicle (23F), not to burglary. The official totals support this: mapped larceny by occurrence year is 6,841 in 2019 against official 6,945 and 5,602 in 2020 against 5,681, which only fits if the BURGLARY CONVEYANCE rows (2,402 in 2019, 1,980 in 2020, plus one BURGL-CONVEYANCE row in 2019) are included (without them 4,438 and 3,622). Florida conveyance also covers vessels and trailers, a few of which the FBI would count as structure burglary if used as dwellings; the feed cannot separate them.",
+    "Motor vehicle theft has no category in the pull and stays unmapped (official 862 in 2019). FAILURE TO RETURN RENTAL VEHICLE (104 rows in 2019) is left out because the FBI excludes takings by persons with lawful access; RECOVERED AUTO is a recovery, not an offense. Rows called in as 10-STOLEN VEHIC were closed as FAILURE TO RETURN RENTAL VEHICLE (319), THEFT - ALL OTHER (116), FRAUD - ALL OTHER (73) and BURGLARY CONVEYANCE (72) (query offense x reportedas on raw_cache), so any stolen-vehicle rows under THEFT - ALL OTHER are counted as larceny.",
+    "Robbery: the only robbery labels are ROBBERY BY SUDDEN SNATCHING (401 rows) and ROBBERY (1). Florida's sudden snatching (no more force than needed to take the property) straddles FBI robbery (120) and purse-snatching larceny (23B); it is mapped to robbery because calls reported as robbery (41SA-ROBBERY-PE, 41A-ROBBERY-ATT, 41AR-ROBBERY-AR, 41SA-ROBBERY-ST) are closed under it. Mapped robbery is 118 in 2019 against official 408 and 78 in 2020 against 321, so armed and strong-arm robbery are missing from the feed or closed under other labels (41SA-ROBBERY-PE also closes as THEFT - ALL OTHER 92 and BATTERY 37).",
+    "Murder: HOMICIDE does not separate murder (09A) from negligent manslaughter (09B) or justifiable homicide (09C); it is mapped to murder whole (16 in 2019 against official 21; 34 in 2020 against 37). MANSLAUGHTER (1), VEHICULAR HOMICIDE (1) and DEATH INVESTIGATION (103) are left out.",
+    "Aggravated assault combines AGGRAVATED ASSAULT, AGGRAVATED BATTERY, AGG ASSAULT W/ DEADLY WEAPON- DOMESTIC VIOL and FELONY BATTERY (Florida battery causing great bodily harm); ASSAULT (254, no aggravated/simple split in the label), BATTERY, THREATS / INTIMIDATION and AGGRAVATED STALKING are left out. Mapped: 442 in 2019 against official 576, 523 in 2020 against 709; some shootings are closed as BATTERY (20 rows reported as 33-SHOOTING).",
+    "Rape maps SEXUAL BATTERY (Florida's penetration-or-union offense, matching 11A/11B/11C) and SODOMY; LEWD / LASCIVIOUS MOLESTATION, ALL OTHER SEX OFFENSES and INDECENT EXPOSURE are left out as fondling or non-forcible. Mapped: 98 in 2019 against official 93, 87 in 2020 against 91.",
+    "Coverage: the feed stops at date_occu 2022-09-15 (doc_0188e41645.json date_occu.cachedContents.largest; rowsUpdatedAt 1666974792 = 2022-10-28), so 2023-2025 have no rows (official 2024 and 2025 are nonzero) and 2022 is partial. Official 2021-2023 totals are 0 (no SRS return) and the official 2018 totals look like a partial year (larceny 3,368 against 6,945 in 2019), whereas the feed's 2018 is complete (1,205-1,452 rows in every month by date_occu). Only 2019 and 2020 reconcile like for like.",
+    "Dates: the archive was pulled on date_rept, but years come from date_occu. Incidents that occurred in 2018 or later but were reported before 2018 cannot be in the pull; 18 rows have date_occu after date_rept (publisher entry errors), and 518 rows occurred before 2018 (73,666 - 73,148 in 2018-2025) and are dropped."
+  ],
+  "mapping": {
+    "date_field": "date_occu",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "incidentid"
+    ],
+    "latitude_field": "geo01#point",
+    "longitude_field": "geo01#point",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "HOMICIDE"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "SEXUAL BATTERY",
+              "SODOMY"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "ROBBERY",
+              "ROBBERY BY SUDDEN SNATCHING"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "AGGRAVATED ASSAULT",
+              "AGGRAVATED BATTERY",
+              "AGG ASSAULT W/ DEADLY WEAPON- DOMESTIC VIOL",
+              "FELONY BATTERY"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "BURGLARY BUSINESS"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "BURGLARY CONVEYANCE",
+              "BURGL-CONVEYANCE UNOCCUPIED/UNARMED",
+              "THEFT - ALL OTHER",
+              "THEFT - RETAIL / SHOPLIFTING",
+              "RETAIL THEFT / SHOPLIFTING",
+              "THEFT - BICYCLE",
+              "THEFT - POCKET PICKING",
+              "THEFT - MOTOR VEHICLE PARTS",
+              "THEFT FROM BUILDING",
+              "THEFT - FROM VENDING MACHINE",
+              "LARC-GRAND THEFT 300 LESS THAN 5K DOLS",
+              "LARC-PETIT THEFT 2ND DEGREE 1ST OFFENSE",
+              "LARC-PETIT THEFT 2ND DEGREE 3RD SUBSQ OFFENSE",
+              "LARC-GRAND THEFT OF FIREARM",
+              "LARC-PETIT THEFT 1ST DEGREE 100 LESS 300 DOLS",
+              "LARC-COMMIT GRAND THEFT DAMAGE OVER 1000 DOLS"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Dates: date_occu (Date/Time Occurred, calendar_date) is the published occurrence date and sets the year; date_rept (reported) is used only in the source where clause so a live pull returns the same rows as the archive (packet.json case_text gives the archive filter). Every row has date_occu (non_null 73,666). Coordinates: geo01 (GeoReference, GeoJSON Point) read as geo01#point; it is present on every row. The publisher states no rounding or offset; points look address-geocoded (1,041 rows share one N FEDERAL HWY point, 735 of them THEFT - RETAIL / SHOPLIFTING). 203 rows have geox = geoy = 0 and geo01 = [-82.9703, 24.3205], the State Plane origin in the Gulf of Mexico; they are ungeocoded and will fail the block-group join. About 1,037 rows have districtdesc other than FORT LAUDERDALE (72,629 of 73,666) and should fall outside the city footprint. Unit: incident; incidentid is unique, dedupe_on_id keeps the first row per incidentid, and each incident carries one offense label, so the rule set keeps that label. Offense rules match the offense field only (reportedas is the call type, not the classification) and every mapped value was checked against offense.distinct in evidence/raw_cache_profile.json. Mapped counts by date_occu year (all rows, before location filters), computed with query.py CASE mapping over raw_cache: murder 19/16/34/22/10, rape 64/98/87/128/56, robbery 94/118/78/61/51, aggravated_assault 458/442/523/650/387, burglary 0/0/0/0/1, larceny 6,690/6,841/5,602/5,621/4,408 for 2018-2022. Motor vehicle theft is unmapped (no category) and burglary is effectively empty (no structure-burglary categories), so both will reconcile near zero against official totals; robbery runs 24-29% and aggravated assault 74-77% of official in 2019-2020 (118/408, 78/321; 442/576, 523/709). page_size 50000 is the Socrata SODA maximum page; the registry left it blank.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://fortlauderdale.data.socrata.com/resource/mfxh-8bcf.json",
+      "name": "Fort Lauderdale Part 1 Crime",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "fort_lauderdale_fl",
+      "source_url": "https://fortlauderdale.data.socrata.com/",
+      "where": "date_rept >= '{start}T00:00:00' AND date_rept < '{end}T00:00:00'"
+    }
+  ]
+}

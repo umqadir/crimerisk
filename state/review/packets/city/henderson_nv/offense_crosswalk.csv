@@ -1,0 +1,6 @@
+offense,conditions_json,exclude_conditions_json
+robbery,"[{""field"": ""INC_PRIMAR"", ""op"": ""in"", ""value"": """", ""values"": [""ROBBERY""]}]",[]
+burglary,"[{""field"": ""INC_PRIMAR"", ""op"": ""in"", ""value"": """", ""values"": [""BURGLARY""]}]",[]
+larceny,"[{""field"": ""INC_PRIMAR"", ""op"": ""in"", ""value"": """", ""values"": [""LARCENY/THEFT""]}]",[]
+motor_vehicle_theft,"[{""field"": ""INC_PRIMAR"", ""op"": ""in"", ""value"": """", ""values"": [""MOTOR VEHICLE THEFT""]}]",[]
+rape,"[{""field"": ""INC_PRIMAR"", ""op"": ""in"", ""value"": """", ""values"": [""SEX ASSAULT""]}]",[]

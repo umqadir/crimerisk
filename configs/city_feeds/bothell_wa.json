@@ -1,0 +1,202 @@
+{
+  "city_key": "bothell_wa",
+  "city_name": "Bothell",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/bothell_wa/packet.json",
+    "state/review/packets/city/bothell_wa/evidence/registry_row.json",
+    "state/review/packets/city/bothell_wa/evidence/doc_9ad346295e.json",
+    "state/review/packets/city/bothell_wa/evidence/doc_2b0a306e6d.error.txt",
+    "state/review/packets/city/bothell_wa/evidence/doc_index.csv",
+    "state/review/packets/city/bothell_wa/evidence/raw_cache_profile.json",
+    "state/review/packets/city/bothell_wa/evidence/scope_candidates.csv",
+    "state/review/packets/city/bothell_wa/evidence/official_totals.csv",
+    "state/review/packets/city/bothell_wa/evidence/funnel.csv",
+    "state/review/packets/city/bothell_wa/evidence/qa_offense_year.csv",
+    "state/review/packets/city/bothell_wa/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py:213",
+    "src/crimerisk/city_contracts.py:339"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "53:municipal:place:5307380"
+    ],
+    "state_fips": [
+      "53"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the layer has one row per charged statute (offenseid unique over 16,164 rows; callid 10,693 distinct; sequence 1-20), so one call can carry several rows of the same NIBRS code (e.g. callid 2022-00010847 has eight 23H rows plus a 220 burglary row). The contract keeps one row per callid and NIBRS offense category among mapped rows, i.e. one per call per target offense. It does not apply the SRS hierarchy: a call with robbery, aggravated assault and motor vehicle theft (2023-00003961: 120 x2, 13A x1, 240 x3) yields three rows. It also does not count persons offenses per victim, which SRS does for murder, rape and aggravated assault.",
+    "Publisher recoding, identity crimes: RCW 9.35.010/9.35.020 (improperly obtaining financial information, identity theft; NIBRS 26F fraud) is coded 23H 'All Other Larceny' in 214 rows (occurrence years 2021/2022/2023: 80/70/56 rows, 79/67/54 calls; 8 rows in earlier years) and 26F from 2023 on (8/56/59 rows in 2023/2024/2025). The larceny rule excludes statute '^9\\.35\\.' so identity theft is not counted as larceny in 2021-2023 only. Larceny calls by occurrence year 2021-2025 go from 977/843/658/647/460 to 914/798/621/647/460 before geography.",
+    "Publisher recoding, stolen-vehicle possession: RCW 9A.56.068 (possession of a stolen vehicle) and 9A.56.150/.160 (possessing stolen property) are NIBRS 280 Stolen Property Offenses. The publisher codes them 240 in 84 rows (82 of 9A.56.068 plus one each of 9A.56.150 and 9A.56.160; 25/23/36 rows in 2021/2022/2023 and none after) and 280 in other rows in every year, including all 9A.56.068 rows from 2024 on (14 in 2024, 16 in 2025). The motor vehicle theft rule excludes statute '^9A\\.56\\.(068|15|16)'. MVT calls 2021-2025 go from 100/126/141/82/39 to 78/108/110/82/39 before geography. 9A.56.065 and 9A.56.075/.070 (theft of or taking a motor vehicle without permission) stay in MVT.",
+    "Rape: 11A, 11B and 11C only (11C has no rows in the pull). 11D fondling (28 rows) is excluded. 36B statutory rape (14 rows, published under nibrsoffense 'Kidnapping' with nibrsdesc 'Rape - statutory') is excluded. The rape-of-a-child statutes 9A.44.073/.076/.079 are split between 11A/11B and 36B within the same years, and the rule follows the publisher's code.",
+    "Homicide: only 09A (3 rows) maps to murder; 09B negligent manslaughter (1 row) is excluded.",
+    "Assault: only 13A (122 rows) maps to aggravated assault; 13B simple assault (596) and 13C intimidation (446) are excluded. 13A includes 3 rows of RCW 46.61.522 vehicular assault, as coded by the publisher.",
+    "UNCLASSIFIED (4,002 rows, nibrsoffense 'Unclassified') is not NIBRS-coded and stays unmapped. Its statutes are mostly traffic and drug statutes (46.20.342, 69.50.4013), plus extortion 9A.56.120/.130 and arson 9A.48. No murder, rape, robbery, assault, burglary, theft or vehicle-theft statute appears under UNCLASSIFIED.",
+    "Other unmapped codes also do not always match their statute. For example, 510 'Bribery' (478 rows) is mostly drug and gambling statutes. Among the mapped codes, the only statute-code mismatches found are the two recodings above, which the statute exclusions handle. Vehicle prowling (9A.52.100/.095) is coded 23F/23G in every year, so it is a consistent publisher choice and stays in larceny.",
+    "Coverage: report dates run 2021-01-01 to 2025-12-31 (reportyear 2021-2025). Years are occurrence years, so 2018-2020 hold only offenses reported from 2021 on (6/7/44 rows by occurrence year, all codes). 2025 lacks offenses that occurred in 2025 but were reported after the pull. Official totals for 2018-2020 cannot be reconciled from this feed.",
+    "Attempts are kept, as in SRS. attemptcompleted 'Attempt' rows remaining after the exclusions: 11A 13, 120 6, 13A 1, 220 48, 23C 21, 23D 5, 23E 1, 23F 98, 23G 13, 23H 21, 240 35. No 09A row is an attempt.",
+    "Points are generalized: every fulladdr reads 'Occurred near <street> / <street>', and the 16,164 rows share 1,720 distinct points, so locations are snapped to intersections or block locations rather than exact addresses. Some points fall outside Bothell (city field KIRKLAND 46, WOODINVILLE 35, KENMORE 15, others); the footprint filter drops them."
+  ],
+  "mapping": {
+    "date_field": "occurfrdate",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "callid",
+      "nibrsoffense"
+    ],
+    "latitude_field": "__arcgis_latitude|y",
+    "longitude_field": "__arcgis_longitude|x",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "statute",
+            "op": "regex",
+            "value": "^9\\.35\\.",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "statute",
+            "op": "regex",
+            "value": "^9A\\.56\\.(068|15|16)",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Revision: all four review objections are accepted; each was checked against raw_cache with query.py. (1) and (2): larceny and MVT now exclude the identity-crime and stolen-vehicle-possession statutes that the publisher recoded to 26F and 280 in 2023/2024. (3): the claim that no mismatch exists in the mapped codes is withdrawn. (4): callid 2022-00010847 has 8 rows coded 23H, not 7. Source: ArcGIS view 'Crimes' of Bothell PD (agency 'Bothell PD' on all 16,164 rows), ORI WA0170300. Point geometry is Web Mercator (wkid 102100), delivered as __arcgis_latitude/__arcgis_longitude, and identical to the x/y attribute fields on every row (0 rows differ by more than 1e-6). There are no (0,0) points. Offenses are mapped on nibrscode, the publisher's NIBRS code, with case-sensitive exact values. Every mapped value is present in the pull (09A 3, 11A 73, 11B 7, 120 60, 13A 122, 220 623, 23A 16, 23B 15, 23C 930, 23D 405, 23E 1, 23F 784, 23G 321, 23H 1,635, 240 515; 11C absent; sum 5,510). The statute exclusions (regex, case-insensitive, on the 'statute' field, which is never null) remove 214 rows from 23H and 84 from 240, which leaves 5,212 mapped rows. Count unit: offense. Raw rows are charged statutes within a call: offenseid is unique and callid repeats. The id is callid|nibrsoffense with dedupe_on_id. Unmapped and excluded rows drop before dedupe (src/crimerisk/city_contracts.py run_contract), so the contract keeps the first remaining row per call per NIBRS offense category. Each mapped category (Homicide->09A only, Sexual Assault->11A/11B only, Robbery, Assault->13A only, Burglary, Larceny->23A-23H, Motor Vehicle Theft) corresponds to exactly one target offense, so every target offense in a multi-offense call is kept once. Counts were recomputed with query.py by UTC occurrence year (year(epoch_ms(occurfrdate))) for 2021-2025, before geography, as count(distinct callid) per target offense after the exclusions: larceny 914/798/621/647/460 (1,016/891/705/738/529 rows); burglary 158/132/110/107/81; motor vehicle theft 78/108/110/82/39 (83/111/113/83/40 rows); aggravated assault 23/16/21/32/21; robbery 14/10/7/14/8; rape 14/12/18/9/12; murder 2/1/0/0/0. Official totals 2021-2025 (official_totals.csv) are larceny 895/759/630/508/407 and MVT 81/116/115/75/41. Larceny in 2024-2025 remains above the official totals, consistent with the missing hierarchy. Dates: the occurrence date occurfrdate ('Offense Date From'), epoch ms, UTC per dateFieldsTimeReference. It is never null and never after reportdate, and it equals reportdate on 5,894 rows. The report date is used only in the source filter. The source where clause is the registry's probe filter on reportdate (esriFieldTypeDate), the same filter the archive was pulled with, and the layer has no definition query, so a live pull returns the archived rows. page_size 2000 is the layer's maxRecordCount. Geography: a city PD, so the scope is Bothell city (53:municipal:place:5307380, the only scope candidate); Bothell lies in Washington only, so state_fips is 53. The publisher states no redactions or exclusions: the layer description is empty, the registry lists none, and the city site document failed to fetch (doc_2b0a306e6d.error.txt).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services1.arcgis.com/yWC3RwGqrp7oLKhO/arcgis/rest/services/Crimes_public_fb425ac436904db4bc67d85f80c1409b/FeatureServer/0",
+      "name": "Bothell Crimes (public view)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "bothell_wa",
+      "source_url": "https://www.bothellwa.gov/",
+      "where": "reportdate >= DATE '{start}' AND reportdate < DATE '{end}'"
+    }
+  ]
+}

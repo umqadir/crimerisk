@@ -1,0 +1,146 @@
+{
+  "city_key": "asheville_nc",
+  "city_name": "Asheville",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/asheville_nc/evidence/registry_row.json",
+    "state/review/packets/city/asheville_nc/evidence/doc_0f96a3b53a.json",
+    "state/review/packets/city/asheville_nc/evidence/doc_a709a17843.html",
+    "state/review/packets/city/asheville_nc/evidence/doc_index.csv",
+    "state/review/packets/city/asheville_nc/evidence/raw_cache_profile.json",
+    "state/review/packets/city/asheville_nc/evidence/scope_candidates.csv",
+    "state/review/packets/city/asheville_nc/evidence/official_totals.csv",
+    "state/review/packets/city/asheville_nc/raw_cache.parquet",
+    "state/review/packets/city/asheville_nc/packet.json",
+    "state/review/packets/city/asheville_nc/evidence/qa_offense_year.csv",
+    "state/review/packets/city/asheville_nc/evidence/qa_exceptions.csv",
+    "state/review/packets/city/asheville_nc/evidence/funnel.csv",
+    "state/review/runs/cities-new-2025.2/asheville_nc/review_objections.json"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "37:municipal:place:3702140"
+    ],
+    "state_fips": [
+      "37"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the layer carries one row per case (87,234 rows, 87,233 distinct case_number and incident_id values; the one repeat, case 23000491, is an exact duplicate row) with a single offense_long_description, so the feed is incident-level with one offense label per incident; the publisher does not say which offense it keeps for multi-offense incidents, so FBI offense counts (every offense, hierarchy-free under NIBRS) will exceed the feed's per-offense counts.",
+    "Rape is left unmapped: the pull has no rape, sodomy or sexual-assault-with-object category; the only candidates are 'SEC DEG FORC SEX OFFENSE' (2 rows) and 'SECOND DEGREE  SEX OFFENS' (5 rows) over 2018-2025, against official rape totals of 47-82 a year (official_totals.csv). Sex offenses appear to be withheld from the layer although no redaction is stated.",
+    "Misdemeanor breaking or entering ('BREAKING OR ENTERING - MI', 578 rows, no ucr_code on any row; 106 in 2018, 0, 18, 10, 25, 49 in 2019-2023, 159 in 2024, 211 in 2025, raw_cache GROUP BY year_occurred) is mapped to burglary although NC misdemeanor B&E lacks the felony/theft intent element of the FBI burglary definition, so some of these rows may be trespass-like entries. It is mapped because felony B&E plus first-degree burglary falls (644, 673, 657 in 2019-2021 to 454, 384, 360 in 2023-2025) as MI rises, a coding shift within APD's own B&E labels, and the official totals (APD's own submissions) are not overshot in any year with MI added: FE+MI+1st degree raw rows 586, 644, 691, 667, 405, 503, 543, 571 for 2018-2025 against official 691, 838, 735, 692, 676, 530, 576, 593 (official_totals.csv / qa_offense_year.csv). Burglary stays short in 2018, 2019 and 2022 (0.15-0.40) with no unmapped B&E label to close it.",
+    "'UNAUTHORIZED USE OF MOTOR' (conveyance; 770 rows, no ucr_code) is not mapped: it straddles motor vehicle theft (joyriding) and non-theft unauthorized use.",
+    "Aggravated assault and murder are well short of official in every year and the pull cannot explain it: aggravated assault 0.30-0.54 short (2,564 in the footprint vs official 4,301 for 2018-2025; widest 2025, 261 vs 565) and murder 0.29-0.75 short (37 vs 74) (qa_offense_year.csv). No unmapped label with a weapon or serious-injury element is left except 'DISCHARGE FIREARM INTO OC' (16 rows, too few and not established as an assault on a person); 'ASSAULT ON GOVERNMENT OFF' (305), 'ASSAULT ON FEMALE' (2,536, ucr_code 0810 simple assault where coded), 'ASSAULT - SIMPLE' and 'COMMUNICATING THREAT' are simple assault or intimidation. 'DEATH INVESTIGATION' (1,346 rows; ucr_code 9910 on the 60 coded rows, none on 1,286) may hold homicides later ruled murder, but the pull cannot say which. The likely cause is the single offense label per incident, which hides aggravated assaults and homicides recorded alongside another offense, but the documentation does not state it. These two offenses need a sign-off decision (keep with a documented exception, or drop them for this city) that the archived evidence cannot settle.",
+    "2018 is a partial year in the source: 'LARCENY FROM MOTOR VEHICL' has 4 rows in 2018 against 1,090 in 2019 and 477-982 in 2020-2025, with no substitute label (2018 'LARCENY ALL OTHER' 479 and 'LARCENY FROM BUILDING' 654 vs 1,000 and 423 in 2019 do not make up the difference; mapped larceny 2,754 in 2018 vs 4,188 in 2019); December 2018 has 432 rows against 751-1,004 in the other 2018 months, and 'BREAKING OR ENTERING - MI' drops from 106 in 2018 to 0 in 2019, consistent with a records-system change at the turn of 2018-2019. Feed 2018 larceny is 2,728 in the footprint against official 3,707 (0.26, qa_exceptions.csv) and every 2018 offense is 0.17-0.42 short. The rows are kept (the contract has no year-level exception short of dropping 2018 entirely); 2018, and 2018 larceny in particular, should be flagged or excluded at sign-off.",
+    "'LARCENY BY EMPLOYEE' (ucr_code 1290, embezzlement range) and 'LARCENY BY TRICKERY' (ucr_code 1130, fraud range) are not mapped to larceny; fraud, false pretense, possession of stolen goods and receiving stolen property are also excluded.",
+    "ucr_code is populated on only 22,469 of 87,234 rows and ucr_crime_type on none, so rules match offense_long_description, a 25-character truncated label that sometimes carries trailing spaces; rules use anchored regexes that tolerate trailing whitespace."
+  ],
+  "mapping": {
+    "date_field": "date_occurred",
+    "date_format": "%Y%m%d",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "incident_id"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_long_description",
+            "op": "regex",
+            "value": "^HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_long_description",
+            "op": "regex",
+            "value": "^ROBBERY - (?:ARMED - FIREARM|ARMED - KNIFE|ARMED - OTHER W|COMMON LAW)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_long_description",
+            "op": "regex",
+            "value": "^(?:AGGRAVATED ASSAULT|ASSAULT BY STRANGULATION|ASSAULT W/DEADLY WEAPON(?: I| W)?|ASSAULT INFLICTING SERIOU|ASSAULT W/FIREARM ON GOVT)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_long_description",
+            "op": "regex",
+            "value": "^(?:BREAKING OR ENTERING - FE|BREAKING OR ENTERING - MI|BURGLARY 1ST DEGREE FORCE|BURGLARY 1ST DEGREE NO FO)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_long_description",
+            "op": "regex",
+            "value": "^LARCENY OF (?:MV AUTO|MV TRUCK|MV BUSES|MV OTHER|RECREATIONAL V)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_long_description",
+            "op": "regex",
+            "value": "^(?:LARCENY (?:ALL OTHER|FROM BUILDING|FROM COIN-OPERATE|FROM MOTOR VEHICL|MOTOR VEHICLE PAR|OF AUTO PARTS|OF GAS RUNOFF|OF TAG|POCKET-PICKING|PURSE-SNATCHING|SHOPLIFTING|- FREE TEXT)|SHOPLIFTING CONCEALMENT G)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "year_occurred"
+  },
+  "notes": "Asheville Police Department (ORI NC0110100) public incidents layer, MapServer/3 (doc_0f96a3b53a.json). Count unit: incident; id is incident_id with dedupe_on_id, which drops the one exact duplicate row (case 23000491, objectid 37756/37757). Each incident carries a single offense_long_description; which offense the publisher keeps for multi-offense incidents is not documented, and the rules keep that single published label. Dates: date_occurred (occurrence date, text YYYYMMDD, 20180101-20251231 in the pull); year from year_occurred, which matches the first four characters of date_occurred on every row (0 mismatches) and is the field the live where filters on, so a live pull returns the archive's rows. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude), which the service stores in NC State Plane feet (wkid 102719 / EPSG 2264) with attribute copies x/y. Addresses are published at 100-block level (e.g. '100-BLK S TUNNEL RD'); the metadata does not state rounding or offsetting of points. 376 rows have x=0 and y=0; their geometry projects to about (-85.57, 33.57), outside North Carolina, so they fall out at the state block-group join. Offense mapping on offense_long_description, checked against the distinct values in the pull (with ucr_code where populated): murder = 'HOMICIDE' (ucr 0110; negligent 0120 and justifiable 09C excluded); robbery = the four 'ROBBERY - ' categories (ucr 0300); aggravated assault = 'AGGRAVATED ASSAULT', 'ASSAULT BY STRANGULATION', 'ASSAULT W/DEADLY WEAPON' (ucr 0410 on all three) plus the unlabeled-code deadly-weapon-with-intent/injury variants, 'ASSAULT INFLICTING SERIOU' and 'ASSAULT W/FIREARM ON GOVT'; burglary = felony and misdemeanor breaking or entering and first-degree burglary (ucr 0510 where coded; misdemeanor B&E carries no ucr_code and is mapped on the coding-shift and reconciliation evidence in known_differences); motor vehicle theft = 'LARCENY OF MV AUTO/TRUCK/BUSES/OTHER' (ucr 0710/0720/0790) and 'LARCENY OF RECREATIONAL V'; larceny = the 06xx larceny categories (shoplifting, from building, from motor vehicle, auto parts, tag, pocket-picking, purse-snatching, coin-operated, gas runoff, all other, free text) and shoplifting concealment. Rape is left unmapped (no category in the pull). Dry run of this contract on raw_cache.parquet for 2018-2025 (city_contracts.run_contract) yielded 37,712 mapped incidents before misdemeanor B&E was added (funnel.csv: 37,713 mapped less the one duplicate): murder 37, robbery 903, aggravated assault 2,575, burglary 4,032, motor vehicle theft 3,114, larceny 27,051 (counts from GROUP BY queries on offense_long_description and year_occurred, less the one duplicate). Adding 'BREAKING OR ENTERING - MI' (578 rows) raises burglary to 4,610 raw mapped rows and the total to 38,290. Scope: the city of Asheville (scope_candidates.csv, registry_row.json). The publisher states no redactions (registry_row.json redactions empty; the layer metadata description is empty). Revision after review: (1) misdemeanor B&E is now mapped to burglary, on the FE-to-MI coding shift and the reconciliation to APD's own official totals; the definitional caveat is in known_differences. (2) 2018 is recorded as a partial source year (no theft-from-vehicle label, thin December); its rows are kept and it is flagged for sign-off. (3) The aggravated assault and murder shortfalls are kept with the rules unchanged, because no unmapped category supports adding rows; they are flagged for a sign-off decision the pull cannot settle.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://gis.ashevillenc.gov/server/rest/services/PublicSafety/APDIncidents/MapServer/3",
+      "name": "APD Public Incidents",
+      "order": "objectid",
+      "page_size": 5000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "asheville_nc",
+      "source_url": "https://data-avl.opendata.arcgis.com/",
+      "where": "year_occurred >= '{year_start}' AND year_occurred <= '{year_end}'"
+    }
+  ]
+}

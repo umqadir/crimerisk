@@ -1,0 +1,153 @@
+{
+  "city_key": "hayward_ca",
+  "city_name": "Hayward",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/hayward_ca/packet.json",
+    "state/review/packets/city/hayward_ca/evidence/registry_row.json",
+    "state/review/packets/city/hayward_ca/evidence/doc_00.json",
+    "state/review/packets/city/hayward_ca/evidence/doc_index.csv",
+    "state/review/packets/city/hayward_ca/evidence/raw_cache_profile.json",
+    "state/review/packets/city/hayward_ca/evidence/scope_candidates.csv",
+    "state/review/packets/city/hayward_ca/evidence/official_totals.csv",
+    "state/review/packets/city/hayward_ca/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "06:municipal:place:0633000"
+    ],
+    "state_fips": [
+      "06"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape is unmapped: Crime_Type has 18 values (evidence/raw_cache_profile.json; evidence/doc_00.json types) and none is a rape or sex-offense category, so the feed cannot supply rape counts (official 54-93 per year in evidence/official_totals.csv).",
+    "Crime_Type 'Homicide' is mapped to murder but the publisher gives no definition; it may include negligent manslaughter (09B) or justifiable homicide (09C), which the source cannot separate. Pull counts by year of Date: 5, 4, 12, 8, 9, 3 for 2018-2023 vs official murder 3, 5, 13, 0, 9, 10.",
+    "No incident number is published; OBJECTID (unique on all 43,218 rows) is the only id, so de-duplication is a no-op and multi-row incidents cannot be collapsed. Among the 30,038 rows in mapped categories, 255 rows fall in 121 groups sharing Date, Address and Crime_Type (up to 6 'Vehicle Theft' rows at one time and block); across all rows 66 Date+Address groups (145 rows) carry more than one Crime_Type. Rows may therefore represent offenses or vehicles rather than incidents in some cases.",
+    "Crime_Type is a publisher summary category, not a NIBRS/UCR code; 'Larceny' and 'Larceny from Auto' are taken as 23A-23H, 'Vehicle Theft' as 240, 'Burglary-Residential'/'Burglary-NonResidential' as 220, 'Assault-Aggravated' as 13A, without published crosswalks. 'Assault-Simple', 'Fraud', 'Vandalism' and other categories are left out.",
+    "Coverage: the layer's Date runs 2018-01-01T00:00Z to 2023-06-30T11:11Z (query of raw_cache); 2023 is a half year and 2024-2025 have no rows. The 2021 official totals are all 0 (evidence/official_totals.csv), so 2021 cannot reconcile.",
+    "2,334 of 43,218 rows (43,218 - 40,884 non-null __arcgis_latitude, evidence/raw_cache_profile.json) have no geometry and are dropped; 1,314 of them are in mapped categories."
+  ],
+  "mapping": {
+    "date_field": "Date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "OBJECTID"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Homicide"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Robbery"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Assault-Aggravated"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Burglary-Residential",
+              "Burglary-NonResidential"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Vehicle Theft"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Larceny",
+              "Larceny from Auto"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Date is the only date field (esriFieldTypeDate, alias 'Date', evidence/doc_00.json fields); the publisher does not say whether it is occurrence or report date, and it is used as published. It is stored as epoch ms with dateFieldsTimeReference timeZone UTC (evidence/doc_00.json); years are taken from the UTC timestamp, and the where clause matches the survey's probe_where and the archive's filter (packet.json case_text). Coordinates are the feature geometry (__arcgis_latitude/__arcgis_longitude; source spatial reference WKID 102100, evidence/doc_00.json). The publisher states no rounding or offset, but Address is generalized to the hundred block (e.g. '2400 BLOCK WHIPPLE RD', evidence/raw_cache_profile.json) and points repeat heavily (13,188 distinct points at 6-decimal rounding vs 40,884 located rows; '0 BLOCK SOUTHLAND MALL' has 464 rows at 1 point), so points are likely block- or site-level geocodes rather than exact locations. Each row carries one Crime_Type; with one rule per category no row can match two offenses. count_unit 'incident' follows the survey (evidence/registry_row.json count_unit) with the caveat on multi-row groups above. Agency is 'Hayward PD, CA' on every row, matching the single scope candidate 06:municipal:place:0633000 Hayward city (evidence/scope_candidates.csv) and ORI CA0010600. The layer description and copyright text are empty, so no redactions or exclusions are stated. Pull counts by year of Date (2018/2019/2020/2022) vs official: aggravated assault 185/186/162/193 vs 217/218/205/257; robbery 338/262/237/241 vs 364/275/253/241; burglary (Residential + NonResidential) 613/502/663/573 vs 545/448/622/502; larceny (Larceny + Larceny from Auto) 2832/3165/2891/2600 vs 2849/3197/2850/2447; motor vehicle theft 1393/1275/1918/1740 vs 1376/1241/1878/1613 (GROUP BY year, Crime_Type on raw_cache, before the coordinate drop).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://maps.hayward-ca.gov/arcgis/rest/services/OpenData/COH_CrimeData/FeatureServer/0",
+      "name": "Hayward Crime Data",
+      "order": "OBJECTID",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "hayward_ca",
+      "source_url": "https://maps.hayward-ca.gov/",
+      "where": "Date >= DATE '{start}' AND Date < DATE '{end}'"
+    }
+  ]
+}

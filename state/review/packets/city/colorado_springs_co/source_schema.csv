@@ -1,0 +1,11 @@
+column,dtype
+:id,object
+casenumber,object
+occurredfromdate,object
+reporteddate,object
+crimecode,object
+crimecodedescription,object
+nciccode,object
+nciccodedescription,object
+latitude,object
+longitude,object

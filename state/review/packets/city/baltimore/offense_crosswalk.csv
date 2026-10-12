@@ -1,0 +1,22 @@
+source_feed,source_description,source_code,canonical_offense,include_flag,selection_rule,notes
+legacy_srs,HOMICIDE,,murder,yes,row_count,Direct legacy SRS mapping.
+legacy_srs,RAPE,,rape,yes,row_count,Direct legacy SRS mapping.
+legacy_srs,AGG. ASSAULT,,aggravated_assault,yes,row_count,Direct legacy SRS mapping.
+legacy_srs,ROBBERY,3A,robbery,yes,row_count,Use the plain ROBBERY series as the total robbery analogue.
+legacy_srs,ROBBERY - COMMERCIAL,3C,robbery,no,exclude_subtype_duplicate,Commercial robbery rows duplicate CCNumbers already represented in the total robbery series.
+legacy_srs,ROBBERY - CARJACKING,3BJ,robbery,no,exclude_subtype_duplicate,Carjacking robbery rows duplicate CCNumbers already represented in the total robbery series.
+legacy_srs,BURGLARY,,burglary,yes,row_count,Direct mapping but still materially high against the official weekly PDF.
+legacy_srs,LARCENY,"6A|6B|6C|6D|6E|6G|6J",larceny,yes,family_unique_ccnumber,Count unique CCNumber across the larceny family rather than raw rows.
+legacy_srs,LARCENY FROM AUTO,6F,larceny,yes,family_unique_ccnumber,Treat as part of the larceny family under a unique-CCNumber contract.
+legacy_srs,AUTO THEFT,,motor_vehicle_theft,yes,row_count,Direct mapping but modestly high against the official weekly PDF.
+legacy_srs,ARSON,,arson,yes,row_count,Useful for non-AGS reference only.
+nibrs_group_a,HOMICIDE,,murder,no,research_only,Official but not hierarchy-comparable to the SRS-style Baltimore public summaries without extra aggregation logic.
+nibrs_group_a,RAPE,,rape,no,research_only,Official but not currently the recommended overlay object.
+nibrs_group_a,ROBBERY,3A,robbery,no,research_only,NIBRS feed also carries robbery subtype duplication and broader multi-offense structure.
+nibrs_group_a,ROBBERY - COMMERCIAL,3C,robbery,no,research_only,Subtype duplication risk.
+nibrs_group_a,ROBBERY - CARJACKING,3BJ,robbery,no,research_only,Subtype duplication risk.
+nibrs_group_a,AGG. ASSAULT,,aggravated_assault,no,research_only,Close numerically but not the current recommended summary analogue.
+nibrs_group_a,BURGLARY,,burglary,no,research_only,Materially high against the official weekly PDF.
+nibrs_group_a,LARCENY,,larceny,no,research_only,NIBRS Group A feed includes additional property-crime categories and no hierarchy rule.
+nibrs_group_a,LARCENY FROM AUTO,,larceny,no,research_only,NIBRS feed is not yet a direct larceny-total analogue.
+nibrs_group_a,AUTO THEFT,,motor_vehicle_theft,no,research_only,Close but still not the preferred summary surface.

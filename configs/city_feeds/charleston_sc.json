@@ -1,0 +1,155 @@
+{
+  "city_key": "charleston_sc",
+  "city_name": "Charleston",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/charleston_sc/packet.json",
+    "state/review/packets/city/charleston_sc/evidence/registry_row.json",
+    "state/review/packets/city/charleston_sc/evidence/doc_00.json",
+    "state/review/packets/city/charleston_sc/evidence/doc_index.csv",
+    "state/review/packets/city/charleston_sc/evidence/raw_cache_profile.json",
+    "state/review/packets/city/charleston_sc/evidence/scope_candidates.csv",
+    "state/review/packets/city/charleston_sc/evidence/official_totals.csv",
+    "state/review/packets/city/charleston_sc/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py:194-219 (_condition_mask: eq/in compare untrimmed values)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "45:municipal:place:4513330"
+    ],
+    "state_fips": [
+      "45"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Larceny coverage is partial: the only larceny code in the pull is 23F THEFT FROM MOTOR VEHICLE (3,552 rows; no 23A-23E, 23G or 23H rows) per evidence/raw_cache_profile.json ucr_code distinct values. Raw 23F rows per IncidentYear are 771/736/794/784/467 for 2021-2025 against official larceny 2450/2150/2329/2599/2155 (evidence/official_totals.csv), about 31%/34%/34%/30%/22% (query: SELECT IncidentYear, count(*) FROM raw_cache WHERE trim(ucr_code)='23F' GROUP BY 1). The rule lists 23A-23H so any other larceny codes the feed adds later map, but the reconciled larceny total will fall far short of the official figure.",
+    "The feed publishes a selected set of NIBRS codes only (09A, 11A-11D, 120, 13A, 13C, 220, 23F, 240, 290, 35A, 35B, 520, 99XX; evidence/raw_cache_profile.json); there is no simple assault, arson, or other larceny subtype, and the portal metadata (evidence/doc_00.json) has an empty description and states no selection rule.",
+    "Count unit is one row per offense code per incident: OCA|ucr_code is unique over all 21,815 rows while OCA has 18,411 distinct values (query: count(DISTINCT OCA||'|'||ucr_code) = 21815). An incident carrying, e.g., robbery and aggravated assault is counted under both offenses, unlike the SRS hierarchy rule; SRS rape and aggravated assault are also victim-based, so counts differ from the official unit.",
+    "Aggravated assault (13A) raw rows are 337/319/341/328/279 for 2021-2025 against official 440/437/488/443/341 (about 77%/73%/70%/74%/82%), consistent with incident-offense rows versus victim-based official counts. The 13A rows carry arr_chrg sub-codes 13A, 13AP, 13ARR, 13K, 13O and CDV variants, all described as AGGRAVATED ASSAULT; all are kept.",
+    "Rape uses 11A, 11B and 11C (revised SRS definition); 11D SEX OFFENSE/ CRIMINAL SEXUAL CONTACT (228 rows) is fondling and is left out. Raw 11A+11B+11C rows are 65/44/40/41/32 for 2021-2025 against official 76/54/44/44/32.",
+    "One row has ucr_code '13C ' (intimidation) with ChargeDescription 'AGGRAVATED ASSAULT / FIREARM' and arr_chrg '13A'; the rules follow ucr_code and leave it out as intimidation.",
+    "No rows exist before 2021: DateOccurred minimum is 1609459200000 (2021-01-01T00:00Z) and IncidentYear ranges 2021-2025 (evidence/raw_cache_profile.json), so 2018-2020 official totals have no counterpart in this feed."
+  ],
+  "mapping": {
+    "date_field": "DateOccurred",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "OCA",
+      "ucr_code"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:09A)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:11A|11B|11C)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:120)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:13A)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:220)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:23A|23B|23C|23D|23E|23F|23G|23H)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "regex",
+            "value": "^\\s*(?:240)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Charleston Police Department (municipal_pd, ORI SC0100100) polices the City of Charleston, the single scope candidate 45:municipal:place:4513330 (evidence/scope_candidates.csv, evidence/registry_row.json). Offenses are mapped on the published NIBRS field ucr_code (values carry a trailing space, e.g. '13A ', so rules use anchored regex tolerant of whitespace; the runner's eq/in do not trim). Codes present and mapped, with pull counts: 09A 48, 11A 177, 11B 30, 11C 15, 120 373, 13A 1604, 220 1194, 23F 3552, 240 1981 (evidence/raw_cache_profile.json; the ChargeDescription values agree with each code, see query grouping ucr_code by ChargeDescription). Left out: 11D (fondling), 13C (intimidation, 1 row), 35A/35B/520/290/99XX (drug and weapon law). Count unit is offense: id is OCA|ucr_code, which is unique in the pull (21,815 distinct of 21,815 rows), so dedupe_on_id removes nothing on the archive and keeps one row per offense code per incident; where an incident has several offense codes, each mapped code is kept as its own row. Date is the occurrence date DateOccurred (esriFieldTypeDate, epoch ms, UTC per dateFieldsTimeReference in evidence/doc_00.json). Every value is at 00:00:00 UTC (DateOccurred % 86400000 = 0 for all rows) and TimeOccurred is entirely null, so it is a date-only field and the year from DateOccurred equals IncidentYear on every row (query cross-tab of year(to_timestamp(DateOccurred/1000)) by IncidentYear: 4072/4522/4606/4303/4312 for 2021-2025, no off-diagonal rows). Coordinates are the feature point geometry (__arcgis_latitude/__arcgis_longitude; layer is esriGeometryPoint in Web Mercator 102100, evidence/doc_00.json); all 21,815 rows have a point, within lon -80.178 to -79.813 and lat 32.686 to 33.019. The publisher does not state any rounding or offset of points; StreetAddress is masked to the hundred block (e.g. '1XX N ROMNEY ST'), but the points are not collapsed to one per masked address (7,796 distinct 6-decimal points versus 3,541 distinct addresses), so the point precision cannot be settled from the evidence. The where clause is the registry probe_where, which is the filter the archive was pulled under (packet.json case_text). The publisher states no redactions or exclusions (registry_row.json redactions empty; layer description empty in doc_00.json). Raw per-year counts for robbery (88/72/82/68/63), burglary (273/247/264/224/186), motor vehicle theft (470/496/447/341/227) and murder (16/8/9/7/8) track the official totals closely for 2021-2025; larceny is theft-from-motor-vehicle only and will reconcile at roughly a third of the official figure.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/tQaXW7Zb1Vphzvgd/arcgis/rest/services/PDI_Reported_Incidents/FeatureServer/0",
+      "name": "PDI Reported Incidents (PDI_Reported_Incidents/FeatureServer/0)",
+      "order": "OBJECTID ASC",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "charleston_sc",
+      "source_url": "https://data-charleston-sc.opendata.arcgis.com/",
+      "where": "DateOccurred >= DATE '{start}' AND DateOccurred < DATE '{end}'"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "case_key": "deerfield_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1216725",
+  "jurisdiction_name": "Deerfield Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_for_bso_contract_city_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "As of March 24, 2026, Deerfield Beach is not yet policed by a revived city-run police department. The City's January 2026 Public Safety Analysis says Broward Sheriff's Office is the primary law-enforcement authority within the city, and the City's December 22, 2025 public notice says BSO remains contractually and legally obligated to continue full service during the nearly two-year transition to a future independent Deerfield Beach Police Department.",
+    "The current service structure is contract policing, but Deerfield Beach is still a real municipal policing object rather than a fake place row. City contract materials show Deerfield Beach approved a five-year BSO police-services agreement running from April 1, 2021 through March 31, 2026, and the Public Safety Analysis says the city has maintained a contractual BSO law-enforcement relationship since 1990.",
+    "Florida's official county-and-municipal offense publications support a real Deerfield-specific agency reporting surface. FDLE's 2020 report lists Deerfield Beach Police Department with population 80,178 and total index crime 1,888, and FDLE's 2021 report retains Deerfield Beach Police Department as a named Broward municipal row with population 87,106 even though every offense cell is blank.",
+    "Florida's post-SRS public offense workbook no longer publishes Deerfield Beach. Inspection of FDLE's official FIBRS Offense Detail 2021-2025 Q2 workbook found no Deerfield Beach Police Department row in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets.",
+    "Repo evidence matches a continuity collapse rather than a bad municipal target. The live crosswalk routes FL0060200 exclusively to Deerfield Beach city, agency_master classifies FL0060200 as a local police department with SRS and NIBRS source-presence flags through 2024, and agency_year_observations shows substantive Deerfield counts in 2018, 2019, and 2020 before zero rows from 2021 through 2024.",
+    "The all-fill condition is therefore not evidence that Deerfield Beach should be dropped as a municipal target. It is evidence that the contract-city reporting surface tied to FL0060200 broke during or after the 2020-2021 Florida SRS-to-NIBRS publication transition."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_current_bso_contract_policing",
+    "official_basis": [
+      "Deerfield Beach is a real municipal government operating under city commission authority.",
+      "The City currently receives general law-enforcement services through Broward Sheriff's Office under city-approved interlocal contract arrangements.",
+      "The City is planning a future independent police department, but that transition is not yet complete as of March 24, 2026."
+    ],
+    "important_interpretation": "Deerfield Beach is not a sheriff-only county remainder or a fake place-level routing artifact. It is a valid municipality whose current policing is delivered under contract by Broward Sheriff's Office."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Broward Sheriff's Office under Deerfield Beach contract-policing arrangement",
+    "active_city_police_department_found": false,
+    "city_specific_reporting_surface_historically_visible": true,
+    "county_or_special_layer_displacing_city_police": true,
+    "official_evidence": [
+      "The City's January 2026 Public Safety Analysis says BSO is the primary law-enforcement authority within Deerfield Beach.",
+      "The same analysis says Deerfield Beach has maintained a contractual relationship with BSO for law-enforcement services since 1990.",
+      "The City's March 2021 police-services contract resolution approved a five-year BSO police-services agreement commencing April 1, 2021 and continuing through March 31, 2026.",
+      "The City's December 22, 2025 announcement says Deerfield Beach will build its own police department in the future but that BSO remains contractually and legally obligated to continue providing full service during the transition."
+    ],
+    "important_clarification": "Deerfield Beach is not currently a city-run police department case. The keep decision rests on the continuing reality of a city-specific municipal reporting surface, not on the existence of a currently independent Deerfield police agency."
+  },
+  "official_reporting_evidence": {
+    "fdle_county_and_municipal_reports": {
+      "summary": "FDLE's official county-and-municipal offense reports treat Deerfield Beach Police Department as a named municipal agency row through the SRS era and into the 2021 transition report.",
+      "details": [
+        "FDLE 2020: Deerfield Beach Police Department, population 80,178, total index crime 1,888.",
+        "FDLE 2021: Deerfield Beach Police Department, population 87,106, retained as a row but with all offense fields blank."
+      ],
+      "interpretation": "Florida's own publication surface confirms that Deerfield Beach had a real city-specific offense-reporting row even though operational policing was delivered by BSO under contract."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The official FDLE FIBRS offense workbook for 2021 through 2025 Q2 contains no Deerfield Beach Police Department row.",
+      "interpretation": "This omission, combined with the retained blank 2021 row, indicates publication and reporting continuity failure after the SRS-era Deerfield municipal row rather than a clean state decision that the municipal target never existed."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0060200 exclusively to 12:municipal:place:1216725 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0060200 as a local police department with both SRS and NIBRS source-presence flags across 2018-2024, latest_srs_year 2024, latest_nibrs_year 2024, and population_latest_nibrs 87,514.",
+    "observation_state": "agency_year_observations.parquet shows FL0060200 with CIUS-backed annual totals of 2,819 in 2018 and 2,512 in 2019, an SRS annual total of 1,888 in 2020, then zero annual rows with months_reported 0.0 in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "agency_master asserts 2018-2024 NIBRS source presence, but agency_year_observations contains no NIBRS rows for FL0060200 and only zero-valued post-2020 summary rows. That mismatch aligns with a broken public-continuity or source-presence interpretation problem rather than a bad Deerfield place mapping.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Deerfield offense row preferred from SRS with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Deerfield Beach in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 2,484.0, and total_reported_count 0.0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Deerfield Beach is a valid incorporated municipal government.",
+      "Even under BSO contract policing, FDLE officially published Deerfield Beach Police Department as a municipal agency row through 2020 and retained the row in 2021.",
+      "The live repo crosswalk from FL0060200 to Deerfield Beach city matches that historical city-specific reporting surface.",
+      "The post-2020 failure pattern is a continuity/publication collapse under a contract-city model, not evidence that the Deerfield municipal target itself is invalid."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The SRS-era Deerfield municipal reporting row persisted through 2020 and was retained but blanked in FDLE's 2021 annual publication.",
+      "That Deerfield-specific row did not carry into FDLE's public FIBRS offense workbook, leaving the repo with zero-valued post-2020 observations.",
+      "Because FL0060200 remained exclusively attached to Deerfield in reference while official post-2020 offense continuity vanished, the 2024 control builder treated the city as structurally missing and fully filled it."
+    ],
+    "recommended_handling": [
+      "Retain Deerfield Beach city as a standalone municipal control row.",
+      "Do not drop Deerfield Beach into a generic Broward County sheriff remainder simply because current operations are contract-policed by BSO.",
+      "Treat the current all-fill state as a reporting continuity and publication failure on FL0060200 under a contract-city municipal reporting model.",
+      "Use FDLE's county-and-municipal offense reports as the official state truth surface through 2021.",
+      "If business requires post-break city-specific override work, the most plausible official local recovery surface is Deerfield-specific BSO contract-district records or city-held contract-performance materials, because the public FDLE FIBRS offense workbook does not publish Deerfield after 2021."
+    ]
+  },
+  "likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining implementation question is whether any later override should be built from Deerfield-specific BSO district records, city-held contract materials, or another official local reporting surface after the public FDLE row disappears."
+  ]
+}

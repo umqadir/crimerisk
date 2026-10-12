@@ -1,0 +1,257 @@
+{
+  "city_key": "portland_or",
+  "city_name": "Portland",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/portland_or/evidence/registry_row.json",
+    "state/review/packets/city/portland_or/evidence/raw_cache_profile.json",
+    "state/review/packets/city/portland_or/evidence/official_totals.csv",
+    "state/review/packets/city/portland_or/evidence/scope_candidates.csv",
+    "state/review/packets/city/portland_or/evidence/doc_index.csv",
+    "state/review/packets/city/portland_or/raw_cache.parquet",
+    "case_text: \"count unit offense, coordinates OpenDataLat/Lon generalized to block; publisher suppresses location for some person offenses\"",
+    "case_text: \"redactions: location withheld for sex offenses and some person crimes\"",
+    "scripts/agents/onboard_feed.py:284 probe_sources (slug, name, page_size of the archived pull)",
+    "src/crimerisk/city_contracts.py:305 map_rows; src/crimerisk/city_contracts.py:338 run_contract (dedupe after coordinates)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Location withheld for sex offenses and some person crimes (registry_row.json redactions). In the pull every Sex Offenses row (Rape 3,015, Criminal Sexual Contact 1,450, Statutory Rape 238, Incest 21) has null Address and null OpenDataLat/OpenDataLon; Aggravated Assault lacks coordinates on 7,422 of 19,776 rows and Simple Assault on 19,557 of 39,581.",
+    "Coordinates generalized to the block (registry_row.json coordinate_precision); Address is published as 'N BLOCK OF <street>' (382,643 of 491,590 rows) or 'UNKNOWN ADDRESS' (5,982 rows, none with coordinates)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "41:municipal:place:4159000"
+    ],
+    "state_fips": [
+      "41"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit is one row per offense type per case: CaseNumber|OffenseType is unique on all 491,590 rows (469,511 distinct CaseNumber). OffenseCount (1-16; >1 on 464 rows) counts repeated offenses of the same type in a case and is not used; every mapped person-offense row has OffenseCount 1 (sum equals row count), so FBI victim-level counting of aggravated assault, rape and murder cannot be reproduced. Motor vehicle theft OffenseCount sums exceed the row count by 19-130 per year (e.g. 2022: 10,986 rows, 11,116 summed vs official 10,899).",
+    "Rape is mapped from OffenseType 'Rape' only; no Sodomy or Sexual Assault With An Object type is present in the pull. Criminal Sexual Contact (11D fondling), Statutory Rape (36B) and Incest (36A) are left out. All rape rows lack coordinates, so rape is lost entirely at the located stage (0 located of 2,758 rows dated 2018-2025).",
+    "Aggravated assault is OffenseType 'Aggravated Assault'; Simple Assault (13B) and Intimidation (13C) are excluded. Row counts are 9-15% below the official totals every year (2018-2025: 1,741/1,991/2,348/3,066/2,791/2,562/2,598/2,652 vs 1,924/2,252/2,577/3,418/3,102/2,875/2,998/3,068), and 31-43% of the rows have no coordinates (located 1,205/1,317/1,531/1,952/1,753/1,536/1,484/1,569).",
+    "Murder is 'Murder and Non-negligent Manslaughter' (09A); Negligent Manslaughter (09B, 2 rows), Negligent Manslaughter with a Vehicle (25 rows) and Justifiable Homicide (09C, 6 rows) are excluded.",
+    "Larceny is the eight 23A-23H types present (Pocket-Picking, Purse-Snatching, Shoplifting, Theft From Building, Theft From Coin-Operated Machine or Device, Theft From Motor Vehicle, Theft of Motor Vehicle Parts or Accessories, All Other Larceny); no Theft of Bicycle type is published separately. Fraud, Embezzlement and Stolen Property offenses are excluded.",
+    "Burglary row counts exceed the official totals in 2020-2022 (5,487/5,091/6,017 vs 4,488/4,722/5,088; 2020-2021 official basis srs_return_a_annual), and are within 6% in the other years.",
+    "The files are split by report year (ReportDate of file i spans exactly year 2018+i); the year comes from OccurDate. Offenses reported before 2018 are not in the pull, and offenses occurring in 2025 but reported in 2026 are missing, so 2018 and 2025 can be slightly short. 2,005 rows with OccurDate before 2018 are dropped."
+  ],
+  "mapping": {
+    "date_field": "OccurDate",
+    "date_format": "%m/%d/%Y",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "CaseNumber",
+      "OffenseType"
+    ],
+    "latitude_field": "OpenDataLat",
+    "longitude_field": "OpenDataLon",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Murder and Non-negligent Manslaughter"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Rape"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Robbery"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Aggravated Assault"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Burglary"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Pocket-Picking",
+              "Purse-Snatching",
+              "Shoplifting",
+              "Theft From Building",
+              "Theft From Coin-Operated Machine or Device",
+              "Theft From Motor Vehicle",
+              "Theft of Motor Vehicle Parts or Accessories",
+              "All Other Larceny"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "OffenseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Motor Vehicle Theft"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Sources: the registry's eight csv endpoints (one Tableau CSV export per report year, registry_row.json api_endpoint), whole-file downloads with no where clause, slugs portland_or_0..7 and page_size 50000 as in the archived pull (the source dicts reproduce the archive cache digests, e.g. raw_portland_or_0_2018_2025_a30bd8579714.parquet). The pull has 491,590 rows (raw_cache_profile.json); per __source_slug, ReportDate spans Jan 1-Dec 31 of 2018+i (query). Count unit: offense. Each row is one NIBRS offense type within a case (CaseNumber|OffenseType unique on every row, query), so id_fields [CaseNumber, OffenseType] keeps one row per offense and dedupe_on_id is a no-op guard; a case with several of the seven offenses (e.g. robbery and aggravated assault) contributes one row to each, and no hierarchy is applied. Dates: OccurDate (occurrence date) parsed %m/%d/%Y; every OccurDate and ReportDate parses and no OccurDate is after its ReportDate (query: 0 failures, 0 inversions); 489,585 rows occur in 2018-2025. Coordinates: OpenDataLat/OpenDataLon as published, generalized to the block by the publisher (registry_row.json); non-null on 442,518 rows (raw_cache_profile.json), none at (0,0), range lat 45.25-46.11, lon -123.20 to -122.12. 66,053 distinct points against 44,194 distinct addresses. Offense rules map OffenseType (case-sensitive, values checked against raw_cache_profile.json OffenseType distinct list and the OffenseCategory/OffenseType cross-tab). Recomputed per OccurDate year 2018-2025 (DuckDB GROUP BY on the rule lists, all rows before coordinates and footprint) vs official_totals.csv: murder 27/28/49/78/91/68/66/50 vs 26/30/53/86/94/74/67/51; rape 421/376/313/337/369/321/316/305 vs 465/388/290/350/373/320/317/305 (0 located); robbery 1078/995/1012/1249/1435/1234/1130/979 vs 1066/981/887/1158/1326/1209/1105/962 (located 993/903/929/1147/1356/1159/1045/908); aggravated_assault 1741/1991/2348/3066/2791/2562/2598/2652 vs 1924/2252/2577/3418/3102/2875/2998/3068; burglary 4330/4174/5487/5091/6017/5025/4567/3802 vs 4581/4287/4488/4722/5088/4965/4562/3801; larceny 24736/24616/22950/24526/25374/23748/24693/25016 vs 24688/23995/22177/24085/24534/23522/24432/24001; motor_vehicle_theft 6897/6532/6499/9184/10986/8158/5421/3959 vs 6958/6447/6413/9091/10899/8210/5468/4004. Scope: Portland Police Bureau polices Portland city, the single candidate in scope_candidates.csv (41:municipal:place:4159000); state 41. Neighborhood 'Other Jurisdiction' marks 2,031 rows that the footprint join is expected to drop. No publisher documentation was in the packet (doc_index.csv is empty); exclusions come from the registry row and the pull.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2018.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_0",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2019.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_1",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2020.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_2",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2021.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_3",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2022.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_4",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2023.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_5",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2024.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_6",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://public.tableau.com/views/PPBOpenDataDownloads/New_Offense_Data_2025.csv?:showVizHome=no",
+      "name": "PPB Open Data Downloads: New Offense Data (one CSV per year)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "portland_or_7",
+      "source_url": "https://www.portland.gov/police/open-data/crime-statistics",
+      "where": ""
+    }
+  ]
+}

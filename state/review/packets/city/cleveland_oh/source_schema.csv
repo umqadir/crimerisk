@@ -1,0 +1,13 @@
+column,dtype
+OBJECTID,int64
+PrimaryKey,object
+CaseNumber,object
+OffenseDate,int64
+OffenseYear,int64
+UCRdesc,object
+StatDesc,object
+Statute,object
+LAT,float64
+LON,float64
+__arcgis_longitude,float64
+__arcgis_latitude,float64

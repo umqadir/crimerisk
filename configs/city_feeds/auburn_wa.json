@@ -1,0 +1,152 @@
+{
+  "city_key": "auburn_wa",
+  "city_name": "Auburn",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/auburn_wa/packet.json",
+    "state/review/packets/city/auburn_wa/evidence/registry_row.json",
+    "state/review/packets/city/auburn_wa/evidence/doc_87bcbedc2c.json",
+    "state/review/packets/city/auburn_wa/evidence/doc_1a90542764.html",
+    "state/review/packets/city/auburn_wa/evidence/doc_index.csv",
+    "state/review/packets/city/auburn_wa/evidence/raw_cache_profile.json",
+    "state/review/packets/city/auburn_wa/evidence/scope_candidates.csv",
+    "state/review/packets/city/auburn_wa/evidence/official_totals.csv",
+    "state/review/packets/city/auburn_wa/evidence/funnel.csv",
+    "state/review/packets/city/auburn_wa/evidence/jurisdictions.csv",
+    "state/review/packets/city/auburn_wa/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "53:municipal:place:5303180"
+    ],
+    "state_fips": [
+      "53"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "The layer carries records of two other agencies under their own case-number series: 'A' + year (e.g. A23-0227; 5,233 rows matching ^A\\d, 2018-2024 only) at Algona addresses (Warde St, Milwaukee Ave N, Algona Blvd) and 'YY-P####' / '25P08####' (4,904 rows matching ^\\d{2}-?P\\d) at Pacific addresses (Valentine Ave SE, Stewart Rd SW, Frontage Rd N) (query.py on raw_cache; avg latitude 47.282 and 47.265 vs 47.306 for the other rows). Official totals are for Auburn's ORI WA0170100 only (evidence/official_totals.csv official_basis) and Auburn city is the only scope candidate (evidence/scope_candidates.csv), so every rule excludes both series on CASENUMBER. Without the exclusion, 330 in-year mapped rows are Algona/Pacific and about 155 of them fall in block groups the crosswalk assigns to Auburn city (the prior run's footprint step dropped only 179 of 5,845 in-state mapped rows; evidence/funnel.csv), including Pacific homicides 20-P0612 (234 Stewart Road SE) and 23-P0916 (1446 Valentine Ave SE). With the exclusion, the footprint step drops 4 of 5,515 in-state mapped rows (cc.funnel on the archived pull). If Auburn PD were shown to report these cities under its ORI the scope would instead have to add them; the separate numbering and the single-ORI totals point to exclusion.",
+    "Larceny and motor vehicle theft are unmapped. OFFENSE has a single theft category ('Theft', 'THEFT', each also with trailing-space padding; evidence/raw_cache_profile.json) and no other published field (REPORTED, CASENUMBER, address, REPORTING_DISTRICT, OFFENSE; evidence/doc_87bcbedc2c.json fields) separates vehicle theft from other larceny. Theft run through the same contract (Algona/Pacific excluded, located, in footprint, deduplicated), 2018-2025: 2570, 2518, 2726, 3128, 3434, 2479, 1910, 1453. That is 1.02x-1.57x official larceny alone (2118, 2030, 2152, 2285, 2188, 2033, 1806, 1426) and 0.94x-1.00x official larceny plus motor vehicle theft (2731, 2550, 2812, 3140, 3458) for 2018-2022, 0.67x-0.78x (3567, 2848, 1872) for 2023-2025 (evidence/official_totals.csv). The category straddles 23A-23H and 240 and is left out rather than mapped to either.",
+    "Aggravated assault is unmapped: 'Assault' (with trailing-space variant; evidence/raw_cache_profile.json) has no aggravated/simple split. Through the same contract steps its counts are 849, 945, 924, 951, 906, 810, 825, 760 for 2018-2025, 3.26x (2024, 825/253) to 6.39x (2025, 760/119) official aggravated assault, so it is mostly 13B simple assault. 'Threats' and 'Weapons Offense' are not mapped either.",
+    "Rape is unmapped: the only sexual category is 'Sex Offense' (evidence/raw_cache_profile.json), which cannot separate 11A-11C from 11D fondling and other sex offenses. Through the same contract steps: 150, 166, 134, 153, 134, 95, 119, 154 for 2018-2025, 1.63x (2024, 119/73) to 3.39x (2019, 166/49) official rape.",
+    "'Homicide' is mapped to murder but is an undefined publisher summary category that may include negligent manslaughter (09B) or justifiable homicide (09C); death investigations are a separate 'Dead Body' category. With the Algona/Pacific exclusion (which removes the two Pacific homicides), deduplicated footprint counts 2018-2025 are 6, 5, 10, 5, 14, 12, 5, 3 (60) vs official murder 1, 4, 8, 4, 13, 8, 10, 3 (51; evidence/official_totals.csv).",
+    "Robbery and burglary are coarse categories taken as 120 and 220 without a published crosswalk. Deduplicated footprint counts 2018-2025 with the exclusion (cc.funnel): burglary 588, 540, 568, 615, 866, 701, 389, 226 vs official 605, 480, 584, 595, 883, 846, 439, 242 (0.83x in 2023 to 1.13x in 2019); robbery 113, 120, 123, 132, 115, 187, 107, 58 vs official 121, 117, 121, 136, 125, 210, 114, 61 (0.89x in 2023 to 1.03x in 2019).",
+    "The date is the report date (REPORTED is the only date field, evidence/doc_87bcbedc2c.json); no occurrence date is published, so incidents reported in a later year than they occurred fall in the report year.",
+    "Each row carries one OFFENSE; the feed publishes one summary category per case number, not the NIBRS offense list or SRS hierarchy, so an incident with several Part I offenses contributes only its published category.",
+    "Uncategorized rows grow in the last three years: OFFENSE blank or '-' on 4, 12, 52, 48, 34, 655, 1050, 2688 rows for 2018-2025 (query.py, trim(OFFENSE) IN ('','-')), while total rows fall from 18,156 (2018) to 11,753 (2025). These rows cannot be mapped and are a likely contributor to the 2023-2025 shortfalls against official totals."
+  ],
+  "mapping": {
+    "date_field": "REPORTED",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "CASENUMBER"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "regex",
+            "value": "^\\s*homicide\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "CASENUMBER",
+            "op": "regex",
+            "value": "^\\s*A\\d",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "CASENUMBER",
+            "op": "regex",
+            "value": "^\\s*\\d{2}-?P\\d",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "regex",
+            "value": "^\\s*robbery\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "CASENUMBER",
+            "op": "regex",
+            "value": "^\\s*A\\d",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "CASENUMBER",
+            "op": "regex",
+            "value": "^\\s*\\d{2}-?P\\d",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "regex",
+            "value": "^\\s*burglary\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "CASENUMBER",
+            "op": "regex",
+            "value": "^\\s*A\\d",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "CASENUMBER",
+            "op": "regex",
+            "value": "^\\s*\\d{2}-?P\\d",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: the survey's single ArcGIS layer 'Crimes' (evidence/registry_row.json api_endpoint, portal_type arcgis_feature_service; evidence/doc_87bcbedc2c.json name 'Crimes', maxRecordCount 2000, so page_size 2000 and order OBJECTID ASC). The landing page (evidence/doc_1a90542764.html) holds only 'TEST'. The where clause is the survey's probe_where and the archive's filter (packet.json case_text). Dates: REPORTED (esriFieldTypeDate) is the only date field and is the report date; no occurrence date is published. It is epoch ms; the pull spans 2018-01-01 00:02:55 to 2025-12-31 23:05:00 read as UTC (query.py, make_timestamp(REPORTED*1000)), matching the where bounds. The layer declares datesInUnknownTimezone false, but the hour-of-day profile read as UTC has its trough at 03:00-05:00 (2,423-2,530 rows) and peak at 12:00 (6,990), which fits local wall-clock time stored without offset, so the UTC year of the epoch is the local year; year_field is empty and year comes from REPORTED with date_format epoch_ms. Unit and id: count_unit incident, per the survey (evidence/registry_row.json count_unit). One row per case: 120,558 rows and 120,381 distinct trimmed CASENUMBER values (query.py; the runner trims ids). Case-number series (query.py, digit-shape patterns): 'YY-NNNNN' (95,961 rows, Auburn), 'YY-E#####' (10,611; plus 105 'YYE######' in 2025), 'YY-S#####' (2,545, mostly trespass at retail addresses), a 9-digit series (1,103, almost all 2025, e.g. 25008xxxx), 'A' + year (Algona) and 'YY-P####' / '25P08####' (Pacific), plus about 150 malformed or other-format entries. Of the 164 case numbers with more than one row, 140 are exact repeats (same OFFENSE and REPORTED) and 18 carry two different OFFENSE values; dedupe_on_id keeps the first row per case number (lowest OBJECTID in archive order). Offense rules: whole-value matches on OFFENSE via case-insensitive regex that tolerates the trailing-space padding in the pull ('Burglary', 'BURGLARY', 'Robbery', 'Homicide', each also padded; evidence/raw_cache_profile.json). Mapped: Homicide -> murder, Robbery -> robbery, Burglary -> burglary. Each rule excludes CASENUMBER matching ^\\s*A\\d (Algona) or ^\\s*\\d{2}-?P\\d (Pacific); the regex op is a case-insensitive search (src/crimerisk/city_contracts.py _condition_mask). This removes 330 in-year mapped rows; the revised contract keeps 5,518 in-year mapped rows, 5,511 in the footprint and 5,508 after deduplication (cc.funnel on the archived pull with state/geometry/block_group_to_jurisdiction_crosswalk.parquet). Unmapped because the source cannot separate the FBI offense: Theft (larceny plus motor vehicle theft), Assault (no aggravated/simple split), Sex Offense (rape not separable from fondling). Other categories (Recovered Stole, Impounded Vehic, Fraud, FORG, EMBZ, Arson, Vandalism, Kidnapping, etc.) are not among the seven offenses. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude; source spatial reference WKID 102748 / 2285, evidence/doc_87bcbedc2c.json). The publisher states no rounding or offset; there are 25,005 distinct 6-decimal points for 30,252 distinct addresses among 120,497 located rows, and addresses are full street addresses rather than hundred blocks ('BLOCK' appears in 45 addresses case-insensitively, 9 case-sensitively), so points look like address geocodes. 61 rows have no geometry and 170 located rows fall outside a rough Washington box (lat 45.5-49.1, lon -124.9 to -116.9); these drop at the coordinate or block-group step. Geography: Auburn Police Department is a municipal PD (ORI WA0170100; evidence/registry_row.json), so the scope is Auburn city, 53:municipal:place:5303180, the single candidate in evidence/scope_candidates.csv; Auburn lies in King and Pierce counties, Washington (state_fips 53). The Algona and Pacific series are excluded by case number rather than by widening the scope (see known differences). Exclusions: the layer description and copyrightText are empty and the survey records no redactions (evidence/doc_87bcbedc2c.json; evidence/registry_row.json redactions ''), so no publisher exclusions are listed. Yearly counts of raw rows are from query.py with year(make_timestamp(REPORTED*1000)); offense counts against official totals are deduplicated footprint counts from cc.funnel on the archived pull.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://gis.auburnwa.gov/hosting/rest/services/Police/Police/MapServer/0",
+      "name": "Auburn Police Crimes",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "auburn_wa",
+      "source_url": "https://gis.auburnwa.gov/",
+      "where": "REPORTED >= DATE '{start}' AND REPORTED < DATE '{end}'"
+    }
+  ]
+}

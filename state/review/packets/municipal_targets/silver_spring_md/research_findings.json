@@ -1,0 +1,55 @@
+{
+  "case_key": "silver_spring_md",
+  "jurisdiction_id": "24:municipal:place:2472450",
+  "jurisdiction_name": "Silver Spring CDP",
+  "state_abbr": "MD",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_place_level_municipal_control_row_24_municipal_place_2472450_and_treat_as_montgomery_county_service_structure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Silver Spring is not an incorporated municipality. Montgomery County Council's official FAQ lists the County's municipalities and states that the rest of the County is not in a municipality, and the official Maryland Manual's Montgomery County municipalities page also omits Silver Spring.",
+    "Silver Spring is instead treated by Montgomery County as an unincorporated community / regional service area. The County runs Silver Spring Regional Services and the Silver Spring Urban District as county programs rather than municipal governments.",
+    "Policing is through Montgomery County Police, specifically the 3rd District station labeled Silver Spring. The official police pages show MCPD as the policing authority and do not indicate any separate Silver Spring municipal police department.",
+    "Because Silver Spring has no separate municipal government and no separate municipal police department, the place-level municipal control row 24:municipal:place:2472450 is not methodologically defensible as an agency-anchored annual jurisdiction control."
+  ],
+  "governance_structure": {
+    "municipal_status": "not_incorporated",
+    "official_basis": [
+      "Montgomery County Council FAQ says Silver Spring is not among the County's municipalities and that the rest of the County is not in a municipality.",
+      "Maryland Manual Online lists Montgomery County's 19 municipalities and does not include Silver Spring.",
+      "County community pages classify Silver Spring as a community served by county regional services rather than an incorporated municipality."
+    ],
+    "county_programs_not_municipal_government": [
+      "Silver Spring Regional Services Center",
+      "Silver Spring Urban District"
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Montgomery County Police Department",
+    "district_reference": "3rd District Station / Silver Spring",
+    "evidence": [
+      "MCPD homepage describes a county police department organized into district stations.",
+      "District 3D page identifies the Silver Spring district station and county contact structure."
+    ],
+    "separate_silver_spring_police_department_found": false
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "why_not": [
+      "Silver Spring is a CDP rather than an incorporated municipality.",
+      "There is no separate municipal police department or municipal governance structure to anchor a standalone annual local control row.",
+      "The official policing surface is county police, so any local Silver Spring precision should come from downstream sub-county allocation or city-incident style overlays, not from a fake municipal target."
+    ],
+    "recommended_handling": [
+      "Do not maintain the standalone Silver Spring place-level municipal control row 24:municipal:place:2472450.",
+      "Treat Silver Spring as part of the Montgomery County policing structure rather than as an independent municipal jurisdiction.",
+      "If finer Silver Spring localization is desired later, use a downstream local incident/share overlay rather than an upstream municipal target."
+    ]
+  },
+  "open_questions": [
+    "The packet does not itself choose between every possible internal repo routing option for Montgomery County county-service coverage, but it closes the main truth question: Silver Spring should not be modeled as a standalone municipal control."
+  ]
+}

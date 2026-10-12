@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+atlanta_ga,"Atlanta, Georgia",13:municipal:place:1304000,Atlanta Police Open Data Portal OpenDataWebsite_Crime_view,https://atlanta-police-opendata-atlantapd.hub.arcgis.com/pages/2f68476999b74aa0b8dc9769822854d2,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

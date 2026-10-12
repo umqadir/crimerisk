@@ -1,0 +1,408 @@
+{
+  "city_key": "pittsburgh_pa",
+  "city_name": "Pittsburgh",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/pittsburgh_pa/packet.json (case_text)",
+    "state/review/packets/city/pittsburgh_pa/evidence/registry_row.json",
+    "state/review/packets/city/pittsburgh_pa/evidence/doc_00.html (Address Information, Victim Information, Data Notes, Temporal Coverage)",
+    "state/review/packets/city/pittsburgh_pa/evidence/doc_index.csv",
+    "state/review/packets/city/pittsburgh_pa/evidence/raw_cache_profile.json",
+    "state/review/packets/city/pittsburgh_pa/evidence/scope_candidates.csv",
+    "state/review/packets/city/pittsburgh_pa/evidence/official_totals.csv",
+    "state/review/packets/city/pittsburgh_pa/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py",
+    "scripts/agents/onboard_feed.py:284-291 (probe_sources)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "2024-2026 Monthly Criminal Activity (doc_00): specific addresses are not used; locations are rounded to the nearest 100 block and coordinates are rounded to the ten-thousandths place (4th decimal).",
+    "2024-2026 Monthly Criminal Activity (doc_00): victim information is redacted; only demographic data is available.",
+    "2024-2026 Monthly Criminal Activity (doc_00): the data reflect initial incident reports; only reports vetted using the parameter \"Supplement Includes Unfound\" are included, and later supplemental reports are not reflected, so counts, locations and timestamps may change.",
+    "Police Incident Blotter (Archive) 2016-2023: no redaction or exclusion is stated in the packet (registry_row.json redactions is empty; the archive's own documentation page is not among the packet's docs); the registry describes its coordinates as block-level X/Y."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "42:police_service:PAPPD0000"
+    ],
+    "state_fips": [
+      "42"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape cannot be located in either source, although no such redaction is stated: every archive HIERARCHY 2 incident with INCIDENTTIME in 2018-2023 (392) has null X/Y and an INCIDENTLOCATION of only a police zone (e.g. 'Zone 3', 'Zone OSC'), as do 1,098 of 1,100 HIERARCHY 17 sex-offense incidents; every workbook row in NIBRS_Offense_Category 'Sex Offenses' (839, which holds all 11A/11B/11C rows) has null XCOORD/YCOORD. The rape rules are kept so the loss shows in the funnel, but every rape row is dropped at the located stage and rape will reconcile as 0 against the official totals.",
+    "Mixed unit across sources. The archive (pittsburgh_pa_0) has one row per incident (340,996 rows, 340,996 distinct PK, 340,917 distinct CCR) carrying one publisher UCR HIERARCHY code (1 murder ... 7 motor vehicle theft), so for 2018-2023 each incident counts once under its highest Part I offense, as in SRS. The 2024+ workbook (pittsburgh_pa_1) has one row per charged statute (Violation) coded to NIBRS (109,717 rows, 71,019 distinct Report_Number); the id Report_Number|NIBRS_Offense_Code keeps one row per NIBRS offense code per report, so a report with several of the seven offenses counts once under each (740 of 20,050 reports with a mapped code in reported years 2024-2025 carry two to four distinct offenses), as in NIBRS offense counting. Distinct larceny subcodes (e.g. 23C and 23H) in one report count as separate larceny offenses.",
+    "2018-2023 rape is the publisher's archive HIERARCHY 2 category (RAPE BY FORCE, ASSAULT TO RAPE, SEXUAL ASSAULT). The archive files many incidents whose OFFENSES list 18 Pa.C.S. 3124.1 Sexual Assault or 3123 IDSI under HIERARCHY 17 (other sex offenses; e.g. 82 in 2018, 104 in 2019 counting any 3121/3123/3124.1 statute) or HIERARCHY 99 (221 in 2018), whereas the publisher's 2024+ NIBRS coding puts 3124.1 mostly in 11A (214 of 264 rows). Those archive incidents are left unmapped, so the archive may undercount rape against the revised definition; adding them would overshoot the official totals (e.g. 2018 HIERARCHY 2 = 98 vs official 121; HIERARCHY 2 + 17 statute rows = 180).",
+    "2018-2023 aggravated assault is archive HIERARCHY 4, which includes DISCHARGE OF FIREARM INTO OCC.STRUCTURE (794 rows, all years), PROPULSION OF MISSILES INTO OCC VEH/RDWY and WMD - THREAT TO USE (6); the archive has no aggravated/simple split other than this hierarchy. Larceny HIERARCHY 6 includes THEFT/PROP-LOST/MISLAID/DEL (4,405), license-plate-only thefts (MOTOR THEFT ...-PLATE ONLY) and COMPUTER TRESSPASS - REMOVE DATA (49). Motor vehicle theft HIERARCHY 7 includes attempts.",
+    "A few archive incidents with a Part I statute are coded HIERARCHY 99 (non-UCR) and stay unmapped: in 2018, 9 with 3701 Robbery, 30 with 2702 Aggravated Assault, 3 with 3502 Burglary. HIERARCHY 0 (207 rows, no description) is unmapped.",
+    "Date basis differs by source: the archive uses INCIDENTTIME (occurrence); the 2024+ workbook publishes no occurrence date, only ReportedDate, so 2024-2025 are by report date.",
+    "Coverage gap: the archive's last INCIDENTTIME is 2023-11-19 (1,225 rows in November 2023, none in December) and the workbook's ReportedYear starts at 2024, so incidents reported from late November through December 2023 are in neither source and 2023 is undercounted.",
+    "The official 2021 totals are 0 for every offense (official_totals.csv, srs_return_a_annual), so 2021 cannot be reconciled; 2018 and 2024-2025 come from CIUS publications (2024 burglary from an NIBRS SRS-equivalent), 2019-2023 from SRS Return A.",
+    "The 2024+ workbook's single row with NIBRS_Offense_Code 'THE' and NIBRS_Coded_Offense 'THEFT OF MOTOR VEHICLE PARTS OR ACCESSORIES' is mapped to larceny by its description; rows coded 13B, 13C, 11D, 36B, 09B and the non-NIBRS 999/'Veh' codes are unmapped. Two workbook rows have no Report_Number; they share an id per NIBRS code.",
+    "79 archive CCR values appear on two rows each; dedupe on the id keeps the first row per CCR."
+  ],
+  "mapping": {
+    "date_field": "INCIDENTTIME|ReportedDate",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "CCR",
+      "Report_Number",
+      "NIBRS_Offense_Code"
+    ],
+    "latitude_field": "Y|YCOORD",
+    "longitude_field": "X|XCOORD",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^1(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^2(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^3(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^4(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^5(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^6(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Coded_Offense",
+            "op": "eq",
+            "value": "THEFT OF MOTOR VEHICLE PARTS OR ACCESSORIES",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_0",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "HIERARCHY",
+            "op": "regex",
+            "value": "^7(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "pittsburgh_pa_1",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "NIBRS_Offense_Code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Two whole-file csv sources, kept as the registry lists them (same slug/name/source_url/endpoint/portal_type/select/where/order/page_size as the probe, so the archived pull is reused). The archive dump pittsburgh_pa_0 (Police Incident Blotter (Archive) 2016-2023; last INCIDENTTIME 2023-11-19) supplies 2018-2023; the WPRDC Monthly Criminal Activity workbook pittsburgh_pa_1 (sheet AllMergedTables, ReportedYear 2024-2026) supplies 2024-2025. Neither is filtered server-side (where is empty), matching the archive, which was pulled under the date filter '(none)'. Every offense rule is gated on __source_slug because the two sources have disjoint schemas. Archive offenses come from the publisher's numeric UCR HIERARCHY code (regex tolerates '1' or '1.0'): 1 murder/non-negligent manslaughter, 2 rape, 3 robbery, 4 aggravated assault, 5 burglary, 6 larceny, 7 motor vehicle theft; 8 (arson) and above are not mapped. Workbook offenses come from NIBRS_Offense_Code: 09A, 11A/11B/11C, 120, 13A, 220, 23A-23H, 240; 09B, 11D, 13B, 13C are left out. count_unit is 'offense': the id CCR|Report_Number|NIBRS_Offense_Code is one row per archive incident (one hierarchy offense each) and one row per NIBRS offense code per 2024+ report, collapsing the several statute (Violation) rows a report can carry under one code (e.g. 2024 aggravated assault: 936 rows, 844 distinct report-code pairs). Dates: archive INCIDENTTIME is the occurrence date; the workbook has only ReportedDate, so 2024-2025 are dated by report. Coordinates: archive X (longitude) / Y (latitude), described by the registry as block-level; workbook XCOORD / YCOORD, which the publisher rounds to 4 decimals and ties to the nearest 100 block. The publisher withholds points for sex offenses in both sources (see known differences), so rape is mapped but never located. Points at (0,0) or missing are dropped (archive X/Y null or 0 on about 5,100-6,500 rows per year 2018-2023; 982 workbook rows lack a coordinate). The scope is the City of Pittsburgh (PAPPD0000); rows the publisher tags Outside City/County/State fall out through the block-group footprint. Counts before geography (archive by occurrence year, HIERARCHY 1-7; official in parentheses): 2018 murder 38 (57), rape 98 (121), robbery 717 (696), aggravated assault 822 (877), burglary 1,465 (1,341), larceny 7,272 (7,055), motor vehicle theft 914 (729). Workbook 2024 distinct report-code pairs: murder 41 (36), rape 170 (164), robbery 455 (394), aggravated assault 844 (761), burglary 898 (741), larceny 6,969 (5,406), motor vehicle theft 1,238 (1,088). Computed with DuckDB via scripts/agents/query.py on raw_cache. Running this contract through src/crimerisk/city_contracts.py run_contract on raw_cache.parquet (2018-2025; mapped, dated, located, deduplicated, before the block-group join) gives, e.g., 2018: murder 35, robbery 656, aggravated assault 733, burglary 1,323, larceny 6,476, motor vehicle theft 822, rape 0; 2024: murder 40, robbery 455, aggravated assault 843, burglary 898, larceny 6,960, motor vehicle theft 1,237, rape 0. The two source dicts hash to the archived pull's cache digests (78466417d1c7, 043eb8932d3d).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.wprdc.org/datastore/dump/044f2016-1dfd-4ab0-bc1e-065da05fca2e",
+      "name": "Police Incident Blotter (Archive) 2016-2023 and Monthly Criminal Activity 2024-2026 (WPRDC)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "pittsburgh_pa_0",
+      "source_url": "https://data.wprdc.org/dataset/uniform-crime-reporting-data",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://data.wprdc.org/dataset/65e69ee3-93b2-4f7a-b9cb-8ce977f15d9a/resource/bd41992a-987a-4cca-8798-fbe1cd946b07/download/pbp_incidents_2024_2026.xlsx#AllMergedTables",
+      "name": "Police Incident Blotter (Archive) 2016-2023 and Monthly Criminal Activity 2024-2026 (WPRDC)",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "pittsburgh_pa_1",
+      "source_url": "https://data.wprdc.org/dataset/uniform-crime-reporting-data",
+      "where": ""
+    }
+  ]
+}

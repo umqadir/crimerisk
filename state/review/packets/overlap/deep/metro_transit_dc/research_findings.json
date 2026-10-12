@@ -1,0 +1,79 @@
+{
+  "case_key": "metro_transit_dc",
+  "ori": "DCMTP0000",
+  "agency_name_raw": "Metro Transit Police",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "fallback_if_not_supported": "keep_statewide_overlap",
+    "production_ready": false,
+    "confidence": "high"
+  },
+  "core_finding": "Metro Transit Police / WMATA is a genuinely multijurisdictional transit police system. Its defensible footprint is the WMATA transit network and associated WMATA facilities across the transit zone, not any single county or place.",
+  "why_simple_proxies_fail": [
+    "WMATA itself describes MTPD as tri-state and operating throughout a 1,500 square mile transit zone spanning Maryland, Virginia, and the District of Columbia.",
+    "The WMATA Compact limits MTPD jurisdiction to transit facilities owned, controlled, or operated by the Authority, while also allowing arrest/process authority within the Transit Zone for offenses committed upon, to, or against those facilities.",
+    "The Compact explicitly gives MTPD concurrent jurisdiction with the local law-enforcement agencies of the signatories and their political subdivisions where WMATA facilities or transit service exist, so this is not a county-equivalent or city-equivalent patrol layer.",
+    "Because the service area follows a network of rail stations, bus operations, parking, rights-of-way, and bus-stop buffers, any single county or place proxy would be materially misleading."
+  ],
+  "authoritative_evidence": {
+    "wmata_about_page": {
+      "source_url": "https://www.wmata.com/about/transit-police/about.cfm",
+      "key_points": [
+        "WMATA says MTPD officers have tri-state jurisdiction.",
+        "WMATA says officers have jurisdiction and arrest powers throughout the 1,500 square mile transit zone that includes Maryland, Virginia, and the District of Columbia for crimes that occur in or against Transit Authority facilities.",
+        "WMATA describes MTPD as the only tri-jurisdictional police agency in the country."
+      ]
+    },
+    "wmata_compact": {
+      "source_url": "https://www.wmata.com/about/records/public_docs/upload/Compact_Annotated_2009_final.pdf",
+      "key_points": [
+        "The Compact defines Transit Facilities broadly to include real and personal property needed or useful in transit service, including rail, bus, stations, terminals, ports, parking, structures, and incidental services.",
+        "The jurisdiction of Metro Transit Police is limited to transit facilities owned, controlled, or operated by the Authority.",
+        "That restriction does not limit MTPD's power to make arrests in the Transit Zone for violations committed upon, to, or against those transit facilities, including while in hot or close pursuit or to execute traffic citations and criminal process.",
+        "The Compact states that Metro Transit Police have concurrent jurisdiction in the performance of their duties with the duly constituted law-enforcement agencies of the signatories and their political subdivisions in which WMATA transit facilities are located or in which WMATA operates transit service.",
+        "The Compact defines a bus stop for this purpose as the area within 150 feet of a Metrobus stop sign, excluding the interior of buildings not owned, controlled, or operated by WMATA."
+      ]
+    },
+    "official_map": {
+      "source_url": "https://wmata.com/service/upload/Jurisdiction_Boundary.pdf",
+      "key_points": [
+        "WMATA publishes an official jurisdiction/area map for the police service area.",
+        "The map identifies a multijurisdictional service area spanning the District of Columbia plus Maryland and Virginia localities rather than a single city or county."
+      ]
+    }
+  },
+  "footprint_interpretation": {
+    "best_footprint_class": "custom_multijurisdiction_transit_network",
+    "includes": [
+      "WMATA-owned, controlled, or operated rail facilities",
+      "WMATA-owned, controlled, or operated bus facilities",
+      "stations, terminals, parking, rights-of-way, and associated facilities",
+      "the bus-stop jurisdiction buffer recognized by the Compact",
+      "the larger Transit Zone for crimes committed upon, to, or against WMATA facilities"
+    ],
+    "excludes": [
+      "treating the agency as an ordinary exclusive county police department",
+      "treating the agency as a single-place municipal department",
+      "absorbing it into a single primary jurisdiction"
+    ]
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "why": [
+      "This case is a network/service-footprint agency, not a place-based police department.",
+      "Concurrent local jurisdiction remains in force, so absorb-into-primary would erase a real special overlap layer.",
+      "A custom footprint is the only class that matches the legal and operational reality."
+    ],
+    "fallback_recommendation": "keep_statewide_overlap",
+    "fallback_why": [
+      "If custom multijurisdiction transit footprints are not yet supported in production, broad overlap is safer than a false county or place localization.",
+      "A false place/county proxy would create fake geographic precision and likely double-count or misassign the service area."
+    ]
+  },
+  "final_verdict": {
+    "defensible_county_or_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_remain_overlap_class": true
+  }
+}

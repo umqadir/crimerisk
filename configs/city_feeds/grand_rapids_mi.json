@@ -1,0 +1,187 @@
+{
+  "city_key": "grand_rapids_mi",
+  "city_name": "Grand Rapids",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/grand_rapids_mi/packet.json",
+    "state/review/packets/city/grand_rapids_mi/evidence/registry_row.json",
+    "state/review/packets/city/grand_rapids_mi/evidence/doc_00.json",
+    "state/review/packets/city/grand_rapids_mi/evidence/doc_index.csv",
+    "state/review/packets/city/grand_rapids_mi/evidence/raw_cache_profile.json",
+    "state/review/packets/city/grand_rapids_mi/evidence/scope_candidates.csv",
+    "state/review/packets/city/grand_rapids_mi/evidence/official_totals.csv",
+    "state/review/packets/city/grand_rapids_mi/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "26:municipal:place:2634000"
+    ],
+    "state_fips": [
+      "26"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Only 2023-2025 exist: USER_DATEOFOFFENSE spans 1672549200000 (2023-01-01 05:00 UTC, local midnight EST) to 1767225206000 (2025-12-31 23:53 UTC) (evidence/raw_cache_profile.json), and the registry row gives first_year 2023, last_year 2025 (evidence/registry_row.json). Official totals for 2018-2022 (evidence/official_totals.csv) have no feed rows to reconcile against.",
+    "Unit is one row per offense per incident, not per victim: USER_INCNUMBER repeats (171,290 distinct numbers in 186,744 rows, evidence/raw_cache_profile.json) and the feed has no victim field (evidence/doc_00.json fields). The id USER_INCNUMBER|USER_MICRCODE keeps one row per Michigan MICR offense code per incident (the NIBRS offense unit). This collapses repeated rows of the same code in an incident, some of which may be separate victims (e.g. 23-043498 carries three identical 13002 rows, ObjectID 38800-38802): for mapped offenses the id drops 5/8/11 aggravated-assault rows, 0/0/1 rape rows and 0/0/5 larceny rows in 2023/2024/2025 (query of raw_cache: count(*) minus count(DISTINCT USER_INCNUMBER||'|'||USER_MICRCODE) by offense and UTC year). SRS counts murder, rape and aggravated assault per victim, so those can run slightly low.",
+    "An incident with several mapped offenses counts once per offense code here, whereas SRS applies the hierarchy rule for most offenses: e.g. aggravated assault has 1,279 incident-code ids in 1,279 incidents in 2025, but rape 194 ids in 188 incidents and larceny 3,930 in 3,926 (query of raw_cache, count vs count DISTINCT USER_INCNUMBER). The rules do not pick one offense per incident; each MICR code is its own row.",
+    "Rape follows the publisher's NIBRS mapping (USER_NIBRS_Maping): MICR 11001/11002 -> Rape (11A), 11003/11004 -> Sodomy (11B), 11005/11006 -> Sexual Assault with an object (11C). MICR 11007/11008 (Sexual Contact Forcible CSC 2nd/4th, 328 rows) map to Fondling (11D) and are left out (query of raw_cache crosstab of USER_MICRCODE by USER_NIBRS_Maping).",
+    "Burglary is MICR 22001 (Forced Entry) and 22002 (Entry Without Force, Intent), which the publisher maps to 'Burglary/Breaking & Entering' (1,394 rows). MICR 22003 'Burglary, Unlawful Entry (No Intent)' (722 rows; 251/260/211 incident-code ids in 2023/2024/2025) and 22004 'Possession of Burglary Tools' (21) are mapped by the publisher to 'All Other' / Grp B and are left out, since the FBI definition requires intent to commit a felony or theft. Burglary is the offense most sensitive to this: feed 538/473/383 vs official 652/524/376 for 2023-2025 (query of raw_cache; evidence/official_totals.csv).",
+    "Larceny includes MICR 30002 'Retail Fraud, Theft' (1,860 rows), which the publisher maps to NIBRS Shoplifting (23C) under Larceny/Theft Offenses; retail fraud misrepresentation (30001) and refund/exchange (30003) map to False Pretenses and are left out (query of raw_cache).",
+    "Motor vehicle theft is MICR 24001 only; 24002 'Motor vehicle as Stolen Property' (155, publisher NIBRS Stolen Property) and 24003 'Motor Vehicle Fraud' (12, False Pretenses) are left out (query of raw_cache).",
+    "Left out: 9002 Negligent Homicide/Manslaughter (2 rows, 09B), 9003 Negligent Homicide Vehicle (1), 13001 Non-Aggravated Assault (10,235, 13B), 13003 Intimidation/Stalking (1,427, 13C) (evidence/raw_cache_profile.json USER_MICRCODE and USER_Offense_Description). No justifiable homicide category is present.",
+    "The 122,726 'Local' and 2,863 'Local - DL' rows (evidence/raw_cache_profile.json USER_MICRCODE) are non-crime or local-ordinance entries (top titles: Trouble with a Person, Welfare Check, Family Or Domestic Trouble, false burglary alarms, stolen vehicle recovery for other departments; query of raw_cache) and carry no MICR crime code; they stay unmapped.",
+    "Dates are UTC instants of local Eastern time (evidence/doc_00.json dateFieldsTimeReference UTC; USER_Day_of_the_Week matches the day at UTC-5/-4, not the UTC day, in 40,150 rows, query of raw_cache). The runner takes the year in UTC, so offenses on local December 31 after 19:00 EST fall in the next year: 3 mapped rows in 2024 and 4 in 2025 (query of raw_cache, mapped rows on UTC January 1 before 05:00). The archive where clause is also evaluated in UTC, so local December 31, 2025 after about 19:00 is absent.",
+    "8,219 rows (4.4%) have no geometry and X = Y = 0 (evidence/raw_cache_profile.json: __arcgis_latitude non-null 178,525 of 186,744; query of raw_cache) and drop at the coordinate filter; among mapped incident-code ids this removes 38/44/60 aggravated assaults and 88/37/32 motor vehicle thefts a year in 2023/2024/2025 (query of raw_cache).",
+    "USER_Service_Area 'Other Jurisdiction' (beat X) holds 2,872 rows (evidence/raw_cache_profile.json), including 314 mapped larceny rows over 2023-2025 (21/79/214; query of raw_cache); their points are inside or near Grand Rapids and are kept or dropped by the scope footprint, not by a rule."
+  ],
+  "mapping": {
+    "date_field": "USER_DATEOFOFFENSE",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "USER_INCNUMBER",
+      "USER_MICRCODE"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "9001"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11001",
+              "11002",
+              "11003",
+              "11004",
+              "11005",
+              "11006"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "12000",
+              "12001"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13002"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "22001",
+              "22002"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23001",
+              "23002",
+              "23003",
+              "23004",
+              "23005",
+              "23006",
+              "23007",
+              "30002"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_MICRCODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "24001"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Grand Rapids Police Department ArcGIS layer 'Sheet2_Geocoded6' (evidence/doc_00.json), ORI MI4143600 (evidence/registry_row.json). Offenses are keyed on USER_MICRCODE, the Michigan Incident Crime Reporting code, and follow the publisher's own NIBRS crosswalk in USER_NIBRS_Maping / USER_NIBRS_GRP, which is one-to-one with MICR for every mapped code (query of raw_cache crosstab): 9001 -> Murder and Non-Negligent Manslaughter (09A); 11001-11006 -> Rape/Sodomy/Sexual Assault with an object (11A-11C); 12000, 12001 -> Robbery (120); 13002 -> Aggravated Assault (13A); 22001, 22002 -> Burglary/Breaking & Entering (220); 23001-23007 and 30002 -> Larceny/Theft Offenses (23A-23H, 11,791 rows = the profile's Larceny/Theft Offenses group count); 24001 -> Motor Vehicle Theft (240). Every listed code is present in the pull (evidence/raw_cache_profile.json USER_MICRCODE). count_unit is offense (registry count_unit 'offense'); id USER_INCNUMBER|USER_MICRCODE with dedupe keeps the first row per incident and MICR code; distinct offense codes in one incident are all kept. Date is USER_DATEOFOFFENSE, the offense (occurrence) date (field alias DATEOFOFFENSE, evidence/doc_00.json), parsed as epoch_ms; there is no year field. Coordinates are the published point geometry (__arcgis_latitude / __arcgis_longitude, identical to the X / Y attributes on every located row, query of raw_cache), WGS84 (evidence/doc_00.json spatialReference 4326). Points are geocoded to the block address or intersection, not the exact location: the address field is block-level ('100 BLOCK SHELDON AV SE') and each block address has a single point (e.g. 1,847 rows at one point for 100 BLOCK SHELDON AV SE; 8,036 distinct points for 11,235 distinct addresses; query of raw_cache). No redactions or exclusions are stated: the layer description is empty and no other documentation is published (evidence/doc_00.json; registry redactions blank). Scope is Grand Rapids city (evidence/scope_candidates.csv). Recomputed incident-code ids by UTC year before the coordinate filter (query of raw_cache), 2023/2024/2025 vs official (evidence/official_totals.csv): murder 25/12/14 vs 23/12/13; rape 204/198/194 vs 179/176/168; robbery 212/230/195 vs 207/228/191; aggravated assault 1208/1240/1279 vs 1321/1367/1420; burglary 538/473/383 vs 652/524/376; larceny 4160/3696/3930 vs 4035/3583/3753; motor vehicle theft 1261/706/518 vs 1292/753/513. The where clause is the registry's probe_where; page_size 2000 is the layer maxRecordCount; order is the objectIdField ObjectID (evidence/doc_00.json).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/L81TiOwAPO1ZvU9b/arcgis/rest/services/CRIME_DALLLLLLL/FeatureServer/0",
+      "name": "Grand Rapids CRIME DATA",
+      "order": "ObjectID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "grand_rapids_mi",
+      "source_url": "https://www.grandrapidsmi.gov/",
+      "where": "USER_DATEOFOFFENSE >= DATE '{start}' AND USER_DATEOFOFFENSE < DATE '{end}'"
+    }
+  ]
+}

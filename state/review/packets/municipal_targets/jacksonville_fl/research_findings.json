@@ -1,0 +1,102 @@
+{
+  "case_key": "jacksonville_fl",
+  "jurisdiction_id": "12:municipal:place:1235000",
+  "jurisdiction_name": "Jacksonville city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_as_consolidated_primary_jurisdiction_and_route_jso_reporting_here",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Jacksonville is not an ordinary standalone municipality. It is the core government inside the consolidated City of Jacksonville / Duval County structure created in 1968.",
+    "Official City of Jacksonville materials say the Office of the Sheriff was created to bring Jacksonville and Duval County law enforcement under one entity, while the three beach communities and Baldwin retained separate police departments.",
+    "Official Jacksonville government materials also say the consolidated government provides police protection through the countywide/general-services structure while specifically excluding the Beaches Communities and the Town of Baldwin from those municipal-service carve-ins.",
+    "The Jacksonville Sheriff's Office officially describes its mission as serving the citizens of Duval County, which is consistent with a consolidated city-county primary policing role rather than an ordinary small-area municipal police department.",
+    "FDLE's official county-and-municipal offense reports list Jacksonville Sheriff's Office as the main local Duval reporting row in 2018, 2019, 2020, and 2021, while separately listing Atlantic Beach, Jacksonville Beach, and Neptune Beach.",
+    "Repo time-series evidence shows a reporting-identifier handoff rather than the disappearance of Jacksonville as a real local jurisdiction: ORI FL0160200 carries Jacksonville counts through 2020 and then goes to zero; ORI FL0160000 is zero through 2020 and then carries positive Jacksonville/JSO counts from 2021 forward."
+  ],
+  "governance_structure": {
+    "municipal_status": "consolidated_city_county_primary_jurisdiction",
+    "official_basis": [
+      "The consolidated government extends throughout Duval County, with Atlantic Beach, Neptune Beach, Jacksonville Beach, and Baldwin retaining local governments for certain municipal functions.",
+      "The City's own transition report says the Office of the Sheriff was established to bring all City of Jacksonville and Duval County law enforcement under one entity."
+    ],
+    "separate_local_governments_retained": [
+      "Atlantic Beach",
+      "Jacksonville Beach",
+      "Neptune Beach",
+      "Baldwin"
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Jacksonville Sheriff's Office",
+    "service_characterization": "consolidated city-county primary law-enforcement agency",
+    "official_evidence": [
+      "The City of Jacksonville's transition report states that the sheriff is responsible for the management, operation, and control of law enforcement and traffic safety in the consolidated government.",
+      "JSO's official homepage says it serves the citizens of Duval County."
+    ],
+    "separate_beach_police_departments_confirmed": true,
+    "separate_baldwin_police_department_historically_confirmed": true
+  },
+  "reporting_evidence": {
+    "official_fdle_publication_pattern": [
+      "FDLE annual county-and-municipal offense tables publish Jacksonville Sheriff's Office as the main Duval local agency row across the 2018-2021 span, with the beach municipalities listed separately."
+    ],
+    "repo_internal_evidence": {
+      "agency_handoff_summary": [
+        {
+          "ori9": "FL0160200",
+          "crosswalk_agency_name": "jacksonville city cnty pd",
+          "year_source_totals": {
+            "2018_srs_return_a_annual": 35493.0,
+            "2019_srs_return_a_annual": 35974.0,
+            "2020_srs_return_a_annual": 32856.0,
+            "2021_srs_return_a_annual": 0.0,
+            "2022_srs_return_a_annual": 0.0,
+            "2023_srs_return_a_annual": 0.0,
+            "2024_srs_return_a_annual": 0.0
+          }
+        },
+        {
+          "ori9": "FL0160000",
+          "crosswalk_agency_name": "duval cnty sheriffs dept",
+          "year_source_totals": {
+            "2018_srs_return_a_annual": 0.0,
+            "2019_srs_return_a_annual": 0.0,
+            "2020_srs_return_a_annual": 0.0,
+            "2021_srs_return_a_annual": 30151.0,
+            "2021_nibrs_incident_annual": 28699.0,
+            "2022_srs_return_a_annual": 30136.0,
+            "2022_nibrs_incident_annual": 28938.0,
+            "2023_srs_return_a_annual": 31763.0,
+            "2023_nibrs_incident_annual": 30417.0,
+            "2024_srs_return_a_annual": 32309.0,
+            "2024_nibrs_incident_annual": 31277.0
+          }
+        }
+      ],
+      "interpretation": "The local Jacksonville municipal identifier goes dark exactly when the Duval/JSO sheriff identifier becomes active. That pattern is consistent with a reporting-code handoff for the same consolidated policing surface, not with a real disappearance of Jacksonville as a valid local target."
+    }
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Jacksonville is the core consolidated city-county jurisdiction, not a fake CDP or neighborhood target.",
+      "Official city documents place law-enforcement authority for the consolidated government in the sheriff, while preserving separate beach and Baldwin police carve-outs.",
+      "FDLE publishes Jacksonville Sheriff's Office as the principal Duval local agency row rather than as a generic county remainder row.",
+      "The repo's zero-fill problem is caused by mis-routed reporting continuity after 2020, not by Jacksonville being an invalid target."
+    ],
+    "recommended_handling": [
+      "Retain Jacksonville as a true primary local control row.",
+      "Treat Jacksonville as a consolidated primary jurisdiction rather than an ordinary standalone municipal-police case.",
+      "Route the Jacksonville / JSO reporting continuity into 12:municipal:place:1235000 instead of leaving FL0160000 in nonmunicipal county remainder.",
+      "Keep Atlantic Beach, Jacksonville Beach, and Neptune Beach as separate municipal rows."
+    ]
+  },
+  "blockers_or_followups": [
+    "Official city materials say Baldwin retained a separate police department, but FDLE's 2021 publication population arithmetic makes JSO look like county-minus-beaches rather than county-minus-beaches-and-Baldwin. That edge case should be checked before any geometry-sensitive footprint change, but it does not change the main keep/remove decision for Jacksonville.",
+    "This packet resolves the municipal-target truth question. A later implementation step still has to decide the exact override mechanics for rerouting FL0160000."
+  ]
+}

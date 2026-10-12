@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,Omaha Police Incident Data (DCGIS Open Data Portal),https://data-dogis.opendata.arcgis.com/datasets/omaha%3A%3Aomaha-police-incident-data-1,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

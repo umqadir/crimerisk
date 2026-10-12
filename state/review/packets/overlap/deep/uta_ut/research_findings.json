@@ -1,0 +1,104 @@
+{
+  "case_key": "uta_ut",
+  "ori": "UT0184000",
+  "agency_name_raw": "Utah Transit Authority",
+  "state_abbr": "UT",
+  "question": "Whether Utah Transit Authority (UT0184000) should localize to a custom network footprint, a county/place proxy, or another overlap class.",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "transit",
+    "footprint_type": "transit_network_and_properties",
+    "confidence": 0.96
+  },
+  "verified_findings": [
+    {
+      "topic": "Police-role scope",
+      "finding": "UTA states that its police officers are state-certified law enforcement officers responsible for safety and security on board UTA vehicles and on UTA property, and that patrol officers monitor stations and facilities and respond to calls from dispatch."
+    },
+    {
+      "topic": "Utah statutory classification",
+      "finding": "Utah Code Section 17B-2a-822 authorizes a multicounty transit district to employ law enforcement officers for the district, and Section 53-13-103 explicitly classifies transit police officers designated under Section 17B-2a-822 as law enforcement officers."
+    },
+    {
+      "topic": "Facility-based footprint definition",
+      "finding": "Utah Code Section 17B-2a-802 defines a transit facility to include transit vehicles, transit stations, depots, passenger loading or unloading zones, parking lots, rail rights-of-way and lines, and a reasonable area immediately adjacent to a designated stop on a transit route."
+    },
+    {
+      "topic": "Exact political service-area membership named by UTA",
+      "finding": "UTA's 2024 ACFR states that the service area includes Salt Lake, Davis, Utah, and Weber Counties; the cities of Tooele and Grantsville in Tooele County; the unincorporated Tooele County areas of Erda, Lakepoint, Stansbury Park, and Lincoln; and the Box Elder County cities of Brigham City, Perry, and Willard."
+    },
+    {
+      "topic": "Broader service-area characterization",
+      "finding": "The same 2024 ACFR also characterizes the UTA service area more generally as covering all or portions of six principal counties (Box Elder, Davis, Salt Lake, Tooele, Utah, and Weber) and a small portion of Juab County."
+    },
+    {
+      "topic": "Why political proxies fail",
+      "finding": "UTA is not coterminous with a single county or place. Its named service area mixes full-county membership, partial-county membership, and specific cities/unincorporated areas. Separately, the policing and legal footprint attaches to UTA vehicles, stations, stops, rights-of-way, park-and-ride lots, and other UTA facilities and services, not to one general-purpose civil jurisdiction."
+    }
+  ],
+  "exact_service_footprint_for_production": {
+    "type": "custom transit network and UTA properties footprint",
+    "components": [
+      "official active UTA GTFS route shapes and stop locations",
+      "UTA rail corridors and station locations",
+      "UTA bus stops and passenger loading/unloading zones",
+      "UTA depots, yards, and other UTA-operated transit facilities where separately available",
+      "UTA park-and-ride lots and other UTA property/facility surfaces"
+    ],
+    "legal_basis": "Utah Code Section 17B-2a-802 ties transit facilities to vehicles, stations, depots, loading/unloading zones, parking lots, rail rights-of-way and lines, and reasonable adjacent stop areas; UTA's police materials tie officer responsibility to UTA vehicles, property, stations, and facilities."
+  },
+  "member_counties_cities_and_areas": {
+    "full_counties_named_by_uta": [
+      "Salt Lake County",
+      "Davis County",
+      "Utah County",
+      "Weber County"
+    ],
+    "partial_county_membership_named_by_uta": {
+      "Tooele County": [
+        "Tooele city",
+        "Grantsville city",
+        "Erda",
+        "Lakepoint",
+        "Stansbury Park",
+        "Lincoln"
+      ],
+      "Box Elder County": [
+        "Brigham City",
+        "Perry",
+        "Willard"
+      ]
+    },
+    "additional_area_noted_by_uta": [
+      "small portion of Juab County"
+    ],
+    "interpretation_note": "The ACFR provides both an exact named-locality description and a broader principal-counties description. Both establish that UTA is multicounty and partly sub-county; neither supports a single county or place proxy."
+  },
+  "proxy_assessment": {
+    "single_county_proxy": {
+      "defensible": false,
+      "why_not": "UTA spans multiple counties and only portions of some counties. The FBI roster's Salt Lake county/place coding reflects an administrative anchor, not the agency's policing footprint."
+    },
+    "single_place_proxy": {
+      "defensible": false,
+      "why_not": "No single municipality matches UTA's service territory or its vehicle/property-based policing footprint."
+    },
+    "county_or_place_service_area_proxy": {
+      "defensible": false,
+      "why_not": "Even a multi-county polygon proxy would overinclude large areas where UTA has no facilities or service and underperform relative to official network/property data."
+    }
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "transit",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "transit_network_and_properties",
+    "geometry_sources": [
+      "https://gtfsfeed.rideuta.com/GTFS.zip",
+      "https://www.rideuta.com/Rider-Tools/Schedules-and-Maps",
+      "https://www.rideuta.com/Rider-Info/Station-Addresses",
+      "https://www.rideuta.com/Rider-Info/Park-and-Ride-Lots"
+    ],
+    "implementation_note": "If the custom geometry cannot yet be built, retain broad overlap handling temporarily rather than collapsing UT0184000 into Salt Lake County, a Salt Lake place proxy, or another general-purpose county/place surrogate."
+  }
+}

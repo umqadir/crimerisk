@@ -1,0 +1,77 @@
+{
+  "city_key": "austin",
+  "review_date": "2026-03-24",
+  "final_recommendation": "Keep Austin non-production at the city level, and exact-selectively promote only robbery, burglary, larceny, and motor_vehicle_theft from the live Socrata contract. Do not advance aggravated_assault: the empirical 13A plus 903 909 911 and 2013 closure is contradicted by APD's published code lookup, which places those tail codes under 13B Simple Assault.",
+  "promote_now": [
+    "robbery",
+    "burglary",
+    "larceny",
+    "motor_vehicle_theft"
+  ],
+  "do_not_promote_now": {
+    "murder": "Blocked. Direct public 09A remains materially low versus official TXDPS UCR counts across 2024 full year, Jan-May 2025, and Jan-Nov 2025.",
+    "rape": "Approximate only. Austin publishes Sexual Assault rather than a strict V2 rape bucket, so this should stay out of the clean exact-comparable path.",
+    "aggravated_assault": "Blocked. Direct 13A remains about 18 percent low, and the empirical tail codes 903 909 911 and 2013 are not exact aggravated assault because APD's published code lookup places them under 13B Simple Assault."
+  },
+  "aggravated_assault_decision": {
+    "direct_13A_2024_count": 2485,
+    "bounded_refresh_candidate_rule": "ucr_category = 13A or ucr_category is null and ucr_code in 903 909 911 2013",
+    "candidate_2024_count": 3038,
+    "published_2024_count": 3039,
+    "candidate_2024_pct_diff": -0.03,
+    "candidate_2025_jan_may_count": 1115,
+    "published_2025_jan_may_count": 1104,
+    "candidate_2025_jan_may_pct_diff": 1.0,
+    "candidate_2025_jan_nov_count": 2499,
+    "published_2025_jan_nov_count": 2452,
+    "candidate_2025_jan_nov_pct_diff": 1.92,
+    "official_lookup_source_name": "APD Chief's Monthly Report - March 2024",
+    "official_lookup_source_url": "https://www.austintexas.gov/sites/default/files/files/Police/Reports/Chief_Monthly/2024/04152024_Chief%27s%20Monthly%20Report%20-%20Mar%202024.pdf",
+    "official_lookup_blocker": "APD's published lookup table places APD codes 0903 0909 0911 and 2013 under 13B Simple Assault, while APD's 13A aggravated-assault family uses separate 0402 through 0411 codes such as 0403 for aggravated assault on a public servant.",
+    "production_worthy_now": false,
+    "exact_path_use_allowed": false
+  },
+  "ready_offense_stability": {
+    "robbery_pct_diff_source_minus_official": {
+      "2024_full_year": -3.08,
+      "2025_jan_may": -6.3,
+      "2025_jan_nov": -4.74
+    },
+    "burglary_pct_diff_source_minus_official": {
+      "2024_full_year": -6.26,
+      "2025_jan_may": -7.94,
+      "2025_jan_nov": -7.68
+    },
+    "larceny_pct_diff_source_minus_official": {
+      "2024_full_year": -0.7,
+      "2025_jan_may": 4.74,
+      "2025_jan_nov": 1.39
+    },
+    "motor_vehicle_theft_pct_diff_source_minus_official": {
+      "2024_full_year": -2.35,
+      "2025_jan_may": -2.0,
+      "2025_jan_nov": -2.25
+    },
+    "ready_bundle_pct_diff_source_minus_official": {
+      "2024_full_year": -1.79,
+      "2025_jan_may": 1.68,
+      "2025_jan_nov": -0.55
+    }
+  },
+  "source_block_group_contract": {
+    "field": "census_block_group",
+    "normalization": "prepend 48 to the 10-digit local block group code",
+    "rows_with_block_group_2024": 85681,
+    "rows_with_block_group_share_2024": 0.9932,
+    "exact_v2_rows_with_block_group_2024": 35693,
+    "exact_v2_rows_without_block_group_2024": 153,
+    "rule": "Use source-provided block groups as the Austin spatial contract and filter through the Austin block-group membership crosswalk. Do not geocode."
+  },
+  "loader_notes": [
+    "Build against the live Austin schema: occ_date, incident_report_number, ucr_category, ucr_code, location_type, census_block_group.",
+    "Do not rely on latitude, longitude, or address fields because the live public contract no longer exposes them.",
+    "Treat the feed as highest-offense incident grain, which means exact reconciliation to offense-count publications may still drift on blocked buckets.",
+    "Treat ucr_category as the authoritative FBI/UCR field for exact promotion work.",
+    "Do not backfill aggravated_assault from 903 909 911 or 2013 in production because APD's published lookup table classifies those codes as 13B Simple Assault rather than 13A."
+  ]
+}

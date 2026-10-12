@@ -1,0 +1,8 @@
+offense,joined_incidents,incidents_outside_prereg_universe,outside_universe_bg_count,tvd,band_lo,band_hi,band_mean,vs_band,low_confidence_band
+murder,35,0,0,0.79175,0.67904,0.78652,0.73278,above (worse),False
+rape,282,8,5,0.48626,0.60089,0.66773,0.63431,below (better),True
+robbery,542,15,8,0.36244,0.41018,0.44622,0.4282,below (better),False
+aggravated_assault,2160,49,12,0.26209,0.32064,0.36668,0.34366,below (better),False
+burglary,1357,58,8,0.2854,0.31377,0.36709,0.34043,below (better),False
+larceny,8127,447,13,0.23713,0.29758,0.35714,0.32736,below (better),False
+motor_vehicle_theft,3601,100,10,0.25439,0.29073,0.33873,0.31473,below (better),False

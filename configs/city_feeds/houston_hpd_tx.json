@@ -1,0 +1,360 @@
+{
+  "city_key": "houston_hpd_tx",
+  "city_name": "Houston",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/houston_hpd_tx/packet.json (case_text: \"count unit offense, coordinates point (Map Latitude / Map Longitude on each row), redactions: none stated\")",
+    "state/review/packets/city/houston_hpd_tx/evidence/registry_row.json (api_endpoint, portal_type csv, jurisdiction_ids 48:municipal:place:4835000, state_fips 48, first_year 2019, reason)",
+    "state/review/packets/city/houston_hpd_tx/evidence/doc_index.csv",
+    "state/review/packets/city/houston_hpd_tx/evidence/doc_c87b7ed486.html (\"For privacy reasons, exact addresses are not shown, only the hundred blocks\"; \"for which HPD wrote police reports\"; links NIBRSPublicView2019-2026.csv; \"Data current as of 7/30/2026\")",
+    "state/review/packets/city/houston_hpd_tx/evidence/raw_cache_profile.json (rows 1,766,780; column sets per schema; NIBRSClass / NIBRS Class distinct values)",
+    "state/review/packets/city/houston_hpd_tx/evidence/scope_candidates.csv (48:municipal:place:4835000 Houston city)",
+    "state/review/packets/city/houston_hpd_tx/evidence/official_totals.csv (2018-2025, ori:TXHPD0000)",
+    "state/review/packets/city/houston_hpd_tx/raw_cache.parquet (queries: rows / distinct Incident / distinct (Incident, class) / OffenseCount sum by slug; duplicate incident-class pairs; Incident file spread; occurrence year by slug; date-format regex; mapped rows vs OffenseCount sum by year and offense; City, Beat OOJ/HCSO, street-number '00' share; distinct points)",
+    "src/crimerisk/city_contracts.py:194 _condition_mask (reads one column; 'in' case-insensitive)",
+    "src/crimerisk/city_contracts.py:305 map_rows (id_fields read raw columns directly; date/coordinate fields coalesce with '|')",
+    "src/crimerisk/city_contracts.py:147,156 _download_file / download (csv: pd.read_csv, no where)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Addresses: \"For privacy reasons, exact addresses are not shown, only the hundred blocks\" (doc_c87b7ed486.html, stated for the beat tables; the CSV street-number field is mostly not hundred-blocked, see notes).",
+    "Coverage: Group A and Group B offenses \"for which HPD wrote police reports\" (doc_c87b7ed486.html). No other redaction or exclusion is stated (registry_row.json redactions empty)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "48:municipal:place:4835000"
+    ],
+    "state_fips": [
+      "48"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit mismatch for crimes against persons: each row is one NIBRS offense class in one incident, and OffenseCount ('Offense Count' in 2025) carries the number of counted offenses on the row (>1 on 6,167-7,372 rows per file; at least 13,690 13A rows with OffenseCount 2-7). The runner counts one row per incident and mapped offense (mapping.dedup_unit incident_offense); the official murder, rape and aggravated-assault totals count victims. Recomputed by occurrence year over all mapped rows (raw_cache.parquet) against official_totals.csv: aggravated assault rows run 11.8%-14.9% below the official total every year (2024: 15,541 rows, OffenseCount sum 18,472, official 18,260) while the OffenseCount sum is +1.2% to +3.6%; murder rows run 2.9%-6.3% below (2024: 304 rows, OffenseCount sum 320, official 320; the sum equals the official total in 2020, 2021, 2024 and 2025); rape rows run -7.5% to +5.6% (sum -5.2% to +6.7%), but the contract counts one rape per incident: 610 incidents carry two or three of 11A/11B/11C (11A+11B 560), distinct classes rather than duplicate records, and the feed cannot tell one victim (counted once in the SRS-equivalent) from several, so the contract rape count (-9.6% to -2.2% of the official total on mapped rows, 2019-2025) is a lower bound; at the footprint stage it is -11.3% in 2020 and 2024. Aggravated assault is expected to miss a 10% reconciliation tolerance in every year; the contract cannot weight rows by OffenseCount.",
+    "Property and robbery counts by row: robbery and burglary rows all have OffenseCount 1 (51,306 and 98,922 rows). Recomputed against official_totals.csv: robbery +0.5% to +2.9%, larceny +1.2% to +3.1% by row, +0.8% to +2.5% under incident_offense, burglary -0.9% to -10.7% (2024: 13,354 rows vs 14,953; 2021-2022 officials are srs_return_a_annual), motor vehicle theft -1.6% to +0.1% by row (2024: 16,050 vs 16,304) while its OffenseCount sum is +2.0% to +3.8%.",
+    "Categories: rape is 11A, 11B, 11C only; 11D forcible fondling (4,436 rows), 36B statutory rape (396) and 36A incest (20) are excluded. Homicide is 09A only; 09B (47) and 09C (46) excluded. Assault is 13A only; 13B (174,126) and 13C (129,125) excluded. No hierarchy rule: an incident with, e.g., 13A and 120 counts in both; an incident with two 23x classes counts once in larceny under mapping.dedup_unit incident_offense over Incident (2025: 69,708 larceny rows over 69,341 distinct incidents; before the unit was declared both rows counted).",
+    "No 2018 feed rows: the yearly files start in 2019 (registry_row.json reason: 2018 exists only as Jun-Dec monthly NIBRS-transition workbooks), so the 2018 official totals have no counterpart.",
+    "Files are rewritten monthly (doc_c87b7ed486.html: updated monthly, 'Data current as of 7/30/2026'), so a later pull can reclassify offenses or add late-reported ones; the archive is the reference."
+  ],
+  "mapping": {
+    "date_field": "RMSOccurrenceDate|Occurrence Date",
+    "date_format": "%m/%d/%Y",
+    "dedup_unit": "incident_offense",
+    "id_fields": [
+      "Incident"
+    ],
+    "latitude_field": "MapLatitude|Map Latitude",
+    "longitude_field": "MapLongitude|Map Longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSClass",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRS Class",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Sources: seven whole-file CSV downloads, one per year 2019-2025, kept from registry_row.json api_endpoint (also linked on doc_c87b7ed486.html), slugs houston_hpd_tx_0..6 as in the archive; csv sources take no where clause. The page also links NIBRSPublicView2026.csv, outside the build years and not included. Schema change: the 2019-2024 files use Incident, RMSOccurrenceDate, NIBRSClass, OffenseCount, MapLatitude, MapLongitude; the 2025 file uses Incident, 'Occurrence Date', 'NIBRS Class', 'Offense Count', 'Map Latitude', 'Map Longitude' (raw_cache_profile.json: RMSOccurrenceDate non_null 1,526,078; Occurrence Date non_null 240,696 = the houston_hpd_tx_6 row count). Date and coordinate fields coalesce both spellings; each offense rule is written once per class column because conditions read a single column. count_unit offense: one row per incident x NIBRS class. Query on raw_cache: count(DISTINCT (Incident, class)) equals the row count of each file except 13 pairs (9 x 90Z, one each 23H, 13C, 13B, 290) whose rows differ only in Premise; mapping.dedup_unit incident_offense over Incident keeps one row per incident and mapped offense, which removes 2,440 footprint rows (853,756 to 851,316): 1,835 larceny rows (incidents with two 23x classes, including the 2025 23H pair) and 605 rape rows (incidents with two or three of 11A/11B/11C). Every Incident appears in one file only (count(DISTINCT __source_slug) per Incident = 1 for all 1,578,548 incidents). Incident is read as a float, so ids carry a trailing '.0' (live CSV read the same way as the archive). The six all-null rows (one per 2019-2024 file, Incident null; 1,766,780 rows minus 1,766,774 non-null Incident) map to no offense. An incident with several of the seven offenses keeps one row per mapped offense (no hierarchy rule). Offense rules: NIBRS class codes as published (NIBRSClass / NIBRS Class), checked against the distinct values in the pull: 09A murder (2,428 rows), 11A/11B/11C rape (5,633/4,061/147), 120 robbery (51,306), 13A aggravated assault (103,776), 220 burglary (98,922), 23A-23H larceny (all eight codes present), 240 motor vehicle theft (109,355). Codes and descriptions are one-to-one in raw_cache_profile.json (e.g. 13A 90,642 = 'Aggravated Assault' 90,642). Left unmapped: 09B, 09C, 11D, 13B, 13C, 36A, 36B. Date: the occurrence date (RMSOccurrenceDate, 'Occurrence Date' in 2025), m/d/Y with no time (hour is a separate column); every non-null value matches ^[0-9]{1,2}/[0-9]{1,2}/[0-9]{4}$ (0 failures) and each file holds only occurrence dates of its own year (year by __source_slug: 2019..2025). No report date is published. 2018 has no rows. Coordinates: the published MapLatitude/MapLongitude ('Map Latitude'/'Map Longitude' in 2025): 1,741,494 of 1,766,774 rows located, none at (0, 0), 444,278 distinct points, up to 6 decimals, bounding box lat 29.36-30.96, lon -96.00 to -94.86 (raw_cache_profile.json). The publisher does not say whether points are rounded or offset. The page says exact addresses are not shown, only hundred blocks, but in the CSV only 330,471 of 1,760,868 street numbers end in '00', so the hundred-block statement does not describe the street-number field; the point precision is undocumented. Scope: Houston city only (scope_candidates.csv, registry jurisdiction_ids). 10,616 rows carry a City other than HOUSTON and 10,086 rows a Beat containing OOJ or HCSO (out-of-jurisdiction / Harris County Sheriff); these are kept by the rules and fall out at the footprint stage when their points lie outside the city.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2019.csv",
+      "name": "HPD NIBRS public view 2019 (NIBRSPublicView2019.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_0",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2020.csv",
+      "name": "HPD NIBRS public view 2020 (NIBRSPublicView2020.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_1",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2021.csv",
+      "name": "HPD NIBRS public view 2021 (NIBRSPublicView2021.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_2",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2022.csv",
+      "name": "HPD NIBRS public view 2022 (NIBRSPublicView2022.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_3",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2023.csv",
+      "name": "HPD NIBRS public view 2023 (NIBRSPublicView2023.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_4",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2024.csv",
+      "name": "HPD NIBRS public view 2024 (NIBRSPublicView2024.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_5",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    },
+    {
+      "api_endpoint": "https://www.houstontx.gov/police/cs/xls/NIBRSPublicView2025.csv",
+      "name": "HPD NIBRS public view 2025 (NIBRSPublicView2025.csv)",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "houston_hpd_tx_6",
+      "source_url": "https://www.houstontx.gov/police/cs/Monthly_Crime_Data_by_Street_and_Police_Beat.htm",
+      "where": ""
+    }
+  ]
+}

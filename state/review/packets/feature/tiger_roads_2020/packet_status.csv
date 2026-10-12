@@ -1,0 +1,2 @@
+packet,status,summary,manifest_rows,failed_permanent_rows,failed_transient_rows,recommended_action
+tiger_roads_2020,in_progress,"As of 2026-03-22T15:43:46-0400 the TIGER roads pull was still actively advancing, but the national build remained incomplete because the crawl had only reached state 19, cached ZIPs were not fully represented in the manifest, and the final national parquet is only emitted after the full state loop completes.",702,19,1,stay_on_tiger_finish_from_existing_cache_in_explicit_state_batches_then_concat_completed_state_parquets_into_the_national_output

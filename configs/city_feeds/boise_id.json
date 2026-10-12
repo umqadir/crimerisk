@@ -1,0 +1,184 @@
+{
+  "city_key": "boise_id",
+  "city_name": "Boise",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/boise_id/packet.json",
+    "state/review/packets/city/boise_id/evidence/registry_row.json",
+    "state/review/packets/city/boise_id/evidence/doc_00.json",
+    "state/review/packets/city/boise_id/evidence/doc_index.csv",
+    "state/review/packets/city/boise_id/evidence/raw_cache_profile.json",
+    "state/review/packets/city/boise_id/evidence/scope_candidates.csv",
+    "state/review/packets/city/boise_id/evidence/official_totals.csv",
+    "state/review/packets/city/boise_id/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Redacted version of the internal RMS Charge dataset (evidence/doc_00.json description).",
+    "Crimes of a sexual nature have their locations and address information removed to protect victims' privacy; Patrol Area and Reporting District are kept (evidence/doc_00.json description). In the pull these rows carry a placeholder point at about (41.269033, -125.292421), with 1,931 rows at that point (query of raw_cache).",
+    "Crimes occurring in the last 9 days are withheld as preliminary (evidence/doc_00.json description).",
+    "Rolling 5-6 year window: records start January 1 of the calendar year 5 years back and the oldest year is removed each January 1; older years only by Public Records Request (evidence/doc_00.json description).",
+    "Point locations are moved to the nearest Ada County street centerline from where the incident occurred (evidence/doc_00.json description)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "16:municipal:place:1608830"
+    ],
+    "state_fips": [
+      "16"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape cannot be reconciled from this feed: all 1,027 rows coded 11A/11B/11C (665+202+160, evidence/raw_cache_profile.json CrimeCode) sit at the publisher's redaction placeholder (41.269033, -125.292421), which is in the Pacific Ocean, outside Idaho (query of raw_cache: 11A 665, 11B 202, 11C 160 at that point). They are mapped but drop at the block-group join; official rape is 240, 198, 161, 167, 145 for 2021-2025 (evidence/official_totals.csv).",
+    "Unit is one row per charge (evidence/doc_00.json: 'one count per charge per case/incident'). The id DRNumber|CrimeCode keeps one row per NIBRS offense code per case; across all 49,566 rows only one DRNumber+CrimeCode pair repeats (2023-301625, 35A, unmapped), so dedupe drops 1 row (query of raw_cache). SRS counts apply the hierarchy rule, so an incident with several mapped offenses counts more than once here: larceny has 11,091 rows in 11,018 cases and rape 1,027 rows in 897 cases (query of raw_cache, count vs count distinct DRNumber by Occurred_YR).",
+    "No rows exist for 2018-2020: OccurredDateTime starts 1609484400000 (2021-01-01 07:00 UTC, midnight MST) and Occurred_YR spans 2021-2025 (evidence/raw_cache_profile.json), consistent with the publisher's rolling window. On January 1, 2027 the layer will drop 2021.",
+    "The archive filters on ReportedDate < 2026-01-01 (packet.json case_text), so 2025 offenses reported in 2026 are absent; 2025 totals may be slightly low against a later official count.",
+    "Offenses follow the published NIBRS CrimeCode, not IncidentType (Idaho statute wording). IncidentType straddles: 'Burglary Vehicle'/'Vehicle Burglary' are coded 23F ('Burglary from Vehicle' in CrimeCodeDescription), which is NIBRS theft from motor vehicle and counted as larceny, not burglary; 'Murder/Negligent Manslaughter' appears under 09A (12), 13A (2), 120 (1) and 520 (4), and 'Manslaughter Involuntary' under 09A (1) (query of raw_cache).",
+    "Left out: 09B negligent manslaughter (1 row), 11D forcible fondling (406), 36B statutory rape (11), 13B simple assault (6,328), 13C intimidation (1,114) (evidence/raw_cache_profile.json CrimeCode). No 09C rows are present.",
+    "Five-year pull vs official totals, 2021-2025 by Occurred_YR (query of raw_cache; evidence/official_totals.csv summed): murder 17 vs 18, robbery 235 vs 232, aggravated assault 1,910 vs 2,170, burglary 1,360 vs 1,372, larceny 11,091 vs 10,841, motor vehicle theft 1,332 vs 1,360. Aggravated assault runs about 12% below the official count, with no published reason.",
+    "Beyond rape, 18 mapped rows carry the redaction placeholder point and are lost at the block-group join: 13A 6, 220 3, 23D 3, 23H 3, 23F 2, 120 1 (query of raw_cache)."
+  ],
+  "mapping": {
+    "date_field": "OccurredDateTime",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "DRNumber",
+      "CrimeCode"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "Occurred_YR"
+  },
+  "notes": "Source is the Boise Police Department ArcGIS layer 'BPD Crimes' (evidence/registry_row.json; evidence/doc_00.json name), with ORI ID0010100 and scope the City of Boise, 16:municipal:place:1608830 (evidence/scope_candidates.csv; evidence/registry_row.json). Dates are the occurrence date: date_field OccurredDateTime (epoch ms, the layer's timeInfo startTimeField, stored in UTC per evidence/doc_00.json). Year comes from the published Occurred_YR, which is the local (America/Boise) year. The UTC year of OccurredDateTime differs from it on 62 rows (18+18+15+5+6) of late-evening December 31 offenses (query of raw_cache), so Occurred_YR is used. The where clause is the survey's probe_where on ReportedDate (evidence/registry_row.json), the filter the archive was pulled with (packet.json case_text), so a live pull returns the same rows. page_size 2000 is the layer's maxRecordCount (evidence/doc_00.json). count_unit is offense: each row is one charge (evidence/doc_00.json), ChargeID and OBJECTID are unique on all 49,566 rows, and DRNumber (the case number, 40,862 distinct) with CrimeCode forms the id, keeping the first row per case and NIBRS code (query of raw_cache). When a case carries several mapped codes, each code is kept as its own offense. Offense rules match CrimeCode, the published NIBRS code, exactly (case-sensitive), and every mapped code is present in the pull (evidence/raw_cache_profile.json CrimeCode: 09A 17; 11A 665, 11B 202, 11C 160; 120 235; 13A 1,910; 220 1,360; 23A 22, 23B 3, 23C 2,570, 23D 1,633, 23E 43, 23F 2,839, 23G 676, 23H 3,305; 240 1,332). Coordinates are the feature geometry (__arcgis_latitude/__arcgis_longitude). The publisher moves points to the nearest Ada County street centerline, so they are offset rather than exact. Sexual-offense rows are relocated to a placeholder outside Idaho, which the (0,0) check does not catch; the block-group join removes them. 'City' in the pull includes Meridian (201), Garden City (99) and others (evidence/raw_cache_profile.json); those points fall outside the Boise footprint and are left to the scope filter. Per-year pull counts (offense rows by Occurred_YR, 2021-2025): murder 3,3,5,3,3; robbery 62,45,50,38,40; aggravated assault 372,322,368,426,422; burglary 350,289,322,244,155; larceny 2,609,2,404,2,321,2,112,1,645; motor vehicle theft 269,258,318,306,181; rape 262,237,202,194,132 (query of raw_cache).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services1.arcgis.com/WHM6qC35aMtyAAlN/arcgis/rest/services/BPD_Crimes_Public/FeatureServer/0",
+      "name": "BPD Crimes",
+      "order": "OBJECTID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "boise_id",
+      "source_url": "https://opendata.cityofboise.org/",
+      "where": "ReportedDate >= DATE '{start}' AND ReportedDate < DATE '{end}'"
+    }
+  ]
+}

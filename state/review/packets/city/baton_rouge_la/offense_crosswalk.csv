@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""09A""]}]",[]
+rape,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""11A"", ""11B"", ""11C""]}]",[]
+robbery,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""120""]}]",[]
+aggravated_assault,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""13A""]}]",[]
+burglary,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""220""]}]",[]
+larceny,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""23A"", ""23B"", ""23C"", ""23D"", ""23E"", ""23F"", ""23G"", ""23H""]}]",[]
+motor_vehicle_theft,"[{""field"": ""nibrs_code"", ""op"": ""in"", ""value"": """", ""values"": [""240""]}]",[]

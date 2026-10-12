@@ -1,0 +1,38 @@
+{
+  "case_key": "atlanta_ga",
+  "jurisdiction_id": "13:municipal:place:1304000",
+  "jurisdiction_name": "Atlanta city",
+  "state_abbr": "GA",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_repair_2024_from_official_apd_citywide_year_end_report_excluding_airport",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Atlanta is a valid standalone municipal control row with a dedicated Atlanta Police Department reporting structure, not a county or airport proxy case.",
+    "The official APD 2024 Year End Crime Report provides a usable citywide annual anchor for the seven target offenses.",
+    "The same APD year-end report publishes Airport separately, and the citywide total matches the six non-airport zone totals rather than citywide plus airport.",
+    "The Atlanta municipal repair therefore should use the APD citywide table and explicitly exclude the separate airport page so the Atlanta city packet does not absorb airport ORI activity."
+  ],
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "reporting_ori9": "GAAPD0000",
+    "recommended_handling": [
+      "Retain the standalone Atlanta municipal control row 13:municipal:place:1304000.",
+      "Use APD's official 2024 year-end citywide report as the local-publication repair surface for murder, rape, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft.",
+      "Keep the separate airport reporting lane excluded from the Atlanta municipal packet."
+    ],
+    "published_2024_counts": {
+      "murder": 126,
+      "rape": 79,
+      "robbery": 506,
+      "aggravated_assault": 2444,
+      "burglary": 1704,
+      "larceny": 13208,
+      "motor_vehicle_theft": 3673
+    }
+  },
+  "likely_issue_class": "official_local_publication_repair_ready",
+  "open_questions": []
+}

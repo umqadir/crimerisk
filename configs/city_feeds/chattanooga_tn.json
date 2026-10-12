@@ -1,0 +1,221 @@
+{
+  "city_key": "chattanooga_tn",
+  "city_name": "Chattanooga",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/chattanooga_tn/packet.json",
+    "state/review/packets/city/chattanooga_tn/evidence/registry_row.json",
+    "state/review/packets/city/chattanooga_tn/evidence/raw_cache_profile.json",
+    "state/review/packets/city/chattanooga_tn/evidence/scope_candidates.csv",
+    "state/review/packets/city/chattanooga_tn/evidence/official_totals.csv",
+    "state/review/packets/city/chattanooga_tn/evidence/doc_index.csv",
+    "state/review/packets/city/chattanooga_tn/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "47:municipal:place:4714000"
+    ],
+    "state_fips": [
+      "47"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the feed has one row per NIBRS offense code per case, with exact repeated rows (817,597 rows vs 706,726 distinct case_number|ucr_incident_code pairs vs 651,116 distinct case_number, all years in the pull). The contract keeps one row per case_number|ucr_incident_code, which matches NIBRS offense counting but not the victim-level SRS counting for aggravated assault and rape, or the SRS hierarchy rule.",
+    "Aggravated assault (13A) in the feed runs below the official totals, e.g. 2020 1,473 distinct case|13A pairs vs 1,989 official, 2021 1,649 vs 2,028; consistent with SRS counting assault victims rather than offenses per incident.",
+    "Rape 11A/11B/11C only (Forcible Rape, Forcible Sodomy, Sexual Assault With An Object); 11D Forcible Fondling, 36A Incest and 36B Statutory Rape are left out.",
+    "Unfounded cases (case_status_description 'Unfounded', 665 mapped-code rows in 2018-2025) are excluded, per the UCR rule; the publisher does not state that the feed excludes them, and case status can change after the pull.",
+    "No redactions are stated by the publisher and the packet carries no portal documentation; whether sensitive offenses (e.g. rape) are withheld or relocated cannot be checked from the evidence.",
+    "The feed is a whole-file CSV of 2015 onward (and 2026 rows); no server-side date filter, so years are cut client-side from date_incident."
+  ],
+  "mapping": {
+    "date_field": "date_incident",
+    "date_format": "%Y-%m-%d %H:%M:%S",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "case_number",
+      "ucr_incident_code"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_incident_code",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "case_status_description",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Evidence: registry_row.json (csv portal, endpoint https://www.arcgis.com/sharing/rest/content/items/4baf1acaa8ba4cdb95ddd222d3ca30c1/data, ORI TN0330100, count unit incident per survey, reason 'NIBRS codes, 2015 onward', redactions empty); raw_cache_profile.json (817,597 rows; ucr_incident_code carries NIBRS codes; jurisdiction is TN0330100 on every row); scope_candidates.csv (one candidate, 47:municipal:place:4714000 Chattanooga city); doc_index.csv is empty, so there is no publisher documentation beyond the data itself. Offense mapping uses ucr_incident_code, whose values were checked in the pull and pair one-to-one with incident_description: 09A Murder & Non-Negligent Manslaughter (304 rows), 11A Forcible Rape (1,729), 11B Forcible Sodomy (198), 11C Sexual Assault With An Object (41), 120 Robbery (3,132), 13A Aggravated Assault (15,035), 220 Burglary/Breaking And Entering (14,267), 23A-23H (227/194/26,413/9,491/132/24,551/6,364/21,225), 240 Motor Vehicle Theft (14,401). Left out: 09B (6), 09C (16), 13B (33,441), 13C (1,455), 11D (1,647). Count unit: offense. A case_number repeats across rows for multiple offense codes and for exact duplicate rows (e.g. case 24-115454 has two identical 35B rows and two identical 000 rows; five 91Z Miscellaneous Information cases have 16,953-21,835 rows each, none mapped); id_fields case_number|ucr_incident_code with dedupe_on_id keeps one row per offense code per case, the first row in pull order. A case carrying two mapped codes (e.g. 120 and 13A) contributes one row to each offense; no hierarchy is applied. Recomputed distinct case|code counts by year of date_incident (SELECT DISTINCT case_number, ucr_incident_code, year) vs official totals: murder 2018 21 vs 21, 2019 35 vs 33, 2025 15 vs 16; robbery 2018 308 vs 310, 2025 150 vs 141; burglary 2018 1,461 vs 1,444, 2024 739 vs 754; larceny 2018 8,243 vs 8,090, 2025 5,502 vs 4,904; motor vehicle theft 2020 1,856 vs 2,100, 2025 805 vs 838; rape 2018 187 vs 155, 2024 165 vs 172; aggravated assault 2018 1,159 vs 1,413 (these counts are before the Unfounded exclusion, coordinate and footprint filters). Date: date_incident, the incident (occurrence) date as named by the field; the publisher does not document whether it is occurrence or report date, and no separate report date is published. All 817,597 values match YYYY-MM-DD HH:MM:SS. Coordinates: latitude/longitude, the published point (also in location as WKT). 11,490 rows have no coordinates; 6 rows sit within 0.001 degrees of (0,0) and 3 have a positive longitude (sign error), which fall out at the block-group join. Addresses are published as hundred blocks (e.g. '600 Ashland Ter'); 506,473 latitudes carry 6 or fewer decimals and 290,164 carry 12-15 (decimal-length count over latitude), and rows of the same case at the same address carry slightly different points, so points may be geocoded to block or offset, but the publisher states no rounding or offset. Geography: Chattanooga Police Department is a municipal PD, so jurisdiction is Chattanooga city only; some rows list other city names (Hixson, Ooltewah, East Ridge), which the footprint filter handles.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://www.arcgis.com/sharing/rest/content/items/4baf1acaa8ba4cdb95ddd222d3ca30c1/data",
+      "name": "CPD Incident Data",
+      "order": "",
+      "page_size": 50000,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "chattanooga_tn",
+      "source_url": "https://data.chattanooga.gov/datasets/4baf1acaa8ba4cdb95ddd222d3ca30c1/about",
+      "where": ""
+    }
+  ]
+}

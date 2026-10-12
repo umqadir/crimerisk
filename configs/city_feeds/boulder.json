@@ -1,0 +1,350 @@
+{
+  "city_key": "boulder",
+  "city_name": "Boulder, CO",
+  "evidence_refs": [
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:72 (SRC_GEOMETRY_CRS EPSG:2231)",
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:74-92 (BASE, YEAR_SOURCES, FIELDS)",
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:95-143 (fetch_layer: where, outFields, page size 2000, orderByFields OID, geometry -> src_x/src_y)",
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:164-195 (OFFENSE_MAP, map_nibrs_code comma handling)",
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:287-299 (year = target_year, Part-I filter, 2018-2024)",
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:410-435 (dropna src_x/src_y, EPSG:2231->4326 reprojection, sjoin within, incident_id = Report_Number, no dedupe)",
+    "state/review/packets/city/boulder/evidence/README.md:14-35 (services, item ids, raw row counts, rolling service coverage)",
+    "state/review/packets/city/boulder/evidence/README.md:37-65 (offense mapping table, comma-joined codes)",
+    "state/review/packets/city/boulder/evidence/README.md:69-78 (year x offense counts, total 26,182)",
+    "state/review/packets/city/boulder/evidence/README.md:248-264 (caveat 1: murder/rape absent)",
+    "state/review/packets/city/boulder/evidence/README.md:270-276 (caveat 3: Report_Number not unique)",
+    "state/review/packets/city/boulder/evidence/README.md:287-291 (caveat 6: 2024 from rolling service)",
+    "state/review/packets/city/boulder/evidence/jurisdictions.csv",
+    "state/review/packets/city/boulder/evidence/raw_cache_profile.json (columns, NIBRScode distinct values, src_x/src_y ranges)",
+    "state/review/packets/city/boulder/raw_cache.parquet (recomputed: 26,182 kept rows; Report_Year == target_year == UTC year(Report_Date) on 91,158/91,158 rows; 2,059 repeated Report_Numbers)",
+    "case_text: \"README present: yes; offense_mapping.csv present: no.\"",
+    "state/review/packets/city/boulder/evidence/01_fetch_boulder.py:137-142 (geometry x/y stored as src_x/src_y in native SRS)",
+    "state/review/packets/city/boulder/raw_cache.parquet (recomputed: 26,182 mapped rows, 0 null or (0,0) src_x/src_y; EPSG:2231->4326 gives lat 39.964-40.177, lon -105.309 to -105.061; per-year x offense counts equal the check oracle)",
+    "case_text: \"a live ArcGIS pull returns the feature geometry as `__arcgis_latitude` / `__arcgis_longitude`\"; \"`proj:EPSG:<code>:<x_field>:<y_field>` reprojects projected x/y columns to WGS84\"",
+    "check result: \"error\": \"KeyError: 'none of __arcgis_latitude in the pull'\", replay_rows 0, oracle_rows 26182"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "08:municipal:place:0807850"
+    ],
+    "state_fips": [
+      "08"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Coordinates: the script takes the feature geometry, stored in raw_cache.parquet as src_x/src_y in State Plane Colorado North feet, and reprojects it with EPSG:2231 -> EPSG:4326 before the block-group join (01_fetch_boulder.py lines 72, 137-142, 410-419). raw_cache.parquet has no latitude/longitude column (20 columns; raw_cache_profile.json). The previous contract's __arcgis_latitude/__arcgis_longitude fields therefore failed on the archive (check error: \"KeyError: 'none of __arcgis_latitude in the pull'\"). The revised fields are '__arcgis_latitude|proj:EPSG:2231:src_x:src_y' and '__arcgis_longitude|proj:EPSG:2231:src_x:src_y'. On the archive, __arcgis_* is absent, so the proj spec applies the script's exact transform. On a live ArcGIS pull, the runner's __arcgis_latitude/__arcgis_longitude apply, and src_x/src_y do not exist there. Recomputed on raw_cache.parquet: all 26,182 mapped 2018-2024 rows have non-null, non-(0,0) src_x/src_y, and the EPSG:2231 transform puts them at lat 39.964-40.177 and lon -105.309 to -105.061. Assumption: the task's contract semantics describe a|b alternation and the proj: spec separately and do not say whether a proj: spec can be one member of an a|b list. If the runner does not resolve proj: inside an alternation, the archive replay needs 'proj:EPSG:2231:src_x:src_y' alone, and that cannot map a live pull, which has no src_x/src_y. In that case one contract cannot do both without runner support for proj: inside a|b.",
+    "Live-pull datum: the service reports wkid 102653 (NAD83 HARN), while the script used EPSG:2231 (NAD83) (01_fetch_boulder.py line 72 comment). With pyproj default transforms (no grid shift), ESRI:102653 and EPSG:2231 give points about 0.0001 m apart on all 91,150 archive rows with geometry (max 9.6e-05 m, recomputed from raw_cache.parquet). The ArcGIS server's own datum handling for the live __arcgis_* coordinates is not in the evidence. Its effect on block-group assignment is expected to be sub-meter but has not been verified.",
+    "No de-duplication, same as the script: Report_Number is not unique. In the 26,182 rows the script keeps, 2,059 report numbers appear more than once (4,369 rows, 2,310 beyond the first). I recomputed this from raw_cache.parquet with the script's mapping, and it matches README caveat 3. id_fields=[Report_Number] gives the script's incident_id (01_fetch_boulder.py lines 428-432), so dedupe_on_id is false and the ids are not unique.",
+    "Year: the script uses target_year, a constant set per service (lines 77-85, 152, 288), which does not exist on a live pull. year_field=Report_Year is equivalent on the archive: Report_Year equals target_year on all 91,158 rows, and it also equals the UTC year of Report_Date on all 91,158 rows (checked against raw_cache.parquet). In America/Denver local time, 52 rows fall in a different year, so the Report_Date where clause assumes the portal compares dates in UTC.",
+    "Source where clauses: the script fetched each archive with where 1=1 and the rolling service with Report_Year=2024 (lines 77-85, 102). The contract bounds every source to {start}/{end} on Report_Date. It bounds the rolling BPD_Offenses service with Report_Year >= 2024 rather than = 2024, so that a live pull of 2020-2023 is not fetched twice. README lines 27-30 say the rolling service holds 2020 onward, which overlaps the 2020-2023 archives. For 2018-2024 the result is the same. For later editions, 2025+ comes from the rolling service until an archive exists.",
+    "Offense mapping: the script splits NIBRScode on commas, strips and deduplicates the codes, drops empty tokens, maps only when exactly one distinct code remains, and treats mixed codes as ambiguous and excluded (lines 184-195). The regex rules (case-sensitive) accept a single code or the same code repeated with commas, as in '23H,23H' (3 rows) and '23F,23F' (2 rows). A mixed-code value never matches. On raw_cache.parquet this reproduces the script exactly: 26,182 rows (larceny 17,342, burglary 3,789, motor_vehicle_theft 2,697, aggravated_assault 1,925, robbery 429; by year 3,403 / 3,127 / 3,561 / 3,507 / 3,544 / 3,961 / 5,079). I recomputed this by running both the script's map_nibrs_code and these regexes on the parquet, and it matches README lines 69-78. The one divergence is only theoretical: a value with an empty token such as '23F,' or ',23F' maps in the script but not in the regex. No such value appears in the raw_cache_profile.json NIBRScode distinct list.",
+    "Block-group join: the script does a left sjoin with predicate within, keeps the first hit per row, and drops rows with no block group (lines 419-428). The runner's within join to the 2020 Colorado block groups corresponds to this. The README reports a 100.0% match (26,182/26,182, lines 86-87, 197-198). None of the 26,182 mapped rows has null or (0,0) src_x/src_y (checked against raw_cache.parquet).",
+    "Not expressible, and not needed for the output rows: the script's STAddress block-address parsing, street-suffix inference, and Census batch geocoding (steps 3-4, lines 303-382) produce address_geocode_cache.parquet, which is not used for incidents_bg.parquet (lines 5-53, README lines 95-209). The contract omits them. The carried-through context columns block_address/district/beat (lines 428-435) are also not part of the contract."
+  ],
+  "mapping": {
+    "date_field": "Report_Date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": false,
+    "id_fields": [
+      "Report_Number"
+    ],
+    "latitude_field": "__arcgis_latitude|proj:EPSG:2231:src_x:src_y",
+    "longitude_field": "__arcgis_longitude|proj:EPSG:2231:src_x:src_y",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(09A(\\s*,\\s*09A)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(11A(\\s*,\\s*11A)*|11B(\\s*,\\s*11B)*|11C(\\s*,\\s*11C)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(120(\\s*,\\s*120)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(13A(\\s*,\\s*13A)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(220(\\s*,\\s*220)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(23A(\\s*,\\s*23A)*|23B(\\s*,\\s*23B)*|23C(\\s*,\\s*23C)*|23D(\\s*,\\s*23D)*|23E(\\s*,\\s*23E)*|23F(\\s*,\\s*23F)*|23G(\\s*,\\s*23G)*|23H(\\s*,\\s*23H)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "NIBRScode",
+            "op": "regex",
+            "value": "^\\s*(240(\\s*,\\s*240)*)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "Report_Year"
+  },
+  "notes": "Boulder PD NIBRS offense feed, 2018-2024: six frozen per-year ArcGIS archives (Offenses2018-Offenses2023) plus the rolling BPD_Offenses service for 2024. The service names, endpoints, fields, page size and order come from 01_fetch_boulder.py lines 74-109, and the item ids from README lines 14-22. The source_url values are ArcGIS item pages built from those README item ids, not URLs the script used. The offense mapping is the script's OFFENSE_MAP (lines 164-181) unchanged: 23F/23G map to larceny, and 13B/13C are excluded. murder and rape rules are kept even though no rows match: README caveat 1 (lines 248-264) reports 09A and 11A-11C absent in all 7 years, and the NIBRScode distinct list in raw_cache_profile.json confirms no 09A or 11x. The README infers that this is a BPD publishing exclusion but cites no publisher statement, so exclusions_stated_by_publisher is empty. Jurisdiction: a city PD, so it lists only Boulder city (08:municipal:place:0807850, 26,179 incidents in jurisdictions.csv). The csv also lists Louisville city (2), Longmont city (1) and Colorado nonmunicipal remainder (6,016). These are not listed because BPD is not their publisher. Their counts sum to 32,198, more than the 26,182 incidents (26,179+2+1 = 26,182 without the remainder row), so the remainder row is not a partition of the incidents. I cannot tell from the packet how it was computed. Revision after the failed check: the coordinate fields now use the runner's proj: spec, EPSG:2231 on src_x/src_y, for the archive. They fall back to __arcgis_latitude/__arcgis_longitude first, for a live ArcGIS pull. Offense rules, year, id, dedupe and sources are unchanged. Recomputed on raw_cache.parquet with these rules and Report_Year 2018-2024, the kept rows are 26,182, and every year x offense cell equals the check's oracle counts (e.g. 2018 larceny 2,448, 2024 larceny 3,673, 2024 robbery 90). The remaining risk is whether proj: is accepted as a member of an a|b list. See the first known difference.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Offenses2018/FeatureServer/0",
+      "name": "Boulder PD Offenses 2018 (frozen archive, ArcGIS service Offenses2018)",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_offenses2018",
+      "source_url": "https://www.arcgis.com/home/item.html?id=3ba32714d0f741748eddb73de6d2b46b",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Offenses2019/FeatureServer/0",
+      "name": "Boulder PD Offenses 2019 (frozen archive, ArcGIS service Offenses2019)",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_offenses2019",
+      "source_url": "https://www.arcgis.com/home/item.html?id=a4bedfe09aac41c1b9886d1404ee6e8d",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Offenses2020/FeatureServer/0",
+      "name": "Boulder PD Offenses 2020 (frozen archive, ArcGIS service Offenses2020)",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_offenses2020",
+      "source_url": "https://www.arcgis.com/home/item.html?id=8ec78dc7391547ea8d641fb2d062c66d",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Offenses2021/FeatureServer/0",
+      "name": "Boulder PD Offenses 2021 (frozen archive, ArcGIS service Offenses2021)",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_offenses2021",
+      "source_url": "https://www.arcgis.com/home/item.html?id=4cbd5db50fcc46d29cce86ed6f2a997b",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Offenses2022/FeatureServer/0",
+      "name": "Boulder PD Offenses 2022 (frozen archive, ArcGIS service Offenses2022)",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_offenses2022",
+      "source_url": "https://www.arcgis.com/home/item.html?id=e801caa201fe4a3aa940ecc031bd54fc",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/Offenses2023/FeatureServer/0",
+      "name": "Boulder PD Offenses 2023 (frozen archive, ArcGIS service Offenses2023)",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_offenses2023",
+      "source_url": "https://www.arcgis.com/home/item.html?id=43472720354949eb8b77b64311553cac",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services.arcgis.com/ePKBjXrBZ2vEEgWd/arcgis/rest/services/BPD_Offenses/FeatureServer/0",
+      "name": "Boulder PD Offenses (rolling/current ArcGIS service BPD_Offenses), used for 2024 onward",
+      "order": "OID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OID",
+        "Report_Number",
+        "Report_Date",
+        "Report_Year",
+        "Report_Month_Num",
+        "Report_Day_Num",
+        "STAddress",
+        "City",
+        "District",
+        "Beat",
+        "Special_District",
+        "inc_date",
+        "NIBRScode",
+        "nibrs_offense",
+        "vio_desc",
+        "IBRType"
+      ],
+      "slug": "boulder_bpd_offenses",
+      "source_url": "https://www.arcgis.com/home/item.html?id=8ef054b1a3ca4ac496d75ec28f17a117",
+      "where": "Report_Year >= 2024 AND Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    }
+  ]
+}

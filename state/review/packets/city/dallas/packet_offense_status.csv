@@ -1,0 +1,8 @@
+city_key,offense,production_ready,city_share_integration_status,total_lane,feed_total_candidate,notes
+dallas,murder,yes,pilot_share_only,official_control,no,
+dallas,rape,no,pilot_reject,official_control,no,No mapped source rows for this offense.
+dallas,robbery,yes,pilot_share_only,official_control,yes,
+dallas,aggravated_assault,yes,pilot_share_only,official_control,no,
+dallas,burglary,yes,pilot_share_only,official_control,yes,
+dallas,larceny,yes,pilot_share_only,official_control,yes,
+dallas,motor_vehicle_theft,yes,pilot_share_only,official_control,no,

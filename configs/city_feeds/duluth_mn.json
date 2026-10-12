@@ -1,0 +1,152 @@
+{
+  "city_key": "duluth_mn",
+  "city_name": "Duluth",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/duluth_mn/packet.json:case_text",
+    "state/review/packets/city/duluth_mn/evidence/registry_row.json",
+    "state/review/packets/city/duluth_mn/evidence/doc_00.json:fields",
+    "state/review/packets/city/duluth_mn/evidence/doc_00.json:types",
+    "state/review/packets/city/duluth_mn/evidence/doc_00.json:timeInfo",
+    "state/review/packets/city/duluth_mn/evidence/doc_00.json:dateFieldsTimeReference",
+    "state/review/packets/city/duluth_mn/evidence/doc_00.json:maxRecordCount",
+    "state/review/packets/city/duluth_mn/evidence/doc_index.csv",
+    "state/review/packets/city/duluth_mn/evidence/raw_cache_profile.json",
+    "state/review/packets/city/duluth_mn/evidence/scope_candidates.csv",
+    "state/review/packets/city/duluth_mn/evidence/official_totals.csv",
+    "state/review/packets/city/duluth_mn/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "27:municipal:place:2717000"
+    ],
+    "state_fips": [
+      "27"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape is not mappable: the pull has no sex-offense category (43 distinct Crime_Description values in raw_cache_profile.json, none Rape/Sodomy/Sexual Assault With An Object/Fondling), and the layer's type domain (doc_00.json 'types', 45 entries) has none either, so the publisher withholds sex offenses without stating it. Official rape totals (41-56 a year 2023-2025, official_totals.csv) have no feed counterpart.",
+    "Unit: one row per (Case_Number, Crime_Description); Case_Number repeats across categories (20223 rows, 17359 distinct Case_Number, 20223 distinct Case_Number|Crime_Description, query on raw_cache). Several offenses of the same category in one case (e.g. several aggravated-assault victims or several larcenies) collapse to one row, and an incident with several of the seven offenses counts once in each; SRS summary totals (2018-2020 sources in official_totals.csv) apply the hierarchy rule and count one offense per incident.",
+    "Date is the report date (Reported_DateTime), not the occurrence date, which is not published; year boundaries can shift offenses between years relative to the official totals.",
+    "Coverage: the archived pull for 2018-2025 returns only 2023-01-01 05:52 UTC through 2025-12-31 22:51 UTC (6478/6724/7017 rows for 2023/2024/2025, make_timestamp(Reported_DateTime*1000) grouped by year); 2018-2022 have no rows, although doc_00.json timeInfo.timeExtent starts 1641021300000 (2022-01-01), so the layer appears to be a rolling window and a later live pull may lose early years.",
+    "Categories straddling definitions: none of the mapped labels straddle two offenses; they are the NIBRS offense names (09A, 120, 13A, 220, 23A-23H, 240). Manslaughter by negligence (3 rows), Justifiable Homicide (1), Simple Assault (1432), Intimidation (428) and Arson (43) are left unmapped per the FBI definitions."
+  ],
+  "mapping": {
+    "date_field": "Reported_DateTime",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "Case_Number",
+      "Crime_Description"
+    ],
+    "latitude_field": "Latitude",
+    "longitude_field": "Longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Murder/Nonnegligent Manslaughter",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Aggravated Assault",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Burglary/Breaking & Entering",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Pocket-Picking",
+              "Purse-Snatching",
+              "Shoplifting",
+              "Larceny from Building",
+              "Larceny from Coin Operated Machine or Device",
+              "Larceny from Motor Vehicle",
+              "Larceny of Motor Vehicle Parts or Accessories",
+              "Larceny All Other"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Motor Vehicle Theft",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: the Duluth PD Mapped_Crimes ArcGIS layer (registry_row.json), a NIBRS-category offense feed: Crime_Description carries NIBRS offense names (raw_cache_profile.json distinct values; doc_00.json typeIdField 'Crime_Description'). Mapping: Murder/Nonnegligent Manslaughter -> murder (09A); Robbery -> robbery (120); Aggravated Assault -> aggravated_assault (13A); Burglary/Breaking & Entering -> burglary (220); Pocket-Picking, Purse-Snatching, Shoplifting, Larceny from Building, Larceny from Coin Operated Machine or Device, Larceny from Motor Vehicle, Larceny of Motor Vehicle Parts or Accessories, Larceny All Other -> larceny (23A-23H); Motor Vehicle Theft -> motor_vehicle_theft (240). Every mapped label is present in the pull (counts in raw_cache_profile.json). Rape stays unmapped: no sex-offense category exists in the pull or in the layer domain. Excluded: Manslaughter by negligence (09B), Justifiable Homicide (09C), Simple Assault (13B), Intimidation (13C). Count unit is offense: Case_Number|Crime_Description is unique on every row (20223 = 20223 distinct, query), so id_fields = [Case_Number, Crime_Description] and dedupe_on_id is a no-op kept as a guard; a case with several categories keeps one row per category, and the rules assign each row by its own Crime_Description. Date: Reported_DateTime (alias 'Reported Date & Time', esriFieldTypeDate, doc_00.json fields) parsed as epoch_ms; it is the report date, because no occurrence date is published. doc_00.json dateFieldsTimeReference gives UTC; the runner's year is taken from the epoch value. Coordinates: the published Latitude/Longitude fields, identical to the feature geometry (max |Latitude-__arcgis_latitude| = 5.0e-9, same for longitude, query); no zero points. The publisher does not state rounding or offsetting, but points appear block-level: 20223 rows sit on 5945 distinct points against 2939 distinct BlockAddress values ('NNNN BLK street'), e.g. 877 rows at '1200 BLK E Superior St' on 3 points (query). Scope: Duluth city only (scope_candidates.csv, registry jurisdiction_ids); 13 rows carry City Hermantown/Proctor/Rice Lake/Hibbing and 5 are null (raw_cache_profile.json), left to the footprint join. Pull counts vs official totals for 2023/2024/2025 (feed rows by Crime_Description and UTC year, before location/footprint filters, vs official_totals.csv): murder 2/5/5 vs 1/7/4; robbery 31/36/33 vs 31/33/34; aggravated assault 134/113/107 vs 141/112/120; burglary 288/252/230 vs 281/242/222; larceny 2221/2395/2489 vs 2086/2249/2357; motor vehicle theft 170/115/114 vs 157/109/99. The where clause is the registry probe_where, which is the filter the archive was pulled with (packet.json case_text); page_size 2000 is the layer maxRecordCount (doc_00.json). No redactions or exclusions are stated (registry redactions empty; layer description empty).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/DgKyOSWnVuXUe0Jp/arcgis/rest/services/Mapped_Crimes/FeatureServer/0",
+      "name": "Duluth Mapped Crimes",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "duluth_mn",
+      "source_url": "https://duluthmn.gov/police/",
+      "where": "Reported_DateTime >= DATE '{start}' AND Reported_DateTime < DATE '{end}'"
+    }
+  ]
+}

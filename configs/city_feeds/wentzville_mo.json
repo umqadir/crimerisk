@@ -1,0 +1,173 @@
+{
+  "city_key": "wentzville_mo",
+  "city_name": "Wentzville",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/wentzville_mo/packet.json",
+    "state/review/packets/city/wentzville_mo/evidence/registry_row.json",
+    "state/review/packets/city/wentzville_mo/evidence/doc_00.json",
+    "state/review/packets/city/wentzville_mo/evidence/doc_index.csv",
+    "state/review/packets/city/wentzville_mo/evidence/raw_cache_profile.json",
+    "state/review/packets/city/wentzville_mo/evidence/scope_candidates.csv",
+    "state/review/packets/city/wentzville_mo/evidence/official_totals.csv",
+    "state/review/packets/city/wentzville_mo/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py:345-358 (run_contract drops rows without coordinates before drop_duplicates keep=first)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "29:municipal:place:2978442"
+    ],
+    "state_fips": [
+      "29"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "No rape category: Offense_Ca has no sex-offense value in the pull (27 distinct values, evidence/raw_cache_profile.json), so rape is unmapped although official_totals.csv lists 3-17 rapes a year for ORI MO0920500.",
+    "Offense_Ca 'Criminal Homicide' (2 complaints, both 2024) does not separate murder (09A) from negligent manslaughter (09B) or justifiable homicide (09C); left unmapped, so murder is unmapped (official 2024 murder = 1).",
+    "Offense_Ca 'Assault' (435 rows, 263 complaints, Crime_Cate 'Violent') has no aggravated/simple split and is left unmapped; only 'Aggravated Assault' is mapped. Mapped aggravated assault complaints per year 2021-2025 = 31, 28, 21, 15, 12 against official 91, 115, 84, 48, 53, so the unmapped 'Assault' and possibly 'Simple Assault' values likely hold aggravated assaults.",
+    "Count unit is the complaint (incident) carrying a single Offense_Ca; official totals are offense counts (SRS/NIBRS-SRS-equivalent), so an incident with several offenses counts once, under its published category.",
+    "Larceny combines 'Larceny', 'Theft from Motor Vehicle' (23F) and 'Theft from Building' (23D); the source does not publish the NIBRS 23A-23H code, so which larceny subtypes 'Larceny' covers is not documented. 'Fraud' (26x) is left out.",
+    "Offense_Ca values equal to a category name ('Property' 7 rows, 'Violent' 1, 'Excluded' 2) and blank (2 rows) carry no offense and are unmapped.",
+    "The feed starts 2021-01-01 (Date min 1609459200000 ms); 2018-2020 official totals have no source rows.",
+    "Rows whose feature geometry has a positive longitude (sign dropped; 1,423 rows with __arcgis_longitude > 0 in the pull) are excluded in the offense rules so that de-duplication keeps a copy of the same complaint with a valid point."
+  ],
+  "mapping": {
+    "date_field": "Date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "Complaint"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Ca",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_longitude",
+            "op": "regex",
+            "value": "^[0-9]",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Ca",
+            "op": "eq",
+            "value": "Aggravated Assault",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_longitude",
+            "op": "regex",
+            "value": "^[0-9]",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Ca",
+            "op": "eq",
+            "value": "Burglary",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_longitude",
+            "op": "regex",
+            "value": "^[0-9]",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Ca",
+            "op": "eq",
+            "value": "Motor Vehicle Theft",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_longitude",
+            "op": "regex",
+            "value": "^[0-9]",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Ca",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Larceny",
+              "Theft from Motor Vehicle",
+              "Theft from Building"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "__arcgis_longitude",
+            "op": "regex",
+            "value": "^[0-9]",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Unit: incident = one Complaint number. The pull has 13,408 rows but 7,778 distinct Complaint values (raw_cache_profile.json); 3,895 complaints appear once, 2,265 twice, 1,492 three times, 123 four times, 3 five times (GROUP BY Complaint). The repeats are re-published copies with identical Complaint/Date/Time/Offense_Ca and differing only in coordinates (lat2 = 0 or null, geometry null or present), concentrated in 2021-2023 (2021: 4,011 rows / 1,595 complaints; 2022: 3,831 / 1,785; 2023: 2,747 / 1,580; 2024: 1,463 / 1,462; 2025: 1,356 / 1,356). Distinct (Complaint, Offense_Ca) = 7,779, so each complaint carries one published category; the one exception (2300004757: Suspicious Activity and Larceny) keeps Larceny because unmapped rows drop before de-duplication. id_fields = [Complaint], dedupe_on_id = true; the runner drops unlocated rows before keeping the first row per id, so a complaint is kept if any copy has a point. Known id gap: 866 Complaint values are written with a '.000000000000000' suffix (e.g. 2400002425.000000000000000); 4 of them collide with a plain-form copy (Simple Assault x2, Animal Complaint, Disorderly Conduct), none in a mapped category, so no double count among the seven offenses. Date: field Date (esriFieldTypeDate, epoch ms, dateFieldsTimeReference UTC in doc_00.json), date only (times of day 00, 05, 06, 10 UTC), with clock time in the separate Time string. The layer does not say whether Date is occurrence or report date; it is treated as the occurrence date because complaint numbers carry the report year in their first two digits and some complaints are dated in the prior year (e.g. 2300000163/2300000166 dated Dec 2022; 2500000126 dated 2024-12-20; 2600000076 dated 2025-12-30), i.e. Date precedes the report. Year = UTC year of Date (date_format epoch_ms). Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude). Where lat2/long are non-zero (4,142 rows) they equal the geometry to 1e-5, so lat2/long add no points. Points look like degrees-minutes-seconds conversions (e.g. 38.814444, -90.878333) and are heavily repeated (that pair on ~400 rows), so the publisher may snap points to addresses or a default location; no rounding or offset is documented. 1,423 rows carry a positive longitude (about 90.8-90.9, a dropped minus sign) and a few others fall outside Missouri (e.g. -8.96, -39.41); the positive-longitude rows are excluded by an exclude_condition (__arcgis_longitude regex ^[0-9]) on every offense rule, so the funnel counts them as unmapped rather than out of state, and 229 mapped complaints whose first located copy had a positive longitude keep their valid copy (checked in pandas on raw_cache.parquet: after the exclusion 2,334 of 2,337 mapped complaints have a located row). Running scripts/agents/onboard_feed.py qualify() on the archive with this contract: raw 13,408, mapped 3,607, located 3,182, in_state 3,178, in_footprint 3,162, deduplicated 2,320; run_contract output after the block-group join has 2,320 incidents in the footprint with the exclusion and 2,093 without it (funnel deduplicated 2,320 either way). Offense mapping from Offense_Ca (values checked against the pull): Robbery -> robbery; Aggravated Assault -> aggravated_assault; Burglary -> burglary; Motor Vehicle Theft -> motor_vehicle_theft; Larceny, Theft from Motor Vehicle, Theft from Building -> larceny. Unmapped: Assault (no aggravated/simple split), Simple Assault (13B), Criminal Homicide (no 09A/09B split), no rape category exists; Fraud, Drug Violation, Vandalism, Arson and the other quality-of-life values are outside the seven. Mapped distinct complaints per year 2021-2025 (COUNT DISTINCT Complaint by Offense_Ca group and UTC year of Date) vs official_totals.csv: larceny 362/396, 491/499, 431/415, 357/311, 335/327; burglary 22/20, 31/34, 20/24, 15/21, 11/10; motor vehicle theft 28/39, 36/39, 32/40, 21/28, 19/28; robbery 5/5, 3/5, 4/4, 2/1, 5/7; aggravated assault 31/91, 28/115, 21/84, 15/48, 12/53. Scope: Wentzville PD (municipal_pd, ORI MO0920500) polices Wentzville city, the only candidate in scope_candidates.csv (29:municipal:place:2978442); the City field also shows MSHP (52 rows), ST CHARLES CO (15), FORISTELL (9), LAKE ST LOUIS (6), WRIGHT CITY (1); the footprint join, not the City field, decides scope. Source: registry endpoint and portal_type kept; where = the registry probe_where, which is the filter the archive was pulled with (packet.json case_text); order '' and page_size 1000 reproduce the archive's cache digest (8638097a268d, live/raw_wentzville_mo_2018_2025_8638097a268d.parquet). The publisher states no redactions or exclusions (registry redactions empty; the layer description is empty).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/PhrOBa64VhLxWQwF/arcgis/rest/services/Wentzville_Public_Crime_Map/FeatureServer/0",
+      "name": "Wentzville Public Crime Map",
+      "order": "",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "wentzville_mo",
+      "source_url": "https://www.wentzvillemo.gov/",
+      "where": "Date >= DATE '{start}' AND Date < DATE '{end}'"
+    }
+  ]
+}

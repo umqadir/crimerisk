@@ -1,0 +1,267 @@
+{
+  "city_key": "atlanta_apd_ga",
+  "city_name": "Atlanta",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/atlanta_apd_ga/packet.json (case_text: endpoints, probe where, 'redactions: none stated')",
+    "state/review/packets/city/atlanta_apd_ga/evidence/registry_row.json (api_endpoint, probe_where, portal_type, jurisdiction_ids, state_fips 13, count_unit incident, redactions '')",
+    "state/review/packets/city/atlanta_apd_ga/evidence/doc_164a18f5b3.json (OpenDataWebsite_Crime_view layer: fields, description '', dateFieldsTimeReference UTC, preferredTimeReference America/New_York, maxRecordCount 2000)",
+    "state/review/packets/city/atlanta_apd_ga/evidence/doc_cc326e9637.json (2009_2020CrimeData layer: fields incl. Occur_Date string and Report_Date date, description '', maxRecordCount 1000)",
+    "state/review/packets/city/atlanta_apd_ga/evidence/doc_14798be199.html (hub page; no data documentation or redaction statement)",
+    "state/review/packets/city/atlanta_apd_ga/evidence/doc_index.csv",
+    "state/review/packets/city/atlanta_apd_ga/evidence/raw_cache_profile.json (rows 343212; NibrsUcrCode, Crime_Type, NIBRS_Offense distinct values; IncidentNumber and Report_Number distinct counts)",
+    "state/review/packets/city/atlanta_apd_ga/evidence/scope_candidates.csv (13:municipal:place:1304000 Atlanta city)",
+    "state/review/packets/city/atlanta_apd_ga/evidence/official_totals.csv",
+    "state/review/packets/city/atlanta_apd_ga/raw_cache.parquet (queries via scripts/agents/query.py; funnel via src/crimerisk/city_contracts.py funnel on this contract)",
+    "src/crimerisk/city_contracts.py (_coalesce, _event_dates, map_rows, run_contract dedupe semantics)",
+    "scripts/agents/onboard_feed.py:288-296 (probe_sources: source dict shape and page_size default)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "13:municipal:place:1304000"
+    ],
+    "state_fips": [
+      "13"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the 2021-2025 layer (slug atlanta_apd_ga_0) is one row per offense within an incident (270,423 rows, 259,803 distinct IncidentNumber, up to 7 rows per incident; raw_cache query). The contract keeps one row per incident and mapped offense (mapping.dedup_unit incident_offense over IncidentNumber / Report_Number), so an incident with two of the seven offenses counts in both and two NIBRS codes of one offense (two 23x larceny codes, 11A and 11B) count once; no SRS hierarchy rule is applied. 659 in-year incidents carry two or three distinct mapped offenses (e.g. 87 murder+aggravated assault, 287 larceny+motor vehicle theft; map_rows crosstab on the archive).",
+    "Unit: the 2018-2020 layer (slug atlanta_apd_ga_1) is one row per report with a single Crime_Type (72,789 rows, 72,782 distinct Report_Number; raw_cache_profile.json). Whether APD applied a hierarchy when assigning the one Crime_Type is not documented.",
+    "Victim counting: SRS/NIBRS-SRS-equivalent totals count murder and aggravated assault per victim; the feed has one row per offense with a Vic_Count field the contract cannot weight by. For NibrsUcrCode 13A, 2021-2025 rows are 2647/2495/2203/1973/2387 against Vic_Count sums 3583/3315/2790/2528/3147 and official totals 3475/3166/2688/2444/2976 (raw_cache query; evidence/official_totals.csv), so the footprint aggravated-assault count is about 0.76-0.82 of the official total. For 09A, rows 148/165/131/120/97 against Vic_Count sums 157/171/136/124/100 and official 161/171/132/126/100.",
+    "Rape 2018-2020: the 2009_2020CrimeData layer has no rape category (Crime_Type has 7 values: LARCENY-FROM VEHICLE, LARCENY-NON VEHICLE, AUTO THEFT, BURGLARY, AGG ASSAULT, ROBBERY, HOMICIDE; raw_cache_profile.json), so rape is unmapped for 2018-2020 against official totals of 245, 175 and 45.",
+    "Rape 2021-2025 (11A+11B+11C) exceeds the official totals: footprint 192/182/137/141/146 against 159/164/116/79/127 (ratios 1.21, 1.11, 1.18, 1.78, 1.15; contract funnel on the archive vs evidence/official_totals.csv). 11D fondling (853 rows) and 36B statutory rape (41 rows) are not mapped.",
+    "Murder 2018-2020: Crime_Type HOMICIDE is mapped whole. Its NIBRS_Code values are 911 (138), NULL (101), 09A (46), 903 (31), 912 (13), 904 (8), 901 (2), 902 (2), 999 (1), 2902 (1) (raw_cache query); the publisher does not define these local codes, so whether HOMICIDE includes negligent manslaughter or justifiable homicide cannot be settled from the evidence.",
+    "Old-layer categories are APD's Part I groupings, not NIBRS codes: AGG ASSAULT (local codes 1313/1314/1315/1315K/1399, 13A, NULL, one 1006), LARCENY-NON VEHICLE (includes 3 rows coded 1316 and single rows coded 105, 1203X, 2206) are mapped whole as aggravated_assault and larceny.",
+    "Dates: 2021-2025 use OccurredFromDate (occurrence); 2018-2020 use Report_Date (report), because the old layer publishes occurrence only as the text field Occur_Date (M/D/YYYY) and the runner applies one date_format to the coalesced date field (an auto parse of OccurredFromDate|Occur_Date put all 270,423 new-layer rows in 1970). By Occur_Date the old layer would hold 25,712/25,018/21,848 rows in 2018/2019/2020 against 25,723/25,063/22,003 by Report_Date.",
+    "Seam: the old layer ends at Report_Date 2020-12-31 and the new layer starts at OccurredFromDate 2021-01-01 05:00 UTC (local midnight), so offenses that occurred in 2020 and were reported in 2021 or later are in neither pull.",
+    "Time zone: OccurredFromDate is stored in UTC (dateFieldsTimeReference UTC, preferredTimeReference America/New_York in doc_164a18f5b3.json; hourly counts trough at 10 UTC); the year is taken in UTC, so offenses from 19:00-24:00 local on Dec 31 count in the next year (15-22 mapped rows per boundary, 2022-2025), and those of Dec 31 2025 after 19:00 local are outside the archive's filter.",
+    "Footprint: 3,621 in-state mapped rows fall outside the Atlanta city block groups; 3,512 of them are Zone 'Airport' (new layer, 3,113) or Zone 7 (old layer, 399), and 3,186 are in Clayton County (13063) block groups (Hartsfield-Jackson airport). The official ORI GAAPD0000 totals include these offenses, so footprint larceny and motor vehicle theft understate the agency total by up to 1,038 rows a year (2024)."
+  ],
+  "mapping": {
+    "date_field": "OccurredFromDate|Report_Date",
+    "date_format": "epoch_ms",
+    "dedup_unit": "incident_offense",
+    "id_fields": [
+      "IncidentNumber",
+      "Report_Number"
+    ],
+    "latitude_field": "__arcgis_latitude|Latitude",
+    "longitude_field": "__arcgis_longitude|Longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Type",
+            "op": "eq",
+            "value": "HOMICIDE",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Type",
+            "op": "eq",
+            "value": "ROBBERY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Type",
+            "op": "eq",
+            "value": "AGG ASSAULT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Type",
+            "op": "eq",
+            "value": "BURGLARY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "LARCENY-FROM VEHICLE",
+              "LARCENY-NON VEHICLE"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsUcrCode",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Type",
+            "op": "eq",
+            "value": "AUTO THEFT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Two ArcGIS layers, kept as the registry lists them (same slugs, name, endpoints, portal_type, select [], where with {start}/{end}, order '', page_size 1000; the source dicts hash to the archived live/ pull names 2e97a98fb547 and d1871dfdc801). Offenses: new layer by NibrsUcrCode (09A murder; 11A/11B/11C rape; 120 robbery; 13A aggravated assault; 220 burglary; 23A-23H larceny; 240 motor vehicle theft); 09B, 09C, 11D, 13B and 13C are not mapped (09B and 09C do not occur in the pull). Old layer by Crime_Type (HOMICIDE murder, ROBBERY, AGG ASSAULT, BURGLARY, LARCENY-FROM VEHICLE and LARCENY-NON VEHICLE larceny, AUTO THEFT motor vehicle theft); it has no rape category. Every mapped value occurs in the pull (raw_cache_profile.json). count_unit offense: mapping.dedup_unit incident_offense over id_fields IncidentNumber|Report_Number keeps one row per incident and mapped offense (new layer) and one per report and mapped offense (old layer); all mapped offenses of a multi-offense incident are kept, and two NIBRS codes of one offense in an incident count once. This differs from the registry's 'incident': deduplicating on IncidentNumber keeps the first row in pull order (OBJECTID order) with no hierarchy, which dropped the murder in 38 of 87 murder+aggravated-assault incidents and gave 965 murders instead of 1,004 for 2018-2025 (same runner on the archive). Dedupe removes 70 rows (185,274 to 185,204): 63 larceny incidents with two 23x codes, 4 rape incidents with 11A+11B or 11A+11C, and 4 same-code duplicate rows (aggravated assault 2, burglary 1, motor vehicle theft 1). Dates: OccurredFromDate (occurrence, epoch ms, UTC) for 2021-2025, Report_Date (report date, stored at UTC midnight) for 2018-2020, coalesced as OccurredFromDate|Report_Date with epoch_ms. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, returned in WGS84) with the Latitude/Longitude attributes as fallback; the two are identical on every row of both layers. Points carry 2-9 decimals and repeat at address points (62,496 distinct points for 270,423 new-layer rows); the publisher states no rounding or offset. No (0,0) or missing points; 104 new-layer rows lie outside an Atlanta bounding box (lat 33.6-33.9, lon -84.6 to -84.28), down to Florida and New Jersey. Scope: Atlanta city (13:municipal:place:1304000), the only scope candidate; state 13. The layer descriptions are empty and the hub page states no redactions or exclusions; the registry's redactions field is empty. Funnel on the archive with this contract: raw 343,212; mapped 188,896; dated 188,896; in years 188,896; located 188,896; in state 188,895; in footprint 185,274; deduplicated 185,204. Official totals for 2019 and 2020 sit well below the feed for every property offense (e.g. 2020 larceny 4,349 against 13,188) and look partial; that is a property of the totals, not the mapping.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services3.arcgis.com/Et5Qfajgiyosiw4d/arcgis/rest/services/OpenDataWebsite_Crime_view/FeatureServer/0",
+      "name": "APD Open Data: OpenDataWebsite_Crime_view (2021-present); 2009_2020CrimeData (2009-2020)",
+      "order": "",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "atlanta_apd_ga_0",
+      "source_url": "https://atlanta-police-opendata-atlantapd.hub.arcgis.com/",
+      "where": "OccurredFromDate >= DATE '{start}' AND OccurredFromDate < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services3.arcgis.com/Et5Qfajgiyosiw4d/arcgis/rest/services/2009_2020CrimeData/FeatureServer/0",
+      "name": "APD Open Data: OpenDataWebsite_Crime_view (2021-present); 2009_2020CrimeData (2009-2020)",
+      "order": "",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "atlanta_apd_ga_1",
+      "source_url": "https://atlanta-police-opendata-atlantapd.hub.arcgis.com/",
+      "where": "Report_Date >= DATE '{start}' AND Report_Date < DATE '{end}'"
+    }
+  ]
+}

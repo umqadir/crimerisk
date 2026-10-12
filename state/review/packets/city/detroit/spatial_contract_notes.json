@@ -1,0 +1,46 @@
+{
+  "city_key": "detroit",
+  "analysis_window_years": [
+    2024
+  ],
+  "public_service": {
+    "viewer_page": "https://data.detroitmi.gov/pages/crime-viewer/",
+    "dataset_about_url": "https://data.detroitmi.gov/datasets/detroitmi::rms-crime-incidents/about",
+    "feature_service": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer",
+    "query_endpoint": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents_2024/FeatureServer/0/query",
+    "geometry_type": "esriGeometryPoint",
+    "service_2024_row_count": 88626,
+    "latitude_null_rows": 264,
+    "census_block_2020_geoid_null_rows": 420,
+    "row_semantics": "One row per offense charge within a crime incident; multiple rows can share a common incident number.",
+    "privacy_generalization": "Locations are reported at the nearest intersection to protect privacy."
+  },
+  "primary_contract": {
+    "method": "Use census_block_2020_geoid when present as the primary spatial assignment key. Resolve that block GEOID to the containing 2020 block group. Only when census_block_2020_geoid is missing should the packet consider the generalized point geometry and nearest_intersection fields as fallback evidence.",
+    "quality_tier": "medium_point_plus_census_block"
+  },
+  "recommended_fallback_hierarchy": [
+    {
+      "priority": 1,
+      "incident_field": "census_block_2020_geoid",
+      "join_target": "2020 census block to block-group containment",
+      "notes": "This is the strongest public Detroit geography because it pins the incident to a specific 2020 census block despite the nearest-intersection privacy generalization."
+    },
+    {
+      "priority": 2,
+      "incident_field": "latitude/longitude",
+      "join_target": "2020 block-group polygon join",
+      "notes": "Use only when census_block_2020_geoid is missing. Coordinates are generalized to nearest intersection and should be treated as lower-confidence fallback geography."
+    },
+    {
+      "priority": 3,
+      "incident_field": "nearest_intersection",
+      "join_target": "manual QA only",
+      "notes": "Nearest intersection is useful for packet QA and plausibility checks, not as a primary national production join key."
+    }
+  ],
+  "current_packet_rule": {
+    "status": "proposed_not_yet_implemented",
+    "impact": "Detroit should prefer census_block_2020_geoid as the packet-local assignment basis and treat generalized point geometry only as fallback. This keeps the packet aligned with the strongest available public Detroit geography."
+  }
+}

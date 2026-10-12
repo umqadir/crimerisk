@@ -1,0 +1,10 @@
+step_order,step_key,phase,status,evidence,notes
+1,lock_source_contract,research,complete,"source_candidate.csv|research_findings.json","Exact official URLs recorded for the OpenDataPhilly dataset page, live Carto SQL table, API explorer, police public page, and police AJAX reconciliation endpoint."
+2,lock_raw_snapshot,research,complete,research_findings.json,"The exact 2024 review query is recorded as a public Carto SQL CSV URL scoped to 2024 incidents."
+3,audit_schema_and_coverage,research,complete,research_findings.json,"Verified live schema, 2006-2026 coverage, and 2024 row counts directly from the Carto SQL API."
+4,build_offense_contract,mapping,complete,"offense_crosswalk.csv|research_findings.json","The feed has direct UCR-style categories, with the key caveat that justifiable homicide is exposed separately and should stay out of the AGS/V2 murder object."
+5,build_spatial_contract,spatial,complete,research_findings.json,"Rows are already citywide Philadelphia PD incidents with EPSG:4326 geometry and point_x/point_y fields. Null-XY rows need a location_block fallback."
+6,reconcile_to_reference,qa,complete,"reconciliation_summary.csv|published_reference_extract.csv","Reconciled the feed against the official PPD year-end citywide table by using the public AJAX contract for 2024-12-31."
+7,assign_city_status,promotion,complete,"packet_status.csv|research_findings.json","City-wide onboarding is blocked. Offense-selective onboarding is supported."
+8,assign_offense_status,promotion,complete,"reconciliation_summary.csv|research_findings.json","Burglary and aggravated_assault are the current exact/selective candidates. Murder is near-ready but held on comparator ambiguity. Rape, robbery, larceny, and motor_vehicle_theft remain blocked."
+9,prepare_central_sync,handoff,complete,research_findings.json,"Packet states the exact city-level disposition and the minimum next step needed if homicide or motor_vehicle_theft are revisited."

@@ -1,0 +1,136 @@
+{
+  "case_key": "harvard_ma",
+  "ori": "MA0096200",
+  "agency_name_raw": "harvard university",
+  "state_abbr": "MA",
+  "question": "What is the most defensible production treatment for MA0096200, Harvard University Police: Cambridge place proxy, county proxy, broad overlap, or a Harvard-specific custom footprint?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "campus",
+    "footprint_type": "harvard_multi_campus_massachusetts_property_and_clery_network",
+    "confidence": 0.98
+  },
+  "provider_distinction": {
+    "hupd_role": "Harvard University Police is a full-service campus police department. Official HUPD materials say its officers are sworn special state police officers with authority on Harvard-owned or controlled property and deputy-sheriff authority in Middlesex and Suffolk counties, with active operations based in Cambridge, Longwood, and Allston.",
+    "municipal_and_state_role": "HUPD's own FAQ and ASR describe close working relationships with Cambridge Police, Boston Police, Somerville Police, Massachusetts State Police, and other agencies. Off-campus city territory is not automatically HUPD territory just because Harvard is nearby.",
+    "overlap_implication": "This row is a real Harvard special-jurisdiction overlap tied to Harvard-owned or controlled Massachusetts campuses and associated Clery geography, not a substitute for Cambridge, Boston, Somerville, Middlesex County, Suffolk County, or a worldwide Harvard institutional layer."
+  },
+  "verified_findings": [
+    {
+      "topic": "HUPD legal and operational identity is property-based, not citywide",
+      "finding": "Official HUPD materials describe HUPD as a full-service police department. They state that HUPD officers are sworn special state police officers with authority to arrest for crimes committed in or upon lands or structures owned, used, or occupied by Harvard University, and also hold deputy-sheriff powers in Middlesex and Suffolk counties. The FAQ further says HUPD may exercise authority on city streets in Cambridge, Somerville, and Boston, but ordinarily only on streets within campus."
+    },
+    {
+      "topic": "HUPD is not just a Cambridge-only department",
+      "finding": "Official HUPD location information gives active department locations at the Smith Campus Center in Cambridge, Longwood Campus Operations in Boston, and 114 Western Avenue in Allston. Harvard's own map page likewise says the university has robust campuses in the Longwood and Allston neighborhoods of Boston in addition to Harvard Yard in Cambridge."
+    },
+    {
+      "topic": "Official HUPD map doctrine supports a custom footprint",
+      "finding": "The official HUPD Clery Geography Maps page says the maps are a useful tool for identifying buildings and property that make up Harvard's Clery Act geography and for distinguishing the patrol jurisdiction of the police agency. That is exactly the public source family needed for a custom Harvard footprint rather than a municipal proxy."
+    },
+    {
+      "topic": "The main urban Harvard map is already multicity",
+      "finding": "The official Cambridge Campus Clery Geography Map explicitly covers Cambridge, includes Harvard's Allston-side facilities such as Harvard Stadium and 114 Western Avenue, and names noncampus residences including Holden Green. Holden Green's official housing page says the complex sits on the Cambridge/Somerville line with Somerville units at 112-307D Holden Street. This closes the question of whether the core HUPD urban footprint extends beyond Cambridge."
+    },
+    {
+      "topic": "Live HUPD logs confirm active Somerville, Allston, Cambridge, and Longwood operations",
+      "finding": "Official HUPD public police logs provide current operational evidence. One log shows a suspicious-package call at 112 Holden Street in Somerville. Another shows a trespass warning at 4 College Avenue in Somerville. Other logs show incidents at 114 Western Avenue in Allston, 260 Longwood Avenue in Boston, and Cambridge-campus addresses on the same daily reporting surface."
+    },
+    {
+      "topic": "Harvard's official Massachusetts campus system is broader than the Cambridge Boston Somerville core",
+      "finding": "The official 2024 Annual Security Report says that, in addition to the Cambridge and Longwood campuses, Harvard has five additional campuses including the Arnold Arboretum in Boston, Concord Field Station in Bedford, and Harvard Forest in Petersham. The same official HUPD materials expose Clery geography maps and campus criminal-statistics attachments for those campuses."
+    },
+    {
+      "topic": "Harvard property geography is multicity and multicounty even before using Clery map attachments",
+      "finding": "Harvard's official FY2024 physical-plant fact book lists buildings and land in Allston, Boston, Cambridge, Jamaica Plain, Roslindale, Somerville, Bedford, and Petersham, among other Massachusetts communities. That independently defeats any Cambridge-place or Middlesex-only proxy."
+    },
+    {
+      "topic": "This is a Massachusetts Harvard footprint, not a worldwide or generic institution row",
+      "finding": "The HUPD Clery pages cover seven campuses including non-Massachusetts international sites, but MA0096200 is a Massachusetts special-jurisdiction ORI. The defensible production interpretation is therefore the Massachusetts HUPD property-and-patrol footprint only: the Massachusetts campuses and associated Harvard-owned or controlled properties shown in HUPD's own geography materials, not the university's foreign campuses."
+    }
+  ],
+  "classification": {
+    "is_single_place_proxy_acceptable": false,
+    "is_single_county_proxy_acceptable": false,
+    "is_broad_state_proxy_acceptable": false,
+    "is_worldwide_institution_proxy_acceptable": false,
+    "is_custom_multi_campus_footprint_required": true
+  },
+  "exact_service_footprint_for_production": {
+    "type": "custom Massachusetts-only Harvard multi-campus property and Clery network",
+    "include": [
+      "the official Cambridge Campus Clery Geography footprint, including Harvard's Cambridge academic core, named Allston facilities across the river, and associated noncampus residences shown there such as Holden Green on the Cambridge-Somerville line",
+      "the official Longwood Campus Clery Geography footprint in Boston",
+      "the official Arnold Arboretum Campus Clery Geography footprint in Boston's Jamaica Plain and Roslindale areas",
+      "the official Concord Field Station Campus Clery Geography footprint in Bedford and the associated Harvard conservation/property area identified by Harvard",
+      "the official Harvard Forest Campus Clery Geography footprint in Petersham and associated Harvard Forest tracts",
+      "the immediately adjacent public-property segments and other Harvard-owned or controlled buildings or grounds included in the official HUPD Clery maps for those Massachusetts campuses"
+    ],
+    "exclude": [
+      "Cambridge city as a whole",
+      "Boston city as a whole",
+      "Somerville city as a whole",
+      "Middlesex County as a whole",
+      "Suffolk County as a whole",
+      "a blanket statewide Massachusetts proxy",
+      "generic private neighborhoods near Harvard that are not inside official Harvard property or Clery geography",
+      "Harvard's foreign campuses or overseas centers",
+      "a generic worldwide Harvard institutional footprint"
+    ],
+    "legal_basis": "HUPD's official materials tie police authority to Harvard-owned or controlled property and identify the department's patrol-jurisdiction geography through official Clery maps. That property-and-map combination is the right production basis, while city or county boundaries are only rough heuristics that the official Harvard sources disprove.",
+    "implementation_note": "Build the custom footprint directly from the official HUPD campus Clery map PDFs for the Massachusetts campuses only. Use Harvard's maps, housing, physical-plant, and current public-log sources for QA and named-property confirmation, but do not expand beyond the areas shown as Harvard geography or HUPD patrol jurisdiction on the official maps."
+  },
+  "proxy_assessment": {
+    "cambridge_place_proxy": {
+      "defensible": false,
+      "why_not": "Official HUPD and Harvard sources show active Harvard police geography in Allston/Boston, Longwood/Boston, Somerville, Arnold Arboretum, Concord Field Station, and Harvard Forest in addition to Cambridge."
+    },
+    "middlesex_county_proxy": {
+      "defensible": false,
+      "why_not": "Official Harvard sources place part of the footprint in Suffolk County Boston neighborhoods and part in Worcester County through Harvard Forest, so Middlesex County is too small."
+    },
+    "suffolk_county_proxy": {
+      "defensible": false,
+      "why_not": "Harvard's core Cambridge and Somerville components sit outside Suffolk County, so Suffolk is also too small."
+    },
+    "greater_boston_only_custom_proxy": {
+      "defensible": false,
+      "why_not": "The official ASR and Clery materials include Concord Field Station and Harvard Forest as Massachusetts campuses with Harvard safety geography, so a Cambridge-Boston-Somerville-only footprint would still be incomplete."
+    },
+    "statewide_massachusetts_proxy": {
+      "defensible": false,
+      "why_not": "Even though the footprint spans multiple counties, the official HUPD materials still describe bounded Harvard campuses and property-based patrol jurisdiction rather than all of Massachusetts."
+    },
+    "worldwide_harvard_institution_proxy": {
+      "defensible": false,
+      "why_not": "The ORI is a Massachusetts special-jurisdiction police row, not a worldwide Harvard administration row. The foreign campuses shown in Clery materials should not be pulled into this Massachusetts overlap footprint."
+    }
+  },
+  "repo_evidence": {
+    "queue_context": "The live overlap queue still anchors MA0096200 to Cambridge place and Middlesex County, which was a reasonable heuristic for the main campus but is contradicted by Harvard's own HUPD and property materials.",
+    "prior_repo_verification": "The earlier verify lane correctly escalated Harvard away from place and county proxying, but it stopped at a generic Cambridge-Boston-Somerville conclusion. The official Clery map and annual-report materials support a stronger Massachusetts-only custom-footprint recommendation."
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "campus",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "harvard_multi_campus_massachusetts_property_and_clery_network",
+    "geometry_sources": [
+      "https://www.hupd.harvard.edu/about",
+      "https://www.hupd.harvard.edu/faq/how-do-i-get-harvard-university-police-department",
+      "https://www.hupd.harvard.edu/clery-geography-maps",
+      "https://www.hupd.harvard.edu/node/1556981",
+      "https://www.hupd.harvard.edu/sites/g/files/omnuum2276/files/2024-10/2024%20Annual%20Security%20Report%20101724.pdf",
+      "https://www.hupd.harvard.edu/sites/g/files/omnuum12486/files/2025-11/Cambridge%20Campus%20Clery%20Geography%20112525.pdf",
+      "https://www.hupd.harvard.edu/sites/g/files/omnuum12486/files/2025-11/110425_0.pdf",
+      "https://www.hupd.harvard.edu/sites/g/files/omnuum2276/files/2024-10/100524.pdf",
+      "https://www.hupd.harvard.edu/sites/g/files/omnuum12486/files/2025-10/100325.pdf",
+      "https://huhousing.harvard.edu/our-properties/holden-green",
+      "https://www.harvard.edu/visit/maps-directions/",
+      "https://oira.harvard.edu/factbook/fact-book-physical-plant/",
+      "https://cfs.mcz.harvard.edu/about",
+      "https://harvardforest.fas.harvard.edu/visit/"
+    ],
+    "implementation_note": "Production should treat MA0096200 as localizable only when a Harvard-specific custom geometry can be supported from official HUPD Clery maps for the Massachusetts campuses. Until that geometry exists, keep broad overlap rather than fabricating Cambridge, Boston, Middlesex, or Suffolk precision."
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "case_key": "huntington_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610337000",
+  "jurisdiction_name": "Huntington town",
+  "state_abbr": "NY",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_municipal_control_row_36_municipal_cousub_3610337000_and_treat_huntington_as_suffolk_county_primary_service_structure_with_village_specific_handling",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Official Town of Huntington sources do not show a general town police department. The Town's departments page lists Public Safety and Maritime Services, while the Security Division page and Town budget materials describe security patrol, park rangers, parking enforcement, code enforcement, animal control, and special services rather than a town police agency.",
+    "Town maritime sources show Huntington does have specialized harbor and marine enforcement functions, but they are narrow. The Bay Constables page describes peace officers specializing in marine and conservation law enforcement, and maritime materials describe Harbors and Waterways enforcement for on-water or near-water activity rather than townwide general police service.",
+    "Official Suffolk County sources identify the Suffolk County Police Department as the primary general-law-enforcement surface for Huntington. Suffolk County says the department provides all police services for the five western towns including Huntington, and the Suffolk County Police 2nd Precinct says it proudly serves the residents of the Town of Huntington.",
+    "Official Town and village sources confirm that Huntington is not a single undivided municipal service unit. The Town says it contains four incorporated villages, and village police pages show at least Northport, Huntington Bay, and Lloyd Harbor maintain their own local police departments.",
+    "Internal repo evidence matches an invalid town target rather than a usable annual police surface. The crosswalk routes NY0510700 exclusively to Huntington town by provisional auto logic, but agency and jurisdiction observations are zero in every year 2018-2024 and the 2024 control row is entirely current-year fill for the six queued offenses."
+  ],
+  "governance_structure": {
+    "municipal_status": "town_with_incorporated_villages_and_specialized_town_public_safety_and_marine_functions",
+    "official_basis": [
+      "The Town's About Huntington and Incorporated Villages pages say Huntington contains four incorporated villages: Asharoken, Huntington Bay, Lloyd Harbor, and Northport.",
+      "The Town departments page lists Public Safety and Maritime Services, not a town police department."
+    ],
+    "incorporated_villages_listed_by_town": [
+      "Asharoken",
+      "Huntington Bay",
+      "Lloyd Harbor",
+      "Northport"
+    ]
+  },
+  "policing_structure": {
+    "town_police_department_found": false,
+    "town_public_safety_found": true,
+    "town_public_safety_character": [
+      "security patrol of town facilities",
+      "park rangers / peace officers for town parks and facilities",
+      "parking enforcement",
+      "code enforcement",
+      "animal control",
+      "special services",
+      "specialized marine and conservation enforcement through bay constables and maritime services"
+    ],
+    "primary_policing_entity_for_general_law_enforcement": "Suffolk County Police Department",
+    "official_evidence": [
+      "Suffolk County says the Suffolk County Police Department provides all police services for the five western towns, including Huntington.",
+      "The Suffolk County Police 2nd Precinct says it serves the residents of the Town of Huntington."
+    ],
+    "village_policing_evidence": [
+      "Northport's official police page lists a chief, lieutenant, sergeants, detectives, and police officers under the village's Public Safety structure.",
+      "Huntington Bay's official police page says the village has its own police headquarters and police officers, and the village about page says Huntington Bay maintains its own accredited police force.",
+      "Lloyd Harbor's official police page says the village has a thirteen-person police department providing twenty-four hour police protection."
+    ],
+    "important_special_cases": [
+      "Town public safety is not a general municipal police department.",
+      "Town bay constables and maritime enforcement are specialized harbor and marine functions, not a townwide annual police reporting surface."
+    ]
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "NY0510700 is currently routed exclusively to Huntington town",
+    "current_agency_master_state": "NY0510700 shows SRS and NIBRS presence in every year 2018-2024, but the latest SRS year 2024 has part I total 0 and months reported 0",
+    "current_observation_state": "Agency and jurisdiction observations are zero for all seven Part I offenses in every year 2018-2024",
+    "current_control_state": "The 2024 Huntington town control row is entirely peer-state-type-pop-band current-year fill for the six queued offenses, totaling about 5118.73"
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_row_exists_for_town": false,
+    "why_not": [
+      "The Town does not present a verified general police department or a townwide annual police reporting surface.",
+      "County policing is the primary general-law-enforcement layer for Huntington.",
+      "Village police departments within Huntington make a synthetic townwide row methodologically wrong even apart from the county service layer.",
+      "Town public safety, security, park-ranger, code-enforcement, and maritime functions do not rescue the crosswalked Huntington PD label into a real municipal police jurisdiction."
+    ],
+    "recommended_handling": [
+      "Do not retain the standalone Huntington town municipal control row 36:municipal:cousub:3610337000.",
+      "Treat unincorporated Huntington as part of the Suffolk County police service structure rather than as an independent town police jurisdiction.",
+      "Preserve village-specific handling separately where a village has its own police or distinct public-safety structure; do not collapse those arrangements into a synthetic townwide annual police row."
+    ]
+  },
+  "likely_issue_class": "invalid_target_not_broken_successor_continuity",
+  "open_questions": [
+    "A later village-level pass can decide how to handle Asharoken and any village-specific continuity quirks, but that does not support keeping a Huntington townwide police control row."
+  ]
+}

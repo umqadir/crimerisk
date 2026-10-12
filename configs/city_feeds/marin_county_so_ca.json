@@ -1,0 +1,153 @@
+{
+  "city_key": "marin_county_so_ca",
+  "city_name": "Marin County Sheriff",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/marin_county_so_ca/packet.json",
+    "state/review/packets/city/marin_county_so_ca/evidence/registry_row.json",
+    "state/review/packets/city/marin_county_so_ca/evidence/doc_00.json",
+    "state/review/packets/city/marin_county_so_ca/evidence/doc_index.csv",
+    "state/review/packets/city/marin_county_so_ca/evidence/raw_cache_profile.json",
+    "state/review/packets/city/marin_county_so_ca/evidence/scope_candidates.csv",
+    "state/review/packets/city/marin_county_so_ca/evidence/official_totals.csv",
+    "state/review/packets/city/marin_county_so_ca/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py:259"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Street address locations other than reported street intersections or highway locations are not exact; for victim safety they are adjusted to the nearest block level (doc_00.json description). The published address field is masked to the hundred block (e.g. '1XX DONAHUE ST', raw_cache_profile.json incident_street_address examples).",
+    "No record-level redactions or exclusions are stated in the dataset metadata (doc_00.json); the registry row lists redactions as empty (registry_row.json \"redactions\": \"\")."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "06:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "06"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: one row per incident report with a single 'crime' code (unique_id distinct on all 29,701 rows; im_dr distinct on 29,700 non-null). The publisher does not say how the single code is chosen when an incident involves several offenses, so it may not follow the FBI hierarchy rule.",
+    "Aggravated assault is not mapped: 'ASSAULT' (758), 'BATTERY' (195), 'CHILD ABUS' (452) and 'CHILD NEGL' (9) all sit under crime_class 'ASSAULT - OTHER' with no aggravated/simple split, so NIBRS 13A cannot be separated from 13B.",
+    "Rape is mapped from crime 'RAPE' (crime_class 'SEXUAL ASSAULT', 29 rows) only. crime 'SEX' (353 rows, crime_class 'SEXUAL OFFENSE - OTHER') mixes other sex offenses and may hold some 11A-11C incidents; it is left unmapped, so rape undercounts (28 rows vs 50 official for 2018-2025 excluding 2021).",
+    "Larceny includes crime 'BURG AUTO' (crime_class 'BURGLARY FROM MOTOR VEHICLE'): a California vehicle burglary is theft from a motor vehicle (NIBRS 23F), not a structure burglary (220). Without it larceny would be 371 vs 548 official in 2018; with it 549 vs 548.",
+    "Motor vehicle theft uses 'VEH STLN' only; 'VEH RECV' (recovered vehicle, 312 rows) shares crime_class 'MOTOR VEHICLE THEFT' but records recoveries, and including it would give 43 vs 9 official in 2018.",
+    "FRAUD, IDENT THEF, EMBEZZLEM and FORGERY (crime_class 'FRAUD') and STOLEN PRP are not larceny under the FBI definitions and are not mapped.",
+    "Murder: the pull has one 'MURDER' row (crime_class 'HOMICIDE', 2025-01-04) while the official totals list 6 murders for 2018-2025 excluding 2021 and 0 for 2025; homicides appear to be carried under other codes (e.g. 'ADEATH', 'BODY', 'SUICIDE' death categories) that cannot be identified as 09A, so murder reconciles poorly.",
+    "Official totals for 2021 are 0 for every offense (official_totals.csv), which reads as a non-reporting year, while the pull has 3,779 rows dated 2021; 2021 will not reconcile."
+  ],
+  "mapping": {
+    "date_field": "incident_date_time",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "unique_id"
+    ],
+    "latitude_field": "latitude|location#point",
+    "longitude_field": "longitude|location#point",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime",
+            "op": "eq",
+            "value": "MURDER",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime",
+            "op": "eq",
+            "value": "RAPE",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime",
+            "op": "eq",
+            "value": "ROBBERY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime",
+            "op": "in",
+            "value": "",
+            "values": [
+              "BURG RES",
+              "BURG COMM",
+              "BURG"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime",
+            "op": "in",
+            "value": "",
+            "values": [
+              "THEFT",
+              "SHOPLIFTNG",
+              "BURG AUTO"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime",
+            "op": "eq",
+            "value": "VEH STLN",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Publisher: Marin County Sheriff's Office (ORI CA0210000), which polices unincorporated Marin County; the only scope candidate is 06:state_nonmunicipal_remainder (scope_candidates.csv, registry_row.json), and every row has jurisdiction 'SO' (29,701 of 29,701, raw_cache_profile.json). Some rows carry points in incorporated cities or outside Marin (latitude range 35.46-44.68, longitude -124.12 to -79.96 in the pull), which the footprint and block-group join drop. Date: incident_date_time is the only published date; the documentation calls it the reported crime's 'date/time' and does not say whether it is occurrence or report time. Pull range 2018-01-01T01:59 to 2025-12-31T23:04. The where clause is the registry probe_where and matches the case text's archive filter. Coordinates: numeric latitude/longitude (26,840 non-null of 29,701), falling back to the Socrata location point, which adds 3 rows (26,843 total, computed with the runner's _coordinate on the pull); the publisher moves non-intersection addresses to the nearest block, so points are block-level approximations. Unit is incident: one row per report with one crime code; id is unique_id (distinct on every row), deduplication on it is a no-op on the archive. Offense rules map the source 'crime' codes (checked against the values in the pull): MURDER -> murder; RAPE -> rape; ROBBERY -> robbery; BURG RES, BURG COMM, BURG (crime_class BURGLARY - RESIDENTIAL/COMMERCIAL) -> burglary; THEFT, SHOPLIFTNG, BURG AUTO -> larceny; VEH STLN -> motor_vehicle_theft. Aggravated assault stays unmapped (no aggravated/simple split). Raw pull counts vs official for 2018-2025 excluding 2021, before footprint and coordinate filters (summed from per-year GROUP BY substr(incident_date_time,1,4) queries on raw_cache and from official_totals.csv): robbery 95 vs 94; larceny 3,041 vs 3,036; burglary 756 vs 686; motor vehicle theft 46 vs 34; rape 28 vs 50; murder 1 vs 6. Rows missing coordinates rise in 2022 (973) and 2023 (866) versus 75-345 in other years, which will lower located counts in those years.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.marincounty.gov/resource/ahxi-5nsc.json",
+      "name": "County Sheriff Reported Crimes",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "marin_county_so_ca",
+      "source_url": "https://data.marincounty.gov/Public-Safety/County-Sheriff-Reported-Crimes/ahxi-5nsc",
+      "where": "incident_date_time >= '{start}T00:00:00' AND incident_date_time < '{end}T00:00:00'"
+    }
+  ]
+}

@@ -1,0 +1,213 @@
+{
+  "city_key": "rochester",
+  "city_name": "Rochester, NY",
+  "evidence_refs": [
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:1-57 (docstring: rape absent, native SRS EPSG 2262, server max 100,000)",
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:74-82 (QUERY_URL, OUT_FIELDS)",
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:86-93 (CRIME_CATEGORY_MAPPING)",
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:98 (NEGLIGENT_HOMICIDE_DESCRIPTIONS)",
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:103-116 (where on OccurredFrom_Date_Year, page size 20000, outSR 4326, order OBJECTID)",
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:136-142 (geometry to latitude/longitude)",
+    "state/review/packets/city/rochester/evidence/01_fetch_rochester.py:166-192 (mapping, exclusion, coordinate filter, year filter, incident_id, dedupe)",
+    "state/review/packets/city/rochester/evidence/offense_mapping.csv",
+    "state/review/packets/city/rochester/evidence/README.md 'Source' (provider RPD, URL, 61,367 rows)",
+    "state/review/packets/city/rochester/evidence/README.md 'Coverage and counts' (year x offense table, total 61,310)",
+    "state/review/packets/city/rochester/evidence/README.md 'Block-group join match rate' (57 rows figure vs 61,364 and 61,310)",
+    "state/review/packets/city/rochester/evidence/README.md 'Caveats' 3 (incident_id = Case_Number + OBJECTID)",
+    "state/review/packets/city/rochester/evidence/raw_cache_profile.json",
+    "state/review/packets/city/rochester/evidence/jurisdictions.csv (61,304 + 67 + 57 + 3 + 1 + 1 = 61,433)",
+    "state/review/packets/city/rochester/raw_cache.parquet (replay: 61,367 -> 61,364 -> 61,310; 3 rows with OccurredFrom_Timestamp >= 1735689600000: OBJECTID 47574, 57935, 103460)",
+    "state/review/packets/city/rochester/live/raw_rpd_part_i_crime_2025_2025.parquet (columns __arcgis_latitude/__arcgis_longitude, no latitude/longitude; 7,171 rows -> 7,166 kept)",
+    "case_text: \"an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_rochester.py\""
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "36:municipal:place:3663000"
+    ],
+    "state_fips": [
+      "36"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "id separator: the script builds incident_id as Case_Number + '_' + OBJECTID (01_fetch_rochester.py:189); the contract joins the same two fields with '|'. Same fields, same uniqueness, different id string; any consumer matching ids against the script's incidents_bg.parquet must translate the separator.",
+    "Live-pull where clause: the script filters server-side on the integer year field ('OccurredFrom_Date_Year >= 2018 AND OccurredFrom_Date_Year <= 2024', 01_fetch_rochester.py:103). The contract's {start}/{end} placeholders are dates, so the where is written on OccurredFrom_Timestamp and padded by one day on each side; year_field OccurredFrom_Date_Year then trims the over-pull to the requested years. Reason for the padding: OccurredFrom_Timestamp is UTC epoch ms of Eastern local time (raw_cache.parquet min 1514782800000 = 2018-01-01 05:00Z = 00:00 EST), so an unpadded window read in UTC would lose the last ~5 hours of 31 Dec local; in the archived pull that is 3 kept 2024 rows (OBJECTID 47574 cat 4, 57935 cat 6 at exactly 1735689600000 = 2025-01-01 00:00Z, 103460 cat 6, all with coordinates). With the one-day pad those rows fall inside the window whether the portal reads the literals as UTC or local time. Not verifiable from the packet: that this ArcGIS server accepts TIMESTAMP +/- INTERVAL arithmetic in a where; if it does not, the portal returns an error rather than a silent short pull. Running on raw_cache.parquet is unaffected.",
+    "Coordinates: latitude/longitude are not attributes of the layer; the script requests returnGeometry=true with outSR=4326 and copies geometry.y/geometry.x into latitude/longitude (01_fetch_rochester.py:111-112, 136-142). The contract maps latitude|__arcgis_latitude and longitude|__arcgis_longitude, so the archived pull uses the script's copied columns and a live pull uses the runner's geometry columns (live/raw_rpd_part_i_crime_2025_2025.parquet carries __arcgis_latitude/__arcgis_longitude and no latitude/longitude column; WGS84 values, latitude 43.108-43.265, longitude -77.681 to -77.541). The contract cannot express outSR; the runner must request WGS84 geometry (native SRS is EPSG 2262 per the script docstring, State Plane feet otherwise).",
+    "Negligent-homicide exclusion: the script strips Statute_Description and drops exact 'CRIMINALLY NEGLIGENT HOMICIDE' across all mapped rows (01_fetch_rochester.py:98, 171-174). The contract expresses this as a case-sensitive regex ^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$ in every rule's exclude_conditions (descriptions are right-padded with spaces in the raw data, so plain eq would not match unless the runner trims).",
+    "Offense rules compare Statute_CrimeCategory (int64 in raw_cache.parquet and in the live 2025 pull) with eq against the strings '1'..'7'; this assumes the runner stringifies integers as '1'..'7'. If a live pull ever carried a null Statute_CrimeCategory and the column were upcast to float ('1.0'), every rule would miss, whereas the script's dict map (01_fetch_rochester.py:166) tolerates floats. Neither pull in the packet has a null in this field.",
+    "Block-group join, output column renames (district/beat/offense_raw_description) and offense_mapping.csv/README writing (01_fetch_rochester.py:194-230) are runner/output concerns outside the contract; the script keeps unmatched points with a null block group (how='left'), which the README reports as 0 unmatched."
+  ],
+  "mapping": {
+    "date_field": "OccurredFrom_Timestamp",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "Case_Number",
+      "OBJECTID"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Statute_CrimeCategory",
+            "op": "eq",
+            "value": "1",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Statute_Description",
+            "op": "regex",
+            "value": "^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Statute_CrimeCategory",
+            "op": "eq",
+            "value": "3",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Statute_Description",
+            "op": "regex",
+            "value": "^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Statute_CrimeCategory",
+            "op": "eq",
+            "value": "4",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Statute_Description",
+            "op": "regex",
+            "value": "^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Statute_CrimeCategory",
+            "op": "eq",
+            "value": "5",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Statute_Description",
+            "op": "regex",
+            "value": "^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Statute_CrimeCategory",
+            "op": "eq",
+            "value": "6",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Statute_Description",
+            "op": "regex",
+            "value": "^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Statute_CrimeCategory",
+            "op": "eq",
+            "value": "7",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "Statute_Description",
+            "op": "regex",
+            "value": "^\\s*CRIMINALLY NEGLIGENT HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "OccurredFrom_Date_Year"
+  },
+  "notes": "Revision of contract1 addressing the review. (1) where: accepted; the exact timestamp window is replaced by a window padded one day on each side, trimmed by year_field (see known_differences). The live 2025 pull in the packet (live/raw_rpd_part_i_crime_2025_2025.parquet, 7,171 rows, all OccurredFrom_Date_Year 2025, timestamps 2025-01-01 05:00Z to 2026-01-01 03:00Z, 6 rows whose UTC year is 2026) contains late-31-Dec local rows, which is consistent with the portal reading literals in local time, but the packet does not record which where produced that pull, so the padding stays. (2) jurisdiction counts: accepted; jurisdictions.csv lists 61,304 (Rochester city) + 67 + 57 + 3 + 1 + 1 = 61,433 incidents, which exceeds both the 61,310 kept rows and the 61,367 raw rows, so the file does not count the same row set as raw_cache.parquet and is not a split of the kept rows; it is unreconciled. Scope is unchanged: RPD is the city police department (README 'Provider'), 61,304 of 61,433 (99.8%) of the file's counts are in Rochester city, and the other 129 are points in adjacent towns, read as border geocodes, not jurisdictions RPD serves. (3) Not raised by the review, fixed here: latitude_field/longitude_field were 'latitude'/'longitude', which exist only in the archived pull; the live pull has only __arcgis_latitude/__arcgis_longitude, so require_coordinates would have dropped every live row. Now 'latitude|__arcgis_latitude' / 'longitude|__arcgis_longitude'. Mapping (unchanged): Statute_CrimeCategory 1->murder, 3->robbery, 4->aggravated_assault, 5->burglary, 6->larceny, 7->motor_vehicle_theft (script lines 86-93; evidence/offense_mapping.csv); category 2 (rape) is absent from the feed (profile Statute_CrimeCategory min 1 max 7; script docstring), so no rape rule. Replay on raw_cache.parquet with pandas under this contract's semantics: 61,367 raw rows; all mapped; 3 CRIMINALLY NEGLIGENT HOMICIDE rows excluded -> 61,364; 54 rows without coordinates, 0 at (0,0) -> 61,310; 0 outside 2018-2024; 0 duplicate ids -> 61,310, equal to the README total (README 'Coverage and counts', All years 61,310). The README's '57 rows' dropped for geometry is inconsistent with its own 61,364 and 61,310 (difference 54); the replay gives 54. Replay on the live 2025 pull with requested year 2025: 7,171 rows, all mapped, 0 negligent-homicide rows, 5 without __arcgis coordinates -> 7,166 kept, 0 duplicate ids. year_field OccurredFrom_Date_Year is used rather than the timestamp because the timestamp's UTC year disagrees with it on 46 archived rows (0 in America/New_York). page_size 20000 and order OBJECTID follow the script (lines 106, 115); the docstring's 100,000 is the server maximum. exclusions_stated_by_publisher is empty: the packet has no RPD statement of excluded offenses; the missing rape category is the ingestion author's inference.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://maps.cityofrochester.gov/arcgis/rest/services/RPD/RPD_Part_I_Crime/FeatureServer/3/query",
+      "name": "RPD Part I Crime - 2011 to Present (Rochester Police Department)",
+      "order": "OBJECTID",
+      "page_size": 20000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Case_Number",
+        "OccurredFrom_Date_Year",
+        "OccurredFrom_Date_Month",
+        "OccurredFrom_Timestamp",
+        "Statute_CrimeCategory",
+        "Statute_Description",
+        "Statute_Degree",
+        "Statute_Class",
+        "Statute_Category",
+        "Patrol_Beat",
+        "Patrol_Section",
+        "Geo_Beat",
+        "Geo_Section",
+        "Case_Status",
+        "Address_StreetFull"
+      ],
+      "slug": "rpd_part_i_crime",
+      "source_url": "https://maps.cityofrochester.gov/arcgis/rest/services/RPD/RPD_Part_I_Crime/FeatureServer/3",
+      "where": "OccurredFrom_Timestamp >= TIMESTAMP '{start} 00:00:00' - INTERVAL '1' DAY AND OccurredFrom_Timestamp < TIMESTAMP '{end} 00:00:00' + INTERVAL '1' DAY"
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "city_key": "atlanta_ga",
+  "city_name": "Atlanta, Georgia",
+  "geography": {
+    "bounds": {
+      "max_latitude": 33.912142,
+      "max_longitude": -84.26423,
+      "min_latitude": 33.631186,
+      "min_longitude": -84.583432
+    },
+    "jurisdiction_id": "13:municipal:place:1304000",
+    "state_fips": "13"
+  },
+  "mapping": {
+    "date_field": "ReportDate",
+    "id_field": "OBJECTID",
+    "id_fields": [],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "field": "NibrsUcrCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ]
+  },
+  "source": {
+    "api_endpoint": "https://services3.arcgis.com/Et5Qfajgiyosiw4d/arcgis/rest/services/OpenDataWebsite_Crime_view/FeatureServer/0",
+    "name": "Atlanta Police Open Data Portal OpenDataWebsite_Crime_view",
+    "order": "ReportDate ASC, OBJECTID ASC",
+    "page_size": 2000,
+    "portal_type": "arcgis_feature_service",
+    "select": [
+      "OBJECTID",
+      "IncidentNumber",
+      "ReportNumber",
+      "ReportDate",
+      "OccurredFromDate",
+      "NibrsUcrCode",
+      "NIBRS_Offense",
+      "NIBRS_Bucket"
+    ],
+    "source_url": "https://atlanta-police-opendata-atlantapd.hub.arcgis.com/pages/2f68476999b74aa0b8dc9769822854d2",
+    "where": "ReportDate >= timestamp '2024-01-01 00:00:00' AND ReportDate < timestamp '2025-01-01 00:00:00'"
+  },
+  "sources_checked": [
+    "https://opendata.atlantapd.org/",
+    "https://atlanta-police-opendata-atlantapd.hub.arcgis.com/",
+    "https://atlanta-police-opendata-atlantapd.hub.arcgis.com/pages/2f68476999b74aa0b8dc9769822854d2",
+    "https://atlanta-police-opendata-atlantapd.hub.arcgis.com/pages/8b4aaea52cfd4caa9e7c372483f19d35",
+    "https://www.arcgis.com/home/item.html?id=774475034b694ce68b6d2e887aa96544",
+    "https://services3.arcgis.com/Et5Qfajgiyosiw4d/arcgis/rest/services/OpenDataWebsite_Crime_view/FeatureServer",
+    "https://services3.arcgis.com/Et5Qfajgiyosiw4d/arcgis/rest/services/OpenDataWebsite_Crime_view/FeatureServer/0",
+    "https://services3.arcgis.com/Et5Qfajgiyosiw4d/arcgis/rest/services/OpenDataWebsite_Crime_view/FeatureServer/0/query",
+    "https://www.atlantaga.gov/Home/Components/News/News/3935/"
+  ],
+  "worker_judgment_notes": "Selected the official Atlanta Police Open Data Portal ArcGIS FeatureServer because it is directly queryable and exposes OBJECTID, ReportDate, NibrsUcrCode, NIBRS_Offense, NIBRS_Bucket, and point geometry for 2024 NIBRS-era rows. This is a share-lane contract only; raw feed counts are not promoted as annual totals. Identity uses OBJECTID because ReportNumber is not unique in the 2024 feed. Date filtering uses ReportDate to match the portal's reported-crimes framing; OccurredFromDate is retained only as context. Geography uses ArcGIS point geometry exposed by the runner as __arcgis_latitude/__arcgis_longitude, with broad padded bounds computed from local block_group_to_jurisdiction_crosswalk.parquet plus TIGER 2020 Georgia block groups for jurisdiction_id 13:municipal:place:1304000. Offense rules use defensible NIBRS codes: 09A murder, 11A rape, 120 robbery, 13A aggravated assault, 220 burglary, 23A-23H larceny, and 240 motor vehicle theft. Rules intentionally exclude non-canonical NIBRS rows such as simple assault, intimidation, sex offenses other than 11A, arson, fraud, vandalism, drugs, weapons, and NOT_APPL rows. An in-memory compatibility check found all seven mapped offenses present and municipal block-group match shares above 0.91 after bounds filtering, but some larceny and motor-vehicle-theft points do not join to Atlanta municipal block groups, so the runner's spatial join remains authoritative for admitted shares.",
+  "year": 2024
+}

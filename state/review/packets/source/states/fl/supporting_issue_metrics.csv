@@ -1,0 +1,22 @@
+metric_group,metric_name,metric_value,metric_note
+statewide_validation,official_oris,833,Florida official roster rows in validation summary
+statewide_validation,official_nibrs_oris,230,Florida roster rows flagged official NIBRS
+statewide_validation,official_effective_nibrs_oris_2024,187,Florida roster rows effective in NIBRS by 2024
+statewide_validation,present_but_no_2024_observation,404,Rows in repo master with no 2024 observation
+statewide_validation,missing_in_repo_master,145,Official roster rows absent from repo master
+statewide_validation,official_nibrs_started_by_2024_but_repo_no_nibrs,29,Official 2024 NIBRS rows with no repo NIBRS observation
+statewide_validation,mixed_source_2024,155,Rows marked mixed source in 2024
+statewide_validation,state_like_rows,422,Other State Agency plus State Police rows
+statewide_validation,state_like_present_but_no_2024_observation,230,State or special-jurisdiction rows in master with no 2024 observation
+statewide_validation,state_like_missing_in_repo_master,135,State or special-jurisdiction rows absent from master
+source_structure,fl_top_partial_reporters_2024,12,Florida rows in top_partial_reporters_2024.csv
+source_structure,fl_srs_quarterly_pattern_candidates_2024,20,Florida rows in srs_quarterly_pattern_candidates_2024.csv
+source_structure,fl_nibrs_local_oris_missing_in_srs_2024,0,Florida rows in nibrs_local_oris_missing_in_srs_2024.csv
+source_structure,fl_srs_monthly_vs_annual_mismatches_2024,0,Florida rows in srs_monthly_vs_annual_mismatches.csv
+source_structure,agencies_both_12m_srs_vs_nibrs,119,Florida agencies with both 12-month SRS and NIBRS in ratio table
+source_structure,ratio_larceny_srs_to_nibrs,1.011414,Coverage-matched SRS to NIBRS larceny ratio
+source_structure,ratio_burglary_srs_to_nibrs,0.994343,Coverage-matched SRS to NIBRS burglary ratio
+source_structure,ratio_robbery_srs_to_nibrs,1.007409,Coverage-matched SRS to NIBRS robbery ratio
+policy,missing_master_agriculture_stub_rows,67,County-suffixed Agriculture Law Enforcement stubs
+policy,missing_master_dep_stub_rows,67,County-suffixed DEP Law Enforcement stubs
+policy,missing_master_other_rows,11,Non-stub missing-master rows needing targeted review

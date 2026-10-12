@@ -1,0 +1,173 @@
+{
+  "case_key": "brunswick_ga",
+  "jurisdiction_id": "13:municipal:place:1311560",
+  "jurisdiction_name": "Brunswick city",
+  "state_abbr": "GA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_missing_support_as_reporting_continuity_failure_not_county_replacement",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Brunswick still operates a live city police department. Official city pages identify Brunswick Police Department as a certified city agency with primary responsibility for enforcing city ordinances and state criminal and traffic laws within Brunswick, and the city publicly announced a permanent Brunswick police chief in August 2025 after a city-run hiring process.",
+    "Current city operational pages show a real police organization rather than a shell target. Brunswick's police contact page lists city police command and support roles including a crime analyst, TAC, patrol, criminal investigations, and support services staff, and routes non-emergency calls through the joint Glynn-Brunswick 911 center for dispatch.",
+    "Official City of Brunswick crime-statistics pages show uninterrupted local public reporting continuity after the repo zeros out. The city publishes Brunswick-specific monthly UCR Part 1 tables for 2020, 2021, 2022, 2023, 2024, 2025, and a live 2026 page shell; for the six tracked review offenses, the page reports 2024 counts of rape 9, robbery 26, aggravated assault 106, burglary 88, larceny 412, and vehicle theft 66, and 2023 counts of rape 9, robbery 51, aggravated assault 131, burglary 94, larceny 328, and vehicle theft 57.",
+    "Glynn County Police is not the citywide replacement for Brunswick Police. Official county police materials say GCPD provides uniformed patrol and community-policing services to unincorporated Glynn County on the mainland plus Saint Simons and Sea Islands, and provides mutual aid to the City of Brunswick Police and other agencies.",
+    "A formal 2020 city-county mutual-aid agreement confirms that both governments maintain and staff their own police departments. That is direct official evidence against a county-replacement reading.",
+    "The sheriff is also a separate public-safety layer, not the ordinary municipal replacement. Official Glynn County Sheriff materials emphasize the detention center, court security, warrants, subpoenas, civil process, inmate transport, and sex-offender monitoring.",
+    "Georgia's public state lane does not expose a clean agency-level Brunswick row today. GBI says UCR data is compiled from agency submissions and that special-purpose reports can be requested, but its public crime-statistics database is unavailable and the annual 2024 summary only provides county and MSA rollups compiled from all agencies operating in a county.",
+    "Federal identity signals still preserve Brunswick as a distinct city agency. The mirrored FBI Crime Data Explorer 2024 roster lists Brunswick Police Department as agency type City and Glynn County Police Department as agency type County, while Glynn County Sheriff's Office appears as a separate sheriff agency.",
+    "Repo evidence matches a continuity failure rather than a structure error. `GA0630100` is exclusively mapped to Brunswick city and carries real summary counts in 2018, 2019, and 2022, but the repo observation layer shows zero placeholders in 2020, 2021, 2023, and 2024 even though the city publishes nonzero local crime statistics for those same years. Meanwhile `GA0630200` Glynn County Police remains active and distinct."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_standalone_city_police_department",
+    "official_basis": [
+      "The official Brunswick police page describes Brunswick Police Department as a certified city police agency with primary responsibility for enforcing city ordinances and state laws within Brunswick.",
+      "The city publicly announced and affirmed a Brunswick chief of police in 2025, which confirms ongoing city police governance rather than county replacement.",
+      "The Glynn-Brunswick 911 oversight page lists separate City of Brunswick Police Chief, Glynn County Police Chief, and Glynn County Sheriff positions."
+    ],
+    "important_interpretation": "Brunswick is a real municipal control object with its own current police department. Nothing in the reviewed official material indicates a dissolved city police function or a consolidated city-county government."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Brunswick Police Department",
+    "active_city_police_department_found": true,
+    "county_or_sheriff_replacement": false,
+    "official_evidence": [
+      "The Brunswick police page says the department has the primary responsibility for enforcing city ordinances and state traffic and criminal laws within the city.",
+      "The police contact page lists Brunswick-specific command, patrol, investigations, support, and crime-analysis staff.",
+      "The Glynn County Police ride-along and community-policing pages say GCPD serves unincorporated Glynn County and provides mutual aid to the City of Brunswick Police.",
+      "The 2020 mutual-aid agreement states that the City and County each maintain and staff a police department.",
+      "The sheriff page separately describes detention, court, warrant, civil-process, and transport responsibilities."
+    ],
+    "important_clarification": "This is a three-layer local public-safety environment: Brunswick Police for the city, Glynn County Police for unincorporated county patrol plus mutual aid, and Glynn County Sheriff for jail/court/civil and related sheriff functions. None of the reviewed official sources supports dropping Brunswick into a county-police or sheriff-primary replacement model."
+  },
+  "official_reporting_evidence": {
+    "city_public_crime_surface": {
+      "source": "City of Brunswick crime-statistics page",
+      "summary": "The city publishes Brunswick-specific monthly UCR Part 1 tables by year and keeps them current through 2025.",
+      "tracked_offense_counts": {
+        "2024": {
+          "rape": 9,
+          "robbery": 26,
+          "aggravated_assault": 106,
+          "burglary": 88,
+          "larceny": 412,
+          "motor_vehicle_theft": 66
+        },
+        "2023": {
+          "rape": 9,
+          "robbery": 51,
+          "aggravated_assault": 131,
+          "burglary": 94,
+          "larceny": 328,
+          "motor_vehicle_theft": 57
+        },
+        "2022": {
+          "rape": 16,
+          "robbery": 58,
+          "aggravated_assault": 127,
+          "burglary": 108,
+          "larceny": 647,
+          "motor_vehicle_theft": 56
+        }
+      },
+      "validation_note": "The city's 2022 six-offense counts exactly match the repo's nonzero 2022 Brunswick row for `GA0630100`, which is strong evidence that the city page uses the same practical offense definitions for the tracked review fields in the transition-era window.",
+      "why_it_matters": "The city target did not disappear after 2022. The official local police surface continues publishing Brunswick offense counts after the repo falls back to zero-valued support."
+    },
+    "state_publication_context": {
+      "summary": "Georgia's public official lane is still a summary and special-request structure rather than a convenient agency-level download surface.",
+      "details": [
+        "GBI says annual UCR data is compiled directly from agency offense and arrest reports and that additional UCR data can be retrieved for special-purpose reports upon request.",
+        "GBI's crime-statistics database page says the public Uniform Crime Reporting Statistics database is not available at this time.",
+        "GBI's 2024 crime-statistics summary says county totals are compiled from all law-enforcement agencies operating in the county, including sheriff's offices, police departments, campus police, and other agencies.",
+        "The 2024 summary reports Brunswick, GA MSA and Glynn County totals, but those aggregated public totals cannot by themselves replace Brunswick's city row."
+      ],
+      "interpretation": "The lack of a public GBI agency-level database helps explain why Brunswick can be a real municipal police target with continuing local statistics while the repo still carries zero-valued state-summary placeholders."
+    },
+    "federal_roster_signal": {
+      "summary": "The mirrored FBI Crime Data Explorer 2024 roster still lists Brunswick Police Department as a City agency, distinct from Glynn County Police Department and Glynn County Sheriff's Office.",
+      "details": [
+        "Brunswick Police Department `GA0630100` appears as agency type City with `is_nibrs=false`.",
+        "Glynn County Police Department `GA0630200` appears as agency type County with `is_nibrs=true` and `nibrs_start_date=2019-05-01`.",
+        "Glynn County Sheriff's Office `GA0630000` appears as a separate sheriff agency with official NIBRS status in the mirrored validation table."
+      ],
+      "interpretation": "Federal agency identity did not collapse Brunswick into Glynn County Police. The city agency still exists as a distinct official reporting identity."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": {
+      "GA0630100": "exclusive to 13:municipal:place:1311560",
+      "GA0630200": "exclusive to 13:state_nonmunicipal_remainder",
+      "GA0630000": "exclusive to 13:state_nonmunicipal_remainder"
+    },
+    "observation_state": [
+      {
+        "ori": "GA0630100",
+        "agency_name": "Brunswick Police Department",
+        "pattern": "summary counts present in 2018, 2019, and 2022; zero placeholders in 2020, 2021, 2023, and 2024"
+      },
+      {
+        "ori": "GA0630200",
+        "agency_name": "Glynn County Police Department",
+        "pattern": "active summary and NIBRS-backed counts across 2018-2024"
+      },
+      {
+        "ori": "GA0630000",
+        "agency_name": "Glynn County Sheriff's Office",
+        "pattern": "present in master but zero-valued / no observed 2024 support in repo despite official federal NIBRS status"
+      }
+    ],
+    "current_control_state": "All 2024 Brunswick city control rows for murder, rape, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft carry reported_count_preferred 0.0, mean_months_reported_preferred 0.0, and dominant_reporting_regime structurally_missing_or_unreliable.",
+    "review_queue_state": "Brunswick city is a high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 1021.7880630988554, total_reported_count 0.0, fill_share_of_estimated 1.0, and priority_rank 3.",
+    "interpretation": "The repo is not pointing at a fake or structurally county-replaced municipality. It is missing Brunswick-specific support on a valid city police agency that is still visible in official city, county, state-context, and federal identity sources."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "county_replacement_defensible": false,
+    "consolidated_city_county_defensible": false,
+    "why": [
+      "Brunswick still has an active official city police department.",
+      "Glynn County Police officially serves unincorporated Glynn County and mutual-aid functions rather than replacing Brunswick Police.",
+      "The city and county formally acknowledge that each maintains its own police department.",
+      "The sheriff is a separate office with detention, court, warrant, and civil-process responsibilities.",
+      "Official city crime statistics continue after the repo zeros out."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The public official Georgia lane is a summary-continuity and special-request environment rather than an easily consumable agency-level database.",
+      "Repo continuity for `GA0630100` appears to break independently of the city's actual police operations or local public statistics.",
+      "The presence of a live county-police row likely makes the case look like county replacement in automated review, but the official service structure shows the city and county rows are separate jurisdictions."
+    ],
+    "recommended_handling": [
+      "Retain Brunswick city as a standalone municipal control row.",
+      "Do not reroute Brunswick to Glynn County Police Department or Glynn County Sheriff's Office.",
+      "Classify the current all-fill condition as reporting/publication and repo-ingestion continuity failure on `GA0630100`, not as county replacement or consolidated structure.",
+      "For the six tracked review offenses, treat the official City of Brunswick crime-statistics page as the first local backfill candidate for 2023 and 2024 because it publishes explicit city counts for rape, robbery, aggravated assault, burglary, larceny, and vehicle theft.",
+      "If production later needs a broader full-row rewrite, a formal agency extract from GBI or Brunswick Police should be used to reconcile the city's web series before overwriting longer historical spans."
+    ],
+    "targeted_backfill_candidate": {
+      "2024": {
+        "aggravated_assault": 106,
+        "burglary": 88,
+        "larceny": 412,
+        "motor_vehicle_theft": 66,
+        "rape": 9,
+        "robbery": 26
+      },
+      "2023": {
+        "aggravated_assault": 131,
+        "burglary": 94,
+        "larceny": 328,
+        "motor_vehicle_theft": 57,
+        "rape": 9,
+        "robbery": 51
+      },
+      "mapping_note": "Use the city's explicit Aggravated Subtotal rather than total Assaults. Do not use the page's overall TOTAL as a direct Part I replacement because it includes simple assaults and arson."
+    },
+    "exact_blocker_if_broader_backfill_is_requested": "The municipal-target decision is closed, but a general-purpose historical rewrite should not rely only on the city web page because the public GBI agency database is unavailable and the city's broader totals include non-review categories; a direct GBI special-purpose report or Brunswick Police statistical extract is still the cleaner archive-grade surface for full-series replacement."
+  },
+  "likely_issue_class": "valid_target_with_reporting_continuity_failure_and_separate_county_police_not_replacement",
+  "open_questions": [
+    "The keep-versus-drop question is closed. The only remaining implementation choice is whether the production team wants to use the city crime-statistics page immediately for targeted 2023-2024 repair or wait for a direct GBI or Brunswick Police agency extract before touching the broader Brunswick series."
+  ]
+}

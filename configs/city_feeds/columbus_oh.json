@@ -1,0 +1,189 @@
+{
+  "city_key": "columbus_oh",
+  "city_name": "Columbus",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/columbus_oh/evidence/registry_row.json",
+    "state/review/packets/city/columbus_oh/evidence/doc_00.json",
+    "state/review/packets/city/columbus_oh/evidence/doc_index.csv",
+    "state/review/packets/city/columbus_oh/evidence/raw_cache_profile.json",
+    "state/review/packets/city/columbus_oh/evidence/scope_candidates.csv",
+    "state/review/packets/city/columbus_oh/evidence/official_totals.csv",
+    "state/review/packets/city/columbus_oh/raw_cache.parquet",
+    "packet.json case_text: \"The archived pull (raw_cache.parquet) holds every row the endpoint returned for 2018-2025 under the date filter `OccurredOn >= DATE '{start}' AND OccurredOn < DATE '{end}'`\"",
+    "registry_row.json: \"redactions\": \"\", \"count_unit\": \"incident\", \"coordinate_precision\": \"point\""
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "39:municipal:place:3918000"
+    ],
+    "state_fips": [
+      "39"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Coverage starts with reports filed 2023-09-26: min(ReportedOn) in raw_cache.parquet is 1695691778000 (2023-09-26 01:29:38 UTC; raw_cache_profile.json ReportedOn.min). Occurrence years 2018-2022 hold only late-reported incidents (101, 125, 213, 295, 564 raw rows by OccurredYear) and 2023 holds 28,502 rows against 96,165 in 2024, so 2018-2023 will reconcile far below official_totals.csv; only 2024-2025 are complete years.",
+    "Rape is not locatable: every row of '300 - Rape/Sexual Assault Vic 16 Yr and Older' (1,878) and '301 - Rape/Sexual Assault Vic 15 Yr and Younger' (1,191) has IsMapped='No' and null geometry (query on raw_cache.parquet: share mapped = 0.000), as do 302/302a Molesting and 350 Criminal Child Enticement. With require_coordinates the rape footprint count will be zero in every year. The publisher does not state this suppression in doc_00.json (description is empty).",
+    "Rape categories straddle definitions: the publisher's 'Rape/Sexual Assault' subjects are not split into NIBRS 11A/11B/11C versus other sexual assault; the separate Molesting subjects (302, 302a; likely fondling, 11D) are left unmapped. Deduplicated counts 1,274 (2024) and 1,141 (2025) exceed the official 1,137 and 987.",
+    "Aggravated assault is only partly separable: '262 - Felony Assault', '151 - DV - Aggravated Assault' and '154 - DV - Strangulation' are mapped; '150 - Domestic Violence' (13,897 raw rows) and '149 - Domestic Violence - Victim 17 or Under' mix aggravated and simple domestic assaults and stay unmapped, as do '254 - Assault - ZIU' (simple assault) and '260 - Discharged Firearms - Occupied Structure' (property versus person target not separable). Deduplicated mapped counts 1,358 (2024) and 1,228 (2025) are below the official 1,929 and 1,478. Mapping strangulation to aggravated assault follows the FBI's treatment of strangulation as aggravated assault, not a publisher definition.",
+    "One subject per incident: the feed publishes a single ColumbusSubject per IncidentNo (215,537 distinct IncidentNo in 215,671 rows; only 4 incidents carry two different subjects), so lower-ranked offenses within an incident are not visible, unlike NIBRS offense-level counts.",
+    "Burglary includes Ohio 'Breaking and Entering' (122-127), which fits the FBI unlawful-entry-of-a-structure definition, and attempts (101a-106a); '120 - Safecracking' (28 rows) straddles burglary and larceny and is unmapped.",
+    "Motor vehicle theft includes attempts ('200a', FBI counts attempts) and '203 - UUMV' (unauthorized use/joyriding); '204 - Impounded Suspected Stolen Vehicle' and '708 - Lost Motor Vehicle' are not thefts and are unmapped. Deduplicated mapped counts 7,187 (2024) and 5,406 (2025) exceed the official 4,969 and 4,517.",
+    "Larceny excludes fraud, embezzlement, forgery, extortion and '727 - Theft of Utilities'; 'Theft of License Plate' is counted as theft of motor vehicle parts (23G) and 'Tampering With Coin Machine' as 23E. Theft rows are often unmapped (e.g. '115 - Theft - Misdemeanor - ZIU' 68.3% mapped, '116 - Theft - Mail - Generalist' 20.9%), so the located larceny count loses 23-37% in 2023-2025.",
+    "Robbery (450, 451) deduplicated counts 1,269 (2024) and 1,036 (2025) versus official 803 and 968; the 2024 official figure is low relative to the feed and to adjacent official years."
+  ],
+  "mapping": {
+    "date_field": "OccurredOn",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "IncidentNo"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "eq",
+            "value": "Homicide",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Rape/Sexual Assault Vic 16 Yr and Older",
+              "Rape/Sexual Assault Vic 15 Yr and Younger"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "eq",
+            "value": "Felony Assault",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ColumbusSubject",
+            "op": "in",
+            "value": "",
+            "values": [
+              "151 - DV - Aggravated Assault",
+              "154 - DV - Strangulation"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Burglary",
+              "Burglary Attempt",
+              "Breaking and Entering"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Theft",
+              "Felony Theft",
+              "Theft of License Plate",
+              "Theft of Negotiable Instrument",
+              "Tampering With Coin Machine"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GeneralSubject",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Motor Vehicle Theft",
+              "Motor Vehicle Theft Attempt",
+              "UUMV"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "OccurredYear"
+  },
+  "notes": "Unit: incident. IncidentNo is the id (dedupe_on_id true): 215,671 rows, 215,537 distinct IncidentNo; of the 134 duplicated numbers 120 are exact repeats, 10 differ only in OccurredOn and 4 carry two subjects (computed with count distinct on raw_cache.parquet). Offense mapping runs before de-duplication, so an incident whose duplicate rows carry an unmapped and a mapped subject (e.g. 240849112: 823 DICE Failure to Comply and 450 Robbery) keeps the mapped row; among mapped rows the first row per IncidentNo in pull order is kept. Dates: OccurredOn is the occurrence date (field alias 'Occurred On', doc_00.json); ReportedOn is the report date. OccurredOn is epoch ms; dateFieldsTimeReference says UTC, but its hour distribution peaks at 00:00 (23,745 rows) and 12:00 (13,025), which fits local wall-clock times stored as if UTC. year_field OccurredYear is used; it equals the UTC year of OccurredOn in all 215,671 rows, and the source where clause filters on OccurredOn, so the year and the pull agree. Coordinates: the published feature geometry (__arcgis_latitude/__arcgis_longitude, from a Web Mercator point layer, doc_00.json geometryType esriGeometryPoint, wkid 102100). 31,997 rows have IsMapped='No' and null geometry; none sit at (0,0). IncidentLocation is published as a hundred-block address ('400 Block of S High St'), but points are not collapsed to one point per block label (that label has 13 distinct points at 5 decimals), and the publisher states no rounding or offset. Scope: Columbus Division of Police polices the City of Columbus (registry_row.json jurisdiction_ids 39:municipal:place:3918000; scope_candidates.csv lists only Columbus city). IncidentCity holds postal cities (Dublin, Hilliard, Canal Winchester, etc.) because Columbus city limits cross those postal areas; the footprint join, not IncidentCity, decides scope. Mapping rules use GeneralSubject, which groups ColumbusSubject codes (e.g. Homicide = 250 Homicide 211 + 250b DV - Homicide 2 = 213; Burglary = 101-106; Burglary Attempt = 101a-106a; Breaking and Entering = 122-127; Felony Theft = 107-112 and 107a-112a); the two DV aggravated codes are matched on ColumbusSubject because GeneralSubject files them under Domestic Violence. Every value was checked against the pull. Murder excludes 250a Justifiable Homicide, 270 Manslaughter By Negligence, 820 DICE Aggravated Vehicular Homicide, suicides, DOA and accidental shootings. Expected funnel from the archive (recomputed in duckdb on raw_cache.parquet): raw 215,671; mapped 74,953; located 56,695; deduplicated and located 56,604 before the block-group and footprint joins. Located, deduplicated counts 2024/2025: murder 108/80, rape 0/0, robbery 1,223/1,003, aggravated assault 1,318/1,187, burglary 3,889/3,439, larceny 13,653/10,998, motor vehicle theft 6,798/5,011. The publisher states no redactions or exclusions (registry_row.json redactions empty; doc_00.json description empty); the sex-offense geometry suppression is observed in the data, not stated.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services1.arcgis.com/9yy6msODkIBzkUXU/arcgis/rest/services/Police_Incident_Reports/FeatureServer/0",
+      "name": "Columbus Police Incident Reports",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "columbus_oh",
+      "source_url": "https://opendata.columbus.gov/",
+      "where": "OccurredOn >= DATE '{start}' AND OccurredOn < DATE '{end}'"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+column,dtype
+OBJECTID,int64
+GlobalID,object
+case_number,object
+crime_category,object
+crime_code,object
+crime_description,object
+crime_type,object
+reported_date,int64
+reported_year,int64
+reported_month,int64
+reported_day,int64
+agency,object
+reported_date_text,object
+__arcgis_longitude,float64
+__arcgis_latitude,float64

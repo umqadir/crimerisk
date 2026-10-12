@@ -1,0 +1,23 @@
+metric_group,metric_name,metric_value,metric_note
+statewide_validation,official_oris,662.0,Georgia official roster rows in validation summary
+statewide_validation,official_nibrs_oris,509.0,Georgia roster rows flagged official NIBRS
+statewide_validation,official_effective_nibrs_oris_2024,506.0,Georgia roster rows effective in NIBRS by 2024
+statewide_validation,repo_master_matches,661.0,Georgia official roster rows that already match repo master
+statewide_validation,mixed_source_2024,383.0,Georgia rows with both repo SRS and repo NIBRS while the official roster says effective NIBRS by 2024
+statewide_validation,mixed_source_support_sum_2024,196959.0,Total preferred-support weight sitting in the Georgia mixed-source lane
+statewide_validation,present_but_no_2024_observation,271.0,Georgia repo-master rows with no 2024 observation
+statewide_validation,official_nibrs_started_by_2024_but_repo_no_nibrs,116.0,Georgia official-start-by-2024 NIBRS rows that have no repo 2024 observation
+statewide_validation,present_but_no_2024_observation_non_nibrs_or_unknown,155.0,Georgia no-2024 rows that are not official-effective-NIBRS in the roster
+statewide_validation,missing_in_repo_master,1.0,Official roster rows absent from repo master
+statewide_validation,state_patrol_no_2024_observation,49.0,Georgia State Patrol post/headquarters rows present in master with no 2024 observation
+source_structure,ga_top_partial_reporters_2024,2.0,Georgia rows in top_partial_reporters_2024.csv
+source_structure,agencies_both_12m_srs_vs_nibrs,328.0,Georgia agencies with both 12-month SRS and NIBRS in ratio table
+source_structure,ratio_larceny_srs_to_nibrs,1.006792669866328,Coverage-matched SRS to NIBRS larceny ratio
+source_structure,ratio_aggravated_assault_srs_to_nibrs,0.7075665647094218,Coverage-matched SRS to NIBRS aggravated-assault ratio
+source_structure,ratio_rape_srs_to_nibrs,0.5425421977264898,Coverage-matched SRS to NIBRS rape ratio
+source_structure,ratio_robbery_srs_to_nibrs,1.0009686793671295,Coverage-matched SRS to NIBRS robbery ratio
+source_structure,ratio_burglary_srs_to_nibrs,0.873395026026605,Coverage-matched SRS to NIBRS burglary ratio
+source_structure,ratio_motor_vehicle_theft_srs_to_nibrs,0.9005753326141676,Coverage-matched SRS to NIBRS motor-vehicle-theft ratio
+policy,top_10_mixed_source_support_sum,93787.0,Top 10 Georgia mixed-source rows by support
+policy,top_25_mixed_source_support_sum,122992.0,Top 25 Georgia mixed-source rows by support
+policy,single_missing_master_zero_support_rows,1.0,Georgia missing-master rows all carry zero current repo support

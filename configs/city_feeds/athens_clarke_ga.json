@@ -1,0 +1,152 @@
+{
+  "city_key": "athens_clarke_ga",
+  "city_name": "Athens-Clarke County",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/athens_clarke_ga/packet.json",
+    "state/review/packets/city/athens_clarke_ga/evidence/registry_row.json",
+    "state/review/packets/city/athens_clarke_ga/evidence/doc_00.json",
+    "state/review/packets/city/athens_clarke_ga/evidence/doc_index.csv",
+    "state/review/packets/city/athens_clarke_ga/evidence/raw_cache_profile.json",
+    "state/review/packets/city/athens_clarke_ga/evidence/scope_candidates.csv",
+    "state/review/packets/city/athens_clarke_ga/evidence/official_totals.csv",
+    "state/review/packets/city/athens_clarke_ga/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "The layer's viewDefinitionQuery/definitionQuery removes every row whose Crime_Description is one of: 'Sex Offense, Force: Fondling', 'Sex Offense, Force: Rape', 'Sex Offense, Force: Sodomy', 'Sex Offense, Non Force Statutory', 'Peeping Tom', 'Sex Offense, Non Force: Incest', 'Sex Offence, Force: Object', 'Trafficking - Commercial Sex Acts' (evidence/doc_00.json viewDefinitionQuery). No rape rows are published, so rape is unmapped.",
+    "No other redaction, geographic masking or offset is stated in the layer metadata (evidence/doc_00.json description and copyrightText are empty); the registry row records redactions as blank."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "13:municipal:place:1303440"
+    ],
+    "state_fips": [
+      "13"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: one row per Case_Number x Crime_Description (52,355 rows, 52,355 distinct Case_Number|Crime_Description pairs, 38,057 distinct Case_Number). Several offenses of the same category in one case collapse into one row with Total_Offense_Counts > 1; the contract counts rows, not Total_Offense_Counts. FBI aggravated assault is counted per victim, so aggravated assault will run below the official total (2022: 412 rows, SUM(Total_Offense_Counts)=477, official 540).",
+    "Rape (11A/11B/11C) is removed from the public view by the publisher's definition query and cannot be reconciled; every year's official rape total (156, 78, 57, 44 for 2022-2025) is unmatched.",
+    "Larceny sums eight 'Larceny:' subcategories (23A-23H equivalents present in the pull). A case with two larceny subtypes yields two larceny rows (2022: 2,742 rows over 2,678 distinct cases).",
+    "Date is the only published date and appears to be the report/case date, not occurrence: it equals the date encoded in Case_Number (YYYY-MMDD...) in 52,346 of 52,355 rows; occurrence dates earlier than the report are placed in the report year.",
+    "Coverage: the pull holds 2022-2025 only (Date min 1641013200000 = 2022-01-01 05:00 UTC, max 1767157200000 = 2025-12-31 05:00 UTC); 2018-2021 official totals have no source rows.",
+    "731 rows have no feature geometry (726 with Lat/Lon = -361 sentinel, 5 null) and are dropped as unlocated."
+  ],
+  "mapping": {
+    "date_field": "Date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "Case_Number",
+      "Crime_Description"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Homicide: Murder/noneg. Manslaughter",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Assault: Aggravated",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Burglary / Breaking and Entering",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Larceny: All Other",
+              "Larceny: Shoplifting",
+              "Larceny: From MV",
+              "Larceny: Affixed MV Parts/Accessories",
+              "Larceny: From Bldg",
+              "Larceny: Pocket-Picking",
+              "Larceny: Purse-Snatching",
+              "Larceny: From Coin Op. Machine"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Crime_Description",
+            "op": "eq",
+            "value": "Motor Vehicle Theft",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "count_unit offense: each row is one offense category within one case (evidence: raw_cache query COUNT(DISTINCT Case_Number||'|'||Crime_Description)=52355=COUNT(*), COUNT(DISTINCT Case_Number)=38057; e.g. case 2022-04060194 has six rows, one per Crime_Description, with Total_Offense_Counts per category). id_fields Case_Number|Crime_Description is unique, so dedupe_on_id keeps every mapped row and every mapped offense in a multi-offense case is kept (an id of Case_Number alone would keep an arbitrary first row per case). Offense mapping uses the NIBRS-style labels in Crime_Description (evidence/raw_cache_profile.json distinct values): 'Homicide: Murder/noneg. Manslaughter' -> murder (09A; 'Homicide: Negligent Manslaughter' 09B left out); 'Robbery' -> robbery; 'Assault: Aggravated' -> aggravated_assault ('Assault: Simple' and 'Assault: Intimidation' left out); 'Burglary / Breaking and Entering' -> burglary; the eight 'Larceny:' values -> larceny (Fraud, Stolen Property, Counterfeiting left out); 'Motor Vehicle Theft' -> motor_vehicle_theft. Rape is unmapped because the publisher's view definition excludes all sex offenses (evidence/doc_00.json viewDefinitionQuery); the registry's 'redactions: none stated' is contradicted by that metadata. Mapped rows per year by Date (computed by grouping the raw_cache on year(Date) and the mapped categories): 2022 murder 5, robbery 75, agg assault 412, burglary 429, larceny 2742, MVT 298; 2023 7, 89, 346, 311, 2833, 253; 2024 6, 67, 347, 272, 2562, 207; 2025 2, 52, 326, 198, 2312, 170; official 2022: 4, 67, 540, 427, 2634, 349 (evidence/official_totals.csv). Date: field 'Date' (esriFieldTypeDate, epoch ms, dateFieldsTimeReference UTC) holding local midnight (04:00 or 05:00 UTC), so the UTC year equals the local year; it is the only date published and matches the Case_Number date in 52,346 of 52,355 rows, so it is treated as the report date. Coordinates: feature geometry __arcgis_latitude/__arcgis_longitude, identical to the Lat/Lon attributes in all 51,624 rows that carry geometry; the other 731 rows have Lat/Lon -361 (726) or null (5). Points are not rounded to 4 decimals (0 rows equal their 4-dp rounding) and 13,600 distinct points cover 14,502 addresses, consistent with address geocoding; the publisher states no rounding or offset. Scope: ACCPD (ORI GA0290100, consolidated_pd) polices the Athens-Clarke County unified government balance, the only scope candidate (evidence/scope_candidates.csv). Source where copies the archive's date filter (packet.json case_text); maxRecordCount is 2000 (evidence/doc_00.json).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/xSEULKvB31odt3XQ/arcgis/rest/services/Crime_Web_Layer_CAU_view/FeatureServer/0",
+      "name": "ACCPD Crime (public view) (Crime_Web_Layer_CAU_view/FeatureServer/0)",
+      "order": "ObjectId ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "athens_clarke_ga",
+      "source_url": "https://accpd-public-transparency-site-athensclarke.hub.arcgis.com/pages/crime",
+      "where": "Date >= DATE '{start}' AND Date < DATE '{end}'"
+    }
+  ]
+}

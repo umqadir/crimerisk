@@ -1,0 +1,233 @@
+{
+  "city_key": "yakima_wa",
+  "city_name": "Yakima",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/yakima_wa/packet.json",
+    "state/review/packets/city/yakima_wa/evidence/registry_row.json",
+    "state/review/packets/city/yakima_wa/evidence/doc_00.json",
+    "state/review/packets/city/yakima_wa/evidence/doc_index.csv",
+    "state/review/packets/city/yakima_wa/evidence/raw_cache_profile.json",
+    "state/review/packets/city/yakima_wa/evidence/scope_candidates.csv",
+    "state/review/packets/city/yakima_wa/evidence/official_totals.csv",
+    "state/review/packets/city/yakima_wa/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "53:municipal:place:5380010"
+    ],
+    "state_fips": [
+      "53"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "One row per case, not per offense: in the archive offenseid (9-character case-style numbers such as 25Y041273) is distinct on all 27,266 rows, and every non-empty callid (22,829) appears on exactly one row, although sequence (\"Offense Sequence Number\") runs 0-6 (3,167 rows carry sequence >= 2, none with a sibling row of the same case). The public view therefore publishes a single offense per case; the other offenses of multi-offense incidents are absent, so a case whose published offense is not one of the seven drops out even if it also carried one (raw_cache_profile.json; queries on raw_cache).",
+    "Unit versus FBI counting: SRS-equivalent totals count violent offenses per victim and the feed has one row per case with no victim count, so multi-victim murder, rape, robbery and aggravated assault are under-counted. Recomputed by occurrence year from raw_cache, 13A rows are 218/241/230 in 2023/2024/2025 against official 372/418/398 (official_totals.csv), the largest gap of the seven.",
+    "Motor vehicle theft (240) runs above the official totals in 2023-2024: 408 and 410 rows by occurrence year against 367 and 269 (official_totals.csv); 2025 is 227 against 229. The feed gives no recovery or attempt field to explain the difference.",
+    "Coverage starts 2022-08-18 (minimum reportdate, raw_cache_profile.json min 1660806000000); 2018-2021 have no rows beyond late-reported occurrences (30 mapped rows with occurrence year before 2022), and 2022 is partial. Only 2023-2025 are full years (registry_row.json reason).",
+    "Many NIBRS detail fields are blank on every row of the public view: statute, weaponcd/weapondesc/weaponcat, entrycd, biasmotivation, offensefactor, criminalactivity, aggassaulthomicidefactor, exceptionalclear (raw_cache_profile.json distinct {\"\": 27266}). None is needed for the seven-offense mapping.",
+    "199 rows have no nibrscode/nibrsoffense/nibrsdesc (raw_cache_profile.json non_null 27,067 of 27,266; 126 of them have casestatus Exceptional Clearance) and cannot be mapped.",
+    "Rows with casestatus Unfounded are excluded to follow the FBI rule that unfounded reports are not counted; 16 rows in the seven mapped code groups carry that status (query on raw_cache). The publisher does not document the case-status values.",
+    "Rape uses 11A, 11B, 11C only; 11D fondling (385 rows) and 36B statutory rape (2 rows) are left out. Murder is 09A only; 09B negligent manslaughter (1 row) is left out. Aggravated assault is 13A only; 13B simple assault (2,956) and 13C intimidation (613) are left out."
+  ],
+  "mapping": {
+    "date_field": "occurfrdate",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "offenseid"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Yakima Police Department (ORI WA0390500) public Crimes view on ArcGIS Online; the city PD polices Yakima city, so the scope is 53:municipal:place:5380010 (scope_candidates.csv, registry_row.json). Offenses are mapped on the published NIBRS code (nibrscode), all values checked present in the pull: 09A 38, 11A 126, 11B 8, 11C 1, 120 231, 13A 783, 220 1118, 23A 5, 23B 61, 23C 1681, 23D 231, 23E 7, 23F 1105, 23G 117, 23H 1657, 240 1209 (raw_cache_profile.json nibrscode distinct). Count unit: each row is one case (offenseid distinct on all 27,266 rows, non-empty callid never repeated), carrying the single offense the publisher chose to publish; there are no sibling offense rows to choose among, so dedupe on offenseid keeps every row and simply guards against repeats in a live pull. Which offense the publisher keeps for a multi-offense case is not documented (the kept row's sequence ranges 0-6). Dates: occurrence date, occurfrdate (alias \"Offense Date From\", doc_00.json), epoch milliseconds in UTC (doc_00.json dateFieldsTimeReference UTC; the UTC hour histogram of occurfrdate has its trough at 11-13 UTC, i.e. 3-6 AM Pacific, consistent with true UTC), so an occurrence in the last 7-8 hours of 31 December local time falls in the next year. 2 rows lack occurfrdate (1 of them in a mapped code) and are dropped. The source filter is on reportdate (date-only, stored as local midnight: every value falls at 07:00 or 08:00 UTC), as in the archived pull (packet.json case_text), so offenses occurring in 2025 but reported in 2026 are not in the pull. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, present on all 27,266 rows, 6 decimals, 10,413 distinct points). The layer also publishes X_public/Y_public, which equal the geometry rounded to 3 decimal degrees (about 110 m north-south, 75 m east-west) on 27,189 of the 27,200 rows that have them (the rest differ only at the rounding boundary; none differs by more than 0.001), and are null on 66 rows; the geometry is used because it is complete and finer. The address field (neighborhood) is hundred-block only, and 2,119 rows labelled \"0 BLK\" spread over 769 distinct points, so the point may be a geocoded address rather than a block centroid; the publisher states no rounding or offset of the geometry. 6 rows have city Union Gap and are expected to fall outside the Yakima footprint. The publisher states no redactions or exclusions (registry_row.json redactions empty; doc_00.json description empty). Recomputed counts by occurrence year (CASE on nibrscode over raw_cache, before geography and Unfounded exclusion), 2023/2024/2025 against official_totals.csv: murder 7/13/11 vs 9/15/9; rape 25/36/37 vs 25/36/41; robbery 66/57/55 vs 67/57/60; aggravated assault 218/241/230 vs 372/418/398; burglary 346/338/224 vs 386/343/233; larceny 1557/1312/1263 vs 1590/1364/1356; motor vehicle theft 408/410/227 vs 367/269/229.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services5.arcgis.com/drBwGNA3YMS2QPJd/arcgis/rest/services/Crimes_public_fc349e427d9945729c4e985666b31686/FeatureServer/0",
+      "name": "Yakima Crimes (public)",
+      "order": "OBJECTID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "yakima_wa",
+      "source_url": "https://www.yakimawa.gov/",
+      "where": "reportdate >= DATE '{start}' AND reportdate < DATE '{end}'"
+    }
+  ]
+}

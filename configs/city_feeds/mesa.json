@@ -1,0 +1,177 @@
+{
+  "city_key": "mesa",
+  "city_name": "Mesa",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/mesa/packet.json",
+    "state/review/packets/city/mesa/evidence/registry_row.json",
+    "state/review/packets/city/mesa/evidence/doc_d22f659574.json",
+    "state/review/packets/city/mesa/evidence/doc_bec83298aa.html",
+    "state/review/packets/city/mesa/evidence/doc_index.csv",
+    "state/review/packets/city/mesa/evidence/raw_cache_profile.json",
+    "state/review/packets/city/mesa/evidence/scope_candidates.csv",
+    "state/review/packets/city/mesa/evidence/official_totals.csv",
+    "state/review/packets/city/mesa/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Locations withheld for sensitive incidents: when an incident includes homicide, kidnapping, a sex offense, incest, human trafficking for commercial sex, or certain Mesa local offense codes designated by the Police Department, address, location_wkt, latitude and longitude are blank on every row of that incident and sensitive_incident is true (evidence/doc_d22f659574.json description; registry_row.json redactions).",
+    "Traffic offenses are excluded (evidence/doc_d22f659574.json description; registry_row.json redactions).",
+    "Locations are approximate: address and location_wkt are rounded to the hundred block and latitude/longitude are derived from the rounded address; where verified is 0 the address could not be matched and the location defaults to Center and Main (evidence/doc_d22f659574.json description and columns 'verified', 'latitude').",
+    "Coverage is based on report date beginning in 2020; offenses that occurred before 2020 appear only if reported in 2020 or later (evidence/doc_d22f659574.json description).",
+    "Mesa Police began NIBRS reporting on January 1, 2021; offenses reported in 2020 predate the transition and are not directly comparable with later years (evidence/doc_d22f659574.json description).",
+    "The dataset is replaced daily; offenses can change as reports are reviewed, corrected or reclassified, and are not adjudicated (evidence/doc_d22f659574.json description)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "04:municipal:place:0446000"
+    ],
+    "state_fips": [
+      "04"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: one row per offense (offense_uid unique on all 404,077 rows; offense_uid = crime_id || '-' || offense_seq on every row; crime_id has 308,899 distinct values; query on raw_cache). Official totals count aggravated assault per victim: 13A rows by occurred_year 2020-2025 are 1136/1235/1325/1447/1558/1370 against official 1346/1469/1618/1746/1980/1769 (ratio 0.774-0.844), while sum(victim_count) over the same rows is 1342/1478/1621/1776/1939/1796 (evidence/official_totals.csv; query on raw_cache). The contract cannot weight by victim_count, so aggravated assault will reconcile about 16-23% low.",
+    "Murder and rape cannot reach the footprint: every 09A row (120 of 120) and every 11A/11B/11C row (1,819 of 1,819) has blank latitude and sensitive_incident true (query on raw_cache), per the publisher's sensitive-incident redaction. They are mapped but are all lost at the located step.",
+    "Sensitive-incident redaction also blanks co-occurring offenses in the same incident: rows with blank coordinates are 245 of 8,087 13A, 54 of 1,835 120, 27 of 6,946 220, 27 of 6,588 240 and 90 of 40,630 23A-23H (query on raw_cache; every blank row has sensitive_incident true).",
+    "No SRS hierarchy rule: one incident can carry several offenses and each mapped row is kept. Larceny rows in incidents that also carry 09A/11A-C/120/13A/220 number 62/73/89/78/64/51 for 2020-2025; larceny rows exceed official totals by 4.5-7.8% (7501/7149 ... 6449/5985), motor vehicle theft by 1.5-3.6%, robbery by 1.5-2.3%; burglary is within 0.975-1.012 (official_totals.csv; query on raw_cache, counts before location).",
+    "Local code 0908 'Vehicular Aggravated Assault / DUI' (local description 'ACCIDENT - AGG ASSAULT', offense_group Local, is_ucr_reportable true, 78 rows) is not a NIBRS 13A code and is left unmapped; if Mesa reports it to the FBI as aggravated assault, the official count includes it (about 13 a year) and the feed does not.",
+    "Stolen-vehicle local descriptions coded 26A (STOLEN VEHICLE-FAIL TO RETURN 536, -RENTAL VEHICLE 289, STOLEN VEH-SECURED INTEREST 218, STOLEN VEHICLE-FRAUD MEANS 167; 1,210 rows) are NIBRS false pretenses, not 240, and are left unmapped; 240 maps only STOLEN VEHICLE-MESA (6,588 rows).",
+    "Excluded by the definitions: 09B (43 rows), 09C (23), 11D (1,719), 36B statutory rape (245), 13B (23,471), 13C (5,196).",
+    "2018-2019 are effectively absent: the dataset covers reports from 2020, so the archive holds 269 rows with occurred_year 2018 and 846 with 2019, and mapped offenses there are 0.1-2.1% of official (e.g. 2019 larceny 129 vs 7326; query on raw_cache, official_totals.csv). Those years will not reconcile.",
+    "Some rows are outside Mesa (city not MESA or blank: 6,667 rows of 404,077; raw_cache_profile.json city counts and query on raw_cache, e.g. 40 of the 13A rows); points there fall outside the Mesa place footprint. Points with verified 0 (49 mapped rows) sit at the Center and Main default location.",
+    "Official 2020 totals precede Mesa's NIBRS transition (publisher note); 2020 rows nonetheless carry NIBRS codes in the archive."
+  ],
+  "mapping": {
+    "date_field": "occurred_date",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "offense_uid"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense_code",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Mapping uses offense_code, the published NIBRS code (columns offense_code / offense_description in evidence/doc_d22f659574.json). Every mapped code is present in the pull with the matching NIBRS name and Group A: 09A 120, 11A 1111, 11B 430, 11C 278, 120 1835, 13A 8087, 220 6946, 23A 96, 23B 78, 23C 11815, 23D 5200, 23E 65, 23F 9543, 23G 4277, 23H 9556, 240 6588 (evidence/raw_cache_profile.json offense_code; crosstab query on raw_cache). offense_description is not used because it mislabels some local codes (e.g. 4046, local description MENTAL HEALTH DETAINER SERVICE, carries 'Info - Sex Related'). count_unit offense: id is offense_uid, unique per row, so dedupe_on_id keeps every offense row; an incident with several mapped offenses contributes one row per offense, and one row per offense code except 25 crime_id/offense_code pairs that repeat. Date: occurred_date (published 'Date the incident occurred'), format YYYY-MM-DDT00:00:00.000 on every row; its year equals occurred_year on all 404,077 rows. The source where filters occurred_date, matching the filter under which the archive was pulled (packet.json case_text; registry_row.json probe_where); the publisher's coverage is defined on report_date, so a live pull later can add late-reported offenses (rows with report_year after occurred_year: 812-1,084 a year for 2020-2025). Coordinates: published latitude/longitude, which are the hundred-block rounded address point, not exact; latitude, longitude and location_wkt are blank together on 33,199 rows (404,077 - 370,878; raw_cache_profile.json). Scope: Mesa PD polices the city of Mesa, the only scope candidate (evidence/scope_candidates.csv; registry_row.json agency_type municipal_pd, ORI AZ0071700). Expected reconciliation: burglary, robbery, larceny and motor vehicle theft near official for 2020-2025; aggravated assault low (victim unit); murder and rape zero in the footprint; 2018-2019 near zero.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.mesaaz.gov/resource/t445-fism.json",
+      "name": "Police Criminal Offenses 2020-present (Public)",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "mesa",
+      "source_url": "https://data.mesaaz.gov/d/t445-fism",
+      "where": "occurred_date >= '{start}' AND occurred_date < '{end}'"
+    }
+  ]
+}

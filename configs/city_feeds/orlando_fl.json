@@ -1,0 +1,170 @@
+{
+  "city_key": "orlando_fl",
+  "city_name": "Orlando",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/orlando_fl/packet.json case_text",
+    "state/review/packets/city/orlando_fl/evidence/registry_row.json",
+    "state/review/packets/city/orlando_fl/evidence/doc_index.csv",
+    "state/review/packets/city/orlando_fl/evidence/doc_00.json fields (CaseNumber, CaseDate, CaseType, GISCaseType domain OPDCaseType), geometryType, maxRecordCount, dateFieldsTimeReference, sourceSpatialReference, description",
+    "state/review/packets/city/orlando_fl/evidence/raw_cache_profile.json rows, CaseNumber distinct_count, CaseType/GISCaseType distinct, ORI distinct, __arcgis_latitude non_null",
+    "state/review/packets/city/orlando_fl/evidence/scope_candidates.csv",
+    "state/review/packets/city/orlando_fl/evidence/official_totals.csv",
+    "state/review/packets/city/orlando_fl/raw_cache.parquet via scripts/agents/query.py: SELECT CaseType, GISCaseType, count(*) FROM raw_cache WHERE CaseType<>GISCaseType GROUP BY 1,2",
+    "state/review/packets/city/orlando_fl/raw_cache.parquet via scripts/agents/query.py: SELECT year(make_timestamp(CaseDate*1000)), count(*) FROM raw_cache GROUP BY 1",
+    "state/review/packets/city/orlando_fl/raw_cache.parquet via scripts/agents/query.py: SELECT extract(hour FROM make_timestamp(CaseDate*1000)), count(*) FROM raw_cache GROUP BY 1",
+    "state/review/packets/city/orlando_fl/raw_cache.parquet via scripts/agents/query.py: mapped offense counts per year (CASE over GISCaseType as in offense_rules)",
+    "state/review/packets/city/orlando_fl/raw_cache.parquet via scripts/agents/query.py: count(DISTINCT (__arcgis_latitude, __arcgis_longitude)) and null-geometry counts"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "12:municipal:place:1253000"
+    ],
+    "state_fips": [
+      "12"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the layer carries one row and one case type per case (CaseNumber distinct on all 214,728 rows, evidence/raw_cache_profile.json), so every case counts once under its single GISCaseType. Secondary offenses in a multi-offense case are not visible, unlike the FBI hierarchy/offense counts; SRS also counts aggravated assault and robbery per victim, so the feed will undercount person offenses (2022 mapped aggravated assault 1,110 vs official 1,913; robbery 384 vs 426; evidence/official_totals.csv and query below).",
+    "Rape: no sexual-offense case type exists in the GISCaseType coded-value domain (evidence/doc_00.json fields[GISCaseType].domain) or in the pull's CaseType/GISCaseType values (evidence/raw_cache_profile.json); rape is left unmapped and will reconcile to zero. The publisher does not state that sex offenses are withheld, but none appear.",
+    "Murder: GISCaseType 'Homicide' is not split into murder/non-negligent manslaughter (09A) vs negligent manslaughter (09B) or justifiable homicide (09C); it is mapped whole to murder and may overcount (2022: 37 vs official 32). 'Vehicular Homicide' (2 rows) is left out as a traffic/negligent death.",
+    "Aggravated assault: 'Attempted Homicide' is mapped to aggravated assault (the FBI classifies attempted murder as aggravated assault). 'Shooting at/within/in struc/veh' (553 rows) and 'Throwing Deadly Missle' (58 rows) straddle aggravated assault (occupied target) and property destruction (unoccupied) with no occupancy field, so they are unmapped (2022: 186 + 9 rows). 'Assault' (Florida simple assault), 'Battery', 'Battery on LEO/Firefighter' and 'Threats/Harassment' are simple assault/intimidation and are unmapped; a Battery on LEO that meets the aggravated definition is lost.",
+    "Burglary vs larceny: 'Vehicle Burglary' (Florida burglary of a conveyance) is FBI theft from motor vehicle (23F) and is mapped to larceny, not burglary. 'Stolen Tag' (license plate theft, 23G) and 'Stolen Boat' (a boat is not a motor vehicle, 23H) are mapped to larceny. 'Embezzlement' (270), 'Fraud', 'Identity Theft' and 'Dealing in Stolen Property' are not larceny and are unmapped. 'Grand Theft' may include some thefts the FBI would classify elsewhere; 2022 mapped larceny 10,517 vs official 9,861.",
+    "Motor vehicle theft: 'Attempted Motor Vehicle Theft' is included (the FBI counts attempts); 'Recovered Stolen Vehicle' is a recovery report, not a theft, and is unmapped; 'Carjacking' goes to robbery.",
+    "Coverage: the earliest CaseDate in the pull is epoch 1613195335000 (2021-02-13), so 2018-2020 are empty and 2021 lacks about six weeks. Official totals for 2021, 2023 and 2024 are 0.0 (agency not reported in srs_return_a_annual), so only 2022 reconciles against a nonzero official total; there is no 2025 official row."
+  ],
+  "mapping": {
+    "date_field": "CaseDate",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "CaseNumber"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GISCaseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Homicide"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GISCaseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Person Robbery",
+              "Armed Robbery",
+              "Commercial Robbery",
+              "Home Invasion Robbery",
+              "Carjacking"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GISCaseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Aggravated Assault",
+              "Aggravated Battery",
+              "Attempted Homicide"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GISCaseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Residential Burglary",
+              "Commercial Burglary"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GISCaseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Petit Theft",
+              "Grand Theft",
+              "Pickpocket Theft",
+              "Distraction Theft",
+              "Vehicle Burglary",
+              "Stolen Tag",
+              "Stolen Boat"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "GISCaseType",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Motor Vehicle Theft",
+              "Attempted Motor Vehicle Theft"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source and scope. One ArcGIS feature layer (LERMSCases4Dashboard, geometryType esriGeometryPoint, maxRecordCount 2000; evidence/doc_00.json) published by Orlando Police Department, ORI FL0480400 (every row's ORI is FL0480400, evidence/raw_cache_profile.json). Endpoint, portal_type and the date filter are the registry's (evidence/registry_row.json probe_where); page_size 2000 is the layer's maxRecordCount. A municipal PD polices its city, so the scope is Orlando city 12:municipal:place:1253000 (evidence/scope_candidates.csv, registry jurisdiction_ids), state FIPS 12. Orlando International Airport cases (Sector AP, 12,049 rows) are OPD cases and are kept; points outside the city footprint are dropped by the runner.\n\nUnit and dedupe. count_unit incident: CaseNumber is distinct on all 214,728 rows and never null (profile distinct_count 214728; query count of null CaseNumber/CaseDate/GISCaseType = 0), so id_fields [CaseNumber] with dedupe_on_id keeps one row per case. Each case carries a single case type; the rules keep that one type, so a case with several offenses is counted once under GISCaseType.\n\nOffense field. GISCaseType (the field with the published OPDCaseType coded-value domain) is used rather than CaseType. The two differ on 46 rows (query CaseType<>GISCaseType), all involving Homicide: GISCaseType reclassifies 32 cases into Homicide (14 Suspicious Incident/Person, 6 Aggravated Battery, 4 Shooting, 3 Battery, 2 Unattended Death, 2 Information Report, 1 Home Invasion Robbery) and moves 14 Homicide cases out to Unattended Death (8), Drowning (2), Suicide (2) and Information Report (2), i.e. it carries later death determinations. Every mapped value was checked against the pull (evidence/raw_cache_profile.json GISCaseType distinct). 'Burglary' is in the domain but has no rows in the pull, so it is not mapped. Mapped counts per year (query over raw_cache, year of CaseDate in UTC, before geography): murder 27/37/30/21/10, robbery 376/384/334/291/251, aggravated assault 913/1110/976/957/765, burglary 1181/1551/1552/1168/903, larceny 8282/10517/10731/9202/7827, motor vehicle theft 1206/1432/1553/1223/827 for 2021-2025. The low 2025 murder count (10) may reflect cases not yet reclassified.\n\nDate. CaseDate is the only event date published (esriFieldTypeDate; created_date is empty and last_edited_date is set on 9 rows). The publisher does not say whether it is the occurrence or report date; it is used as the case date. The layer declares dateFieldsTimeReference UTC, but the hourly distribution of CaseDate in UTC bottoms out at 04:00-05:00 (2,552 and 2,650 rows) and peaks 11:00-14:00, the pattern of local wall-clock time, so values are likely Eastern local time stored as UTC; parsing epoch_ms in UTC then gives the local calendar year. All rows parse to 2021-2025 in UTC (39,270 / 45,385 / 46,832 / 44,679 / 38,562).\n\nCoordinates. The feature geometry (__arcgis_latitude/__arcgis_longitude) is used; 1,535 of 214,728 rows (0.71%) have no geometry and none are at (0,0). The layer is stored in EPSG:2236 (Florida East ftUS) per sourceSpatialReference. The publisher states no rounding or offset; points repeat heavily (45,856 distinct points for 213,193 located rows; the most common point has 3,528 cases, at the airport), consistent with address or place geocoding rather than exact locations.\n\nExclusions. The layer description and copyright are empty and the registry lists no redactions, so no publisher-stated exclusions are recorded; the absence of any sexual-offense case type is listed under known differences.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://gis.orlando.gov/server/rest/services/OPD_Cases_Viewing/FeatureServer/0",
+      "name": "OPD Cases (LERMS dashboard layer)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "orlando_fl",
+      "source_url": "https://data.cityoforlando.net/",
+      "where": "CaseDate >= DATE '{start}' AND CaseDate < DATE '{end}'"
+    }
+  ]
+}

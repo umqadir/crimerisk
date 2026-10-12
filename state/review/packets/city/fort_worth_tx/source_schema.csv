@@ -1,0 +1,13 @@
+column,dtype
+OBJECTID,int64
+Case_No_Offense,object
+Case_No,object
+Reported_Date,int64
+Offense,object
+Offense_Desc,object
+Nature_Of_Call,object
+Attempt_Complete,object
+Latitude,float64
+Longitude,float64
+__arcgis_longitude,float64
+__arcgis_latitude,float64

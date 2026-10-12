@@ -1,0 +1,206 @@
+{
+  "city_key": "fairfax_county_va",
+  "city_name": "Fairfax County",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/fairfax_county_va/packet.json",
+    "state/review/packets/city/fairfax_county_va/evidence/registry_row.json",
+    "state/review/packets/city/fairfax_county_va/evidence/doc_index.csv",
+    "state/review/packets/city/fairfax_county_va/evidence/doc_5f7441da14.json",
+    "state/review/packets/city/fairfax_county_va/evidence/doc_140b04b196.json",
+    "state/review/packets/city/fairfax_county_va/evidence/doc_01bf87ee7e.html",
+    "state/review/packets/city/fairfax_county_va/evidence/raw_cache_profile.json",
+    "state/review/packets/city/fairfax_county_va/evidence/scope_candidates.csv",
+    "state/review/packets/city/fairfax_county_va/evidence/official_totals.csv",
+    "state/review/packets/city/fairfax_county_va/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py:305-338"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "51:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "51"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Mixed unit: the persons layer has one row per victim per offense (Discriminator = IncidentPersonVictim for all 50,464 persons rows), so murder, rape and aggravated assault count victims, as SRS does for crimes against persons; the property layer has one row per offense per incident (one per IncidentNumber and IBRCode after de-duplication), so robbery, burglary, larceny and motor vehicle theft count offenses. Robbery is published in the property layer, not the persons layer.",
+    "No UCR hierarchy rule: an incident with several offenses keeps one row per NIBRS offense code (per victim in the persons layer), so an incident with e.g. 120 and 23F counts once as robbery and once as larceny. SRS counts only the highest offense.",
+    "Rape follows the revised SRS definition (11A, 11B, 11C); 11D forcible fondling (699 rows), 36A incest (11) and 36B statutory rape (11) are left out.",
+    "Simple assault (13B, 40,680 rows) and intimidation (13C, 4,176 rows) are left out; 09B and 09C do not appear in the pull.",
+    "Only the 5 persons rows in mapped codes with Status_Description = UNFOUNDED are excluded; the property layer carries no status field, so unfounded property offenses cannot be removed.",
+    "896 rows have a point at about (5.7e-14, 5.7e-14) rather than exactly (0, 0) and 9 rows have no point; the near-zero points pass the located stage but fall outside every Virginia block group.",
+    "The feed begins in 2021 (DateReported rows for 2018-2020 total 13); official totals for 2018-2020 have no feed counterpart. Occurrence-year assignment moves some 2021 reports into 2020 and earlier."
+  ],
+  "mapping": {
+    "date_field": "BeginDate|DateReported",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "IncidentNumber",
+      "IBRCode",
+      "Id"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Status_Description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Status_Description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Status_Description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "IBRCode",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Sources: the registry's two ArcGIS feature layers (persons layer 1 = slug _0, property layer 0 = slug _1), portal_type arcgis_feature_service, every field, with the registry's DateReported filter so a live pull returns the archived rows (the archive holds rows with DateReported 2018-02-02 through 2025-12-31 plus 15 rows the profile dates to 2026 in UTC). page_size 2000 is the layers' maxRecordCount; order is each layer's objectIdField. Offenses map on IBRCode, the publisher's NIBRS code, which agrees with the Category field (Sex Offense 1,508 = 11A 509 + 11B 178 + 11C 100 + 11D 699 + 36A 11 + 36B 11; Larceny 76,800 = the sum of 23A-23H; Homicide 88 = 09A; Aggravated Assault 3,085 = 13A). Every mapped code is present in the pull. Dates: BeginDate (occurrence start), falling back to DateReported for the 102 rows with no BeginDate; the publisher's Year field equals the BeginDate year on 184,015 of 184,294 rows. Unit and id: id = IncidentNumber|IBRCode|Id, where Id is the victim GUID in the persons layer and empty in the property layer, with de-duplication on. Persons rows: 50,464 rows, 50,444 distinct IncidentNumber|IBRCode|Id; property rows: 133,830 rows, 133,661 distinct IncidentNumber|IBRCode; the duplicates are repeated rows of the same offense (adjacent OBJECTID_12, same code, sometimes a generic ViolationCodeReference_Code such as LARCENY beside LARC-23-3, and once a re-dated repeat of the same carjacking), and the first row is kept. IncidentNumber carries trailing spaces on most rows; the runner strips id parts, and no incident number differs only by padding. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, WGS84 per the layers' spatialReference 4326); the publisher states no rounding or offset. Check against official totals (recomputed by running this contract through src/crimerisk/city_contracts.py run_contract on raw_cache.parquet for 2018-2025 and keeping points with |lat| > 1, before the block-group join; feed vs official_totals.csv): 2021 murder 21 vs 25, rape 137 vs 202, robbery 324 vs 319, aggravated assault 441 vs 437, burglary 565 vs 561, larceny 11,630 vs 11,398, motor vehicle theft 1,220 vs 1,221; 2024 larceny 17,951 vs 14,678, rape 166 vs 142, aggravated assault 645 vs 523. No redactions or exclusions are stated in the layer metadata (description empty) or on the crime-data page (the archived HTML holds no text beyond the portal title).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services9.arcgis.com/kYvfX7YK8OobHItA/arcgis/rest/services/CrimesAgainstPerson_CST_FCPOD_FC/FeatureServer/1",
+      "name": "FCPD crimes against persons (victim rows)",
+      "order": "OBJECTID_1 ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "fairfax_county_va_0",
+      "source_url": "https://www.fcpod.org/pages/crime-data",
+      "where": "DateReported >= DATE '{start}' AND DateReported < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services9.arcgis.com/kYvfX7YK8OobHItA/arcgis/rest/services/CrimesAgainstProperty_CST_FCPOD_FC/FeatureServer/0",
+      "name": "FCPD crimes against property (offense rows)",
+      "order": "OBJECTID_12 ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "fairfax_county_va_1",
+      "source_url": "https://www.fcpod.org/pages/crime-data",
+      "where": "DateReported >= DATE '{start}' AND DateReported < DATE '{end}'"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,published_source_name,published_source_url,published_comparison_quality,preferred_source,quality_tier_preferred
+st_louis_mo,St. Louis,29:municipal:place:2965000,aggravated_assault,2788,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high
+st_louis_mo,St. Louis,29:municipal:place:2965000,burglary,2273,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high
+st_louis_mo,St. Louis,29:municipal:place:2965000,larceny,9462,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high
+st_louis_mo,St. Louis,29:municipal:place:2965000,motor_vehicle_theft,4090,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high
+st_louis_mo,St. Louis,29:municipal:place:2965000,murder,150,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high
+st_louis_mo,St. Louis,29:municipal:place:2965000,rape,161,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high
+st_louis_mo,St. Louis,29:municipal:place:2965000,robbery,692,Crime in the United States 2024 annual city control,state/controls/jurisdiction_controls_2024.parquet,official_control,cius_publication_annual,high

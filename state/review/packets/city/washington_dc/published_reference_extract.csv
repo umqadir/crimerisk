@@ -1,0 +1,9 @@
+reference_year,reference_type,reference_label,official_count,source_name,source_url,source_contract
+2024,violent,Homicide,187,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,violent,Sex Abuse,143,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,violent,Assault w/ a Dangerous Weapon,1028,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,violent,Robbery,2112,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,property,Burglary,1002,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,property,Motor Vehicle Theft,5128,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,property,Theft from Auto,6670,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."
+2024,property,Theft (Other),12965,District Crime Data at a Glance year-end offense table,https://mpdc.dc.gov/dailycrime,"HTML table headed '2025 Year End Crime Data' using the 2024 column."

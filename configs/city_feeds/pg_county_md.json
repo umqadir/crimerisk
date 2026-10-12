@@ -1,0 +1,169 @@
+{
+  "city_key": "pg_county_md",
+  "city_name": "Prince George's County",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/pg_county_md/packet.json",
+    "state/review/packets/city/pg_county_md/evidence/registry_row.json",
+    "state/review/packets/city/pg_county_md/evidence/doc_index.csv",
+    "state/review/packets/city/pg_county_md/evidence/doc_547ced2904.json",
+    "state/review/packets/city/pg_county_md/evidence/doc_b7055f1849.json",
+    "state/review/packets/city/pg_county_md/evidence/doc_c211a2fba1.html",
+    "state/review/packets/city/pg_county_md/evidence/raw_cache_profile.json",
+    "state/review/packets/city/pg_county_md/evidence/scope_candidates.csv",
+    "state/review/packets/city/pg_county_md/evidence/official_totals.csv",
+    "state/review/packets/city/pg_county_md/evidence/funnel.csv",
+    "state/review/packets/city/pg_county_md/evidence/jurisdictions.csv",
+    "state/review/packets/city/pg_county_md/evidence/qa_offense_year.csv",
+    "state/review/packets/city/pg_county_md/evidence/qa_exceptions.csv",
+    "state/review/packets/city/pg_county_md/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Not every call for service handled by PGPD is included; only traffic accidents, assaults, burglaries, homicides, robberies, sex offenses, stolen vehicles, thefts and vandalisms where a report has been written (description field of evidence/doc_547ced2904.json and evidence/doc_b7055f1849.json).",
+    "Specific address locations are removed: address numbers are rounded to the closest hundred block (description field, both doc_*.json).",
+    "Mapped locations are placed on the street centerline, not at the occurrence address, for victim confidentiality (description field, both doc_*.json)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "24:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "24"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit is the incident: one row per incident_case_id carrying a single clearance_code_inc_type, so only one offense per incident is published (no hierarchy or multi-offense detail is documented); FBI SRS/NIBRS-equivalent totals count offenses, so multi-offense incidents undercount the lesser offenses.",
+    "Rape is unmapped: the only sexual-offense category is 'SEX OFFENSE' (raw_cache_profile.json distinct values), which cannot separate rape (11A-11C) from fondling (11D) and other sex offenses. Its distinct-id counts (2018-2025: 251, 268, 128, 134, 121, 134, 147, 159) run from 0.60x to 1.45x the official rape totals.",
+    "Aggravated assault is unmapped. The feed has three assault categories: 'ASSAULT, SHOOTING', 'ASSAULT, WEAPON' and plain 'ASSAULT' (raw_cache_profile.json distinct values), and neither doc_*.json nor doc_c211a2fba1.html defines them or states an aggravated/simple split. SHOOTING+WEAPON alone (distinct incident_case_id by year 2018-2025: 243, 261, 314, 337, 353, 343, 362, 250) is 0.24x-0.29x of the official aggravated-assault totals (evidence/official_totals.csv), so it is not the offense. Adding plain ASSAULT (881, 803, 769, 691, 744, 852, 850, 756) gives 1,124, 1,064, 1,083, 1,028, 1,097, 1,195, 1,212, 1,006, or 1.23, 1.16, 1.01, 0.87, 0.87, 0.91, 0.99, 0.95 of official. That fit is circumstantial: 2018 and 2019 exceed the official totals before any geographic loss, which no mapped offense does by that margin, so plain ASSAULT may carry simple assaults (13B) or intimidation (13C). A PGPD definition of the ASSAULT category (its NIBRS or state-code crosswalk) would settle whether it can be mapped.",
+    "'HOMICIDE' is mapped to murder but may include negligent manslaughter (09B) or justifiable homicide (09C); the source does not separate them. Mapped counts are 0.55x-0.78x of official murder totals (2018-2025: 30, 35, 48, 74, 55, 71, 70, 36 vs 50, 50, 84, 107, 100, 91, 100, 60).",
+    "'ROBBERY, VEHICLE' (carjacking) is counted as robbery, as FBI definitions do, not as motor vehicle theft. 'AUTO, STOLEN & RECOVERED' is counted as motor vehicle theft.",
+    "The category taxonomy changed after 2019: 'VANDALISM', 'B & E, VACANT', 'B & E, SCHOOL' and 'B & E, RESIDENTIAL (VACANT)' have rows only in 2018-2019 (distinct-id counts by clearance_code_inc_type and year from raw_cache).",
+    "The published points are street-centerline placements of hundred-block-rounded addresses, so block-group assignment near block-group boundaries on a street is approximate.",
+    "The publisher does not say whether 'date' is the occurrence date or the report date; it is a date with no time (every archived value ends T00:00:00.000)."
+  ],
+  "mapping": {
+    "date_field": "date",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "incident_case_id"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "clearance_code_inc_type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "HOMICIDE"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "clearance_code_inc_type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "ROBBERY, COMMERCIAL",
+              "ROBBERY, OTHER",
+              "ROBBERY, RESIDENTIAL",
+              "ROBBERY, VEHICLE"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "clearance_code_inc_type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "B & E, COMMERCIAL",
+              "B & E, OTHER",
+              "B & E, RESIDENTIAL",
+              "B & E, RESIDENTIAL (VACANT)",
+              "B & E, SCHOOL",
+              "B & E, VACANT"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "clearance_code_inc_type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "THEFT",
+              "THEFT FROM AUTO"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "clearance_code_inc_type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "AUTO, STOLEN",
+              "AUTO, STOLEN & RECOVERED"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Two Socrata datasets split in time: wb4e-w4nf (archived rows 2018-01-01 to 2023-07-05, 127,773 rows) and xjru-idbe (2023-07-01 to 2025-12-31, 64,887 rows) (query: min/max date and count by __source_slug). incident_case_id is unique within each dataset. 358 ids appear in both datasets, all dated 2023-07-01 to 2023-07-05, with identical date, clearance_code_inc_type and latitude; dedupe_on_id keeps the first (the 2017-2023 dataset). This matches the profile: 192,660 rows, 192,302 distinct ids. Each incident has one clearance_code_inc_type, so the count unit is the incident and the rules keep that single category. Dates: 'date' (calendar_date in both doc_*.json column lists) is used as published; the documentation does not say whether it is the occurrence or report date. year_field is empty, so the year comes from date. Coordinates: numeric latitude/longitude columns. In the 2023-present dataset they equal the geo_reference_ point for all 64,887 rows (query comparing coordinates[1]/[0] to latitude/longitude). The publisher places points on the street centerline after rounding addresses to the hundred block (description in both doc_*.json), so there are only 47,485 distinct lat/lon pairs across 192,660 rows. 38 rows in the 2017-2023 dataset sit at about (-0.000074, 0.000021). They are not exactly (0,0) and will drop at the block-group join. Offense mapping: exact matches on clearance_code_inc_type values present in the pull (raw_cache_profile.json). Excluded: ACCIDENT, ACCIDENT WITH IMPOUND, VANDALISM, SEX OFFENSE (rape not separable from other sex offenses) and all three assault categories ('ASSAULT', 'ASSAULT, SHOOTING', 'ASSAULT, WEAPON'): no published aggravated/simple split, SHOOTING+WEAPON alone is 0.24x-0.29x of official aggravated assault, and adding plain ASSAULT fits only by reconciliation (1.23x and 1.16x in 2018-2019), so rape and aggravated assault are both unmapped. Mapped distinct-id counts vs official totals, 2018-2025 (count distinct incident_case_id by clearance_code_inc_type and year, summed per offense, divided by evidence/official_totals.csv): robbery 0.74x-0.94x; burglary 0.77x-0.94x; larceny 0.81x-1.00x; motor vehicle theft 0.82x-1.11x; murder 0.55x-0.78x. These are before the geographic funnel. Geography: PGPD is a county police department (ORI MD0172100). The only scope candidate is 24:state_nonmunicipal_remainder (evidence/scope_candidates.csv). The remainder footprint keeps essentially every located row: evidence/funnel.csv shows 108,208 in-state mapped rows and 108,127 in the footprint (81 lost, 0.07%), for the prior draft's rules. Block groups split between the remainder and a municipality are shared: evidence/jurisdictions.csv counts their incidents under both, so its municipal rows (for example Forest Heights town 4,936, District Heights city 3,051) overlap the remainder's 107,906 rather than being excluded from it. The footprint is not what drives the gap to the ORI totals. The where clause is the registry probe_where, applied to each dataset. It is the filter under which the archive was pulled (packet case_text).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.princegeorgescountymd.gov/resource/wb4e-w4nf.json",
+      "name": "Crime Incidents February 2017 to 5th July 2023",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "pg_county_md_0",
+      "source_url": "https://data.princegeorgescountymd.gov/",
+      "where": "date >= '{start}T00:00:00' AND date < '{end}T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.princegeorgescountymd.gov/resource/xjru-idbe.json",
+      "name": "Crime Incidents July 2023 to Present",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "pg_county_md_1",
+      "source_url": "https://data.princegeorgescountymd.gov/",
+      "where": "date >= '{start}T00:00:00' AND date < '{end}T00:00:00'"
+    }
+  ]
+}

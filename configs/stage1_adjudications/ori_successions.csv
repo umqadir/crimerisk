@@ -1,0 +1,33 @@
+# stage1_adjudications registry: ori_successions.csv
+# source_registry: FBI_SRS_NIBRS_reporting_break_plus_2024_CDE_roster_and_MDSP_county_identity
+# source_pass: v31 Maryland state-police reporter migration audit
+# target_year: effective_year_scoped_identity_rulings
+# generated_by: manual_identity_audit_v31
+# generated_at: 2026-08-16T02:15:00+00:00
+# source_sha256: 51c851812914df5a150c63b6d213e4a934991ba7dd17ee19e34d43ea4c3f0e4d
+# rows_written: 24
+case_id,state,superseded_ori,successor_ori,effective_year,county_fips,confidence,needs_review,evidence
+mdsp-ori-migration-allegany,MD,MD301SP00,MDMSP2100,2021,001,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-anne-arundel,MD,MD302SP00,MDMSP5200,2021,003,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-baltimore-county,MD,MD303SP00,MDMSP3400,2021,005,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-calvert,MD,MD304SP00,MDMSP5500,2021,009,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-caroline,MD,MD305SP00,MDMSP4300,2021,011,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-carroll,MD,MD306SP00,MDMSP0200,2021,013,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-cecil,MD,MD307SP00,MDMSP3100,2021,015,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-charles,MD,MD308SP00,MDMSP5000,2021,017,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-dorchester,MD,MD309SP00,MDMSP4500,2021,019,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-frederick,MD,MD310SP00,MDMSP2000,2021,021,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-garrett,MD,MD311SP00,MDMSP2300,2021,023,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-harford,MD,MD312SP00,MDMSP3000,2021,025,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-howard,MD,MD313SP00,MDMSP0100,2021,027,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-kent,MD,MD314SP00,MDMSP4400,2021,029,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-montgomery,MD,MD315SP00,MDMSP0400,2021,031,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-prince-georges,MD,MD316SP00,MDMSP0300,2021,033,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-queen-annes,MD,MD317SP00,MDMSP4200,2021,035,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-st-marys,MD,MD318SP00,MDMSP5400,2021,037,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-somerset,MD,MD319SP00,MDMSP4700,2021,039,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-talbot,MD,MD320SP00,MDMSP4000,2021,041,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-washington,MD,MD321SP00,MDMSP2200,2021,043,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-wicomico,MD,MD322SP00,MDMSP4100,2021,045,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-worcester,MD,MD323SP00,MDMSP4800,2021,047,high,0,"Same named MDSP county reporter; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."
+mdsp-ori-migration-statewide,MD,MD324SP00,MDMSP9800,2021,005,high,0,"Same MDSP statewide reporting stream; old key usable through 2020 and zero-month thereafter; successor usable 2021-2024."

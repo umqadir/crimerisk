@@ -1,0 +1,267 @@
+{
+  "city_key": "chandler_az",
+  "city_name": "Chandler",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/chandler_az/evidence/registry_row.json",
+    "state/review/packets/city/chandler_az/evidence/doc_index.csv",
+    "state/review/packets/city/chandler_az/evidence/doc_8bc11359a0.html (\"Location data is generalized to the nearest block to protect victim privacy\"; \"Date created: June 2, 2017\"; \"Rows of data: 160,367\")",
+    "state/review/packets/city/chandler_az/evidence/raw_cache_profile.json",
+    "state/review/packets/city/chandler_az/evidence/official_totals.csv",
+    "state/review/packets/city/chandler_az/evidence/scope_candidates.csv",
+    "state/review/packets/city/chandler_az/evidence/funnel.csv",
+    "state/review/packets/city/chandler_az/evidence/jurisdictions.csv",
+    "state/review/packets/city/chandler_az/evidence/qa_offense_year.csv",
+    "state/review/packets/city/chandler_az/raw_cache.parquet (queries: code x status cross-tab; null share by report_location_type, year and month; null coordinates by report_city; min/max dates and report_id)",
+    "src/crimerisk/city_contracts.py:194 _condition_mask (eq/in, case_sensitive)",
+    "src/crimerisk/city_contracts.py:318 offense rules with exclude_conditions"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "04:municipal:place:0412000"
+    ],
+    "state_fips": [
+      "04"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "No NIBRS codes are published. Offenses are mapped from the publisher's local report_primary_offense_code (a UCR-style family prefix plus a -N suffix, e.g. 0999 homicide, 11xx sexual assault, 12xx robbery, 13xx assault, 22xx burglary, 23xx theft, 24xx stolen vehicle) and its report_primary_offense_description, on the FBI definitions; no crosswalk to NIBRS is published (doc_8bc11359a0.html lists the columns only).",
+    "One row per report with only the primary offense (report_primary_offense_code, one value per report_number). Secondary offenses in a multi-offense report are not published, so a report whose primary offense is not one of the seven (or is a lower one) is missed; FBI SRS counts use the hierarchy rule, not the reporting officer's primary offense.",
+    "Unfounded reports are excluded on the report's current status: every rule excludes report_status = 'CLOSED - Unfounded' (2,366 rows over the pull, raw_cache_profile.json report_status). The status is the current case status, so a later pull can move rows into or out of this status; other statuses (turn down, no further action, suspended) are kept, as the FBI counts them.",
+    "Rolling five-year window: min report_event_date and min reported_date are both 2021-09-27, exactly five years before the survey (registry_row.json surveyed_at 2026-09-27); the portal page says the dataset holds all general offense reports and was created 2017-06-02 (doc_8bc11359a0.html), yet min report_id is 339,377. The CSV download has no date filter, so a live pull after 2026 will start dropping 2022 rows; 2022 as first_year is reproducible only from the archived pull. 2018-2020 have no rows and 2021 is partial.",
+    "Missing coordinates depend on location type and period, so the located rows are biased, not a random sample. report_latitude/report_longitude are null on 24,282 of 160,367 rows (raw_cache_profile.json non_null 136,085). Among report_city 'Chandler' rows, the null share at report_location_type containing 'Residence' is 0.406/0.401/0.336/0.090 in 2022/2023/2024/2025 against 0.094/0.086/0.077/0.034 elsewhere. The overall monthly null share is 0.162-0.170 from 2024-10 to 2025-02, 0.137 in 2025-03 and 0.023-0.055 from 2025-04 to 2025-07. Within 2022-2024 (non-unfounded rows) the null share at Residence/Home vs other locations is 0.458 vs 0.161 for burglary, 0.443 vs 0.246 for motor vehicle theft and 0.395 vs 0.130 for rape. require_coordinates drops these rows: the located 2022-2024 series under-represents residences and steps up in 2025 for reasons unrelated to crime (burglary located 223 in 2024 vs 235 in 2025 while all rows fall 308 to 253). The publisher does not state this as a redaction. The contract has no field to repair it; geocoding report_address (hundred-block), restricting to 2025 onward, or accepting the bias is a decision for the build owner.",
+    "Vehicular Murder/Manslaughter (0909-0, 0909-1) combines murder with vehicular manslaughter and is left unmapped; the FBI excludes traffic fatalities and negligent manslaughter from murder.",
+    "Sexual Assault - Force Fondle (1199-1, 1199-4; fondling 11D), Sexual Conduct With Minor (1116-0; statutory, 36B) and Sexual Offense (1112-0; unspecified, 2 rows) are left out of rape; Oral/Sodomy (1199-0, 1199-3) and With Object (1199-2, 1199-5) are included under the revised SRS rape definition.",
+    "Aggravated assault follows the FBI weapon-or-serious-injury definition, not Arizona's victim-status aggravation: Agg Assault - Officer - No/Minor Injury (1311-0; 44/58/37/43 rows in 2022-2025) is left out as, on its description, an assault aggravated only by the victim being an officer; Agg Assault - Officer - Major Injury (1311-1) is kept. Agg Aslt - Strangulation - Dv (1302-1) and Child/Adult Abuse-Sr Inj (1302-2, 1302-3; serious injury, 99 rows over the pull) are kept; the latter straddles aggravated assault and family offenses. Any 1311-0 report that involved a weapon is missed, and the 2022 all-row count (285) is 17.4% under the official 345. 'Aggravated Dv' (3899-3), a domestic-violence repeat-offense charge, is left unmapped. Simple assault (1313-x) and Threats/Intimidation (1316-x) are excluded.",
+    "Burglary is limited to Burglary - Forced Entry (2202-0) and Burglary - No Forced Entry (2204-0). Burglary From Yard (2309-1), From Vending Machine (2307-1), From Trailer (2399-1), From Locker (2399-2) and Vehicle Burglary (2304-x, 2305-x) are Arizona burglary charges that are not entries of a structure under the FBI definition and are counted as larceny.",
+    "Stolen Veh-Trailer Theft (2399-3) and Stolen Veh-Aircraft Theft (2410-0) are counted as larceny (not self-propelled land vehicles under the FBI MVT definition). Stolen Veh-Recovery Other Jur (2499-1), Stolen Veh-Fail to Return/Pay and Misrepresentation (2699-2, 2699-1) and Stolen Veh - Possession/Use (2804-1) are left out of motor vehicle theft.",
+    "Theft-Obt Service W/Out Paying (2602-0), Theft By Fraud (2699-4) and Theft By Embezzlement (2799-0) are in the publisher's fraud/embezzlement families and are left out of larceny."
+  ],
+  "mapping": {
+    "date_field": "report_event_date",
+    "date_format": "%Y-%m-%d",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "report_number"
+    ],
+    "latitude_field": "report_latitude",
+    "longitude_field": "report_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0999-0",
+              "0999-2",
+              "0999-6",
+              "0999-7"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "1103-0",
+              "1103-1",
+              "1199-0",
+              "1199-3",
+              "1199-2",
+              "1199-5"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "1299-0",
+              "1203-0",
+              "1212-0"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "1315-0",
+              "1315-1",
+              "1311-1",
+              "1302-1",
+              "1302-2",
+              "1302-3"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "2202-0",
+              "2204-0"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "2301-0",
+              "2302-0",
+              "2303-0",
+              "2303-1",
+              "2304-0",
+              "2304-1",
+              "2305-0",
+              "2305-1",
+              "2307-0",
+              "2307-1",
+              "2308-0",
+              "2309-0",
+              "2309-1",
+              "2310-0",
+              "2399-0",
+              "2399-1",
+              "2399-2",
+              "2399-3",
+              "2410-0"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_primary_offense_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "2401-0",
+              "2411-0",
+              "2499-0"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "report_status",
+            "op": "eq",
+            "value": "CLOSED - Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Revision 2. Changes from draft 1: 1311-0 dropped from aggravated_assault; report_status = 'CLOSED - Unfounded' excluded from every rule; publisher page doc_8bc11359a0.html cited (draft 1 wrongly said doc_index.csv was empty); rolling-window and location-type coordinate bias added to known differences; shortfall ranges stated per offense; non-Chandler row loss attributed to require_coordinates. Source: the registry row (registry_row.json) csv endpoint, whole-file download, no where clause. The pull has 160,367 rows (matches 'Rows of data: 160,367' on doc_8bc11359a0.html), one per report_number (160,367 distinct report_number, report_id and id), so count_unit is incident, id_fields is report_number (the runner strips blanks) and dedupe_on_id is a no-op guard. Each row carries one offense, report_primary_offense_code; the rules keep that primary offense. Date: report_event_date is the occurrence (event) date, YYYY-MM-DD on every row (0 malformed), parsed %Y-%m-%d; reported_date is the report date. report_event_date is never later than reported_date and report_year equals its year on every row, so year_field is empty. Event dates run 2021-09-27 to 2026-09-19. Coordinates: report_latitude/report_longitude as published; the publisher states 'Location data is generalized to the nearest block to protect victim privacy' (doc_8bc11359a0.html), and report_address is hundred-block; range lat 33.2040-33.3606, lon -111.9723 to -111.7553 (raw_cache_profile.json). Scope: Chandler PD (ori9 AZ0070500, registry_row.json) polices Chandler city, the single candidate in scope_candidates.csv (04:municipal:place:0412000); state 04. report_city is 'Chandler' on 158,658 rows. Most non-Chandler rows have null coordinates (blank city 468 of 471, Phoenix 301 of 307, Mesa 184 of 241, Gilbert 111 of 204, Tempe 154 of 161), so require_coordinates, not the footprint join, drops them; in draft 1's run the footprint removed 27 of 16,995 located in-year rows (funnel.csv). jurisdictions.csv's 3,828 'Arizona nonmunicipal remainder' rows do not reconcile with funnel.csv and do not show that Chandler PD polices county islands. Every mapped code was checked against the pull (distinct report_primary_offense_code, cross-tab of code, description and report_status). Recomputed counts for this contract (DuckDB GROUP BY year of report_event_date on the rules' code lists, report_status <> 'CLOSED - Unfounded'), all rows / located rows before the footprint join, 2022/2023/2024/2025, against official_totals.csv: murder 11/11/4/7 (7/6/1/6) vs 11/7/2/4; rape 99/107/53/77 (66/73/42/72) vs 100/102/49/79; robbery 78/87/68/51 (67/84/63/51) vs 73/79/66/43; aggravated_assault 285/269/244/215 (227/209/193/207) vs 345/303/258/221; burglary 460/365/308/253 (311/242/223/235) vs 481/381/339/252; larceny 4178/3380/3666/2982 (3340/2817/3217/2778) vs 4208/3339/3633/2963; motor_vehicle_theft 422/360/258/221 (294/237/173/200) vs 444/359/257/225. Relative delta of all rows vs official (count/official - 1): larceny -0.7/+1.2/+0.9/+0.6%, MVT -5.0/+0.3/+0.4/-1.8%, burglary -4.4/-4.2/-9.1/+0.4%, rape -1.0/+4.9/+8.2/-2.5%, robbery +6.8/+10.1/+3.0/+18.6%, aggravated assault -17.4/-11.2/-5.4/-2.7%, murder 0/+57/+100/+75% (small numbers). Located rows vs official, 2022/2023/2024 then 2025: murder -36/-14/-50%, +50%; rape -34/-28/-14%, -9%; robbery -8.2/+6.3/-4.5%, +18.6%; aggravated assault -34/-31/-25%, -6%; burglary -35/-37/-34%, -7%; larceny -21/-16/-12%, -6%; MVT -34/-34/-33%, -11%. The 2022-2024 located shortfall comes from null coordinates (see known differences). Aggravated assault sensitivity: keeping 1311-0 would give all-row 329/327/281/258 (+44/+58/+37/+43), -4.6/+7.9/+8.9/+16.7% vs official; it is dropped on the definition, not the fit. 2021 is partial (from 2021-09-27) and 2018-2020 are empty. The registry and the portal page state no redactions or exclusions.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.chandlerpd.com/catalog/general-offenses/download/csv/",
+      "name": "Chandler PD General Offenses",
+      "order": "",
+      "page_size": 0,
+      "portal_type": "csv",
+      "select": [],
+      "slug": "chandler_az",
+      "source_url": "https://data.chandlerpd.com/catalog/general-offenses/",
+      "where": ""
+    }
+  ]
+}

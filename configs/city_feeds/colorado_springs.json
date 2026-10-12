@@ -1,0 +1,207 @@
+{
+  "city_key": "colorado_springs",
+  "city_name": "Colorado Springs",
+  "evidence_refs": [
+    "state/review/packets/city/colorado_springs/packet.json",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:63-70 (dataset id, endpoint, select fields)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:73-94 (CRIMECODE_MAPPING and excluded codes)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:97-135 (fetch: where with date range and crimecode whitelist, $limit 50000, $order :id)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:144-148 (location_point stringified in raw cache)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:153-158 (offense mapping, unmapped dropped)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:160-177 (lon/lat from location_point GeoJSON, drop null and (0,0))",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:179-183 (year from occurredfromdate, 2018-2024)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:185-188 (incident_id = :id, dedupe)",
+    "state/review/packets/city/colorado_springs/evidence/01_fetch_colorado_springs.py:191-201 (left sjoin within to tl_2020_08_bg, post-join dedupe)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:9 (provider CSPD)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:13-16 (offense-level description)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:23-26 (publisher disclaimer)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:54-62 (offense mapping table)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:64-85 (11-series rows have null location_point)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:98-107 (counts by year x offense, total 135,742)",
+    "state/review/packets/city/colorado_springs/evidence/README.md:117-133 (BG match 135,700/135,742; 42 unmatched; 9,275 null-location rows)",
+    "state/review/packets/city/colorado_springs/evidence/offense_mapping.csv",
+    "state/review/packets/city/colorado_springs/evidence/jurisdictions.csv",
+    "state/review/packets/city/colorado_springs/evidence/raw_cache_profile.json (rows 145,017; :id distinct 145,017; location_point non_null 135,742; crimecode distinct values)",
+    "state/review/packets/city/colorado_springs/raw_cache.parquet (recomputation described in notes)",
+    "case_text: \"an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_colorado_springs.py\"",
+    "state/review/runs/e4-onboard-2025.2/colorado_springs/contract_fix.task.md (check result: error KeyError 'none of latitude in the pull', oracle_rows 135,700)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "CSPD disclaimer quoted in README.md lines 23-26 and the script docstring (01_fetch_colorado_springs.py lines 25-28): the dataset 'does not apply the same counting rules as official data reported to the Colorado Bureau of Investigations and the Federal Bureau of Investigation', so comparisons to those datasets would be inaccurate. This is the only publisher statement in the packet; it is a comparability caveat, not a row exclusion.",
+    "Publisher describes the table as offense-level: 'Each case report (incident) may have several offenses' (README.md lines 14-16). One row per offense, not per incident."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "08:municipal:place:0816000"
+    ],
+    "state_fips": [
+      "08"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Coordinates (revised after the failed replay, error \"KeyError: 'none of latitude in the pull'\"): the feed has no numeric latitude/longitude columns; the script derives longitude = location_point.coordinates[0] and latitude = location_point.coordinates[1] from the GeoJSON Point (01_fetch_colorado_springs.py lines 160-173). The contract now reads latitude_field/longitude_field = 'location_point#point', which the runner parses as a GeoJSON Point ([lon, lat]) whether it is a dict (live Socrata pull) or JSON text (raw_cache.parquet, stringified at script lines 144-148). Checked on raw_cache.parquet: columns are the 14 selected fields with no latitude/longitude column; 135,742 non-null location_point values all json.loads to type 'Point', none at (0,0), lon range -122.1872 to -74.17276, lat range 27.73163 to 47.61001. The script's dict-only extractor and the runner's point reader therefore keep the same 135,742 rows. This is a Socrata feed, so __arcgis_* geometry columns do not apply.",
+    "Spatial join: the script does a LEFT sjoin with predicate 'within' (line 199) and keeps rows that match no Colorado block group with a null block_group_geoid; README.md lines 117 and 124-129 report 135,700 of 135,742 matched and 42 unmatched (source-side bad geocodes; the lon/lat ranges above reach -122.19 and -74.17, outside Colorado). The replay oracle counts 135,700 rows (check result oracle_rows), i.e. matched rows only, so the runner's within join, which drops the 42 unmatched points, should agree with it; incidents_bg.parquet itself carries 135,742 rows including the 42 with null block_group_geoid.",
+    "The script de-duplicates on incident_id a second time after the spatial join (line 201, keep='first') to collapse points matching more than one block group; the contract's dedupe_on_id applies before the join, so this post-join step depends on the runner's within join returning one block group per point.",
+    "Output columns: the script renames crimecode->offense_raw_ibr_code, crimecodedescription->offense_raw_description, patrol_division->district, :@computed_region_2q37_snsf->neighborhood_region_id and carries streetaddress, zip, casenumber, domestic (lines 207-217). Column renaming/pass-through is not part of the contract; no effect on rows kept or ids.",
+    "Date range: the script hard-codes occurredfromdate >= '2018-01-01T00:00:00' AND < '2025-01-01T00:00:00' (lines 100-104) and re-filters year 2018-2024 client-side (lines 179-182); the contract uses {start}/{end} placeholders and the runner's requested-years filter. Same result for a 2018-2024 request.",
+    "The server-side crimecode whitelist in 'where' is the script's own (lines 99-103, 16 codes). The offense_rules repeat it client-side, so a pull without the whitelist would map identically."
+  ],
+  "mapping": {
+    "date_field": "occurredfromdate",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      ":id"
+    ],
+    "latitude_field": "location_point#point",
+    "longitude_field": "location_point#point",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crimecode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Translation of 01_fetch_colorado_springs.py. Revision: latitude_field/longitude_field changed from the script's derived columns 'latitude'/'longitude' (absent from the pull, which caused replay_rows 0) to 'location_point#point'; nothing else in the mapping changed. Offense mapping: crimecode -> bucket exactly as CRIMECODE_MAPPING (script lines 73-90) and offense_mapping.csv, 16 codes; excluded codes 09B, 09C, 11D, 13B, 13C, 36A, 36B (script lines 91-94, README.md lines 56-59) are simply not matched by any rule. Id: the script sets incident_id = str(':id') (line 185), the Socrata row identifier, and drops duplicates on it (line 187); raw_cache_profile.json shows ':id' non_null 145,017 and distinct_count 145,017, so de-duplication removes 0 rows. casenumber is not unique (134,860 distinct of 145,017) because rows are offenses. Recomputed on raw_cache.parquet with pandas (json.loads on location_point, coordinates [lon, lat]; pd.to_datetime on occurredfromdate; year 2018-2024; :id dedupe): 145,017 raw rows; 9,275 have null location_point; the other 135,742 all parse as GeoJSON Point with no (0,0); 0 unparseable dates, range 2018-01-01 00:00 to 2024-12-31 23:00, so the year filter drops 0; kept 135,742 rows with 135,742 distinct :id. Per year 19,337 / 20,741 / 19,091 / 20,215 / 20,649 / 18,583 / 17,126 (2018-2024) and per offense larceny 80,463, motor_vehicle_theft 22,182, burglary 18,550, aggravated_assault 11,431, robbery 2,933, murder 183, rape 0 -- all equal to README.md lines 100-107. Rape: all 3,601 rows with crimecode 11A (2,526), 11B (364), 11C (711) have null location_point in raw_cache.parquet, so the rape rule yields 0 geolocated rows (README.md lines 64-85). The README's attribution to privacy redaction is the script author's inference, not a publisher statement. The rape rule is kept because the script maps these codes. Of the 9,275 null-location rows, 5,674 are non-rape codes (13A 1,739, 23F 963, 220 804, 23H 620, 240 579, 23C 336, 23D 250, 23G 178, 120 142, 23E 24, 09A 20, 23B 12, 23A 7), counted on raw_cache.parquet. Jurisdictions: CSPD is a city police department (README.md line 9), so jurisdiction_ids is Colorado Springs city only (08:municipal:place:0816000, jurisdictions.csv row 1, 135,524 incidents). The other rows in jurisdictions.csv (Colorado nonmunicipal remainder 20,189; Manitou Springs 723; Fountain 98; and 13 places with <=22 each) are treated as edge or bad geocodes, not service area. Caveat: the incidents_2018_2024 column sums to 156,586, which exceeds both the 135,742 kept rows and the 145,017 raw rows, and README.md lines 117-121 place 135,653 kept rows in El Paso County; the packet does not explain how jurisdictions.csv was counted, so the 20,189 nonmunicipal-remainder figure cannot be reconciled from this evidence and should be checked against the jurisdictions.csv generator before relying on it. date_format 'auto': every occurredfromdate is a 23-character Socrata floating timestamp (e.g. '2020-01-01T00:00:00.000', raw_cache_profile.json), matching the script's pd.to_datetime default parse (line 179).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://policedata.coloradosprings.gov/resource/bc88-hemr.json",
+      "name": "Colorado Springs Police Department - Crime Level Data (bc88-hemr)",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        ":id",
+        "casenumber",
+        "occurredfromdate",
+        "crimecode",
+        "crimecodedescription",
+        "statute",
+        "statutedescription",
+        "nciccode",
+        "domestic",
+        "streetaddress",
+        "zip",
+        "location_point",
+        "patrol_division",
+        ":@computed_region_2q37_snsf"
+      ],
+      "slug": "cspd_crime_level_data",
+      "source_url": "https://policedata.coloradosprings.gov/Crime/Crime-Level-Data/bc88-hemr",
+      "where": "occurredfromdate >= '{start}T00:00:00' AND occurredfromdate < '{end}T00:00:00' AND crimecode in('09A','11A','11B','11C','120','13A','220','23A','23B','23C','23D','23E','23F','23G','23H','240')"
+    }
+  ]
+}

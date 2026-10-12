@@ -1,0 +1,244 @@
+{
+  "city_key": "syracuse_ny",
+  "city_name": "Syracuse",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/syracuse_ny/evidence/registry_row.json",
+    "state/review/packets/city/syracuse_ny/evidence/doc_3195955726.json",
+    "state/review/packets/city/syracuse_ny/evidence/doc_f08dc4c638.json",
+    "state/review/packets/city/syracuse_ny/evidence/doc_1b37c46d30.json",
+    "state/review/packets/city/syracuse_ny/evidence/doc_c23070b4f1.html",
+    "state/review/packets/city/syracuse_ny/evidence/doc_index.csv",
+    "state/review/packets/city/syracuse_ny/evidence/raw_cache_profile.json",
+    "state/review/packets/city/syracuse_ny/evidence/scope_candidates.csv",
+    "state/review/packets/city/syracuse_ny/evidence/official_totals.csv",
+    "state/review/packets/city/syracuse_ny/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "36:municipal:place:3673000"
+    ],
+    "state_fips": [
+      "36"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape is not published in any layer, so the feed cannot reconcile rape (official 80, 91, 85 for 2022-2024).",
+    "No incident number is published; the unit is the offense row and co-occurring offenses in one incident cannot be identified or deduplicated.",
+    "Only 2022-2024 have point data; 2018-2021 and 2025 have no rows in this feed.",
+    "Addresses are hundred-block and points are geocoded to the block, so block-group assignment near boundaries is approximate; 342 rows (19,421 minus 19,079) have no geometry.",
+    "The date is DATEEND, the end of the occurrence window, not the start or the report date; the 2023 layer appears to stop at 2023-12-26.",
+    "The publisher's categories are its own Part I labels with no NIBRS codes; mapped counts differ from official totals by up to about 9% (2023 aggravated assault 876 vs 807)."
+  ],
+  "mapping": {
+    "date_field": "USER_DATEEND|DATEEND",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "__source_slug",
+      "ObjectID",
+      "ObjectId"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_CODE_DEFINED",
+            "op": "eq",
+            "value": "MURDER",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CODE_DEFINED",
+            "op": "eq",
+            "value": "MURDER",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_CODE_DEFINED",
+            "op": "eq",
+            "value": "ROBBERY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CODE_DEFINED",
+            "op": "eq",
+            "value": "ROBBERY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_CODE_DEFINED",
+            "op": "eq",
+            "value": "AGGRAVATED ASSAULT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CODE_DEFINED",
+            "op": "eq",
+            "value": "AGGRAVATED ASSAULT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_CODE_DEFINED",
+            "op": "eq",
+            "value": "BURGLARY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CODE_DEFINED",
+            "op": "eq",
+            "value": "BURGLARY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_CODE_DEFINED",
+            "op": "eq",
+            "value": "LARCENY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CODE_DEFINED",
+            "op": "eq",
+            "value": "LARCENY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "USER_CODE_DEFINED",
+            "op": "eq",
+            "value": "MV THEFT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "CODE_DEFINED",
+            "op": "eq",
+            "value": "MV THEFT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Three per-year ArcGIS layers from the registry endpoint list (registry_row.json api_endpoint): 2022 (tblWeeklyOffenses_Geocoded, fields prefixed USER_, objectIdField ObjectID, maxRecordCount 2000; doc_3195955726.json), 2023 (crime_data_1_auto_update, ObjectId, 1000; doc_f08dc4c638.json) and 2024 (ObjectId, 1000; doc_1b37c46d30.json). The archive holds 19,421 rows (raw_cache_profile.json rows): 5,660 / 6,633 / 7,128 by __source_slug syracuse_ny_0/1/2. Every row dates to 2022-2024 (query: year of epoch-ms USER_DATEEND|DATEEND by slug gives 2022: 5,660; 2022: 3 and 2023: 6,630; 2024: 7,128), so the date-placeholder where clause on each layer's own date field returns the same rows as the unfiltered archive pull for 2018-2025. The registry states the 2019-2021 layers carry no geometry and the 2025 layer holds 33 rows, so they are not sources; 2018-2021 and 2025 will have no rows. Offense: the publisher's category CODE_DEFINED (USER_CODE_DEFINED in the 2022 layer), whose values in the pull are exactly LARCENY, BURGLARY, AGGRAVATED ASSAULT, MV THEFT, ROBBERY, MURDER (profile distinct values of both fields). Each maps one to one to the SRS Part I offense; two rules per offense cover the two field names (the other name is empty on a row, so rules cannot cross-match). Rape is not published in any layer (no rape value in either category field) and stays unmapped. Aggravated assault is published as its own category, so no simple-assault split is needed. LarcenyCode/USER_LarcenyCode is a subcode that is filled for all categories and is inconsistent with CODE_DEFINED (e.g., 2024: 1,047 MV THEFT rows carry LarcenyCode 'Of Bicycle'; burglary rows carry 'Shoplifting'), so rules ignore it and read the category only. Mapped counts by year from the pull vs official totals (official_totals.csv): 2022 agg assault 954 vs 910, burglary 1,190 vs 1,171, larceny 2,603 vs 2,636, MVT 603 vs 623, murder 17 vs 18, robbery 296 vs 287; 2023 876/807, 997/944, 3,379/3,530, 1,092/1,023, 23/20, 263/253; 2024 839/810, 1,076/1,047, 3,712/3,831, 1,269/1,270, 22/22, 210/195 (query grouping year of the date by category). Count unit: offense, per the survey (registry count_unit). The layers publish no incident number; each row is one Part I offense record, and the only unique key is the per-layer object id, so id_fields are __source_slug plus ObjectID (2022) and ObjectId (2023-2024), and dedupe_on_id only drops exact repeats of a row. About 21-25 rows per layer share date, times, block address and category (distinct-key query: 5,639 of 5,660; 6,611 of 6,633; 7,103 of 7,128); with no incident id these cannot be told apart from separate offenses and are kept. Whether multiple offenses in one incident are each listed or a hierarchy is applied is not documented. Date: DATEEND (USER_DATEEND in 2022), the only date published (layer fields: DATEEND, TIMESTART, TIMEEND); it is read as the occurrence date (end of the occurrence window); no report date is published. Values are epoch ms at 00:00 UTC for every row (query: all 19,421 divisible by 86,400,000), so the UTC calendar date is the local date. The 2023 layer runs 2022-12-25 to 2023-12-26 and the 2024 layer starts 2024-01-01, so 2023-12-27..31 appear absent; the 3 late-December-2022 rows in the 2023 layer do not match any 2022-layer row on date, address and category (join query returned none) and are kept as 2022. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, requested in WGS84). The 2023/2024 LAT/LONG attributes equal the geometry on all 6,505 and 6,993 rows that have them; the 2022 layer has only projected X/Y (NY State Plane, wkid 102716) plus geometry. Points are geocoded from hundred-block addresses (ADDRESS values such as '100 GROVE ST', AddNum distinct values are hundreds), so points are block-level, not exact. Rows without geometry: 79 unmatched geocodes (Status U, X/Y 0) in 2022, 128 in the 2023 layer (all dated 2023) and 135 in 2024 (profile non_null counts: 19,079 of 19,421 located); these drop under require_coordinates.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/2022_Part_1_Crimes_Geocoded_Locator/FeatureServer/0",
+      "name": "Syracuse Part 1 Offenses 2022 (tblWeeklyOffenses_Geocoded)",
+      "order": "ObjectID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "syracuse_ny_0",
+      "source_url": "https://data.syr.gov/",
+      "where": "USER_DATEEND >= DATE '{start}' AND USER_DATEEND < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/crime_data_1_auto_update/FeatureServer/0",
+      "name": "Syracuse Part 1 Offenses 2023 (crime_data_1_auto_update)",
+      "order": "ObjectId",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "syracuse_ny_1",
+      "source_url": "https://data.syr.gov/",
+      "where": "DATEEND >= DATE '{start}' AND DATEEND < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://services6.arcgis.com/bdPqSfflsdgFRVVM/arcgis/rest/services/Crime_Data_2024_Part_1_Offenses_With_Lat_and_Long_Info/FeatureServer/0",
+      "name": "Syracuse Part 1 Offenses 2024 with lat/long",
+      "order": "ObjectId",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "syracuse_ny_2",
+      "source_url": "https://data.syr.gov/",
+      "where": "DATEEND >= DATE '{start}' AND DATEEND < DATE '{end}'"
+    }
+  ]
+}

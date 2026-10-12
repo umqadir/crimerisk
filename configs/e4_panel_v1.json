@@ -1,0 +1,31 @@
+{
+  "panel_id": "e4_frozen_v1",
+  "truth": {
+    "path": "analysis_scratch/final_phase/corpus_expansion/widened_incident_surface.parquet",
+    "sha256": "7cf9deec9e37b4de6db9f5bf9a293b39b48e71fbfaaa6010f26bd2b92c811a10"
+  },
+  "registry": {
+    "path": "analysis_scratch/final_phase/corpus_expansion/benchmark_registry_v1.csv",
+    "sha256": "1a635f73acf88c9c6eb90fa98f3889312e9df252c1f4a6327c19ce8041e21837"
+  },
+  "frozen_cells": {
+    "path": "analysis_scratch/final_phase/e4_benchmark/truth_test.csv",
+    "sha256": "bc2ef950cbfac2fe91eb33b06a97c4611ee4ee28d73e2e27309e87a4ccf81cca",
+    "variant": "base"
+  },
+  "multi_jurisdiction_sources": ["lasd"],
+  "cell_rules": {
+    "min_tracts": 20,
+    "min_kept_incidents": 50.0,
+    "min_kept_share": 0.5
+  },
+  "expected": {
+    "frozen_cells": 190,
+    "frozen_sources": 20,
+    "spill_cells": 14,
+    "spill_jurisdictions": 8,
+    "scored_cells": 190,
+    "scored_sources": 20,
+    "scored_jurisdictions": 40
+  }
+}

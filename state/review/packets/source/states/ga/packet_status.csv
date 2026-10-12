@@ -1,0 +1,2 @@
+state_abbr,packet_status,current_owner,production_input_ready,notes
+GA,complete,codex,yes,"GA packet complete: 383 mixed-source policy rows, 271 present-but-no-2024 rows, 1 zero-support master omission. Main doctrine is summary-continuity plus agency-level extract before source flips."

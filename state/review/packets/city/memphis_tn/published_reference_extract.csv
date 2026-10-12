@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,aggravated_assault,12522.0,cius_publication_annual,high
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,burglary,5616.0,cius_publication_annual,high
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,larceny,26978.0,cius_publication_annual,high
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,motor_vehicle_theft,9711.0,cius_publication_annual,high
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,murder,249.0,cius_publication_annual,high
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,rape,429.0,cius_publication_annual,high
+memphis_tn,"Memphis, Tennessee",47:municipal:place:4748000,robbery,2138.0,cius_publication_annual,high

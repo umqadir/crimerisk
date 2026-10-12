@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""crime_category"", ""op"": ""eq"", ""value"": ""MURDER"", ""values"": []}, {""field"": ""crime_code"", ""op"": ""eq"", ""value"": ""11"", ""values"": []}]",[]
+rape,"[{""field"": ""crime_category"", ""op"": ""eq"", ""value"": ""SEX OFFENSES"", ""values"": []}, {""field"": ""crime_code"", ""op"": ""in"", ""value"": """", ""values"": [""17A"", ""17B"", ""17C""]}]",[]
+robbery,"[{""field"": ""crime_category"", ""op"": ""eq"", ""value"": ""ROBBERY"", ""values"": []}, {""field"": ""crime_code"", ""op"": ""in"", ""value"": """", ""values"": [""20A"", ""20B""]}]",[]
+aggravated_assault,"[{""field"": ""crime_category"", ""op"": ""eq"", ""value"": ""AGGRAVATED ASSAULT"", ""values"": []}, {""field"": ""crime_code"", ""op"": ""in"", ""value"": """", ""values"": [""25G"", ""25M""]}]",[]
+burglary,"[{""field"": ""crime_category"", ""op"": ""in"", ""value"": """", ""values"": [""BURGLARY/COMMERCIAL"", ""BURGLARY/RESIDENTIAL""]}, {""field"": ""crime_code"", ""op"": ""in"", ""value"": """", ""values"": [""30A"", ""30B""]}]",[]
+larceny,"[{""field"": ""crime_category"", ""op"": ""in"", ""value"": """", ""values"": [""LARCENY"", ""LARCENY FROM MV""]}, {""field"": ""crime_code"", ""op"": ""in"", ""value"": """", ""values"": [""35A"", ""35B"", ""35C"", ""35D"", ""35E"", ""35F"", ""35G"", ""35H""]}]",[]
+motor_vehicle_theft,"[{""field"": ""crime_category"", ""op"": ""eq"", ""value"": ""MV THEFT"", ""values"": []}, {""field"": ""crime_code"", ""op"": ""eq"", ""value"": ""40A"", ""values"": []}]",[]

@@ -1,0 +1,254 @@
+{
+  "city_key": "gainesville",
+  "city_name": "Gainesville, FL",
+  "evidence_refs": [
+    "state/review/packets/city/gainesville/evidence/01_fetch_gainesville.py:45-55",
+    "state/review/packets/city/gainesville/evidence/01_fetch_gainesville.py:62-176",
+    "state/review/packets/city/gainesville/evidence/01_fetch_gainesville.py:181-191",
+    "state/review/packets/city/gainesville/evidence/01_fetch_gainesville.py:226-260",
+    "state/review/packets/city/gainesville/evidence/01_fetch_gainesville.py:266-277",
+    "state/review/packets/city/gainesville/evidence/README.md:3-11",
+    "state/review/packets/city/gainesville/evidence/README.md:13-19",
+    "state/review/packets/city/gainesville/evidence/README.md:79-90",
+    "state/review/packets/city/gainesville/evidence/README.md:107-117",
+    "state/review/packets/city/gainesville/evidence/offense_mapping.csv",
+    "state/review/packets/city/gainesville/evidence/jurisdictions.csv",
+    "state/review/packets/city/gainesville/evidence/raw_cache_profile.json",
+    "state/review/packets/city/gainesville/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "No row-level exclusions are stated by the publisher in the evidence. The only publisher statements quoted are (a) incident addresses are rounded per Florida's Marsy's Law and are 'not the exact location' (README.md lines 13-14; README.md line 152-154 notes the join uses latitude/longitude, not address), and (b) the SRS-to-NIBRS transition on November 16, 2021, estimated by the publisher as an increase 'usually not greater than 2.7%' (README.md lines 15-18, 145-151). Neither drops rows."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "12:municipal:place:1225175"
+    ],
+    "state_fips": [
+      "12"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Output schema: the script renames narrative -> offense_narrative and the Socrata computed-region columns :@computed_region_43jd_v64e -> gpd_zone and :@computed_region_u9vc_vmbc -> gpd_district, and writes incident_id = id.astype(str) plus address (01_fetch_gainesville.py lines 247, 266-277). The contract carries no output-column renames or pass-through fields; the id value is the same because id_fields=['id'] with one field adds no '|' separator and id is already a string (raw_cache_profile.json: id dtype object).",
+    "Block-group join: the script uses a left sjoin, so the 3 rows whose coordinates fall outside Florida (ids 219009557, 518000162, 519000041; README.md lines 109-117) stay in incidents_bg.parquet with a null block_group_geoid. If the runner drops points with no Florida 2020 block group, the contract output will have 34,873 rows instead of 34,876; the kept-row set before the join is identical.",
+    "De-duplication order: the script drops duplicate incident_id after the spatial join (01_fetch_gainesville.py line 260), the contract dedupes on id per its runner order. On this raw cache it has no effect: id has 91,724 distinct values in 91,724 rows (raw_cache_profile.json), and recomputation found 0 duplicate ids among the 34,876 kept rows.",
+    "Year filter: the script derives year with pd.to_datetime(errors='coerce') (line 240) and keeps 2018-2024 (line 243); the contract uses date_format 'auto' on offense_date. All 91,724 offense_date values are 23-character 'YYYY-MM-DDTHH:MM:SS.fff' strings (recomputed: str.len() value_counts), 0 fail to parse, and the range is 2018-01-01T00:00:00.000 to 2024-12-31T23:13:59.000, so the year filter drops 0 rows either way.",
+    "Offense matching: the script uses an exact, case-sensitive dict lookup (narrative.map(OFFENSE_MAPPING), line 226); the rules set case_sensitive=true to match. Recomputed: no two distinct narrative values in the raw cache differ only by case or surrounding whitespace, so case-insensitive matching would give the same result. Six mapping keys never occur in the raw cache (Aggravated Assault, Att Homicide, Burglary to Unoccupied Structure (unarmed), Theft Grand - Value 300 to 4,999, Forcible Sodomy, Sexual Battery-offender 18 Yoa or Older Vict Under 12 Yoa); they are kept in the rules to preserve the script's mapping unchanged."
+  ],
+  "mapping": {
+    "date_field": "offense_date",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "id"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Homicide"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Sexual Battery",
+              "Sexual Battery With an Object",
+              "Sexual Battery-offender 18 Yoa or Older Vict Under 12 Yoa",
+              "Sexual Battery - Victim 18 or Older and Physically Helpless",
+              "Forcible Sodomy/oral",
+              "Forcible Sodomy",
+              "Sexual Assault"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Robbery (armed)",
+              "Robbery by Sudden Snatching",
+              "Robbery (strong Arm)",
+              "Robbery",
+              "Robbery (home Invasion)",
+              "Robbery (carjacking)",
+              "Robbery-unarmed"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Assault (aggravated)",
+              "Aggravated Assault",
+              "Battery (aggravated)",
+              "Aggravated Battery",
+              "Domestic Aggravated Battery",
+              "Domestic Battery by Strangulation",
+              "Domestic Battery by Strangulation (dating Violence)",
+              "Battery (felony)",
+              "Felony Battery (domestic)",
+              "Felony Battery Repeat Offender",
+              "Domestic Felony Battery Repeat Offender",
+              "Domestic Aggravated Assualt",
+              "Domestic Aggravated Assault",
+              "Battery on a Person 65 Yoa or Older",
+              "Battery (police Officer Aggravated)",
+              "Assault (police Officer Aggravated)",
+              "Dating Violence Aggravated Battery by Strangulation",
+              "Dating Violence Aggravated Battery",
+              "Dating Violence Aggravated Assault",
+              "Dating Felony Battery Repeat Offender",
+              "Homicide (attempted)",
+              "Att Homicide",
+              "Shooting/throwing a Deadly Missile Into a Dwelling/vehicle"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Burglary to Residence",
+              "Burglary to Business",
+              "Burglary to a Structure",
+              "Armed Burglary of a Dwelling or Structure",
+              "Burglary to Unoccupied Structure (unarmed)"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Theft Petit - Retail",
+              "Theft Petit - Other",
+              "Theft Grand - Other",
+              "Theft Petit - Bicycle",
+              "Theft Petit - From Building",
+              "Theft Grand - Retail",
+              "Theft Grand - From Building",
+              "Theft Grand - Bicycle",
+              "Theft Petit - From Vehicle/not Parts",
+              "Theft Petit - From Vehicle (vehicle Parts)",
+              "Theft Grand - From Vehicle (not Parts)",
+              "Theft Grand - From Vehicle (vehicle Parts)",
+              "Theft Petit - Pocket-picking",
+              "Theft Grand - Pocket-picking",
+              "Theft Petit - Purse Snatching",
+              "Theft Grand - Purse Snatching",
+              "Theft Grand - Trailer",
+              "Theft Petit - Trailer",
+              "Theft Grand -firearm",
+              "Theft Petit -firearm",
+              "Theft Grand - From Vending Machine",
+              "Theft Petit - From Vending Machine",
+              "Theft- Petit 3rd Subsequent Offense",
+              "Theft Grand - Value 300 to 4,999",
+              "Burglary to Conveyance",
+              "Lost/stolen Vehicle Tag / Decal",
+              "Gas Drive Off"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "narrative",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Stolen Vehicle (auto)",
+              "Stolen Vehicle (motorcycle)",
+              "Stolen Vehicle (scooter)",
+              "Stolen Vehicle (truck)",
+              "Stolen Vehicle (other)"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Translation of 01_fetch_gainesville.py. Offense rules are the 75 labels of OFFENSE_MAPPING (script lines 62-176), grouped by bucket in script order (murder 1, rape 7, robbery 7, aggravated_assault 23, burglary 5, larceny 27, motor_vehicle_theft 5); offense_mapping.csv was checked to be identical to the dict (parsed with ast and compared). Recomputed on raw_cache.parquet with the script's steps: 91,724 raw rows -> 34,964 after the offense map -> 34,876 after dropping missing or (0,0) coordinates -> 34,876 after the 2018-2024 year filter, 0 duplicate ids. Year-by-offense counts match the README table exactly (README.md lines 81-90, total 34,876). Jurisdiction: the provider is the Gainesville Police Department (README.md line 8), a city PD, so jurisdiction_ids is Gainesville city only (12:municipal:place:1225175, jurisdictions.csv). jurisdictions.csv also lists 5,740 incidents in the Florida nonmunicipal remainder and 1-151 in 12 other places; these were not added: the task rule is that a city PD maps to its city, and neither the script nor the README states that GPD serves any other jurisdiction. Its counts sum to 40,794 (recomputed by adding the incidents_2018_2024 column), which does not equal the 34,876 kept rows; the evidence does not show how that file was computed, so its per-jurisdiction counts were not used for anything beyond identifying the city id. Coordinates: the feed is Socrata with latitude/longitude columns (script lines 50, 233-237), so no __arcgis_* fallback is needed. The where clause is the script's line 181 with the dates replaced by {start}/{end}; select, order ('id') and page_size (50000) are from lines 48-55 and 184-191.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.cityofgainesville.org/resource/gvua-xt9q.json",
+      "name": "Gainesville Police Department Crime Responses (dataGNV)",
+      "order": "id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "id",
+        "narrative",
+        "report_date",
+        "offense_date",
+        "city",
+        "state",
+        "address",
+        "latitude",
+        "longitude",
+        "location",
+        ":@computed_region_43jd_v64e",
+        ":@computed_region_u9vc_vmbc",
+        ":@computed_region_e6r8_dw75",
+        ":@computed_region_ecgy_hwrz"
+      ],
+      "slug": "gvua-xt9q",
+      "source_url": "https://data.cityofgainesville.org/Public-Safety/Crime-Responses/gvua-xt9q",
+      "where": "offense_date >= '{start}T00:00:00' AND offense_date < '{end}T00:00:00'"
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""type_"", ""op"": ""in"", ""value"": """", ""values"": [""30"", ""30C"", ""30S"", ""MURDERST""]}]",[]
+robbery,"[{""field"": ""type_"", ""op"": ""in"", ""value"": """", ""values"": [""27-64"", ""27-64J"", ""27-65"", ""27-65J"", ""64"", ""64G"", ""64J"", ""64K"", ""65"", ""65J"", ""65P"", ""ROB"", ""ROBCJ"", ""ROBW""]}]",[]
+aggravated_assault,"[{""field"": ""type_"", ""op"": ""in"", ""value"": """", ""values"": [""27-30"", ""34"", ""34C"", ""34D"", ""34S"", ""37"", ""37D"", ""ASLTWP""]}]",[]
+burglary,"[{""field"": ""type_"", ""op"": ""in"", ""value"": """", ""values"": [""27-62"", ""60"", ""60D"", ""62"", ""62B"", ""62D"", ""62R"", ""BURGC"", ""BURGOC"", ""BURGR""]}]",[]
+larceny,"[{""field"": ""type_"", ""op"": ""in"", ""value"": """", ""values"": [""27-67"", ""27-67C"", ""67"", ""67B"", ""67C"", ""67D"", ""67S"", ""SHOP"", ""THEFT""]}]",[]
+motor_vehicle_theft,"[{""field"": ""type_"", ""op"": ""in"", ""value"": """", ""values"": [""27-67A"", ""67A"", ""VEHSTO""]}]",[]

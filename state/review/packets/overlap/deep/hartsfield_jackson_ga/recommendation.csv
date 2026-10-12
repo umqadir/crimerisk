@@ -1,0 +1,2 @@
+case_key,ori,recommended_disposition,recommended_geometry_basis,absorb_into_primary,confidence,production_ready,summary
+hartsfield_jackson_ga,GA0602400,localize_to_custom_footprint,airport_property_footprint,false,high,true,Hartsfield-Jackson airport policing should be handled as a bounded custom airport footprint rather than absorbed into Atlanta or proxied to a single county or place.

@@ -1,0 +1,119 @@
+{
+  "case_key": "gulfport_ms",
+  "jurisdiction_id": "28:municipal:place:2829700",
+  "jurisdiction_name": "Gulfport city",
+  "state_abbr": "MS",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_all_fill_as_missing_mississippi_crime_insight_tops_backfill",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Gulfport is a real incorporated city with an active Gulfport Police Department. Official City of Gulfport materials place Police inside the city department structure, provide a live police homepage, list non-emergency dispatch, chief/deputy chief, police clerk, and records contacts, and route police reports and public-records requests through current Gulfport police service pages.",
+    "Current city budget materials continue to fund Gulfport Police as a major operating department. The FY 2026 city budget shows a dedicated Police department appropriation totaling $25,450,708 plus police-specific forfeiture and retirement funds.",
+    "The municipal target itself is structurally clean inside the repo. The live crosswalk maps only MS0240200 to 28:municipal:place:2829700, and agency master still identifies MS0240200 as Gulfport Police Department with both SRS and NIBRS source presence.",
+    "The observed series failure is a continuity/source problem, not an invalid-target problem. Repo observations show real Gulfport support in both SRS and NIBRS through 2021, partial six-month support in 2022, then only seven zero-count SRS summary rows with months_reported = 0 in 2023 and 2024.",
+    "Official Mississippi state publications directly contradict the zero-support 2024 repo state. Mississippi DPS Crime Insight/TOPS publishes agency-specific 2024 violent-crime and property-crime reports for Gulfport Police Department, and the Mississippi NIBRS site states that production-site data from certified agencies are viewable by the public through TOPS.",
+    "The best official backfill surface is therefore Mississippi Crime Insight / TOPS for Gulfport Police Department, not county replacement and not target removal. The state certified/recertifying agency publication also lists Gulfport PD, reinforcing that Gulfport remained a live Mississippi reporting agency rather than a defunct municipal target."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_city_police_department",
+    "official_basis": [
+      "City of Gulfport department navigation includes Police as a city department.",
+      "City police pages describe Gulfport Police Department as the department serving residents and visitors of Gulfport.",
+      "City budget materials include a dedicated Police department budget and police-specific special-revenue funds."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Gulfport Police Department",
+    "official_evidence": [
+      "The official police homepage states the Gulfport Police Department serves the residents and visitors of Gulfport.",
+      "The official police directory lists Gulfport Police command and operations contacts including non-emergency dispatch, chief/deputy chief, police clerk, and records.",
+      "The official police services page routes police-record and public-record requests through Gulfport police service channels."
+    ],
+    "replacement_by_county_found": false,
+    "important_negative_finding": "Nothing in the official city or Mississippi state materials suggests that Harrison County Sheriff's Office replaced Gulfport PD as the city's primary local policing surface."
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "MS0240200 is routed exclusively to 28:municipal:place:2829700 with weight 1.0.",
+    "agency_master_state": "agency_master.parquet still identifies MS0240200 as Gulfport Police Department and records both SRS and NIBRS presence through 2024.",
+    "current_observation_state": "agency_year_observations.parquet shows full 12-month SRS and NIBRS support in 2018-2021, low six-month support in 2022, and only zero-count SRS annual summary rows with months_reported = 0 in 2023-2024.",
+    "current_control_state": "The 2024 Gulfport control row is entirely fill-driven from hist_median with reported_count_preferred = 0 across all seven offenses and adjusted_count_ags_core totaling 3652.0.",
+    "state_packet_state": "The Mississippi source packet already classifies Gulfport as an official effective-NIBRS row missing repo observations and prioritizes Gulfport for direct Crime Insight/TOPS backfill."
+  },
+  "official_state_publication_structure": {
+    "state_repository_program": {
+      "surface": "Mississippi Crime Insight / Theme Oriented Public Site (TOPS)",
+      "official_basis": [
+        "Mississippi NIBRS says production-site data uploaded by NIBRS certified agencies can be viewed by the public through TOPS.",
+        "The TOPS jurisdiction selector includes Gulfport Police Department as a direct selectable agency."
+      ],
+      "why_it_matters": "This is an official agency-level state publication surface for current Gulfport police crime data and is the most likely durable backfill path for the missing repo continuity."
+    },
+    "agency_specific_2024_publications": {
+      "violent_crime_2024": {
+        "agency": "Gulfport Police Department",
+        "total_violent_crime": 458,
+        "murder": 4,
+        "non_consensual_sex_offenses": 31,
+        "robbery": 37,
+        "aggravated_assault": 386
+      },
+      "property_crimes_2024": {
+        "agency": "Gulfport Police Department",
+        "total_property_crime": 3212,
+        "robbery": 37,
+        "burglary": 328,
+        "larceny_theft": 2272,
+        "motor_vehicle_theft": 246
+      },
+      "project_relevance_note": "The public TOPS sex-offense category is broader than the project's rape measure because it includes rape, sodomy, sexual assault with an object, and fondling. Even with that over-broad category, Gulfport's public 2024 state counts prove live agency continuity."
+    },
+    "certification_status_signal": {
+      "surface": "Mississippi NIBRS Certified / Recertifying / In Testing / Certified Not Reporting Agencies - 2025-04-18",
+      "finding": "Gulfport PD appears on the state list, including the recertifying-agencies section, which is incompatible with the theory that Gulfport is a fake or obsolete municipal target."
+    }
+  },
+  "official_2024_publication_evidence": {
+    "state_public_proxy_for_project_seven_offense_total": {
+      "proxy_total_using_public_tops_categories": 3304,
+      "components": {
+        "murder": 4,
+        "non_consensual_sex_offenses_broader_than_project_rape": 31,
+        "robbery": 37,
+        "aggravated_assault": 386,
+        "burglary": 328,
+        "larceny_theft": 2272,
+        "motor_vehicle_theft": 246
+      },
+      "comparison_to_repo_2024_fill": {
+        "repo_adjusted_total": 3652.0,
+        "proxy_gap_repo_minus_state_public_total": 348.0,
+        "proxy_gap_pct_of_state_public_total": 0.10532687651331719
+      },
+      "interpretation": "The public TOPS categories are not a drop-in final seven-offense production table because sex offenses overstate project rape, but they are more than sufficient to show that Gulfport had real 2024 police reporting and that the repo's zero-support/all-fill state is a broken-source condition."
+    }
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "deeper_routing_problem_found": false,
+    "why": [
+      "Official city materials show a live Gulfport Police Department with command staff, dispatch, records, service forms, and a dedicated department budget.",
+      "The repo crosswalk is exclusive and does not show a competing county or regional policing entity replacing the municipal target.",
+      "Official Mississippi TOPS publications provide current Gulfport Police Department crime data for 2024, proving that the city police reporting surface continued after the repo series collapsed."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Gulfport municipal control row 28:municipal:place:2829700.",
+      "Treat the current all-fill condition as a missing Mississippi state-source backfill / continuity problem, not as evidence that the municipal target is invalid.",
+      "Anchor the continuity fix on Mississippi Crime Insight / TOPS for Gulfport Police Department, with the agency-specific 2024 violent-crime and property-crime publications as the most visible official backfill surface.",
+      "Do not collapse Gulfport into Harrison County service structure handling.",
+      "Handle rape carefully in any production override because the public TOPS sex-offense publication is broader than project rape and may require a more granular state extract or documented state-category crosswalk."
+    ]
+  },
+  "likely_issue_class": "valid_target_but_missing_mississippi_crime_insight_tops_backfill",
+  "blockers_or_followups": [
+    "The packet closes the keep/remove decision, but a production-grade override still needs either a reproducible Gulfport TOPS extractor or another Mississippi state extract that preserves project-compatible offense mapping.",
+    "The public TOPS publication proves continuity for 2024 but does not by itself isolate project rape from the broader non-consensual sex offense category."
+  ]
+}

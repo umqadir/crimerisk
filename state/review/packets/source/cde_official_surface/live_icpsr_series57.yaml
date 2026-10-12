@@ -1,0 +1,629 @@
+- generic [active] [ref=e1]:
+  - link "Skip to Main Content" [ref=e2] [cursor=pointer]:
+    - /url: "#main"
+  - banner [ref=e3]:
+    - list [ref=e5]:
+      - listitem [ref=e6]:
+        - link "Help" [ref=e7] [cursor=pointer]:
+          - /url: https://archive.icpsr.umich.edu/icpsr/help
+      - listitem [ref=e8]:
+        - button "Search" [ref=e9] [cursor=pointer]
+      - list [ref=e11]:
+        - listitem
+        - listitem [ref=e12]:
+          - link " Log In" [ref=e13] [cursor=pointer]:
+            - /url: "#"
+            - text: 
+            - text: Log In
+    - navigation [ref=e14]:
+      - generic [ref=e15]:
+        - link "ICPSR" [ref=e16] [cursor=pointer]:
+          - /url: //www.icpsr.umich.edu/sites/icpsr/
+          - img "ICPSR" [ref=e17]
+        - list [ref=e19]:
+          - listitem [ref=e20]:
+            - button "Find Data" [ref=e21] [cursor=pointer]: Find Data
+          - listitem [ref=e22]:
+            - button "Share & Manage Data" [ref=e23] [cursor=pointer]: Share & Manage Data
+          - listitem [ref=e24]:
+            - button "Membership" [ref=e25] [cursor=pointer]: Membership
+          - listitem [ref=e26]:
+            - button "Summer Program" [ref=e27] [cursor=pointer]: Summer Program
+          - listitem [ref=e28]:
+            - button "Teaching & Learning" [ref=e29] [cursor=pointer]: Teaching & Learning
+          - listitem [ref=e30]:
+            - button "About ICPSR" [ref=e31] [cursor=pointer]: About ICPSR
+  - main [ref=e32]:
+    - generic [ref=e33]:
+      - generic [ref=e35]:
+        - heading "Uniform Crime Reporting Program Data Series" [level=1] [ref=e36]
+        - paragraph
+        - paragraph [ref=e37]:
+          - strong [ref=e38]: "Investigator(s):"
+          - text: Federal Bureau of Investigation
+        - paragraph [ref=e39]: "Since 1930, the Federal Bureau of Investigation (FBI) has compiled the Uniform Crime Reports (UCR) to serve as periodic nationwide assessments of reported crimes not available elsewhere in the criminal justice system. With the 1977 data, the title was expanded to Uniform Crime Reporting Program Data. Each year, participating law enforcement agencies contribute reports to the FBI either directly or through their state reporting programs. ICPSR archives the UCR data as five separate components: (1) summary data, (2) county-level data, (3) incident-level data (National Incident-Based Reporting System [NIBRS]), (4) hate crime data, and (5) various, mostly nonrecurring, data collections. Summary data are reported in four types of files: (a) Offenses Known and Clearances by Arrest, (b) Property Stolen and Recovered, (c) Supplementary Homicide Reports (SHR), and (d) Police Employee (LEOKA) Data (Law Enforcement Officers Killed or Assaulted). The county-level data provide counts of arrests and offenses aggregated to the county level. County populations are also reported. In the late 1970s, new ways to look at crime were studied. The UCR program was subsequently expanded to capture incident-level data with the implementation of the National Incident-Based Reporting System. The NIBRS data focus on various aspects of a crime incident. The gathering of hate crime data by the UCR program was begun in 1990. Hate crimes are defined as crimes that manifest evidence of prejudice based on race, religion, sexual orientation, or ethnicity. In September 1994, disabilities, both physical and mental, were added to the list. The fifth component of ICPSR's UCR holdings is comprised of various collections, many of which are nonrecurring and prepared by individual researchers. These collections go beyond the scope of the standard UCR collections provided by the FBI, either by including data for a range of years or by focusing on other aspects of analysis."
+        - paragraph [ref=e40]:
+          - text: More information can be found in NACJD's
+          - link "Uniform Crime Reporting Program Resource Guide" [ref=e41] [cursor=pointer]:
+            - /url: https://www.icpsr.umich.edu/sites/nacjd/posts/shared/uniform-crime-reporting-program-resource-guide
+          - text: and
+          - link "National Incident-Based Reporting System Resource Guide" [ref=e42] [cursor=pointer]:
+            - /url: https://www.icpsr.umich.edu/sites/nacjd/resources/learning-and-data-guides/nibrs-resource-guide
+          - text: .
+        - paragraph [ref=e43]
+        - paragraph
+      - generic [ref=e45]:
+        - tablist [ref=e47]:
+          - tab "Studies" [ref=e48] [cursor=pointer]
+          - tab "Variables" [ref=e49] [cursor=pointer]
+          - tab "Data-related Publications" [ref=e50] [cursor=pointer]
+        - tabpanel [ref=e52]:
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - generic [ref=e56]:
+                - text: Showing 1 to 50 of 312 entries.
+                - generic [ref=e58]:
+                  - 'checkbox "Summaries: Hidden" [ref=e59]'
+                  - generic [ref=e60]: "Summaries: Hidden"
+              - generic [ref=e61]:
+                - generic [ref=e63]:
+                  - generic [ref=e64]: "Sort by:"
+                  - combobox "Sort by:" [ref=e65]:
+                    - option "Study Relevance"
+                    - option "Title A-Z" [selected]
+                    - option "Released/Updated"
+                    - option "Time Period"
+                    - option "Most Cited in ICPSR Bib."
+                - generic [ref=e67]:
+                  - generic [ref=e69]: "Refine:"
+                  - generic [ref=e70]:
+                    - textbox "Refine:" [ref=e71]
+                    - button "Submit" [ref=e72] [cursor=pointer]
+                  - link "more options" [ref=e73] [cursor=pointer]:
+                    - /url: "#"
+              - generic [ref=e74]:
+                - strong [ref=e76]: Study Title/Investigator
+                - strong [ref=e78]: Released/Updated
+            - generic [ref=e79]:
+              - generic [ref=e80]: "1."
+              - generic [ref=e82]:
+                - strong [ref=e83]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2009" [ref=e84] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/30762
+                  - generic [ref=e85]: (ICPSR 30762)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e86]: 2011-09-30
+            - generic [ref=e87]:
+              - generic [ref=e88]: "2."
+              - generic [ref=e90]:
+                - strong [ref=e91]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2010" [ref=e92] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/33522
+                  - generic [ref=e93]: (ICPSR 33522)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e94]: 2012-06-19
+            - generic [ref=e95]:
+              - generic [ref=e96]: "3."
+              - generic [ref=e98]:
+                - strong [ref=e99]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2011" [ref=e100] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/34581
+                  - generic [ref=e101]: (ICPSR 34581)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e102]: 2013-07-17
+            - generic [ref=e103]:
+              - generic [ref=e104]: "4."
+              - generic [ref=e106]:
+                - strong [ref=e107]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2012" [ref=e108] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/35018
+                  - generic [ref=e109]: (ICPSR 35018)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e110]: 2014-05-14
+            - generic [ref=e111]:
+              - generic [ref=e112]: "5."
+              - generic [ref=e114]:
+                - strong [ref=e115]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2013" [ref=e116] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36116
+                  - generic [ref=e117]: (ICPSR 36116)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e118]: 2015-04-30
+            - generic [ref=e119]:
+              - generic [ref=e120]: "6."
+              - generic [ref=e122]:
+                - strong [ref=e123]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2014" [ref=e124] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36400
+                  - generic [ref=e125]: (ICPSR 36400)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e126]: 2016-03-09
+            - generic [ref=e127]:
+              - generic [ref=e128]: "7."
+              - generic [ref=e130]:
+                - strong [ref=e131]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2016" [ref=e132] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/37057
+                  - generic [ref=e133]: (ICPSR 37057)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e134]: 2018-08-17
+            - generic [ref=e135]:
+              - generic [ref=e136]: "8."
+              - generic [ref=e138]:
+                - strong [ref=e139]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2017" [ref=e140] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38741
+                  - generic [ref=e141]: (ICPSR 38741)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e142]: 2023-09-27
+            - generic [ref=e143]:
+              - generic [ref=e144]: "9."
+              - generic [ref=e146]:
+                - strong [ref=e147]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2018" [ref=e148] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38744
+                  - generic [ref=e149]: (ICPSR 38744)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e150]: 2023-09-27
+            - generic [ref=e151]:
+              - generic [ref=e152]: "10."
+              - generic [ref=e154]:
+                - strong [ref=e155]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2019" [ref=e156] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38780
+                  - generic [ref=e157]: (ICPSR 38780)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e158]: 2023-09-28
+            - generic [ref=e159]:
+              - generic [ref=e160]: "11."
+              - generic [ref=e162]:
+                - strong [ref=e163]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2020" [ref=e164] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38788
+                  - generic [ref=e165]: (ICPSR 38788)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e166]: 2023-12-11
+            - generic [ref=e167]:
+              - generic [ref=e168]: "12."
+              - generic [ref=e170]:
+                - strong [ref=e171]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2021" [ref=e172] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38796
+                  - generic [ref=e173]: (ICPSR 38796)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e174]: 2024-07-25
+            - generic [ref=e175]:
+              - generic [ref=e176]: "13."
+              - generic [ref=e178]:
+                - strong [ref=e179]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, Summarized Yearly, United States, 2022" [ref=e180] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/39063
+                  - generic [ref=e181]: (ICPSR 39063)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e182]: 2024-07-29
+            - generic [ref=e183]:
+              - generic [ref=e184]: "14."
+              - generic [ref=e186]:
+                - strong [ref=e187]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 1983" [ref=e188] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/23326
+                  - generic [ref=e189]: (ICPSR 23326)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e190]: 2014-10-16
+            - generic [ref=e191]:
+              - generic [ref=e192]: "15."
+              - generic [ref=e194]:
+                - strong [ref=e195]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2009" [ref=e196] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/30761
+                  - generic [ref=e197]: (ICPSR 30761)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e198]: 2011-09-30
+            - generic [ref=e199]:
+              - generic [ref=e200]: "16."
+              - generic [ref=e202]:
+                - strong [ref=e203]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2010" [ref=e204] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/33521
+                  - generic [ref=e205]: (ICPSR 33521)
+                - text: United States. Federal Bureau of Investigation.
+              - generic [ref=e206]: 2012-06-19
+            - generic [ref=e207]:
+              - generic [ref=e208]: "17."
+              - generic [ref=e210]:
+                - strong [ref=e211]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2011" [ref=e212] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/34580
+                  - generic [ref=e213]: (ICPSR 34580)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e214]: 2013-07-17
+            - generic [ref=e215]:
+              - generic [ref=e216]: "18."
+              - generic [ref=e218]:
+                - strong [ref=e219]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2012" [ref=e220] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/35017
+                  - generic [ref=e221]: (ICPSR 35017)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e222]: 2014-04-16
+            - generic [ref=e223]:
+              - generic [ref=e224]: "19."
+              - generic [ref=e226]:
+                - strong [ref=e227]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2013" [ref=e228] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36115
+                  - generic [ref=e229]: (ICPSR 36115)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e230]: 2015-10-07
+            - generic [ref=e231]:
+              - generic [ref=e232]: "20."
+              - generic [ref=e234]:
+                - strong [ref=e235]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2014" [ref=e236] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36394
+                  - generic [ref=e237]: (ICPSR 36394)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e238]: 2016-04-28
+            - generic [ref=e239]:
+              - generic [ref=e240]: "21."
+              - generic [ref=e242]:
+                - strong [ref=e243]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2015" [ref=e244] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36794
+                  - generic [ref=e245]: (ICPSR 36794)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e246]: 2017-05-19
+            - generic [ref=e247]:
+              - generic [ref=e248]: "22."
+              - generic [ref=e250]:
+                - strong [ref=e251]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2016" [ref=e252] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/37056
+                  - generic [ref=e253]: (ICPSR 37056)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e254]: 2018-06-28
+            - generic [ref=e255]:
+              - generic [ref=e256]: "23."
+              - generic [ref=e258]:
+                - strong [ref=e259]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2017" [ref=e260] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38740
+                  - generic [ref=e261]: (ICPSR 38740)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e262]: 2023-09-27
+            - generic [ref=e263]:
+              - generic [ref=e264]: "24."
+              - generic [ref=e266]:
+                - strong [ref=e267]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2018" [ref=e268] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38743
+                  - generic [ref=e269]: (ICPSR 38743)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e270]: 2023-09-27
+            - generic [ref=e271]:
+              - generic [ref=e272]: "25."
+              - generic [ref=e274]:
+                - strong [ref=e275]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2019" [ref=e276] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38779
+                  - generic [ref=e277]: (ICPSR 38779)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e278]: 2023-09-28
+            - generic [ref=e279]:
+              - generic [ref=e280]: "26."
+              - generic [ref=e282]:
+                - strong [ref=e283]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2020" [ref=e284] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38787
+                  - generic [ref=e285]: (ICPSR 38787)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e286]: 2023-12-11
+            - generic [ref=e287]:
+              - generic [ref=e288]: "27."
+              - generic [ref=e290]:
+                - strong [ref=e291]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2021" [ref=e292] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38795
+                  - generic [ref=e293]: (ICPSR 38795)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e294]: 2024-07-25
+            - generic [ref=e295]:
+              - generic [ref=e296]: "28."
+              - generic [ref=e298]:
+                - strong [ref=e299]:
+                  - 'link "Uniform Crime Reporting Program Data: Arrests by Age, Sex, and Race, United States, 2022" [ref=e300] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/39062
+                  - generic [ref=e301]: (ICPSR 39062)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e302]: 2024-07-29
+            - generic [ref=e303]:
+              - generic [ref=e304]: "29."
+              - generic [ref=e306]:
+                - strong [ref=e307]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 1983" [ref=e308] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/35483
+                  - generic [ref=e309]: (ICPSR 35483)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e310]: 2014-11-11
+            - generic [ref=e311]:
+              - generic [ref=e312]: "30."
+              - generic [ref=e314]:
+                - strong [ref=e315]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2001" [ref=e316] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/3734
+                  - generic [ref=e317]: (ICPSR 3734)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e318]: 2005-11-04
+            - generic [ref=e319]:
+              - generic [ref=e320]: "31."
+              - generic [ref=e322]:
+                - strong [ref=e323]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2002" [ref=e324] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/3998
+                  - generic [ref=e325]: (ICPSR 3998)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e326]: 2005-11-04
+            - generic [ref=e327]:
+              - generic [ref=e328]: "32."
+              - generic [ref=e330]:
+                - strong [ref=e331]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2003" [ref=e332] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/4267
+                  - generic [ref=e333]: (ICPSR 4267)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e334]: 2005-07-29
+            - generic [ref=e335]:
+              - generic [ref=e336]: "33."
+              - generic [ref=e338]:
+                - strong [ref=e339]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2009" [ref=e340] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/30768
+                  - generic [ref=e341]: (ICPSR 30768)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e342]: 2014-02-06
+            - generic [ref=e343]:
+              - generic [ref=e344]: "34."
+              - generic [ref=e346]:
+                - strong [ref=e347]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2010" [ref=e348] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/33528
+                  - generic [ref=e349]: (ICPSR 33528)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e350]: 2014-02-06
+            - generic [ref=e351]:
+              - generic [ref=e352]: "35."
+              - generic [ref=e354]:
+                - strong [ref=e355]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2011" [ref=e356] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/34579
+                  - generic [ref=e357]: (ICPSR 34579)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e358]: 2014-01-24
+            - generic [ref=e359]:
+              - generic [ref=e360]: "36."
+              - generic [ref=e362]:
+                - strong [ref=e363]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2012" [ref=e364] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/35016
+                  - generic [ref=e365]: (ICPSR 35016)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e366]: 2014-05-29
+            - generic [ref=e367]:
+              - generic [ref=e368]: "37."
+              - generic [ref=e370]:
+                - strong [ref=e371]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2013" [ref=e372] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36114
+                  - generic [ref=e373]: (ICPSR 36114)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e374]: 2015-07-09
+            - generic [ref=e375]:
+              - generic [ref=e376]: "38."
+              - generic [ref=e378]:
+                - strong [ref=e379]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2014" [ref=e380] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36396
+                  - generic [ref=e381]: (ICPSR 36396)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e382]: 2016-03-24
+            - generic [ref=e383]:
+              - generic [ref=e384]: "39."
+              - generic [ref=e386]:
+                - strong [ref=e387]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2015" [ref=e388] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/36793
+                  - generic [ref=e389]: (ICPSR 36793)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e390]: 2017-05-18
+            - generic [ref=e391]:
+              - generic [ref=e392]: "40."
+              - generic [ref=e394]:
+                - strong [ref=e395]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2016" [ref=e396] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/37058
+                  - generic [ref=e397]: (ICPSR 37058)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e398]: 2018-06-29
+            - generic [ref=e399]:
+              - generic [ref=e400]: "41."
+              - generic [ref=e402]:
+                - strong [ref=e403]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2017" [ref=e404] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/37857
+                  - generic [ref=e405]: (ICPSR 37857)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e406]: 2022-10-05
+            - generic [ref=e407]:
+              - generic [ref=e408]: "42."
+              - generic [ref=e410]:
+                - strong [ref=e411]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2018" [ref=e412] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/37873
+                  - generic [ref=e413]: (ICPSR 37873)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e414]: 2022-10-05
+            - generic [ref=e415]:
+              - generic [ref=e416]: "43."
+              - generic [ref=e418]:
+                - strong [ref=e419]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2019" [ref=e420] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38781
+                  - generic [ref=e421]: (ICPSR 38781)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e422]: 2023-09-28
+            - generic [ref=e423]:
+              - generic [ref=e424]: "44."
+              - generic [ref=e426]:
+                - strong [ref=e427]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2020" [ref=e428] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38789
+                  - generic [ref=e429]: (ICPSR 38789)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e430]: 2023-12-11
+            - generic [ref=e431]:
+              - generic [ref=e432]: "45."
+              - generic [ref=e434]:
+                - strong [ref=e435]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2021" [ref=e436] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/38797
+                  - generic [ref=e437]: (ICPSR 38797)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e438]: 2023-12-12
+            - generic [ref=e439]:
+              - generic [ref=e440]: "46."
+              - generic [ref=e442]:
+                - strong [ref=e443]:
+                  - 'link "Uniform Crime Reporting Program Data: Arson, United States, 2022" [ref=e444] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/39064
+                  - generic [ref=e445]: (ICPSR 39064)
+                - text: United States. Federal Bureau of Investigation
+              - generic [ref=e446]: 2024-07-29
+            - generic [ref=e447]:
+              - generic [ref=e448]: "47."
+              - generic [ref=e450]:
+                - strong [ref=e451]:
+                  - 'link "Uniform Crime Reporting Program Data: County-Level Detailed Arrest and Offense Data, United States, 2009" [ref=e452] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/30763
+                  - generic [ref=e453]: (ICPSR 30763)
+                - text: United States Department of Justice. Office of Justice Programs. Federal Bureau of Investigation
+              - generic [ref=e454]: 2014-06-16
+            - generic [ref=e455]:
+              - generic [ref=e456]: "48."
+              - generic [ref=e458]:
+                - strong [ref=e459]:
+                  - 'link "Uniform Crime Reporting Program Data: County-Level Detailed Arrest and Offense Data, United States, 2010" [ref=e460] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/33523
+                  - generic [ref=e461]: (ICPSR 33523)
+                - text: United States Department of Justice. Office of Justice Programs. Federal Bureau of Investigation
+              - generic [ref=e462]: 2014-06-16
+            - generic [ref=e463]:
+              - generic [ref=e464]: "49."
+              - generic [ref=e466]:
+                - strong [ref=e467]:
+                  - 'link "Uniform Crime Reporting Program Data: County-Level Detailed Arrest and Offense Data, United States, 2011" [ref=e468] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/34582
+                  - generic [ref=e469]: (ICPSR 34582)
+                - text: United States Department of Justice. Office of Justice Programs. Federal Bureau of Investigation
+              - generic [ref=e470]: 2014-06-13
+            - generic [ref=e471]:
+              - generic [ref=e472]: "50."
+              - generic [ref=e474]:
+                - strong [ref=e475]:
+                  - 'link "Uniform Crime Reporting Program Data: County-Level Detailed Arrest and Offense Data, United States, 2012" [ref=e476] [cursor=pointer]':
+                    - /url: https://www.icpsr.umich.edu/web/ICPSR/studies/35019
+                  - generic [ref=e477]: (ICPSR 35019)
+                - text: United States Department of Justice. Federal Bureau of Investigation
+              - generic [ref=e478]: 2014-06-12
+            - navigation [ref=e481]:
+              - list [ref=e482]:
+                - listitem [ref=e483]:
+                  - generic "first page of results":
+                    - generic:
+                      - generic: 
+                    - generic: first page of results
+                - listitem [ref=e484]:
+                  - generic "previous page of results":
+                    - generic:
+                      - generic: 
+                    - generic: previous page of results
+                - listitem [ref=e485]:
+                  - generic [ref=e486] [cursor=pointer]: "1"
+                - listitem [ref=e487]:
+                  - generic [ref=e488] [cursor=pointer]: "2"
+                - listitem [ref=e489]:
+                  - generic [ref=e490] [cursor=pointer]: "3"
+                - listitem [ref=e491]:
+                  - generic [ref=e492] [cursor=pointer]: "4"
+                - listitem [ref=e493]:
+                  - generic [ref=e494] [cursor=pointer]: "5"
+                - listitem [ref=e495]:
+                  - generic "next page of results" [ref=e496] [cursor=pointer]:
+                    - generic [ref=e498]: 
+                    - generic [ref=e499]: next page of results
+                - listitem [ref=e500]:
+                  - generic "last page of results" [ref=e501] [cursor=pointer]:
+                    - generic [ref=e503]: 
+                    - generic [ref=e504]: last page of results
+  - contentinfo [ref=e506]:
+    - generic [ref=e508]:
+      - generic [ref=e509]:
+        - link "Facebook" [ref=e510] [cursor=pointer]:
+          - /url: //www.facebook.com/pages/ICPSR/43191688396
+          - generic [ref=e511]: 
+          - generic [ref=e512]: Facebook
+        - link "Instagram" [ref=e513] [cursor=pointer]:
+          - /url: //www.instagram.com/theicpsr/
+          - generic [ref=e514]: 
+          - generic [ref=e515]: Instagram
+        - link "X formerly Twitter" [ref=e516] [cursor=pointer]:
+          - /url: //www.twitter.com/#!/icpsr
+          - generic [ref=e517]: 
+          - generic [ref=e518]: X formerly Twitter
+        - link "Linked In" [ref=e519] [cursor=pointer]:
+          - /url: //www.linkedin.com/company/ICPSR
+          - generic [ref=e520]: 
+          - generic [ref=e521]: Linked In
+        - link "YouTube" [ref=e522] [cursor=pointer]:
+          - /url: //www.youtube.com/channel/UC4__DY4PxAg4Fjspbubd-Pw
+          - generic [ref=e523]: 
+          - generic [ref=e524]: YouTube
+        - link "Bluesky" [ref=e525] [cursor=pointer]:
+          - /url: https://bsky.app/profile/icpsr.bsky.social
+          - img [ref=e526]
+          - paragraph [ref=e528]: Bluesky
+      - generic [ref=e529]:
+        - link "Accessibility" [ref=e530] [cursor=pointer]:
+          - /url: https://myumi.ch/ICPSRAccessibilityWebFoot
+        - text: "|"
+        - link "Privacy Policy" [ref=e531] [cursor=pointer]:
+          - /url: https://myumi.ch/ICPSRPrivacyPolicyWebFoot
+        - text: "|"
+        - link "Contact Us" [ref=e532] [cursor=pointer]:
+          - /url: https://myumi.ch/ICPSRContactUsWebFooter
+        - text: "|"
+        - link "Help" [ref=e533] [cursor=pointer]:
+          - /url: https://www.icpsr.umich.edu/sites/icpsr/help
+        - text: "|"
+        - generic [ref=e534]:
+          - link "ICPSR-help@umich.edu" [ref=e535] [cursor=pointer]:
+            - /url: mailto:ICPSR-help@umich.edu
+          - generic [ref=e536]: 
+          - text: "|"
+        - link "734-647-2200" [ref=e537] [cursor=pointer]:
+          - /url: tel:734-647-2200
+      - link "Sign up for our newsletter" [ref=e539] [cursor=pointer]:
+        - /url: https://myumi.ch/ICPSRAnnounce
+  - contentinfo [ref=e540]:
+    - generic [ref=e542]:
+      - img "Logo for University of Michigan" [ref=e544]
+      - generic [ref=e545]:
+        - text: © 2026
+        - link "The Regents of the University of Michigan" [ref=e546] [cursor=pointer]:
+          - /url: http://regents.umich.edu/
+        - text: . ICPSR is part of the
+        - link "Institute for Social Research" [ref=e547] [cursor=pointer]:
+          - /url: //www.isr.umich.edu/
+        - text: at the
+        - link "University of Michigan" [ref=e548] [cursor=pointer]:
+          - /url: //www.umich.edu/
+        - text: .

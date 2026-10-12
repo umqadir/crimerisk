@@ -1,0 +1,102 @@
+{
+  "case_key": "crowley_la",
+  "jurisdiction_id": "22:municipal:place:2218650",
+  "jurisdiction_name": "Crowley city",
+  "state_abbr": "LA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_2022_2024_as_louisiana_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Crowley is a real current municipal police jurisdiction. The City of Crowley contact page lists a Police Department inside city government, names Chief Troy Hebert, and routes police-records requests through the city, while Crowley Police Department maintains a live official site with records-request and contact forms.",
+    "Official Louisiana reporting sources support continuity failure rather than parish replacement. Crime in Louisiana 2020 lists Acadia Parish Sheriff and Crowley Police Department as separate participating agencies, with Iota marked separately as reporting under the parish sheriff.",
+    "The Louisiana Legislative Auditor's Uniform Crime Reporting appendix says Crowley Police Department did not report 2022 data to the FBI, and unlike several other Acadia municipalities it is not labeled as reporting through Acadia Parish Sheriff's Office.",
+    "The official Crime in Louisiana 2023 report omits Crowley from the certified city-level LIBRS participation and offense tables even though other Acadia agencies such as Church Point and Rayne appear and Acadia remains present in the metropolitan-county table.",
+    "Repo evidence matches a keep-row continuity failure. LA0010100 maps exclusively to Crowley city, carries real positive annual observations through 2021, then collapses to zero-count SRS annual rows with months_reported = 0 in 2022, 2023, and 2024, while the local official FBI-CDE validation artifact still marks Crowley Police Department as effective NIBRS by 2024."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Crowley maintains a Police Department inside the official city department contact structure.",
+      "The City names Troy Hebert as Chief of Police and provides direct administration, investigations, and police-records-request contact paths.",
+      "Crowley Police Department separately maintains an active official site with a current address, non-emergency phone number, and public-facing records and contact forms."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Crowley Police Department",
+    "active_city_police_department_found": true,
+    "parish_replacement_or_primary_displacement_found": false,
+    "official_evidence": [
+      "Crowley's official city contact page lists the police department as a city department and identifies a city chief of police.",
+      "The Acadia Parish Sheriff's Office enforcement page says the APSO 911 center dispatches five law-enforcement agencies around Acadia Parish, which is consistent with multiple coexisting agencies rather than a single sheriff-only policing structure.",
+      "Louisiana's 2020 participation list names both Acadia Parish Sheriff and Crowley Police Department separately, which is direct evidence against a parish-replacement theory."
+    ],
+    "important_clarification": "This review found no official evidence that Crowley city should be rerouted to Acadia Parish Sheriff as its primary annual police target."
+  },
+  "louisiana_reporting_context": {
+    "state_transition_structure": {
+      "summary": "Louisiana's official reporting architecture after January 1, 2021 is a mixed transition environment where agencies may still submit summary LUCR/SRS or submit LIBRS data converted to NIBRS.",
+      "official_basis": [
+        "The Crime in LA overview says the FBI is no longer accepting summary reports through UCR Online as of January 1, 2021.",
+        "The same overview says Louisiana agencies can submit either LUCR/SRS or LIBRS data, and LIBRS data is stored in a central state database and converted to NIBRS for FBI submission."
+      ]
+    },
+    "official_public_reporting_signals": {
+      "2020_certified_participation": {
+        "summary": "Crowley Police Department appears as a separate Acadia participating agency in Crime in Louisiana 2020.",
+        "interpretation": "Crowley was a real standalone municipal reporting identity before the later break."
+      },
+      "2022_state_audit_status": {
+        "summary": "The Louisiana Legislative Auditor marks Crowley Police Department 'No' for reporting 2022 data to the FBI.",
+        "important_comparison": "The same appendix explicitly labels Acadia municipalities such as Estherwood, Iota, and Morse as reporting through Acadia Parish Sheriff's Office.",
+        "interpretation": "Crowley's break is a direct reporting failure, not a sheriff-mediated reporting arrangement."
+      },
+      "2023_public_certified_publication": {
+        "summary": "Crime in Louisiana 2023 lists Church Point and Rayne in the city tables and Acadia in the metropolitan-county table, but Crowley is absent from the city-level certified publication.",
+        "interpretation": "Public state publication continuity for Crowley had failed by the 2023 certified report, while Acadia Parish itself remained present."
+      }
+    }
+  },
+  "repo_internal_evidence": {
+    "crosswalk_status": "state/reference/agency_to_jurisdiction_crosswalk.csv routes LA0010100 exclusively to 22:municipal:place:2218650 with relationship_type exclusive and weight 1.0.",
+    "agency_review_status": "state/review/agency_jurisdiction_review.csv shows Crowley as an auto-matched single-candidate place resolution with source_presence_srs true, source_presence_nibrs true, latest_srs_year 2024, latest_nibrs_year 2024, latest_srs_part1_total 0.0, and latest_srs_months_reported 0.0.",
+    "agency_observation_history": {
+      "2018_srs_total": 1144.0,
+      "2019_srs_total": 686.0,
+      "2020_srs_total": 359.0,
+      "2021_srs_total": 210.0,
+      "2021_nibrs_total": 182.0,
+      "2022_srs_total": 0.0,
+      "2023_srs_total": 0.0,
+      "2024_srs_total": 0.0,
+      "interpretation": "state/observations/agency_year_observations.parquet shows real positive annual Crowley counts through 2021 and then only zero-count annual SRS rows with months_reported = 0 and quality_tier = unknown in 2022-2024."
+    },
+    "current_control_status": "state/controls/jurisdiction_controls_2024.parquet shows all seven Crowley 2024 offenses preferred from srs_return_a_annual with reported_count_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and estimate_source hist_median.",
+    "official_fbi_roster_validation_local_artifact": "data/FBI-CDE-Agency-Rosters-2024/validation/ori_source_validation_2024.csv marks LA0010100 Crowley Police Department as official_is_nibrs = true, official_effective_nibrs_2024 = true, official_nibrs_start_date = 2021-01-01, and repo_has_nibrs_2024 = false with mismatch reason official_nibrs_no_repo_nibrs|official_start_by_2024_but_repo_no_nibrs|no_2024_observation."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Crowley still operates a live official city police department.",
+      "The official city-police identity is exclusive in the repo crosswalk and not structurally ambiguous.",
+      "Official Louisiana materials distinguish Crowley's failure to report from the separate set of municipalities that report through Acadia Parish Sheriff's Office.",
+      "The official public state publication path shows Crowley disappearing from certified city-level outputs rather than being absorbed into a parish replacement row."
+    ],
+    "recommended_handling": [
+      "Retain Crowley city as a standalone municipal control row.",
+      "Do not reroute LA0010100 into Acadia Parish Sheriff or county remainder.",
+      "Classify the 2022-2024 zero and full-fill state as a Louisiana reporting and publication continuity failure on a valid municipal police target.",
+      "Treat the current all-zero SRS annual rows as continuity placeholders rather than evidence that Crowley lacks a city police department.",
+      "If production later needs post-2021 Crowley-specific offense counts, obtain them from a direct Crowley Police Department records pull or a defensible LCLE/LSA/FBI-derived agency extract rather than from Acadia Parish sheriff totals."
+    ]
+  },
+  "exact_blocker": "No public official 2024 Crowley-specific annual offense table was located during this review. Louisiana's best public official annual publication currently available is the lagged Crime in Louisiana 2023 report, and Crowley is absent from that certified city-level output. Crowley's city and police sites expose contact and records-request surfaces but not an annual offense table. That closes the keep-versus-drop question but blocks a direct public 2024 count repair.",
+  "likely_issue_class": "valid_target_with_louisiana_reporting_and_publication_continuity_failure",
+  "open_questions": [
+    "The target-validity question is closed with high confidence. The remaining bounded question is implementation: whether production should seek a direct Crowley Police Department records pull or a broader official Louisiana agency-extract lane for the state's effective-NIBRS-but-no-observation tail.",
+    "The official FBI CDE-derived local validation artifact supports Crowley as effective NIBRS by 2024, but this packet did not recover a public Crowley-specific 2024 offense table from FBI or Louisiana public surfaces."
+  ]
+}

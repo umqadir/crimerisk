@@ -1,0 +1,359 @@
+{
+  "city_key": "urbana_il",
+  "city_name": "Urbana",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/urbana_il/packet.json#case_text",
+    "state/review/packets/city/urbana_il/evidence/registry_row.json",
+    "state/review/packets/city/urbana_il/evidence/doc_00.json#description",
+    "state/review/packets/city/urbana_il/evidence/doc_00.json#columns",
+    "state/review/packets/city/urbana_il/evidence/doc_index.csv",
+    "state/review/packets/city/urbana_il/evidence/raw_cache_profile.json",
+    "state/review/packets/city/urbana_il/evidence/scope_candidates.csv",
+    "state/review/packets/city/urbana_il/evidence/official_totals.csv",
+    "state/review/packets/city/urbana_il/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "17:municipal:place:1777005"
+    ],
+    "state_fips": [
+      "17"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit is one row per offense (incident_and_crime_sequence = incident key + '_' + offense sequence), not the SRS hierarchy: an incident with several Part I offenses contributes one row per mapped offense. In the pull the mapped codes cover 7,020 rows in 6,736 distinct incident_key_formatted_with values (284 extra rows), so SRS-basis years (2018-2020 official_source cius_publication_annual / srs_return_a_annual) can be overcounted relative to the hierarchy rule; NIBRS-basis years count every offense as this feed does.",
+    "Aggravated assault straddles definitions: the feed uses Illinois statutory codes (410 BATTERY-AGGRAVATED, 488 BATTERY-AGG DOMESTIC, 485/487/495 aggravated battery of child/unborn child/senior, 510 ASSAULT-AGGRAVATED, 1415 AGG DISCHARGE OF FIREARM, plus attempted 110 murder). Illinois aggravates battery/assault by victim status or place (e.g. senior, public way) as well as by weapon or great bodily harm, so some rows are FBI simple assault (13B); 591 of 742 code-410 rows carry weapon_1_description 'PERSONAL WEAPONS(HANDS,FEET..)' and no injury field is published to separate them. Mapped counts (245, 247, 230, 295, 246 for 2018-2022, UNFOUNDED excluded) exceed official totals (67, 57, 135, 156, 205).",
+    "Excluded as not separable into an FBI offense: 170 HOMICIDE-DRUG INDUCED (1 row), 770 VEHICULAR INVASION (2 rows), 3200 ARMED VIOLENCE (32 rows; underlying felony not published), 1562/1563 aggravated/criminal sexual abuse (fondling, 11D), 3960-3969 intimidation/stalking (13C), 460/486 simple battery and 560 ASSAULT (13B), 805/1220 theft of lost/mislaid property, 1210 theft of labor or services, 1137/1138 identity theft, 1200 possession of stolen property, 2475 motor vehicle anti-theft laws (misdemeanor), 5084 recovered stolen vehicle.",
+    "650 HOME INVASION (59 rows) is mapped to burglary; under the SRS hierarchy some of these would be scored as robbery or aggravated assault instead.",
+    "760 BURGLARY FROM MOTOR VEHICLE and 730 BURGLARY MOTOR VEH PARTS & ACCESS are Illinois burglary but FBI larceny (23F/23G) and are mapped to larceny.",
+    "Attempts (csa_description 'ATTEMPT') are kept in their offense, as the FBI counts attempted rape, robbery, burglary, larceny and motor vehicle theft; attempted murder is mapped to aggravated assault. Rows with status_description 'UNFOUNDED' (66 rows among the mapped codes) are dropped; 31 mapped rows with 'REFERRED TO OTHER JURISDICTION' are kept.",
+    "Coverage ends 2023-02-14 (max date_occurred in the pull; portal description 'Incidents Report with Date and Time (Up to 2023)'), so 2023 is partial and 2024-2025 have no rows against official totals for those years."
+  ],
+  "mapping": {
+    "date_field": "date_occurred",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "incident_and_crime_sequence"
+    ],
+    "latitude_field": "georeference#point",
+    "longitude_field": "georeference#point",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "eq",
+            "value": "110",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "eq",
+            "value": "NONE",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "eq",
+            "value": "110",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "eq",
+            "value": "ATTEMPT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "260",
+              "261",
+              "280"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "310",
+              "320",
+              "330",
+              "325",
+              "326"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "410",
+              "485",
+              "487",
+              "488",
+              "495",
+              "510",
+              "1415"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "610",
+              "625",
+              "650"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "710",
+              "720",
+              "730",
+              "760",
+              "815",
+              "825",
+              "860",
+              "8607",
+              "8612",
+              "870",
+              "895"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "eq",
+            "value": "910",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "status_description",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "csa_description",
+            "op": "in",
+            "value": "",
+            "values": [
+              "CONSPIRACY",
+              "SOLICITATION"
+            ]
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Dates: date_occurred (occurrence date, Socrata calendar_date, e.g. '2018-02-23T00:00:00.000'); year_occurred agrees with the year of date_occurred for every row (query grouping year_occurred by substr(date_occurred,1,4) gave only matching pairs), so no year_field is set. The pull spans 2018-01-01 to 2023-02-14, 56,946 rows. Unit: offense. incident_and_crime_sequence is distinct for 56,942 of 56,946 rows; the four duplicated ids (U21-14871_1, W18-00123_1, W19-00584_1, W22-00433_1) carry only non-mapped codes (5081, 6601/6673, 6601/6614, 6605), and dedupe keeps the first row. Every row with a mapped code has a 'U' prefix; W/T/F/B/V prefixes hold traffic, crisis and bicycle records. With the rules as written, mapped rows by year 2018-2023 (UNFOUNDED excluded) are: murder 1,1,2,9,3,0; rape 31,30,44,28,33,4; robbery 58,38,38,22,23,2; aggravated assault 245,247,230,295,246,24; burglary 200,162,140,153,171,15; larceny 975,854,678,673,931,95; motor vehicle theft 24,40,45,71,66,7 (computed with a CASE over crime_code/csa_description in query.py). Codes are Illinois I-UCR style crime_code values present in the pull: rape = 260 SEXUAL-ASSAULT-CRIMINAL, 261 SEXUAL ASSAULT-AGG CRIMINAL, 280 PREDATORY CRIM SEX ASSAULT OF CHILD (Illinois criminal sexual assault is penetration-based, matching 11A-11C; sexual abuse 1562/1563 is fondling and is left out); robbery includes 325/326 vehicular hijacking (carjacking); larceny = 710, 720, 730, 760, 815, 825, 860, 8607 THEFT-CITY, 8612 THEFT-RETAIL-CITY, 870, 895. Coordinates: the georeference point (GeoJSON Point, [lon, lat]). The publisher does not state rounding, but points carry 5 decimals and are geocoded from the block-level mapping_address (e.g. '0     LINCOLN              ,URBANA,IL'): 34,525 geocoded rows have 3,503 distinct mapping_address values and 1,742 distinct points, and each mapping_address has exactly one point, so points are hundred-block locations, not exact addresses. 239 of 7,020 mapped-code rows lack a point (e.g. mapping_address 'UNKNOWN URBANA'), and 5 geocoded mapped-code rows fall outside a 40.05-40.17 N, 88.13-88.26 W box around Urbana. Street addresses are replaced by 'ADDRESS REMOVED' on some rows, but none of those rows carry a mapped code; the publisher's metadata states no redaction or exclusion policy. Scope: Urbana PD (ORI IL0100600) polices Urbana city, the only scope candidate. The registry page_size is blank; 50000 is the Socrata page limit.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.illinois.gov/resource/x5sh-dbjn.json",
+      "name": "City of Urbana: Police Incidents",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "urbana_il",
+      "source_url": "https://data.illinois.gov/Local-Government/City-Of-Urbana-Police-Incidents/x5sh-dbjn",
+      "where": "date_occurred >= '{start}T00:00:00' AND date_occurred < '{end}T00:00:00'"
+    }
+  ]
+}

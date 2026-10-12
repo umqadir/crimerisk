@@ -1,0 +1,27 @@
+raw_field,raw_value,raw_label,v2_offense,mapping_status,mapping_quality,use_for_v2,source_count_2024,logic_basis,notes
+ucr_category,09A,Murder,murder,exact,exact,yes,56,direct_ucr_category,Best current exact public mapping but still materially below official TXDPS UCR murder counts.
+ucr_category,11A,Rape,rape,approximate,approximate,yes,485,direct_ucr_category,Use with 11B and 11C as the closest public Austin sexual assault bucket to V2 rape but keep rape out of the clean exact-selective path.
+ucr_category,11B,Rape,rape,approximate,approximate,yes,59,direct_ucr_category,Public Austin reference publishes Sexual Assault rather than a strict V2 rape bucket so this remains approximate only.
+ucr_category,11C,Rape,rape,approximate,approximate,yes,149,direct_ucr_category,Public Austin reference publishes Sexual Assault rather than a strict V2 rape bucket so this remains approximate only.
+ucr_category,120,Robbery,robbery,exact,exact,yes,818,direct_ucr_category,Only robbery code exposed in the live public feed and it belongs in the current exact-selective path.
+ucr_category,13A,Aggravated Assault,aggravated_assault,exact,exact,yes,2485,direct_ucr_category,Exact on the public category value but still undercounts the official TXDPS UCR aggravated assault totals by about 18 percent in 2024 and 2025. The live 13A rows already use APD's separate 0402 through 0411 aggravated-assault code family.
+ucr_category,220,Burglary,burglary,exact,exact,yes,4135,direct_ucr_category,Rolls all burglary subtypes into the V2 burglary bucket and remains in the current exact-selective path despite a moderate undercount.
+ucr_category,23A,Theft,larceny,exact,exact,yes,804,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23B,Theft,larceny,exact,exact,yes,9,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23C,Theft,larceny,exact,exact,yes,2296,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23D,Theft,larceny,exact,exact,yes,76,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23E,Theft,larceny,exact,exact,yes,43,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23F,Theft,larceny,exact,exact,yes,8168,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23G,Theft,larceny,exact,exact,yes,1349,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,23H,Theft,larceny,exact,exact,yes,9086,direct_ucr_category,Map all 23x theft categories to V2 larceny.
+ucr_category,240,Auto Theft,motor_vehicle_theft,exact,exact,yes,5828,direct_ucr_category,Direct public category match and part of the current exact-selective path.
+ucr_code,100,CRASH/MURDER,murder,approximate,approximate,no,2,legacy_refresh_fallback,Legacy refresh logic treated some null category homicide rows as murder. Do not auto apply without Austin specific validation.
+ucr_code,500,BURGLARY OF RESIDENCE-FAM/DATING VIO,burglary,approximate,approximate,no,46,legacy_refresh_fallback,Null category tail. Candidate burglary fallback only after Austin validation.
+ucr_code,900,ASSAULT WITH INJURY and ASSAULT WITH INJURY-FAM/DATING VIO,aggravated_assault,excluded,not_exact,no,5653,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 0900 under 13B Simple Assault, not 13A. Do not use in the exact aggravated-assault path.
+ucr_code,903,ASSAULT ON PEACE OFFICER and ASSAULT ON PUBLIC SERVANT,aggravated_assault,excluded,not_exact,no,203,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 0903 under 13B Simple Assault. APD separately publishes 0403 as aggravated assault on a public servant or peace officer, so 0903 cannot be treated as exact 13A.
+ucr_code,909,FELONY ENHANCEMENT/ASSLT W/INJ,aggravated_assault,excluded,not_exact,no,173,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 0909 under 13B Simple Assault. Its empirical count closure does not make it exact aggravated assault.
+ucr_code,911,ASSAULT OF A PREGNANT WOMAN variants,aggravated_assault,excluded,not_exact,no,122,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 0911 under 13B Simple Assault, not 13A.
+ucr_code,2011,INJURY TO CHILD variants,aggravated_assault,excluded,not_exact,no,96,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 2011 under 13B Simple Assault. Exclude from exact aggravated-assault promotion.
+ucr_code,2012,INJURY TO ELDERLY PERSON variants,aggravated_assault,excluded,not_exact,no,198,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 2012 under 13B Simple Assault. One rare 2024 SBI row carried 13A in the live feed, but that is too sparse and undocumented for any production rule.
+ucr_code,2013,INJURY DISABLED INDIVIDUAL variants,aggravated_assault,excluded,not_exact,no,55,official_apd_13b_lookup,APD Chief's Monthly Report March 2024 lookup places 2013 under 13B Simple Assault, not 13A.
+ucr_code,108,CRASH/INTOX MANSLAUGHTER,,excluded,excluded,no,5,live_public_review,Do not map to V2 murder.

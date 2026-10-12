@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+aurora_co,"Aurora, Colorado",08:municipal:place:0804000,APD Transparency Portal - APD_RMS (7 layers),https://apd-transparency-portal-auroraco.hub.arcgis.com/,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

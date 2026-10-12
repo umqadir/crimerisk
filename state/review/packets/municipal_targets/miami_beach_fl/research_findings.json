@@ -1,0 +1,84 @@
+{
+  "case_key": "miami_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1245025",
+  "jurisdiction_name": "Miami Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_keep_live_2024_fdle_state_publication_support",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Miami Beach is a real incorporated city with its own municipal government and an active Miami Beach Police Department. The city operates under a council-city-manager form of government and maintains MBPD headquarters at 1100 Washington Avenue.",
+    "Official city police materials show continuous Miami Beach Police leadership and operations through the current period. The city lists Wayne A. Jones as Chief of Police beginning September 1, 2023, and current department contact pages show Miami Beach Police facilities and operational contact points.",
+    "Official city crime-statistics pages align with the repo's pre-2023 Miami Beach history. The published city series for 2018-2022 matches the broad pattern of the repo's annual Miami Beach counts, which supports the conclusion that this is a valid long-running municipal police surface rather than a fake target.",
+    "The zero-row condition in the repo is not because Miami Beach stopped being a real police jurisdiction. The Florida state packet already recovered an official 2024 FDLE FIBRS workbook row for FL0130700, Miami Beach Police Department, with 3 quarters reported and nonzero violent, property, and other offense totals.",
+    "That official 2024 FIBRS row meant the earlier fully filled 2024 Miami Beach control was a missing-ingestion / missing-backfill problem, not a municipal-target-validity problem.",
+    "A 2026-03-28 validation check confirmed that the live build now carries Miami Beach as seven state_publication_annual rows with zero current-year fill, so the packet no longer represents an open backfill task."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city",
+    "government_form": "council_city_manager",
+    "official_basis": [
+      "City Hall directory states the City of Miami Beach operates as a council/city-manager form of government.",
+      "The city's official website presents Miami Beach as a full municipal government with mayor, commissioners, and city departments."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Miami Beach Police Department",
+    "official_evidence": [
+      "MBPD contact page lists Miami Beach Police Department headquarters and substation locations.",
+      "City staff page identifies Wayne A. Jones as Chief of Police and states he assumed the role on September 1, 2023.",
+      "The October 9, 2025 Letter to Commission reports current citywide crime-reduction results produced by MBPD, confirming the department remains active and operational."
+    ],
+    "separate_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false
+  },
+  "official_reporting_evidence": {
+    "city_history_alignment": {
+      "source": "City of Miami Beach crime statistics page",
+      "summary": "The city publishes Miami Beach UCR-style annual counts through 2022, and those values line up with the repo's historical Miami Beach series, which supports continuity of the same municipal police surface."
+    },
+    "fdle_2024_fibrs_presence": {
+      "source": "FDLE FIBRS Offense 2024 workbook plus reconciled Florida packet spotcheck",
+      "ori9": "FL0130700",
+      "agency_name": "Miami Beach Police Department",
+      "official_nibrs_start_date": "2024-01-01",
+      "quarters_reported": 3,
+      "violent_ytd": 640,
+      "property_ytd": 4738,
+      "other_ytd": 3491,
+      "interpretation": "Official Florida 2024 incident-based reporting exists for Miami Beach and should have prevented a zero-observation municipal row."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "FL0130700 maps exclusively to 12:municipal:place:1245025",
+    "current_observation_state": "2024 live observations now carry seven state_publication_annual rows for Miami Beach sourced from fdle_fibrs_offense_detail_ytd.",
+    "current_control_state": "2024 Miami Beach controls now use state_publication_annual for all seven offenses with current_year_fill_count = 0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Miami Beach is an incorporated city with an active municipal police department.",
+      "Official city crime statistics align with the repo's historical Miami Beach series, so the municipal target is not a fake place-level invention.",
+      "Official FDLE 2024 FIBRS reporting exists for Miami Beach Police Department, which confirms that the current full-fill outcome is a source-ingestion gap rather than a target-validity failure."
+    ],
+    "likely_explanation_for_2024_zero_row": [
+      "The repo failed to bring in the official Florida 2024 FIBRS row for FL0130700.",
+      "Because that official row never landed, Miami Beach fell through to structurally-missing handling and then to trend-based fill."
+    ],
+    "recommended_handling": [
+      "Retain Miami Beach as a standalone municipal control row.",
+      "Treat the original issue as a resolved Florida official-source ingestion / continuity problem rather than a municipal-target removal case.",
+      "Keep the live 2024 FDLE-backed state_publication_annual support in place and re-check only if the Florida source contract changes."
+    ]
+  },
+  "post_promotion_validation": {
+    "validation_date": "2026-03-28",
+    "observations_check": "2024 jurisdiction_year_observations now carries seven Miami Beach state_publication_annual rows from fdle_fibrs_offense_detail_ytd.",
+    "controls_check": "2024 jurisdiction_controls now shows preferred_source = state_publication_annual for all seven offenses and current_year_fill_count = 0.",
+    "closure_reason": "The earlier missing-ingestion issue has already been corrected in the live build, so the packet now serves as a supporting closure record rather than an active backfill todo."
+  },
+  "open_questions": []
+}

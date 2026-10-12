@@ -1,0 +1,161 @@
+{
+  "city_key": "tacoma",
+  "city_name": "Tacoma, WA",
+  "evidence_refs": [
+    "state/review/packets/city/tacoma/packet.json",
+    "state/review/packets/city/tacoma/evidence/01_fetch_tacoma.py (QUERY_URL, OUT_FIELDS, IBR_MAPPING, fetch_all where/orderByFields/limit=1000, main() lat/lon filter, year filter, incident_id, drop_duplicates)",
+    "state/review/packets/city/tacoma/evidence/README.md (Source, Pipeline, Key finding: no rape data, Offense mapping table, Coverage and counts, Block-group join match rate, Caveats 2-3)",
+    "state/review/packets/city/tacoma/evidence/offense_mapping.csv",
+    "state/review/packets/city/tacoma/evidence/raw_cache_profile.json (rows 109256; IBR_OffenseCode distinct 13 codes; DateOccurred int64 min 1514764800000 max 1735603200000; Latitude/Longitude non_null 109256)",
+    "state/review/packets/city/tacoma/evidence/jurisdictions.csv (53:municipal:place:5370000 Tacoma city 108918)",
+    "state/review/packets/city/tacoma/raw_cache.parquet (recomputed with pandas: 109256 rows, OBJECTID 109256 distinct, CaseNo 105334 distinct, 0 null/(0,0) coordinates, UTC year counts 2018-2024; council_district null in 815 rows; 16 Address values contain 'OUTSIDE CITY')"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "53:municipal:place:5370000"
+    ],
+    "state_fips": [
+      "53"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "id separator: the script builds incident_id as CaseNo + '_' + OBJECTID (01_fetch_tacoma.py, main(), df['incident_id'] line); the contract joins id_fields with '|', giving CaseNo|OBJECTID. Same components and same uniqueness: in raw_cache.parquet OBJECTID is unique across all 109,256 rows and no CaseNo contains '_' or '|' (checked with pandas), so both forms are unique and the kept rows are identical; only the id string differs.",
+    "Year derivation: the script parses DateOccurred with pd.to_datetime(unit='ms') (UTC, naive) and filters year 2018-2024; the contract uses date_format epoch_ms. Identical if the runner's epoch_ms is interpreted in UTC. Recomputed on raw_cache.parquet with UTC: 2018 12,453; 2019 12,777; 2020 13,547; 2021 16,923; 2022 21,215; 2023 18,180; 2024 14,161; total 109,256, matching README.md's coverage table.",
+    "Server-side IBR code filter: the script's live where clause restricts IBR_OffenseCode to the 13 mapped codes, so raw_cache.parquet is already offense-restricted (README.md caveat 2). The contract's where reproduces that filter; the offense_rules repeat it client-side, which is a no-op on this cache (all 13 distinct codes in the profile map).",
+    "The script's where uses ArcGIS timestamp literals ('YYYY-MM-DD HH:MM:SS' with a space); the contract where keeps that syntax with {start}/{end} rather than the 'T' form in the generic example.",
+    "The script does a second drop_duplicates on incident_id after the spatial join (keep first) to collapse multi-polygon matches; the runner's within join is assumed to yield one block group per point."
+  ],
+  "mapping": {
+    "date_field": "DateOccurred",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "CaseNo",
+      "OBJECTID"
+    ],
+    "latitude_field": "Latitude",
+    "longitude_field": "Longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IBR_OffenseCode",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IBR_OffenseCode",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IBR_OffenseCode",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IBR_OffenseCode",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IBR_OffenseCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "IBR_OffenseCode",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Translated from 01_fetch_tacoma.py. Offense mapping is IBR_OffenseCode -> bucket exactly as IBR_MAPPING / offense_mapping.csv (13 codes, 6 buckets; 13B simple assault, 09B, 09C excluded by omission). case_sensitive true mirrors the script's exact dict lookup. Coordinate filter mirrors the script (01_fetch_tacoma.py lines 156-157: drop null lat/lon and (0,0)); raw_cache.parquet has 0 null and 0 (0,0) rows, so all 109,256 rows survive, matching README.md's 109,256 kept rows and 100.00% block-group match. exclusions_stated_by_publisher is empty: the packet contains no statement from TPD about excluded offenses or coverage. The two coverage facts below come from the ingestion's own live inspection of the unfiltered table, recorded in README.md, and cannot be checked against raw_cache.parquet, which is already restricted server-side to the 13 codes and to DateOccurred >= 2018-01-01 (README.md caveat 2): (a) README.md 'Key finding' reports zero IBR 11-series (11A-11D) or 36-series codes and zero Offense_Category matches for Sex/Rape in the full table, so the rape bucket is empty for every year and the contract has no rape rule; (b) README.md 'Source' reports the table's minimum DateOccurred is 2018-01-01 00:00:00. jurisdiction_ids is Tacoma city only: the publisher is the Tacoma Police Department (README.md 'Provider: Tacoma Police Department (TPD RMS)'), a city PD. The archive holds an out-of-city tail of TPD records: 815 of 109,256 rows have null council_district (counted in raw_cache.parquet; raw_cache_profile.json council_district non_null 108,441 = 109,256 - 815), concentrated in TPD_District TA44 (464 rows) and reporting blocks 436 (331) and 458 (89); 16 Address values are explicitly tagged 'OUTSIDE CITY-...' with the final segment PIERCE COUNTY 7, LAKEWOOD 4, FIFE 2, PUYALLUP 1, STEILACOOM 1, SPANAWAY 1; and README.md reports 19 rows in King County (53033). These are TPD-recorded incidents outside city limits, not evidence that TPD serves Lakewood, Fife, unincorporated Pierce County or other places. jurisdictions.csv's non-Tacoma rows (e.g. Fife 4,986, Lakewood 1,844, nonmunicipal remainder 10,197) are not coverage: its counts sum to 127,640, more than the 109,256 incident rows, so it is not a per-incident partition. Out-of-city rows still join to WA block groups because state_fips is 53, as the script's WA-wide join does.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/TPD_RMS_Crime/FeatureServer/0/query",
+      "name": "City of Tacoma Reported Crime (TPD_RMS_Crime)",
+      "order": "OBJECTID",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "CaseNo",
+        "DateOccurred",
+        "Offense_Category",
+        "IBR_OffenseCode",
+        "OffenseCode",
+        "Latitude",
+        "Longitude",
+        "Address",
+        "TPD_District",
+        "TPD_Reporting_Block",
+        "Sector_Subsector",
+        "council_district",
+        "Crimes_Against"
+      ],
+      "slug": "tacoma_tpd_rms_crime",
+      "source_url": "https://services3.arcgis.com/SCwJH1pD8WSn5T5y/arcgis/rest/services/TPD_RMS_Crime/FeatureServer/0",
+      "where": "DateOccurred >= timestamp '{start} 00:00:00' AND DateOccurred < timestamp '{end} 00:00:00' AND IBR_OffenseCode IN ('09A','120','13A','220','23A','23B','23C','23D','23E','23F','23G','23H','240')"
+    }
+  ]
+}

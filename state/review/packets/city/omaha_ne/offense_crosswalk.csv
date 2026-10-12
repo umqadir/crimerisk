@@ -1,0 +1,5 @@
+offense,conditions_json,exclude_conditions_json
+robbery,"[{""field"": ""NIBRSCategory"", ""op"": ""eq"", ""value"": ""Robbery"", ""values"": []}]",[]
+burglary,"[{""field"": ""NIBRSCategory"", ""op"": ""eq"", ""value"": ""Burglary/Breaking & Entering"", ""values"": []}]",[]
+larceny,"[{""field"": ""NIBRSCategory"", ""op"": ""eq"", ""value"": ""Larceny/Theft Offenses"", ""values"": []}]",[]
+motor_vehicle_theft,"[{""field"": ""NIBRSCategory"", ""op"": ""eq"", ""value"": ""Motor Vehicle Theft"", ""values"": []}]",[]

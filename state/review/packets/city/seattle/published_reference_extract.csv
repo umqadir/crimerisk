@@ -1,0 +1,9 @@
+source_name,source_url,source_page,extract_type,offense,reported_2023,reported_2024,total_arrests,dv_offense_totals,counting_rule_summary
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,14,counting_rule,,,,,"Crimes against person are counted per victim; crimes against property per distinct operation; motor vehicle theft per stolen vehicle."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,murder,68,52,23,3,"Seattle PD agency table."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,rape,168,315,40,69,"Seattle PD agency table."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,robbery,1700,1717,304,119,"Seattle PD agency table."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,aggravated_assault,3983,3952,840,960,"Seattle PD agency table."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,burglary,8642,8914,621,186,"Seattle PD agency table."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,larceny,22907,24565,680,156,"Seattle PD agency table."
+WASPC Crime in Washington 2024,https://www.waspc.org/assets/CJIS/2024%20Crime%20in%20Washington-compressed.pdf,292,agency_offense_table,motor_vehicle_theft,9276,7452,92,19,"Seattle PD agency table."

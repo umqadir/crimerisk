@@ -1,0 +1,253 @@
+{
+  "city_key": "evanston_il",
+  "city_name": "Evanston",
+  "count_unit": "victim",
+  "evidence_refs": [
+    "state/review/packets/city/evanston_il/packet.json (case_text: 'count unit offense, coordinates point, redactions: none stated'; date filter)",
+    "state/review/packets/city/evanston_il/evidence/registry_row.json (api_endpoint, portal_type, probe_where, jurisdiction_ids, state_fips 17, ori9 IL0163200, redactions empty)",
+    "state/review/packets/city/evanston_il/evidence/doc_c2663677d3.json (layer 'Crimes': fields offenseid 'Offense ID', offendatefr 'Offense Date From', reportdate 'Reported Date', nibrscode 'NIBRS Code', casestatus 'Case Status'; geometryType esriGeometryPoint, spatialReference wkid 102100, maxRecordCount 2000, objectIdField OBJECTID, dateFieldsTimeReference timeZone UTC, editingInfo.dataLastEditDate 1755248563164, description '')",
+    "state/review/packets/city/evanston_il/evidence/doc_3f1b8f352e.html (portal landing page https://data.cityofevanston.org/, no dataset documentation)",
+    "state/review/packets/city/evanston_il/evidence/doc_index.csv",
+    "state/review/packets/city/evanston_il/evidence/raw_cache_profile.json (rows 34875, offenseid distinct 34325, empty fields municipality/neighborhood/zip5/ucr*/larceny*/rel*/entry*/narrative)",
+    "state/review/packets/city/evanston_il/evidence/scope_candidates.csv (17:municipal:place:1724582 Evanston city)",
+    "state/review/packets/city/evanston_il/evidence/official_totals.csv (2018-2025 per-offense totals for ori:IL0163200)",
+    "state/review/packets/city/evanston_il/evidence/funnel.csv (mapped 15089, in_footprint 14649; per offense-year in_years and in_footprint)",
+    "state/review/packets/city/evanston_il/evidence/jurisdictions.csv (Chicago city 411, Skokie village 22, Wilmette village 7, Illinois nonmunicipal remainder 650)",
+    "state/review/packets/city/evanston_il/evidence/qa_exceptions.csv (reconciliation exceptions by offense-year under the first draft)",
+    "state/review/packets/city/evanston_il/raw_cache.parquet (query.py: repeated offenseid rows by nibrscode; 13A and 13B by year; 13A by year and weapondesc; per-offense yearly counts excluding Unfounded; exact-hour offendatefr by month; 2025 monthly counts; Howard St southern-edge points)",
+    "src/crimerisk/city_contracts.py map_rows (derived `year` is readable by rule conditions when the pull has no `year` column; _condition_mask compares astype('string') values)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "17:municipal:place:1724582"
+    ],
+    "state_fips": [
+      "17"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Count unit is mixed, following the NIBRS-to-SRS counting rule: crimes-against-persons offenses repeat per offenseid (inferred one row per victim; no victim id is published), property offenses are one row per offense. 443 offenseids have 2-7 rows; the extra rows are all in person codes (13B +224, 13A +171, 13C +147, 100 +3, 11A +3, 64B +1, 09A +1). The repeat groups are identical on the substantive columns (reviewer: 442 of 443; offenseid 299648, 13B 2024, differs in one non-key column). Keeping every row gives 13A 37/27/40/40 for 2021-2024 (UTC year of offendatefr) vs official 38/27/39/41; distinct offenseids give 28/25/33/33.",
+    "Aggravated assault is mapped for 2021-2025 only; 2018-2020 are left unmapped and will reconcile as 0 against official 84/65/92. Non-unfounded 13A rows are 339/405/313 in 2018-2020 and 37/27/40/40 in 2021-2024 (3.4-6.2x official before 2021, within 1 after), while 13B goes 218/210/269 to 481/605/602/580 and 13A+13B stays about level (557/615/582 vs 518 in 2021). nibrsoffense/nibrsdesc read 'Assault Offenses'/'Aggravated Assault' in every year, so no field marks the recode; pre-2021 13A is 183/261/191 weapondesc 'Personal Weapons' and 57/57/30 'None', vs 6/6/18/12 and 0 in 2021-2024, consistent with a simple-assault-type battery code converted to 13A. The armed subset (weapondesc not Personal Weapons/None/empty) gives 97/87/92 pre-2021 but 31/21/21/28 in 2021-2024, so no year-independent field rule works; 2018-2020 would be 1057 of 1216 mapped aggravated-assault rows (87%).",
+    "Larceny 2018-2020 runs below official (1120/1349/1204 mapped non-unfounded rows vs 1358/1575/1318) and motor vehicle theft above (60/79/90 vs 55/70/71); 2021-2024 both match within about 2%. Pre-2021 legacy-code conversion is the likely cause; not correctable from the published fields.",
+    "Rape does not reconcile in 2019-2021: 9/12/15 mapped vs official 7/9/20 (2019-2020 about 30% over, 2021 25% under, the only 2021-2024 miss beyond 2 for any offense). 11D fondling in 2021 is 2 rows (1 Unfounded), so the gap is not an excluded code; not explainable from the published fields.",
+    "Unfounded offenses are dropped via casestatus = 'Unfounded' (230 rows in the pull), as SRS counts exclude unfounded reports; null casestatus (61 rows) is kept.",
+    "Rape covers 11A and 11B (116 and 5 rows); 11C is mapped but absent from the pull. 11D fondling (19) and 36B statutory rape (4) are left out.",
+    "Footprint loss: 440 of 15089 mapped rows (2.9%) fall outside Evanston city at the footprint stage (funnel.csv in_state 15089 vs in_footprint 14649), equal to Chicago 411 + Skokie 22 + Wilmette 7 in jurisdictions.csv. The southernmost points are Howard St block points at 42.0192-42.0195 N on the Evanston/Chicago boundary (2500 BLOCK OF HOWARD ST 630 rows, 2200 BLOCK 343), so these are Evanston PD reports whose generalized point falls across the city line, not another agency's area. This also gives murder 2020 3 in footprint vs 4 official. The 650 'Illinois nonmunicipal remainder' rows in jurisdictions.csv are not part of the funnel loss and cannot be placed from the packet.",
+    "Year is taken in UTC. offendatefr is true UTC (dateFieldsTimeReference UTC; exact-hour stamps cluster at 06:00 UTC in Nov-Feb and 05:00 UTC in Apr-Oct, i.e. local midnight under CST/CDT), so rows in the first 5-6 local hours of January 1 fall in the prior year. The runner has no time-zone option; the reviewer measured 0-2 rows per year of the seven offenses moving under America/Chicago.",
+    "2025 is partial: monthly rows run 337-456 in Jan-May, 234 in June with none after 2025-06-17 11:55 UTC, then 6 stragglers in July (max 2025-07-24 05:00 UTC); dataLastEditDate is 2025-08-15. Effective coverage is about 5.5 months against a full-year official total, so 2025 should not be reconciled as a full year.",
+    "The public view leaves narrative, victim-offender relationship, larceny type, method of entry, UCR and zip/neighborhood/municipality fields empty (0 non-null each in raw_cache_profile.json); none of them are needed by the rules. nibrscode also carries two legacy codes (0760, 0860; 1 row each, null nibrsdesc), left unmapped."
+  ],
+  "mapping": {
+    "date_field": "offendatefr",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "OBJECTID"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "year",
+            "op": "in",
+            "value": "",
+            "values": [
+              "2021",
+              "2022",
+              "2023",
+              "2024",
+              "2025"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "casestatus",
+            "op": "eq",
+            "value": "Unfounded",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Publisher: Evanston Police Department (ORI IL0163200), city PD policing Evanston city only (scope_candidates.csv lists one jurisdiction, 17:municipal:place:1724582). Source: ArcGIS view layer 'Crimes' (doc_c2663677d3.json), point geometry in Web Mercator (wkid 102100), maxRecordCount 2000; offenses coded with NIBRS codes in nibrscode (47 distinct values in the pull, including legacy 0760/0860 with 1 row each), so rules map on nibrscode per the published NIBRS definitions: 09A murder, 11A/11B/11C rape, 120 robbery, 13A aggravated assault, 220 burglary, 23A-23H larceny (all eight present), 240 motor vehicle theft; 09B/09C are absent, 13B/13C and 11D are left out. Aggravated assault is bounded to 2021-2025 by a condition on the derived year (field 'year', which rule conditions read when the pull has no 'year' column, src/crimerisk/city_contracts.py map_rows): pre-2021 13A holds a different offense population (339/405/313 rows vs official 84/65/92; see known differences), so those years carry no aggravated assault. Mapped aggravated-assault rows drop from 1216 to 159 (37+27+40+40+15). Every rule excludes casestatus = 'Unfounded'; null casestatus (61 rows) is kept. Dates: offendatefr ('Offense Date From', occurrence start), epoch ms, non-null on all 34,875 rows. The layer declares UTC and the values are true UTC: exact-hour stamps sit at 06:00 UTC in winter and 05:00 UTC in summer (local midnight), and the hourly trough is 09-11 UTC (377/378/419 rows). The year is therefore the UTC year; the runner has no time-zone option. The where clause is the registry's probe_where, which produced the archive; its DATE bounds are UTC midnights. Count unit: the rows are not one per offense as the registry row states. OBJECTID is unique (34,875 of 34,875) while offenseid has 34,325 distinct values; the repeated offenseid rows are identical on the substantive columns and occur only in crimes-against-persons codes, so they are treated as one row per victim. The contract keeps them (id_fields OBJECTID, dedupe_on_id true, which only removes exact pagination repeats), which is the SRS counting unit: victims for murder/rape/aggravated assault, one per offense for robbery, burglary, larceny and motor vehicle theft. When one incident (callid) has several offenses, each offense row is kept under its own code; there is no hierarchy rule. Coordinates: __arcgis_latitude/__arcgis_longitude from the feature geometry; all rows have points within 42.019-42.071 N, -87.732 to -87.665 W. Addresses are published as block ranges (33,253 'BLOCK OF') or intersections (1,622), and the pull has 2,819 distinct points for 2,161 addresses, so points appear to be generalized to block or intersection; the publisher does not state this. Boundary block points on Howard St fall into Chicago, which accounts for the 440-row footprint loss. 2025: data are dense only through 2025-06-17 (6 rows in July), about 5.5 months. Recomputed check (non-unfounded mapped rows by UTC year of offendatefr, 2018-2025, vs official_totals.csv): robbery 47,42,43,69,76,63,41,6 vs 47,42,44,70,75,63,41,18; burglary 291,292,181,186,269,262,330,71 vs 289,292,180,198,269,261,335,268; murder 3,1,4,6,2,1,0,0 vs 3,1,4,6,2,1,0,0; rape 6,9,12,15,23,22,22,6 vs 6,7,9,20,24,22,23,21; aggravated assault (bounded) 0,0,0,37,27,40,40,15 vs 84,65,92,38,27,39,41,46; larceny 1120,1349,1204,1346,1435,1791,1505,710 vs 1358,1575,1318,1364,1449,1784,1524,1378; motor vehicle theft 60,79,90,112,144,287,178,62 vs 55,70,71,114,143,288,175,132. Computed with query.py on raw_cache (nibrscode filter, coalesce(casestatus,'') <> 'Unfounded', year(make_timestamp(offendatefr*1000))) before the block-group and footprint joins; they equal funnel.csv in_years. No redactions or exclusions are stated in the layer metadata (description empty) or the registry row (redactions empty).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services3.arcgis.com/RVAJnWJd9M0xRdYG/ArcGIS/rest/services/Crimes_public_577c2aa657d74d24967b41a88f711f59/FeatureServer/0",
+      "name": "Evanston Crimes (public)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "evanston_il",
+      "source_url": "https://data.cityofevanston.org/",
+      "where": "offendatefr >= DATE '{start}' AND offendatefr < DATE '{end}'"
+    }
+  ]
+}

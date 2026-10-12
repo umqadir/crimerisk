@@ -1,0 +1,6 @@
+issue_type,rows,support_sum,actionability,notes
+reference_enrichment_omission,4,128,implement_now,Four university ORIs already have live repo NIBRS annual support and need reference/master enrichment rather than new-source work.
+bounded_source_policy_or_backfill_review,3,3,queue_now,Three official-effective-NIBRS ISD rows still use tiny SRS annual support and should be checked as a bounded micro-lane.
+statewide_reporting_structure_or_continuity_context,1158,,adopt_doctrine_only,Texas is heavily mixed-source in 2024 but repo SRS statewide totals already align closely with FBI publication totals.
+rows_present_in_master_but_missing_2024_observations,355,,queue_later,Effective-NIBRS zero-support background is mostly Other-type entities and should be prioritized later by likely value.
+zero_support_missing_master_context,119,,adopt_doctrine_only,Do not bulk-add roster-only missing-master rows with no offense-bearing 2024 repo support.

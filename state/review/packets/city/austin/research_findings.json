@@ -1,0 +1,306 @@
+{
+  "city_key": "austin",
+  "city_name": "Austin",
+  "jurisdiction_id": "48:municipal:place:4805000",
+  "state_abbr": "TX",
+  "review_date": "2026-03-24",
+  "artifacts": {
+    "source_schema": "source_schema.csv",
+    "source_contract_notes": "source_contract_notes.json",
+    "offense_crosswalk": "offense_crosswalk.csv",
+    "published_reference_extract": "published_reference_extract.csv",
+    "reconciliation_summary": "reconciliation_summary.csv",
+    "aggravated_assault_gap_analysis": "aggravated_assault_gap_analysis.json",
+    "aggravated_assault_period_checks": "aggravated_assault_period_checks.csv"
+  },
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "offense_selective_promotion_ready_exact_path_closed",
+    "packet_status": "review_complete",
+    "city_share_integration_status": "exact_offense_selective_path_ready",
+    "reconciliation_status": "2024_2025_reconciled_exact_path_closed_aggravated_assault_nonexact",
+    "exact_offense_selective_promotion_now": [
+      "robbery",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "approximate_only_not_in_exact_path": [
+      "rape"
+    ],
+    "blocked_offenses": [
+      "murder",
+      "aggravated_assault"
+    ],
+    "aggravated_assault_exact_promotion_supported_now": false
+  },
+  "best_current_public_source": {
+    "source_name": "Austin APD Crime Reports",
+    "source_url": "https://data.austintexas.gov/api/views/fdj4-gpfu/rows.csv?accessType=DOWNLOAD",
+    "api_url": "https://data.austintexas.gov/resource/fdj4-gpfu.csv",
+    "portal_type": "socrata",
+    "dataset_id": "fdj4-gpfu",
+    "base_contract_decision": "recommended_for_exact_selective_path_closed",
+    "inventory_entry_is_stale": true,
+    "inventory_staleness_reasons": [
+      "Current public feed has no latitude field.",
+      "Current public feed has no longitude field.",
+      "Current public feed has no address field."
+    ],
+    "why_still_best": [
+      "Long live history from 2003 forward.",
+      "Unique incident_report_number is available.",
+      "Source provides census_block_group directly, which is enough for block-group shares after normalization."
+    ]
+  },
+  "source_metrics": {
+    "metadata_total_rows": 2629147,
+    "rows_2024": 86267,
+    "rows_2025": 88677,
+    "rows_2026_ytd": 17322,
+    "latest_occ_date": "2026-03-21",
+    "latest_clearance_date": "2026-03-22",
+    "missing_ucr_category_2024": 50421,
+    "missing_ucr_category_share_2024": 0.5845,
+    "missing_location_type_2024": 9,
+    "missing_census_block_group_2024": 586,
+    "missing_census_block_group_share_2024": 0.0068,
+    "distinct_incidents_2024": 86267
+  },
+  "spatial_contract": {
+    "primary_assignment_field": "census_block_group",
+    "normalization_rule": "full_block_group_geoid = '48' + census_block_group",
+    "raw_block_group_length": 10,
+    "distinct_block_groups_2024": 710,
+    "rows_with_block_group_2024": 85681,
+    "rows_with_block_group_share_2024": 0.9932,
+    "rows_with_block_group_and_austin_membership_2024": 85622,
+    "rows_without_austin_membership_2024": 59,
+    "exact_v2_rows_with_block_group_2024": 35693,
+    "exact_v2_rows_without_block_group_2024": 153,
+    "exact_v2_rows_without_austin_membership_2024": 14,
+    "join_notes": [
+      "Join normalized 12-digit Texas GEOIDs to the local block_group_to_jurisdiction_crosswalk.",
+      "Most source rows already fall in block groups with Austin jurisdiction membership.",
+      "Do not use the old Austin geocoding assumption because the live public source no longer exposes coordinates or addresses.",
+      "Treat source-provided block groups as the production spatial contract for Austin and filter out rows without Austin jurisdiction membership after the crosswalk join."
+    ]
+  },
+  "integration_recommendation": {
+    "clean_exact_promotion_path": [
+      "robbery",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "keep_out_of_exact_path": {
+      "murder": "Blocked. Direct public 09A remains materially low versus official TXDPS UCR counts across 2024 full year, Jan-May 2025, and Jan-Nov 2025.",
+      "rape": "Approximate only. Austin publishes Sexual Assault rather than a strict V2 rape bucket.",
+      "aggravated_assault": "Blocked. The empirical 13A plus 903 909 911 and 2013 rule closes counts, but APD's own lookup classifies those tail codes under 13B Simple Assault rather than 13A."
+    },
+    "aggravated_assault_exact_path_decision": {
+      "candidate_rule": "ucr_category = 13A or ucr_category is null and ucr_code in 903 909 911 2013",
+      "candidate_matches_current_official_counts": true,
+      "exact_path_use_allowed": false,
+      "why_not_exact": [
+        "APD's published Chief's Monthly Report lookup table places 0903 0909 0911 and 2013 under 13B Simple Assault.",
+        "APD's 13A aggravated-assault family uses separate 0402 through 0411 codes, which are already represented in live 13A-tagged Socrata rows.",
+        "The base Socrata feed remains highest-offense incident grain, so blocked buckets should stay on explicit documented mappings."
+      ]
+    }
+  },
+  "ready_offense_stability": {
+    "official_periods_used": [
+      {
+        "period": "2024_full_year",
+        "source_system": "TXDPS Uniform Crime Report System",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=448925"
+      },
+      {
+        "period": "2025_jan_may",
+        "source_system": "TXDPS Uniform Crime Report System",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=454220"
+      },
+      {
+        "period": "2025_jan_nov",
+        "source_system": "TXDPS Uniform Crime Report System",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=465197"
+      }
+    ],
+    "offense_pct_diff_source_minus_official": {
+      "robbery": {
+        "2024_full_year": -3.08,
+        "2025_jan_may": -6.3,
+        "2025_jan_nov": -4.74
+      },
+      "burglary": {
+        "2024_full_year": -6.26,
+        "2025_jan_may": -7.94,
+        "2025_jan_nov": -7.68
+      },
+      "larceny": {
+        "2024_full_year": -0.7,
+        "2025_jan_may": 4.74,
+        "2025_jan_nov": 1.39
+      },
+      "motor_vehicle_theft": {
+        "2024_full_year": -2.35,
+        "2025_jan_may": -2.0,
+        "2025_jan_nov": -2.25
+      }
+    },
+    "ready_bundle": {
+      "2024_full_year": {
+        "source_count": 32612,
+        "official_count": 33208,
+        "pct_diff_source_minus_official": -1.79
+      },
+      "2025_jan_may": {
+        "source_count": 12670,
+        "official_count": 12461,
+        "pct_diff_source_minus_official": 1.68
+      },
+      "2025_jan_nov": {
+        "source_count": 28587,
+        "official_count": 28746,
+        "pct_diff_source_minus_official": -0.55
+      }
+    }
+  },
+  "offense_mapping_summary": {
+    "exact_v2_public_mapping_2024": {
+      "murder": 56,
+      "rape": 693,
+      "robbery": 818,
+      "aggravated_assault": 2485,
+      "burglary": 4135,
+      "larceny": 21831,
+      "motor_vehicle_theft": 5828
+    },
+    "mapping_basis": {
+      "murder": "ucr_category = 09A",
+      "rape": "ucr_category in 11A 11B 11C approximate to V2 rape",
+      "robbery": "ucr_category = 120",
+      "aggravated_assault": "ucr_category = 13A",
+      "burglary": "ucr_category = 220",
+      "larceny": "ucr_category in 23A 23B 23C 23D 23E 23F 23G 23H",
+      "motor_vehicle_theft": "ucr_category = 240"
+    },
+    "official_lookup_conflict": {
+      "source_name": "APD Chief's Monthly Report - March 2024",
+      "source_url": "https://www.austintexas.gov/sites/default/files/files/Police/Reports/Chief_Monthly/2024/04152024_Chief%27s%20Monthly%20Report%20-%20Mar%202024.pdf",
+      "aggravated_assault_family_codes": [
+        "0402",
+        "0403",
+        "0405",
+        "0406",
+        "0407",
+        "0408",
+        "0409 ext 3",
+        "0410",
+        "0411"
+      ],
+      "tail_codes_classified_as_13B_simple_assault": [
+        "0903",
+        "0909",
+        "0911",
+        "2013"
+      ],
+      "live_2024_13A_code_examples": [
+        "402 AGG ASSAULT",
+        "403 AGG ASSAULT ON PEACE OFFICER / PUBLIC SERVANT",
+        "409 TAKE WEAPON FROM POLICE OFFICER",
+        "410 AGG ASLT STRANGLE / SUFFOCATE"
+      ]
+    },
+    "mapping_risks": [
+      "Aggravated assault is no longer a pending refresh decision. The empirical tail closes counts, but it is not exact under APD's own lookup.",
+      "Austin public published references use Sexual Assault rather than a strict V2 rape bucket so rape reconciliation remains approximate.",
+      "Null UCR category rows dominate the feed, so only a subset of the dataset is currently safe for exact V2 mapping.",
+      "The base Socrata feed remains incident-level highest-offense data so blocked buckets can still drift from official offense-count publications."
+    ]
+  },
+  "blocker_diagnosis": {
+    "public_source_schema_issues": [
+      "ucr_category is null on 50421 of 86267 rows in 2024.",
+      "The four empirical aggravated-assault tail codes 903 909 911 and 2013 have zero public ucr_category assignments in the live contract across all years.",
+      "Socrata and CrimeViewer expose different public offense-code families with no documented contract-level crosswalk."
+    ],
+    "concept_or_counting_issues": [
+      "The Socrata base feed stores only the highest offense per incident.",
+      "Official APD quarterly reference tables publish TXDPS Uniform Crime Report System offense counts rather than highest-offense incident counts.",
+      "That grain difference likely leaves a residual murder gap even after obvious public homicide rows are considered."
+    ]
+  },
+  "published_reconciliation": {
+    "official_reference_periods": [
+      {
+        "period": "2024_full_year",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=448925",
+        "official_counts": {
+          "murder": 65,
+          "rape_proxy_sexual_assault": 668,
+          "aggravated_assault": 3039,
+          "robbery": 844,
+          "burglary": 4411,
+          "larceny": 21985,
+          "motor_vehicle_theft": 5968
+        }
+      },
+      {
+        "period": "2025_jan_may",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=454220",
+        "official_counts": {
+          "murder": 26,
+          "rape_proxy_sexual_assault": 252,
+          "aggravated_assault": 1104,
+          "robbery": 349,
+          "burglary": 1725,
+          "larceny": 8541,
+          "motor_vehicle_theft": 1846
+        }
+      },
+      {
+        "period": "2025_jan_nov",
+        "source_url": "https://services.austintexas.gov/edims/document.cfm?id=465197",
+        "official_counts": {
+          "murder": 47,
+          "rape_proxy_sexual_assault": 637,
+          "aggravated_assault": 2452,
+          "robbery": 739,
+          "burglary": 4034,
+          "larceny": 19929,
+          "motor_vehicle_theft": 4044
+        }
+      }
+    ],
+    "largest_persistent_gap": {
+      "offense": "murder",
+      "pct_diff_source_minus_official": {
+        "2024_full_year": -13.85,
+        "2025_jan_may": -19.23,
+        "2025_jan_nov": -19.15
+      }
+    },
+    "aggravated_assault_candidate_is_nonexact": {
+      "candidate_2024_pct_diff_source_minus_official": -0.03,
+      "candidate_2025_jan_may_pct_diff_source_minus_official": 1.0,
+      "candidate_2025_jan_nov_pct_diff_source_minus_official": 1.92,
+      "blocker": "APD's published lookup classifies the added tail codes under 13B Simple Assault rather than 13A."
+    }
+  },
+  "main_findings": [
+    "Austin's live public Socrata contract remains the right production base source and now runs through March 21, 2026.",
+    "Austin can support a clean exact offense-selective promotion path for robbery burglary larceny and motor_vehicle_theft directly from the live public contract, and that ready set stays stable on official 2025 period checks.",
+    "Rape remains approximate only because Austin publishes Sexual Assault rather than a strict V2 rape bucket, and murder remains blocked because the direct public contract is still materially low.",
+    "Aggravated assault should remain blocked, but no longer as a pending refresh hold. The empirical tail rule closes counts, yet APD's own lookup table classifies 0903 0909 0911 and 2013 under 13B Simple Assault, so the rule is nonexact and should not be promoted."
+  ],
+  "loader_implementation_notes": [
+    "Use the live Socrata schema fields occ_date incident_report_number ucr_category ucr_code location_type and census_block_group.",
+    "Normalize Austin block groups to 12-digit Texas GEOIDs by prepending 48 and join through the block_group_to_jurisdiction_crosswalk for Austin membership filtering.",
+    "Do not depend on latitude longitude or address fields because the live public contract no longer exposes them.",
+    "Promote only direct UCR-category mappings for robbery burglary larceny and motor_vehicle_theft in the clean exact-selective path.",
+    "Keep rape marked approximate only and murder blocked under the direct public contract.",
+    "Do not implement the Austin-specific 903 909 911 2013 aggravated-assault tail in the exact production path."
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "case_key": "north_lauderdale_fl",
+  "jurisdiction_id": "12:municipal:place:1249425",
+  "jurisdiction_name": "North Lauderdale city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_for_bso_contract_city_and_treat_full_fill_as_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "North Lauderdale is a real incorporated Broward municipality, but it does not currently operate a city-run police department. The City's FY2026 adopted budget says the city currently contracts with the Broward Sheriff's Office to provide police service, and the BSO North Lauderdale district page says BSO provides law-enforcement services for the City of North Lauderdale.",
+    "The contract-policing structure is city-specific rather than generic Broward County remainder coverage. The current BSO district page lists a dedicated North Lauderdale district office at 701 SW 71 Avenue, states the district has 68 employees including 61 sworn personnel, and the FY2026 budget publishes a district-specific organizational chart contractually provided by BSO.",
+    "The BSO contract structure is longstanding but not evidence of target invalidity. The executed 2017 police-services agreement says North Lauderdale wished to maintain its charter police power while providing daily police services through contractual agreement with BSO, sets a city-specific staffing structure, and establishes minimum sworn patrol staffing.",
+    "Official state and federal identity surfaces still preserve a North Lauderdale-specific agency identity under ORI FL0062300 even though the naming varies. FDLE's current ATMS list shows North Lauderdale Public Safety Department, FDLE's 2020 and 2021 county-and-municipal reports use North Lauderdale Police Department, and the FBI CDE 2024 roster lists North Lauderdale Police Department as a City agency in Broward County.",
+    "Florida's official county-and-municipal offense publications support a real North Lauderdale annual reporting surface through the 2021 transition period. FDLE's 2020 report publishes North Lauderdale Police Department with population 45,549 and total index crime 838, and FDLE's 2021 report retains the North Lauderdale Police Department row with population 44,855 but blanks every offense field.",
+    "FDLE's public post-SRS FIBRS offense workbook does not carry North Lauderdale forward. Inspection of the repo's official FDLE workbook copy found no North Lauderdale or FL0062300 row in any 2021, 2022, 2023, 2024, or 2025 Q3 offense sheet.",
+    "The city still publishes current city-specific public-safety totals even without offense-level statewide continuity. The FY2026 adopted budget reports FY2023 actual crimes of 880, FY2024 actual crimes of 798, FY2023 actual calls for service of 29,772, and FY2024 actual calls for service of 32,661 for the North Lauderdale police-services operation.",
+    "Repo evidence matches a continuity and publication collapse rather than a bad municipal target. The live crosswalk routes FL0062300 exclusively to North Lauderdale city; agency_year_observations shows substantive annual counts in 2018-2020 and only zero-valued annual placeholders in 2021-2024; the 2024 controls fully fill every offense because preferred reported support is zero; and the municipal review queue flags the target as a top-priority full-fill case."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_current_bso_contract_policing",
+    "official_basis": [
+      "North Lauderdale remains an incorporated city government with its own city departments and budget process.",
+      "The city's official police-services department page is explicitly labeled Police Services (Broward Sheriff's Office), confirming that local policing is organized through a city department / contract-service relationship rather than an unincorporated county remainder.",
+      "The FY2026 adopted budget says the city currently contracts with Broward Sheriff's Office to provide police service."
+    ],
+    "important_interpretation": "North Lauderdale is not a fake place row and not generic Broward nonmunicipal territory. It is a valid municipality whose citywide policing is currently delivered through a dedicated BSO contract district."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Broward Sheriff's Office North Lauderdale District under city contract",
+    "active_city_police_department_found": false,
+    "city_specific_contract_policing_surface_found": true,
+    "official_evidence": [
+      "The city's official police-services page says BSO provides law-enforcement services for the City of North Lauderdale.",
+      "The BSO North Lauderdale district page lists a dedicated district office at 701 SW 71 Avenue, North Lauderdale, FL 33068 and states that the district has 68 employees including 61 sworn personnel.",
+      "The FY2026 adopted budget says BSO provides contractual police services to the city, shows a city-specific police department org chart contractually provided by BSO, and states patrol maintains a minimum of 12 personnel assigned to road patrol per shift.",
+      "The executed 2017 police-services agreement says the city wishes to maintain its charter police power while providing daily police services through contractual agreement with BSO, with a city-specific staffing structure totaling 63 positions and minimum staffing of twelve sworn personnel in a twenty-four-hour period."
+    ],
+    "service_structure_interpretation": "North Lauderdale is operationally sheriff-policed, but through a city-specific contract district with dedicated staffing, current public metrics, and a persistent municipal ORI identity. That structure supports keeping the municipal target."
+  },
+  "official_reporting_evidence": {
+    "current_city_public_reporting_surface": {
+      "summary": "North Lauderdale still publishes current city-specific public-safety output measures even though the official state offense row disappears after 2021.",
+      "details": [
+        "FY2026 adopted budget: FY2023 actual crimes reported 880; FY2024 actual crimes reported 798.",
+        "FY2026 adopted budget: FY2023 actual calls for service 29,772; FY2024 actual calls for service 32,661."
+      ],
+      "interpretation": "City-specific operational accounting still exists publicly, but the available budget measure is not an offense-level annual table and therefore does not by itself solve offense-by-offense production repair."
+    },
+    "state_identity_surface": {
+      "summary": "FDLE still preserves a North Lauderdale-specific agency identity under ORI FL0062300.",
+      "details": {
+        "fdle_atms_name": "North Lauderdale Public Safety Department",
+        "ori9": "FL0062300"
+      },
+      "interpretation": "The state identity surface remains live even though the label has shifted between Public Safety Department and Police Department. This is identity continuity, not a different agency."
+    },
+    "fdle_county_and_municipal_reports": {
+      "summary": "FDLE's county-and-municipal annual offense publications support a real North Lauderdale municipal reporting row through the 2021 transition year.",
+      "details": [
+        "FDLE 2020: North Lauderdale Police Department, population 45,549, total index crime 838.",
+        "FDLE 2021: North Lauderdale Police Department, population 44,855, row retained with all offense fields blank."
+      ],
+      "interpretation": "Florida officially published North Lauderdale as a distinct Broward municipal row long after the city's BSO contract structure was in place, so contract policing did not erase the municipal reporting object."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The public FDLE FIBRS offense workbook does not publish North Lauderdale or FL0062300 in any 2021-2025 Q3 sheet reviewed.",
+      "supporting_context": [
+        "2024 Broward agencies present in the workbook include Coral Springs Police Department, Davie Police Department, Fort Lauderdale Police Department, Hillsboro Beach Police Department, Miramar Police Department, Pembroke Pines Police Department, and Seminole Police Department.",
+        "2025 Q3 Broward agencies present in the workbook include Coral Springs Police Department, Fort Lauderdale Police Department, Hillsboro Beach Police Department, Miramar Police Department, and Pembroke Pines Police Department."
+      ],
+      "interpretation": "The workbook is not missing Broward generally; it is missing North Lauderdale specifically. That points to a North Lauderdale publication and continuity failure rather than a countywide omission."
+    },
+    "fbi_cde_agency_roster": {
+      "summary": "The official FBI CDE 2024 Florida roster still lists FL0062300 as North Lauderdale Police Department in Broward County with agency type City.",
+      "details": {
+        "ori9": "FL0062300",
+        "agency_name": "North Lauderdale Police Department",
+        "agency_type_name": "City",
+        "is_nibrs": false,
+        "nibrs_start_date": null
+      },
+      "interpretation": "Federal roster continuity remains real at the agency-identity level, but the roster does not support a live 2024 NIBRS observation."
+    }
+  },
+  "repo_continuity_evidence": {
+    "crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0062300 exclusively to 12:municipal:place:1249425 with relationship_type exclusive.",
+    "agency_master_state": "agency_master.parquet classifies FL0062300 as local_police and flags both SRS and NIBRS presence across 2018-2024, with latest_nibrs_year 2024, population_latest_nibrs 45052, and nibrs_max_months_reported 0.0.",
+    "observation_pattern": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1051.0,
+        "months_reported": 12.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1047.0,
+        "months_reported": 12.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 838.0,
+        "months_reported": 1.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0,
+        "months_reported": 0.0
+      }
+    ],
+    "important_mismatch": "agency_master still advertises NIBRS source presence through 2024 even though the official FBI roster marks FL0062300 non-NIBRS, the public FDLE FIBRS workbook contains no North Lauderdale row, and agency_year_observations contains no recovered NIBRS rows. That mismatch is a continuity and metadata problem, not evidence that North Lauderdale is the wrong municipal target.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 North Lauderdale offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and current_year_fill_count values of 123 aggravated assault, 81 burglary, 591 larceny, 94 motor vehicle theft, 6 murder, 19 rape, and 50 robbery.",
+    "review_queue_state": "municipal_target_review_queue.parquet places North Lauderdale in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 964.0, total_reported_count 0.0, and priority_rank 3.",
+    "fbi_cde_queue_state": "fbi_cde_source_review_queue.csv flags FL0062300 as present_but_no_2024_observation with official_is_nibrs false and mismatch_reason no_2024_observation."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "North Lauderdale remains a valid incorporated city with a city-specific BSO contract-policing district.",
+      "Official city and BSO materials still expose a North Lauderdale-specific operational policing surface with district staffing, headquarters, and current citywide public metrics.",
+      "FDLE officially published North Lauderdale as a distinct municipal offense row through 2020 and retained the named row in 2021.",
+      "Official state and federal roster surfaces still recognize FL0062300 as the North Lauderdale municipal agency identity despite naming drift.",
+      "The live repo crosswalk from FL0062300 to North Lauderdale city is exclusive and matches those official identity surfaces."
+    ],
+    "most_likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+    "likely_explanation_for_current_all_fill_state": [
+      "North Lauderdale's city-specific reporting identity survived administratively under FL0062300 even while policing was delivered by BSO under contract.",
+      "That identity remained visible in FDLE's legacy county-and-municipal offense reports through 2020 and as a blank retained row in 2021, but it did not carry into the public FIBRS workbook.",
+      "Because FL0062300 remained exclusively attached to North Lauderdale in reference while public offense continuity disappeared after 2020-2021, the 2024 controls treated the city as structurally missing and filled every offense."
+    ],
+    "recommended_handling": [
+      "Retain North Lauderdale city as a standalone municipal control row.",
+      "Do not drop North Lauderdale into generic Broward County sheriff remainder or mark the target invalid solely because policing is delivered by BSO under contract.",
+      "Treat the current all-fill state as a contract-city reporting continuity and publication failure centered on FL0062300 after the Florida SRS-to-NIBRS transition.",
+      "Use FDLE county-and-municipal offense reports as the official historical state truth surface through 2021.",
+      "Use the city's FY2026 budget as the strongest current public city-specific accounting surface identified in this review, while recognizing that it only provides overall crime and calls-for-service totals rather than offense-level annual counts."
+    ]
+  },
+  "likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+  "exact_blocker": "No reviewed public source provides offense-level North Lauderdale annual counts after the 2020 substantive FDLE row and the 2021 retained-but-blank transition row. The city's current FY2026 budget confirms city-specific 2023-2024 total crime and calls-for-service accounting, but it is not offense-detailed enough to repair offense-by-offense municipal controls. Any direct override would require North Lauderdale district BSO records, city-held contract-performance reporting, or a direct FDLE agency extract.",
+  "open_questions": [
+    "The keep-versus-drop decision is closed. The remaining implementation question is whether post-2020 North Lauderdale offense-level annual counts can be reconstructed from BSO district reporting, city contract materials, or another official non-FDLE public surface."
+  ]
+}

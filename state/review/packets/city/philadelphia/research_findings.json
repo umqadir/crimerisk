@@ -1,0 +1,281 @@
+{
+  "city_key": "philadelphia",
+  "city_name": "Philadelphia",
+  "jurisdiction_id": "42:municipal:cousub:4210160000",
+  "state_abbr": "PA",
+  "review_date": "2026-03-24",
+  "artifacts": {
+    "packet_manifest": "packet_manifest.json",
+    "packet_status": "packet_status.csv",
+    "source_candidate": "source_candidate.csv",
+    "offense_crosswalk": "offense_crosswalk.csv",
+    "published_reference_extract": "published_reference_extract.csv",
+    "reconciliation_summary": "reconciliation_summary.csv",
+    "packet_checklist": "packet_checklist.csv"
+  },
+  "recommended_status": {
+    "production_ready": true,
+    "packet_status": "review_complete",
+    "recommended_disposition": "ready_now",
+    "supported_onboarding": "offense_selective_only",
+    "city_wide_onboarding_supported": false,
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_ppd_year_end_table_reconciled",
+    "offense_selective_candidate_offenses": [
+      "aggravated_assault",
+      "burglary"
+    ],
+    "near_ready_but_not_promoted": [
+      "murder"
+    ],
+    "blocked_offenses": [
+      "rape",
+      "robbery",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "why_not_city_wide": [
+      "Rape is about 10 percent above the official PPD year-end table in both 2023 and 2024.",
+      "Robbery is about 17 to 20 percent above the official PPD year-end table in both 2023 and 2024.",
+      "Larceny is about 9 to 11 percent above the official PPD year-end table in both 2023 and 2024.",
+      "Motor vehicle theft is about 4 to 7 percent below the official PPD year-end table in both 2023 and 2024."
+    ],
+    "exact_next_action": "Keep Philadelphia live for aggravated_assault and burglary only. Revisit murder only if a public criminal-homicide-only comparator is found."
+  },
+  "source_contract": {
+    "recommended_source_name": "City of Philadelphia Crime Incidents / incidents_part1_part2",
+    "dataset_portal_url": "https://opendataphilly.org/datasets/crime-incidents/",
+    "visualization_url": "https://data.phila.gov/visualizations/crime-incidents",
+    "api_explorer_url": "https://cityofphiladelphia.github.io/carto-api-explorer/#incidents_part1_part2",
+    "table_api_base": "https://phl.carto.com/api/v2/sql",
+    "review_query_url_2024": "https://phl.carto.com/api/v2/sql?filename=incidents_part1_part2&format=csv&q=SELECT%20*%20,%20ST_Y(the_geom)%20AS%20lat,%20ST_X(the_geom)%20AS%20lng%20FROM%20incidents_part1_part2%20WHERE%20dispatch_date_time%20%3E=%20%272024-01-01%27%20AND%20dispatch_date_time%20%3C%20%272025-01-01%27",
+    "portal_type": "opendataphilly_plus_carto_sql_api",
+    "coverage_start_year": 2006,
+    "coverage_end_year": 2026,
+    "coverage_notes": [
+      "The live Carto table spans from 2006-01-01 through at least 2026-03-24.",
+      "OpenDataPhilly publishes explicit yearly CSV resources for 2024, 2025, and 2026 and older year-specific CSV and SHP resources back to 2008 and earlier."
+    ],
+    "official_description_summary": "Crime incidents from the Philadelphia Police Department. Part I crimes include violent offenses such as aggravated assault, rape, arson, among others. Part II crimes include simple assault, prostitution, gambling, fraud, and other non-violent offenses.",
+    "official_terms_notes": [
+      "The OpenDataPhilly page is published under City of Philadelphia terms of use and an as-is disclaimer.",
+      "The source is a live public data service rather than a frozen annual snapshot."
+    ]
+  },
+  "schema_and_coverage": {
+    "live_table_name": "incidents_part1_part2",
+    "rows_all_time": 3518233,
+    "rows_2024": 160388,
+    "min_dispatch_date_time": "2006-01-01T05:00:00Z",
+    "max_dispatch_date_time": "2026-03-24T03:58:00Z",
+    "core_fields": [
+      "objectid",
+      "dc_key",
+      "dispatch_date_time",
+      "dispatch_date",
+      "dispatch_time",
+      "dc_dist",
+      "psa",
+      "location_block",
+      "ucr_general",
+      "text_general_code",
+      "the_geom",
+      "point_x",
+      "point_y"
+    ],
+    "field_contract": {
+      "date_field": "dispatch_date_time",
+      "offense_fields": [
+        "ucr_general",
+        "text_general_code"
+      ],
+      "spatial_fields": [
+        "the_geom",
+        "point_x",
+        "point_y",
+        "location_block"
+      ]
+    }
+  },
+  "dedupe_contract": {
+    "primary_public_row_key": "objectid",
+    "primary_public_row_key_findings_2024": {
+      "rows": 160388,
+      "distinct_objectid": 160388,
+      "null_objectid": 0
+    },
+    "secondary_case_key": "dc_key",
+    "secondary_case_key_findings_2024": {
+      "distinct_dc_key": 160375,
+      "null_dc_key": 0,
+      "non_unique_rows": 13
+    },
+    "dc_key_non_uniqueness_examples": [
+      "Some duplicated dc_key values are true duplicate homicide rows at the same location.",
+      "Some duplicated dc_key values span an earlier aggravated-assault row and a later homicide row, which makes dc_key unsafe as a strict incident dedupe key."
+    ],
+    "recommended_rule": "Treat objectid as the stable public row key. Keep dc_key only as a case-linkage aid, not as the primary dedupe key."
+  },
+  "spatial_contract": {
+    "city_scope": "All rows in the feed are already Philadelphia Police Department incidents, so no city-boundary screen is needed before city-level reconciliation.",
+    "geometry_contract": {
+      "the_geom_srid": 4326,
+      "native_xy_fields": [
+        "point_x",
+        "point_y"
+      ]
+    },
+    "rows_with_xy_2024": 153657,
+    "rows_without_xy_2024": 6731,
+    "rows_with_xy_share_2024": 0.958,
+    "ags_offense_geocoded_2024": {
+      "murder": {
+        "source_count": 268,
+        "geocoded_count": 253
+      },
+      "rape": {
+        "source_count": 536,
+        "geocoded_count": 509
+      },
+      "robbery": {
+        "source_count": 4322,
+        "geocoded_count": 4162
+      },
+      "aggravated_assault": {
+        "source_count": 8403,
+        "geocoded_count": 8077
+      },
+      "burglary": {
+        "source_count": 5042,
+        "geocoded_count": 4814
+      },
+      "larceny": {
+        "source_count": 51256,
+        "geocoded_count": 49180
+      },
+      "motor_vehicle_theft": {
+        "source_count": 14682,
+        "geocoded_count": 13908
+      }
+    },
+    "recommended_assignment_rule": [
+      "Use point_x and point_y or the_geom as the primary block-group assignment path.",
+      "Treat location_block as the fallback geocoding path for rows with null xy fields.",
+      "Because the feed is already citywide, missing-xy rows are a within-city spatial problem, not a city-membership problem."
+    ]
+  },
+  "offense_mapping": {
+    "mapping_basis": {
+      "murder": "ucr_general = 100 and text_general_code = 'Homicide - Criminal'",
+      "rape": "ucr_general = 200",
+      "robbery": "ucr_general = 300",
+      "aggravated_assault": "ucr_general = 400",
+      "burglary": "ucr_general = 500",
+      "larceny": "ucr_general = 600",
+      "motor_vehicle_theft": "ucr_general = 700"
+    },
+    "mapping_risks": [
+      "The feed exposes justifiable homicide separately, so murder requires a deliberate exclusion rule.",
+      "The public official table uses a different city publication surface and does not reconcile cleanly for all directly mapped categories.",
+      "The strongest exact mappings are burglary and aggravated assault."
+    ]
+  },
+  "official_reference_contract": {
+    "crime_data_page_url": "https://www.phillypolice.com/crime-data/",
+    "crime_statistics_page_url": "https://www.phillypolice.com/crime-data/crime-statistics/",
+    "page_json_url": "https://www.phillypolice.com/wp-json/wp/v2/pages?slug=crime-statistics",
+    "ajax_endpoint_url": "https://www.phillypolice.com/wp-admin/admin-ajax.php",
+    "ajax_contract": {
+      "method": "POST",
+      "action_parameter": "get_crimedata_content",
+      "date_parameter_example": "2024-12-31"
+    },
+    "ui_contract_notes": [
+      "The public page loads an official citywide major-crimes table through the AJAX endpoint.",
+      "The public crime_statistics.js script sets the selectable minYear to 2023, so the current official year-end citywide table contract is strongest for 2023 forward."
+    ],
+    "official_disclaimer": "All figures presented are based on preliminary Philadelphia Police Department crime data. This crime data is subject to reclassification upon further investigation."
+  },
+  "published_reconciliation": {
+    "reference_year": 2024,
+    "reference_source_name": "Philadelphia Police Department Crime Statistics citywide table",
+    "reference_source_url": "https://www.phillypolice.com/crime-data/crime-statistics/",
+    "reference_contract": "POST https://www.phillypolice.com/wp-admin/admin-ajax.php with action=get_crimedata_content and date=2024-12-31",
+    "official_counts_2024": {
+      "homicide": 269,
+      "rape": 487,
+      "robbery": 3694,
+      "aggravated_assault": 8188,
+      "burglary": 5076,
+      "larceny": 46904,
+      "motor_vehicle_theft": 15833
+    },
+    "feed_counts_2024": {
+      "murder_criminal_only": 268,
+      "murder_including_justifiable": 269,
+      "rape": 536,
+      "robbery": 4322,
+      "aggravated_assault": 8403,
+      "burglary": 5042,
+      "larceny": 51256,
+      "motor_vehicle_theft": 14682
+    },
+    "cross_year_signal_2023": {
+      "murder_criminal_only": 405,
+      "murder_including_justifiable": 409,
+      "official_homicide": 410,
+      "rape": {
+        "feed": 551,
+        "official": 499
+      },
+      "robbery": {
+        "feed": 5257,
+        "official": 4388
+      },
+      "aggravated_assault": {
+        "feed": 8450,
+        "official": 8195
+      },
+      "burglary": {
+        "feed": 5670,
+        "official": 5679
+      },
+      "larceny": {
+        "feed": 50057,
+        "official": 44916
+      },
+      "motor_vehicle_theft": {
+        "feed": 22473,
+        "official": 23415
+      }
+    },
+    "key_findings": [
+      "Burglary is the strongest exact path: the feed differs from the official 2024 table by only -0.67 percent and from the 2023 table by only -0.16 percent.",
+      "Aggravated assault is also strong: the feed differs from the official 2024 table by +2.63 percent and from the 2023 table by +3.11 percent.",
+      "The official homicide comparator appears to include justifiable homicide. That makes murder nearly exact, but not yet an exact public comparator for the AGS/V2 murder object.",
+      "Rape, robbery, and larceny show stable material positive gaps, and motor vehicle theft shows a stable material negative gap."
+    ]
+  },
+  "blockers": {
+    "city_wide": [
+      "Stable multi-year reconciliation failures block city-wide use.",
+      "The official public table is strongest from 2023 forward, so older-year public reconciliation would need separate sourcing if the packet is expanded."
+    ],
+    "murder": [
+      "The feed exposes criminal and justifiable homicide separately.",
+      "The official public comparator exposes only a single homicide line, which appears to include both."
+    ],
+    "motor_vehicle_theft": [
+      "The feed is materially below the official citywide table in both 2023 and 2024.",
+      "No packet-local evidence yet explains the systematic undercount."
+    ]
+  },
+  "main_findings": [
+    "Philadelphia does have a legitimate official city incident overlay candidate: the City of Philadelphia incidents_part1_part2 feed.",
+    "The feed has direct UCR-style offense fields, public coordinates, block-level address text, and citywide police coverage.",
+    "Objectid is a safe public row key; dc_key is not a safe primary dedupe key.",
+    "The Philadelphia Police public site exposes an official year-end citywide reconciliation endpoint through a public AJAX contract.",
+    "This packet supports offense-selective onboarding only, not city-wide onboarding.",
+    "The current exact/selective candidates are aggravated_assault and burglary."
+  ]
+}

@@ -1,0 +1,14 @@
+artifact_name,format,purpose,repo_validator_required,mandatory_before_review_complete,mandatory_before_city_wide_promotion,mandatory_before_offense_selective_promotion,conditional_trigger,notes
+packet_manifest.json,json,Packet identity and scaffold metadata,yes,yes,yes,yes,always,Exists at scaffold time and should remain stable.
+source_candidate.csv,csv,Snapshot of central source config and initial source contract,yes,yes,yes,yes,always,May become stale after packet research; do not treat it as the only truth.
+packet_checklist.csv,csv,Standard worker workflow for the packet,yes,yes,yes,yes,always,Keep aligned with the factory checklist rather than freeform notes.
+packet_status.csv,csv,Operational city-level readiness and blocker state,yes,yes,yes,yes,always,This is the packet-local promotion switch used by the builder.
+research_findings.json,json,Machine-usable narrative of source contract, schema findings, spatial doctrine, reconciliation, and handoff,conditional,yes,yes,yes,required whenever review moves beyond scaffold or central disposition is ready_now,Primary packet doctrine artifact.
+reconciliation_summary.csv,csv,Offense-by-offense comparison against a published reference,conditional,yes,yes,yes,required for any promotable conclusion,City-wide or offense-selective promotion without this file is weak.
+offense_crosswalk.csv,csv,Explicit mapping from live source values to V2 offenses,no,yes,yes,yes,required unless mapping is trivially direct and fully described elsewhere,Treat as mandatory in practice for all but the simplest direct-code cities.
+packet_offense_status.csv,csv,Offense-level promotion gate file,no,conditional,no,yes,required whenever any city is offense-selective,Repo builder and validator both depend on this for offense-selective live use.
+source_schema.csv,csv,Observed live schema and field audit,no,conditional,conditional,conditional,required when schema drift or field-null risk exists,Especially important for Austin or Mesa type cities.
+source_contract_notes.json,json,Non-tabular source-contract quirks and loader guidance,no,conditional,conditional,conditional,required when cutoff dates or contract caveats matter,Useful for dual-feed or changing-feed cities.
+spatial_contract_notes.json,json,Details on geocoding, in-city filtering, and proxy geography,no,conditional,yes,yes,required whenever spatial logic is not purely direct coordinates,Seattle and San Francisco show why this should be explicit.
+published_reference_extract.csv,csv,Extracted official comparator table or counts used for reconciliation,no,conditional,yes,yes,required when reference comes from PDF or manual extract,Keeps the packet auditable without reopening the source.
+helper_script.py,code,Packet-local helper used to audit or regenerate a packet artifact,no,optional,optional,optional,only when custom analysis is needed,Keep helper scripts packet-local and minimal.

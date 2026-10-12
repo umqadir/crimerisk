@@ -1,0 +1,13 @@
+city_key,rule,sealed_in_run,seed,stratum
+asheville_nc,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,south/under 100k
+chandler_az,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,west/250k+
+charleston_sc,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,south/100k-250k
+chattanooga_tn,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,south/100k-250k
+des_moines_ia,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,midwest/100k-250k
+evanston_il,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,midwest/under 100k
+hartford_ct,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,northeast/100k-250k
+hayward_ca,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,west/100k-250k
+kirkland_wa,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,west/under 100k
+orlando_fl,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,south/250k+
+st_louis_county_mo,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,midwest/250k+
+ventura_ca,never trained on; scored once at the end of the edition,cities-new-2025.2,20260927,west/100k-250k

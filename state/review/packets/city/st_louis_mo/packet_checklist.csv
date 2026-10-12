@@ -1,0 +1,7 @@
+step_order,step_name,required_output
+1,source_research,"Official SLMPD monthly NIBRS CSV source, schema, and URL set confirmed."
+2,raw_snapshot,All 12 2024 monthly CSVs cached under data/city-incidents/st_louis_mo.
+3,offense_crosswalk,NIBRS-to-seven-offense crosswalk recorded in offense_crosswalk.csv.
+4,spatial_contract,Reported latitude/longitude joined to St. Louis municipal block groups; geocode QA recorded.
+5,published_reconciliation,Feed counts reconciled against CIUS/control-lane official 2024 St. Louis city totals.
+6,packet_handoff,All seven offenses marked offense_selective for share-lane integration.

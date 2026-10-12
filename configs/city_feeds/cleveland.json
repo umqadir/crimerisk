@@ -1,0 +1,299 @@
+{
+  "city_key": "cleveland",
+  "city_name": "Cleveland",
+  "evidence_refs": [
+    "state/review/packets/city/cleveland/packet.json",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:63-66",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:73-81",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:95-102",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:113-230",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:237-321",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:355-363",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:404",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:419-426",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:430-436",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:441-443",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:446-457",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:461-485",
+    "state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:499-505",
+    "state/review/packets/city/cleveland/evidence/README.md:3-17",
+    "state/review/packets/city/cleveland/evidence/README.md:38-55",
+    "state/review/packets/city/cleveland/evidence/README.md:173",
+    "state/review/packets/city/cleveland/evidence/README.md:195-196",
+    "state/review/packets/city/cleveland/evidence/README.md:246-251",
+    "state/review/packets/city/cleveland/evidence/offense_mapping.csv",
+    "state/review/packets/city/cleveland/evidence/jurisdictions.csv",
+    "state/review/packets/city/cleveland/evidence/raw_cache_profile.json",
+    "state/review/packets/city/cleveland/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "39:municipal:place:3916000"
+    ],
+    "state_fips": [
+      "39"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Server-side filter: the script sends 'OffenseYear >= 2018 AND OffenseYear <= 2024 AND UCRdesc IN (9 categories)' (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:95-100). The contract where needs {start}/{end} dates, so it filters on OffenseDate instead. OffenseDate is epoch ms in UTC and OffenseYear is the America/New_York local year: on raw_cache.parquet the local-time year of OffenseDate equals OffenseYear on 0 mismatching rows of 297,725, while the UTC year mismatches on 236 rows. The OffenseDate range is 2018-01-01T05:00Z to 2025-01-01T04:35Z. The where window therefore runs from {start} 00:00 UTC to {end} 05:00 UTC, a superset of the local-year window, and year_field=OffenseYear then applies the script's exact year filter (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:430-436). On the archived pull the result is identical. On a live pull the result is identical as long as the service stores OffenseDate in UTC with a year-end offset of at most 5 hours (EST).",
+    "StatDesc whitespace: the script strips StatDesc before lookup (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:404). The raw data has one value with a trailing space, 'Petty Theft POCKET-PICKING ' (281 rows, raw_cache_profile.json StatDesc distinct). The larceny rule lists that exact raw spelling next to the 89 offense_mapping.csv values. On raw_cache.parquet, an unstripped exact match over these 90 values keeps 173,652 rows, the same count as the script's stripped map (README.md:42). A new whitespace variant on a live pull would be kept by the script but dropped by the contract, unless the runner strips values.",
+    "Offense matching is case-sensitive (case_sensitive=true), matching the script's exact dict lookup (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:419). No two raw StatDesc values differ only by case (checked on raw_cache.parquet), so case-insensitive matching would give the same rows.",
+    "The script's completeness check reports StatDesc values that are neither mapped nor in EXCLUDED_STATDESC (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:237-321, 409-417). It is QA only. Unknown values are dropped both there and here. The contract cannot express the 76-value explicit exclusion list or the warning.",
+    "No de-duplication: the script only counts duplicate PrimaryKey values and does not drop them (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:441-443), so dedupe_on_id=false. PrimaryKey has 297,725 distinct values in 297,725 rows (raw_cache_profile.json), so true would give the same result.",
+    "Block-group join: the script joins to TIGER 2020 OH block groups with 'within'. It keeps the first match when a point on a boundary matches two block groups, and it drops rows without a 12-digit GEOID (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:461-485). The README reports a 100.00% match and 0 drops (README.md:195-196, 241-242). The runner's tie-break for boundary points may differ.",
+    "Output fields the contract cannot carry: the script writes District as 'district' in incidents_bg.parquet (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:499-504). It also cross-checks against the source's CENSUS_BG_GEOID and OffenseDate-derived year as QA only (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:431-433, 487-497). None of these affect which rows are kept.",
+    "Coordinates come from the LAT/LON attributes with returnGeometry=false (state/review/packets/city/cleveland/evidence/01_fetch_cleveland.py:357, 446-451). The script never uses feature geometry, so no __arcgis_latitude/__arcgis_longitude fallback is written. If a live pull returns null LAT/LON on a feature that has geometry, the script and the contract both drop that row."
+  ],
+  "mapping": {
+    "date_field": "OffenseDate",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": false,
+    "id_fields": [
+      "PrimaryKey"
+    ],
+    "latitude_field": "LAT",
+    "longitude_field": "LON",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Aggravated Murder-Non Negligence",
+              "Aggravated Murder-Offender Under/breaks Detention",
+              "Aggravated Murder-Offender'S Purpose To Kill Law E",
+              "Aggravated Murder-Premeditated",
+              "Aggravated Murder-Victim Law Enforcement Officer",
+              "Involuntary Manslaughter",
+              "Involuntary Manslaughter-Result Of Felony",
+              "Murder",
+              "Reckless Homicide"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Rape",
+              "Rape-Forcible Or Threat Of Force",
+              "Rape-Impair Judgement",
+              "Rape-Mental/physical Disability",
+              "Rape-Under 13-No Force",
+              "Sexual Battery"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Agg Robbery-Law Enforcement",
+              "Agg. Robbery_Dangerious Ordanance",
+              "Agg. Robbery_Deadly Weapon",
+              "Agg. Robbery_Serious Physical Harm",
+              "Aggravated Robbery",
+              "Robbery",
+              "Robbery_Deadly Weapon/Dangerious Ord.",
+              "Robbery_Physical Harm",
+              "Robbery_Threaten Force"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Aggravated Assault - Firearm",
+              "Aggravated Assault - Knife Or Cutting Instrument",
+              "Aggravated Assault - Other Dangerous Weapon",
+              "Aggravated Assault-Hands/fists/feet,etc",
+              "Aggravated Murder (Attempt)",
+              "Assault _ recklessly, serious physical harm",
+              "Assault-Reckless-Knife/cut(Serious Harm)",
+              "Changed To 2903.11a",
+              "Criminal Use Of Chemical- Intent Physical Harm",
+              "Fel Asslt - Police Off - Firearm",
+              "Fel Asslt - Police Off - Hands/fists/feet",
+              "Fel Asslt - Police Off - Hiv",
+              "Fel Asslt - Police Off - Knife Or Cutting Inst",
+              "Fel Asslt - Police Off - Other Weapon",
+              "Felonious Assault - (ALL)",
+              "Felonious Assault - Firearm",
+              "Felonious Assault - Hands, Fists, Feets, Etc",
+              "Felonious Assault - Hiv",
+              "Felonious Assault - Other Dangerous Weapon",
+              "Murder (Attempt)",
+              "Strangulation"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Agg. Burglary_Deadly Weapon/Dangerous Ordanance",
+              "Agg. Burglary_Inflict Harm",
+              "Aggravated Burglary",
+              "B&E-No Force-Non-Residence 0600-1800",
+              "B&E-No Force-Non-Residence 1800-0600",
+              "Breaking & Entering _ theft/felony unoccupied structure,force/stealth/deception.",
+              "Breaking and Entering",
+              "Breaking and Entering _ trespass land / premises, commit felony",
+              "Burg-Force-Res 1800-0600",
+              "Burglary",
+              "Burglary _ occupied structure person present or likely present, any criminal offense.",
+              "Burglary _ trespass in permanent or temporary habitation of any person when any person present.",
+              "Burglary _ trespass occped strctre, separately sec strctre, or sprtly occpd prtn of occpd strtre w/ prpse to commit crim offns",
+              "Burglary _occupied structure, person present, criminal offense.",
+              "Trespass in a perm or temp habitation of any person when any person  is present or likely to be present."
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Manhole Covers, Tampering With",
+              "Petty Theft",
+              "Petty Theft FROM BUILDING",
+              "Petty Theft FROM COIN-OPERATED MACHINE or DEVICE",
+              "Petty Theft FROM MOTOR VEHICLE",
+              "Petty Theft POCKET-PICKING",
+              "Petty Theft PURSE-SNATCHING",
+              "Petty Theft SHOPLIFTING",
+              "Petty Theft of MOTOR VEHICLE PARTS or ACCESSORIES",
+              "Safecracking",
+              "Tampering With Coin Machines",
+              "Theft",
+              "Theft - Bicycles",
+              "Theft - From Building",
+              "Theft - From Coin Oper Device",
+              "Theft - From Motor Vehicle",
+              "Theft - Mv Parts & Gasoline",
+              "Theft - Other",
+              "Theft - Pocket Picking",
+              "Theft - Purse Snatch",
+              "Theft - Shoplifting",
+              "Theft Of Drugs (Repealed - Now Go To 2913.02)",
+              "Theft Of Utility Services",
+              "Unauthorized Cable Television Device",
+              "Unauthorized Use Of Property",
+              "Vehicle Theft - Boat",
+              "Petty Theft POCKET-PICKING "
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "StatDesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Motor Vehicle Theft - GTMV",
+              "Motor Vehicle Theft - Truck Or Bus",
+              "Motor Vehicle Theft- Other Types"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "OffenseYear"
+  },
+  "notes": "Translation of 01_fetch_cleveland.py. Recomputed on raw_cache.parquet (297,725 rows, 33 columns) with pandas. Stripped-StatDesc map over offense_mapping.csv gives 173,652 mapped rows; all have OffenseYear 2018-2024. The (0,0) filter is included; 13,979 raw rows have null LAT and 0 are at (0,0). Mapped rows with valid LAT/LON number 165,092, and 8,560 are dropped. These counts match README.md:42-49 and the README's 165,092 total (README.md:173). Mapped rows by bucket before the coordinate filter: murder 1,013; rape 3,677; robbery 13,339; aggravated_assault 20,877; burglary 28,007; larceny 79,120; motor_vehicle_theft 27,619. The id is PrimaryKey (CaseNumber plus the offense sequence), so there is one row per offense rather than one per case (README.md:13-17, 264-271). The jurisdiction is Cleveland city (39:municipal:place:3916000). The publisher is the Cleveland Division of Police (README.md:8), and 164,330 of the feed's 2018-2024 incidents fall in Cleveland city per jurisdictions.csv. The other 55 jurisdictions in jurisdictions.csv hold 1-473 incidents each and are spillover, not jurisdictions CPD serves. exclusions_stated_by_publisher is empty. The evidence holds no publisher documentation of exclusions: README.md:250-251 says no layer-level description was available. The block-rounded Address_Public and LAT/LON jitter at README.md:220-236 and 272-277 are the ingester's inferences, not publisher statements. api_endpoint and source_url are the FeatureServer layer URL; the script appends /query ({S}:63-66, 367). The item title reads '2016 to 11/11/25' (README.md:6).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services3.arcgis.com/dty2kHktVXHrqO8i/ArcGIS/rest/services/Crime_Incidents/FeatureServer/0",
+      "name": "Cleveland Division of Police Crime Incidents [2016 to 11/11/25] (opendataCLE)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "PrimaryKey",
+        "CaseNumber",
+        "District",
+        "UCRdesc",
+        "OffenseYear",
+        "TimeGroup",
+        "ReportedDate",
+        "OffenseMonth",
+        "OffenseDay",
+        "TimeBlock",
+        "DOWname",
+        "DOW",
+        "HourofDay",
+        "DaysAgo",
+        "OffenseDate",
+        "Statute",
+        "Zip",
+        "StatDesc",
+        "Address_Public",
+        "WARD",
+        "WARD_2014",
+        "WARD_2026",
+        "NEIGHBORHOOD",
+        "City",
+        "CENSUS_TRACT",
+        "CENSUS_TRACT_GEOID",
+        "CENSUS_BLOCK_GROUP",
+        "CENSUS_BG_GEOID",
+        "CENSUS_BLOCK",
+        "CENSUS_BLOCK_GEOID",
+        "LAT",
+        "LON"
+      ],
+      "slug": "cleveland_crime_incidents",
+      "source_url": "https://services3.arcgis.com/dty2kHktVXHrqO8i/ArcGIS/rest/services/Crime_Incidents/FeatureServer/0",
+      "where": "OffenseDate >= TIMESTAMP '{start} 00:00:00' AND OffenseDate < TIMESTAMP '{end} 05:00:00' AND UCRdesc IN ('Homicide','Rape','Sex Offenses','Robbery','Assault','Fel Assault','Burglary','Theft','GTMV')"
+    }
+  ]
+}

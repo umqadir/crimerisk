@@ -1,0 +1,212 @@
+{
+  "city_key": "chapel_hill_nc",
+  "city_name": "Chapel Hill",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/chapel_hill_nc/packet.json",
+    "state/review/packets/city/chapel_hill_nc/evidence/registry_row.json",
+    "state/review/packets/city/chapel_hill_nc/evidence/doc_00.json",
+    "state/review/packets/city/chapel_hill_nc/evidence/doc_index.csv",
+    "state/review/packets/city/chapel_hill_nc/evidence/raw_cache_profile.json",
+    "state/review/packets/city/chapel_hill_nc/evidence/scope_candidates.csv",
+    "state/review/packets/city/chapel_hill_nc/evidence/official_totals.csv",
+    "state/review/packets/city/chapel_hill_nc/raw_cache.parquet",
+    "src/crimerisk/city_contracts.py:194-355"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "37:municipal:place:3711800"
+    ],
+    "state_fips": [
+      "37"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "The source publishes one free-text offense title per incident (field Offense, 3,981 distinct values in 60,498 rows per evidence/raw_cache_profile.json); there is no NIBRS or UCR code field (evidence/doc_00.json fields list), so the seven offenses are keyword rules on officer-entered titles, not code mappings. Only the one published title per incident is visible; a lower-ranked offense in the same incident cannot be counted.",
+    "Murder is undercounted: the only homicide title is 'MURDER & NONNEGLIENT MANSLAUGHTER' (3 rows: 2 in 2018, 1 in 2021, raw_cache query grouped by Offense and year) against 9 official murders 2018-2025 (sum of murder rows in evidence/official_totals.csv). titles beginning 'DEATH INV' (388 rows 2018-2025 by occurrence-else-report year) mix homicides with natural, accidental and suicide deaths and are left unmapped.",
+    "Rape is undercounted: the mapped titles (FORCIBLE RAPE, RAPE, degree-rape and forcible/degree sexual-offense titles, SEXUAL ASSAULT WITH AN OBJECT; STATUTORY RAPE excluded as 36B) give 51 footprint rows 2018-2025 against 74 official (sum of rape rows in evidence/official_totals.csv). Generic 'SEXUAL ASSAULT' titles (28 rows matching ^(BELATED |ATT |ATTEMPTED |CHILD )?SEXUAL ASS?[AU]{1,2}LT$) straddle rape (11A-11C) and fondling (11D) and are left unmapped; 'SEXUAL BATTERY' (111 rows) is the North Carolina fondling offense and is excluded.",
+    "Aggravated assault is keyword-based (AGGRAVATED, STRANGULATION, and ASSAULT titles naming a deadly weapon, firearm, gun, knife, blunt object or serious injury, excluding NON-AGGRAVATED): 418 footprint rows 2018-2025 against 498 official. Generic titles such as 'ASSAULT', 'ASSAULT ON LEO' (49 rows), 'ASSAULT ON FEMALE' (308 rows) and 'SHOOTING INTO (AN) OCCUPIED DWELLING(S)' (3 rows) carry no aggravated/simple split and are left unmapped.",
+    "Motor vehicle theft leaves out 'UNAUTHORIZED USE OF (MOTOR) CONVEYANCE/VEHICLE' titles (111 rows beginning 'UNAUTHORIZED USE', 2018-2025): the North Carolina offense covers both joyriding (240) and failure to return an entrusted vehicle (embezzlement), so it straddles two classes. With them the footprint count is 803 against 687 official; without them it is 703.",
+    "Vehicle break-ins ('B&E ... VEH', 'B&E LARCENY F/VEHICLE', 'B&E VEH (ATT LAR F/VEH)') are mapped to larceny (23F, attempts included), not burglary; B&E of trailers is mapped with vehicles to larceny. Larceny excludes identity theft, embezzlement, fraud and possession/receiving/recovery of stolen property.",
+    "Titles marked POSSIBLE, POTENTIAL, ALLEGED, UNFOUNDED, FALSE, INFORMATION or out-of-jurisdiction, and patrol, operation, training and alarm titles, are excluded from every offense.",
+    "Addresses of sensitive incidents are published as Street 'XX' (2,902 rows in the pull) and many of those points sit at the police department address, 828 Martin Luther King Jr Blvd (35.92696, -79.05294); 42 of the 51 kept rape rows have Street 'XX' and 44 round to (35.927, -79.053) at three decimals, so rape locations are not incident locations. 385 of all 11,223 kept rows (run_contract output) round to that point.",
+    "The archived pull is filtered on report date (Date_of_Report), while the contract years on occurrence date: incidents that occurred in 2018-2025 but were reported after 2025 are absent, and 27 mapped rows whose occurrence date falls before 2018 are dropped. Date fields are stored in UTC (dateFieldsTimeReference in evidence/doc_00.json), so a few incidents near midnight on 31 December may shift year."
+  ],
+  "mapping": {
+    "date_field": "Date_of_Occurrence|Date_of_Report",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "Incident_ID"
+    ],
+    "latitude_field": "Latitude|__arcgis_latitude",
+    "longitude_field": "Longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "\\bMURDER\\b",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "\\bRAPE\\b|SEXUAL ASSAULT\\s+WITH AN OBJECT|(?:DEGREE|FORCIBLE)\\s+(?:FORCIBLE\\s+)?SEXUAL OFFENSE",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM|STATUTORY",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "ROBBERY|CARJACK",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "AGGRAVATED|STRANGU|ASS?[AU]{1,2}LT.*(?:DEADLY|FIREARM|\\bGUN\\b|KNIFE|BLUNT OBJECT|SERIOUS)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM|NON[- ]?AGG|NO ASSAULT",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "B\\s*&\\s*E|BURGLARY|BREAKING\\s*(?:AND|/)\\s*ENTERING|BREAK-IN|HOME INVASION",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM|VEH|TRAILER|F/",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "AUTOMOBILE THEFT|VEHICLE THEFT|\\bMV THEFT|THEFT OF (?:A )?(?:MOTOR )?VEHICLE|\\bSTOLEN (?:MOTOR )?VEHICLE|(?:LARCENY|THEFT)\\b.*\\b(?:MOTORCY\\w*|MOPED|4-WHEELER|MOTOR VEHICLE)\\b|(?:MOTORCYCLE|MOPED) THEFT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM|REC\\.|RECOVER|POSSESS|LOCATE|TOWED|HELMET|PARTS|ACCESSOR|\\bFROM\\b|F/",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "LARCEN|THEFT|SHOPLIFT|STOLEN|POCKETPICK|PURSE SNATCH|B\\s*&\\s*E.*(?:VEH|TRAILER|F/)|VEH(?:ICLE)?\\s+B\\s*&\\s*E|VEHICLE BREAK-IN|BREAKING AND ENTERING TO VEHICLE",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense",
+            "op": "regex",
+            "value": "POSSIBL|\\bPOSS\\b|POTENTIAL|ALLEGED|UNFOUNDED|FALSE|INFORMATION|\\bINFO\\b|JURISDICTION|PATROL|OPERATION|TRAINING|ALARM|IDENTITY|STOLEN PROPERTY|STOLEN GOODS|POSSESS|RECEIVING|REC\\.|RECOVER|LOCATE|FOUND|LOST|TOWED",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Count unit is the incident: Incident_ID is one row per incident except 148 IDs that appear twice, and every repeated ID repeats the same Offense (0 IDs with more than one distinct Offense; raw_cache query), so dedupe_on_id on Incident_ID keeps the first copy. Only one offense title is published per incident, so the rules keep that title's offense. Date: Date_of_Occurrence (epoch ms; 135 nulls) with Date_of_Report as the fallback. Coordinates: the published Latitude/Longitude attributes (non-null 59,365) fall back to the feature geometry (__arcgis_latitude/__arcgis_longitude, 59,230); where both exist they agree to 1e-5 degrees in every row. Points are not rounded to a fixed grid (latitude carries 4 to 8 decimals), but redacted-address incidents (Street 'XX') are placed at the police department, and 21 rows sit at (0, 0). Scope is the Town of Chapel Hill (the only row in evidence/scope_candidates.csv; ORI NC0680100, municipal_pd). Loss funnel on the archived pull, 2018-2025 (computed with src/crimerisk/city_contracts.py funnel): raw 60,498; mapped 11,376; dated 11,376; in years 11,349; located 11,233; in North Carolina block groups 11,232; in the Chapel Hill footprint 11,203; deduplicated 11,193. Footprint counts against official totals 2018-2025: aggravated assault 418 vs 498; burglary 1,661 vs 1,614; larceny 8,147 vs 7,756 (2018: 840 vs 598 SRS); motor vehicle theft 703 vs 687; murder 3 vs 9; rape 51 vs 74; robbery 210 vs 197.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/7KRXAKALbBGlCW77/arcgis/rest/services/Recoded_Incidents_New/FeatureServer/0",
+      "name": "Police Incident Reports Written (Recoded_Incidents_New/FeatureServer/0)",
+      "order": "ObjectId ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "chapel_hill_nc",
+      "source_url": "https://opendata-townofchapelhill.hub.arcgis.com/",
+      "where": "Date_of_Report >= DATE '{start}' AND Date_of_Report < DATE '{end}'"
+    }
+  ]
+}

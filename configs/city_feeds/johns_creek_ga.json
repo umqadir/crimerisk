@@ -1,0 +1,174 @@
+{
+  "city_key": "johns_creek_ga",
+  "city_name": "Johns Creek",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/johns_creek_ga/evidence/registry_row.json",
+    "state/review/packets/city/johns_creek_ga/evidence/doc_00.json",
+    "state/review/packets/city/johns_creek_ga/evidence/doc_index.csv",
+    "state/review/packets/city/johns_creek_ga/evidence/raw_cache_profile.json",
+    "state/review/packets/city/johns_creek_ga/evidence/scope_candidates.csv",
+    "state/review/packets/city/johns_creek_ga/evidence/official_totals.csv",
+    "state/review/packets/city/johns_creek_ga/raw_cache.parquet",
+    "packet.json case_text: \"The archived pull (raw_cache.parquet) holds every row the endpoint returned for 2018-2025 under the date filter `date_rept >= '{start}T00:00:00' AND date_rept < '{end}T00:00:00'`\"",
+    "packet.json case_text: \"Survey notes: years 2018-2025, count unit incident, coordinates location point, redactions: none stated\""
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "13:municipal:place:1342425"
+    ],
+    "state_fips": [
+      "13"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the feed carries one row and one offense label per case number (incidentid distinct on all 20,769 rows of the pull), so multi-offense incidents are represented by a single offense chosen by the publisher; this is closer to a hierarchy-style incident count than to NIBRS offense counts, and any lesser offense in the same incident is not recoverable.",
+    "Murder is unmapped: the pull has no homicide or murder category. The only death category, 'PERSON DEAD' (242 rows), is a death-investigation label (its reportedas values are mostly EMD medical codes and WELFARE CHECK), not a homicide classification. Official murder totals sum to 9 for 2018-2025.",
+    "Rape is unmapped: the only candidate category, 'SEXUAL ASSAULT - OTHER' (18 rows; 0,4,0,4,1,3,3,3 by occurrence year 2018-2025), is not documented and its dispatch labels include HARASSMENT (3) and ASSAULT OR BATT (4), so it cannot be separated into the revised-SRS rape offenses (11A-11C) versus fondling (11D) or other sex offenses. 'SEX OFFENSE - OTHER' (2 rows) is likewise not rape. Official rape totals sum to 24 for 2018-2025.",
+    "Aggravated assault is mapped only from the six explicit aggravated-assault labels (46 rows by occurrence year 2018-2025 versus an official sum of 164). The publisher's single label per incident appears to record many aggravated assaults under other labels; 'SIMPLE ASSAULT / BATTERY' (458 rows) is left out as simple assault (13B), 'TERRORISTIC THREATS AND ACTS' as intimidation-like, and 'AGGRAVATED STALKING' is not an assault. The weapon field that might identify armed assaults is populated only in 2018 (2,945 of 3,016 rows) and 2019 (1,304 of 2,939) and is empty from 2020 on, so it cannot be used as a consistent rule.",
+    "Robbery includes 'CARJACKING - ARMED' (1 row) and 'ROBBERY-FORCIBLE PURSE SNATCHING'; 'LARCENY - PURSE SNATCHING - NO FORCE' stays larceny, per the SRS force distinction. 'THEFT BY EXTORTION' (extortion, 210) is excluded.",
+    "Larceny excludes fraud, identity theft, forgery, embezzlement and stolen-property (receiving/possession/sale) labels, which are separate NIBRS groups (26, 250, 270, 280).",
+    "Motor vehicle theft maps 'THEFT BY TAKING MOTOR VEHICLE', 'THEFT OF OTHER VEHICLES' and 'THEFT AND USE AUTOMOBILE FOR OTHER CRIME'. 'STOLEN MOTOR VEHICLE RECOVERED' (55 rows; a recovery report that may concern vehicles stolen elsewhere) and 'THEFT BY RECEIVING STOLEN VEHICLE' (stolen property, 280) are excluded.",
+    "Year: the pull is bounded by report date (date_rept) while the contract dates by occurrence (date_occu), so incidents reported in 2018-2025 but occurring before 2018 drop out (1 to 67 rows per prior year, 111 in total from 2000-2017), and incidents occurring in 2025 but reported in 2026 are not in the pull."
+  ],
+  "mapping": {
+    "date_field": "date_occu",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "incidentid"
+    ],
+    "latitude_field": "location#point|geox",
+    "longitude_field": "location#point|geoy",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "ROBBERY-BUSINESS-GUN",
+              "ROBBERY - OTHER",
+              "ROBBERY-STREET-GUN",
+              "ROBBERY-BUSINESS-STRONGARM",
+              "ROBBERY-STREET-STRONGARM",
+              "ROBBERY-STREET-OTHER WEAPON",
+              "ROBBERY-FORCIBLE PURSE SNATCHING",
+              "ROBBERY-BANK/ FINANCIAL INSTITUTION",
+              "ROBBERY-RESIDENCE-GUN",
+              "ROBBERY-RESIDENCE-STRONGARM",
+              "CARJACKING - ARMED"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "AGG ASSAULT/ AGG BATTERY-GUN",
+              "AGGRAVATED ASSAULT - NONFAMILY - OTHER WEAPON",
+              "AGG ASSAULT/ AGG BATTERY - OTHER  WEAPON",
+              "AGGRAVATED ASSAULT - NONFAMILY - GUN",
+              "AGGRAVATED ASSAULT - FAMILY - OTHER WEAPON",
+              "AGGRAVATED ASSAULT - POLICE OFFICER - OTHER WEAPON"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "BURGLARY - RESIDENCE - FORCED ENTRY",
+              "BURGLARY - NONRESIDENCE - FORCED ENTRY",
+              "BURGLARY - RESIDENCE - NO FORCED ENTRY",
+              "BURGLARY - NONRESIDENCE - NO FORCE ENTRY",
+              "BURGLARY - BANKING - TYPE INSTITUTE",
+              "BURGLARY - OTHER"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "LARCENY - FROM VEHICLE",
+              "LARCENY - OTHER OFFENSES",
+              "LARCENY - FROM BUILDING",
+              "LARCENY - SHOPLIFTING",
+              "LARCENY - FROM MAIL",
+              "LARCENY - PARTS FROM VEHICLE",
+              "LARCENY - FROM YARDS",
+              "LARCENY - FROM RESIDENTIAL MAILBOX",
+              "LARCENY - POCKET PICKING",
+              "LARCENY - BICYCLE",
+              "LARCENY - PURSE SNATCHING - NO FORCE",
+              "LARCENY - OF GOVERMENT PROPERTY",
+              "LARCENY - FROM INTERSTATE SHIPMENT",
+              "LARCENY - FROM BANKING TYPE INSTITUTE"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "offense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "THEFT BY TAKING MOTOR VEHICLE",
+              "THEFT OF OTHER VEHICLES",
+              "THEFT AND USE AUTOMOBILE FOR OTHER CRIME"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: Johns Creek Police Department (ORI GA0605800) incident dataset ake9-ajui on the city's Socrata portal; the endpoint, portal_type, date filter on date_rept and :id order are the registry's (evidence/registry_row.json). The portal metadata (evidence/doc_00.json) has no dataset or column descriptions, so offense semantics come from the category labels in the pull (evidence/raw_cache_profile.json, 'offense' distinct values), which read as NCIC-style uniform offense descriptions. Unit: incident. incidentid ('Case Number') is distinct on all 20,769 rows, and distinct counts equal row counts in every report year (checked with count(*) vs count(distinct incidentid) grouped by substr(date_rept,1,4)), so each row is one incident with one offense label; dedupe_on_id is kept as a guard. Date: date_occu ('Date/Time Occurred', calendar_date, non-null on all rows) is the occurrence date and is used; date_rept is the report date. Coordinates: the Socrata location column ('location', a struct with latitude/longitude, non-null on all rows) is the published point, with geox (latitude) and geoy (longitude) as fallback; note the publisher's geox holds latitude and geoy holds longitude. The two agree on 20,767 of 20,769 rows. Values carry float32 precision (e.g. 34.0681686401367); the publisher states no rounding or offset for points, although street numbers in the address fields are block-masked (e.g. '109XX'). No point is null or at 0; 118 rows fall outside a rough box around the city (lat 33.9-34.15, lon -84.35 to -84.05), with extremes at lat 29.80 and lon -91.40, consistent with the roughly 164 rows whose city field names another place (171 non-Johns-Creek values less 7 misspellings of Johns Creek); the block-group and footprint joins drop those. Offense mapping and pre-geography counts by occurrence year 2018-2025 (explicit IN lists run against raw_cache; official sums from evidence/official_totals.csv): burglary 87,76,51,50,50,59,41,16 = 430 vs official 457; larceny 403,413,292,277,315,342,346,295 = 2,683 vs 2,642 (2019 is 413 vs official 267); motor vehicle theft 17,29,16,24,22,12,22,11 = 153 vs 168; robbery 9,5,5,3,1,3,3,3 = 32 vs 44; aggravated assault 2,2,8,7,10,8,5,4 = 46 vs 164 (known undercount, see differences). Murder and rape are left unmapped because the source has no category that isolates them. Scope: a city PD, so jurisdiction_ids is the single candidate, Johns Creek city (13:municipal:place:1342425, evidence/scope_candidates.csv); state_fips 13. The publisher states no redactions or exclusions (registry redactions empty; no description in doc_00.json).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://policeview.johnscreekga.gov/resource/ake9-ajui.json",
+      "name": "Johns Creek Incident",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "johns_creek_ga",
+      "source_url": "https://policeview.johnscreekga.gov/",
+      "where": "date_rept >= '{start}T00:00:00' AND date_rept < '{end}T00:00:00'"
+    }
+  ]
+}

@@ -1,0 +1,464 @@
+{
+  "city_key": "los_angeles",
+  "city_name": "Los Angeles",
+  "evidence_refs": [
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:96-100",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:103-148",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:150-154",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:166-183",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:186-200",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:225-239",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:283-318",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:329-331",
+    "state/review/packets/city/los_angeles/evidence/README.md:5-11",
+    "state/review/packets/city/los_angeles/evidence/README.md:19-28",
+    "state/review/packets/city/los_angeles/evidence/README.md:61-85",
+    "state/review/packets/city/los_angeles/evidence/README.md:128-168",
+    "state/review/packets/city/los_angeles/evidence/offense_mapping.csv",
+    "state/review/packets/city/los_angeles/evidence/jurisdictions.csv:2",
+    "state/review/packets/city/los_angeles/evidence/raw_cache_profile.json",
+    "state/review/packets/city/los_angeles/raw_cache.parquet",
+    "state/review/packets/city/los_angeles/packet.json (case_text: \"an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_los_angeles.py\")",
+    "state/review/packets/city/los_angeles/live/raw_63jg-8b9z_2025_2025_af427767f56b.parquet",
+    "state/review/packets/city/los_angeles/live/raw_2nrs-mtv8_2025_2025_69c23cd37977.parquet",
+    "state/review/packets/city/los_angeles/live/raw_y8y3-fqfu_2025_2025_be6d3ed21da2.parquet",
+    "state/review/packets/city/los_angeles/evidence/01_fetch_los_angeles.py:5-9",
+    "state/review/packets/city/los_angeles/evidence/README.md:1"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "06:municipal:place:0644000"
+    ],
+    "state_fips": [
+      "06"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Id string differs: the script sets incident_id = dr_no for legacy rows and 'NIBRS-' + uniquenibrno for y8y3-fqfu rows (01_fetch_los_angeles.py:289, :299). The contract cannot prefix a literal, so id = dr_no|uniquenibrno joined with '|' (one side null per row). The partition of rows into ids is identical: on raw_cache.parquet no row has both crm_cd and nibr_code, dr_no is non-null on all 855,610 legacy rows and uniquenibrno on all 43,146 NIBRS rows, and the duplicated-id mask of the contract id equals that of the script id row for row (checked with pandas on raw_cache.parquet). Id values themselves will not match the script's incidents_bg.parquet.",
+    "Per-dataset date windows (script lines 96-99, 182-183: 63jg-8b9z [2018-01-01, 2020-01-01), 2nrs-mtv8 [2020-01-01, 2025-01-01), y8y3-fqfu [2024-01-01, 2025-01-01)). The two legacy windows are kept verbatim in their sources' server-side where. For y8y3-fqfu the where keeps the 2024-01-01 lower bound but drops the 2025-01-01 upper bound; the script's 2024-only restriction is instead enforced by the date_occ regex '^2024-' condition on every NIBRS offense rule, so NIBRS rows outside 2024 are pulled on a live request but never receive an offense. For any requested years within 2018-2024 the {start}/{end} bounds make this identical to the script's window. Offline the legacy windows are not re-checked per source (the contract has no per-source condition); the archived rows already respect them (crosstab of source_dataset by year of date_occ on raw_cache.parquet: 63jg-8b9z 2018-2019 only, 2nrs-mtv8 2020-2024 only, y8y3-fqfu 2024 only).",
+    "Script de-duplicates after the block-group spatial join with a left join (01_fetch_los_angeles.py:329-331), so its incidents_bg.parquet keeps the 328 rows that match no California block group (README 'Block-group join match rate': 897,798 / 898,126 matched). If the runner drops points that fall within no block group, the contract output will have 328 fewer rows than the script output.",
+    "Script output carries computed/renamed fields (offense_code, offense_desc from crm_cd/crm_cd_desc or nibr_code/nibr_description; district/district_name from area/area_name; source_dataset added at fetch time, lines 221, 260, 290-301, 342). The contract does not produce these columns; row selection is unaffected.",
+    "Year: the script parses date_occ with pd.to_datetime(errors='coerce') (line 308); the contract uses the explicit format %Y-%m-%dT%H:%M:%S.%f. All 898,756 raw date_occ values match ^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3}$ (checked on raw_cache.parquet), so both parse identically.",
+    "Live pull outside the script's years: the fetch script defines no feed after 2024 (windows above; README title 'Crime Data, 2018-2024'). The live check requested 2025 and all three sources returned zero rows because each previous where carried an upper bound at or before 2025-01-01 (packet live/raw_63jg-8b9z_2025_2025_*.parquet, live/raw_2nrs-mtv8_2025_2025_*.parquet, live/raw_y8y3-fqfu_2025_2025_*.parquet are each 0 rows x 0 columns). With the y8y3-fqfu upper bound removed, a 2025 pull returns y8y3-fqfu rows (the dataset is 'LAPD NIBRS Offenses Dataset 2024 to 2025', script lines 9, 21) and the contract fields resolve, but the '^2024-' NIBRS rule condition drops every one of them, so the contract yields zero incidents for 2025, which is what the script yields. Such a pull carries only the y8y3-fqfu columns (no dr_no, crm_cd), so the legacy rules and the dr_no id component refer to absent columns on it; whether the runner treats an absent column as null is not in this packet. Whether 2025 (or 2024-onward) LAPD counts should come from y8y3-fqfu alone is a new source decision the script does not make (the NIBRS export is one row per offense, README 'The 2024 gap'); it is left for review, not taken here. The live pull did not return any rows, so live column names/types for 2025 are unverified against the contract."
+  ],
+  "mapping": {
+    "date_field": "date_occ",
+    "date_format": "%Y-%m-%dT%H:%M:%S.%f",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "dr_no",
+      "uniquenibrno"
+    ],
+    "latitude_field": "lat",
+    "longitude_field": "lon",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "110"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "121",
+              "122",
+              "815",
+              "820",
+              "821"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "210",
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "230",
+              "231",
+              "235",
+              "236",
+              "250",
+              "251",
+              "761"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "310",
+              "320"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "330",
+              "331",
+              "341",
+              "343",
+              "345",
+              "350",
+              "351",
+              "352",
+              "353",
+              "410",
+              "420",
+              "421",
+              "440",
+              "441",
+              "442",
+              "443",
+              "444",
+              "445",
+              "450",
+              "451",
+              "452",
+              "453",
+              "470",
+              "471",
+              "472",
+              "473",
+              "474",
+              "475",
+              "480",
+              "485",
+              "487"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crm_cd",
+            "op": "in",
+            "value": "",
+            "values": [
+              "433",
+              "510",
+              "520",
+              "522"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "nibr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          },
+          {
+            "case_sensitive": false,
+            "field": "date_occ",
+            "op": "regex",
+            "value": "^2024-",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Translation of evidence/01_fetch_los_angeles.py. Revision after the contract check (replay passed: 49 cells, 0 failing; live 2025 pull failed with \"none of date_occ in the pull\"): the only change is the y8y3-fqfu where, which no longer carries the 2025-01-01 upper bound, so a live pull after 2024 returns rows instead of an empty frame; offense rules, id, date, coordinate and dedupe settings are unchanged, so the archived replay is unaffected (where is not applied to raw_cache.parquet). A 2025 pull still maps to zero incidents by the script's 2024-only NIBRS decision; see known_differences. Three Socrata sources on data.lacity.org unioned (script lines 96-99, 181, 277): 63jg-8b9z (2018-2019), 2nrs-mtv8 (2020-2024), y8y3-fqfu (NIBRS, 2024 only, gap-fill). Offense rules: legacy crm_cd -> bucket (52 codes, script OFFENSE_MAPPING lines 103-148 = offense_mapping.csv legacy_crm_cd rows) and NIBRS nibr_code -> bucket (16 codes, NIBRS_OFFENSE_MAPPING lines 166-175 = offense_mapping.csv nibrs_2024_gapfill rows). Legacy rules condition on crm_cd and NIBRS rules on nibr_code, so the code-string collisions between schemes (e.g. crm_cd 220 = attempted robbery vs nibr_code 220 = burglary; 120, 240) cannot cross-map. Mapping decisions (761 brandish -> aggravated_assault, 330/410 -> larceny, 487 -> larceny, 433/522 -> motor_vehicle_theft, 113/09B/09C/11D/13B/13C excluded) are carried over unchanged. Replay on raw_cache.parquet with pandas, applying the script's steps: 898,756 raw rows (255,563 63jg-8b9z + 600,047 2nrs-mtv8 + 43,146 y8y3-fqfu); 0 unmapped; 0 outside 2018-2024; 629 dropped for coordinates (25 missing lat/lon, 604 at (0,0)), matching README's 629; 1 duplicate id (uniquenibrno has 43,145 distinct of 43,146 non-null per raw_cache_profile.json); 898,126 rows kept. Per-year totals from the replay equal README's table: 2018 131,251; 2019 124,308; 2020 115,050; 2021 122,496; 2022 134,980; 2023 139,367; 2024 130,674. Jurisdiction: LAPD is a city police department, so jurisdiction_ids is Los Angeles city only (06:municipal:place:0644000, 893,530 incidents in jurisdictions.csv). The other rows of jurisdictions.csv (California nonmunicipal remainder 17,724; Santa Monica 611; Inglewood 534; and others) are points of this feed that fall outside the city's place polygon, not jurisdictions LAPD serves per the README. jurisdictions.csv counts sum to 914,681, which exceeds the 898,126 rows the replay keeps and the 897,798 block-group matches in the README; the evidence does not say how that table was built, so the counts there are not reconciled to this contract. exclusions_stated_by_publisher is empty: the README and script document only the pipeline's own exclusions; the only publisher-side treatment mentioned is LAPD's hundred-block rounding of locations before geocoding (README 'Geometry'), which drops no rows. README arithmetic note: README 'The 2024 gap' says 87,593 + 43,146 = 130,674; the sum is 130,739 (as the script docstring line 33-34 states); 130,674 is the 2024 total after the coordinate filter and de-dupe. The 2024 union of two non-deduplicable id spaces (dr_no vs caseno/uniquenibrno) and the one-row-per-offense unit of y8y3-fqfu are README caveats carried over, not resolved here.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.lacity.org/resource/63jg-8b9z.json",
+      "name": "LAPD Crime Data from 2010 to 2019 (2018-2019 slice)",
+      "order": "dr_no",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "dr_no",
+        "date_rptd",
+        "date_occ",
+        "time_occ",
+        "area",
+        "area_name",
+        "rpt_dist_no",
+        "part_1_2",
+        "crm_cd",
+        "crm_cd_desc",
+        "premis_cd",
+        "premis_desc",
+        "status",
+        "status_desc",
+        "lat",
+        "lon",
+        "location"
+      ],
+      "slug": "63jg-8b9z",
+      "source_url": "https://data.lacity.org/resource/63jg-8b9z",
+      "where": "crm_cd in('110','121','122','815','820','821','210','220','230','231','235','236','250','251','761','310','320','330','331','341','343','345','350','351','352','353','410','420','421','440','441','442','443','444','445','450','451','452','453','470','471','472','473','474','475','480','485','487','433','510','520','522') AND date_occ >= '{start}T00:00:00' AND date_occ < '{end}T00:00:00' AND date_occ >= '2018-01-01T00:00:00' AND date_occ < '2020-01-01T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.lacity.org/resource/2nrs-mtv8.json",
+      "name": "LAPD Crime Data from 2020 to 2024",
+      "order": "dr_no",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "dr_no",
+        "date_rptd",
+        "date_occ",
+        "time_occ",
+        "area",
+        "area_name",
+        "rpt_dist_no",
+        "part_1_2",
+        "crm_cd",
+        "crm_cd_desc",
+        "premis_cd",
+        "premis_desc",
+        "status",
+        "status_desc",
+        "lat",
+        "lon",
+        "location"
+      ],
+      "slug": "2nrs-mtv8",
+      "source_url": "https://data.lacity.org/resource/2nrs-mtv8",
+      "where": "crm_cd in('110','121','122','815','820','821','210','220','230','231','235','236','250','251','761','310','320','330','331','341','343','345','350','351','352','353','410','420','421','440','441','442','443','444','445','450','451','452','453','470','471','472','473','474','475','480','485','487','433','510','520','522') AND date_occ >= '{start}T00:00:00' AND date_occ < '{end}T00:00:00' AND date_occ >= '2020-01-01T00:00:00' AND date_occ < '2025-01-01T00:00:00'"
+    },
+    {
+      "api_endpoint": "https://data.lacity.org/resource/y8y3-fqfu.json",
+      "name": "LAPD NIBRS Offenses Dataset 2024 to 2025 (2024 gap-fill only, enforced by the NIBRS rules)",
+      "order": "uniquenibrno",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "caseno",
+        "uniquenibrno",
+        "date_rptd",
+        "date_occ",
+        "time_occ",
+        "area",
+        "area_name",
+        "rpt_dist_no",
+        "nibr_code",
+        "nibr_description",
+        "premis_cd",
+        "premis_desc",
+        "status",
+        "status_desc",
+        "lat",
+        "lon",
+        "location"
+      ],
+      "slug": "y8y3-fqfu",
+      "source_url": "https://data.lacity.org/resource/y8y3-fqfu",
+      "where": "nibr_code in('09A','11A','11B','11C','120','13A','220','23A','23B','23C','23D','23E','23F','23G','23H','240') AND date_occ >= '{start}T00:00:00' AND date_occ < '{end}T00:00:00' AND date_occ >= '2024-01-01T00:00:00'"
+    }
+  ]
+}

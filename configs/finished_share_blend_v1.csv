@@ -1,0 +1,8 @@
+offense,weight_model,weight_population,weight_primary_exposure,status,source_run_id,source_fold_type,fit_cities,fit_mean_tvd
+murder,1.0,0.0,0.0,not_adopted,gold_b0,spatial,,
+rape,1.0,0.0,0.0,not_adopted,gold_b0,spatial,,
+robbery,1.0,0.0,0.0,not_adopted,gold_b0,spatial,,
+aggravated_assault,1.0,0.0,0.0,not_adopted,gold_b0,spatial,,
+burglary,1.0,0.0,0.0,not_adopted,gold_b0,spatial,,
+larceny,0.8,0.1,0.1,adopted,gold_b0,spatial,Austin;Baltimore;Boston;Chicago;Denver;Mesa;Minneapolis;New York;San Francisco;Seattle;St. Louis;Washington,0.24080888330241734
+motor_vehicle_theft,1.0,0.0,0.0,not_adopted,gold_b0,spatial,,

@@ -1,0 +1,77 @@
+dataset_id,dataset_name,field_position,field_name,display_name,data_type
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,1,pdid,PdId,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,2,incidntnum,IncidntNum,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,3,incident_code,Incident Code,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,4,category,Category,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,5,descript,Descript,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,6,dayofweek,DayOfWeek,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,7,date,Date,calendar_date
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,8,time,Time,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,9,pddistrict,PdDistrict,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,10,resolution,Resolution,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,11,address,Address,text
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,12,x,X,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,13,y,Y,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,14,location,location,point
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,15,data_loaded_at,data_loaded_at,calendar_date
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,16,:@computed_region_6qbp_sg9q,SF Find Neighborhoods 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,17,:@computed_region_qgnn_b9vv,Current Police Districts 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,18,:@computed_region_26cr_cadq,Current Supervisor Districts 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,19,:@computed_region_ajp5_b2md,Analysis Neighborhoods 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,20,:@computed_region_yftq_j783,DELETE - Fire Prevention Districts 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,21,:@computed_region_p5aj_wyqh,DELETE - Police Districts 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,22,:@computed_region_rxqg_mtj9,DELETE - Supervisor Districts 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,23,:@computed_region_bh8s_q3mv,DELETE - Zip Codes 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,24,:@computed_region_fyvs_ahh9,DELETE - Neighborhoods 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,25,:@computed_region_9dfj_4gjx,DELETE - 2017 Fix It Zones 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,26,:@computed_region_n4xg_c4py,Civic Center Harm Reduction Project Boundary 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,27,:@computed_region_4isq_27mq,Fix It Zones as of 2017-11-06  2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,28,:@computed_region_fcz8_est8,DELETE - HSOC Zones 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,29,:@computed_region_pigm_ib2e,Fix It Zones as of 2018-02-07 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,30,:@computed_region_9jxd_iqea,"CBD, BID and GBD Boundaries as of 2017 2 2",number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,31,:@computed_region_6pnf_4xz7,"Areas of Vulnerability, 2016 2 2",number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,32,:@computed_region_6ezc_tdp2,Central Market/Tenderloin Boundary 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,33,:@computed_region_h4ep_8xdi,Central Market/Tenderloin Boundary Polygon - Updated 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,34,:@computed_region_nqbw_i6c3,HSOC Zones as of 2018-06-05 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,35,:@computed_region_2dwj_jsy4,OWED Public Spaces 2 2,number
+tmnf-yvry,Police Department Incident Reports: Historical 2003 to May 2018,36,:@computed_region_jwn9_ihcz,Neighborhoods 2,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,1,row_id,Row ID,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,2,incident_datetime,Incident Datetime,calendar_date
+wg3w-h783,Police Department Incident Reports: 2018 to Present,3,incident_date,Incident Date,calendar_date
+wg3w-h783,Police Department Incident Reports: 2018 to Present,4,incident_time,Incident Time,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,5,incident_year,Incident Year,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,6,incident_day_of_week,Incident Day of Week,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,7,report_datetime,Report Datetime,calendar_date
+wg3w-h783,Police Department Incident Reports: 2018 to Present,8,incident_id,Incident ID,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,9,incident_number,Incident Number,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,10,cad_number,CAD Number,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,11,report_type_code,Report Type Code,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,12,report_type_description,Report Type Description,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,13,filed_online,Filed Online,checkbox
+wg3w-h783,Police Department Incident Reports: 2018 to Present,14,incident_code,Incident Code,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,15,incident_category,Incident Category,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,16,incident_subcategory,Incident Subcategory,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,17,incident_description,Incident Description,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,18,resolution,Resolution,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,19,intersection,Intersection,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,20,cnn,CNN,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,21,police_district,Police District,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,22,analysis_neighborhood,Analysis Neighborhood,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,23,supervisor_district,Supervisor District,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,24,supervisor_district_2012,Supervisor District 2012,text
+wg3w-h783,Police Department Incident Reports: 2018 to Present,25,latitude,Latitude,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,26,longitude,Longitude,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,27,point,Point,point
+wg3w-h783,Police Department Incident Reports: 2018 to Present,28,data_as_of,data_as_of,calendar_date
+wg3w-h783,Police Department Incident Reports: 2018 to Present,29,data_loaded_at,data_loaded_at,calendar_date
+wg3w-h783,Police Department Incident Reports: 2018 to Present,30,:@computed_region_jwn9_ihcz,Neighborhoods,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,31,:@computed_region_jg9y_a9du,ESNCAG - Boundary File,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,32,:@computed_region_h4ep_8xdi,Central Market/Tenderloin Boundary Polygon - Updated,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,33,:@computed_region_n4xg_c4py,Civic Center Harm Reduction Project Boundary,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,34,:@computed_region_nqbw_i6c3,HSOC Zones as of 2018-06-05,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,35,:@computed_region_viu7_rrfi,Invest In Neighborhoods (IIN) Areas,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,36,:@computed_region_26cr_cadq,Current Supervisor Districts,number
+wg3w-h783,Police Department Incident Reports: 2018 to Present,37,:@computed_region_qgnn_b9vv,Current Police Districts,number
+ci9u-8awy,Reference: Police Department Incident Code Crosswalk,1,inc_code,INC_CODE,text
+ci9u-8awy,Reference: Police Department Incident Code Crosswalk,2,category,CATEGORY,text
+ci9u-8awy,Reference: Police Department Incident Code Crosswalk,3,subcategory,SUBCATEGORY,text

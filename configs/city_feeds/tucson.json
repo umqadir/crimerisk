@@ -1,0 +1,394 @@
+{
+  "city_key": "tucson",
+  "city_name": "Tucson",
+  "evidence_refs": [
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:56",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:58-62",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:66-79",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:81-85",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:92-111",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:124-126",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:156-170",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:180-197",
+    "state/review/packets/city/tucson/evidence/01_fetch_tucson.py:210-212",
+    "state/review/packets/city/tucson/evidence/README.md",
+    "state/review/packets/city/tucson/evidence/offense_mapping.csv",
+    "state/review/packets/city/tucson/evidence/raw_cache_profile.json",
+    "state/review/packets/city/tucson/evidence/jurisdictions.csv",
+    "state/review/packets/city/tucson/raw_cache.parquet",
+    "state/review/packets/city/tucson/packet.json",
+    "state/review/packets/city/tucson/live/raw_tucson_tpd_incidents_2018_2025_2025_c23478dbc77e.parquet",
+    "state/review/runs/e4-onboard-2025.2/tucson/contract_fix.task.md (Check result)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "04:municipal:place:0477000"
+    ],
+    "state_fips": [
+      "04"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "INCI_ID whitespace: the script strips INCI_ID before de-duplicating (01_fetch_tucson.py:180); the contract cannot express a strip, so id_fields joins the raw INCI_ID. Raw INCI_ID has 193,837 distinct values and 187,066 after strip (recomputed from raw_cache.parquet; matches raw_cache_profile.json distinct_count 193,837 and 01_fetch_tucson.py:175-177). De-duplicating geocoded rows on stripped (INCI_ID, OFFENSE) keeps 183,022 rows and on unstripped keeps 189,636 (both recomputed). The previous check's replay_summary reports replay_rows 183,022 = oracle_rows 183,022, so the runner's id handling reproduced the stripped result on the archive.",
+    "id format: the script's id is INCI_ID.strip() + '-' + OFFENSE (01_fetch_tucson.py:197); the contract's is INCI_ID|OFFENSE with INCI_ID unstripped. Row identity is the same key pair; the string differs.",
+    "De-duplication tie-break: the script sorts by latitude ascending before keep='first' (01_fetch_tucson.py:192-193); the runner keeps the first row per id in file order. Total rows are 183,022 either way (recomputed with stripped ids). 5 (INCI_ID, OFFENSE) groups carry more than one YEAR_OCCU, so per-year counts shift slightly: file-order first gives 32,008 / 29,349 / 23,588 / 25,493 / 26,344 / 22,550 / 23,690 for 2018-2024 vs the script's 26,341 / 22,551 / 23,692 for 2022-2024 (recomputed; script order matches the README coverage table), well inside the 1% tolerance. Kept-row coordinates can also differ, so a few block-group assignments may differ (previous check: bg_assignment_distance 0.00036, pass).",
+    "Live pull / date range: the script filters server-side only by OFFENSE in (32 codes) per year-layer (01_fetch_tucson.py:92-93) and takes each year from its own hard-coded layer (01_fetch_tucson.py:62). The previous contract added a DATETIME_OCCU {start}/{end} predicate; the live check requested 2025 (packet live/raw_tucson_tpd_incidents_<year>_2025_2025_*.parquet, all seven files 0 rows x 0 columns), every 2018-2024 layer returned nothing, and the runner failed with \"none of YEAR_OCCU in the pull\". This revision drops the date predicate and uses the script's exact where clause, so each source returns its whole layer and the runner's year filter (YEAR_OCCU) keeps only the requested years; on raw_cache.parquet YEAR_OCCU equals the year of DATETIME_OCCU and source_year_layer on all 207,914 rows (recomputed), so nothing changes for the archive. Consequence: a live pull for a year outside 2018-2024 (e.g. 2025) fetches all seven layers and keeps 0 rows, because the evidence names no layer for 2025 (README layer table, 01_fetch_tucson.py:62); adding that year needs a new source with its layer id. If the runner also fails on a pull whose columns are present but whose rows are all outside the requested years, that is runner behaviour the contract cannot change.",
+    "Per-year layers: each year is a separate layer id hard-coded in the script (01_fetch_tucson.py:62); the contract lists one source per layer for 2018-2024. A year outside 2018-2024 needs a new source entry with its layer id.",
+    "source_year_layer is a column the script adds (01_fetch_tucson.py:126), not a portal field; the contract does not use it. The script also converts DATE_REPT/DATE_OCCU/DATETIME_OCCU from epoch ms (01_fetch_tucson.py:143-144); the contract takes the year from YEAR_OCCU and does not need that conversion.",
+    "Coordinates: the script drops rows with null latitude/longitude only (01_fetch_tucson.py:170); the runner also drops (0, 0). raw_cache.parquet has 0 rows at (0, 0) and 202,998 rows with both coordinates (recomputed; matches raw_cache_profile.json non_null 202,998), so the outcome is the same on the archive.",
+    "The script's post-join drop_duplicates on incident_id (01_fetch_tucson.py:212) only matters if a point falls in more than one block group; the README reports a 100% within-join match of 183,022 rows."
+  ],
+  "mapping": {
+    "date_field": "DATETIME_OCCU",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "INCI_ID",
+      "OFFENSE"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0101",
+              "0102"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0201",
+              "0203"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0301",
+              "0302",
+              "0303",
+              "0304",
+              "0305",
+              "0306",
+              "0307",
+              "0308"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0401",
+              "0402",
+              "0403",
+              "0404",
+              "0413"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0501",
+              "0502",
+              "0503"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0601",
+              "0602",
+              "0603",
+              "0604",
+              "0605",
+              "0606",
+              "0607",
+              "0608",
+              "0609",
+              "0610",
+              "0611"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OFFENSE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "0701"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "YEAR_OCCU"
+  },
+  "notes": "Translation of 01_fetch_tucson.py. Offense rules reproduce OFFENSE_MAP (01_fetch_tucson.py:66-79; offense_mapping.csv, 32 codes): 0101/0102 murder, 0201/0203 rape, 0301-0308 robbery, 0401-0404 and 0413 aggravated_assault, 0501-0503 burglary, 0601-0611 larceny, 0701 motor_vehicle_theft; 0703/0704 are not mapped, as in the script. The OFFENSE distinct values in raw_cache_profile.json are exactly these 32 codes, with no padding (recomputed: 0 values differ from their stripped form), so all 207,914 archived rows map. Year: YEAR_OCCU (01_fetch_tucson.py:163-165); all 207,914 rows are in 2018-2024 (profile min 2018, max 2024). Coordinates: the script takes latitude/longitude from the ArcGIS geometry requested with outSR=4326 (01_fetch_tucson.py:107, 124-125), so the fields are latitude|__arcgis_latitude and longitude|__arcgis_longitude. Replaying the script's steps on raw_cache.parquet gives 207,914 mapped -> 202,998 with coordinates -> 183,022 after de-duplication on stripped (INCI_ID, OFFENSE), with per-year counts 32,008 / 29,349 / 23,588 / 25,493 / 26,341 / 22,551 / 23,692 for 2018-2024 under the script's latitude tie-break, matching the README coverage table; the previous replay matched 183,022 rows with 0 of 49 cells failing. Revision: sources[].where is now the script's own OFFENSE in(...) clause with no date predicate (see known differences), because the date predicate made a 2025 live pull return empty frames from the 2018-2024 layers. Jurisdiction: the publisher is Tucson Police Department, a city PD, so jurisdiction_ids is Tucson city (04:municipal:place:0477000), which holds 182,632 incidents in jurisdictions.csv. That file also places 15,134 in the Arizona nonmunicipal remainder and 220 in seven other municipalities (Marana 123, South Tucson 58, Oro Valley 17, Sahuarita 17, Casa Grande 2, Eloy 2, Mammoth 1); these are points in the feed and not additional TPD service areas, and neither the README nor the script names any other served jurisdiction. The jurisdictions.csv counts sum to 197,986, which matches neither 202,998 nor 183,022; the file does not say how it counted. The README is the project's own write-up, not a publisher statement; the packet holds no publisher statement of exclusions, so exclusions_stated_by_publisher is empty. portal_type is arcgis_feature_service for an ArcGIS MapServer layer query endpoint, the closest enum value. state_fips 04 follows the TIGER Arizona block-group file the script joins to (01_fetch_tucson.py:56).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/40/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2018",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2018",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/40",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    },
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/48/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2019",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2019",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/48",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    },
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/54/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2020",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2020",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/54",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    },
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/69/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2021",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2021",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/69",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    },
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/71/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2022",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2022",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/71",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    },
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/78/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2023",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2023",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/78",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    },
+    {
+      "api_endpoint": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/80/query",
+      "name": "TPD_INCIDENTS_PUBLIC_2024",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCI_ID",
+        "DATE_REPT",
+        "DATE_OCCU",
+        "DATETIME_OCCU",
+        "YEAR_OCCU",
+        "OFFENSE",
+        "STATUTDESC",
+        "UCRsummary",
+        "UCRSummaryDesc",
+        "Crime",
+        "CrimeType",
+        "WARD",
+        "DIVISION",
+        "DIVISION_NO",
+        "NEIGHBORHD",
+        "ADDRESS_PUBLIC",
+        "zip"
+      ],
+      "slug": "tucson_tpd_incidents_2024",
+      "source_url": "https://gis.tucsonaz.gov/arcgis/rest/services/PublicMaps/OpenData_PublicSafety/MapServer/80",
+      "where": "OFFENSE in('0101','0102','0201','0203','0301','0302','0303','0304','0305','0306','0307','0308','0401','0402','0403','0404','0413','0501','0502','0503','0601','0602','0603','0604','0605','0606','0607','0608','0609','0610','0611','0701')"
+    }
+  ]
+}

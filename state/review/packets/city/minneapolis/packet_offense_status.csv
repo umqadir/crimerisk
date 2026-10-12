@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,yes,offense_selective,exact_local_anchor,"Direct 09A mapping; 2024 row count is 71."
+rape,no,blocked,blocked_local_ontology,"Public 2024 sex-offense rows collapse 11A, 11B, 11D, and 36B into a generic Sex Offenses bucket, so there is no strict repo rape bucket to promote."
+robbery,yes,offense_selective,exact_local_anchor,"Direct 120 mapping; 2024 row count is 1601."
+aggravated_assault,yes,offense_selective,exact_local_anchor,"Direct 13A mapping; 2024 row count is 2385."
+burglary,yes,offense_selective,exact_local_anchor,"Direct 220 mapping; 2024 row count is 2627."
+larceny,yes,offense_selective,family_aggregation_exact_anchor,"Aggregate 23A through 23H; 2024 row-count total is 12919."
+motor_vehicle_theft,yes,offense_selective,exact_local_anchor,"Direct 240 mapping; 2024 row count is 6677."

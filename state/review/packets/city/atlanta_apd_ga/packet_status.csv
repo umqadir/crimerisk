@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,state_abbr,priority_bucket,priority_rank,packet_status,current_owner,production_ready,city_share_integration_status,reconciliation_status,notes
+atlanta_apd_ga,Atlanta,13:municipal:place:1304000,GA,contract_feed,16,share_admitted,onboard_feed.py --share-admission,yes,offense_selective,see state/review/packets/city/atlanta_apd_ga/share_admission,"Contract feed; share_only offenses: aggravated_assault, burglary, larceny, motor_vehicle_theft, murder, robbery (feeds-2025.3)."

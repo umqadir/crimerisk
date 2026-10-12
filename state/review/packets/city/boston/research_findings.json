@@ -1,0 +1,204 @@
+{
+  "city_key": "boston",
+  "city_name": "Boston",
+  "jurisdiction_id": "25:municipal:place:2507000",
+  "state_abbr": "MA",
+  "analysis_date": "2026-03-24",
+  "artifacts": {
+    "packet_manifest": "packet_manifest.json",
+    "packet_status": "packet_status.csv",
+    "source_candidate": "source_candidate.csv",
+    "reconciliation_summary": "reconciliation_summary.csv",
+    "packet_offense_status": "packet_offense_status.csv",
+    "packet_checklist": "packet_checklist.csv"
+  },
+  "source_contract": {
+    "recommended_source_name": "Boston Police Department Crime Incident Reports (August 2015 - To Date) (Source: New System)",
+    "recommended_source_url": "https://data.boston.gov/dataset/crime-incident-reports-august-2015-to-date-source-new-system",
+    "exact_data_urls": {
+      "2018_csv": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/e86f8e38-a23c-4c1a-8455-c8f94210a8f1/download/tmpf_uzkqpk.csv",
+      "2019_csv": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/34e0ae6b-8c94-4998-ae9e-1b51551fe9ba/download/tmp6w6ts2d7.csv",
+      "2020_csv": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/be047094-85fe-4104-a480-4fa3d03f9623/download/tmpkd_w64k_.csv",
+      "2021_csv": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/f4495ee9-c42c-4019-82c1-d067f07e45d2/download/tmpfap3hfze.csv",
+      "2022_csv": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/313e56df-6d77-49d2-9c49-ee411f10cf58/download/tmpdfeo3qy2.csv",
+      "2023_present_csv": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/b973d8cb-eeb2-4e7e-99da-c92938efc9c0/download/tmp674i1vh3.csv",
+      "field_explanation_xlsx": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/9c30453a-fefa-4fe0-b51a-5fc09b0f4655/download/rmscrimeincidentfieldexplanation.xlsx",
+      "offense_code_workbook_xlsx": "https://data.boston.gov/dataset/6220d948-eae2-4e4b-8723-2dc8e67722a3/resource/3aeccf51-a231-4555-ba21-74572b4c33d6/download/rmsoffensecodes.xlsx",
+      "law_exclusion_reference": "https://malegislature.gov/laws/generallaws/parti/titlevii/chapter41/section98f"
+    },
+    "portal_type": "ckan_multi_resource_csv",
+    "coverage_start_year": "2015",
+    "coverage_end_year": "2026",
+    "panel_years_directly_available": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024"
+    ],
+    "rows_by_year": {
+      "2018": 98888,
+      "2019": 87184,
+      "2020": 70894,
+      "2021": 71721,
+      "2022": 73852,
+      "2023": 78046,
+      "2024": 79096
+    },
+    "row_grain": "2019-2024 behaves as one public row per incident number in the official exports. The 2018 year slice is still usable, but it contains repeated incident numbers and needs an explicit incident/offense dedupe pass.",
+    "dedupe_key": "INCIDENT_NUMBER for 2019-2024; INCIDENT_NUMBER plus OFFENSE_CODE and OFFENSE_DESCRIPTION dedupe review for 2018",
+    "dedupe_results": {
+      "2024": {
+        "rows": 79096,
+        "unique_incident_number": 79096,
+        "duplicate_incident_number_rows": 0
+      },
+      "2018": {
+        "rows": 98888,
+        "unique_incident_number": 86734,
+        "duplicate_incident_number_rows": 12154,
+        "exact_duplicate_incident_offense_description_rows": 161
+      }
+    },
+    "schema_fields": [
+      "INCIDENT_NUMBER",
+      "OFFENSE_CODE",
+      "OFFENSE_CODE_GROUP",
+      "OFFENSE_DESCRIPTION",
+      "DISTRICT",
+      "REPORTING_AREA",
+      "SHOOTING",
+      "OCCURRED_ON_DATE",
+      "YEAR",
+      "MONTH",
+      "DAY_OF_WEEK",
+      "HOUR",
+      "UCR_PART",
+      "STREET",
+      "Lat",
+      "Long",
+      "Location"
+    ],
+    "schema_quirks": [
+      "The reviewed official package notes say the public new-system dataset contains the initial details surrounding incidents to which BPD officers respond, not a finalized UCR-coded file.",
+      "The reviewed official package notes also say the public new-system dataset uses a reduced field set and is complete through present from the Mark43 RMS database, with exclusions for data that falls under MGL ch. 41 s. 98F.",
+      "The 2023-present file is a rolling export and currently contains 2023, 2024, 2025, and 2026 rows; panel-year use requires an explicit year filter.",
+      "The public 2024 export surfaces only a narrow subset of the offense workbook's Part One code families: one robbery code, one aggravated-assault code, two burglary codes, no rape-related codes, and no robbery-attempt or burglary no-force/attempt codes.",
+      "The 2018 file still carries older-style duplicate incident behavior that is not present in the 2019-2024 slices."
+    ],
+    "official_description_summary": "Crime incident reports are provided by Boston Police Department to document the initial details surrounding incidents to which BPD officers respond. The reviewed package notes say the current Analyze Boston exports are updated from the Mark43 RMS database, are complete through present, and exclude data that falls under MGL ch. 41 s. 98F. The reviewed field-explanation workbook identifies INCIDENT_NUMBER as the internal BPD report number and OFFENSE_DESCRIPTION as the primary descriptor of the incident.",
+    "offense_mapping_prospects": {
+      "murder": "Observed public code 111 only; small-N but directly mappable.",
+      "rape": "Blocked in the reviewed public export. The official offense workbook lists many rape-related codes, but none appear in the reviewed 2024 public file.",
+      "robbery": "Partially mappable but structurally incomplete for AGS/UCR use. The reviewed 2024 public file exposes only code 301 while the official offense workbook includes many robbery subtype and attempt codes.",
+      "aggravated_assault": "Partially mappable but materially incomplete. The reviewed 2024 public file exposes only code 423 while the official offense workbook lists a much broader aggravated-assault family.",
+      "burglary": "Partially mappable but structurally incomplete. The reviewed 2024 public file exposes only codes 520 and 540 and not the no-force, other, or attempt burglary codes listed in the official workbook.",
+      "larceny": "Strongest property offense family in the reviewed public export. The reviewed 2024 public file exposes the core 611-619 larceny family directly.",
+      "motor_vehicle_theft": "Strong second property offense family. The reviewed 2024 public file exposes direct theft codes and geocodes most of them, but not a fully UCR-finalized file."
+    }
+  },
+  "spatial_contract": {
+    "public_precision": "Direct public point coordinates in Lat, Long, and Location fields. No explicit rounding disclaimer was found in the reviewed package notes or field workbook.",
+    "rows_with_location_2024": 74733,
+    "rows_with_location_share_2024": 0.9449,
+    "offense_geocode_findings": {
+      "murder": {
+        "mapped_offense_count": 22,
+        "geocoded_offense_count": 22,
+        "geocoded_share": 1.0
+      },
+      "rape": {
+        "mapped_offense_count": 0,
+        "geocoded_offense_count": 0,
+        "geocoded_share": 0.0
+      },
+      "robbery": {
+        "mapped_offense_count": 740,
+        "geocoded_offense_count": 702,
+        "geocoded_share": 0.9486
+      },
+      "aggravated_assault": {
+        "mapped_offense_count": 1681,
+        "geocoded_offense_count": 1607,
+        "geocoded_share": 0.956
+      },
+      "burglary": {
+        "mapped_offense_count": 985,
+        "geocoded_offense_count": 948,
+        "geocoded_share": 0.9624
+      },
+      "larceny": {
+        "mapped_offense_count": 10439,
+        "geocoded_offense_count": 9810,
+        "geocoded_share": 0.9397
+      },
+      "motor_vehicle_theft": {
+        "mapped_offense_count": 1183,
+        "geocoded_offense_count": 1118,
+        "geocoded_share": 0.9451
+      }
+    },
+    "blocking_findings": [
+      "Boston's public export is spatially usable, but offense readiness is constrained much more by offense-family coverage and UCR comparability than by geocoding.",
+      "The reviewed 2024 public file has no rape-related public rows at all despite the official offense workbook listing many rape codes and the official BPD year-end PDF reporting rape counts.",
+      "Robbery, aggravated-assault, and burglary all have usable coordinates on the rows that do appear, but the public export omits major subtype families or attempt/no-force variants that exist in the official offense workbook and official Part One summary."
+    ]
+  },
+  "published_reconciliation": {
+    "reference_year": 2024,
+    "reference_source_name": "Boston Police Department Crime Statistics: January 1, 2024 - December 29, 2024 vs. 2023",
+    "reference_page_url": "https://police.boston.gov/2024/12/30/crime-statistics-january-1-2024-december-29-2024-vs-2023/",
+    "reference_pdf_url": "https://police.boston.gov/wp-content/uploads/2024/12/Pages-from-Weekly-Crime-Overview_-12-29-24.pdf",
+    "reference_pdf_label": "Part 1 Crime 12/29/2024",
+    "public_summary_note": "The official BPD PDF says the data should be considered preliminary and may change once UCR coding is complete. The homicide note says the 2024 total includes one incident ruled a homicide in 2024 that occurred in prior years.",
+    "comparison_table_file": "reconciliation_summary.csv",
+    "key_findings": [
+      "Larceny is the strongest large-volume offense family in the public export: 10,439 mapped rows versus 10,860 official BPD Part One larceny counts (-3.9%).",
+      "Motor vehicle theft is the cleanest geocoded offense family in the current Boston packet: 1,118 geocoded public rows versus 1,126 official BPD auto-theft counts (-0.7%).",
+      "Robbery is not clean enough for default promotion. The official BPD summary is robbery and attempted robbery, while the reviewed 2024 public export exposes only code 301 and no robbery-attempt codes.",
+      "Aggravated assault is materially undercovered in the public export: 1,681 public rows versus 2,570 official BPD aggravated-assault counts (-34.6%).",
+      "Burglary remains structurally incomplete in the public export: the reviewed 2024 file exposes only residential and commercial force-coded burglary rows and not the no-force, other, or attempt families listed in the official offense workbook.",
+      "Rape is blocked outright for overlay use. The official BPD PDF reports 163 rape and attempted rape counts, while the reviewed 2024 public export contains zero rape-related public rows."
+    ]
+  },
+  "judgment": {
+    "packet_status": "reviewed",
+    "production_ready": "partial",
+    "recommended_disposition": "ready_now",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_larceny_and_mvt_ready_others_not_ready",
+    "promote_offenses": [
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "hold_offenses": [
+      "murder"
+    ],
+    "blocked_offenses": [
+      "rape",
+      "robbery",
+      "aggravated_assault",
+      "burglary"
+    ],
+    "exact_next_action": "Use the official Boston/BPD Analyze Boston exports as an offense-selective overlay for larceny and motor_vehicle_theft only. Keep homicide pending explicit policy sign-off on occurrence-year versus ruled-year treatment. Do not promote rape, robbery, aggravated_assault, or burglary from the current public export."
+  },
+  "promotable_findings": [
+    {
+      "category": "source_doctrine",
+      "finding": "A city can publish an official direct-coordinate incident feed that is still not a city-wide UCR-equivalent overlay source.",
+      "evidence_from_boston": "Boston's official BPD/Analyze Boston feed is official, geocoded, and stable, but it omits rape-related public rows and major attempt/no-force subtype families that appear in the official offense workbook and official Part One summary."
+    },
+    {
+      "category": "offense_selective_readiness",
+      "finding": "Property offenses can be promotable even when violent-offense reconciliation is too weak for default use.",
+      "evidence_from_boston": "Boston larceny and motor vehicle theft reconcile far better than robbery, aggravated assault, rape, or burglary and retain usable direct coordinates on roughly 94 percent of mapped rows."
+    },
+    {
+      "category": "panel_use",
+      "finding": "The first panel year can require a bounded dedupe pass even when the later city exports are operationally clean.",
+      "evidence_from_boston": "The official 2018 Boston slice contains repeated incident numbers and 161 exact incident/offense duplicates, while the 2019-2024 slices behave as one public row per incident."
+    }
+  ]
+}

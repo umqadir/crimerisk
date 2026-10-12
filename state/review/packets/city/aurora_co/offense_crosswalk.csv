@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""homicide"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""09A""]}]",[]
+rape,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""sexual_assault"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""11A"", ""11B"", ""11C""]}]",[]
+robbery,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""robbery"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""120""]}]",[]
+aggravated_assault,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""aggravated_assault"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""13A""]}]",[]
+burglary,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""burglary"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""220""]}]",[]
+larceny,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""theft"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""23A"", ""23B"", ""23C"", ""23D"", ""23E"", ""23F"", ""23G"", ""23H""]}]",[]
+motor_vehicle_theft,"[{""field"": ""__source_slug"", ""op"": ""eq"", ""value"": ""motor_vehicle_theft"", ""values"": []}, {""field"": ""NIBRSCode"", ""op"": ""in"", ""value"": """", ""values"": [""240""]}]",[]

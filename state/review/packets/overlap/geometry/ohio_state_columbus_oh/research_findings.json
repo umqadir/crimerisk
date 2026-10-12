@@ -1,0 +1,372 @@
+{
+  "case_key": "ohio_state_columbus_oh",
+  "ori": "OH0252700",
+  "analysis_date": "2026-03-24",
+  "production_ready": true,
+  "usable_as_production_footprint": true,
+  "bottom_line": "OH0252700 should use a custom Ohio State Columbus footprint built from the official current OSU campus-map Buildings and Parking layers, anchored to the map-maintained Columbus Contiguous building geography and expanded only enough to recover the primary east/west academic campus land masses and immediately adjacent public-property edges. Remote Franklin Satellite / golf / off-campus lots stay out.",
+  "scope_doctrine": {
+    "doctrine_status": "confirmed_and_closed_to_geometry",
+    "basis": "custom_primary_campus_property_and_adjacent_public_property_footprint",
+    "primary_geometry_source": {
+      "source_name": "Official OSU Campusmap Web Map item data backing maps.osu.edu",
+      "source_url": "https://osugis.maps.arcgis.com/sharing/rest/content/items/bf257063c3914093ab07d8e08c76e5a4/data?f=json",
+      "webmap_item_url": "https://osugis.maps.arcgis.com/sharing/rest/content/items/bf257063c3914093ab07d8e08c76e5a4?f=json",
+      "why_this_is_primary": "This is the current official geometry stack behind the public OSU campus map. Its Buildings layer already distinguishes Columbus Contiguous from Franklin Satellite and Golf Course geography, which is the strongest direct official line for primary-campus inclusion versus remote sites."
+    },
+    "explicit_exclusions": [
+      "Franklin Satellite buildings from the official Buildings layer, including Eye and Ear Institute, Spielman Comprehensive Breast Center, Westminster Thurber, Fifth Ave 1550 W, Graham School, Knight House, Schoenbaum Family Center, and other satellite / joint-patrol-adjacent properties",
+      "Golf Course buildings",
+      "Parking explicitly marked Off Campus or tied to Indianola Middle School",
+      "Sub-acre sliver components produced only by tiny support structures or a stray 17th-Avenue satellite remnant",
+      "Columbus place proxy, Franklin County proxy, University District joint-patrol geography, and generic Clery noncampus geography"
+    ]
+  },
+  "source_validation": {
+    "official_webmap_item": {
+      "id": "bf257063c3914093ab07d8e08c76e5a4",
+      "title": "Campusmap Web Map",
+      "owner": "IDM802006607_OSUGIS",
+      "access": "public",
+      "modified": 1756392017000,
+      "snippet": "Web map that runs the campus public map on prem. Do not edit without team discussion."
+    },
+    "bbox_lonlat_used_for_pull": [
+      -83.06,
+      39.975,
+      -82.985,
+      40.03
+    ],
+    "buildings_layer_counts": {
+      "all_features_in_pull": 432,
+      "columbus_contiguous": 412,
+      "franklin_satellite": 13,
+      "golf_course": 3,
+      "other_or_null": 4
+    },
+    "franklin_satellite_examples": [
+      {
+        "ComName": "Spielman Comprehensive Breast Center (0874)",
+        "Address": "1145 Olentangy River Rd",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Eye and Ear Institute (0897)",
+        "Address": "915 Olentangy River Rd",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Schoenbaum Family Center (0933)",
+        "Address": "175 E 7th Ave",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Internal Medicine and Pediatrics at Grandview (2575)",
+        "Address": "895 Yard St",
+        "City": "Grandview Heights"
+      },
+      {
+        "ComName": "Westminster Thurber Senior Community (2625)",
+        "Address": "717 Neil Ave",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Fifth Ave, 1550 W (2631)",
+        "Address": "1550 W 5th Ave, Ste 100",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Bob Crane Community Center (2571)",
+        "Address": "3200 Tremont Rd",
+        "City": "Upper Arlington"
+      },
+      {
+        "ComName": "OSU Histology Laboratory (2308)",
+        "Address": "1507 Chambers Rd",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Dodridge St, 95 E (2314)",
+        "Address": "95 E Dodridge St",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Seventeenth Ave, 237 E (0889)",
+        "Address": "237 E 17th Ave",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Knight House (0961)",
+        "Address": "104 E 15th Ave",
+        "City": "Columbus"
+      },
+      {
+        "ComName": "Graham Elementary & Middle School (2593)",
+        "Address": "140 E 16th Ave",
+        "City": "Columbus"
+      }
+    ],
+    "parking_selection": {
+      "all_features_in_pull": 790,
+      "within_250m_of_contiguous_building_union": 786,
+      "selected_after_offcampus_exclusions": 776,
+      "max_distance_selected_m": 224.659274675282,
+      "excluded_offcampus_examples": [
+        {
+          "Name": "Indianola Middle School  North Accessible Parking",
+          "CPNAME": " ",
+          "dist_to_contig_m": 682.0912536209855
+        },
+        {
+          "Name": "Indianola Middle School North Parking Lot",
+          "CPNAME": " ",
+          "dist_to_contig_m": 664.569906101826
+        },
+        {
+          "Name": "Indianola Middle School South Accessible Parking",
+          "CPNAME": " ",
+          "dist_to_contig_m": 626.194932647436
+        },
+        {
+          "Name": "Indianola Middle School South Parking Lot",
+          "CPNAME": " ",
+          "dist_to_contig_m": 626.194932647436
+        },
+        {
+          "Name": "Off Campus",
+          "CPNAME": "Off Campus",
+          "dist_to_contig_m": 146.24147715991535
+        },
+        {
+          "Name": "Off Campus",
+          "CPNAME": "Off Campus",
+          "dist_to_contig_m": 145.68744180448303
+        }
+      ]
+    }
+  },
+  "build_method": {
+    "seed_rule": "Use official Buildings polygons where Geography equals Columbus Contiguous, drop obvious tiny shelter / utility pseudo-buildings from the seed set, and add official Parking polygons within 250 m of the contiguous-building union after removing explicit off-campus school lots.",
+    "why_250m_for_parking_is_defensible": "A 250 m attachment rule keeps the official Carmack, Buckeye, Riverbank, Waterman-adjacent, and other west-campus / athletics / medical parking surfaces that support the contiguous campus while still cleanly excluding the clearly separate Indianola off-campus parking cluster more than 600 m away.",
+    "closing_distance_m": 120.0,
+    "why_120m_is_defensible": "Across tested closing distances from 20 m to 150 m, 120 m was the first threshold that reliably knit the official east-of-river academic/residential core, campus medical complex, west-of-river athletics, Kenny/Kinnear service corridor, Carmack / Buckeye reservoirs, and Waterman / west-campus structure into one primary campus mass without re-admitting Franklin Satellite buildings or the explicit off-campus parking cluster. Smaller distances left major mapped west-campus structure fragmented; larger distances mainly added extra smoothing area rather than resolving a doctrinal gap.",
+    "final_component_rule": "Retain all resulting morphology-closed components at least 1 acre in size; drop sub-acre support slivers."
+  },
+  "acreage_qa": {
+    "seed_union_acres_before_closing": 726.8135901144602,
+    "closed_union_acres_all_components": 1700.5373326836686,
+    "final_retained_acres": 1699.0962118746688,
+    "retained_component_count": 8,
+    "dropped_component_count": 7,
+    "dropped_total_acres": 1.4411208089962408,
+    "retained_components": [
+      {
+        "component_id": 2,
+        "acres": 1571.1162650852343,
+        "buildings": 336,
+        "parking_features": 686,
+        "sample_names": [
+          "Galbreath Equine Center (0282)",
+          "Animal Science Building (0156)",
+          "Ackerman Rd, 600 (2435)",
+          "Research Administration Building (0200)",
+          "Kinnear Rd, 1275-1305 (0395)",
+          "Sea Grant Boat Storage (1250)",
+          "Zoology Research Laboratory (0231)",
+          "Lacquer Paint House (0138)",
+          "Ackerman Rd, 660 (0242)",
+          "Recreation Service (0218)",
+          "Kinnear Rd, 1165 (0932)",
+          "Kenny Rd, 1900 (0232)"
+        ]
+      },
+      {
+        "component_id": 4,
+        "acres": 61.14011661927088,
+        "buildings": 17,
+        "parking_features": 64,
+        "sample_names": [
+          "Library Book Depository (0350)",
+          "Stores and Receiving (0381)",
+          "Printing Facility (0290)",
+          "Quonset Hut 8 (0166)",
+          "Quonset Hut 9 (0167)",
+          "Grounds Maintenance Equipment Storage (0168)",
+          "Quonset Hut 11 (0169)",
+          "Refuse Vehicle Storage (0034)",
+          "Salt Storage Shed (0258)",
+          "Service Building Annex (0263)",
+          "Campus Shop (0987)",
+          "Bulk Chemical Warehouse (0362)"
+        ]
+      },
+      {
+        "component_id": 5,
+        "acres": 28.297101915547376,
+        "buildings": 10,
+        "parking_features": 3,
+        "sample_names": [
+          "Waterman - Rothenbuhler Honey Bee Lab (0384)",
+          "Waterman - Laboratory Headquarters (0179)",
+          "Waterman - South Storage 2 (0178)",
+          "Waterman - South Storage 1 (0133)",
+          "Kunz-Brundige Extension Building (1583)",
+          "Waterman - CEARC (1320)",
+          "Waterman - Commodity Barn (1322)",
+          "Waterman - Multispecies Animal Learning Complex (1321)",
+          "Waterman - Nutrient Handling Facility (1325)",
+          "Waterman - Dairy (1326)",
+          "Waterman Farm Main Building Spaces",
+          "Waterman Farm - Laboratory Headquarters"
+        ]
+      },
+      {
+        "component_id": 1,
+        "acres": 16.92389092811972,
+        "buildings": 2,
+        "parking_features": 5,
+        "sample_names": [
+          "State of Ohio Computer Center (0949)",
+          "Edison Joining Technology Center (0057)",
+          "Ackerman Place",
+          "Ackerman Place",
+          "Ackerman Place",
+          "Ackerman Place",
+          "Ackerman Place"
+        ]
+      },
+      {
+        "component_id": 10,
+        "acres": 15.463571308892709,
+        "buildings": 2,
+        "parking_features": 6,
+        "sample_names": [
+          "Heffner Wetland Research and Education (0222)",
+          "Transmitter - WOSU-FM (0984)",
+          "Heffner Wetland Research and Education",
+          "Heffner Wetland Research and Education",
+          "Schiermeier Olentangy River Wetland Research Park",
+          "Schiermeier Olentangy River Wetland Research Park",
+          "Schiermeier Olentangy River Wetland Research Park",
+          "Wetlands Loading Dock"
+        ]
+      },
+      {
+        "component_id": 14,
+        "acres": 2.4736183501417965,
+        "buildings": 1,
+        "parking_features": 1,
+        "sample_names": [
+          "North Star Rd, 2470 (0094)",
+          "Ackerman Place"
+        ]
+      },
+      {
+        "component_id": 13,
+        "acres": 1.9041939190822672,
+        "buildings": 2,
+        "parking_features": 2,
+        "sample_names": [
+          "Turfgrass Foundation (0983)",
+          "Waterman - Turf Shed 1 (0992)",
+          "Turf Grass Northstar bldg",
+          "Turf Grass Research (Waterman farm)"
+        ]
+      },
+      {
+        "component_id": 6,
+        "acres": 1.7774537483830422,
+        "buildings": 1,
+        "parking_features": 7,
+        "sample_names": [
+          "Northwood-High Building (0357)",
+          "Northwood & High Street Lot",
+          "Northwood & High Street Lot",
+          "Northwood & High Street Lot",
+          "Northwood & High Street Lot",
+          "Northwood & High Street Lot",
+          "Northwood & High Street Lot",
+          "Northwood & High Street Lot"
+        ]
+      }
+    ],
+    "dropped_components": [
+      {
+        "component_id": 12,
+        "acres": 0.4878215509199247,
+        "sample_names": [
+          "Waterman - North Pole Barn (0937)",
+          "Waterman - North Storage Shed 1 (0958)"
+        ]
+      },
+      {
+        "component_id": 9,
+        "acres": 0.47283179864999625,
+        "sample_names": [
+          "Kinnear Rd, 760 (0963)"
+        ]
+      },
+      {
+        "component_id": 3,
+        "acres": 0.12031938906896615,
+        "sample_names": [
+          "Waterman - Hort Shed 1 (1304)",
+          "Waterman - Greenhouse (1308)"
+        ]
+      },
+      {
+        "component_id": 7,
+        "acres": 0.11887476832006423,
+        "sample_names": [
+          "TBD"
+        ]
+      },
+      {
+        "component_id": 11,
+        "acres": 0.11539908439314855,
+        "sample_names": [
+          "Sandefur Wetland Pavilion (0215)"
+        ]
+      },
+      {
+        "component_id": 0,
+        "acres": 0.11224433186616851,
+        "sample_names": [
+          "Seventeenth Ave, 237 E - Shed (1073)",
+          "17th Ave Lot"
+        ]
+      },
+      {
+        "component_id": 8,
+        "acres": 0.013629885777972531,
+        "sample_names": [
+          "Herrick Meter Building (1066)"
+        ]
+      }
+    ]
+  },
+  "block_group_allocation": {
+    "intersecting_block_groups": 19,
+    "footprint_area_square_meters": 4029793.931510776,
+    "share_sum": 1.0000000000000002,
+    "share_sum_valid_atol_1e_9": true,
+    "largest_share_block_group": {
+      "block_group_geoid": "390490011221",
+      "weight_share": 0.4754415338228887
+    }
+  },
+  "production_notes": {
+    "include": [
+      "the main official Columbus-campus east/west academic mass recovered from Columbus Contiguous buildings plus attached parking",
+      "the campus medical / hospital mass that remains in the Columbus Contiguous geometry and connects into the primary campus build",
+      "the official west-campus / Kinnear / Carmack / Waterman-support land masses that survive the 1-acre retained-component rule",
+      "the immediate adjacent-public-property edge captured by the morphology closing rather than by a citywide or University District expansion"
+    ],
+    "exclude": [
+      "Franklin Satellite Wexner and other separate sites without direct primary-campus OSUPD footprint evidence",
+      "Golf Course geography",
+      "Indianola off-campus parking and other explicit Off Campus parking",
+      "sub-acre support slivers and the tiny 17th-Avenue satellite remnant"
+    ]
+  }
+}

@@ -1,0 +1,164 @@
+{
+  "city_key": "des_moines_ia",
+  "city_name": "Des Moines",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/des_moines_ia/packet.json",
+    "state/review/packets/city/des_moines_ia/evidence/registry_row.json",
+    "state/review/packets/city/des_moines_ia/evidence/doc_00.json",
+    "state/review/packets/city/des_moines_ia/evidence/doc_index.csv",
+    "state/review/packets/city/des_moines_ia/evidence/raw_cache_profile.json",
+    "state/review/packets/city/des_moines_ia/evidence/scope_candidates.csv",
+    "state/review/packets/city/des_moines_ia/evidence/official_totals.csv",
+    "state/review/packets/city/des_moines_ia/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "No redaction or exclusion is stated: the layer's description and copyrightText are empty and no field carries a description other than case_number's nameOrTitle tag (evidence/doc_00.json); the registry's redactions field is empty (evidence/registry_row.json).",
+    "Location fields are published as anonymized: field aliases 'Anonymized Address', 'Anonymized Latitude', 'Anonymized Longitude' (evidence/doc_00.json fields case_address_anonymized, case_latitude_anonymized, case_longitude_anonymized). Addresses are shown as hundred blocks, e.g. '6XX CHERRY ST' (evidence/raw_cache_profile.json examples). The anonymization method is not documented."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "19:municipal:place:1921000"
+    ],
+    "state_fips": [
+      "19"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape cannot be reconciled: no crime_code 11A, 11B, 11C or 11D (and no 36A/36B) appears in the pull, and no nibrs_offense value names a sex offense (evidence/raw_cache_profile.json crime_code and nibrs_offense distinct lists). Rape is left unmapped; official rape is 145, 107, 100 for 2023-2025 (evidence/official_totals.csv). Sex offenses may sit inside crime_code '999' / nibrs_offense 'ALL OTHER' (36,051 rows, crime_category and offense_category 'Other'; query of raw_cache), but nothing in the evidence says so.",
+    "The layer holds 2023-2025 only: reported_date runs 1672552800000 (2023-01-01 06:00 UTC) to 1767160800000 (2025-12-31 06:00 UTC) (evidence/raw_cache_profile.json). 2018-2022 official totals (evidence/official_totals.csv) have no feed rows to reconcile against.",
+    "Dates are the report date; no occurrence date is published (evidence/doc_00.json fields). Offenses that occurred in one year and were reported in the next are counted in the report year.",
+    "Unit: rows repeat within a case and NIBRS code. 100,650 rows carry 92,122 distinct case_number|crime_code pairs; the 6,439 repeating pairs have the same reported_date and point in every case (query of raw_cache), and sampled 13A repeats are identical in every published field except OBJECTID/GlobalID (query of raw_cache: 2023-00006651, 2024-00018063, 2025-00019236). The repeats are likely per victim or offender, but the layer does not say. Dedupe keeps one row per case and code. SRS and NIBRS-SRS-equivalent counts are per victim for murder and aggravated assault, so dedupe can undercount those: aggravated assault 1,260/1,239/1,167 rows vs 1,181/1,141/1,072 deduped vs official 1,138/1,198/1,123 for 2023-2025 (query of raw_cache; evidence/official_totals.csv).",
+    "No hierarchy rule: a case with several mapped codes (e.g. 220 and 23x) counts once per code. Larceny for 2023-2025 is 4,915/4,604/4,386 case|code pairs in 4,904/4,589/4,368 distinct cases (query of raw_cache).",
+    "Left out: 09B negligent manslaughter (15 rows), 13B simple assault (7,273), 13C intimidation (4,023) (evidence/raw_cache_profile.json crime_code). No 09C rows are present.",
+    "Deduped pull vs official totals by reported year 2023/2024/2025 (query of raw_cache; evidence/official_totals.csv): murder 11/9/4 vs 9/9/3; robbery 200/161/144 vs 190/157/138; aggravated assault 1,181/1,141/1,072 vs 1,138/1,198/1,123; burglary 1,237/1,043/866 vs 946/968/823; larceny 4,915/4,604/4,386 vs 4,762/4,482/4,240; motor vehicle theft 1,356/1,119/944 vs 1,314/1,092/929. Burglary runs 31% above official in 2023 (1,237 vs 946), with no published reason.",
+    "Points are anonymized and concentrate at a few locations: the most frequent point, '2X E 1ST ST' (41.586439, -93.614865), carries 1,693 rows and '51XX SE 14TH ST' 1,548 (query of raw_cache). 10,802 distinct anonymized addresses map to 8,177 distinct points (query of raw_cache)."
+  ],
+  "mapping": {
+    "date_field": "reported_date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "case_number",
+      "crime_code"
+    ],
+    "latitude_field": "case_latitude_anonymized",
+    "longitude_field": "case_longitude_anonymized",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source is the Des Moines Police Department ArcGIS layer pd_crime_layer (view PSDP_Crime_Layer_View/FeatureServer/0), ORI IA0770300, scope the City of Des Moines, 19:municipal:place:1921000 (evidence/registry_row.json; evidence/scope_candidates.csv; evidence/doc_00.json name). Endpoint, portal_type and where are the registry's (evidence/registry_row.json api_endpoint, portal_type, probe_where); the archive was pulled with that where (packet.json case_text), so a live pull returns the same rows. page_size 2000 is the layer's maxRecordCount (evidence/doc_00.json). Dates: date_field reported_date, the report date; the layer publishes no occurrence date (evidence/doc_00.json fields). reported_date is epoch ms with dateFieldsTimeReference UTC (evidence/doc_00.json); every value is local midnight stored as 05:00 UTC (68,574 rows) or 06:00 UTC (32,076 rows) (query of raw_cache: reported_date % 86400000 = 18000000 or 21600000), so the UTC year equals the local year and no year_field is needed. Rows per reported year: 33,734 / 33,655 / 33,261 for 2023/2024/2025, none earlier (query of raw_cache). count_unit is offense: each row carries one NIBRS crime_code within a case_number (77,928 distinct cases in 100,650 rows; evidence/raw_cache_profile.json). id is case_number|crime_code with dedupe, keeping the first row per case and code; OBJECTID and GlobalID are unique per row and would keep the repeats (see known differences). When a case carries several mapped codes, each code is kept as its own offense. Offense rules match crime_code exactly (case-sensitive), and every mapped code is present in the pull (evidence/raw_cache_profile.json crime_code: 09A 24; 120 506; 13A 3,666; 220 3,161; 23A 127, 23B 38, 23C 3,829, 23D 2,192, 23E 22, 23F 2,772, 23G 770, 23H 4,214; 240 3,425); each code's count equals its nibrs_offense label count (e.g. 09A 24 = 'Murder/Nonnegligent Manslaughter' 24; 13A 3,666 = 'Aggravated Assault' 3,666). Rape is unmapped because no 11A/11B/11C code is present. Coordinates are case_latitude_anonymized / case_longitude_anonymized, which equal the feature geometry (__arcgis_latitude/__arcgis_longitude) on all 100,650 rows (query of raw_cache: 0 rows differ by more than 1e-6). The publisher labels them anonymized and shows addresses as hundred blocks; the offset method is not stated. All rows have coordinates, none at 0, and all lie in 41.36-41.85 N, 93.43-94.16 W, inside Iowa (evidence/raw_cache_profile.json min/max; query of raw_cache). Points outside the city are left to the scope filter; 56 mapped rows have police_district 'na' (query of raw_cache). Deduped counts per reported year 2023/2024/2025: murder 11/9/4; robbery 200/161/144; aggravated assault 1,181/1,141/1,072; burglary 1,237/1,043/866; larceny 4,915/4,604/4,386; motor vehicle theft 1,356/1,119/944 (query of raw_cache, count distinct case_number||'|'||crime_code by year of reported_date).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/HT7H9QGiZQoRJDpJ/arcgis/rest/services/PSDP_Crime_Layer_View/FeatureServer/0",
+      "name": "DMPD crime layer (PSDP Crime View) (PSDP_Crime_Layer_View/FeatureServer/0)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "des_moines_ia",
+      "source_url": "https://www.dsm.city/",
+      "where": "reported_date >= DATE '{start}' AND reported_date < DATE '{end}'"
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "city_key": "minneapolis",
+  "city_name": "Minneapolis",
+  "jurisdiction_id": "27:municipal:place:2743000",
+  "state_abbr": "MN",
+  "analysis_date": "2026-04-05",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": "partial",
+    "recommended_disposition": "offense_selective",
+    "packet_status": "review_complete",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_six_offense_selective_path_ready"
+  },
+  "artifacts": {
+    "source_candidate": "source_candidate.csv",
+    "packet_status": "packet_status.csv",
+    "offense_crosswalk": "offense_crosswalk.csv",
+    "packet_offense_status": "packet_offense_status.csv",
+    "published_reference_extract": "published_reference_extract.csv",
+    "reconciliation_summary": "reconciliation_summary.csv"
+  },
+  "official_sources": {
+    "incident_surface": [
+      "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Crime_Data/FeatureServer/0",
+      "https://opendata.minneapolismn.gov/datasets/cityoflakes::crime-data/about"
+    ],
+    "dashboards": [
+      "https://www.minneapolismn.gov/government/government-data/datasource/crime-dashboard/",
+      "https://www.minneapolismn.gov/government/government-data/datasource/crime-dashboard/crime-dashboard-document/"
+    ]
+  },
+  "source_contract_findings": {
+    "public_2024_incidents_available": true,
+    "type_counts_2024": {
+      "Crime Offenses (NIBRS)": 313270,
+      "Shots Fired Calls": 47711,
+      "Additional Crime Metrics": 8821,
+      "Gunshot Wound Victims": 2581
+    },
+    "crime_offenses_rows_2024": 45919,
+    "crime_offenses_rows_with_coordinates_2024": 45919,
+    "crime_offenses_rows_without_coordinates_2024": 0,
+    "spatial_fields_present": [
+      "Address",
+      "Latitude",
+      "Longitude",
+      "wgsXAnon",
+      "wgsYAnon",
+      "Precinct",
+      "Neighborhood",
+      "Ward"
+    ],
+    "offense_fields_present": [
+      "Type",
+      "NIBRS_Crime_Against",
+      "NIBRS_Group",
+      "NIBRS_Code",
+      "Offense_Category",
+      "Offense",
+      "Crime_Count"
+    ],
+    "date_fields_present": [
+      "Reported_Date",
+      "Occurred_Date"
+    ],
+    "notes": [
+      "The public open-data source is a mixed dashboard table, but only Type='Crime Offenses (NIBRS)' should be used for repo offense onboarding.",
+      "The 2024 Crime Offenses surface is fully geocoded.",
+      "wgsXAnon/wgsYAnon match the FeatureServer geometry, while Latitude/Longitude and Address are anonymized public fields."
+    ]
+  },
+  "raw_snapshot": {
+    "query_endpoint": "https://services.arcgis.com/afSMGVsC7QlRK1kZ/arcgis/rest/services/Crime_Data/FeatureServer/0/query",
+    "where_clause": "Type='Crime Offenses (NIBRS)' AND Reported_Date >= DATE '2024-01-01 00:00:00' AND Reported_Date < DATE '2025-01-01 00:00:00'",
+    "notes": [
+      "This is the exact live query used for the 2024 packet-year extract."
+    ]
+  },
+  "offense_contract": {
+    "recommended_basis": "NIBRS_Code_plus_Type_filter",
+    "observed_live_core_codes_2024": [
+      "09A",
+      "120",
+      "13A",
+      "220",
+      "23A",
+      "23B",
+      "23C",
+      "23D",
+      "23E",
+      "23F",
+      "23G",
+      "23H",
+      "240"
+    ],
+    "blocked_codes_2024": [
+      "11A",
+      "11B",
+      "11D",
+      "36B"
+    ],
+    "recommended_crosswalk_file": "offense_crosswalk.csv",
+    "judgment": "The public contract is clean enough for a six-offense selective overlay. Murder, robbery, aggravated_assault, burglary, larceny, and motor_vehicle_theft are direct or family-direct NIBRS mappings and reconcile cleanly on row count. Rape is blocked because the feed collapses the sex-offense family into a generic Sex Offenses bucket rather than a strict repo rape bucket."
+  },
+  "spatial_contract": {
+    "usable": true,
+    "assignment_rule": "Use feature geometry or wgsXAnon/wgsYAnon for BG join; treat Address and Latitude/Longitude as anonymized public fields.",
+    "block_group_join_ready": true,
+    "notes": [
+      "The 2024 Crime Offenses surface is fully geocoded.",
+      "There is no proxy-geometry blocker.",
+      "The public coordinate fields are anonymized, but the geometry itself is usable for the block-group join."
+    ]
+  },
+  "published_reconciliation": {
+    "reference_source_name": "Minneapolis Crime Dashboard / Crime_Data feature service",
+    "reference_source_url": "https://www.minneapolismn.gov/government/government-data/datasource/crime-dashboard/ ; https://www.minneapolismn.gov/government/government-data/datasource/crime-dashboard/crime-dashboard-document/",
+    "comparison_basis": "2024 Reported_Date year filter on Crime Offenses (NIBRS) only",
+    "included_offenses": [
+      "murder",
+      "robbery",
+      "aggravated_assault",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "blocked_offenses": [
+      "rape"
+    ],
+    "summary_file": "reconciliation_summary.csv",
+    "published_extract_file": "published_reference_extract.csv",
+    "key_findings": [
+      "The 2024 Crime Offenses surface is fully geocoded and supports a clean block-group join.",
+      "Direct or family-direct mappings exist for six repo offenses, and those promotable offenses reconcile cleanly on row count.",
+      "The only blocked repo offense is rape, because the public feed collapses the relevant sex offense codes into a broader Sex Offenses family."
+    ]
+  },
+  "judgment": {
+    "production_ready": "partial",
+    "recommended_disposition": "offense_selective",
+    "packet_status": "review_complete",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_six_offense_selective_path_ready",
+    "why_ready": [
+      "The official FeatureServer and dashboard/document anchors define a stable public incident contract.",
+      "The 2024 Crime Offenses surface is fully geocoded, so block-group assignment is available without proxy geography.",
+      "Six repo offense families reconcile directly or as a clean family aggregation."
+    ],
+    "why_blocked_offenses_remain": [
+      "Rape stays blocked because the source exposes a generic Sex Offenses family instead of a strict repo rape bucket."
+    ]
+  }
+}

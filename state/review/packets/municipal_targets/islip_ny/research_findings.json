@@ -1,0 +1,77 @@
+{
+  "case_key": "islip_ny",
+  "jurisdiction_id": "36:municipal:cousub:3610338000",
+  "jurisdiction_name": "Islip town",
+  "state_abbr": "NY",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_municipal_control_row_36_municipal_cousub_3610338000_and_treat_islip_as_suffolk_county_primary_service_structure_with_village_specific_handling",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Islip is a real municipality, but the Town does not present a general town police department. Official town materials describe a Department of Public Safety Enforcement with code enforcement, fire prevention, parking, complaints, and specialized functions such as harbor police rather than a general police department.",
+    "Official Suffolk County materials state that the Suffolk County Police Department provides all police services for the Suffolk County Police District, which includes the five western towns, including Islip.",
+    "Official Suffolk County emergency and district materials map Islip into Suffolk County Police precinct geography rather than a town-specific police department, and the county police phone system uses Suffolk County Police as the non-emergency incident-reporting surface for Islip residents.",
+    "Official Town of Islip materials also recognize incorporated village governments within the town. Those village governments complicate the service structure and make a synthetic townwide annual police row even less defensible.",
+    "Repo evidence is consistent with an invalid target rather than broken continuity. The routed agency row NY0510800 is zero in every panel year 2018-2024, and the 2024 Islip town control row is entirely fill-driven."
+  ],
+  "governance_structure": {
+    "municipal_status": "town_with_incorporated_villages_and_specialized_town_public_safety_functions",
+    "official_basis": [
+      "The Town of Islip maintains an official village-governments page listing incorporated villages inside the town.",
+      "The Town directory and budget materials identify a Department of Public Safety Enforcement rather than a town police department."
+    ],
+    "incorporated_villages_listed_by_town": [
+      "Brightwaters",
+      "Islandia",
+      "Ocean Beach",
+      "Saltaire"
+    ]
+  },
+  "policing_structure": {
+    "town_police_department_found": false,
+    "town_public_safety_found": true,
+    "town_public_safety_character": [
+      "code enforcement",
+      "fire prevention",
+      "parking enforcement",
+      "complaint response",
+      "specialized harbor police / marine enforcement"
+    ],
+    "primary_policing_entity_for_general_law_enforcement": "Suffolk County Police Department",
+    "official_evidence": [
+      "Suffolk County says the Suffolk County Police Department provides all police services for the five western towns in the Suffolk County Police District, including Islip.",
+      "County emergency-contact materials use Suffolk County Police as the non-emergency incident-reporting surface for residents in Islip.",
+      "Town press materials describe the Town partnering with Suffolk County Police on enforcement, consistent with county police being the primary criminal-law enforcement layer."
+    ],
+    "important_special_cases": [
+      "Town public safety / code enforcement is not the same thing as a townwide police department.",
+      "Harbor Police is a specialized function and does not create a general annual town police reporting surface."
+    ]
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "NY0510800 is currently routed exclusively to Islip town",
+    "current_observation_state": "NY0510800 is zero in every panel year 2018-2024",
+    "current_control_state": "The 2024 Islip town control row is entirely peer-state-type-pop-band fill with no reported support"
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_row_exists_for_town": false,
+    "why_not": [
+      "The Town does not present a verified general police department.",
+      "General criminal-law policing runs through Suffolk County Police rather than a town-specific annual police row.",
+      "Town public safety and harbor police are specialized functions, not a substitute for a general town police reporting surface.",
+      "Incorporated villages within Islip require separate handling rather than rescue by a fake townwide police target."
+    ],
+    "recommended_handling": [
+      "Do not retain the standalone Islip town municipal control row 36:municipal:cousub:3610338000.",
+      "Treat unincorporated Islip as part of the Suffolk County police service structure rather than as an independent town police jurisdiction.",
+      "Preserve village-specific handling separately where warranted; do not collapse town and village arrangements into a synthetic townwide annual police row."
+    ]
+  },
+  "likely_issue_class": "invalid_target_not_broken_successor_continuity",
+  "open_questions": [
+    "A later village-level pass can sort whether any individual Islip villages warrant separate police/public-safety handling, but that does not support a townwide annual police row."
+  ]
+}

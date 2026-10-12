@@ -1,0 +1,10 @@
+source_field,source_value,source_label,v2_offense,include_in_v2,counting_basis,notes
+ucr_general|text_general_code,100|Homicide - Criminal,Homicide - Criminal,murder,yes,row_count,"Direct criminal-homicide mapping. Keep separate from justifiable homicide."
+ucr_general|text_general_code,100|Homicide - Justifiable,Homicide - Justifiable,murder,no,exclude,"Official PPD homicide comparator appears to include this row class, but the AGS/V2 murder object should not."
+ucr_general,200,Rape,rape,yes,row_count,"Direct category mapping, but public reconciliation is materially high versus the official PPD year-end table."
+ucr_general,300,Robbery Firearm or Robbery No Firearm,robbery,yes,row_count,"Combine both robbery rows. Public reconciliation is materially high versus the official PPD year-end table."
+ucr_general,400,Aggravated Assault Firearm or Aggravated Assault No Firearm,aggravated_assault,yes,row_count,"Combine both aggravated-assault rows. This category reconciles tightly enough for offense-selective candidacy."
+ucr_general,500,Burglary Residential or Burglary Non-Residential,burglary,yes,row_count,"Combine both burglary rows. This category reconciles tightly enough for offense-selective candidacy."
+ucr_general,600,Thefts or Theft from Vehicle,larceny,yes,row_count,"Direct larceny-family mapping, but feed totals are materially above the official PPD year-end table."
+ucr_general,700,Motor Vehicle Theft,motor_vehicle_theft,yes,row_count,"Direct mapping, but feed totals are materially below the official PPD year-end table."
+ucr_general,900,Arson,arson,no,row_count,"Available in the feed, but the current official PPD citywide year-end table does not expose a matching arson line."

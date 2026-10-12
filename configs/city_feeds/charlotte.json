@@ -1,0 +1,201 @@
+{
+  "city_key": "charlotte",
+  "city_name": "Charlotte-Mecklenburg, NC (CMPD)",
+  "evidence_refs": [
+    "state/review/packets/city/charlotte/packet.json",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:6",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:47",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:59-68",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:70-82",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:93-104",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:124-126",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:144-175",
+    "state/review/packets/city/charlotte/evidence/01_fetch_charlotte.py:178-196",
+    "state/review/packets/city/charlotte/evidence/README.md:9-27",
+    "state/review/packets/city/charlotte/evidence/README.md:89-101",
+    "state/review/packets/city/charlotte/evidence/README.md:105-124",
+    "state/review/packets/city/charlotte/evidence/offense_mapping.csv",
+    "state/review/packets/city/charlotte/evidence/jurisdictions.csv",
+    "state/review/packets/city/charlotte/evidence/raw_cache_profile.json",
+    "state/review/packets/city/charlotte/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Feed publishes one row per incident coded to HIGHEST_NIBRS_CODE (the single highest-severity NIBRS offense per incident); lower-ranked offenses in the same incident are not published as rows (evidence/README.md lines 25-27, 114-120; evidence/01_fetch_charlotte.py lines 13-15).",
+    "Source coverage per metadata: DATE_REPORTED from 2017-01-01 to current (evidence/README.md lines 9-11)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "37:municipal:place:3712000",
+      "37:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "37"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Block-group handling: the script left-joins to tl_2020_37_bg with predicate within, drops the 5 rows with no block-group match (all near the airport), and keeps the first row per incident_id after the join (evidence/01_fetch_charlotte.py lines 186-196; evidence/README.md lines 89-96). The contract joins with within to state 37 block groups; if the runner keeps unmatched points or does not re-dedupe after the join, its row count before the BG step is 267,756 vs the script's 267,751 in incidents_bg.parquet.",
+    "Year: the script derives year from DATE_REPORTED parsed as epoch ms in UTC (lines 144, 165-167). The contract uses date_field DATE_REPORTED with epoch_ms. All 267,756 DATE_REPORTED values in raw_cache.parquet are local midnight stored as 04:00 or 05:00 UTC (177,708 and 90,048 rows), so the UTC year equals the local year; the YEAR column also equals that year in all 267,756 rows (recomputed from raw_cache.parquet), so year_field YEAR would give the same result.",
+    "Coordinates: the script takes latitude/longitude from the feature geometry requested with outSR=4326 (lines 101, 124-126). The contract reads latitude|__arcgis_latitude and longitude|__arcgis_longitude; a live pull reproduces the script only if the runner also requests WGS84 (outSR=4326) geometry.",
+    "Case sensitivity: the script's OFFENSE_MAP lookup is an exact pandas .map (line 152); the rules set case_sensitive true to match. The 14 distinct HIGHEST_NIBRS_CODE values in the archived pull are all exact whitelist codes (evidence/raw_cache_profile.json), so case-insensitive matching would give the same rows.",
+    "Where clause: the script's ArcGIS where uses fixed bounds timestamp '2018-01-01 00:00:00' / '2025-01-01 00:00:00' (lines 77-82); the contract writes them as {start}/{end} in the same ArcGIS timestamp literal syntax, not the ISO 'T' form.",
+    "Output columns: the script renames and passes through DIVISION_ID, CMPD_PATROL_DIVISION, NPA, CITY, ZIP, ADDRESS_DESCRIPTION, HIGHEST_NIBRS_CODE, HIGHEST_NIBRS_DESCRIPTION into incidents_bg.parquet (lines 200-214) and writes offense_mapping.csv and a summary pivot; the contract does not express output column naming.",
+    "The script adds a computed DATE_REPORTED_utc column to raw_cache.parquet (line 144); the contract does not need or produce it."
+  ],
+  "mapping": {
+    "date_field": "DATE_REPORTED",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "INCIDENT_REPORT_ID"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "HIGHEST_NIBRS_CODE",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Recomputed from raw_cache.parquet (267,756 rows): 0 rows with HIGHEST_NIBRS_CODE outside the 14-code whitelist (profile distinct counts sum to 267,756: larceny 23A-23H = 62,500+53,978+38,514+10,801+6,753+1,092+886+220 = 174,744; 240 = 31,349; 220 = 28,992; 13A = 19,635; 120 = 10,751; 11A = 1,656; 09A = 629), 0 null or (0,0) coordinates, 0 duplicate or null INCIDENT_REPORT_ID, 0 rows whose UTC year of DATE_REPORTED is outside 2018-2024 (2018 37,804; 2019 39,899; 2020 35,568; 2021 34,541; 2022 36,814; 2023 42,087; 2024 41,043). So the contract keeps all 267,756 rows before the block-group join, matching the script's pre-join count; the script's final 267,751 reflects its drop of 5 BG-unmatched rows (README lines 89-96). Jurisdictions: CMPD is described as county-wide, policing Charlotte and unincorporated Mecklenburg County plus 'several small incorporated towns' that the README does not name (README lines 13-23, 105-109). I listed Charlotte city (266,009 incidents in jurisdictions.csv) and the NC nonmunicipal remainder (39,154; unincorporated Mecklenburg; note this id is statewide, not Mecklenburg-only). I left out Mint Hill (3,636), Matthews (1,788), Huntersville (566), Pineville (396), Davidson (8), and the out-of-county Stallings (9, Union) and Concord (3, Cabarrus). Reasons: the jurisdictions.csv counts sum to 311,569, more than the 267,756 rows, so they overlap (they look like block-group-level assignment) and do not show point-level service. The raw fields also show little town activity: CITY = MATTHEWS 70, PINEVILLE 42, HUNTERSVILLE 32, MINT HILL 9 rows over 7 years, and the town-coded DIVISION_IDs MA 47 / PI 25 / MI 9 all have CMPD_PATROL_DIVISION 'NA'. That is not what full primary-agency coverage of those towns would produce. The evidence does not settle the town question. To settle it, we need a publisher statement of CMPD's service area (which Mecklenburg towns, if any, contract CMPD as primary agency, e.g. Huntersville division 92, 93 rows, and Davidson division 90, 3 rows) or a point-in-place count of incidents in each town. A reviewer should confirm before this list is final.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDIncidents/MapServer/0/query",
+      "name": "CMPD Incidents (CMPD/CMPDIncidents/MapServer/0)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "INCIDENT_REPORT_ID",
+        "YEAR",
+        "DATE_REPORTED",
+        "LOCATION",
+        "CITY",
+        "STATE",
+        "ZIP",
+        "DIVISION_ID",
+        "CMPD_PATROL_DIVISION",
+        "NPA",
+        "ADDRESS_DESCRIPTION",
+        "LOCATION_TYPE_DESCRIPTION",
+        "PLACE_TYPE_DESCRIPTION",
+        "HIGHEST_NIBRS_CODE",
+        "HIGHEST_NIBRS_DESCRIPTION"
+      ],
+      "slug": "cmpd_incidents",
+      "source_url": "https://gis.charlottenc.gov/arcgis/rest/services/CMPD/CMPDIncidents/MapServer/0",
+      "where": "DATE_REPORTED >= timestamp '{start} 00:00:00' AND DATE_REPORTED < timestamp '{end} 00:00:00' AND HIGHEST_NIBRS_CODE IN ('09A','11A','120','13A','220','23A','23B','23C','23D','23E','23F','23G','23H','240')"
+    }
+  ]
+}

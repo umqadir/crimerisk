@@ -1,0 +1,145 @@
+{
+  "case_key": "nj_transit_nj",
+  "ori": "NJ0073200",
+  "agency_name_raw": "NJ Transit Police",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "nj_transit_network_routes_stations_terminals_and_facilities_within_new_jersey",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": false,
+    "confidence": "high"
+  },
+  "core_finding": "NJ Transit Police is a real statewide special-jurisdiction transit police agency, but its defensible production footprint is not the whole State of New Jersey and not any single county or place. The operational footprint is the NJ TRANSIT multimodal system and associated NJ TRANSIT property and facilities within New Jersey.",
+  "service_jurisdiction_footprint": {
+    "is_true_multi_facility_transit_system": true,
+    "legal_authority_scope": "Official statute and NJTPD materials give transit police officers statewide criminal and traffic authority and assign police and security responsibility over locations and services owned, operated, or managed by NJ TRANSIT and its subsidiaries.",
+    "operational_geometry_interpretation": "For production, use the NJ TRANSIT network and NJ TRANSIT-controlled facilities in New Jersey: commuter rail lines, light rail lines, bus routes/stops where operationally supported, stations, terminals, rail facilities, corporate/support facilities, and other NJ TRANSIT property. Do not use a full-state polygon merely because the legal authority is statewide.",
+    "explicit_system_evidence": [
+      "NJTPD says its mission is to maintain order and safety throughout the NJ TRANSIT system, not throughout ordinary municipal territory statewide.",
+      "NJTPD's Operations Bureau says it responds to emergency calls along NJ TRANSIT's four modes of public transportation and corporate and support facilities statewide.",
+      "NJTPD's Investigations Bureau says its jurisdiction includes all bus routes, commuter rail lines, light rail systems, bus terminals, and rail facilities.",
+      "NJ TRANSIT describes itself as the nation's largest statewide public transportation system with 263 bus routes, three light rail lines, 12 commuter rail lines, 165 rail stations, 62 light rail stations, and more than 19,000 bus stops.",
+      "The official NJTPD district map and district descriptions show multiple district commands tied to Newark Penn Station, Hoboken Terminal, Secaucus Junction, Trenton Transit Center, Walter Rand Transportation Center, and Atlantic City Bus Terminal across multiple counties."
+    ]
+  },
+  "why_simple_proxies_fail": {
+    "single_county_proxy": [
+      "No single county matches the NJ TRANSIT system. Official police district materials span multiple county groupings and named facilities from Newark and Hoboken to Trenton, Camden, Lakewood, and Atlantic City.",
+      "The repo anchor county for this row is administrative only and does not reflect the true patrol/service footprint."
+    ],
+    "single_place_proxy": [
+      "No single place is defensible. Newark, Hoboken, Secaucus, Trenton, Camden, Atlantic City, Maplewood, and similar places each cover only one slice of the system.",
+      "NJTPD's own sources define responsibility by system facilities and routes, not by one city or census place."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing NJ0073200 into municipal or county primaries would erase a real statewide transit-police overlap layer that follows NJ TRANSIT facilities and service rather than ordinary local borders.",
+      "The statute expressly says nothing confers exclusive jurisdiction and nothing limits NJ TRANSIT from using local police, which confirms concurrent overlap with local agencies rather than a reason to collapse the row into local primaries."
+    ],
+    "full_state_polygon": [
+      "The statewide statutory grant is legal authority language, not the right production geometry. Using the entire state would materially overstate routine patrol/service coverage.",
+      "NJTPD's own operational descriptions repeatedly tie work to the NJ TRANSIT system, multimodal transportation network, routes, stations, terminals, and facilities."
+    ]
+  },
+  "authoritative_evidence": {
+    "nj_statute": {
+      "source_url": "https://pub.njleg.state.nj.us/Bills/2018/AL18/162_.PDF",
+      "key_points": [
+        "The amended statute establishes the New Jersey Transit Police Department in NJ TRANSIT.",
+        "It gives the department police and security responsibilities over all locations and services owned, operated, or managed by NJ TRANSIT and its subsidiaries.",
+        "Transit police officers have general authority in all criminal and traffic matters at all times throughout the State.",
+        "The same statute says the law does not confer exclusive jurisdiction and does not limit continued use of local police services."
+      ],
+      "interpretation": "This is the legal authority backdrop. It supports keeping NJTPD as a distinct overlap layer, but it does not justify a full-state production polygon."
+    },
+    "njtpd_about_page": {
+      "source_url": "https://police.njtransit.com/aboutus",
+      "key_points": [
+        "NJTPD says it is the only transit policing agency in the country with statewide authority and jurisdiction.",
+        "NJTPD says its mission is to maintain public order and safety while deterring and preventing terrorism and crime throughout the NJ TRANSIT system."
+      ],
+      "interpretation": "NJTPD itself distinguishes statewide authority from a system-based mission."
+    },
+    "njtpd_bureaus_page": {
+      "source_url": "https://police.njtransit.com/bureaus",
+      "key_points": [
+        "Operations responds to emergency calls along NJ TRANSIT's four modes of public transportation and corporate and support facilities statewide.",
+        "Investigations covers crimes and serious accidents on NJ TRANSIT property and within its multimodal transportation network.",
+        "NJTPD says its jurisdiction includes all bus routes, commuter rail lines, light rail systems, bus terminals, and rail facilities."
+      ],
+      "interpretation": "This is the clearest operational footprint statement and supports a custom transit-system geometry."
+    },
+    "njtpd_transit_districts": {
+      "source_url": "https://police.njtransit.com/transit-districts",
+      "key_points": [
+        "NJTPD organizes patrol through multiple transit districts rather than a single place or county.",
+        "District descriptions name facilities and regions including Newark Penn Station, Newark Light Rail, Ferry Street Bus Complex, Irvington Bus Terminal, Hudson-Bergen Light Rail, Hoboken Terminal, Secaucus Junction, Meadowlands Train Station, Walter Rand Transportation Center, Lakewood Bus Terminal, Trenton Transit Center, and Atlantic City rail and bus terminals.",
+        "District officers patrol and respond to bus, rail, and light rail calls in the areas and at the facilities noted on the map."
+      ],
+      "interpretation": "The district page proves the row is statewide and multi-facility, while also showing that patrol is attached to transit facilities and corridors rather than one civil jurisdiction."
+    },
+    "njtpd_district_map_pdf": {
+      "source_url": "https://police.njtransit.com/sites/default/files/njtpolice_district_map.pdf",
+      "key_points": [
+        "NJTPD publishes an official district responsibility map covering multiple NJ regions.",
+        "The map is anchored to district commands at Newark Penn Station, Hoboken Terminal, Secaucus Junction, Trenton Transit Center, Walter Rand Transportation Center, and Atlantic City Bus Terminal."
+      ],
+      "interpretation": "Useful as official evidence of a multi-region transit command structure, but the county-colored district responsibility map is not itself the precise production geometry."
+    },
+    "nj_transit_system_scope": {
+      "source_url": "https://www.njtransit.com/press-releases/nj-transit-wins-national-award-anti-human-trafficking-campaign",
+      "key_points": [
+        "NJ TRANSIT says it is the nation's largest statewide public transportation system.",
+        "NJ TRANSIT reports 263 bus routes, three light rail lines, 12 commuter rail lines, 165 rail stations, 62 light rail stations, and more than 19,000 bus stops."
+      ],
+      "interpretation": "This confirms the underlying agency footprint is a large, distributed transit network rather than a county or place."
+    },
+    "nj_transit_system_maps": {
+      "source_url": "https://www.njtransit.com/accessibility/System-Map",
+      "key_points": [
+        "NJ TRANSIT publishes official rail and light rail system maps.",
+        "The system maps are intended to help customers locate transportation services in different regions of New Jersey and identify surrounding cities, towns, and connections."
+      ],
+      "interpretation": "These official maps are the proper kind of source for building a custom NJ TRANSIT network footprint."
+    }
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a New Jersey NJ TRANSIT system footprint from official NJ TRANSIT routes, rail/light-rail lines, stations, terminals, and other NJ TRANSIT-controlled facilities and property surfaces, rather than from any county, place, or full-state polygon.",
+    "geometry_guidance": [
+      "Use official NJ TRANSIT system maps and agency facility materials as the geometry basis.",
+      "Represent the operational footprint as transit-network/service geometry and NJ TRANSIT facilities in New Jersey.",
+      "Treat the NJTPD district map as corroborating evidence of statewide multi-district coverage, not as a precise literal county polygon for production.",
+      "Do not localize to Essex County, Newark, Maplewood, or any other single county/place anchor.",
+      "Do not absorb the row into local primaries."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "fallback_why": [
+      "Until the custom NJ TRANSIT footprint is built, broad overlap is safer than a false county/place proxy.",
+      "A false local proxy would create fake precision and materially misallocate a high-volume statewide transit-police row."
+    ],
+    "not_recommended": [
+      "absorb_into_primary_jurisdiction",
+      "localize_to_county",
+      "localize_to_place",
+      "localize_to_full_state_polygon"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_remain_broad_overlap_until_custom_footprint_exists": true,
+    "exact_recommended_production_disposition": "custom NJ TRANSIT network-and-facilities footprint within New Jersey; otherwise keep broad overlap"
+  },
+  "authoritative_sources_used": [
+    "https://pub.njleg.state.nj.us/Bills/2018/AL18/162_.PDF",
+    "https://police.njtransit.com/aboutus",
+    "https://police.njtransit.com/bureaus",
+    "https://police.njtransit.com/transit-districts",
+    "https://police.njtransit.com/sites/default/files/njtpolice_district_map.pdf",
+    "https://www.njtransit.com/accessibility/System-Map",
+    "https://www.njtransit.com/press-releases/nj-transit-wins-national-award-anti-human-trafficking-campaign"
+  ]
+}

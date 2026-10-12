@@ -1,0 +1,151 @@
+{
+  "city_key": "ventura_ca",
+  "city_name": "Ventura",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/ventura_ca/packet.json (case_text)",
+    "state/review/packets/city/ventura_ca/evidence/registry_row.json (api_endpoint, portal_type, probe_where, jurisdiction_ids, state_fips, ori9, redactions, count_unit)",
+    "state/review/packets/city/ventura_ca/evidence/doc_00.json (fields, types, objectIdField, maxRecordCount, spatialReference, dateFieldsTimeReference, description)",
+    "state/review/packets/city/ventura_ca/evidence/doc_index.csv",
+    "state/review/packets/city/ventura_ca/evidence/raw_cache_profile.json (rows, Offense_Type, Offense_Category, EventOffenseKey, Report_Number, Incident_Date_End, __arcgis_latitude)",
+    "state/review/packets/city/ventura_ca/evidence/scope_candidates.csv",
+    "state/review/packets/city/ventura_ca/evidence/official_totals.csv",
+    "state/review/packets/city/ventura_ca/raw_cache.parquet via scripts/agents/query.py: per-year counts by Offense_Type with year(epoch_ms(Incident_Date_Start)); count(*), count(distinct Report_Number), count(distinct Report_Number||'-'||Offense_Order); distinct GeneralizedAddress vs distinct rounded points; Jan 1 before 08:00 UTC count",
+    "src/crimerisk/city_contracts.py:113-142 (_download_arcgis: outSR 4326, orderByFields, resultRecordCount)",
+    "src/crimerisk/city_contracts.py:222-224 (_event_dates epoch_ms parsed as UTC)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "06:municipal:place:0665042"
+    ],
+    "state_fips": [
+      "06"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit is the published offense line (EventOffenseKey = Report_Number + '-' + two-digit Offense_Order), not the SRS hierarchy-rule incident or the NIBRS one-offense-per-code-per-incident unit: the same Offense_Type can repeat within one Report_Number (e.g. VE202126239-01 and -02 are both Aggravated Assault). 2020-2025 pull, UTC year of Incident_Date_Start, before geography: aggravated assault 537/491/429/370/328/287 offense rows vs 479/454/399/327/281/248 distinct Report_Number+Offense_Type; motor vehicle theft 338/268/237/200/249/148 vs 308/253/226/191/237/143.",
+    "Rape is not mapped: the pull has no Sex Offenses rows (none of the 23 Offense_Category values in raw_cache_profile.json), although the layer's type list in doc_00.json includes a 'Sex Offenses' category. Rape (11A-11C) cannot be produced from this feed; the publisher does not state why the category is empty.",
+    "Human Trafficking, Prostitution Offenses, Pornography/Obscene Material, Liquor Law Violations and Nonviolent Family Offenses are also listed as layer types in doc_00.json but have no rows in the pull.",
+    "Only Offense_Type 'Murder & Nonnegligent Manslaughter' appears under Homicide Offenses (20 rows), so 09B/09C are not present to exclude. Simple Assault (4,996 rows) and Intimidation (978 rows) are left unmapped.",
+    "Coverage starts in late 2019: 109 rows in 2018 and 2,848 in 2019 against 10,128-15,644 per year for 2020-2025 (UTC year of Incident_Date_Start), so 2018-2019 will reconcile far below the official totals.",
+    "Official totals for 2021 are 0 for every offense (official_totals.csv), while the pull holds 15,644 rows for 2021; 2021 cannot reconcile.",
+    "Incident_Date_Start is stored in UTC (doc_00.json dateFieldsTimeReference) and the runner takes its UTC year; 76 rows fall on January 1 before 08:00 UTC, i.e. December 31 Pacific time, and are assigned to the following year."
+  ],
+  "mapping": {
+    "date_field": "Incident_Date_Start",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "EventOffenseKey"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Type",
+            "op": "eq",
+            "value": "Murder & Nonnegligent Manslaughter",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Type",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Type",
+            "op": "eq",
+            "value": "Aggravated Assault",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Type",
+            "op": "eq",
+            "value": "Burglary/Breaking & Entering",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Type",
+            "op": "in",
+            "value": "",
+            "values": [
+              "Pocket-Picking",
+              "Purse-Snatching",
+              "Shoplifting",
+              "Theft From Building",
+              "Theft From Coin-Operated Machine or Device",
+              "Theft From Motor Vehicle",
+              "Theft of Motor Vehicle Parts or Accessories",
+              "All Other Larceny"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "Offense_Type",
+            "op": "eq",
+            "value": "Motor Vehicle Theft",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Publisher: Ventura Police Department, ORI CA0560800, a municipal PD, so the scope is the city only: 06:municipal:place:0665042 (San Buenaventura (Ventura) city), the single row of scope_candidates.csv and the registry's jurisdiction_ids; state_fips 06. Source: the registry's ArcGIS feature service endpoint and portal_type; where clause is the registry probe_where, which is the filter the archive was pulled with (packet case_text); order ObjectID (the layer's objectIdField), page_size 2000 (layer maxRecordCount in doc_00.json). Count unit: offense. Each row is one offense line: EventOffenseKey is distinct on all 79,231 rows, Report_Number has 59,967 distinct values, and Report_Number + Offense_Order is distinct on all 79,231 rows (query.py counts); id_fields EventOffenseKey keeps every offense line, including several offense lines of one report and repeated lines of the same Offense_Type within one report; dedupe_on_id is a no-op guard. Date: Incident_Date_Start (alias 'Incident Start Date', an esriFieldTypeDate in epoch ms), the occurrence start date; Incident_Date_End is null on 64,881 of 79,231 rows. Offense mapping uses the NIBRS Offense_Type values present in the pull (raw_cache_profile.json Offense_Type distinct): murder = Murder & Nonnegligent Manslaughter (20 rows); robbery = Robbery (542); aggravated assault = Aggravated Assault (2,539); burglary = Burglary/Breaking & Entering (2,145); larceny = the eight 23A-23H types Pocket-Picking 126, Purse-Snatching 89, Shoplifting 3,158, Theft From Building 743, Theft From Coin-Operated Machine or Device 20, Theft From Motor Vehicle 3,659, Theft of Motor Vehicle Parts or Accessories 1,176, All Other Larceny 3,970 (sum 12,941 = the Larceny/Theft Offenses category count); motor vehicle theft = Motor Vehicle Theft (1,500). Rape is unmapped: there are no Sex Offenses rows in the pull. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, non-null on all 79,231 rows, layer native SR EPSG:2229 requested as outSR 4326). The publisher does not state rounding or offsets, but GeneralizedAddress is published at the 100-block ('1700 Block S VICTORIA AVE') and points cluster at few locations per block: 6,672 distinct addresses vs 12,441 distinct points (6-decimal), and 100 Block W MAIN ST's 793 rows sit at 9 points (523 at one), consistent with block-level geocoding. Redactions: none stated (registry redactions empty; layer description empty in doc_00.json). Pre-geography comparison with official totals (UTC year, offense rows / official): 2023 murder 6/6, robbery 82/79, aggravated assault 370/359, burglary 302/343, larceny 1,940/1,862, motor vehicle theft 200/178; 2025 murder 1/1, robbery 66/60, aggravated assault 287/278, burglary 234/230, larceny 1,673/1,576, motor vehicle theft 148/141 (query.py counts joined to official_totals.csv).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/dBVj4EXO3IdRPOqb/arcgis/rest/services/OpenData_Police_Crimes/FeatureServer/0",
+      "name": "Ventura OpenData Police Crimes",
+      "order": "ObjectID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "ventura_ca",
+      "source_url": "https://www.cityofventura.ca.gov/",
+      "where": "Incident_Date_Start >= DATE '{start}' AND Incident_Date_Start < DATE '{end}'"
+    }
+  ]
+}

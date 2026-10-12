@@ -1,0 +1,142 @@
+{
+  "case_key": "ohio_state_columbus_oh",
+  "ori": "OH0252700",
+  "agency_name_raw": "oh state univ: columbus",
+  "state_abbr": "OH",
+  "question": "What is the defensible overlap treatment for OH0252700, Ohio State University Police in Columbus: Columbus place proxy, Franklin County proxy, custom Columbus-campus footprint, or broad overlap until better geometry exists?",
+  "bottom_line": {
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "overlap_subtype_final": "campus",
+    "footprint_type": "osu_columbus_primary_campus_property_and_adjacent_public_property_footprint",
+    "confidence": 0.95
+  },
+  "local_repo_evidence": {
+    "queue_row_summary": "The overlap queue currently treats OH0252700 as a campus row with Columbus place and Franklin County anchors and flags it for proxy verification.",
+    "queue_row_fields": {
+      "county_fips": "049",
+      "place_fips": "18000",
+      "overlap_subtype": "campus",
+      "geometry_hint": "campus_or_university_footprint",
+      "likely_proxy_ok": true
+    },
+    "repo_implication": "The heuristic city and county anchors are not safe to accept without source review because official Ohio State materials distinguish university-property policing from off-campus mutual aid and from broader Clery reporting geography."
+  },
+  "provider_distinction": {
+    "osupd_role": "OSUPD is Ohio State's sworn university police agency. Official Ohio State materials say it has police jurisdiction on university property and provides primary police services to the Columbus campus, while also staffing separate regional-campus policing arrangements.",
+    "columbus_and_neighboring_agencies_role": "Columbus Division of Police, Franklin County Sheriff, Ohio State Highway Patrol, and neighboring municipal agencies remain real overlapping providers. Ohio State's own report-crime and mutual-aid materials direct off-campus incidents to CPD or the relevant local agency and frame University District work as a cooperative, limited-jurisdiction patrol inside CPD territory.",
+    "overlap_implication": "This row represents a real Ohio State campus-policing overlap tied to the Columbus campus property system, not Columbus city, not Franklin County, and not the whole universe of Clery-reportable off-campus sites."
+  },
+  "verified_findings": [
+    {
+      "topic": "Ohio law allows off-campus police work by agreement, not by default citywide campus status",
+      "finding": "Ohio Revised Code Section 3345.041 authorizes state universities to enter mutual-aid agreements with municipalities, townships, counties, and other entities so university officers can perform police functions outside university territory. That is the legal mechanism behind OSUPD's off-campus activity, not evidence that Columbus or Franklin County is the department's natural production footprint."
+    },
+    {
+      "topic": "Ohio State's annual security report ties OSUPD primary policing to the Columbus campus and university property",
+      "finding": "The 2025 Annual Security Report says OSUPD has police jurisdiction on all university property and provides primary police services to The Ohio State University Columbus campus, while separate police services exist at Lima, Mansfield, Marion, Newark, and Wooster. That is a bounded university-property concept, not a city or county geography."
+    },
+    {
+      "topic": "Off-campus University District activity is explicitly limited mutual-aid work inside Columbus jurisdiction",
+      "finding": "Ohio State's police page says joint patrol allows OSUPD officers to have off-university-property jurisdiction only in limited circumstances. The 2012 Columbus mutual-aid agreement says OSU may not unilaterally patrol city areas for routine crime detection, that Columbus officers remain primary when present, and that the University District initiative is a cooperative joint patrol. Current 2024 and 2026 Ohio State articles likewise describe those responses as occurring in CPD's jurisdiction."
+    },
+    {
+      "topic": "Ohio State's own crime-reporting instructions reject a Columbus or neighboring-community proxy",
+      "finding": "Ohio State's Report a Crime page directs on-campus crimes to OSUPD, off-campus Columbus crimes to Columbus Police, and off-campus incidents in Upper Arlington, Clinton Township, and Grandview Heights to those local police agencies. That is direct current evidence that OSUPD does not own the off-campus student-neighborhood geography around the university as its primary patrol footprint."
+    },
+    {
+      "topic": "Franklin County is even less defensible than Columbus",
+      "finding": "The same Ohio State annual report shows OSUPD's external agreements are municipality- and circumstance-specific, including Columbus, Bexley, Upper Arlington, Clinton Township, and Wayne County, rather than a countywide Franklin policing mandate. Using Franklin County would vastly overstate the real OSUPD layer and would still fail to track the fact that some adjacent mutual-aid jurisdictions are not county proxies at all."
+    },
+    {
+      "topic": "Clery geography is broader than the police footprint and cannot be used as the production polygon",
+      "finding": "Ohio State's Clery Act page says the annual report covers on-campus crime, certain off-campus buildings or property owned or controlled by the university including Wexner Medical Center facilities, and adjacent public property. The annual report notes that noncampus and public-property statistics can include outside-agency reports and may include private residences, businesses, county-extension offices, study-abroad sites, or other noncampus locations. That defeats any attempt to turn Clery noncampus coverage into the OSUPD policing footprint."
+    },
+    {
+      "topic": "Official Columbus-campus mapping supports a bounded but multi-district custom footprint",
+      "finding": "The official Columbus Campus Map and Ohio State Framework Plan show a substantial but still bounded campus property system centered on the Olentangy River and including core academic and residential areas, athletics and recreation west of the river, the health-sciences / campus-medical area, Morehouse Medical Plaza, and western-lands / west-campus structure around Waterman, Kinnear, Woody Hayes, and related facilities. This is materially broader than a tiny central-campus polygon but still nowhere near Columbus or Franklin County."
+    },
+    {
+      "topic": "Remote Wexner facilities should not be auto-included in the OSUPD police footprint",
+      "finding": "Ohio State's Department of Public Safety says Wexner Medical Center Security patrols all Wexner Medical Center facilities. Because the Clery page separately says Wexner facilities can appear in Clery geography, remote Wexner locations should not be treated as automatic OSUPD police geometry without a current source tying them specifically to OSUPD's primary patrol footprint."
+    }
+  ],
+  "classification": {
+    "is_classic_single_polygon_campus": false,
+    "is_bounded_multi_district_campus_system": true,
+    "is_single_place_proxy_acceptable": false,
+    "is_single_county_proxy_acceptable": false,
+    "requires_custom_footprint": true
+  },
+  "exact_service_footprint_for_production": {
+    "type": "custom Ohio State Columbus-campus primary-policing footprint",
+    "include": [
+      "the official Columbus-campus property system shown on Ohio State's current campus map and planning materials, including the core academic, residential, and student-life areas",
+      "the campus-core health-sciences and medical buildings that are part of the mapped Columbus campus, such as the University Hospitals / Rhodes Hall / Ross Heart Hospital / Morehouse Medical Plaza cluster",
+      "the west-of-river athletics, recreation, parking-reservoir, and west-campus / western-lands areas that Ohio State planning materials treat as part of the Columbus campus structure, including the Schottenstein / Woody Hayes / Waterman / Kinnear corridor context where those areas remain part of the university campus system",
+      "public streets, sidewalks, and parking facilities within or immediately adjacent to and accessible from that campus footprint, consistent with the Clery public-property definition"
+    ],
+    "exclude": [
+      "Columbus city as a place proxy",
+      "Franklin County as a county proxy",
+      "the off-campus University District and other student-neighborhood areas that OSUPD visits only through Columbus joint patrol or other mutual-aid support",
+      "generic Clery noncampus geography, including student-organization houses, noncampus properties reported by outside agencies, county extension offices, foreign study-abroad sites, or other off-campus controlled properties that are not part of the Columbus campus police footprint",
+      "remote Wexner Medical Center facilities that are not part of the mapped Columbus campus unless a current OSUPD source directly places them in the police footprint",
+      "any separate university facility, including the airport or remote clinics, unless a current OSUPD source directly identifies regular primary police service there"
+    ],
+    "legal_basis": "Ohio law permits university police to work off property through mutual-aid agreements, while Ohio State's own public-safety materials narrow the routine primary-policing layer to university property and the Columbus campus.",
+    "implementation_note": "Build the geometry from the official Columbus Campus Map plus current Ohio State framework / district materials, then add immediately adjacent public-property edges. Do not use Columbus, Franklin County, the University District mutual-aid area, or Clery noncampus locations as substitutes. If system support for this custom footprint is not yet available, broad overlap is safer than a city or county proxy."
+  },
+  "proxy_assessment": {
+    "custom_columbus_campus_footprint": {
+      "defensible": true,
+      "why": "Official Ohio State sources consistently tie OSUPD primary policing to university property and the Columbus campus while also describing the bounded campus geography in map and planning materials."
+    },
+    "single_place_proxy_columbus": {
+      "defensible": false,
+      "why_not": "Columbus includes vast CPD territory far beyond Ohio State property, and Ohio State's own mutual-aid and report-crime materials say off-campus Columbus incidents remain CPD matters."
+    },
+    "single_county_proxy_franklin": {
+      "defensible": false,
+      "why_not": "Franklin County is materially broader than the campus system, does not track OSUPD's municipality-specific mutual-aid structure, and would erase the distinction between university-property policing and ordinary county or city policing."
+    },
+    "university_district_as_proxy": {
+      "defensible": false,
+      "why_not": "The University District is a joint-patrol support area inside CPD jurisdiction, and the agreement expressly disclaims unilateral OSUPD patrol authority there."
+    },
+    "clery_noncampus_geography_as_proxy": {
+      "defensible": false,
+      "why_not": "Ohio State's Clery materials explicitly include off-campus properties and outside-agency reporting categories that are broader than the OSUPD service footprint."
+    },
+    "absorb_into_columbus_or_franklin_primary": {
+      "defensible": false,
+      "why_not": "Absorbing OH0252700 into Columbus or Franklin would erase a real, separate Ohio State police layer that the university treats as a distinct sworn agency with its own campus-primary jurisdiction."
+    }
+  },
+  "recommended_production_disposition": {
+    "disposition": "localized_special_overlap",
+    "overlap_subtype": "campus",
+    "recommended_final_overlap_treatment": "localize_to_custom_footprint",
+    "footprint_type": "osu_columbus_primary_campus_property_and_adjacent_public_property_footprint",
+    "geometry_sources": [
+      "https://dps.osu.edu/police",
+      "https://dps.osu.edu/report-crime",
+      "https://dps.osu.edu/crime/clery-act",
+      "https://dps.osu.edu/sites/default/files/documents/annual_security_fire_safety_report.pdf",
+      "https://usg.osu.edu/posts/documents/doc_9192012_19729578.pdf",
+      "https://dps.osu.edu/news/2024/08/19/joint-patrol-program-expands-increasing-campus-police-presence",
+      "https://dps.osu.edu/divisions/wexner-medical-center-security",
+      "https://faculty.osu.edu/sites/default/files/documents/columbus-campus-map.pdf",
+      "https://pare.osu.edu/sites/default/files/framework.pdf",
+      "https://codes.ohio.gov/ohio-revised-code/section-3345.041"
+    ],
+    "implementation_note": "Localize OH0252700 to a custom Columbus-campus footprint built from official campus property materials. Do not localize it to Columbus, Franklin County, or the off-campus University District. Remote Wexner and other separately located university facilities should be added only if a current OSUPD source directly shows primary police service there.",
+    "production_ready": true
+  },
+  "final_verdict": {
+    "defensible_single_place_proxy_exists": false,
+    "defensible_single_county_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": true,
+    "exact_recommended_production_disposition": "custom Ohio State Columbus-campus property-and-adjacent-public-property footprint; if that footprint is not yet implemented, keep broad overlap rather than forcing Columbus or Franklin County"
+  }
+}

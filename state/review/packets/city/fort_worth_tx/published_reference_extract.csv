@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,aggravated_assault,3223.0,srs_return_a_annual,high
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,burglary,3437.0,srs_return_a_annual,high
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,larceny,18372.0,srs_return_a_annual,high
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,motor_vehicle_theft,5121.0,srs_return_a_annual,high
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,murder,74.0,srs_return_a_annual,high
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,rape,551.0,srs_return_a_annual,high
+fort_worth_tx,"Fort Worth, Texas",48:municipal:place:4827000,robbery,724.0,srs_return_a_annual,high

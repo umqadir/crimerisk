@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+sacramento_ca,"Sacramento, California",06:municipal:place:0664000,City of Sacramento Police Department RMS Report Data 2024,https://data.cityofsacramento.org/datasets/eddc9729d09e4c7f92794d2ae1d99da4_0/about,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

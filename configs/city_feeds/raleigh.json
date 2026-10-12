@@ -1,0 +1,208 @@
+{
+  "city_key": "raleigh",
+  "city_name": "Raleigh",
+  "evidence_refs": [
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:7",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:40",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:77-89",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:91-100",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:111-123",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:142-144",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:161",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:169-191",
+    "state/review/packets/city/raleigh/evidence/01_fetch_raleigh.py:194-212",
+    "state/review/packets/city/raleigh/evidence/README.md:5-12",
+    "state/review/packets/city/raleigh/evidence/README.md:16-26",
+    "state/review/packets/city/raleigh/evidence/README.md:90",
+    "state/review/packets/city/raleigh/evidence/README.md:103",
+    "state/review/packets/city/raleigh/evidence/README.md:114-128",
+    "state/review/packets/city/raleigh/evidence/offense_mapping.csv",
+    "state/review/packets/city/raleigh/evidence/jurisdictions.csv",
+    "state/review/packets/city/raleigh/evidence/raw_cache_profile.json",
+    "state/review/packets/city/raleigh/raw_cache.parquet",
+    "case_text: \"Source raleigh: an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_raleigh.py.\""
+  ],
+  "exclusions_stated_by_publisher": [
+    "RPD redacts all location information for incidents involving sexual assault, child abuse, juvenile incidents, domestic abuse and related incidents. Stated in the description of the sibling ArcGIS item 'Raleigh Police Incidents (SRS)' (09af62a32ae8436bae6eda74aa7f172b), as quoted in evidence/README.md lines 114-122; the NIBRS feed matches it empirically (17A: 0 of 1,220 rows with coordinates; 25M: 0 of 160). With require_coordinates these rows are dropped, so the contract yields no rape rows and undercounts aggravated_assault by the 25M rows, exactly as the fetch script does."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "37:municipal:place:3755000"
+    ],
+    "state_fips": [
+      "37"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Id string format: the script builds incident_id = OBJECTID + '_' + case_number (01_fetch_raleigh.py line 187); the contract joins id_fields with '|', giving OBJECTID|case_number. Same components and same uniqueness (OBJECTID is unique across all 93,364 raw rows; 0 duplicate ids), different separator. 1,388 raw rows have an empty case_number, so their id is 'OBJECTID|' vs the script's 'OBJECTID_'.",
+    "Live where clause: the script filters server-side on literal years 'reported_year >= 2018 AND reported_year <= 2024' (lines 97-100). The contract derives the year bounds from the {start}/{end} placeholders with EXTRACT(YEAR FROM DATE '...'), which is ArcGIS standardized SQL but was not tested against this service. A reported_date range was not used because reported_year is the local (America/New_York) year of reported_date: in the archived pull 47 rows have a UTC year different from reported_year, and 2 rows (OBJECTID 707285, 707350) have no valid reported_date but reported_year 2022, so a UTC date-range filter would move or drop rows the script keeps. On the archived pull the where clause is not applied; year_field reported_year does the year filter.",
+    "Coordinates: the script takes latitude/longitude from the feature geometry requested with outSR=4326 (lines 118, 142-144). The contract has no outSR field; a live pull maps latitude|__arcgis_latitude and longitude|__arcgis_longitude and assumes the runner returns geometry in WGS84.",
+    "Block-group join: the script left-joins to tl_2020_37_bg with predicate 'within' and then drops unmatched rows (lines 202-212); the runner joins to the 2020 block groups of state 37 with 'within'. README line 103 reports 91,644/91,644 geocoded rows matched, so no row difference is expected, assuming the runner also drops unmatched points.",
+    "The script's raw_cache.parquet has a computed column reported_date_utc (line 161); the contract does not use it (year comes from reported_year).",
+    "Pass-through columns the script writes to incidents_bg.parquet (district, city_of_incident, city, reported_block_address, crime_code, crime_category, crime_description; lines 216-225) are outside the contract's scope; they are all in select, so they remain in the raw pull."
+  ],
+  "mapping": {
+    "date_field": "reported_date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "OBJECTID",
+      "case_number"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "17A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "20A",
+              "20B"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "25A",
+              "25B",
+              "25C",
+              "25D",
+              "25G",
+              "25M"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "30A",
+              "30B"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "35A",
+              "35B",
+              "35C",
+              "35D",
+              "35E",
+              "35F",
+              "35G",
+              "35H",
+              "63"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "crime_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "40A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "reported_year"
+  },
+  "notes": "Translation of evidence/01_fetch_raleigh.py. Offense rules are the script's OFFENSE_MAP (lines 77-89), one crime_code 'in' rule per offense; the 22 codes are disjoint, so rule order does not matter. They match evidence/offense_mapping.csv row for row. crime_category is not used, following the script (see its note on the 35C row mislabeled ROBBERY, lines 55-59). Recomputed on raw_cache.parquet with pandas: 93,364 rows (matches raw_cache_profile.json 'rows'); every crime_code value is in the whitelist, so 0 rows are unmapped; 1,720 rows have null latitude/longitude (same rows for both), 0 rows are at (0,0), 0 rows fall outside reported_year 2018-2024. Rows kept = 93,364 - 1,720 = 91,644, which equals the README's BG-joined total (line 90). The dropped rows by code: 17A 1,220, 25M 160, and 340 across 13 other codes. Jurisdiction: agency = 'RPD' for all 93,364 rows (raw_cache_profile.json; README lines 8-9), a single city department, so jurisdiction_ids is Raleigh city (37:municipal:place:3755000, evidence/jurisdictions.csv row 2). jurisdictions.csv also lists other places and the NC nonmunicipal remainder where points fall; its counts add up to more than 91,644 (Raleigh city alone is 91,584 and the remainder 42,507), so they are not per-point counts and were not used to widen the list. README discrepancy: README line 17 says a '19-code' whitelist, but OFFENSE_MAP and offense_mapping.csv have 22 codes (25A-25D have 0 rows in 2018-2024, so only 18 codes appear in the pull). The contract uses the script's 22. api_endpoint is the script's QUERY_URL (line 40, ending in /query); source_url is the layer URL (script line 7, README line 7).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Police_Incidents/FeatureServer/0/query",
+      "name": "Raleigh Police Incidents (NIBRS)",
+      "order": "OBJECTID ASC",
+      "page_size": 4000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "case_number",
+        "crime_category",
+        "crime_code",
+        "crime_description",
+        "crime_type",
+        "reported_block_address",
+        "city_of_incident",
+        "city",
+        "district",
+        "reported_date",
+        "reported_year",
+        "agency"
+      ],
+      "slug": "raleigh_rpd_incidents_nibrs",
+      "source_url": "https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Police_Incidents/FeatureServer/0",
+      "where": "reported_year >= EXTRACT(YEAR FROM DATE '{start}') AND reported_year < EXTRACT(YEAR FROM DATE '{end}') AND crime_code IN ('11','17A','20A','20B','25A','25B','25C','25D','25G','25M','30A','30B','35A','35B','35C','35D','35E','35F','35G','35H','63','40A')"
+    }
+  ]
+}

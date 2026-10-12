@@ -1,0 +1,219 @@
+{
+  "city_key": "sonoma_county_so_ca",
+  "city_name": "Sonoma County Sheriff",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/sonoma_county_so_ca/packet.json (case_text)",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/registry_row.json",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/doc_206c165357.json",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/doc_7a293d2529.html",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/doc_index.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/raw_cache_profile.json",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/scope_candidates.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/official_totals.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/funnel.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/qa_offense_year.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/qa_exceptions.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/qualification_summary.json",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/jurisdictions.csv",
+    "state/review/packets/city/sonoma_county_so_ca/evidence/contract.json (first draft as run)",
+    "state/review/packets/city/sonoma_county_so_ca/raw_cache.parquet (query.py: counts by agency_code x incident_type; null incident_type by agency_code x year; SCSD Burglary by location_type x year; SCSD 'Assault - Other' and 'Weapons Offenses' by year; date range)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Points are placed at the closest intersection, not the incident address: intersection is the 'Closest intersection to the location where the event was reported. Intersections are used to protect victims identities.' (evidence/doc_206c165357.json, columns[intersection].description). The location point carries the same snapping: 60,801 rows share 8,596 distinct location values (evidence/raw_cache_profile.json; recomputed by the reviewer with query.py).",
+    "Only reports a deputy has substantiated or witnessed are published: 'incident reports are generated after either of two events 1) a citizen has reported an event/crime and a deputy has substantiated that a report is necessary or 2) a deputy has witnessed an event/crime in progress' (evidence/doc_206c165357.json, description).",
+    "Rows are uploaded after incident approval ('Date the data was uploaded into Socrata after incident approval', evidence/doc_206c165357.json, columns[upload].description), so unapproved reports are absent.",
+    "Where several locations are reported only the first is shown ('In the case where multiple locations are reported only the first location will be displayed', evidence/doc_206c165357.json, columns[location_type].description).",
+    "No other redaction or exclusion is stated: the registry redactions field is empty (evidence/registry_row.json), case_text says 'redactions: none stated' (packet.json), and the portal page evidence/doc_7a293d2529.html adds none."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "06:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "06"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit is the incident report with one published incident_type per row; there is no per-offense detail, so a multi-offense incident counts once under the single category the publisher assigned and no FBI hierarchy rule can be applied or checked. SRS counts violent offenses per victim, which the feed cannot reproduce.",
+    "Categories are the publisher's own labels, not NIBRS codes, and no definitions are published (evidence/doc_206c165357.json, columns[incident_type].description: 'Incident category for the type of incident reported'). 'Homicide' may include 09B/09C and 'Rape' may not follow the revised SRS definition; neither can be checked.",
+    "Burglary/larceny straddle: SCSD Burglary footprint rows exceed the official burglary total every year with nonzero totals (2018 603 vs 340, 2019 576 vs 350, 2020 552 vs 357, 2022 367 vs 201, 2023 374 vs 251, 2024 318 vs 213, 2025 256 vs 213; relative deltas 0.20-0.83) while Larceny falls short every year (489/506/457/417/383/374/379 vs 734/733/621/598/514/517/484; deltas 0.22-0.33) (evidence/qa_offense_year.csv footprint_rows vs official_total). Burglary+larceny combined reconciles within -8.9% to +3.2%: 2018 1,092 vs 1,074; 2019 1,082 vs 1,083; 2020 1,009 vs 978; 2022 784 vs 799; 2023 757 vs 765; 2024 692 vs 730; 2025 635 vs 697 (sums of the same csv rows). This fits California PC 459 vehicle burglary sitting under 'Burglary', which the FBI counts as larceny (23F).",
+    "location_type is a partial proxy for vehicle burglary and is not used: SCSD Burglary rows whose location_type matches HIGHWAY|ROAD|STREET|PARKING|MOTOR VEHICLE number 158/141/96/39/62/89/67/38 for 2018-2025 (query.py over raw_cache, regexp on upper(location_type)), against an annual excess over the official burglary total of 263/226/195/-/166/123/105/43 (footprint minus official, 2021 has no official total). The proxy covers well under the excess in 2018-2022 and roughly matches it only in 2024-2025; location_type is null for 64/134/38 SCSD Burglary rows in 2020/2021/2022 around the RMS change; its vocabulary changes between systems (e.g. 'HIGHWAY/ROAD/ALLEY' vs 'HIGHWAY / ROAD / ALLEY / STREET' vs 'Highway (Streets Alleys etc.)'); and 'PARKING LOT/GARAGE' includes structures. The publisher does not define the location categories, so a location-based reassignment would be an inference the evidence cannot verify. Burglary and larceny layers are therefore not FBI-comparable per offense; whether to publish them split, combined or partially reassigned is a policy decision outside this contract.",
+    "Aggravated assault is published separately from 'Assault - Other' (simple assault, left unmapped), but SCSD Aggravated Assault footprint rows are 25-46% under the official total every year: 250/264/263 vs 406/415/490 (2018-2020) and 140/148/110/115 vs 217/197/174/179 (2022-2025) (evidence/qa_offense_year.csv). 'Assault - Other' (610/539/446/294/403/416/419/443 SCSD rows 2018-2025) and 'Weapons Offenses' (116/105/99/90/80/66/71/79) may hold some of them; neither can be split (query.py over raw_cache). Per-victim SRS counting may explain part of the gap.",
+    "Motor vehicle theft runs both ways: footprint rows are over the official total in 2018-2020 (11/14/20 vs 6/6/8; deltas 0.83/1.33/1.50) and under in 2022-2025 (18/15/8/5 vs 25/21/15/17; deltas 0.28/0.29/0.47/0.71) (evidence/qa_offense_year.csv). The early excess falls in the ILEADS years and the later shortfall in the InformRMS years; the feed has no field (attempt, recovery) that explains either. Small n.",
+    "Footprint loss: 368 SCSD mapped, located rows (9,683 located -> 9,315 in_footprint, 3.8%) fall outside 06:state_nonmunicipal_remainder, i.e. inside incorporated places (evidence/funnel.csv). SRS counts every CA0490000 report wherever it occurred, so this loss pushes the output under the official totals. By offense (located -> in_footprint): motor vehicle theft 155 -> 112 (43, 27.7%), rape 520 -> 457 (63, 12.1%), aggravated assault 1,611 -> 1,484 (127, 7.9%), robbery 261 -> 254 (7, 2.7%), larceny 3,571 -> 3,485 (86, 2.4%), burglary 3,547 -> 3,505 (42, 1.2%), murder 18 -> 18 (0) (evidence/funnel.csv).",
+    "Unlabelled rows: 282 of the 365 rows with null incident_type are SCSD, bunched in 2020 (105), 2021 (25), 2022 (63) and 2023 (79), with 4/4/2 in 2018/2019/2024 (query.py over raw_cache, count by agency_code and year where incident_type IS NULL). They cannot be mapped and may hold Part I offenses, which bears on the 2020-2023 undercounts.",
+    "The official 2021 totals for ORI CA0490000 are all 0 (evidence/official_totals.csv) while the feed has 4,667 SCSD rows dated 2021 (1,195 in the footprint for the seven offenses, evidence/qa_offense_year.csv 2021 footprint_rows summed), so 2021 cannot reconcile.",
+    "The records system changed from ILEADS to InformRMS during 2019-2020 (id prefixes LW_DWILEADS_ vs LW_DWInformRMS_); 212 incident numbers appear twice (60,801 rows, 60,589 distinct incident_number), 211 of them one copy per system, and 82 carry different incident_type values in the two copies. Among SCSD mapped rows the 36 duplicate pairs all map to the same offense (reviewer recomputation), so de-duplication on incident_number removes copies without moving rows between offenses (in_footprint 9,315 -> deduplicated 9,283, evidence/funnel.csv).",
+    "Contract-city reports (Windsor Police Department, WIP; Sonoma Police Department, SOP) are in the feed but excluded by the agency_code = SCSD condition, because the official totals are for ORI CA0490000 only and the only scope candidate is the nonmunicipal remainder (evidence/official_totals.csv, evidence/scope_candidates.csv); the packet has no official totals for those cities."
+  ],
+  "mapping": {
+    "date_field": "date_time",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "incident_number"
+    ],
+    "latitude_field": "location#point",
+    "longitude_field": "location#point",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Homicide",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Rape",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Robbery",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Aggravated Assault",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Burglary",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Larceny",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "incident_type",
+            "op": "eq",
+            "value": "Motor Vehicle Theft",
+            "values": []
+          },
+          {
+            "case_sensitive": false,
+            "field": "agency_code",
+            "op": "eq",
+            "value": "SCSD",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Revision 2. Changes from the first draft: every portal citation now points to evidence/doc_206c165357.json (the Socrata view metadata; doc_00.json does not exist in the packet) or evidence/doc_7a293d2529.html; the funnel now runs through the footprint and dedupe stages; the reconciliation quotes footprint rows from evidence/qa_offense_year.csv, not mapped rows; known differences add the footprint loss, the MVT reversal after 2021, the combined burglary+larceny reconciliation, the location_type proxy and why it is not used, and the SCSD null incident_type rows. The mapping, sources and geography are unchanged; the reviewer accepted them, and its escalations on aggravated assault, burglary, larceny and motor vehicle theft are policy decisions about publishing those layers, not mapping errors: each rule maps the publisher's own label one-to-one and the evidence supports no better label-level rule. Scope: the feed holds three agencies (agency_code SCSD 48,096, WIP 7,386, SOP 5,319 rows; evidence/raw_cache_profile.json) because it includes 'Sheriff's Office and contract city reports' (evidence/doc_206c165357.json, columns[agency].description). Every offense rule requires agency_code = SCSD so the output matches the official totals' basis 'ori:CA0490000' (evidence/official_totals.csv) and the only scope candidate 06:state_nonmunicipal_remainder (evidence/scope_candidates.csv; registry primary_jurisdiction_id, evidence/registry_row.json). Offense mapping: the seven incident_type values Homicide, Rape, Robbery, Aggravated Assault, Burglary, Larceny, Motor Vehicle Theft all appear in the pull (all-agency counts 20, 641, 323, 1,870, 4,311, 4,905, 333, evidence/raw_cache_profile.json; SCSD 18, 527, 262, 1,617, 3,554, 3,579, 155 by query.py). Left unmapped: 'Assault - Other' (simple assault), 'Sexual Offense - Other' (may include fondling), 'Weapons Offenses', 'Death Investigation', 'Arson', 'Stolen Property', 'Fraud' and the rest; 365 rows have null incident_type (282 SCSD). Count unit: incident; id_fields = incident_number, dedupe_on_id true; each report carries one incident_type, so a multi-offense incident keeps the publisher's single category; among duplicate incident_numbers the runner keeps the first mapped row. Dates: date_time is the occurrence date ('Date and time that the incident was reported to have taken place ... this is the first possible time the incident could have occurred', evidence/doc_206c165357.json, columns[date_time].description), not the report date; calendar_date text, parsed as auto; pull range 2018-01-01T00:00:00.000 to 2025-12-31T22:16:27.000 (MIN/MAX over raw_cache). Coordinates: location is a Socrata location struct with latitude/longitude, read as location#point; points are snapped to the closest intersection (see exclusions); 298 rows sit at (0, 0) (29 of them SCSD mapped rows) and are dropped by require_coordinates. Funnel (evidence/funnel.csv, all offenses): raw 60,801 -> mapped 9,712 -> dated 9,712 -> in_years 9,712 -> located 9,683 -> in_state 9,683 -> in_footprint 9,315 -> deduplicated 9,283. The contract's output is 9,283 rows (also evidence/qualification_summary.json footprint_rows and evidence/jurisdictions.csv in-scope row). Reconciliation on footprint rows (evidence/qa_offense_year.csv): robbery within 0.00-0.18 through 2024, 2025 17 vs 25 (0.32); murder small n (2018 1 vs 4, 2019 0 vs 1, 2020 0 vs 1, 2022 5 vs 6, 2023-2025 exact); rape 0.02-0.16 in most years, 2018 83 vs 64 (0.30) and 2022 53 vs 76 (0.30); burglary, larceny, aggravated assault and motor vehicle theft as stated in known differences. Open for the adjudicator: whether to publish per-offense layers for burglary, larceny, aggravated assault and motor vehicle theft (or a combined burglary+larceny layer, or a location_type reassignment). The evidence that would settle a location_type reassignment is a publisher definition of the location categories or a vehicle-burglary flag (e.g. a PC 459 vehicle subtype); neither is in the packet. Source: registry endpoint, portal_type socrata, order :id, where clause identical to the archive's date filter in case_text (packet.json); date_time is a calendar_date column (evidence/doc_206c165357.json), so the ISO range filter works on a live pull; page_size 50000 (registry page_size blank).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.sonomacounty.ca.gov/resource/3rsj-iche.json",
+      "name": "Sonoma County Sheriff's Office Incident Data",
+      "order": ":id",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [],
+      "slug": "sonoma_county_so_ca",
+      "source_url": "https://data.sonomacounty.ca.gov/Public-Safety/Sonoma-County-Sheriff-s-Office-Incident-Data/3rsj-iche",
+      "where": "date_time >= '{start}T00:00:00' AND date_time < '{end}T00:00:00'"
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "city_key": "tempe_az",
+  "city_name": "Tempe",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/tempe_az/packet.json",
+    "state/review/packets/city/tempe_az/evidence/registry_row.json",
+    "state/review/packets/city/tempe_az/evidence/doc_00.json",
+    "state/review/packets/city/tempe_az/evidence/doc_index.csv",
+    "state/review/packets/city/tempe_az/evidence/raw_cache_profile.json",
+    "state/review/packets/city/tempe_az/evidence/scope_candidates.csv",
+    "state/review/packets/city/tempe_az/evidence/official_totals.csv",
+    "state/review/packets/city/tempe_az/raw_cache.parquet",
+    "state/review/packets/city/tempe_az/live/raw_tempe_az_2018_2025_0fb38ea6ad34.parquet",
+    "case_text: \"Publisher: Tempe Police Department (municipal_pd), ORI AZ0072900\"",
+    "case_text: \"count unit offense, coordinates point, block-level, redactions: none stated\"",
+    "case_text: \"under the date filter `OccurrenceDatetime >= DATE '{start}' AND OccurrenceDatetime < DATE '{end}'`\"",
+    "src/crimerisk/city_contracts.py:113 (_download_arcgis page_size default 1000, outSR 4326)",
+    "src/crimerisk/city_contracts.py:156 (download: cache file named by sha256 of the source dict)",
+    "src/crimerisk/city_contracts.py:194 (_condition_mask: eq/in compare unstripped values; regex is case-insensitive str.contains)",
+    "src/crimerisk/city_contracts.py:222 (_event_dates epoch_ms)",
+    "src/crimerisk/city_contracts.py:305 (map_rows; id fields stripped at line 315)"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Locations of sexual-violence-related call types are randomized to protect victim identities (Disclaimer field: 'Sexual Violence Related Call Type locations have been randomized to keep the identities of the victims secret.' on 1,653 of 214,966 rows; all other rows carry 'Point has not been altered'; raw_cache_profile.json Disclaimer). Rows are kept; their points are not the true location.",
+    "Street addresses are published only in obfuscated hundred-block form (ObfuscatedAddress, e.g. '1XXX E APACHE BLVD'; raw_cache_profile.json ObfuscatedAddress examples)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "04:municipal:place:0473000"
+    ],
+    "state_fips": [
+      "04"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "One row per report number (PrimaryKey, e.g. 'TE2020111318'; 214,950 distinct values on 214,966 rows) with a single offense label (OffenseCustom). Secondary offenses of a multi-offense report are not published, so an offense that is not the report's labeled offense is missed; the FBI counts every offense (with the SRS hierarchy) and counts aggravated assault, rape and murder per victim. This is the likeliest reason aggravated assault runs below the official totals in every year (e.g. 634/584/522/453 vs 755/676/631/543 in 2022-2025).",
+    "NIBRS codes are published only from 2022 on: rows labeled '[code] NAME' are 4/3/4/7 in 2018-2021 and 24,575/23,275/21,325/25,828 in 2022-2025 (COUNT of OffenseCustom LIKE '[%' by OccurrenceYear). 2018-2021 carry plain local names (e.g. 'SEXUAL ASSAULT', 'ROBBERY-ARMED'); these are mapped to the coded name they become in 2022-2025 and, where no code exists, on the FBI definitions. A few uncoded names persist after 2022 (e.g. 'MOTOR VEHICLE THEFT TRAILER' 55/43/28/18, 'SODOMY' 6/4/9, 'CHILD ABUSE - AGGRAVATED ASSAULT' 2/5/8/2 in 2022-2025).",
+    "'AGGRAVATED ASSAULT-POLICE OFC' (2018-2021: 67/89/68/25 rows) is left unmapped: Arizona law makes any assault on an officer aggravated, and when the publisher splits it in 2025 it codes 65 rows '[13B] AGGRAVATED ASSAULT - OFFICER / PROFESSIONAL (MINOR/NO INJURY)' (simple assault) against 3 '[13A] ... (WPN/SERIOUS INJURY)'. Including it would give 578/556/641/647 aggravated assaults in 2018-2021 vs official 543/531/689/0.",
+    "'[13B] AGGRAVATED ASSAULT ARS DEFINED' (2022-2025: 47/31/40/28) and its uncoded 2021 form 'AGGRAVATED ASSAULT ARS DEFINED' (22) are simple assault under the FBI definition and are left out. In 2018-2020 no ARS-defined label exists, so plain 'AGGRAVATED ASSAULT' (336/297/361) may include some Arizona-only aggravated assaults that the FBI counts as simple.",
+    "Uncoded 'ENDANGERMENT' (177 rows) and 'CHILD ABUSE' (117) straddle aggravated and simple assault (the coded forms split into '[13A] ENDANGERMENT - RISK OF DEATH' and '[13B] ENDANGERMENT - RISK OF INJURY') and are left unmapped. '[0] AGGRAVATED DOMESTIC VIOLENCE [DV]' (3 rows, code 0, a repeat-DV charge) is left unmapped. Publisher-coded [13A] labels are all kept, including '[13A] THREAT/INTIMIDATE PERSON W/GUN' and '[13A] OFFICER INVOLVED SHOOTING'; their uncoded forms are mapped the same way.",
+    "'MANSLAUGHTER' (3/5/1 in 2018-2020) does not separate non-negligent from negligent manslaughter and is left out of murder; 'HOMICIDE' is kept (5/8/8 in 2018-2020, equal to official 5/8/8). Negligent/traffic manslaughter ([09B], 'TRAFFIC MANSLAUGHTER', 'NEGLIGENT MANSLAUGHTER') and justifiable homicide ([09C], 'JUSTIFIED HOMICIDE', officer-involved fatal shootings) are excluded. In 2021 both 'HOMICIDE' (9) and 'MURDER OR NON-NEGLIGENT MANSLAUGHTER' (5) appear, giving 14.",
+    "Rape keeps sexual assault (11A), sodomy (11B) and sexual assault with object (11C). Fondling/molestation ([11D], 'SEXUAL ABUSE', 'SEXUAL ABUSE/FONDLING', 'MOLESTATION OF A CHILD'), statutory rape (36B) and 'SEXUAL CONDUCT WITH MINOR' (10/13/11/5 in 2018-2021; Arizona charge that can be forcible or statutory, no code published) are left out.",
+    "Arizona 'burglary' labels that the publisher codes as larceny are larceny: 'BURGLARY FROM VEHICLE' / '[23F] THEFT/BURGLARY FROM VEHICLE' and 'BURGLARY FROM YARD' / '[23H] THEFT/BURGLARY FROM YARD'. Burglary is limited to 'BURGLARY FORCE' and 'BURGLARY NO FORCE' (coded [220]).",
+    "Trailer theft ('MOTOR VEHICLE THEFT TRAILER', 319 rows; coded '[23H] THEFT OF MEANS OF TRANSPORTATION (TRAILER ALONE)' in 2025) is larceny, not motor vehicle theft. Recoveries for other jurisdictions ('MOTOR VEH THEFT-RECOVERED FOJ', '[GO-0] ...'), 'UNLAWFUL USE OF TRANSPORTATION' ([270]) and '[SC-0] INFO - AUTO THEFT RELATED' are left out.",
+    "Theft labels in the publisher's fraud, embezzlement and extortion families are left out of larceny: 'THEFT OF SERVICES' ([26A]), 'THEFT BY EMBEZZLEMENT' ([270]), 'THEFT BY EXTORTION' ([210]), 'THEFT SECURITY INTEREST', 'IDENTITY THEFT' ([26F]), 'FAILURE TO RETURN RENTAL CAR/PROP' ([26A]) and '[90Z] THEFT - NON-SPECIFIC' (5 rows).",
+    "Attempts are included (RucrComp 'A' on 1,696 rows, e.g. 118 '[240] MOTOR VEHICLE THEFT', 30 '[120] ROBBERY-ARMED'), as the FBI counts attempts for every offense but murder; no homicide row is an attempt (all RucrComp 'C').",
+    "OffenseCustom is null on 1,516 rows (937 of them in 2021; 1/37/937/102/171/149/119 in 2019-2025); they carry no offense and are dropped.",
+    "The label is the report's current offense, with no clearance or unfounded status field; unfounded reports cannot be removed.",
+    "The official 2021 totals are 0-3 per offense (official_totals.csv, nibrs_srs_equivalent_annual) although the pull has 27,341 rows for 2021; 2021 cannot be reconciled."
+  ],
+  "mapping": {
+    "date_field": "OccurrenceDatetime",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "PrimaryKey"
+    ],
+    "latitude_field": "Latitude",
+    "longitude_field": "Longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^(?:\\[09A\\] )?MURDER OR NON-NEGLIGENT MANSLAUGHTER(?: \\[DV\\])?\\s*$|^HOMICIDE\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^(?:\\[11A\\] )?SEXUAL ASSAULT(?: \\[DV\\]| WITH OBJECT)?\\s*$|^SODOMY\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^(?:\\[120\\] )?ROBBERY-(?:ARMED|STRONG ARM)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^\\[13A\\] |^AGGRAVATED ASSAULT(?: DV)?\\s*$|^CHILD ABUSE - AGGRAVATED ASSAULT\\s*$|^DRIVE BY SHOOTING\\s*$|^THREAT/INTIMIDATE PERSON W/GUN\\s*$|^OFCR INVOLVED SHOOTING\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^(?:\\[220\\] )?BURGLARY (?:NO )?FORCE\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^(?:\\[240\\] )?MOTOR VEHICLE THEFT\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "OffenseCustom",
+            "op": "regex",
+            "value": "^\\[23[A-H]\\] |^(?:THEFT BY PICK POCKETING|THEFT BY PURSE SNATCHING|SHOPLIFTING|THEFT FROM BUILDING|THEFT FROM COIN OPERT MACHINE|THEFT FROM MOTOR VEHICLE|BURGLARY FROM VEHICLE|THEFT/BURGLARY FROM VEHICLE|THEFT OF LICENSE PLATE|THEFT OF MOTOR VEHICLE PARTS|THEFT OF A CREDIT CARD|THEFT OF BICYCLE|THEFT OTHER|BURGLARY FROM YARD|THEFT/BURGLARY FROM YARD|MOTOR VEHICLE THEFT TRAILER)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: the registry's ArcGIS endpoint, portal_type and date filter (registry_row.json api_endpoint, probe_where; case_text). select [] (every field), order '' and page_size 1000; this source object hashes to 0fb38ea6ad34, the digest in the archived pull's file name (live/raw_tempe_az_2018_2025_0fb38ea6ad34.parquet, 214,966 rows, same as raw_cache.parquet), so a live pull uses the same request as the archive (city_contracts.py:156). Unit: count_unit is incident, not the survey's 'offense' (case_text). PrimaryKey is the report number ('TE' + year + sequence) and has 214,950 distinct values on 214,966 rows (raw_cache_profile.json; COUNT DISTINCT query). Each row carries exactly one offense label (OffenseCustom), so the rules keep that one labeled offense per report. The 16 extra rows fall on 14 keys: 12 keys repeat the same row (same date, offense and point), and 2 keys (TE202210222 accident, TE202250575 assault police officer, both unmapped) have two different points. id_fields [PrimaryKey], which the runner strips of its blank padding (city_contracts.py:315), and dedupe_on_id true keeps the first row. The only mapped duplicates are TE2020111286 (burglary from vehicle x3) and TE202132476 (robbery x2): 63,566 mapped rows become 63,563. Date: OccurrenceDatetime is the occurrence datetime (no report date is published; doc_00.json fields), epoch milliseconds (date_format epoch_ms), range 1514764800000 (2018-01-01T00:00Z) to 1767225540000 (2025-12-31T23:59Z) (raw_cache_profile.json). The publisher's OccurrenceYear equals the year of OccurrenceDatetime on every row (query: 0 mismatches), so year_field is left empty. The layer's date time reference is UTC (doc_00.json dateFieldsTimeReference), and the where clause filters on the same field. Coordinates: Latitude/Longitude as published (WGS84, non-null on every row). They agree with the returned feature geometry (__arcgis_latitude/__arcgis_longitude, outSR 4326) to within 0.0001 degrees on every row (query: 0 rows differ). The layer's native SR is EPSG 2223 (doc_00.json spatialReference), and XCoordinate/YCoordinate are that projection. The publisher randomizes the points of sexual-violence call types (Disclaimer field, 1,653 rows, e.g. 616 'SEXUAL ASSAULT' and 537 '[11A] SEXUAL ASSAULT'; so nearly all rape points are randomized). The survey describes the rest as point, block-level (registry_row.json coordinate_precision), with addresses obfuscated to the hundred block. Of all rows, 87 fall outside a Tempe box (lat 33.28-33.47, lon -112.0 to -111.87; min lat 30.98, min lon -114.15 in the profile); only 2 of the 63,563 kept rows do, and the footprint join drops them. Scope: Tempe Police Department is a municipal PD (case_text, ORI AZ0072900); its jurisdiction is Tempe city, the single candidate (scope_candidates.csv 04:municipal:place:0473000); state 04. Offenses: OffenseCustom has 409 distinct values (raw_cache_profile.json), with a NIBRS code in brackets only from 2022 on. Rules are anchored case-insensitive regexes, because values are blank-padded (every non-null value ends in whitespace; query) and eq/in compare unstripped values (city_contracts.py:194). Every mapped label was checked against the distinct values in the pull (GROUP BY trim(OffenseCustom)), and the runner's map_rows was run on raw_cache.parquet to confirm which labels each rule catches. Recomputed with run_contract on raw_cache.parquet (years 2018-2025, coordinates required, deduplicated, before the block-group/footprint join), 2018/2019/2020/2021/2022/2023/2024/2025, against official_totals.csv: murder 5/8/8/14/8/11/5/9 vs 5/8/8/0/8/12/5/9; rape 172/142/156/148/161/143/141/144 vs 176/141/155/0/159/138/137/137; robbery 187/191/228/236/178/123/132/115 vs 189/209/248/0/178/123/127/113; aggravated_assault 511/467/573/622/634/584/522/453 vs 543/531/689/0/755/676/631/543; burglary 1013/889/895/968/820/731/621/504 vs 1017/922/960/0/966/755/640/498; larceny 6431/6210/5625/6491/6393/5284/4353/4389 vs 6247/5891/5464/3/6445/5277/4321/4237; motor_vehicle_theft 532/584/710/620/782/697/579/411 vs 538/607/700/1/794/693/577/403. All offenses but aggravated assault track the official totals within a few percent. Aggravated assault runs 6-17% low in 2018-2020 and 16-17% low in 2022-2025, consistent with one offense per report against the FBI's per-victim count. The 2021 official totals are near zero, so 2021 does not reconcile. The only publisher documentation in the packet is the layer JSON (doc_00.json, empty description), and it states no category definitions.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/lQySeXwbBg53XWDi/arcgis/rest/services/General_Offenses_(Open_Data)/FeatureServer/0",
+      "name": "Tempe General Offenses (Open Data)",
+      "order": "",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "tempe_az",
+      "source_url": "https://data.tempe.gov/datasets/tempegov::general-offenses-open-data",
+      "where": "OccurrenceDatetime >= DATE '{start}' AND OccurrenceDatetime < DATE '{end}'"
+    }
+  ]
+}

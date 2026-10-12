@@ -1,0 +1,2 @@
+case_key,jurisdiction_id,jurisdiction_name,state_abbr,recommended_disposition,production_ready,confidence,summary
+miami_beach_fl,12:municipal:place:1245025,Miami Beach city,FL,retain_standalone_municipal_control_row_and_keep_live_2024_fdle_state_publication_support,yes,high,"Miami Beach should retain a standalone municipal control row. It is an incorporated city with an active Miami Beach Police Department, and the live build now carries the official FDLE 2024 FIBRS row for FL0130700 as state_publication_annual support with zero current-year fill."

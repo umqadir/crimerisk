@@ -1,0 +1,276 @@
+{
+  "city_key": "hartford_ct",
+  "city_name": "Hartford",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/hartford_ct/packet.json case_text",
+    "state/review/packets/city/hartford_ct/evidence/registry_row.json",
+    "state/review/packets/city/hartford_ct/evidence/doc_index.csv",
+    "state/review/packets/city/hartford_ct/evidence/doc_8ee76eaa8d.json (layer 2 name and fields)",
+    "state/review/packets/city/hartford_ct/evidence/doc_1637cdb26e.json (layer 20 name and fields, Date1)",
+    "state/review/packets/city/hartford_ct/evidence/doc_3de0001f79.json (layer 26 name and fields)",
+    "state/review/packets/city/hartford_ct/evidence/doc_0b5e85849f.json (layer 21 name and fields)",
+    "state/review/packets/city/hartford_ct/evidence/doc_dd44d8c50d.html",
+    "state/review/packets/city/hartford_ct/evidence/raw_cache_profile.json (UCR_1_Category, UCR_2_Category, NibrsCode, __source_slug, PRIMARY_KEY)",
+    "state/review/packets/city/hartford_ct/evidence/scope_candidates.csv",
+    "state/review/packets/city/hartford_ct/evidence/official_totals.csv",
+    "state/review/packets/city/hartford_ct/raw_cache.parquet (queries: per-slug date ranges and case counts; layer 2 UCR_1 code counts by year; NIBRS code counts by year; OffenseDesc sex-offense search)",
+    "src/crimerisk/city_contracts.py:194-219 (condition ops), 292-302 (_coalesce for Date|Date1), 305-338 (map_rows)"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "09:municipal:place:0937000"
+    ],
+    "state_fips": [
+      "09"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Rape cannot be mapped: no NIBRS 11A/11B/11C (or 11D) code appears in NibrsCode in layers 20/26/21, no sexual-assault statute (53a-70 etc.) appears in OffenseDesc, and layer 2 has no 02* rape category in UCR_1_Category (only 9 UCR_2 '14* - SEX OFFENSES' rows, e.g. 'SEX-ASSLT 4', which is fondling-level). Sex offenses are withheld from the feed although the publisher does not say so; official rape totals (31-78 a year) have no counterpart (raw_cache_profile.json UCR_1_Category, UCR_2_Category, NibrsCode; query of OffenseDesc ILIKE '%SEX%').",
+    "Unit changes on 2021-05-19: layer 2 (2018 to 2021-05-19) has one row per case (127052 rows, 127052 distinct Case_Number and PRIMARY_KEY) carrying one primary UCR_1 code, so it counts one offense per incident with no secondary offenses; layers 20/26/21 (2021-05-20 on) have one row per offense (e.g. 2022: 38454 rows, 28004 distinct CaseNum), and the contract keeps one row per CaseNum and NibrsCode.",
+    "SRS aggravated assault and murder are counted per victim; the source has no victim field, so both eras count incidents (layer 2) or incident-offenses (layers 20/26/21). In the pre-footprint simulation aggravated assault is 841/707/861 vs official 884/726/874 for 2018-2020.",
+    "Layer 2 uses Hartford's local UCR code scheme, not NIBRS. Aggravated assault keeps UCR_1 codes 401-423 and 433 (first/second-degree assault, weapon threat, assault on police/EMT with gun, knife or weapon) and drops 424/434 (assault on police/EMT with hands) and 425/435 (third-degree assault on police/EMT), which are simple assault on the SRS definition unless serious injury occurred; the source cannot tell which hands-only cases had serious injury.",
+    "Layer 2 murder keeps 101/104/105 (MURDER-HANDGUN/KNIFE/OTHER) and 108 (MANSLAUGHTER 1, intentional or extreme-indifference, non-negligent) and drops 109 (MANSLAUGHTER 2, reckless), treated as closer to negligent manslaughter; 1 row, in 2018. NIBRS layers keep 09A and drop 09B (8 rows) and 09C (1 row).",
+    "Layer 2 motor vehicle theft keeps 701/702/703 (auto, bus/truck, misc/motorcycle) and 730 (attempted, which SRS counts) and drops the recovered-vehicle codes 711/713/721, 761 TAMP WITH M/V and 764 USE MV WO PERM (unauthorized use by a person with access, excluded from SRS MVT). With 764 dropped, 2018-2020 are 731/535/671 vs official 741/533/649; with it kept they would be 794/629/757.",
+    "In the NIBRS era (2021-05-20 on) the feed runs above the official NIBRS-SRS-equivalent totals, most for robbery (2022: 234 vs 129), burglary (2022: 498 vs 348) and larceny (2022: 2585 vs 2031), pre-footprint. The source publishes no clearance, unfounded or report-status field, so the gap cannot be separated in the contract. Offense-level counting puts one incident's larceny codes (e.g. 23F and 23G) in larceny twice, where SRS counts the incident once.",
+    "The layers publish one date field (Date in layers 2/26/21, Date1 in layer 20), with no label saying whether it is the occurrence or the report date; dates are stored as UTC midnight epoch ms."
+  ],
+  "mapping": {
+    "date_field": "Date|Date1",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "Case_Number",
+      "CaseNum",
+      "NibrsCode"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsCode",
+            "op": "eq",
+            "value": "09A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Code",
+            "op": "regex",
+            "value": "^(101|104|105|108)(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsCode",
+            "op": "eq",
+            "value": "120",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Category",
+            "op": "eq",
+            "value": "03* - ROBBERY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsCode",
+            "op": "eq",
+            "value": "13A",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Category",
+            "op": "eq",
+            "value": "04* - AGGRAVATED ASSAULT",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Code",
+            "op": "regex",
+            "value": "^(424|425|434|435)(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsCode",
+            "op": "eq",
+            "value": "220",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Category",
+            "op": "eq",
+            "value": "05* - BURGLARY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Category",
+            "op": "eq",
+            "value": "06* - LARCENY",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NibrsCode",
+            "op": "eq",
+            "value": "240",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "UCR_1_Code",
+            "op": "regex",
+            "value": "^(701|702|703|730)(\\.0+)?$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Four ArcGIS layers of the Hartford Police OpenData_PublicSafety FeatureServer, cut at date boundaries with no overlap in the pull: layer 2 runs 2018-01-01 to 2021-05-19 (slug hartford_ct_0), layer 20 runs 2021-05-20 to 2023-12-31 (hartford_ct_1, date field Date1), layer 26 covers 2024 (hartford_ct_2) and layer 21 covers 2025 (hartford_ct_3). Min/max dates per slug are from a query of raw_cache on coalesce(Date, Date1). The where clauses are the registry's probe_where, split per layer; each layer's own date field is Date or Date1 (doc_*.json fields). Layer 21 is titled 'Current Year to 10 Days before the Current Date', so a live pull of it in a later year may not return the archived 2025 rows. count_unit is offense. id_fields Case_Number|CaseNum|NibrsCode: layer 2 rows carry only Case_Number (one row per case), NIBRS rows carry CaseNum and NibrsCode, so the id is one incident-offense. dedupe_on_id keeps the first row of repeated CaseNum+NibrsCode rows (765 duplicate ids among mapped in-year rows, from map_rows on the pull; e.g. 13A 2022: 624 rows, 557 cases). Two mapped NIBRS rows have no CaseNum; their ids ('||23G', '||240') are unique. Offenses: NIBRS layers map by NibrsCode (09A, 120, 13A, 220, 23A-23H, 240; 13B/13C/09B/09C left out). Layer 2 maps by UCR_1_Category/UCR_1_Code (01*, 03*, 04*, 05*, 06*, 07* with the code exclusions in known_differences). UCR_1_Code is a float in the pull, so its rules use a regex that accepts a trailing '.0'. UCR_2 (secondary) codes are not mapped. Rape stays unmapped: the source has no rape category. Dates: Date|Date1 as epoch_ms, the only date published (occurrence vs report unstated). Coordinates: the ArcGIS feature geometry (__arcgis_latitude/__arcgis_longitude), located for 296066 of 297104 rows. The publisher does not say that points are rounded or offset. Addresses are published as street numbers (e.g. '253 HIGH ST'). Jurisdiction: Hartford PD is a municipal PD policing Hartford city, 09:municipal:place:0937000 (scope_candidates.csv, registry_row.json). The publisher states no redactions or exclusions (registry redactions empty; layer descriptions empty in doc_*.json; the portal page doc_dd44d8c50d.html carries no text). Pre-footprint simulation of this contract (run_contract on raw_cache, 2018-2025) vs official_totals.csv: ratios 0.94-1.13 for the six mapped offenses in 2018-2021 and 0.89-1.81 in 2022-2025, highest for robbery.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://utility.arcgis.com/usrsvcs/servers/0eaa6be357a74f5280157125e9b547fc/rest/services/OpenData_PublicSafety/FeatureServer/2",
+      "name": "Police Incidents 01012005 to 05182021 (OpenData_PublicSafety/FeatureServer/2)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "hartford_ct_0",
+      "source_url": "https://data.hartford.gov/",
+      "where": "Date >= DATE '{start}' AND Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://utility.arcgis.com/usrsvcs/servers/0eaa6be357a74f5280157125e9b547fc/rest/services/OpenData_PublicSafety/FeatureServer/20",
+      "name": "Police Incidents 05192021 to 12312023 (OpenData_PublicSafety/FeatureServer/20)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "hartford_ct_1",
+      "source_url": "https://data.hartford.gov/",
+      "where": "Date1 >= DATE '{start}' AND Date1 < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://utility.arcgis.com/usrsvcs/servers/0eaa6be357a74f5280157125e9b547fc/rest/services/OpenData_PublicSafety/FeatureServer/26",
+      "name": "Police Incidents 01012024 to 12312024 (OpenData_PublicSafety/FeatureServer/26)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "hartford_ct_2",
+      "source_url": "https://data.hartford.gov/",
+      "where": "Date >= DATE '{start}' AND Date < DATE '{end}'"
+    },
+    {
+      "api_endpoint": "https://utility.arcgis.com/usrsvcs/servers/0eaa6be357a74f5280157125e9b547fc/rest/services/OpenData_PublicSafety/FeatureServer/21",
+      "name": "Police Incidents Current Year to 10 Days before the Current Date (OpenData_PublicSafety/FeatureServer/21)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "hartford_ct_3",
+      "source_url": "https://data.hartford.gov/",
+      "where": "Date >= DATE '{start}' AND Date < DATE '{end}'"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+state_fips,state_abbr,offense,repo_nibrs_observed_total_2024,repo_srs_observed_total_2024,year,fbi_cde_estimated_total_2024,population,state_name,bjs_ckle_count_2024,bjs_ckle_rate_2024,repo_srs_minus_fbi_cde,repo_nibrs_minus_bjs_ckle,bjs_state_estimate_suppressed,repo_srs_gap_below_fbi_cde,repo_nibrs_gap_below_bjs_ckle,gap_priority_score,priority_rank
+48,TX,aggravated_assault,69913.0,84883.0,2024,84713,31290831,Texas,86100.0,275.2,170.0,-16187.0,False,-0.0,16187.0,16187.0,17
+48,TX,larceny,449312.0,444364.0,2024,446073,31290831,Texas,458230.0,1464.4,-1709.0,-8918.0,False,1709.0,8918.0,10627.0,26
+48,TX,motor_vehicle_theft,96605.0,103421.0,2024,103464,31290831,Texas,105420.0,336.9,-43.0,-8815.0,False,43.0,8815.0,8858.0,30
+48,TX,rape,11204.0,15575.0,2024,15650,31290831,Texas,15960.0,51.0,-75.0,-4756.0,False,75.0,4756.0,4831.0,61
+48,TX,burglary,83033.0,89006.0,2024,88945,31290831,Texas,84600.0,270.4,61.0,-1567.0,False,-0.0,1567.0,1567.0,112
+48,TX,robbery,19856.0,19833.0,2024,19866,31290831,Texas,20020.0,64.0,-33.0,-164.0,False,33.0,164.0,197.0,219
+48,TX,murder,1512.0,1614.0,2024,1616,31290831,Texas,1630.0,5.2,-2.0,-118.0,False,2.0,118.0,120.0,242

@@ -1,0 +1,6 @@
+source_type,source_name,source_url,authority_level,why_used
+official_agency_page,About the Metro Transit Police Department | WMATA,https://www.wmata.com/about/transit-police/about.cfm,primary,WMATA's own description of MTPD authority and scope
+official_map,Jurisdictional Map | WMATA,https://wmata.com/service/upload/Jurisdiction_Boundary.pdf,primary,Official WMATA jurisdiction/area map for the police service area
+official_compact,WMATA Compact Annotated 2009 PDF,https://www.wmata.com/about/records/public_docs/upload/Compact_Annotated_2009_final.pdf,primary,Authoritative interstate compact language defining Metro Transit Police jurisdiction and concurrent local jurisdiction
+official_compact_host,Virginia Compacts - Washington Metropolitan Area Transit Authority Compact of 1966,https://law.lis.virginia.gov/compacts/washington-metropolitan-area-transit-authority-compact-of-1966/,primary,Official host text for WMATA Compact definitions including Transit Zone and Transit Facilities
+official_statute,Maryland Transportation Article § 10-204,https://mgaleg.maryland.gov/mgawebsite/Laws/StatuteText?article=gtr&enactments=false&section=10-204,primary,Official signatory statute text confirming criminal-process authority on WMATA facilities and within the Transit Zone

@@ -1,0 +1,232 @@
+{
+  "city_key": "alameda_county_so_ca",
+  "city_name": "Alameda County Sheriff",
+  "count_unit": "offense",
+  "evidence_refs": [
+    "state/review/packets/city/alameda_county_so_ca/packet.json (case_text: endpoints, archive where filter, ORI CA0010000)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/registry_row.json (endpoints, portal_type, jurisdiction_ids, redactions blank)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/doc_4ff31753f8.json (layer 0: displayField CrimeId, fields, maxRecordCount 2000, dateFieldsTimeReference UTC, esriGeometryPoint, empty description)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/doc_614b85e8da.json (layer 1: displayField Arrest_id, fields Arrest_id/Report_id, no incident id)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/doc_f2dd2868f5.html (hub page, title only)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/doc_index.csv",
+    "state/review/packets/city/alameda_county_so_ca/evidence/raw_cache_profile.json (rows 91992, CrimeId distinct 58045, Arrest_id distinct 11583 of 11585)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/scope_candidates.csv",
+    "state/review/packets/city/alameda_county_so_ca/evidence/jurisdictions.csv",
+    "state/review/packets/city/alameda_county_so_ca/evidence/official_totals.csv",
+    "state/review/packets/city/alameda_county_so_ca/evidence/qa_offense_year.csv (first-draft run, footprint counts per year and offense)",
+    "state/review/packets/city/alameda_county_so_ca/evidence/funnel.csv",
+    "state/review/packets/city/alameda_county_so_ca/raw_cache.parquet via scripts/agents/query.py: epoch_ms(min/max DateTime) by __source_slug; layer-0 CrimeCode/CrimeDescription counts for 09A, 11A-11C, 13A, 13B; distinct CrimeId|CrimeCode by year and offense; 13B serious-bodily-injury reports by year and overlap with 13A; 13A reports with only non-assault descriptions by year; points with 20+ distinct Block values; Block and City counts on layer 0"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "06:state_nonmunicipal_remainder"
+    ],
+    "state_fips": [
+      "06"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Coverage ends 2022-06-27. The contract keeps only layer 0 (Crime_Reports_2012_Jul2022), whose DateTime runs 1514764860000 to 1656368040000, i.e. 2018-01-01 00:01 to 2022-06-27 22:14 read as UTC (query: min/max epoch_ms(DateTime) by __source_slug). The registry's second endpoint, Crime_Reports_Jul2022_Present (slug alameda_county_so_ca_1, 11585 rows from 2022-06-28 01:04), is left out: its layer metadata has displayField Arrest_id and fields Arrest_id/Report_id with no incident id (evidence/doc_614b85e8da.json), Arrest_id is distinct on 11583 of 11585 rows (evidence/raw_cache_profile.json), and its largest categories are warrants and possession charges (LOCALWARRANT 537 + 493, OUTWARRANT 436 + 337, 11364(A) 585; query GROUP BY CrimeCode, CrimeDescription on layer 1). It is an arrest-charge log; mapped in the first draft it gave 3-6% of official for burglary, larceny and motor vehicle theft in 2023-2025 (evidence/qa_offense_year.csv: 2023 burglary 11 vs 264, larceny 96 vs 1611, motor vehicle theft 29 vs 1069). The packet holds no incident source for 2022-06-28 to 2025-12-31, so 2023-2025 produce no rows and 2022 covers 178 of 365 days (Jan 1 to Jun 27): layer-0 2022 counts before the footprint are burglary 161, larceny 572, motor vehicle theft 375, robbery 84, aggravated assault 155 against full-year official 415, 1359, 811, 182, 545 (distinct CrimeId|CrimeCode; evidence/official_totals.csv).",
+    "Layer 0 carries one row per charge within a report: 80407 rows, 58045 distinct CrimeId, 72929 distinct CrimeId|CrimeCode (query on layer 0; evidence/raw_cache_profile.json). The unit is one row per NIBRS code per report (NIBRS offense counting, no SRS hierarchy): 468 layer-0 reports carry two or more of the seven offenses (e.g. 115 aggravated_assault+robbery, 125 larceny+motor_vehicle_theft), and each distinct offense code in them is kept, so counts sit above hierarchy-rule SRS totals. Two larceny subcodes (e.g. 23F and 23H) or two rape subcodes (11A and 11C) in one report count twice: distinct CrimeId|CrimeCode vs distinct CrimeId, 2018, larceny 1250 vs 1238, rape 68 vs 55.",
+    "Aggravated assault follows the publisher's code 13A, which straddles the SRS definition both ways. Included but not assaults on the SRS definition: 634 layer-0 13A rows of child cruelty ('CRUELTY TO CHILD WITH POSSIBLE INJURY OR DEATH' 209, 'WILLFUL CRUELTY TO CHILD:POSSIBLE INJURY/DEATH' 87), elder/dependent-adult cruelty (78 + 47 + 42 + 13), negligent discharge ('WILLFUL DISCHARGE FIREARM IN NEGLIGENT MANNER' 129, 'DISCHARGE FIREARM IN NEGLIGENT MANNER' 12, BB device 13) and 'CRIM STORE F/ARM:3RD DEG' 4; reports whose 13A rows are only these: 109, 107, 152, 119, 33 in 2018-2022, out of 344, 341, 434, 373, 155 13A reports. Left out although SRS counts it as aggravated assault: 13B 'BATTERY W/SERIOUS BODILY INJURY' 173 rows and 'BATTERY WITH SERIOUS BODILY INJURY (PUNISHMENT)' 5 rows, 35, 49, 34, 34, 25 distinct reports in 2018-2022, of which 23, 40, 19, 27, 21 carry no 13A row (query on layer-0 CrimeCode, CrimeDescription). The brief excludes 13B and the rules follow the publisher's code. In the footprint aggravated assault is 302, 309, 418 against official 405, 391, 506 in 2018-2020 (evidence/qa_offense_year.csv), 17-25% short; the uncounted SBI batteries account for at most 23-40 reports a year of that 82-103 gap, so the rest is not explained by the evidence.",
+    "Layer-0 09A includes 'VOLUNTARY MANSLAUGHTER' (1 row, 2020) and 'RESIST PEACE OFFICER RESULTING IN DEATH/SBI' (1 row each in 2019 and 2020; 2 more rows of that description are coded 13A), which straddles homicide and aggravated assault; mapped as murder on the publisher's code. Murder in the footprint is 9, 7, 9 in 2018-2020 against official 7, 5, 5 (evidence/qa_offense_year.csv).",
+    "Layer-0 rape 11A includes 'ASSAULT W/ INTENT TO COMMIT RAPE' (11 rows), 11C includes offenses against minors (e.g. 'ORAL COPULATION UNDER 18 YEARS OLD' 12, 'ORAL COPULATION W/PERSON UNDER 18 YEARS' 8) and 'SEXUAL BATTERY FOR THE PURPOSE OF SEXUAL AROUSAL' (4 rows), which is fondling on the NIBRS definition (11D); all mapped on the publisher's code. Rape in the footprint is 61, 44, 36 in 2018-2020 against official 35, 27, 27 (evidence/qa_offense_year.csv).",
+    "Official totals for 2021 are 0 for every offense (evidence/official_totals.csv) while layer 0 has 2021 rows (before the footprint: larceny 1031, motor vehicle theft 728, aggravated assault 373, burglary 267, robbery 205); 2021 cannot be reconciled.",
+    "Layer 0 geocodes some addresses to shared fallback points: 16 points (rounded to 6 decimals) each carry 20+ distinct Block values, 4699 rows in all, 160 of them with a mapped code (e.g. 37.674396,-122.089451 with 64 blocks and 994 rows). The most frequent blocks are '15000 FOOTHILL BL' (1822 rows), '20100 LAKE CHABOT RD' (1178) and '2000 FAIRMONT DR' (952). These are points of report, not necessarily of occurrence.",
+    "Layer-0 City values are mostly postal names for unincorporated areas (HAYWARD 21503, SAN LEANDRO 20342, CASTRO VALLEY 18626, SAN LORENZO 12337) but also include OAKLAND 3570, LIVERMORE 2045, DUBLIN 554, PLEASANTON 499, FREMONT 241 (query on layer 0). Points inside incorporated places fall outside the 06:state_nonmunicipal_remainder footprint and are dropped (evidence/jurisdictions.csv: Hayward city 1881, San Leandro city 1033, Oakland city 287 mapped rows among others, from the first draft's run)."
+  ],
+  "mapping": {
+    "date_field": "DateTime",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "CrimeId",
+      "CrimeCode"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "__source_slug",
+            "op": "eq",
+            "value": "alameda_county_so_ca_0",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "CrimeCode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: layer 0 only, Crime_Reports_2012_Jul2022/FeatureServer/2, with the registry endpoint, portal_type arcgis_feature_service and the archive's where filter (packet.json case_text); select [] (all fields); page_size 2000 = maxRecordCount; order OBJECTID ASC (evidence/doc_4ff31753f8.json). The registry's second endpoint, Crime_Reports_Jul2022_Present, is an arrest-charge log (evidence/doc_614b85e8da.json: displayField Arrest_id, fields Arrest_id/Report_id) and is dropped with its rules; see known differences. Layer 0 ends at DateTime 1656368040000 = 2022-06-27 22:14 UTC and layer 1 begins at 1656378240000 = 2022-06-28 01:04 UTC (epoch_ms of min/max per __source_slug), so the contract covers 2018-01-01 to 2022-06-27. Offense rules: layer-0 CrimeCode is a NIBRS offense code; mapped 09A murder; 11A, 11B, 11C rape; 120 robbery; 13A aggravated assault; 220 burglary; 23A-23H larceny; 240 motor vehicle theft. The rules keep the __source_slug = alameda_county_so_ca_0 condition so that the registry's other layer, whose CrimeCode is a statute (PC 220, PC 240 would collide with the NIBRS codes 220 and 240), cannot be mapped if it is ever pulled. Left out: 09B, 11D, 13B, 13C, 26x fraud, 280 stolen property, 999 non-criminal; 40 layer-0 rows have an empty CrimeCode; no 09C present. Every mapped code occurs in layer 0: 09A 43, 11A 128, 11B 26, 11C 116, 120 916, 13A 1852, 220 1580, 23A 898, 23B 6, 23C 271, 23D 82, 23E 2, 23F 2179, 23G 830, 23H 1362, 240 2951 rows. count_unit offense: id_fields CrimeId|CrimeCode with dedupe_on_id; CrimeId is never empty on layer 0. Repeated charges of one code in one report collapse to the first row; distinct codes in one report are each kept. An incident unit was rejected because the runner keeps the first mapped row in pull order, not the highest offense: of 115 layer-0 reports with robbery and aggravated assault, 35 list the assault first, and 5 reports with a murder would be kept as an aggravated assault. Date: DateTime, the only date field; the metadata does not say whether it is occurrence or report time. It is stored as epoch ms with dateFieldsTimeReference UTC (evidence/doc_4ff31753f8.json); read as UTC, layer-0 hour of day has its trough at 04 (1013 rows) and peak at 12 (4578 rows), which is local wall-clock time stored as UTC, so the UTC year of epoch_ms is the local year (first value 1514764860000 = 2018-01-01 00:01). Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude) is present on every row; layer-0 Latitude/Longitude attributes match it to within 4.49e-10 degrees (max absolute difference), with no null geometry. The publisher does not state rounding or offsets; Block is a hundred block or intersection, and fallback points are described in known differences. No redactions or exclusions are stated: the layer description is empty (evidence/doc_4ff31753f8.json), the hub page (evidence/doc_f2dd2868f5.html) has no text beyond its title, and the registry redactions field is blank (evidence/registry_row.json). In the footprint for 2018-2020 (evidence/qa_offense_year.csv, all layer 0) against official: burglary 393/385, 353/354, 370/369; larceny 1204/1192, 1377/1324, 1221/1165; motor vehicle theft 487/487, 469/491, 762/752; robbery 200/223, 195/210, 151/162; aggravated assault 302/405, 309/391, 418/506. Open for the adjudicator: with the arrest layer removed the source covers 2018 to mid-2022 of the registry's 2018-2025, 2021 cannot be reconciled (official 0), and no incident source for 2022-06-28 onward is in the packet; settling 2023-2025 needs a different incident feed from the publisher.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services5.arcgis.com/ROBnTHSNjoZ2Wm1P/arcgis/rest/services/Crime_Reports_2012_Jul2022/FeatureServer/2",
+      "name": "Alameda County Sheriff Crime Reports 2012-Jul 2022 (Crime_Reports_2012_Jul2022/FeatureServer/2)",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "alameda_county_so_ca_0",
+      "source_url": "https://data.acgov.org/",
+      "where": "DateTime >= DATE '{start}' AND DateTime < DATE '{end}'"
+    }
+  ]
+}

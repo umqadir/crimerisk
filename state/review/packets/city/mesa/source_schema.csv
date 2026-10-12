@@ -1,0 +1,35 @@
+dataset_label,view_id,column_name,field_name,data_type,position,description
+mesa_2020_present,hpbg-2wph,Crime ID,crime_id,text,1,This is the departmental incident report number  
+mesa_2020_present,hpbg-2wph,Crime Type,crime_type,text,2,Primary offense or crime type description for incident
+mesa_2020_present,hpbg-2wph,Report Date,report_date,calendar_date,3,Date/Time Date the report was written  
+mesa_2020_present,hpbg-2wph,Report Month,report_month,text,4,Month the report was written  
+mesa_2020_present,hpbg-2wph,Report Year,report_year,text,5,Year the report was written  
+mesa_2020_present,hpbg-2wph,Occurred Date,occurred_date,calendar_date,6,Date/time date the incident occurred  
+mesa_2020_present,hpbg-2wph,Verified,verified,number,7,"Confidence value that the address & location has been correctly matched to an actual place on a map. Values of –1, 1, and 4 are reliable. 0 means unable to verify location and was defaulted to Center/Main. See attachments section in About this Dataset for more details.  "
+mesa_2020_present,hpbg-2wph,Address,address,text,9,Hundred block location where incident occurred. Exact locations are rounded to nearest hundred block and are not the actual incident address.  
+mesa_2020_present,hpbg-2wph,City,city,text,10,City where the incident occurred  
+mesa_2020_present,hpbg-2wph,State,state,text,11,State where incident occurred  
+mesa_2020_present,hpbg-2wph,NIBRS Code,nibrs_code,text,12,National incident-based crime reporting system (NIBRS) code. All offenses related to the incident are listed here.  
+mesa_2020_present,hpbg-2wph,NIBRS Description,nibrs_description,text,13,National incident-based crime reporting system (NIBRS) code description. All offense descriptions related to the incident are listed here. 
+mesa_2020_present,hpbg-2wph,Location,location,point,14,Approximate geocoded location based on the rounded hundred block. Not an exact location of where incident occurred  
+mesa_2020_present,hpbg-2wph,Crime Against,crime_against,text,15,"Identifies whether the primary incident offense involves a crime against person, property, society or other. Other typically indicates incident other than commission of a crime. See also attachments section."
+mesa_2020_present,hpbg-2wph,Offense Type,offense_type,text,16,Identifies the primary incident offense as NIBRS Group A or B Offenses. See also attachments section.
+mesa_2016_2019,tq8y-k6mu,Crime ID,crime_id,text,1,This is the departmental incident report number
+mesa_2016_2019,tq8y-k6mu,Crime Type,crime_type,text,2,Description of the Crime
+mesa_2016_2019,tq8y-k6mu,Report Date,report_date,calendar_date,3,Date/Time Date the report was written
+mesa_2016_2019,tq8y-k6mu,Report Month,report_month,text,4,Month the report was written
+mesa_2016_2019,tq8y-k6mu,Report Year,report_year,text,5,Year the report was written
+mesa_2016_2019,tq8y-k6mu,Occurred Date,occurred_date,calendar_date,6,Date/Time Date the incident occurred
+mesa_2016_2019,tq8y-k6mu,Address,address,text,7,Hundred block location where incident occurred. Exact locations are rounded to nearest hundred block and are not exact.
+mesa_2016_2019,tq8y-k6mu,Street Number,street_number,text,8,"Street number, rounded to nearest hundred block where the incident occurred. Not the exact location."
+mesa_2016_2019,tq8y-k6mu,Street Direction,street_direction,text,9,Street Direction where the incident occurred
+mesa_2016_2019,tq8y-k6mu,Street Name,street_name,text,10,Street Name where the incident occurred
+mesa_2016_2019,tq8y-k6mu,Street Type,street_type,text,11,Street Type where the incident ocurred
+mesa_2016_2019,tq8y-k6mu,Latitude,latitude,number,12,Latitude based on the rounded hundred block. Not an exact latitude of where incident occurred.
+mesa_2016_2019,tq8y-k6mu,Longitude,longitude,number,13,Longitude based on the rounded hundred block. Not an exact longitude of where incident occurred.
+mesa_2016_2019,tq8y-k6mu,City,city,text,14,City where the incident occurred
+mesa_2016_2019,tq8y-k6mu,State,state,text,15,State where incident occurred
+mesa_2016_2019,tq8y-k6mu,NIBRS Code,national_incident_based_crime_reporting_system_code,text,16,NIBRS offense code
+mesa_2016_2019,tq8y-k6mu,NIBRS Description,national_incident_based_crime_reporting_description,text,17,A description of the offense based on NIBRS
+mesa_2016_2019,tq8y-k6mu,Location,location_1,point,18,Approximate geocoded location based on the rounded hundred block. Not an exact location of where incident occurred.
+mesa_2016_2019,tq8y-k6mu,RowID,rowid,text,19,Unique identifier for each row of the dataset

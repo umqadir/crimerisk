@@ -1,0 +1,124 @@
+{
+  "city_key": "mesa",
+  "city_name": "Mesa",
+  "review_date": "2026-03-22",
+  "recommended_contract": {
+    "contract_type": "socrata_dual_resource",
+    "recommended_live_years": "2020-present for offense-selective integration",
+    "historical_backfill_years": "2016-2019 only when an explicit pre-2020 series is needed",
+    "history_split_reason": "Mesa publishes pre-2020 and 2020-present as separate public tables and explicitly warns that the 2020 switch from UCR to NIBRS breaks direct trend comparability.",
+    "full_download_urls": [
+      "https://data.mesaaz.gov/api/views/tq8y-k6mu/rows.csv?accessType=DOWNLOAD",
+      "https://data.mesaaz.gov/api/views/hpbg-2wph/rows.csv?accessType=DOWNLOAD"
+    ],
+    "resource_json_urls": [
+      "https://data.mesaaz.gov/resource/tq8y-k6mu.json",
+      "https://data.mesaaz.gov/resource/hpbg-2wph.json"
+    ],
+    "metadata_urls": [
+      "https://data.mesaaz.gov/api/views/tq8y-k6mu.json",
+      "https://data.mesaaz.gov/api/views/hpbg-2wph.json"
+    ],
+    "query_examples": [
+      "https://data.mesaaz.gov/resource/hpbg-2wph.json?$select=crime_id,crime_type,occurred_date,address,nibrs_code,nibrs_description,location&report_year=2024",
+      "https://data.mesaaz.gov/resource/tq8y-k6mu.json?$select=report_year,count(*)&$group=report_year&$order=report_year"
+    ],
+    "why_not_odata_only": "The older inventory row was right about the dual-table OData path, but the underlying tables are standard Socrata resources and the SODA resource endpoints are easier to query, summarize, and cache than the OData pagination contract."
+  },
+  "datasets": {
+    "historical_2016_2019": {
+      "dataset_id": "tq8y-k6mu",
+      "name": "Police Incidents 2016-2019",
+      "metadata_url": "https://data.mesaaz.gov/api/views/tq8y-k6mu.json",
+      "download_url": "https://data.mesaaz.gov/api/views/tq8y-k6mu/rows.csv?accessType=DOWNLOAD",
+      "resource_url": "https://data.mesaaz.gov/resource/tq8y-k6mu.json",
+      "rows_updated_at_utc": "2025-04-15T18:16:20+00:00",
+      "view_last_modified_utc": "2025-07-17T16:01:26+00:00",
+      "description_summary": "Mesa says this table is no longer actively updated, covers incidents reported prior to 2020-01-01, rounds public locations to the nearest hundred block, and withholds approximate addresses for homicide and sexual offenses.",
+      "year_counts": [
+        {
+          "report_year": "2016",
+          "rows": "60779"
+        },
+        {
+          "report_year": "2017",
+          "rows": "59863"
+        },
+        {
+          "report_year": "2018",
+          "rows": "53125"
+        },
+        {
+          "report_year": "2019",
+          "rows": "47205"
+        }
+      ],
+      "totals": {
+        "rows": "220972",
+        "rows_with_address": "211666",
+        "rows_with_latitude": "209089",
+        "rows_with_longitude": "209089"
+      }
+    },
+    "current_2020_present": {
+      "dataset_id": "hpbg-2wph",
+      "name": "Police Incidents 2020-present",
+      "metadata_url": "https://data.mesaaz.gov/api/views/hpbg-2wph.json",
+      "download_url": "https://data.mesaaz.gov/api/views/hpbg-2wph/rows.csv?accessType=DOWNLOAD",
+      "resource_url": "https://data.mesaaz.gov/resource/hpbg-2wph.json",
+      "rows_updated_at_utc": "2026-03-22T17:38:58+00:00",
+      "view_last_modified_utc": "2026-03-16T15:11:11+00:00",
+      "description_summary": "Mesa says the table contains initial police reports, excludes traffic-related offenses, identifies one primary offense in crime_type, and stores all related incident offenses in the comma-delimited nibrs_code field.",
+      "year_counts": [
+        {
+          "report_year": "2020",
+          "rows": "46378"
+        },
+        {
+          "report_year": "2021",
+          "rows": "50215"
+        },
+        {
+          "report_year": "2022",
+          "rows": "52560"
+        },
+        {
+          "report_year": "2023",
+          "rows": "52358"
+        },
+        {
+          "report_year": "2024",
+          "rows": "51616"
+        },
+        {
+          "report_year": "2025",
+          "rows": "50003"
+        },
+        {
+          "report_year": "2026",
+          "rows": "8822"
+        }
+      ],
+      "totals": {
+        "rows": "311952",
+        "rows_with_address": "280484",
+        "rows_with_location": "280485"
+      },
+      "latest_dates": {
+        "latest_report_date": "2026-03-21T00:00:00.000",
+        "latest_occurred_date": "2026-03-21T00:00:00.000"
+      }
+    }
+  },
+  "city_crime_statistics_page": {
+    "source_url": "https://www.mesaaz.gov/Public-Safety/Mesa-Police/Crime-Safety/Crime-Statistics",
+    "summary": "Mesa's crime statistics page says the dashboard updates daily and provides a transparent view of public safety trends in the City of Mesa dating back to 2020."
+  },
+  "arizona_public_reference_pages": {
+    "crime_overview_url": "https://azcrimestatistics.azdps.gov/tops/report/crime-overview/mesa-pd/2024/pdf",
+    "violent_crime_url": "https://azcrimestatistics.azdps.gov/tops/report/violent-crimes/mesa-pd/2024/pdf",
+    "property_crime_url": "https://azcrimestatistics.azdps.gov/tops/report/property-crime/mesa-pd/2024/pdf",
+    "overview_number_of_crimes_2024": 17234,
+    "warning": "Arizona DPS states that these public pages are rendered through the legacy Summary presentation and may not exactly reflect the agency's detailed NIBRS submission."
+  }
+}

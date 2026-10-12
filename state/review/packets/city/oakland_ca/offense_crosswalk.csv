@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?MURDER"", ""values"": []}]",[]
+rape,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?(RAPE|SODOMY|ORAL COPULATION|SEXUAL PENETRATION W/FOREIGN OBJ)"", ""values"": []}]",[]
+robbery,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?(ROBBERY|ATTEMPTED ROBBERY|ATTEMPT ROBBERY|CARJACKING)"", ""values"": []}]",[]
+aggravated_assault,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?(ASSAULT WITH FIREARM|ASLT W/FIREARM|ADW |FORCE/ADW|INFLICT CORPORAL INJURY|INFLICT CRPL INJ)|BATTERY W/SERIOUS BODILY INJURY"", ""values"": []}]",[]
+motor_vehicle_theft,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?(VEHICLE THEFT|STOLEN VEHICLE)|^ATTEMPT(ED)? VEHICLE THEFT|^GRAND THEFT:AUTO$"", ""values"": []}]",[]
+burglary,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?(ATTEMPTED )?BURGLARY"", ""values"": []}]","[{""field"": ""description"", ""op"": ""regex"", ""value"": ""AUTO"", ""values"": []}]"
+larceny,"[{""field"": ""description"", ""op"": ""regex"", ""value"": ""^(SC )?(GRAND THEFT|PETTY THEFT|THEFT|SHOPLIFTING|MAIL/ETC THEFT|ATTEMPT(ED)? (GRAND )?THEFT)|^(SC )?BURGLARY[ -]AUTO$|^ATTEMPTED BURGLARY-AUTO$"", ""values"": []}]",[]

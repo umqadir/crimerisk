@@ -1,0 +1,8 @@
+city_key,offense,share_admitted_flag,feed_total_candidate_flag,admitted_flag,qa_status,share_lane_disposition,total_lane_disposition
+cincinnati,aggravated_assault,True,False,True,pass_share_only,admit_share_only,official_control
+cincinnati,burglary,True,False,True,pass_share_only,admit_share_only,official_control
+cincinnati,larceny,True,False,True,pass_share_only,admit_share_only,official_control
+cincinnati,motor_vehicle_theft,True,False,True,pass_share_only,admit_share_only,official_control
+cincinnati,murder,True,False,True,pass_share_only,admit_share_only,official_control
+cincinnati,rape,True,False,True,pass_share_only,admit_share_only,official_control
+cincinnati,robbery,True,False,True,pass_share_only,admit_share_only,official_control

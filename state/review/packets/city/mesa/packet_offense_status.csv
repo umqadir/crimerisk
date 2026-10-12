@@ -1,0 +1,8 @@
+offense,production_ready,city_share_integration_status,comparison_class,notes
+murder,no,blocked,redacted_and_blocked,Locations are fully redacted in the public feed and the public published comparator is not spatially usable.
+rape,no,blocked,redacted_and_blocked,Locations are fully redacted in the public feed and the public published comparator is not spatially usable.
+robbery,yes,offense_selective,close_exact,Counts reconcile closely and source locations are mostly present at Mesa's rounded hundred-block precision.
+aggravated_assault,no,blocked,approximate_material_gap,"Public source is incident-level while the published Arizona violent-crime total is victim-based, creating a material undercount."
+burglary,yes,offense_selective,close_exact,Counts reconcile closely and source locations are mostly present at Mesa's rounded hundred-block precision.
+larceny,yes,offense_selective,close_exact,Counts reconcile closely and source locations are mostly present at Mesa's rounded hundred-block precision.
+motor_vehicle_theft,yes,offense_selective,close_exact,Counts reconcile closely and source locations are mostly present at Mesa's rounded hundred-block precision.

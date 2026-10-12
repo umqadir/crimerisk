@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+jacksonville_fl,"Jacksonville, Florida",12:municipal:place:1235000,JSO Transparency Portal - Public Transparency Data (NIBRS Incidents),https://transparency.jaxsheriff.org/,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

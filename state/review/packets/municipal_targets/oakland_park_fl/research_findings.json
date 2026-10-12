@@ -1,0 +1,127 @@
+{
+  "case_key": "oakland_park_fl",
+  "jurisdiction_id": "12:municipal:place:1250575",
+  "jurisdiction_name": "Oakland Park city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_contract_city_reporting_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Oakland Park is a real incorporated Florida city, but it does not currently operate a city-run police department. The official city police page says the City Commission entered into a police-services contract with the Broward Sheriff's Office on August 1, 2000, and that the BSO/Oakland Park District now provides police services for the city.",
+    "That contract structure does not by itself invalidate the municipal target. The same official city page shows a dedicated BSO/Oakland Park District office in Oakland Park, district leadership, local crime maps, and a statement that monthly and quarterly Oakland Park district reports are posted on City Commission agendas. This is a city-specific policing surface, not generic Broward County sheriff coverage with no Oakland Park identity.",
+    "Official FDLE agency-registry material still lists Oakland Park Police Department with ORI FL0062400. Official FDLE county-and-municipal offense publications also treated Oakland Park Police Department as a separate Broward municipal row long after the 2000 BSO contract conversion.",
+    "FDLE's 2020 County and Municipal Offense Report gives Oakland Park Police Department a nonzero total index-crime count of 1,871. FDLE's 2021 report retains the Oakland Park Police Department row with population 44,296 but blanks every offense field with '--'.",
+    "The official FDLE FIBRS offense workbook for 2021 through 2025 Q2 contains no Oakland Park row at all. In the repo, FL0062400 is crosswalked exclusively to Oakland Park city, with nonzero annual observations in 2018-2020 and zero annual observations in 2021-2024. That pattern is best explained as post-transition reporting/publication continuity failure on a real contract-city municipal reporting surface, not as an invalid municipal target."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_contract_policing",
+    "official_basis": [
+      "Oakland Park maintains an official city government site and a dedicated Police / Broward Sheriff's Office page inside the city departments section.",
+      "The FY 2026 recommended budget message states that the city contracts with the Broward Sheriff's Office for police services and identifies a current contract/budget relationship for that service."
+    ],
+    "important_interpretation": "Oakland Park is a valid municipal control object. The keep/drop question turns on whether the city still has a real city-specific policing/reporting surface under contract, not on whether it still runs its own municipal police department."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "BSO/Oakland Park District under Broward Sheriff's Office contract",
+    "standalone_city_police_department_today": false,
+    "city_specific_contract_policing_surface_found": true,
+    "official_evidence": [
+      "The official city police page states that the City Commission entered into a contract for police services with BSO on August 1, 2000.",
+      "That page says the BSO/Oakland Park District provides police services for the city's 8.04 square miles and lists a dedicated Oakland Park district office at 5399 N Dixie Highway, Suite 1, Oakland Park, FL 33334.",
+      "The same page states that monthly and quarterly reports for the Oakland Park District are posted on City Commission agendas and links the public to local crime maps for the district."
+    ],
+    "service_structure_interpretation": "Oakland Park is sheriff-policed operationally, but through a city-specific contract district rather than an undifferentiated countywide sheriff remainder. The absence of a city-run police department today does not erase the municipal policing object."
+  },
+  "official_reporting_evidence": {
+    "fdle_registry_identity": {
+      "agency": "Oakland Park Police Department",
+      "ori9": "FL0062400",
+      "summary": "FDLE's official ATMS agency registry still lists Oakland Park Police Department as an agency identity."
+    },
+    "fdle_county_and_municipal_offense_reports": [
+      {
+        "year": 2020,
+        "agency": "Oakland Park Police Department",
+        "official_index_total": 1871
+      },
+      {
+        "year": 2021,
+        "agency": "Oakland Park Police Department",
+        "official_index_total": null,
+        "publication_state": "row_retained_but_all_offense_fields_blank"
+      }
+    ],
+    "fdle_post_srs_publication_check": {
+      "source": "FDLE FIBRS Offense Detail 2021-2025 Q2 workbook",
+      "summary": "Inspection of the official FIBRS offense workbook found no Oakland Park row in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets."
+    },
+    "interpretation": "Florida officially recognized Oakland Park as a distinct municipal reporting surface despite the BSO contract. The reporting break appears at the 2021 SRS-to-NIBRS transition, where the row is still retained in the 2021 annual publication but blanked, then omitted from the FIBRS workbook entirely."
+  },
+  "repo_continuity_evidence": {
+    "crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0062400 exclusively to 12:municipal:place:1250575 with relationship_type exclusive.",
+    "agency_master_state": "agency_master.parquet still classifies FL0062400 as a local police department with SRS and NIBRS presence flags and years listed through 2024.",
+    "observation_pattern": [
+      {
+        "year": 2018,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1883.0
+      },
+      {
+        "year": 2019,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 2064.0
+      },
+      {
+        "year": 2020,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 1871.0
+      },
+      {
+        "year": 2021,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      },
+      {
+        "year": 2022,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      },
+      {
+        "year": 2023,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      },
+      {
+        "year": 2024,
+        "source": "srs_return_a_annual",
+        "annual_part1_total": 0.0
+      }
+    ],
+    "fbi_cde_review_signal": "fbi_cde_source_review_queue.csv flags FL0062400 as present_but_no_2024_observation, which is consistent with a public-source continuity gap rather than a structurally fake municipal target.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every Oakland Park offense row fully fill-backed with dominant_reporting_regime structurally_missing_or_unreliable and reported_count_preferred 0.0.",
+    "interpretation": "The repo routing is straightforward and exclusive. The production failure is that the official/public reporting surface collapses after 2020-2021, forcing the municipal controls to all-fill."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Oakland Park remains a real incorporated city with a city-specific BSO/Oakland Park policing district.",
+      "FDLE still recognizes Oakland Park Police Department as an agency identity and published Oakland Park as a distinct Broward municipal offense row through 2020, with a retained blank row in 2021.",
+      "The repo already routes FL0062400 exclusively to Oakland Park city, and the zero-state appears where the official state publication path broke."
+    ],
+    "most_likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+    "recommended_handling": [
+      "Retain Oakland Park city as a standalone municipal control row.",
+      "Do not replace Oakland Park with Broward County Sheriff's Office county remainder or drop it as a fake municipal target solely because policing is delivered by BSO under contract.",
+      "Treat the current full-fill condition as a Florida reporting/publication continuity failure on FL0062400 after the SRS-to-NIBRS transition.",
+      "Use FDLE County and Municipal Offense Data publications as the official state truth surface through 2020 and the retained blank 2021 row as the transition marker.",
+      "If business requires a local override or post-break recovery, inspect the BSO/Oakland Park District monthly and quarterly reports that the city says are posted on City Commission agendas, because that is the clearest official current city-specific public reporting surface identified in this review."
+    ]
+  },
+  "likely_issue_class": "valid_contract_city_target_with_reporting_continuity_failure",
+  "open_questions": [
+    "The keep/drop decision is closed. The remaining implementation question is whether post-2021 Oakland Park annual counts can be reconstructed from city-posted BSO/Oakland Park district reports, another BSO contract-city reporting surface, or a non-public FDLE/BSO extraction path."
+  ]
+}

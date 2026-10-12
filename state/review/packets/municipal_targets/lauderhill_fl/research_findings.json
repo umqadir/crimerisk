@@ -1,0 +1,100 @@
+{
+  "case_key": "lauderhill_fl",
+  "jurisdiction_id": "12:municipal:place:1239550",
+  "jurisdiction_name": "Lauderhill city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_state_publication_and_repo_continuity_failure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Lauderhill plainly operates a real current municipal police department. The City's official police page describes the Lauderhill Police Department as a progressive, community-oriented and professionally accredited law-enforcement agency, the chief page names Chief Constance Stanley, and the FY2026 city budget contains a full Police Department section describing programs, calls for service, and FY2025 performance.",
+    "Broward Sheriff's Office is not the primary general-policing authority for Lauderhill. BSO's district-offices page says some Broward cities maintain their own police departments while BSO may provide communications and dispatch to some of them, and BSO's municipal-contracts page does not list Lauderhill.",
+    "Florida state agency surfaces still recognize a Lauderhill-specific police identity. FDLE's official agency registry lists Lauderhill Police Department with ORI FL0061800.",
+    "Florida's official legacy offense publication treated Lauderhill as a normal municipal agency row. FDLE's 2020 County and Municipal Offense Data report lists Lauderhill Police Department with population 72,507 and total index crime 2,541.",
+    "FDLE's 2021 County and Municipal Offense Data still retained a separate Lauderhill Police Department row, but Broward County's page says the 2021 estimate was unavailable because of a limited-size data sample and the Lauderhill row shows only population with dashes in the offense fields. That is transition-era publication degradation, not evidence that the city police target was invalid.",
+    "FDLE's post-SRS public FIBRS offense workbook does not carry Lauderhill in any sheet from 2021 through 2025 Q2 even though Broward peers such as Coral Springs, Davie, Fort Lauderdale, Miramar, Pembroke Pines, and Seminole appear in at least some years. Repo evidence mirrors that break: FL0061800 is crosswalked exclusively to Lauderhill and agency_master flags both SRS and NIBRS presence through 2024, but agency_year_observations contains only SRS annual support through 2020 followed by zero-valued SRS placeholders from 2021 through 2024 and no NIBRS observation rows."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Lauderhill maintains a current Police Department as a city department.",
+      "The city names a current chief of police and funds a Police Department in the FY2026 adopted budget.",
+      "Nothing in the official city, sheriff, or FDLE materials suggests that Lauderhill is merely a placeholder place row or a municipality whose policing has been formally replaced by Broward Sheriff."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Lauderhill Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The City says the Lauderhill Police Department is a progressive, community oriented, professionally accredited law-enforcement organization.",
+      "The chief page identifies Chief Constance Stanley and states that she was promoted to Chief of Police on March 7, 2016 after a long Lauderhill Police Department career.",
+      "The FY2026 city budget says the Police Department is responsible for community safety and the protection of the health and welfare of Lauderhill residents, describes three police divisions, and reports 68,496 calls for service in FY2025.",
+      "BSO's district-offices page says some Broward cities maintain their own police departments and that BSO may only provide communications and dispatch to some of those cities.",
+      "BSO's municipal-contracts page does not list Lauderhill."
+    ],
+    "important_clarification": "This is not a Broward Sheriff contract-city case like Pompano Beach. The official sheriff materials point to Lauderhill keeping its own police department, with any BSO role limited to ordinary countywide overlap or possible communications/dispatch support rather than citywide primary policing."
+  },
+  "official_reporting_evidence": {
+    "fdle_agency_identity_surface": {
+      "summary": "FDLE's official agency registry still lists Lauderhill Police Department with ORI FL0061800.",
+      "interpretation": "Florida continues to recognize a city-specific police agency identity for Lauderhill."
+    },
+    "fdle_legacy_publication_surface": {
+      "summary": "FDLE's official County and Municipal Offense Data reports treat Lauderhill Police Department as a municipal reporting row.",
+      "details": [
+        "FDLE 2020: Lauderhill Police Department, population 72,507, total index crime 2,541.",
+        "FDLE 2021: Broward County page notes the 2021 estimate was unavailable because of a limited-size data sample, and the Lauderhill Police Department row remains present with population 74,538 but offense fields shown as '--'."
+      ],
+      "interpretation": "The official state publication surface confirms a real Lauderhill municipal police row through the transition year, even though 2021 became unusable."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "FDLE's FIBRS portal says the downloadable offense workbook covers the 2021-2024 and 2025 reporting cycles, but workbook inspection found no Lauderhill row in the 2021, 2022, 2023, 2024, or 2025 Q2 offense sheets.",
+      "details": [
+        "2021 Broward workbook rows found: Miramar Police Department, Seminole Police Department.",
+        "2022 Broward workbook rows found: Coral Springs Police Department, Davie Police Department, Miramar Police Department, Seminole Police Department, Town of Southwest Ranches.",
+        "2023 Broward workbook rows found: Coral Springs Police Department, Davie Police Department, Fort Lauderdale Police Department, Miramar Police Department, Town of Southwest Ranches.",
+        "2024 Broward workbook rows found: Coral Springs Police Department, Davie Police Department, Fort Lauderdale Police Department, Hillsboro Beach Police Department, Miramar Police Department, Pembroke Pines Police Department, Seminole Police Department.",
+        "2025 Q2 Broward workbook rows found: Coral Springs Police Department, Fort Lauderdale Police Department, Miramar Police Department, Pembroke Pines Police Department, Seminole Police Department."
+      ],
+      "interpretation": "The absence of Lauderhill from the public FIBRS workbook, despite the continuing city police department and continuing FDLE agency identity, points to a state-publication continuity gap rather than to a sheriff-primary service structure."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0061800 exclusively to 12:municipal:place:1239550 with review_status auto, relationship_type exclusive, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0061800 as a local police department and flags both SRS and NIBRS presence with years listed from 2018 through 2024.",
+    "observation_state": "agency_year_observations.parquet currently contains only srs_return_a_annual rows for FL0061800: annual_part1_total 2864 in 2018, 2702 in 2019, 2541 in 2020 with one-month lumped annual support, then zero annual totals with months_reported 0.0 in 2021, 2022, 2023, and 2024.",
+    "important_mismatch": "agency_master says NIBRS presence exists through 2024, but the observation layer contains no NIBRS rows for FL0061800 and no usable post-2020 reported support at all.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Lauderhill offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, and dominant_reporting_regime structurally_missing_or_unreliable, which forces full fill.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Lauderhill in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 2702.0, total_reported_count 0.0, and priority_rank 2."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "why": [
+      "Lauderhill has an active city-run police department today.",
+      "BSO is not the city's primary general-policing authority under a contract-city structure.",
+      "FDLE still recognizes Lauderhill Police Department as ORI FL0061800.",
+      "FDLE officially published a standard municipal Lauderhill row in 2020 and retained the row in 2021 even though transition-era reporting made that year unusable."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Florida's public publication surface for Lauderhill broke during or after the 2021 SRS-to-NIBRS transition.",
+      "The repo then compounded the problem by materializing only zero-valued SRS annual placeholders from 2021 through 2024 and no NIBRS rows despite the agency_master presence flags.",
+      "This is not an invalid-target or sheriff-contract routing problem."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Lauderhill municipal control row 12:municipal:place:1239550.",
+      "Keep FL0061800 attached exclusively to Lauderhill rather than rerouting the city into Broward Sheriff or county remainder structure.",
+      "Classify the current all-fill state as a state-publication and repo-continuity failure on FL0061800.",
+      "If post-2020 backfill becomes necessary, pursue an FDLE agency-level extract or direct Lauderhill Police Department / city-origin records rather than treating the problem as a service-structure error."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_state_publication_and_repo_continuity_failure",
+  "open_questions": [
+    "The keep versus drop decision is closed. The remaining implementation question is whether a nonpublic FDLE extract, direct Lauderhill Police Department records, or another official local surface can restore usable post-2020 annual city totals.",
+    "A later source-repair pass should explain why agency_master carries 2021-2024 NIBRS presence for FL0061800 when no public FIBRS row and no repo NIBRS observations were recovered."
+  ]
+}

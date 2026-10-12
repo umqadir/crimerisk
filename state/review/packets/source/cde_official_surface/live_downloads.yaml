@@ -1,0 +1,341 @@
+- generic [ref=e7]:
+  - navigation [ref=e9]:
+    - paragraph [ref=e464]: There will be no monthly data updates published on the FBI's Crime Data Explorer in April 2026 to allow the FBI’s Uniform Crime Reporting Program to capture and analyze reported data for the annual “Reported Crimes in the Nation” release. Monthly data updates are expected to resume in May 2026.
+    - generic [ref=e11]:
+      - img "US flag signifying that this is a United States Federal Government website" [ref=e12]
+      - paragraph [ref=e13]:
+        - text: An official website of the United States government
+        - generic "Help With How to Know" [ref=e14] [cursor=pointer]:
+          - text: Here's how you know
+          - img "Here's how you know expand" [ref=e15]
+    - generic [ref=e17]:
+      - generic [ref=e18]:
+        - generic "Side Nav" [ref=e20] [cursor=pointer]:
+          - img [ref=e23]
+        - img "FBI Seal" [ref=e33] [cursor=pointer]
+        - button "Skip to main content" [ref=e34] [cursor=pointer]
+      - generic [ref=e35]:
+        - generic "Home" [ref=e37]:
+          - generic [ref=e38] [cursor=pointer]: Home
+        - link "Data Explorer" [ref=e41] [cursor=pointer]:
+          - /url: "#/pages/explorer/crime/crime-trend"
+          - generic [ref=e42]: Data Explorer
+          - img [ref=e44]
+        - generic [ref=e50]:
+          - generic "Data Discovery Tool" [ref=e51]:
+            - generic [ref=e52] [cursor=pointer]: Data Discovery Tool
+          - link "Documents & Downloads" [ref=e54] [cursor=pointer]:
+            - /url: "#/pages/downloads"
+            - generic [ref=e55]: Documents & Downloads
+          - link "About" [ref=e57] [cursor=pointer]:
+            - /url: "#/pages/about"
+            - generic [ref=e58]: About
+        - button "Toggle Dark Theme" [ref=e59] [cursor=pointer]:
+          - img [ref=e61]
+  - generic [ref=e66]:
+    - generic [ref=e70]:
+      - img "Handcuffs" [ref=e72]
+      - generic "United States Map" [ref=e74]
+      - img "Agency" [ref=e76]
+      - img "Time" [ref=e78]
+    - generic [ref=e79]:
+      - generic [ref=e465]:
+        - generic [ref=e466]:
+          - generic [ref=e467]: Documents & Downloads
+          - generic [ref=e471]:
+            - paragraph [ref=e472]: The Crime Data Explorer (CDE) provides select datasets for download. Incident-based data by state, summary data estimates, and data about other specific topics may be downloaded in CSV files from the selections below. Data are also available via the Crime Data API, a read-only web service that returns JSON or CSV data, and provides experienced users access to large amounts of UCR data to use and share.
+            - paragraph [ref=e473]: Because these data are dynamic, be aware of the time stamp that reflects the date of content.
+        - generic [ref=e474]:
+          - generic [ref=e477]:
+            - generic [ref=e478]: Crime Incident-Based Data by State
+            - generic [ref=e479]:
+              - generic [ref=e480]: Download NIBRS data by state and year
+              - paragraph [ref=e482]:
+                - text: The
+                - link "UCR Program" [ref=e483] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e485]
+                - text: provided updated data for
+                - strong [ref=e491]: "2024"
+                - text: "on"
+                - strong [ref=e492]: August 5, 2025
+                - text: .
+              - generic [ref=e494]:
+                - generic "NIBRS Location Select" [ref=e496]:
+                  - button "Location" [ref=e497] [cursor=pointer]:
+                    - generic [ref=e498]: Location
+                    - img [ref=e500]
+                - generic "NIBRS Year Select" [ref=e506]:
+                  - button "Year" [disabled] [ref=e507]:
+                    - generic [ref=e508]: Year
+                    - img [ref=e510]
+                - link "Download" [disabled] [ref=e516]:
+                  - /url: ""
+                  - img [ref=e518]
+                  - text: Download
+          - generic [ref=e527]:
+            - generic [ref=e528]: Crime in the United States Annual Reports
+            - generic [ref=e529]:
+              - generic [ref=e530]: Download publication table by data collections and year
+              - paragraph [ref=e531]: Publication tables and resources pages are available for download by year
+              - paragraph [ref=e532]:
+                - text: Click
+                - link "here" [ref=e533] [cursor=pointer]:
+                  - /url: "#"
+                - text: for the list of files in each download.
+              - paragraph [ref=e535]:
+                - text: The
+                - link "UCR Program" [ref=e536] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e538]
+                - text: provided updated data for
+                - strong [ref=e544]: "2024"
+                - text: "on"
+                - strong [ref=e545]: August 5, 2025
+                - text: .
+              - generic [ref=e547]:
+                - generic "Year Select" [ref=e791]:
+                  - button "2024" [ref=e792] [cursor=pointer]:
+                    - generic [ref=e793]: "2024"
+                    - img [ref=e795]
+                - generic "Collection Download Select" [ref=e801]:
+                  - button "Collection" [ref=e802] [cursor=pointer]:
+                    - generic [ref=e803]: Collection
+                    - img [ref=e805]
+                - button "Download" [disabled] [ref=e549]:
+                  - img [ref=e551]
+                  - text: Download
+          - generic [ref=e559]:
+            - generic [ref=e560]: Hate Crime Statistics Annual Reports
+            - generic [ref=e561]:
+              - generic [ref=e562]: Download publication table by data collections and year
+              - paragraph [ref=e563]: Publication tables and resources pages are available for download by year.
+              - paragraph:
+                - strong
+              - paragraph [ref=e565]:
+                - text: The
+                - link "UCR Program" [ref=e566] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e568]
+                - text: provided updated data for
+                - strong [ref=e574]: "2024"
+                - text: "on"
+                - strong [ref=e575]: August 5, 2025
+                - text: .
+              - generic [ref=e577]:
+                - generic "Hate Crime Year Select" [ref=e811]:
+                  - button "2024" [ref=e812] [cursor=pointer]:
+                    - generic [ref=e813]: "2024"
+                    - img [ref=e815]
+                - link "Download" [ref=e820] [cursor=pointer]:
+                  - /url: "#"
+                  - img [ref=e822]
+                  - text: Download
+          - generic [ref=e589]:
+            - generic [ref=e590]: Law Enforcement Officers Killed and Assaulted Annual Reports
+            - generic [ref=e591]:
+              - generic [ref=e592]: Download publication table by data collections and year
+              - paragraph [ref=e593]: Publication tables, summaries of data, narratives of officers feloniously killed, and resource pages are available for download by topic and year.
+              - paragraph [ref=e594]: Because the information in the tables of this publication is updated each year, the FBI cautions readers against making comparisons between the data in this publication and those in prior editions.
+              - paragraph [ref=e595]:
+                - text: Click
+                - link "here" [ref=e596] [cursor=pointer]:
+                  - /url: "#"
+                - text: for the list of files in each download.
+              - paragraph [ref=e598]:
+                - text: The
+                - link "UCR Program" [ref=e599] [cursor=pointer]:
+                  - /url: https://www.fbi.gov/services/cjis/ucr/
+                - img [ref=e601]
+                - text: provided updated data for
+                - strong [ref=e607]: "2024"
+                - text: "on"
+                - strong [ref=e608]: August 5, 2025
+                - text: .
+              - generic [ref=e610]:
+                - generic "Year Select" [ref=e829]:
+                  - button "2024" [ref=e830] [cursor=pointer]:
+                    - generic [ref=e831]: "2024"
+                    - img [ref=e833]
+                - generic "LEOKA Collection Select" [ref=e839]:
+                  - button "Collection" [ref=e840] [cursor=pointer]:
+                    - generic [ref=e841]: Collection
+                    - img [ref=e843]
+                - button "Download" [disabled] [ref=e612]:
+                  - img [ref=e614]
+                  - text: Download
+          - generic [ref=e622]:
+            - generic [ref=e623]: Master File Downloads
+            - generic [ref=e624]:
+              - paragraph [ref=e625]: Master files for each collection are fixed-length, ASCII text format, compressed using WinZip software, and require some programming knowledge to extract the data. The drop-down list shows master files that are available.
+              - paragraph [ref=e626]: Download Annual Master Files by data collection and year.
+              - paragraph [ref=e628]:
+                - text: The
+                - link "UCR Program" [ref=e629] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e631]
+                - text: provided updated data for
+                - strong [ref=e637]: "2024"
+                - text: "on"
+                - strong [ref=e638]: August 5, 2025
+                - text: .
+              - generic [ref=e640]:
+                - generic "Master File Selector" [ref=e642]:
+                  - button "Master File" [ref=e643] [cursor=pointer]:
+                    - generic [ref=e644]: Master File
+                    - img [ref=e646]
+                - generic "Master File Year Selector" [ref=e652]:
+                  - button "Year" [disabled] [ref=e653]:
+                    - generic [ref=e654]: Year
+                    - img [ref=e656]
+                - link "Download" [disabled] [ref=e662]:
+                  - /url: "#"
+                  - img [ref=e664]
+                  - text: Download
+              - separator [ref=e670]
+              - paragraph [ref=e671]: Download Year-to-Date Master Files for the current calendar year.
+              - paragraph [ref=e672]: Files are organized by data collection and updated monthly.
+              - paragraph [ref=e673]:
+                - text: The
+                - link "UCR Program" [ref=e674] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e676]
+                - text: provided updated data on
+                - strong [ref=e848]: March 15, 2026
+                - text: .
+              - generic [ref=e683]:
+                - generic "YTD Master File Selector" [ref=e685]:
+                  - button "Master File" [ref=e686] [cursor=pointer]:
+                    - generic [ref=e687]: Master File
+                    - img [ref=e689]
+                - link "Download" [disabled] [ref=e695]:
+                  - /url: "#"
+                  - img [ref=e697]
+                  - text: Download
+          - generic [ref=e705]:
+            - generic [ref=e706]: National Incident-Based Reporting System (NIBRS) Tables
+            - generic [ref=e707]:
+              - generic [ref=e708]: Download NIBRS Tables
+              - paragraph [ref=e709]:
+                - text: Click
+                - link "here" [ref=e710] [cursor=pointer]:
+                  - /url: "#"
+                - text: for the list of files in each download.
+              - paragraph [ref=e712]:
+                - text: The
+                - link "UCR Program" [ref=e713] [cursor=pointer]:
+                  - /url: https://ucr.fbi.gov/
+                - img [ref=e715]
+                - text: provided updated data for
+                - strong [ref=e721]: "2024"
+                - text: "on"
+                - strong [ref=e722]: August 5, 2025
+                - text: .
+              - generic [ref=e724]:
+                - generic "NIBRS Table Dropdown" [ref=e726]:
+                  - button "Tables" [ref=e727] [cursor=pointer]:
+                    - generic [ref=e728]: Tables
+                    - img [ref=e730]
+                - generic "Year Select" [ref=e736]:
+                  - button "2024" [ref=e737] [cursor=pointer]:
+                    - generic [ref=e738]: "2024"
+                    - img [ref=e740]
+                - link "download" [disabled] [ref=e746]:
+                  - /url: "#"
+                  - img [ref=e748]
+                  - text: download
+                - generic "NIBRS Location Dropdown" [ref=e755]:
+                  - button "Location" [disabled] [ref=e756]:
+                    - generic [ref=e757]: Location
+                    - img [ref=e759]
+                - link "View PDF" [disabled] [ref=e765]:
+                  - /url: "#"
+          - generic [ref=e768]:
+            - generic [ref=e769]: NIBRS Estimation Tables
+            - generic [ref=e770]:
+              - generic [ref=e771]: Download NIBRS Estimation data by year
+              - paragraph [ref=e772]: The NIBRS estimation data are produced using methodologies developed in collaboration with the Bureau of Justice Statistics.
+              - paragraph [ref=e773]:
+                - text: Click
+                - link "here" [ref=e774] [cursor=pointer]:
+                  - /url: "#"
+                - text: for a list of files in each download.
+              - generic [ref=e776]:
+                - generic "Year Select" [ref=e850]:
+                  - button "2024" [ref=e851] [cursor=pointer]:
+                    - generic [ref=e852]: "2024"
+                    - img [ref=e854]
+                - generic "NIBRS Estimation Tables Collection Select" [ref=e860]:
+                  - button "Collection" [ref=e861] [cursor=pointer]:
+                    - generic [ref=e862]: Collection
+                    - img [ref=e864]
+                - button "Download" [disabled] [ref=e778]:
+                  - img [ref=e780]
+                  - text: Download
+        - generic [ref=e787]:
+          - generic [ref=e788]: Additional Datasets
+          - generic [ref=e873]:
+            - generic "Assaults on Law Enforcement Officers" [ref=e875] [cursor=pointer]:
+              - text: Assaults on Law Enforcement Officers
+              - img [ref=e877]
+            - generic "Cargo Theft" [ref=e883] [cursor=pointer]:
+              - text: Cargo Theft
+              - img [ref=e885]
+            - generic "Hate Crime" [ref=e891] [cursor=pointer]:
+              - text: Hate Crime
+              - img [ref=e893]
+            - generic "Human Trafficking" [ref=e899] [cursor=pointer]:
+              - text: Human Trafficking
+              - img [ref=e901]
+            - generic "Law Enforcement Employees Data" [ref=e907] [cursor=pointer]:
+              - text: Law Enforcement Employees Data
+              - img [ref=e909]
+            - generic "Summary Reporting System (SRS)" [ref=e915] [cursor=pointer]:
+              - text: Summary Reporting System (SRS)
+              - img [ref=e917]
+            - generic "Uniform Crime Reporting Program Participation Data" [ref=e923] [cursor=pointer]:
+              - text: Uniform Crime Reporting Program Participation Data
+              - img [ref=e925]
+            - generic "U.S. Territory Data" [ref=e931] [cursor=pointer]:
+              - text: U.S. Territory Data
+              - img [ref=e933]
+      - navigation [ref=e225]:
+        - generic [ref=e228]:
+          - generic [ref=e229]:
+            - img "FBI Seal" [ref=e230]
+            - img "FBI Seal" [ref=e231]
+          - generic [ref=e233]:
+            - generic [ref=e234]: Contact us
+            - generic [ref=e235]: FBI Uniform Crime Reporting Program
+            - generic [ref=e236]: 1000 Custer Hollow Road | Clarksburg, WV 26306
+            - generic [ref=e237]:
+              - link "Web Form" [ref=e238] [cursor=pointer]:
+                - /url: https://forms.fbi.gov/assistance-with-uniform-crime-statistics-information
+                - generic [ref=e239]: Web Form
+              - img [ref=e241]
+            - generic [ref=e247]:
+              - img "X Logo" [ref=e248] [cursor=pointer]
+              - img "facebook" [ref=e249] [cursor=pointer]
+              - img "youtube" [ref=e250] [cursor=pointer]
+              - img "instagram" [ref=e251] [cursor=pointer]
+              - img "linkedin" [ref=e252] [cursor=pointer]
+          - generic [ref=e253]:
+            - link "FAQ" [ref=e254] [cursor=pointer]:
+              - /url: "#/pages/about#faq"
+            - link "GLOSSARY" [ref=e255] [cursor=pointer]:
+              - /url: "#"
+            - link "PRIVACY POLICY" [ref=e256] [cursor=pointer]:
+              - /url: https://www.fbi.gov/privacy_policy
+            - img [ref=e258]
+            - link "FOIA" [ref=e264] [cursor=pointer]:
+              - /url: https://www.fbi.gov/services/information-management/foipa
+            - img [ref=e266]
+            - link "USA.GOV" [ref=e272] [cursor=pointer]:
+              - /url: https://www.usa.gov/
+            - img [ref=e274]
+            - link "ACCESSIBILITY" [ref=e280] [cursor=pointer]:
+              - /url: https://www.fbi.gov/accessibility
+            - img [ref=e282]
+            - link "FEEDBACK" [ref=e288] [cursor=pointer]:
+              - /url: https://forms.fbi.gov/cde
+            - img [ref=e290]

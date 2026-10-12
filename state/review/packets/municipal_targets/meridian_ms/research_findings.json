@@ -1,0 +1,118 @@
+{
+  "case_key": "meridian_ms",
+  "jurisdiction_id": "28:municipal:place:2846640",
+  "jurisdiction_name": "Meridian city",
+  "state_abbr": "MS",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_all_fill_as_pre_2025_reporting_transition_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Meridian is a real incorporated city with an active Meridian Police Department inside city government. The official City of Meridian departments page lists Police as a city department, and the official city contact page lists Meridian Police Department, the Meridian Police Chief, patrol, investigations, courts and records, emergency, and nonemergency contacts.",
+    "Official county materials do not support a sheriff-primary replacement theory. The official Lauderdale County site lists the Sheriff's Department as a separate county department, and the official Lauderdale County Sheriff's Office site says the county has several municipal police departments that patrol their respective city limits while the sheriff's office assists those agencies when necessary.",
+    "The repo's municipal routing is structurally correct. The live crosswalk maps only MS0380100 to 28:municipal:place:2846640, while the Lauderdale County Sheriff's Office ORI MS0380000 is separately routed to Mississippi's state nonmunicipal remainder rather than to Meridian city.",
+    "Repo observations show a continuity collapse, not a service-structure handoff. Meridian Police Department has positive summary totals in 2018, 2019, and 2020, then zero-count placeholder rows in 2021 through 2024; Lauderdale County Sheriff's Office shows the same 2021 through 2024 zero pattern rather than a compensating county replacement series.",
+    "Mississippi's own public reporting closes the keep versus drop question in Meridian's favor but shows that the 2024 gap is real. Mississippi NIBRS explains that only production-site submissions from certified agencies appear in TOPS; the April 18, 2025 state certification-status list still placed both Meridian PD and Lauderdale County SO in the testing process; the official 2024 TOPS violent and property reporting-agency exports contain no Meridian Police Department row; and the December 31, 2025 state certified-agency list later shows Meridian PD and Lauderdale Co SO as certified agencies.",
+    "Once Meridian reaches that certified state surface, Mississippi TOPS publishes Meridian Police Department as a separate agency rather than folding the city into the sheriff. The official 2025 TOPS reporting-agency exports list Meridian Police Department with 184 violent crimes and 650 property crimes, while Lauderdale County Sheriff's Office appears separately with far smaller 2025 totals."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_city_police_department",
+    "official_basis": [
+      "The City of Meridian government departments page lists Police as a city department.",
+      "The official city contact page provides direct Meridian Police Department contact information, chief contact information, and unit-level police service contacts."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Meridian Police Department",
+    "official_evidence": [
+      "The official city contact page lists Meridian Police Department, Meridian Police Chief Malachi Sanders, patrol/front desk, investigations, courts and records, emergency, and nonemergency numbers.",
+      "The official Lauderdale County site lists the Sheriff's Department as a separate county department with its own website and phone numbers.",
+      "The official Lauderdale County Sheriff's Office homepage states that the county has several municipal police departments that patrol their respective city limits and that the sheriff's office assists them when necessary."
+    ],
+    "replacement_by_county_found": false,
+    "important_negative_finding": "No official city, county, or Mississippi state source indicates that Lauderdale County Sheriff's Office replaced Meridian Police Department as Meridian's primary general-policing authority."
+  },
+  "official_state_publication_structure": {
+    "state_repository_program": {
+      "surface": "Mississippi Crime Insight / Theme Oriented Public Site (TOPS)",
+      "official_basis": [
+        "Mississippi NIBRS says testing agencies upload to the certification site and certified agencies upload monthly submissions to the production site.",
+        "The same Mississippi NIBRS page says production-site NIBRS data can be viewed by the public through TOPS."
+      ],
+      "why_it_matters": "This explains why Meridian can be a real municipal police agency while still lacking 2024 public TOPS counts if the department had not yet reached certified production status."
+    },
+    "certification_timeline": {
+      "2025_04_18_state_status": "The April 18, 2025 Mississippi certification-status list places both Meridian PD and Lauderdale Co SO in the testing process.",
+      "2025_12_31_state_status": "The December 31, 2025 Mississippi certified-agency list places both Meridian PD and Lauderdale Co SO in the certified-agency section."
+    },
+    "public_reporting_surface": {
+      "2024_reporting_agencies": {
+        "meridian_pd_present": false,
+        "lauderdale_so_present": false,
+        "basis": [
+          "The official 2024 TOPS violent-reporting-agencies export contains no Meridian Police Department row.",
+          "The official 2024 TOPS property-reporting-agencies export contains no Meridian Police Department row.",
+          "Those same 2024 coverage exports also contain no Lauderdale County Sheriff's Office row."
+        ]
+      },
+      "2025_reporting_agencies": {
+        "meridian_pd_present": true,
+        "lauderdale_so_present": true,
+        "meridian_pd_violent_2025": {
+          "all_violent_crime": 184,
+          "murder": 13,
+          "aggravated_assault": 125,
+          "robbery": 19,
+          "non_consensual_sex_offenses": 27
+        },
+        "meridian_pd_property_2025": {
+          "all_property_crimes": 650,
+          "robbery_duplicate": 19,
+          "larceny_theft": 180,
+          "burglary": 248,
+          "fraud": 73,
+          "embezzlement": 18,
+          "motor_vehicle_theft": 112
+        },
+        "lauderdale_so_violent_2025": {
+          "all_violent_crime": 8
+        },
+        "lauderdale_so_property_2025": {
+          "all_property_crimes": 21
+        },
+        "interpretation": "By 2025 Mississippi's own public reporting treats Meridian Police Department and Lauderdale County Sheriff's Office as separate agencies, which is incompatible with a sheriff-primary replacement theory for Meridian city."
+      }
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "MS0380100 is routed exclusively to 28:municipal:place:2846640, while MS0380000 is routed exclusively to 28:state_nonmunicipal_remainder.",
+    "agency_master_state": "agency_master.parquet still identifies MS0380100 as Meridian Police Department and MS0380000 as Lauderdale County Sheriff's Office.",
+    "current_observation_state": "MS0380100 carries summary totals of 1632 in 2018, 1656 in 2019, and 1352 with nine months reported in 2020, then only zero-count summary rows in 2021-2024. MS0380000 shows a separate county series with 470 in 2018, 437 in 2019, 293 in 2020, and then zeros in 2021-2024.",
+    "current_control_state": "The 2024 Meridian city control row is entirely fill-driven with reported_count_preferred = 0 across all seven offenses and adjusted_count_ags_core totaling 1644.0.",
+    "mississippi_state_packet_signal": "Meridian is not one of Mississippi's effective-by-2024 ready-now TOPS backfill rows, which is consistent with the official state evidence that Meridian had not yet reached public certified production status in 2024."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "deeper_routing_problem_found": false,
+    "why": [
+      "Official city materials show a live Meridian Police Department as part of city government.",
+      "Official county materials describe municipal police departments as patrolling their own city limits, with the sheriff assisting rather than replacing them.",
+      "The repo routing already treats Meridian PD and Lauderdale County Sheriff's Office as separate entities, which matches the official structure.",
+      "Official Mississippi public reporting shows no 2024 Meridian PD reporting surface but does show Meridian PD as a separate reporting agency in 2025 after certification progress, which indicates a timing and continuity problem rather than an invalid municipal target."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Meridian municipal control row 28:municipal:place:2846640.",
+      "Do not collapse Meridian into Lauderdale County sheriff handling or into Mississippi nonmunicipal remainder.",
+      "Classify the 2021-2024 all-fill state as a reporting continuity and late-transition problem on MS0380100, not as evidence that the municipal target is fake or structurally wrong.",
+      "Recognize that Meridian is not the same Mississippi lane as Gulfport-style missing-2024 TOPS publication. Meridian's official public state surface appears to begin in 2025, so the packet closes the keep/drop decision but does not supply a direct 2024 state-public backfill table.",
+      "For any 2024 override work, prioritize a nonpublic Mississippi state extract, a later official state publication that preserves 2024 agency counts, or city-origin records before considering broader heuristics."
+    ]
+  },
+  "likely_issue_class": "valid_target_but_pre_2025_reporting_transition_gap",
+  "blockers_or_followups": [
+    "The keep versus drop decision is closed, but this packet does not identify a direct official public Meridian Police Department offense table for 2024.",
+    "Because Mississippi's public violent surface groups rape inside a broader non-consensual sex offenses category even where agency reporting exists, any later offense-level override still needs category-careful mapping."
+  ]
+}

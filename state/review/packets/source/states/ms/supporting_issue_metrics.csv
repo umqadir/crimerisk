@@ -1,0 +1,38 @@
+metric_group,metric_name,metric_value,metric_note
+statewide_validation,official_oris,307.0,Mississippi official roster rows in validation summary.
+statewide_validation,official_nibrs_oris,223.0,Mississippi roster rows flagged official NIBRS.
+statewide_validation,official_effective_nibrs_oris_2024,179.0,Mississippi roster rows effective in NIBRS by 2024.
+statewide_validation,repo_master_matches,281.0,Official roster rows that match repo master.
+statewide_validation,mismatch_rows,169.0,Mississippi validation mismatches of any kind.
+statewide_validation,present_but_no_2024_observation,143.0,Rows present in repo master with no 2024 observation.
+statewide_validation,present_but_no_2024_observation_non_effective_or_future_start,103.0,Zero-observation rows that are not official-effective NIBRS in 2024 and should stay contextual.
+statewide_validation,missing_in_repo_master,26.0,Official roster rows absent from repo master.
+statewide_validation,official_nibrs_repo_no_nibrs_total,41.0,Official-effective rows with no repo 2024 NIBRS including the one missing-master row.
+lane_decision,primary_lane_different_reporting_structure,1.0,Mississippi should be classified first as a different reporting-structure lane.
+lane_decision,statewide_replacement_path_available,1.0,Mississippi has a live statewide public official replacement path through Crime Insight/TOPS.
+lane_decision,narrow_exception_state,0.0,Mississippi is not a narrow exception state.
+lane_decision,master_reference_omission_primary_state_lane,0.0,Master omission is not the primary Mississippi doctrine.
+source_structure,aligned_mixed_source_rows,138.0,Aligned rows still treated as mixed-source in 2024.
+source_structure,aligned_repo_preferred_srs_rows,138.0,Aligned rows whose preferred source remains SRS annual.
+source_structure,aligned_repo_preferred_support_total_2024,24922.0,Total 2024 support count on aligned rows still source-preferred to SRS.
+source_structure,agencies_both_12m_srs_vs_nibrs,103.0,Mississippi agencies with both 12-month SRS and NIBRS in the ratio table.
+source_structure,ratio_robbery_srs_to_nibrs,1.0,Coverage-matched SRS to NIBRS robbery ratio.
+source_structure,ratio_larceny_srs_to_nibrs,1.0056221136470116,Coverage-matched SRS to NIBRS larceny ratio.
+source_structure,ratio_burglary_srs_to_nibrs,0.9570354457572504,Coverage-matched SRS to NIBRS burglary ratio.
+source_structure,ratio_aggravated_assault_srs_to_nibrs,0.7955027577428935,Coverage-matched SRS to NIBRS aggravated-assault ratio.
+official_public_source,violent_crime_total_2024,4535.0,Official Mississippi TOPS 2024 statewide violent-crime total.
+official_public_source,murder_total_2024,124.0,Official Mississippi TOPS 2024 statewide murder total.
+official_public_source,non_consensual_sex_offenses_total_2024,913.0,Official Mississippi TOPS 2024 statewide non-consensual sex-offenses total.
+official_public_source,robbery_total_2024,377.0,Official Mississippi TOPS 2024 statewide robbery total.
+official_public_source,aggravated_assault_total_2024,3121.0,Official Mississippi TOPS 2024 statewide aggravated-assault total.
+official_public_source,property_crime_total_2024,34150.0,Official Mississippi TOPS 2024 statewide property-crime total.
+official_public_source,burglary_total_2024,4422.0,Official Mississippi TOPS 2024 statewide burglary total.
+official_public_source,larceny_total_2024,20812.0,Official Mississippi TOPS 2024 statewide larceny total.
+official_public_source,motor_vehicle_theft_total_2024,2907.0,Official Mississippi TOPS 2024 statewide motor-vehicle-theft total.
+backfill_lane,effective_nibrs_no_repo_rows_present_in_master,40.0,Official effective-NIBRS rows present in master with no repo 2024 observations.
+backfill_lane,effective_nibrs_no_repo_city_rows,19.0,City rows in the present-in-master effective-NIBRS backfill lane.
+backfill_lane,effective_nibrs_no_repo_county_rows,6.0,County rows in the present-in-master effective-NIBRS backfill lane.
+backfill_lane,effective_nibrs_no_repo_university_rows,9.0,University/community-college rows in the effective-NIBRS backfill lane.
+backfill_lane,effective_nibrs_no_repo_state_police_rows,6.0,State-police rows in the effective-NIBRS backfill lane.
+policy,missing_master_true_2024_omission_rows,1.0,Missing-master rows that look like true current-year omissions.
+policy,missing_master_future_or_special_rows,25.0,Missing-master rows that are future-dated or state-special policy inventory.

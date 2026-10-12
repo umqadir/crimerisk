@@ -1,0 +1,10 @@
+source_field,source_value,source_label,v2_offense,include_in_v2,counting_basis,notes
+OFFENSE,HOMICIDE,Homicide,murder,yes,row_count,"Direct local offence label; public and official year-end counts match exactly in 2024."
+OFFENSE,SEX ABUSE,Sex Abuse,rape,yes,row_count,"Retain for packet reconciliation, but do not promote live because MPD Sex Abuse is not treated as the repo's rape offence."
+OFFENSE,ROBBERY,Robbery,robbery,yes,row_count,"Direct local offence label; public and official year-end counts differ by two incidents in 2024."
+OFFENSE,ASSAULT W/DANGEROUS WEAPON,Assault w/ a Dangerous Weapon,aggravated_assault,yes,row_count,"Promote as a local-analogue aggravated-assault surface; the public and official 2024 counts match exactly."
+OFFENSE,BURGLARY,Burglary,burglary,yes,row_count,"Direct local offence label; public and official year-end counts differ by two incidents in 2024."
+OFFENSE,THEFT F/AUTO,Theft from Auto,larceny,yes,row_count,"Use with THEFT/OTHER as the accepted DC larceny family aggregation."
+OFFENSE,THEFT/OTHER,Theft (Other),larceny,yes,row_count,"Use with THEFT F/AUTO as the accepted DC larceny family aggregation."
+OFFENSE,MOTOR VEHICLE THEFT,Motor Vehicle Theft,motor_vehicle_theft,yes,row_count,"Direct local offence label; public and official year-end counts differ by one incident in 2024."
+OFFENSE,ARSON,Arson,arson,no,exclude,"Arson is outside the repo's seven-offense city-share surface."

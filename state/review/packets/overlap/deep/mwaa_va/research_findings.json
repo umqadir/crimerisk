@@ -1,0 +1,124 @@
+{
+  "case_key": "mwaa_va",
+  "ori": "VAMWA0000",
+  "agency_name_raw": "Metropolitan Washington Airports Authority Police",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "recommended_disposition": "localize_to_custom_footprint",
+    "recommended_geometry_basis": "mwaa_multi_facility_airports_and_roadways",
+    "fallback_if_not_supported": "keep_broad_overlap",
+    "absorb_into_primary": false,
+    "production_ready": true,
+    "confidence": "high"
+  },
+  "core_findings": [
+    "MWAA is an interstate-compact public authority, but the actual police service footprint documented by MWAA is not a bi-state municipal substitute. It is a Virginia-only, multi-facility special-jurisdiction layer tied to MWAA-operated facilities.",
+    "Official MWAA materials repeatedly identify the police department's routine jurisdiction as Ronald Reagan Washington National Airport, Washington Dulles International Airport, the Dulles Toll Road, and the Dulles Access Highway / Dulles Airport Access Road.",
+    "The MWAA Police Department's own operational and chief pages say officers work from Reagan National Command and Dulles Command, enforce county codes in three separate jurisdictions, and provide primary law enforcement on airport property, airport roadways, and the Dulles roadway facilities. This defeats any single county or place proxy.",
+    "Virginia law grants MWAA police concurrent authority on Authority Facilities and within 300 yards of those facilities, while also preserving concurrent jurisdiction for Arlington, Fairfax, and Loudoun law enforcement. That legal authority language is broader than the routine geometry we should localize to in production.",
+    "The defensible production footprint is therefore a custom MWAA authority footprint: Reagan airport property and associated on-airport facilities, Dulles airport property and associated on-airport facilities, and the MWAA-policed Dulles Access Highway / Access Road and Dulles Toll Road corridor. If that custom geometry is not yet supported, the row should remain broad overlap rather than be forced into a false county/place proxy."
+  ],
+  "service_jurisdiction_footprint": {
+    "is_truly_multistate": false,
+    "is_multi_county": true,
+    "is_multi_facility": true,
+    "legal_backdrop": {
+      "entity_type": "interstate-compact airport authority with Virginia policing powers",
+      "compact_scope": "MWAA exists to operate and improve Ronald Reagan Washington National Airport and Washington Dulles International Airport as the region's primary airports.",
+      "authority_facilities_definition": "Virginia Code defines Authority Facilities to include airport facilities and associated lands, approaches, roadways, and incidental facilities, expressly including the existing Dulles Airport Access Road and its right-of-way.",
+      "important_interpretation": "The legal grant of concurrent authority on Authority Facilities and within 300 yards of those facilities should not be converted into a default 300-yard production buffer. Routine geometry should follow the facilities MWAA itself identifies as its regular police jurisdiction."
+    },
+    "explicitly_documented_operational_components": [
+      "Ronald Reagan Washington National Airport terminals, airport property, and roadways",
+      "Washington Dulles International Airport terminals, airport property, and roadways",
+      "buildings and properties surrounding Reagan National and Dulles International Airports that MWAA Police describe as primary-law-enforcement responsibility",
+      "Dulles Toll Road",
+      "Dulles Access Highway / Dulles Airport Access Road"
+    ],
+    "supporting_operational_notes": [
+      "MWAA Police operational materials place new officers in either Reagan National Command or Dulles Command rather than a county command structure.",
+      "The 2024 MWAA Police annual report says responsibilities extend to traffic control and enforcement at Reagan National, Dulles International, the Dulles Toll Road, and the Dulles International Access Highway.",
+      "The annual report also says the department polices in three jurisdictions and regularly patrols the airport Metrorail stations through a collaborative agreement with WMATA; that WMATA collaboration does not justify expanding the production footprint to the broader WMATA network."
+    ],
+    "facility_context": {
+      "reagan_national": {
+        "official_location_summary": "Reagan National is officially located in Virginia and comprises an 860-acre airport campus with terminals, parking, roadway systems, and other on-airport facilities.",
+        "why_it_matters": "This confirms a bounded airport-property component rather than a Washington, DC place proxy."
+      },
+      "dulles_international": {
+        "official_location_summary": "Dulles is an 11,184-acre airport property in Loudoun and Fairfax Counties with terminals, runways, cargo and support facilities, and 198 lane miles of roads on airport property, plus the 16-mile Dulles Airport Access Road connection.",
+        "why_it_matters": "This confirms a large, bounded, multi-county airport-property component rather than a Loudoun-only or Fairfax-only proxy."
+      }
+    }
+  },
+  "why_simple_proxies_fail": {
+    "single_place_proxy": [
+      "No single place captures both airport campuses and the Dulles roadway facilities. Arlington or 'Washington National' misses Dulles and the Toll Road; Dulles or Sterling misses Reagan.",
+      "A Washington, DC proxy is especially indefensible because MWAA's own Reagan overview states Reagan National is located in Virginia, while the police service layer also includes facilities in Arlington, Fairfax, and Loudoun."
+    ],
+    "single_county_proxy": [
+      "MWAA Police explicitly state they enforce county codes in three separate jurisdictions, and Virginia law preserves concurrent jurisdiction for Arlington, Fairfax, and Loudoun.",
+      "Arlington County would omit Dulles and the roadway corridor; Fairfax County would omit Reagan and portions of Dulles; Loudoun County would omit Reagan and the eastern roadway segment."
+    ],
+    "airport_only_two-campus_proxy_without_roadways": [
+      "A custom footprint limited to Reagan and Dulles airport polygons would understate MWAA's own documented routine jurisdiction, which also includes the Dulles Toll Road and Dulles Access Highway.",
+      "MWAA's citizen reporting, operational-services, public-safety, and safety-service-patrol materials all treat those roadway facilities as part of the department's regular service area."
+    ],
+    "absorb_into_primary_jurisdiction": [
+      "Absorbing the row into Arlington County, Fairfax County, Loudoun County, or any municipal primary would erase a real special-jurisdiction police layer that MWAA and Virginia law both treat as distinct and concurrent.",
+      "Concurrent local jurisdiction does not make the MWAA layer unreal; it means the row is an overlap that should track MWAA facilities rather than general county patrol territory."
+    ],
+    "statutory_300_yard_buffer_as_geometry": [
+      "Virginia Code gives officers responsibility on Authority Facilities and within 300 yards of those facilities, but that is an enforcement-authority rule, not an official mapped patrol polygon.",
+      "Using a blanket 300-yard halo would overstate the routine production footprint beyond the specific airport and roadway facilities MWAA actually identifies in operational materials."
+    ]
+  },
+  "recommended_production_handling": {
+    "primary_recommendation": "localize_to_custom_footprint",
+    "custom_footprint_description": "Build a Virginia-only, discontiguous MWAA authority footprint consisting of bounded Reagan and Dulles airport-campus proxies validated against official airport acreage and map materials, plus the Dulles Access Highway / Access Road and Dulles Toll Road corridor from the official Route 267 roadway facilities that MWAA Police explicitly patrol.",
+    "geometry_guidance": [
+      "Use authoritative airport-property / airport-campus geometry for Reagan National and Dulles International rather than county or place polygons.",
+      "Include the airport roadway systems and support facilities that MWAA treats as part of each airport campus.",
+      "Add the Dulles Access Highway / Dulles Airport Access Road and Dulles Toll Road corridor as separate MWAA-policed roadway components.",
+      "Do not expand the footprint to all mutual-aid territory, all three counties, the broader WMATA network, or a default 300-yard perimeter buffer around every facility.",
+      "Do not reduce the case to only one airport, only Dulles roadway facilities, or a single locality."
+    ],
+    "fallback_recommendation": "keep_broad_overlap",
+    "fallback_why": [
+      "If the production system cannot yet support a discontiguous multi-facility authority footprint that mixes airport campuses and roadway corridors, broad overlap is safer than a false county/place localization.",
+      "A false proxy would create spurious geographic precision and misallocate a real authority-police special jurisdiction."
+    ],
+    "not_recommended": [
+      "localize_to_place",
+      "localize_to_county",
+      "absorb_into_primary_jurisdiction",
+      "localize_to_reagan_only",
+      "localize_to_dulles_only",
+      "localize_to_two_airports_only_without_dulles_roadways",
+      "localize_to_facilities_plus_blanket_300_yard_buffer"
+    ]
+  },
+  "final_verdict": {
+    "defensible_single_county_proxy_exists": false,
+    "defensible_single_place_proxy_exists": false,
+    "should_absorb_into_primary_jurisdiction": false,
+    "should_stay_broad_overlap_until_custom_footprint_built": false,
+    "exact_recommended_production_disposition": "custom MWAA authority footprint covering Reagan National, Dulles International, and MWAA-policed Dulles roadway facilities"
+  },
+  "authoritative_sources_used": [
+    "https://www.mwaa.com/about-airports-authority-0",
+    "https://www.mwaa.com/policefireems/mwaa-police-department/chief-police",
+    "https://www.mwaa.com/policefireems/mwaa-police-department/operational-services",
+    "https://www.mwaa.com/sites/mwaa.com/files/2025-03/2024_police_annual_report.pdf",
+    "https://www.mwaa.com/policefireems/mwaa-police-department/safety-service-patrol-dulles-toll-road",
+    "https://www.mwaa.com/policefireems/public-safety-communications",
+    "https://www.mwaa.com/citizen-online-reporting-system",
+    "https://www.flyreagan.com/airport-overview",
+    "https://www.flydulles.com/airport-overview",
+    "https://www.mwaa.com/notice-availability-dca-roadway-network-improvements-and-associated-development-final-environmental",
+    "https://www.mwaa.com/news/toll-calculator-now-available-dulles-toll-road-website",
+    "https://law.lis.virginia.gov/vacode/title5.1/chapter10/section5.1-152/",
+    "https://law.lis.virginia.gov/vacode/title5.1/chapter10/section5.1-156/",
+    "https://law.lis.virginia.gov/vacode/title5.1/chapter10/section5.1-158/"
+  ]
+}

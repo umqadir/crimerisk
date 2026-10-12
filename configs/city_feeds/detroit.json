@@ -1,0 +1,259 @@
+{
+  "city_key": "detroit",
+  "city_name": "Detroit",
+  "evidence_refs": [
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:3-17",
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:93-117",
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:160-229",
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:245-256",
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:286-322",
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:340-372",
+    "state/review/packets/city/detroit/evidence/01_fetch_detroit.py:374-419",
+    "state/review/packets/city/detroit/evidence/offense_mapping.csv",
+    "state/review/packets/city/detroit/evidence/raw_cache_profile.json",
+    "state/review/packets/city/detroit/evidence/jurisdictions.csv",
+    "state/review/packets/city/detroit/raw_cache.parquet",
+    "state/review/packets/city/detroit/source_candidate.csv",
+    "state/review/packets/city/detroit/spatial_contract_notes.json",
+    "state/review/packets/city/detroit/packet.json case_text: 'README present: no; offense_mapping.csv present: yes.'"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "26:municipal:place:2622000"
+    ],
+    "state_fips": [
+      "26"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Offense matching: the script compares whitespace-normalized category/description (normalize() collapses internal runs and strips ends, 01_fetch_detroit.py:245-256) against exact dict keys, case-sensitively. The contract reproduces this with anchored regexes that allow leading/trailing whitespace and \\s+ between tokens, case_sensitive true. The raw cache has trailing-padded variants (e.g. 'AGGRAVATED / FELONIOUS ASSAULT' padded, 2,933 rows, raw_cache_profile.json offense_description.distinct), so plain eq would under-match unless the runner strips.",
+    "Script mapping key ('BURGLARY', 'BURGLARY - FORCED ENTRY -  RESIDENCE') at 01_fetch_detroit.py:213 has a double space, but classify() collapses the description to a single space before lookup, so the key never matches and the one raw row with that description (raw_cache_profile.json count 1) is dropped by the script. The contract reproduces the script's behaviour (row not kept) rather than the comment's stated intent (lines 196-197: 'include'). Fixing this would add 1 burglary row and is a mapping change, not a translation.",
+    "Live-pull where: the script filters server-side on 'incident_year >= 2018 AND incident_year <= 2024' (01_fetch_detroit.py:116), which cannot be written with {start}/{end} date placeholders. The contract filters on incident_occurred_at with the upper bound widened to 05:00 of {end} and then keeps rows by year_field incident_year, which is what the script keys on (line 356-358). In the raw cache incident_year equals the America/Detroit local year of incident_occurred_at for all 590,089 rows, and incident_occurred_at spans 2018-01-01T05:00Z to 2025-01-01T04:59Z; the window [{start} 00:00, {end} 05:00) contains all 590,089 rows whether ArcGIS reads the literals as UTC or local, whereas a UTC-midnight window would lose 55 raw rows (26 of them in the kept set). Computed with pandas from raw_cache.parquet. The UTC/local interpretation of TIMESTAMP literals by this service is not verifiable from the packet.",
+    "Coordinates: the script drops only null latitude/longitude (01_fetch_detroit.py:363-366); require_coordinates also drops (0,0). The raw cache has 0 such rows in the kept set (computed), so the kept rows are identical. The script reads the latitude/longitude attribute columns with returnGeometry false (line 295), so no __arcgis_* fallback is needed.",
+    "De-duplication: the script does not de-duplicate (it only counts duplicate incident_entry_id, line 370-372). dedupe_on_id is false to match; incident_entry_id is unique in the raw cache (590,089 distinct of 590,089 rows, raw_cache_profile.json), so true would give the same result.",
+    "Spatial join: the script joins points to Michigan TIGER 2020 block groups with predicate 'within', keeps the first match per point, and drops points with no 12-digit GEOID (01_fetch_detroit.py:374-399). The contract relies on the runner's 2020 block-group 'within' join for state 26; whether the runner drops unmatched points identically is runner behaviour not visible in the packet.",
+    "Not expressible: the script's cross-check of the computed block group against census_block_2020_geoid[:12] (lines 401-414, reporting only), its pass-through of scout_car_area and police_precinct into incidents_bg.parquet (lines 416-419), and its side outputs (_fetch_summary.json, _year_offense_pivot.csv, offense_mapping.csv).",
+    "Row unit: each row is one offense charge, not one incident (01_fetch_detroit.py:13-17; report_number has 542,731 distinct values over 590,089 rows, raw_cache_profile.json). The script's id is the per-charge incident_entry_id (line 370) and the contract keeps it; counts are charge counts, as in the script."
+  ],
+  "mapping": {
+    "date_field": "incident_occurred_at",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": false,
+    "id_fields": [
+      "incident_entry_id"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*HOMICIDE\\s*$",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "offense_description",
+            "op": "regex",
+            "value": "^\\s*MURDER\\s+/\\s+NON-NEGLIGENT\\s+MANSLAUGHTER\\s+\\(VOLUNTARY\\)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*SEXUAL\\s+ASSAULT\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*ROBBERY\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*AGGRAVATED\\s+ASSAULT\\s*$",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "offense_description",
+            "op": "regex",
+            "value": "^\\s*(AGGRAVATED\\s+/\\s+FELONIOUS\\s+ASSAULT|NON-FATAL\\s+SHOOTING)\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*BURGLARY\\s*$",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "offense_description",
+            "op": "regex",
+            "value": "^\\s*(BURGLARY\\s+-\\s+FORCED\\s+ENTRY|BURGLARY\\s+-\\s+ENTRY\\s+WITHOUT\\s+FORCE\\s+\\(INTENT\\s+TO\\s+COMMIT\\))\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*LARCENY\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "offense_category",
+            "op": "regex",
+            "value": "^\\s*STOLEN\\s+VEHICLE\\s*$",
+            "values": []
+          },
+          {
+            "case_sensitive": true,
+            "field": "offense_description",
+            "op": "regex",
+            "value": "^\\s*(MOTOR\\s+VEHICLE\\s+THEFT|UNAUTHOIRZED\\s+USE\\s+OF\\s+A\\s+MOTOR\\s+VEHICLE\\s+\\(JOY\\s+RIDING\\))\\s*$",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "case_status",
+            "op": "eq",
+            "value": "UNFOUNDED",
+            "values": []
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "incident_year"
+  },
+  "notes": "Translation of evidence/01_fetch_detroit.py. Verified on raw_cache.parquet with pandas: applying the script's own steps (drop case_status == 'UNFOUNDED' [164 rows], classify(), incident_year 2018-2024, non-null lat/lon) keeps 250,383 rows (larceny 86,157; aggravated_assault 57,959; motor_vehicle_theft 51,482; burglary 35,890; robbery 12,058; rape 4,997; murder 1,840), and applying these contract rules (first-match, regex conditions, UNFOUNDED exclude, incident_year filter, coordinate filter) keeps the same 250,383 rows with the same per-offense counts and no RESIDENCE-description row. Counts are before the block-group join. Order of rules does not matter: each rule is gated on a distinct offense_category. jurisdiction_ids is Detroit city only: the publisher is the Detroit Police Department (01_fetch_detroit.py:3), a city PD. evidence/jurisdictions.csv also lists 11 other Michigan places totalling 2,822 incidents (Redford 963, Warren 811, Hamtramck 428, Eastpointe 400, others under 140) against 248,888 in Detroit city; these are points falling outside the city boundary, not jurisdictions DPD serves, so they are not listed. The jurisdictions.csv total (251,710) does not equal the 250,383 recomputed here; the packet does not say how that file was built, so the gap is not reconciled. No README is present (packet.json case_text), so no publisher-stated exclusions are available; spatial_contract_notes.json records that the portal generalizes locations to the nearest intersection, which is a location caveat, not an exclusion. api_endpoint is the layer URL the script uses as BASE (lines 93-96); the script queries BASE + '/query'. source_url is the dataset page from source_candidate.csv. spatial_contract_notes.json proposes census_block_2020_geoid as the primary block-group key; the script uses the point join, and the contract follows the script.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/qvkbeam7Wirps6zC/arcgis/rest/services/RMS_Crime_Incidents/FeatureServer/0",
+      "name": "Detroit Police Department RMS Crime Incidents (ArcGIS FeatureServer layer 0)",
+      "order": "ESRI_OID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "incident_entry_id",
+        "report_number",
+        "offense_category",
+        "offense_description",
+        "incident_occurred_at",
+        "incident_year",
+        "case_status",
+        "scout_car_area",
+        "police_precinct",
+        "neighborhood",
+        "zip_code",
+        "council_district",
+        "census_block_2020_geoid",
+        "latitude",
+        "longitude"
+      ],
+      "slug": "detroit_rms_crime_incidents",
+      "source_url": "https://data.detroitmi.gov/datasets/detroitmi::rms-crime-incidents/about",
+      "where": "incident_occurred_at >= TIMESTAMP '{start} 00:00:00' AND incident_occurred_at < TIMESTAMP '{end} 05:00:00'"
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "case_key": "bloomington_il",
+  "jurisdiction_id": "17:municipal:place:1706613",
+  "jurisdiction_name": "Bloomington city",
+  "state_abbr": "IL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_classify_current_all_fill_as_illinois_publication_certification_continuity_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Bloomington remains a real current city-police jurisdiction. Official City of Bloomington police pages present an active Bloomington Police Department, a current police chief, current strategic goals, and live public contact and transparency surfaces.",
+    "Official city publication continuity exists locally. The Bloomington Police Department transparency page links annual reports for 2022, 2023, and 2024 and says those reports summarize crime data, significant events, and key performance indicators, while the City's crime-statistics page says Bloomington incident data is available for one year up to the current date and is uploaded twice weekly.",
+    "Illinois changed the public statewide publication regime after the SRS-to-NIBRS transition. The official Illinois Crime in Illinois Online portal states that starting in 2023, agency data is published only after achieving NIBRS certification.",
+    "Repo evidence is inconsistent with county replacement or target invalidity and instead points to a continuity or publication mismatch. IL0570100 is crosswalked exclusively to Bloomington city, substantive annual counts exist through 2022, but 2023-2024 materialize only as zero-valued SRS placeholders even though other repo metadata still signals 2024 source presence.",
+    "There is no reviewed evidence that Bloomington was replaced by McLean County Sheriff as the city's primary police surface. The official city materials continue to describe Bloomington Police Department itself as the policing entity, and the live city crime pages are Bloomington PD-branded."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Bloomington maintains current Bloomington Police Department pages under the city's official police domain.",
+      "The chief page presents current departmental goals for 2026, including reaching a full sworn staff count of 134, which is incompatible with a defunct or replaced municipal police department.",
+      "The city's transparency and crime pages are maintained as Bloomington Police Department surfaces rather than as county-sheriff substitutes."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Bloomington Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The chief page says Chief Jamal Simington has been with the Bloomington Police Department since 2021 and remains focused on reducing crime and improving BPD community dashboards.",
+      "The annual-reports page sits inside the Bloomington Police Department transparency section and links 2024, 2023, and 2022 reports.",
+      "The crime-statistics page says the data reflects incident reports taken by Bloomington Police Department and is updated twice a week."
+    ],
+    "important_clarification": "This review found no official evidence that Bloomington city should be demoted to McLean County primary service or treated as a fake municipal policing target."
+  },
+  "official_reporting_evidence": {
+    "local_city_publication_surface": {
+      "summary": "Bloomington continues to publish city-police crime information locally.",
+      "details": [
+        "The annual-reports page links 2022, 2023, and 2024 Bloomington Police Department annual reports and describes them as overviews of crime data, significant events, and key performance indicators.",
+        "The crime-statistics page says Bloomington Police Department incident data is available for one year up to the current date.",
+        "The same page says criminal incident data is uploaded twice a week."
+      ],
+      "interpretation": "Bloomington's policing and public crime-publication continuity clearly continue at the city level even if statewide annual publication surfaces fail to yield a usable 2024 row."
+    },
+    "illinois_state_publication_rule_change": {
+      "summary": "Illinois State Police says that starting in 2023, agency data will be published only after achieving NIBRS certification.",
+      "interpretation": "The official statewide/public reporting surface is certification-gated for 2023 forward, creating a plausible and officially documented mechanism for Bloomington to disappear from public annual outputs even while the department itself remains active."
+    },
+    "state_tracker_presence": {
+      "summary": "Bloomington appears as a selectable agency in the official Illinois Agency Monthly Tracker.",
+      "interpretation": "The state portal still recognizes Bloomington as an agency identity. That is consistent with a publication-status problem and inconsistent with Bloomington having ceased to exist as a reporting agency."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.csv routes IL0570100 exclusively to 17:municipal:place:1706613 with relationship_type exclusive, weight 1.0, review_status auto, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet still flags source_presence_srs true, source_presence_nibrs true, srs_years 2018-2024, nibrs_years 2018-2024, and latest_nibrs_year 2024 for IL0570100.",
+    "observation_state": "agency_year_observations.parquet contains substantive Bloomington totals in 2018, 2019, 2020, 2021, and 2022, then only zero-valued srs_return_a_annual placeholder rows in 2023 and 2024, with no NIBRS annual rows materialized.",
+    "review_row_conflict": "agency_jurisdiction_review.csv still shows source_presence_nibrs true, latest_nibrs_year 2024, and latest_srs_months_reported 11.0 for IL0570100 even though latest_srs_part1_total is 0.0 and the control row is fully filled.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all seven 2024 Bloomington Part I offenses preferred from srs_return_a_annual with reported_count_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, estimate_source hist_median, and full current-year fill.",
+    "published_surface_gap_inside_repo": "The repo's published-NIBRS and FBI-CDE-oriented review artifacts do not surface a Bloomington, Illinois 2024 recovery row."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Bloomington still operates a clearly active city police department.",
+      "The city continues to publish Bloomington Police Department crime information locally through annual-report and live crime-map surfaces.",
+      "The agency-to-jurisdiction match is exclusive and straightforward, with no competing sheriff-primary interpretation in the reviewed materials.",
+      "The official Illinois portal documents a 2023-forward certification gate for public publication, which fits the missing statewide/public annual row."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "This is not county replacement, contract policing, or target invalidity.",
+      "The most likely class is a valid-target publication or continuity failure after Illinois moved to certification-gated NIBRS publication in 2023.",
+      "The repo then compounds the issue by materializing only zero SRS placeholders for 2023-2024 even while separate repo metadata still suggests 2024 agency presence, which indicates an internal source-promotion or continuity mismatch rather than a bad Bloomington target."
+    ],
+    "recommended_handling": [
+      "Retain Bloomington city as a standalone municipal control row.",
+      "Do not reroute IL0570100 into McLean County Sheriff or nonmunicipal county remainder.",
+      "Classify the current all-fill state as an Illinois public-publication or certification continuity gap on a valid municipal police target.",
+      "Treat the repo's zero 2023-2024 SRS rows as continuity placeholders rather than evidence of no policing or no municipal agency.",
+      "If production later requires Bloomington-specific post-2022 counts, use official Bloomington Police Department city-origin surfaces such as the linked annual reports, live city crime dashboard, or direct records process rather than assuming county replacement."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_illinois_publication_certification_gap_and_repo_continuity_mismatch",
+  "open_questions": [
+    "The target-validity question is closed with high confidence. The remaining bounded question is the exact Bloomington-specific state certification or publication status for 2023-2024. The public Illinois tracker recognized Bloomington as an agency, but the tracker report output was not cleanly text-extractable in this environment.",
+    "The city's annual-reports page clearly links 2023 and 2024 Bloomington Police Department annual reports, but Akamai blocked direct non-browser document fetches to the linked files during this review. That is not a blocker for the keep-versus-drop decision, but it means the packet does not quote the annual report totals directly."
+  ]
+}

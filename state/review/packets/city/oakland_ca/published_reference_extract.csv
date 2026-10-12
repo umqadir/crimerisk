@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+oakland_ca,"Oakland, California",06:municipal:place:0653000,aggravated_assault,5039.0,srs_return_a_annual,high
+oakland_ca,"Oakland, California",06:municipal:place:0653000,burglary,3423.0,srs_return_a_annual,high
+oakland_ca,"Oakland, California",06:municipal:place:0653000,larceny,18118.0,srs_return_a_annual,high
+oakland_ca,"Oakland, California",06:municipal:place:0653000,motor_vehicle_theft,9914.0,srs_return_a_annual,high
+oakland_ca,"Oakland, California",06:municipal:place:0653000,murder,81.0,srs_return_a_annual,high
+oakland_ca,"Oakland, California",06:municipal:place:0653000,rape,296.0,srs_return_a_annual,high
+oakland_ca,"Oakland, California",06:municipal:place:0653000,robbery,2960.0,srs_return_a_annual,high

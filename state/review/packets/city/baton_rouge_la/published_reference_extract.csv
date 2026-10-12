@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,aggravated_assault,513.0,srs_return_a_annual,sparse
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,burglary,839.0,srs_return_a_annual,sparse
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,larceny,2214.0,srs_return_a_annual,sparse
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,motor_vehicle_theft,759.0,srs_return_a_annual,sparse
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,murder,72.0,srs_return_a_annual,sparse
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,rape,26.0,srs_return_a_annual,sparse
+baton_rouge_la,"Baton Rouge, Louisiana",22:municipal:place:2205000,robbery,100.0,srs_return_a_annual,sparse

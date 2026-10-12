@@ -1,0 +1,10 @@
+step_order,step_key,phase,status,evidence_artifacts,notes
+1,lock_source_contract,research,complete,"source_candidate.csv|research_findings.json","Official BPD open-data page, official ArcGIS item metadata for the legacy SRS and NIBRS feeds, official weekly executive-summary PDFs, and the official 2024 year-end BPD release were all verified."
+2,lock_raw_snapshot,research,complete,research_findings.json,"Exact ArcGIS REST service URLs, item metadata URLs, and the packet-local 2024 reconciliation query window are recorded."
+3,audit_schema_and_coverage,research,complete,"research_findings.json|source_schema.csv","Legacy SRS service covers operational years 2011-2024 and NIBRS Group A covers 2022-present. Both have high coordinate coverage, but the contract is overlapping rather than singular."
+4,build_offense_contract,mapping,complete,"research_findings.json|offense_crosswalk.csv","Baltimore requires offense-specific counting rules. Robbery and larceny cannot be loaded with a naive description-count contract."
+5,build_spatial_contract,spatial,complete,research_findings.json,"Coordinates are present on nearly all 2024 rows, so spatial usability is strong. The blocker is counting doctrine, not geocoding."
+6,reconcile_to_reference,qa,complete,"reconciliation_summary.csv|published_reference_extract.csv","2024 week-ending 12/28/2024 executive-summary reconciliation is strong for several offenses but still shows real burglary and motor-vehicle-theft gaps."
+7,assign_city_status,promotion,complete,"packet_status.csv|research_findings.json","Baltimore is not city-wide ready. Packet supports only a future offense-selective legacy-SRS onboarding path after a packet-local loader is implemented."
+8,assign_offense_status,promotion,complete,packet_offense_status.csv,"Packet-local offense status is explicit so future work can resume without redoing the Baltimore research."
+9,prepare_central_sync,handoff,complete,research_findings.json,"Central city-source inventory should not mark Baltimore ready_now. The packet-local recommendation is bounded offense-selective candidate only."

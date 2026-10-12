@@ -1,0 +1,2 @@
+case_key,ori,agency_name_raw,recommended_disposition,fallback_if_not_supported,production_ready,confidence,summary
+metro_transit_dc,DCMTP0000,Metro Transit Police,localize_to_custom_footprint,keep_statewide_overlap,no,high,"WMATA Metro Transit Police is a true tri-jurisdictional transit police agency whose authority follows WMATA transit facilities and services across DC, Maryland, and Virginia; no single county or place proxy is defensible."

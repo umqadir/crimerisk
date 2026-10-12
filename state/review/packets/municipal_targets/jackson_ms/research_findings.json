@@ -1,0 +1,56 @@
+{
+  "case_key": "jackson_ms",
+  "jurisdiction_id": "28:municipal:place:2836000",
+  "jurisdiction_name": "Jackson city",
+  "state_abbr": "MS",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_investigate_post_2020_reporting_continuity_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Jackson is a normal incorporated city with an active Jackson Police Department. Official city pages describe a full municipal police department with command staff, patrol precincts, special operations, records, and dedicated budget lines.",
+    "The municipal target itself is therefore methodologically real. There is no evidence in official city materials that Jackson policing was absorbed into Hinds County or replaced by another primary jurisdiction after 2020.",
+    "The repo's problem is a continuity/data gap, not an invalid target. The live observation panel shows real Jackson counts through 2020 and then zero-count placeholder rows from 2021 forward, while the crosswalk still routes the legacy Jackson ORI directly to the Jackson city target.",
+    "Because the city police department clearly still exists but the observed annual row collapses to zero, the right near-term conclusion is to retain the Jackson target and open a targeted continuity/source audit for the post-2020 years."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_city_police_department",
+    "official_basis": [
+      "Official city department pages describe the Jackson Police Department as a current city department.",
+      "Official city budget materials continue to carry a dedicated Jackson Police Department budget."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Jackson Police Department",
+    "official_evidence": [
+      "The city police department page describes JPD as the policing agency for Jackson.",
+      "The Patrol Services page describes four police precincts and citywide patrol/special operations structure within Jackson.",
+      "City records and service pages route police records and non-emergency police matters through Jackson Police Department channels."
+    ],
+    "replacement_by_county_found": false
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "MS0250100 is routed exclusively to 28:municipal:place:2836000",
+    "current_observation_state": "MS0250100 carries positive SRS counts in 2018-2020 and then zero-count summary rows in 2021-2024",
+    "current_control_state": "The 2024 Jackson city control row is entirely fill-driven",
+    "important_negative_finding": "The Hinds sheriff row in the live panel is also not carrying a compensating positive countywide replacement series, so this does not look like a simple city-to-county handoff."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Jackson still has a real city police department and citywide municipal policing surface.",
+      "The zero post-2020 panel behavior is inconsistent with the city's official structure and is better interpreted as a continuity/source problem than as evidence against the municipal target."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Jackson municipal control row 28:municipal:place:2836000.",
+      "Treat the current all-fill condition as a post-2020 reporting continuity/source failure, not as proof that the target is invalid.",
+      "Open a targeted continuity audit to identify whether the missing 2021-2024 city totals exist in an alternate Mississippi source, revised FBI extract, or another Jackson-specific reporting surface."
+    ]
+  },
+  "likely_issue_class": "valid_target_but_post_2020_reporting_continuity_gap",
+  "open_questions": [
+    "The packet does not yet identify the exact post-2020 replacement source or alternate reporting row for Jackson. That remains a bounded follow-up task."
+  ]
+}

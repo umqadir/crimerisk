@@ -1,0 +1,130 @@
+{
+  "case_key": "panama_city_beach_fl",
+  "jurisdiction_id": "12:municipal:place:1254725",
+  "jurisdiction_name": "Panama City Beach city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_post_2021_florida_publication_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Panama City Beach is a real live city-police jurisdiction. The City's official police page lists Chief Eusebio Talamantez Jr, Deputy Chief John Deegins, multiple current commanders, and a direct non-emergency number, while the chief biography says Talamantez became a Panama City Beach police officer in 2004 and was sworn in as the city's sixth chief on May 27, 2021.",
+    "Official Bay County state reporting treats Panama City Beach as its own municipal police surface rather than Bay County sheriff remainder. FDLE's 2021 Bay County county-and-municipal offense workbook lists Bay County Sheriff's Office, Panama City Police Department, Springfield Police Department, Panama City Beach Police Department, Lynn Haven Police Department, and Parker Police Department as separate rows.",
+    "Panama City Beach's last usable statewide municipal reporting row is not 2020 alone. FDLE's 2020 report lists Panama City Beach Police Department with population 13,691 and total index crime 887, and the 2021 Bay County workbook still publishes a substantive Panama City Beach row with population 18,783 and total index crime 833.",
+    "The public post-legacy Florida publication surface then drops Panama City Beach entirely. Inspection of the official FDLE FIBRS Offense Detail 2021-2025 Q3 workbook found no Panama City Beach Police Department or FL0030600 row on the 2021, 2022, 2023, 2024, or 2025 Q3 sheets.",
+    "The official federal roster preserves the agency identity but not a usable 2024 incident-based surface. The official FBI CDE 2024 roster snapshot lists FL0030600 Panama City Beach Police Department as a City agency with is_nibrs false and no nibrs_start_date, and the repo's validation layer flags the ORI as present_but_no_2024_observation.",
+    "Repo behavior therefore reflects broken continuity and source handling, not invalid routing. The crosswalk routes FL0030600 exclusively to Panama City Beach city, jurisdiction_master marks the place non-contracted with one attached agency, agency_year_observations contains real counts through 2020 but only zero-valued 2021-2024 SRS placeholders after that, and jurisdiction_controls_2024 fully fills the 2024 row from history."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City's official police page presents Panama City Beach Police Department as a current city department with a named chief, deputy chief, and division commanders.",
+      "The official contact page gives the police department its own address, non-emergency line, administration line, and department email.",
+      "Nothing in the reviewed city or state materials suggests Bay County Sheriff contract policing or another countywide replacement of the city's general police function."
+    ],
+    "important_interpretation": "Panama City Beach is a valid municipal policing object. The structural question is closed in favor of keeping the city target."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Panama City Beach Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The official police page lists a current chief, deputy chief, criminal investigations commander, professional standards / field services commander, and administrative division commander.",
+      "The same page says Chief Talamantez became a Panama City Beach police officer in 2004 and was sworn in as the city's sixth chief on May 27, 2021.",
+      "The official contact page lists Panama City Beach Police Department at 17115 Panama City Beach Parkway with non-emergency number (850) 233-5000 and administration number (850) 233-5010."
+    ],
+    "important_clarification": "Bay County Sheriff's Office is not the reviewed citywide primary policing replacement for Panama City Beach. Official city and FDLE Bay County materials support a continuing standalone Panama City Beach Police Department."
+  },
+  "official_reporting_evidence": {
+    "city_current_policing_surface": {
+      "summary": "Current official city materials show a live Panama City Beach Police Department with city leadership and department contact infrastructure.",
+      "details": [
+        "The official police page lists Chief Eusebio Talamantez Jr, Deputy Chief John Deegins, and multiple commanders.",
+        "The chief biography says Talamantez became a Panama City Beach police officer in 2004 and was sworn in as chief on May 27, 2021.",
+        "The official contact page lists the department's address, non-emergency line, administration line, and admin@pcbfl.gov."
+      ],
+      "interpretation": "Panama City Beach currently operates its own city-run police department."
+    },
+    "fdle_bay_county_context": {
+      "summary": "FDLE's 2021 Bay County county-and-municipal workbook treats Panama City Beach Police Department as a distinct Bay County municipal reporting row alongside the sheriff and other municipal agencies.",
+      "details": [
+        "Bay County Sheriff's Office: population 93,855, total index crime 1,709.",
+        "Panama City Police Department: population 34,698, total index crime 1,437.",
+        "Panama City Beach Police Department: population 18,783, total index crime 833.",
+        "Springfield Police Department: population 8,109, total index crime 284.",
+        "Lynn Haven Police Department: population 18,810, total index crime 226.",
+        "Parker Police Department: population 4,027, total index crime 91."
+      ],
+      "interpretation": "Official Florida Bay County context supports Panama City Beach as a separate municipal police surface, not sheriff-only county remainder."
+    },
+    "fdle_legacy_publication_surface": {
+      "summary": "FDLE's legacy county-and-municipal publications support a real Panama City Beach annual municipal police row through 2021.",
+      "details": [
+        "FDLE 2020: Panama City Beach Police Department, population 13,691, total index crime 887, with offense counts of murder 2, rape 12, robbery 10, aggravated assault 107, burglary 56, larceny 689, and motor vehicle theft 11.",
+        "FDLE 2021: Panama City Beach Police Department, population 18,783, total index crime 833, with offense counts of murder 4, rape 29, robbery 10, aggravated assault 99, burglary 64, larceny 626, and motor vehicle theft 1."
+      ],
+      "interpretation": "Unlike Florida cases that already blank in the 2021 legacy report, Panama City Beach still had a usable statewide municipal row in 2021."
+    },
+    "fdle_post_legacy_publication_check": {
+      "summary": "Inspection of the official FDLE FIBRS Offense Detail 2021-2025 Q3 workbook found no Panama City Beach Police Department or FL0030600 row on any available sheet.",
+      "interpretation": "The public Florida incident-based workbook does not provide a usable city-specific annual Panama City Beach row for 2021-2024."
+    },
+    "fbi_cde_roster_check": {
+      "summary": "The official FBI CDE 2024 roster snapshot lists FL0030600 Panama City Beach Police Department as a City agency with is_nibrs false and no nibrs_start_date.",
+      "interpretation": "The federal public roster still recognizes the city agency identity, but it does not show Panama City Beach as a public NIBRS participant capable of furnishing a 2024 annual row."
+    },
+    "exact_current_blocker": {
+      "summary": "No ready-made public 2022-2024 Panama City Beach annual offense table was located on the reviewed official city, FDLE, or FBI public surfaces.",
+      "details": [
+        "The official city site reviewed here confirms an active department but did not surface a public annual city crime report or downloadable annual offense table.",
+        "FDLE's public FIBRS workbook omits Panama City Beach entirely after the legacy 2021 county-and-municipal row.",
+        "The FBI roster preserves agency identity only and does not provide offense counts."
+      ],
+      "implication": "If post-2021 city-specific counts are later required, they will need a direct local records/statistics retrieval rather than a currently available statewide public annual publication."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0030600 exclusively to 12:municipal:place:1254725 with relationship_type exclusive, weight 1.0, review_status auto, and resolution_source provisional_auto.",
+    "jurisdiction_master_state": "jurisdiction_master.csv classifies Panama City Beach city as a municipal place target with agency_count 1 and is_contracted_place False.",
+    "agency_master_state": "agency_master.parquet classifies FL0030600 as a local police department and flags source presence in both SRS and NIBRS years through 2024, with latest_srs_year 2024, latest_srs_part1_total 0.0, latest_nibrs_year 2024, population_latest_nibrs 19875.0, and nibrs_max_months_reported 0.0.",
+    "observation_state": "agency_year_observations.parquet carries substantive annual support for FL0030600 in 2018, 2019, and 2020, then only zero-valued srs_return_a_annual rows in 2021, 2022, 2023, and 2024, with no NIBRS rows materialized at all.",
+    "critical_alignment_check": "The repo's 2020 Panama City Beach offense counts exactly match FDLE's official 2020 Panama City Beach municipal row, confirming that the ORI-to-city identity is correct before continuity breaks.",
+    "important_mismatch": "Repo observations miss the substantive official 2021 FDLE row entirely and agency_master overstates NIBRS availability through 2024 even though the official FDLE FIBRS workbook has no row and the official FBI roster marks FL0030600 non-NIBRS.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all seven 2024 Panama City Beach offense rows preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and current_year_fill_count values of 95 aggravated_assault, 90 burglary, 748 larceny, 4 motor_vehicle_theft, 2 murder, 20 rape, and 16 robbery.",
+    "review_queue_state": "municipal_target_review_queue.csv places Panama City Beach in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 969.0, total_reported_count 0.0, fill_share_of_estimated 1.0, and priority_rank 2.",
+    "fbi_cde_review_state": "fbi_cde_source_review_queue.csv separately flags FL0030600 as present_but_no_2024_observation with official_is_nibrs false and mismatch_reason no_2024_observation."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Panama City Beach still operates a real city police department today.",
+      "FDLE's official Bay County county-and-municipal publications support Panama City Beach as a distinct municipal police row through 2021, not a county replacement.",
+      "The official FBI roster still recognizes FL0030600 as Panama City Beach Police Department rather than replacing it with Bay County Sheriff's Office.",
+      "The current problem is the disappearance of a usable public post-2021 annual city row, not invalid municipal geometry or a contract-policing structure."
+    ],
+    "likely_explanation_for_current_full_fill_state": [
+      "Panama City Beach retained a usable legacy FDLE municipal row in 2021, but the public Florida FIBRS workbook omits the city entirely on the 2021-2025 Q3 sheets.",
+      "The official FBI roster's is_nibrs false status explains why the federal public path also does not furnish a 2024 Panama City Beach row.",
+      "The repo compounds the issue by missing the official 2021 legacy row, carrying zero-valued SRS placeholders for 2021-2024, and overstating NIBRS availability in agency_master."
+    ],
+    "recommended_handling": [
+      "Retain Panama City Beach city as a standalone municipal control row.",
+      "Do not reroute the city into Bay County Sheriff's Office, county remainder, or a contract-policing classification.",
+      "Classify the current full-fill condition as a post-2021 Florida publication and continuity gap on FL0030600 rather than a service-structure error.",
+      "Use the substantive official 2021 FDLE row as evidence that Panama City Beach remained a valid published municipal police identity even after many other Florida transition cases went blank.",
+      "If post-2021 city-specific counts are later required, pursue direct local records/statistics retrieval because no ready-made public annual Panama City Beach offense surface was found for 2022-2024."
+    ],
+    "best_recovery_surfaces_identified_now": [
+      "FDLE County and Municipal Offense reports for pre-break annual state truth through 2021.",
+      "A future direct Panama City Beach Police Department or city public-records/statistics pull if business requirements demand 2022-2024 city counts.",
+      "A later repo source-repair pass to reconcile agency_master and observation handling against the official FDLE/FBI public surfaces."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_active_city_police_and_post_2021_florida_publication_gap",
+  "open_questions": [
+    "The keep-versus-drop decision is closed. The remaining blocker is purely source availability: I did not find a ready-made public 2022-2024 Panama City Beach annual offense table on the reviewed official city, FDLE, or FBI surfaces."
+  ]
+}

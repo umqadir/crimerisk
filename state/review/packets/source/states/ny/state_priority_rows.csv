@@ -1,0 +1,8 @@
+state_fips,state_abbr,offense,repo_nibrs_observed_total_2024,repo_srs_observed_total_2024,year,fbi_cde_estimated_total_2024,population,state_name,bjs_ckle_count_2024,bjs_ckle_rate_2024,repo_srs_minus_fbi_cde,repo_nibrs_minus_bjs_ckle,bjs_state_estimate_suppressed,repo_srs_gap_below_fbi_cde,repo_nibrs_gap_below_bjs_ckle,gap_priority_score,priority_rank
+36,NY,larceny,231678.0,267047.0,2024,284648,19867248,New York,301600.0,1518.2,-17601.0,-69922.0,False,17601.0,69922.0,87523.0,4
+36,NY,aggravated_assault,44115.0,49714.0,2024,51580,19867248,New York,50790.0,255.7,-1866.0,-6675.0,False,1866.0,6675.0,8541.0,31
+36,NY,burglary,20560.0,25514.0,2024,27142,19867248,New York,26910.0,135.5,-1628.0,-6350.0,False,1628.0,6350.0,7978.0,33
+36,NY,motor_vehicle_theft,23963.0,28801.0,2024,29837,19867248,New York,30390.0,153.0,-1036.0,-6427.0,False,1036.0,6427.0,7463.0,38
+36,NY,rape,2017.0,3476.0,2024,4313,19867248,New York,4090.0,20.6,-837.0,-2073.0,False,837.0,2073.0,2910.0,81
+36,NY,robbery,17604.0,18701.0,2024,19094,19867248,New York,18920.0,95.3,-393.0,-1316.0,False,393.0,1316.0,1709.0,105
+36,NY,murder,451.0,518.0,2024,541,19867248,New York,540.0,2.7,-23.0,-89.0,False,23.0,89.0,112.0,245

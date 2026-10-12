@@ -1,0 +1,7 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""GISCaseType"", ""op"": ""in"", ""value"": """", ""values"": [""Homicide""]}]",[]
+robbery,"[{""field"": ""GISCaseType"", ""op"": ""in"", ""value"": """", ""values"": [""Armed Robbery"", ""Carjacking"", ""Commercial Robbery"", ""Home Invasion Robbery"", ""Person Robbery""]}]",[]
+aggravated_assault,"[{""field"": ""GISCaseType"", ""op"": ""in"", ""value"": """", ""values"": [""Aggravated Assault"", ""Aggravated Battery"", ""Attempted Homicide""]}]",[]
+burglary,"[{""field"": ""GISCaseType"", ""op"": ""in"", ""value"": """", ""values"": [""Commercial Burglary"", ""Residential Burglary""]}]",[]
+larceny,"[{""field"": ""GISCaseType"", ""op"": ""in"", ""value"": """", ""values"": [""Distraction Theft"", ""Grand Theft"", ""Petit Theft"", ""Pickpocket Theft"", ""Stolen Boat"", ""Stolen Tag"", ""Vehicle Burglary""]}]",[]
+motor_vehicle_theft,"[{""field"": ""GISCaseType"", ""op"": ""in"", ""value"": """", ""values"": [""Attempted Motor Vehicle Theft"", ""Motor Vehicle Theft""]}]",[]

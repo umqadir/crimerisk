@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+raleigh_nc,"Raleigh, North Carolina",37:municipal:place:3755000,Raleigh Police Incidents (NIBRS),https://data.raleighnc.gov/datasets/ral::raleigh-police-incidents-nibrs/about,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

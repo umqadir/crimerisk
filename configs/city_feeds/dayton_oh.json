@@ -1,0 +1,156 @@
+{
+  "city_key": "dayton_oh",
+  "city_name": "Dayton",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/dayton_oh/packet.json",
+    "state/review/packets/city/dayton_oh/evidence/registry_row.json",
+    "state/review/packets/city/dayton_oh/evidence/doc_00.json",
+    "state/review/packets/city/dayton_oh/evidence/doc_index.csv",
+    "state/review/packets/city/dayton_oh/evidence/raw_cache_profile.json",
+    "state/review/packets/city/dayton_oh/evidence/scope_candidates.csv",
+    "state/review/packets/city/dayton_oh/evidence/official_totals.csv",
+    "state/review/packets/city/dayton_oh/raw_cache.parquet",
+    "scripts/agents/onboard_feed.py:284-292",
+    "src/crimerisk/city_contracts.py:194-219",
+    "src/crimerisk/city_contracts.py:305-358"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "39:municipal:place:3921000"
+    ],
+    "state_fips": [
+      "39"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: one row per incident (DIBRS2 unique on all 50,538 rows of the pull); multi-offense incidents carry comma-joined NIBRSCode lists, and the contract keeps one offense per incident by the SRS hierarchy order of the rules (murder, rape, robbery, aggravated assault, burglary, larceny, motor vehicle theft). The official totals count offenses (murder and aggravated assault per victim), so single-offense-per-incident counts differ for those (aggravated assault low every year; murder low in 2023-2024, high in 2025): 2023 murder 28 incidents vs 36 official, aggravated assault 666 vs 1,048; 2024 murder 33 vs 40, aggravated assault 788 vs 1,268; 2025 murder 32 vs 24, aggravated assault 700 vs 1,260.",
+    "Larceny ranks above motor vehicle theft, so incidents coding both 23A-23H and 240 count as larceny: 48 (2023), 42 (2024), 40 (2025) incidents move from motor vehicle theft to larceny versus the reverse order. Resulting 2023-2025 counts: larceny 2,879 / 2,990 / 2,820 vs official 2,729 / 2,892 / 2,751; motor vehicle theft 2,308 / 1,790 / 1,523 vs 2,317 / 1,794 / 1,528.",
+    "Rape maps 11A, 11B, 11C (revised definition); only 11A occurs in the pull (477 tokens); 11D fondling (227 tokens) is left out, and 187 incidents whose only qualifying-looking code is 11D map to nothing.",
+    "Coverage: the endpoint returns only 2023-2025 (CD1_YEAR 2023-2025; 18,203 / 16,621 / 15,714 rows) although the date filter covers 2018-2025 and the layer metadata timeExtent is 2019-01-01 to 2021-04-29; 2018-2022 produce no rows and cannot be reconciled.",
+    "FBIR is an undocumented per-row flag (Y 48,636, C 1,219, Z 370, N 313); the publisher does not define it, so no row is filtered on it. If C/Z/N mean unfounded or not FBI-reportable, the contract overcounts.",
+    "363 rows have an empty NIBRSCode and map to no offense.",
+    "Arson (200), negligent manslaughter (09B), justifiable homicide (09C), simple assault (13B) and intimidation (13C) are not mapped; 09B and 09C do not occur in the pull."
+  ],
+  "mapping": {
+    "date_field": "Commit_Date",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "DIBRS2"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*09A\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*11[ABC]\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*120\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*13A\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*220\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*23[A-H]\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "NIBRSCode",
+            "op": "regex",
+            "value": "(?:^|,)\\s*240\\s*(?:,|$)",
+            "values": []
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Source: Dayton Police All Crimes ArcGIS layer (registry_row.json api_endpoint, portal_type arcgis_feature_service); the source block reproduces the probe source exactly (select [], where on Commit_Date, order '', page_size 1000), whose sha256 digest a604ba21f452 matches the archived pull live/raw_dayton_oh_2018_2025_a604ba21f452.parquet. count_unit incident: DIBRS2 has 50,538 distinct values over 50,538 rows (raw_cache_profile.json), so id_fields [DIBRS2] with dedupe_on_id keeps one row per incident; offense fields (NIBRSCode, CrimeDesc, ORC_Part, A_C) are comma-joined lists per incident, and each rule matches a whole comma-delimited NIBRSCode token (regex anchored on start/comma and comma/end), so 13A never matches 13B and 11A never matches 11D. The first rule in hierarchy order sets the offense, so an incident with several Part I codes keeps the highest. Dates: Commit_Date (esriFieldTypeDate, epoch ms; doc_00.json fields) is taken as the occurrence date: it equals the CD1_YEAR/CD1_MONTH/CD1_DAY fields on every row (America/New_York), is on or before EnterDate (report entry) on 50,535 of 50,538 rows, and CDate2 (populated on 11,483 rows) is the end of an occurrence range. The layer publishes no field descriptions (doc_00.json description and copyrightText empty), so 'occurrence' rests on the field names and those checks. Stored values are local midnight as UTC (min 1672549200000 = 2023-01-01T05:00Z), so epoch_ms years equal CD1_YEAR on all rows. Coordinates: the feature geometry (__arcgis_latitude/__arcgis_longitude, WGS84 wkid 4326), non-null and non-zero on all rows; 19,738 distinct points for 19,800 distinct street addresses with house numbers, i.e. address-geocoded points; the publisher states no rounding or offset. Nhood 'OUTSIDE CITY' marks 241 rows, which the Dayton-city footprint will drop. Geography: Dayton Police Department (ORI OH0570200, municipal_pd) polices the city of Dayton only; scope_candidates.csv lists 39:municipal:place:3921000; Juris is 'DA' on every row. Exclusions: the publisher states none (registry redactions empty; layer description empty). Run on the pull, the contract keeps 21,563 incidents: 2023 murder 28, rape 159, robbery 271, aggravated assault 666, burglary 1,352, larceny 2,879, motor vehicle theft 2,308; 2024 33/160/346/788/1,183/2,990/1,790; 2025 32/133/251/700/1,151/2,820/1,523 (crimerisk.city_contracts.run_contract, 2018-2025, before the block-group and footprint join). Official 2023-2025 (official_totals.csv): murder 36/40/24, rape 153/157/140, robbery 257/341/238, aggravated assault 1,048/1,268/1,260, burglary 1,318/1,159/1,128, larceny 2,729/2,892/2,751, motor vehicle theft 2,317/1,794/1,528. Aggravated assault runs 36-44% below official, consistent with per-victim official counting (13A tokens per year 784/937/821 still fall short); that gap is unresolved by the evidence.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services2.arcgis.com/3dDB2Kk6kuA2gIGw/arcgis/rest/services/Crimes_Greater2016/FeatureServer/0",
+      "name": "Dayton Police All Crimes",
+      "order": "",
+      "page_size": 1000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "dayton_oh",
+      "source_url": "https://www.daytonohio.gov/",
+      "where": "Commit_Date >= DATE '{start}' AND Commit_Date < DATE '{end}'"
+    }
+  ]
+}

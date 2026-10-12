@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+kansas_city_mo,"Kansas City, Missouri",29:municipal:place:2938000,KCPD Crime Data 2024,https://data.kcmo.org/Public-Safety/KCPD-Crime-Data-2024/isbe-v4d8,ready_now,Gate-1.5 generic worker onboarding proof. Incident feed is share lane only.

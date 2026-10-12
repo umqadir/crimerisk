@@ -1,0 +1,103 @@
+{
+  "city_key": "denver",
+  "city_name": "Denver",
+  "jurisdiction_id": "08:municipal:place:0820000",
+  "state_abbr": "CO",
+  "review_date": "2026-04-05",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "offense_selective",
+    "packet_status": "review_complete",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_six_offense_selective_path_ready"
+  },
+  "official_sources": {
+    "incident_surface": [
+      "https://services1.arcgis.com/zdB7qR0BtYrg0Xpl/arcgis/rest/services/ODC_CRIME_OFFENSES_P/FeatureServer/324",
+      "https://www.denvergov.org/opendata/dataset/city-and-county-of-denver-crime"
+    ],
+    "dashboards": [
+      "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Police-Department/Crime-Information"
+    ],
+    "aggregate_anchors": [
+      "https://www.denvergov.org/Government/Agencies-Departments-Offices/Agencies-Departments-Offices-Directory/Police-Department/Crime-Information"
+    ]
+  },
+  "source_contract_findings": {
+    "public_2024_incidents_available": true,
+    "2024_query_window_rows": 64761,
+    "2024_rows_missing_latlon": 1,
+    "spatial_fields_present": [
+      "GEO_LAT",
+      "GEO_LON",
+      "INCIDENT_ADDRESS",
+      "DISTRICT_ID",
+      "PRECINCT_ID",
+      "NEIGHBORHOOD_ID"
+    ],
+    "offense_fields_present": [
+      "OFFENSE_CODE",
+      "OFFENSE_CODE_EXTENSION",
+      "OFFENSE_TYPE_ID",
+      "OFFENSE_CATEGORY_ID",
+      "VICTIM_COUNT"
+    ],
+    "date_fields_present": [
+      "FIRST_OCCURRENCE_DATE",
+      "LAST_OCCURRENCE_DATE",
+      "REPORTED_DATE"
+    ],
+    "notes": [
+      "The official ArcGIS feature service is public, paginable, and point-geocoded.",
+      "Denver's crime-information page states that the public surface is NIBRS-based and includes all victims of person crimes and all crimes within an incident.",
+      "The 2024 row set is effectively fully geocoded: only one record lacks direct lat/lon, and that record still has an incident address.",
+      "The service exposes a public NIBRS sex-related vocabulary, but no repo-compatible rape bucket exists on the public surface."
+    ]
+  },
+  "crosswalk_outlook": {
+    "likely_first_pass_offenses": [
+      "robbery",
+      "burglary",
+      "larceny",
+      "motor_vehicle_theft"
+    ],
+    "review_dependent_offenses": [
+      "murder",
+      "aggravated_assault"
+    ],
+    "initially_blocked_offenses": [
+      "rape"
+    ],
+    "notes": [
+      "The public ontology appears much closer to NIBRS than to legacy UCR Part I.",
+      "The main packet risk is not missing geocodes; it is comparability between Denver's NIBRS-coded incident/victim surface and the public dashboard/archive offense totals used as anchors.",
+      "Person-crime totals should be reconciled on VICTIM_COUNT; property crimes reconcile on row count.",
+      "Denver also publishes theft-from-motor-vehicle as a separate category, but the repo surface keeps it out of the seven-offense city-share model."
+    ]
+  },
+  "reconciliation_anchor": {
+    "usable": true,
+    "sources": [
+      "Denver Crime Information page overall crime dashboard",
+      "Denver Crime Statistics Archive references on the same official page"
+    ],
+    "notes": [
+      "The city exposes official public crime dashboards and archive links on the police crime-information page.",
+      "The packet now has an explicit 2024 offense-by-offense extraction and reconciliation artifact.",
+      "The crime-information page says the dashboard has year-to-date, 28-day, 180-day, and complete past-year views."
+    ]
+  },
+  "judgment": {
+    "production_ready": "no",
+    "city_share_integration_status": "offense_selective",
+    "reconciliation_status": "2024_public_reconciliation_complete_six_offense_selective_path_ready",
+    "why_not_ready": [
+      "The public source is strong enough to onboard offense-selectively, but rape remains blocked because Denver has no repo-compatible rape bucket.",
+      "The public surface is NIBRS incident/victim oriented, so person-crime counts require victim-count reconciliation instead of a pure incident count."
+    ],
+    "minimum_change_to_unblock": [
+      "No further change is needed for the current offense-selective release.",
+      "If the repo ever adds a Denver-compatible sexual-assault bucket, revisit the blocked rape mapping."
+    ]
+  }
+}

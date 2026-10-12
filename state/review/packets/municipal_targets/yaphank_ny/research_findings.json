@@ -1,0 +1,58 @@
+{
+  "case_key": "yaphank_ny",
+  "jurisdiction_id": "36:municipal:place:3683426",
+  "jurisdiction_name": "Yaphank CDP",
+  "state_abbr": "NY",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_place_level_municipal_control_row_36_municipal_place_3683426_and_treat_yaphank_as_brookhaven_suffolk_service_structure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Yaphank is a Census-designated place, not an incorporated municipality. The U.S. Census Bureau identifies it as Yaphank CDP, New York.",
+    "Official Brookhaven materials place Yaphank inside the Town of Brookhaven rather than treating it as a separate municipal government. Brookhaven's District 4 page lists Yaphank as one of the communities inside the town.",
+    "Official Suffolk County public-safety materials state that the Suffolk County Police Department provides all police services for the Suffolk County Police District, which includes Brookhaven. That means Yaphank falls under Suffolk County police service through the Brookhaven town structure, not a separate Yaphank police jurisdiction.",
+    "The fact that Suffolk County Police headquarters and other county police functions are located at a Yaphank address does not create a Yaphank municipal police department. It is county infrastructure located in Yaphank, not an independent local policing surface for the CDP.",
+    "Repo evidence is consistent with a fake municipal target rather than a broken reporting handoff: the Yaphank jurisdiction has no live crosswalk row at all and the 2024 target is entirely fill-driven."
+  ],
+  "place_status": {
+    "municipal_status": "census_designated_place_not_incorporated_municipality",
+    "official_basis": [
+      "Census QuickFacts identifies Yaphank as a CDP.",
+      "Brookhaven's official district page lists Yaphank as a community within the Town of Brookhaven."
+    ]
+  },
+  "primary_policing_structure": {
+    "standalone_yaphank_police_department_found": false,
+    "primary_policing_entity": "Suffolk County Police Department through the Brookhaven/Suffolk police district structure",
+    "official_evidence": [
+      "Suffolk County states that the Suffolk County Police Department provides all police services for the five western towns including Brookhaven.",
+      "Yaphank is a community within Brookhaven rather than a separate municipal jurisdiction."
+    ],
+    "important_clarification": "County police facilities located in Yaphank are not the same thing as a Yaphank municipal police department."
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "There is no live crosswalk row for 36:municipal:place:3683426 in agency_to_jurisdiction_crosswalk.parquet.",
+    "current_control_state": "The 2024 Yaphank CDP control row is entirely fill-driven from trend_log_linear with no reported support.",
+    "interpretation": "The place-level target is geography leakage rather than a real annual policing jurisdiction."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_police_row_exists": false,
+    "why_not": [
+      "Yaphank is a CDP, not an incorporated municipality.",
+      "No separate Yaphank police department or annual police reporting surface is evident in official sources.",
+      "General policing is provided through Suffolk County Police in Brookhaven's service structure."
+    ],
+    "recommended_handling": [
+      "Do not retain the standalone Yaphank CDP municipal control row 36:municipal:place:3683426.",
+      "Treat Yaphank as part of the Brookhaven / Suffolk County service structure rather than as an independent municipal police jurisdiction.",
+      "Do not confuse county police facilities located in Yaphank with a standalone Yaphank policing surface."
+    ]
+  },
+  "likely_issue_class": "invalid_target_pure_geography_leakage",
+  "open_questions": [
+    "None needed for the keep/remove decision. If finer Yaphank localization is ever desired, it should come from downstream allocation or local overlays, not from a standalone upstream municipal police row."
+  ]
+}

@@ -1,0 +1,496 @@
+{
+  "city_key": "columbia_mo",
+  "city_name": "Columbia",
+  "count_unit": "incident",
+  "evidence_refs": [
+    "state/review/packets/city/columbia_mo/packet.json",
+    "state/review/packets/city/columbia_mo/evidence/registry_row.json",
+    "state/review/packets/city/columbia_mo/evidence/doc_00.json",
+    "state/review/packets/city/columbia_mo/evidence/doc_index.csv",
+    "state/review/packets/city/columbia_mo/evidence/raw_cache_profile.json",
+    "state/review/packets/city/columbia_mo/evidence/scope_candidates.csv",
+    "state/review/packets/city/columbia_mo/evidence/official_totals.csv",
+    "state/review/packets/city/columbia_mo/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [
+    "Unfounded cases are excluded: the layer is a view with viewDefinitionQuery and definitionQuery \"casestatus NOT IN ('UNFOUNDED')\" (evidence/doc_00.json); no casestatus value containing UNFOUNDED occurs in the pull (query of raw_cache: 0 rows; evidence/raw_cache_profile.json casestatus lists 7 other values).",
+    "No other redaction or exclusion is stated: the layer description and copyrightText are empty (evidence/doc_00.json) and the survey records 'redactions: none stated' (packet.json case_text; evidence/registry_row.json redactions is empty). Addresses are published only to the hundred block ('1900 Block of N Providence Rd', evidence/raw_cache_profile.json fulladdr examples)."
+  ],
+  "geography": {
+    "jurisdiction_ids": [
+      "29:municipal:place:2915670"
+    ],
+    "state_fips": [
+      "29"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Unit: the feed carries one row per report, not one row per offense. offenseid (alias 'Offense ID', evidence/doc_00.json) is a YYYYNNNNNN report number with 27,024 distinct values in 27,024 rows (evidence/raw_cache_profile.json), yet sequence ('Offense Sequence Number') runs 1-5 with 25,439 / 1,410 / 144 / 26 / 5 rows (query of raw_cache), so for 1,585 reports only one non-first offense is published and no sibling rows exist. The registry's 'count unit offense' (evidence/registry_row.json count_unit) is therefore not what the pull holds; the contract counts incidents, one offense per incident. NIBRS/SRS-equivalent totals count each offense in an incident, so multi-offense incidents lose all but one offense here.",
+    "Which offense a row carries: nibrscode/nibrsoffense describe the offense at the row's sequence, while nibrsdesc equals nibrsoffense in 25,438 of 25,439 sequence-1 rows and differs in 1,583 of 1,585 sequence>1 rows (query of raw_cache), i.e. nibrsdesc names the report's first-listed offense (e.g. 133 rows coded 290 vandalism with nibrsdesc 'LARCENY - THEFT FROM MOTOR VEHICLE'). This reading is inferred from the data; the documentation does not define nibrsdesc beyond the alias 'NIBRS Description' (evidence/doc_00.json). The rules take the row's nibrscode first when it is one of the seven offenses and fall back to nibrsdesc only when nibrscode is not one of the seven.",
+    "Aggravated assault is under-counted: with the rules, 2023-2025 counts are 264 / 222 / 285 against official 372 / 347 / 377 (71% / 64% / 76%; evidence/official_totals.csv; query of raw_cache grouping reportyear by the contract's rule order, before geography). Code-only mapping gives 230 / 205 / 259. The remaining gap is consistent with aggravated assaults that were neither the published nor the first-listed offense of a report.",
+    "Other offenses before geography, rules vs official (2023 / 2024 / 2025): murder 6/10, 12/13, 4/4; rape 80/77, 48/50, 46/47; robbery 42/43, 51/52, 43/43; burglary 372/398, 420/434, 270/279; larceny 2,409/2,410, 2,120/2,093, 1,918/1,963; motor vehicle theft 428/447, 471/494, 228/233 (simulation of the contract rules on raw_cache; evidence/official_totals.csv). The nibrsdesc fallback adds, per 2023/2024/2025: aggravated assault 34/17/26, larceny 156/111/86, motor vehicle theft 22/32/10, burglary 8/7/2, murder 0/2/1, rape 2/2/0, robbery 1/1/0 (difference from code-only counts, same query).",
+    "Coverage is 2023-2025 only: no row has a reportdate before 2023-01-01 local (min 1672553640000 ms = 2023-01-01 06:14 UTC; reportyear min 2023, evidence/raw_cache_profile.json), so 2018-2022 official totals have no feed counterpart. Five rows carry 2022 report numbers but 2023 report dates (query of raw_cache).",
+    "Year boundary: reportdate is true UTC (UTC hour minus reporthour is 5 for 18,508 rows and 6 for 8,516 rows, i.e. CDT/CST; query of raw_cache; dateFieldsTimeReference UTC in evidence/doc_00.json). The contract uses the publisher's local reportyear. The where filter is on UTC, so reports made after 18:00 CST on 2025-12-31 fall outside the pull (max reportdate 1767224400000 = 2025-12-31 23:40 UTC); 18 rows have a reportyear different from their UTC year (query of raw_cache).",
+    "Report date, not occurrence date: occurfrdate and occurtodate ('Offense Date From/To', evidence/doc_00.json) are null in all 27,024 rows (evidence/raw_cache_profile.json), so offenses are dated and yeared by report date, which shifts late-reported offenses relative to occurrence-year counts.",
+    "Categories at the edge of the definitions: one row coded 11A carries nibrsoffense 'FONDLING' (query of raw_cache) and is excluded from rape because 11D fondling is outside the revised definition; 8 rows 'MOTOR VEHICLE THEFT-POSSESSION' are coded 240 by the publisher and kept as motor vehicle theft although possession of a stolen vehicle is closer to NIBRS 280; 14 rows 36B 'STATUTORY RAPE' and 93 rows 11D are left unmapped (evidence/raw_cache_profile.json nibrscode). Attempts are kept as published (attemptcompleted ATT: 120 17, 220 40, 240 103, 23x 63, 11B 2; no attempted 09A; query of raw_cache).",
+    "Sex-offense investigations coded 999 'SEXUAL ASSUALT/ABUSE INVESTIGATION' (98), 'SEXUAL ASSAULT/ABUSE INVESTIGATION' (77) and '... COLD' (9) are non-reportable in the feed (nibrscrimeag 'NON REPORTABLE') and are not mapped (evidence/raw_cache_profile.json nibrsoffense, nibrscrimeag)."
+  ],
+  "mapping": {
+    "date_field": "reportdate",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "offenseid"
+    ],
+    "latitude_field": "__arcgis_latitude",
+    "longitude_field": "__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "11A",
+              "11B",
+              "11C"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsoffense",
+            "op": "in",
+            "value": "",
+            "values": [
+              "FONDLING"
+            ]
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "MURDER/NONNEGLIGENT MANSLAUGHTER"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "FORCIBLE RAPE",
+              "SODOMY",
+              "SEXUAL ASSAULT WITH AN OBJECT"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "ROBBERY",
+              "ROBBERY-ARMED WITH A GUN",
+              "ROBBERY-STRONGARM",
+              "ROBBERY-VEHICULAR/CARJACKING",
+              "ROBBERY-ARMED WITH OTHER WEAPON",
+              "ROBBERY-ARMED WITH A OTHER WEAPON",
+              "ROBBERY-HOME INVASION",
+              "ROBBERY-WEAPON IMPLIED"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "AGGRAVATED ASSAULT",
+              "ASSAULT-AGGR",
+              "ASSAULT-AGGR DOMESTIC",
+              "AGGRAVATED ASSAULT - SHOTS FIRED",
+              "ASSAULT-AGGR SHOTS FIRED"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "BURGLARY",
+              "BURGLARY-RESIDENTIAL",
+              "BURGLARY-STORAGE UNIT",
+              "BURGLARY-COMMERCIAL"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "LARCENY - POCKET-PICKING",
+              "LARCENY - PURSE-SNATCHING",
+              "LARCENY - SHOPLIFTING",
+              "LARCENY - THEFT FROM BUILDING",
+              "LARCENY - THEFT FROM COIN-OPERATED MACHINE",
+              "LARCENY - THEFT FROM MOTOR VEHICLE",
+              "LARCENY - THEFT OF MOTOR VEHICLE PARTS",
+              "LARCENY - OTHER",
+              "LARCENY -  ALL OTHER"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrsdesc",
+            "op": "in",
+            "value": "",
+            "values": [
+              "MOTOR VEHICLE THEFT",
+              "MOTOR VEHICLE THEFT-POSSESSION"
+            ]
+          }
+        ],
+        "exclude_conditions": [
+          {
+            "case_sensitive": true,
+            "field": "nibrscode",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A",
+              "11A",
+              "11B",
+              "11C",
+              "120",
+              "13A",
+              "220",
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H",
+              "240"
+            ]
+          }
+        ],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": "reportyear"
+  },
+  "notes": "Source is Columbia Police Department's public Crimes feature layer (agency 'CPD' on all 27,024 rows; evidence/raw_cache_profile.json agency), ORI MO0100200, policing the city of Columbia (evidence/registry_row.json; evidence/scope_candidates.csv lists only 29:municipal:place:2915670, Columbia city). Points outside the city (districts SDN/SDS/APD/MUD etc., latitude 38.758-39.235; evidence/raw_cache_profile.json) are left to the footprint step. Count unit is incident: offenseid is unique per row (27,024 distinct / 27,024 rows), so id_fields [offenseid] with dedupe_on_id keeps every row (dedupe is a no-op on the archive). Each report contributes the one offense the publisher published for it: the row's nibrscode when it is one of 09A, 11A/11B/11C (not rows whose nibrsoffense is FONDLING), 120, 13A, 220, 23A-23H, 240; otherwise the first-listed offense named in nibrsdesc when that is one of the same seven categories (exact values checked against the pull; the nibrsdesc interpretation is inferred from the sequence pattern, see known differences). nibrscode agrees with nibrsoffense throughout except that one 11A row reads FONDLING and one 90Z row reads AGGRAVATED ASSAULT (query of raw_cache). Excluded per the brief: 09B (5), 09C (2), 13B (3,765), 13C (489), 11D (93). Date is the report date reportdate (epoch ms, UTC) because occurfrdate/occurtodate are empty; year is the publisher's local reportyear. Coordinates are the published feature geometry (__arcgis_latitude/__arcgis_longitude; native spatial reference 102100/3857, evidence/doc_00.json), non-null and non-zero in every row. The publisher does not document any rounding or offset, but points are not the literal address: fulladdr is generalized to the hundred block and rows at one block address have nearly distinct points spread along the block (24,438 distinct points for 27,024 rows and 5,032 addresses; '400 Block of Conley Rd' has 282 distinct points in 297 rows spanning about 280 m; query of raw_cache), so points appear placed along the block segment rather than at the exact location. No placeholder point for sensitive offenses was found (most common point holds 42 rows, none coded 11x). Source where, endpoint and portal_type are the registry's (evidence/registry_row.json probe_where); page_size 2000 is the layer's maxRecordCount (evidence/doc_00.json).",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://services.arcgis.com/GHhNHT1xiCkCAXvo/arcgis/rest/services/Crimes_public_5065541538a64410b0dc75b9276284aa/FeatureServer/0",
+      "name": "Columbia MO Crimes (public)",
+      "order": "OBJECTID",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [],
+      "slug": "columbia_mo",
+      "source_url": "https://www.como.gov/",
+      "where": "reportdate >= DATE '{start}' AND reportdate < DATE '{end}'"
+    }
+  ]
+}

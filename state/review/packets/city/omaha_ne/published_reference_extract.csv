@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,aggravated_assault,1306.0,srs_return_a_annual,high
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,burglary,1133.0,srs_return_a_annual,high
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,larceny,10874.0,srs_return_a_annual,high
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,motor_vehicle_theft,3177.0,srs_return_a_annual,high
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,murder,19.0,srs_return_a_annual,high
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,rape,222.0,srs_return_a_annual,high
+omaha_ne,"Omaha, Nebraska",31:municipal:place:3137000,robbery,225.0,srs_return_a_annual,high

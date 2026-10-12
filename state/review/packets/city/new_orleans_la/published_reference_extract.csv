@@ -1,0 +1,8 @@
+city_key,city_name,jurisdiction_id,offense,official_total,preferred_source,quality_tier_preferred
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,aggravated_assault,4146.319846682784,srs_return_a_annual,unknown
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,burglary,1451.0,local_publication_annual,high
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,larceny,9068.0,local_publication_annual,high
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,motor_vehicle_theft,3560.0,local_publication_annual,high
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,murder,124.0,local_publication_annual,high
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,rape,708.0,local_publication_annual,high
+new_orleans_la,"New Orleans, Louisiana",22:municipal:place:2255000,robbery,495.0,local_publication_annual,high

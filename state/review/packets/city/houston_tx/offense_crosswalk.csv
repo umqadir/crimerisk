@@ -1,0 +1,8 @@
+offense,conditions_json,exclude_conditions_json
+murder,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""09A""]}]",[]
+rape,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""11A"", ""11B"", ""11C""]}]",[]
+robbery,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""120""]}]",[]
+aggravated_assault,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""13A""]}]",[]
+burglary,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""220""]}]",[]
+larceny,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""23A"", ""23B"", ""23C"", ""23D"", ""23E"", ""23F"", ""23G"", ""23H""]}]",[]
+motor_vehicle_theft,"[{""field"": ""HPD_NIBRS_Class"", ""op"": ""in"", ""value"": """", ""values"": [""240""]}]",[]

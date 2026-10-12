@@ -1,0 +1,22 @@
+{
+  "packet_id": "pompano_beach_fl",
+  "target_id": "12:municipal:place:1258050",
+  "target_name": "Pompano Beach city, FL",
+  "state": "FL",
+  "county": "Broward County",
+  "queue_lane": "high_impact_full_fill_place",
+  "generated_at": "2026-03-24",
+  "generated_by": "Codex GPT-5",
+  "task": "Determine whether Pompano Beach city, FL should keep a standalone municipal control row and explain the most likely cause of the current all-fill state using primary official sources.",
+  "output_files": [
+    "packet_manifest.json",
+    "research_findings.json",
+    "sources.csv",
+    "recommendation.csv"
+  ],
+  "bottom_line": {
+    "keep_standalone_municipal_control_row": true,
+    "classification": "valid_municipal_target_with_reporting_continuity_failure",
+    "summary": "Pompano Beach remains a valid municipal target because Florida and City sources show a city-specific Pompano Beach law-enforcement reporting surface under FL0060700 even after the 1999 shift to a Broward Sheriff's Office contract. The current all-fill state is most likely a continuity/publication failure in the SRS-to-NIBRS era rather than evidence that the municipal target is invalid."
+  }
+}

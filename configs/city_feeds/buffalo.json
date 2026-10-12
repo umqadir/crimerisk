@@ -1,0 +1,193 @@
+{
+  "city_key": "buffalo",
+  "city_name": "Buffalo, NY",
+  "evidence_refs": [
+    "state/review/packets/city/buffalo/packet.json",
+    "state/review/packets/city/buffalo/evidence/01_fetch_buffalo.py:67-74",
+    "state/review/packets/city/buffalo/evidence/01_fetch_buffalo.py:82-132",
+    "state/review/packets/city/buffalo/evidence/01_fetch_buffalo.py:137-147",
+    "state/review/packets/city/buffalo/evidence/01_fetch_buffalo.py:182-205",
+    "state/review/packets/city/buffalo/evidence/01_fetch_buffalo.py:209-219",
+    "state/review/packets/city/buffalo/evidence/01_fetch_buffalo.py:225-235",
+    "state/review/packets/city/buffalo/evidence/offense_mapping.csv",
+    "state/review/packets/city/buffalo/evidence/README.md:3-17",
+    "state/review/packets/city/buffalo/evidence/README.md:118-129",
+    "state/review/packets/city/buffalo/evidence/README.md:150-154",
+    "state/review/packets/city/buffalo/evidence/raw_cache_profile.json",
+    "state/review/packets/city/buffalo/evidence/jurisdictions.csv:2-19",
+    "state/review/packets/city/buffalo/raw_cache.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "36:municipal:place:3611000"
+    ],
+    "state_fips": [
+      "36"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Step order differs: the script filters offense, then coordinates, then year, then de-duplicates (01_fetch_buffalo.py:182-205); the runner applies year, id, offense, coordinates, de-duplication. No effect on raw_cache.parquet: case_number has 92,274 distinct values in 92,274 rows (evidence/raw_cache_profile.json, case_number.distinct_count), so de-duplication drops nothing in either order and the other filters are row-wise and commute.",
+    "Non-numeric coordinates: the script coerces latitude/longitude with pd.to_numeric(errors='coerce') (01_fetch_buffalo.py:189-190), turning the 2,893 'UNKNOWN' strings (evidence/raw_cache_profile.json, latitude/longitude distinct) into missing values that are then dropped. The contract matches this only if the runner's 'as numbers' conversion also treats non-numeric strings as missing rather than raising.",
+    "Offense matching is case-sensitive in the script (pandas dict .map, 01_fetch_buffalo.py:182), so each rule sets case_sensitive=true and lists the mixed-case duplicate labels (Homicide, Sexual Assault, Robbery, Assault, Breaking & Entering, Theft, Theft of Vehicle) explicitly. None of those mixed-case labels appear in raw_cache.parquet (13 distinct incident_type_primary values in evidence/raw_cache_profile.json), and case-insensitive matching would give the same 90,467 mapped rows on this cache.",
+    "Output columns: the script renames police_district to district, council_district to beat, incident_type_primary to offense_raw, and writes an incident_id = str(case_number) plus address_1, zip_code, neighborhood, parent_incident_type (01_fetch_buffalo.py:203, 225-235). The contract carries only id, year, offense, coordinates and block group; these renames and passthrough columns are not expressed.",
+    "The script also writes offense_mapping.csv and README.md and prints summary tables (01_fetch_buffalo.py:241-254); these are side outputs, not row logic."
+  ],
+  "mapping": {
+    "date_field": "incident_datetime",
+    "date_format": "auto",
+    "dedupe_on_id": true,
+    "id_fields": [
+      "case_number"
+    ],
+    "latitude_field": "latitude",
+    "longitude_field": "longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "MURDER",
+              "Homicide",
+              "MANSLAUGHTER"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "RAPE",
+              "SODOMY",
+              "Sexual Assault"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "rape"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "ROBBERY",
+              "Robbery"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "ASSAULT",
+              "Assault",
+              "AGGR ASSAULT",
+              "AGG ASSAULT ON P/OFFICER"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "BURGLARY",
+              "Breaking & Entering"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "LARCENY/THEFT",
+              "Theft"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": true,
+            "field": "incident_type_primary",
+            "op": "in",
+            "value": "",
+            "values": [
+              "UUV",
+              "Theft of Vehicle"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Translation of evidence/01_fetch_buffalo.py. Rows kept: offense mapping is the OFFENSE_MAPPING dict (01_fetch_buffalo.py:82-132, identical to evidence/offense_mapping.csv, 18 labels); unlisted labels (CRIM NEGLIGENT HOMICIDE, SEXUAL ABUSE, Other Sexual Offense, THEFT OF SERVICES) fall through and are dropped as in the script. Coordinates: rows with missing/non-numeric lat or lon or at (0,0) dropped (lines 189-193). Year: derived from incident_datetime, kept 2018-2024 (lines 196-199); values are ISO strings like '2020-01-01T00:00:00.000' (raw_cache_profile.json), so date_format 'auto'; no year column exists in the pull, so year_field is empty. Id: case_number as string (line 203), de-duplicated keep-first (lines 205, 219). Live pull: Socrata $select of FIELDS (lines 70-74), $where on incident_datetime with exclusive end (line 137, rewritten with {start}/{end}), $order=case_number, $limit=50000 (lines 140-147). Block-group join: New York (FIPS 36) TIGER 2020 block groups, predicate within (lines 209-217). Recomputed on raw_cache.parquet with pandas replicating the script: 92,274 raw rows; 90,467 after the offense map (also the sum of the 10 mapped labels' counts in raw_cache_profile.json: 41,364+18,074+13,951+11,415+4,465+804+363+18+11+2); 86,438 after dropping 4,029 rows without usable coordinates (0 at (0,0)); 0 rows outside 2018-2024 (incident_datetime range 2018-01-01T00:00:00.000 to 2024-12-31T22:44:56.000); 0 duplicate case_numbers. By year 15,073 / 13,263 / 11,463 / 10,823 / 9,824 / 13,076 / 12,916 for 2018-2024, matching README.md lines 122-129 (total 86,438) and the 4,029 dropped rows at README.md line 150. Jurisdiction: the publisher is the Buffalo Police Department, a city PD (README.md lines 3-8), so jurisdiction_ids is Buffalo city only (36:municipal:place:3611000, 86,099 incidents in evidence/jurisdictions.csv row 2). The other 17 rows of jurisdictions.csv (rows 3-19: 16 Erie County municipalities plus the New York nonmunicipal remainder) sum to 342 incidents (151+57+31+31+16+15+15+6+4+3+3+2+2+2+2+1+1, summed from the incidents_2018_2024 column); the file total is 86,441, 3 more than the 86,438 kept rows, and the packet does not record why (the file lists both villages and the towns containing them, e.g. Kenmore village and Tonawanda town, so a point counted in both would explain an excess, but that is not shown in the evidence). These 342 are points outside the city limits under the source's 3-decimal rounding or geocoding (largest Cheektowaga town, 151, adjacent to the city; Angola village, 16), not additional BPD coverage. Live-pull note: 33 raw rows are dated 2024-12-31 (recomputed from raw_cache.parquet, first 10 characters of incident_datetime), so {end} must bind to the exclusive 2025-01-01 as in the script's line 137 for a live pull to keep them. exclusions_stated_by_publisher is empty: the evidence records no publisher-stated row exclusions, only publisher caveats (pre-2009 data flagged unreliable, README.md line 9; data described as preliminary, README.md lines 14-17). The offense exclusions above are the ingestion's decisions, not the publisher's.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://data.buffalony.gov/resource/d6g9-xbgu.json",
+      "name": "Buffalo Police Department Crime Incidents (d6g9-xbgu)",
+      "order": "case_number",
+      "page_size": 50000,
+      "portal_type": "socrata",
+      "select": [
+        "case_number",
+        "incident_datetime",
+        "incident_type_primary",
+        "parent_incident_type",
+        "latitude",
+        "longitude",
+        "address_1",
+        "zip_code",
+        "neighborhood",
+        "police_district",
+        "council_district"
+      ],
+      "slug": "buffalo_crime_incidents",
+      "source_url": "https://data.buffalony.gov/Public-Safety/Crime-Incidents/d6g9-xbgu",
+      "where": "incident_datetime >= '{start}T00:00:00' AND incident_datetime < '{end}T00:00:00'"
+    }
+  ]
+}

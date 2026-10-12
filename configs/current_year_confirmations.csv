@@ -1,0 +1,24 @@
+jurisdiction_id,offense,year,verdict,evidence_source,note
+47:municipal:place:4752006,robbery,2025,confirmed_real,"trusted_low_research_0.json: MCCA 867 vs 1,168; MNPD -25.9%",
+35:municipal:place:3502000,robbery,2025,confirmed_real,trusted_low_research_0.json: MCCA 704 vs 913; APD -22%,
+24:municipal:place:2404000,murder,2025,confirmed_real,trusted_low_research_0.json: BPD year-end and MCCA 133 vs 194,
+31:municipal:place:3137000,robbery,2025,confirmed_real,trusted_low_research_0.json: MCCA 199 vs 227,"FBI 180 is 19 below MCCA 199 (ratio 0.905 vs 0.991 in 2024); no missing months, gap unexplained"
+21:municipal:place:2146027,murder,2025,confirmed_real,trusted_low_research_0.json: press totals 24/22/21 2023-2025 (likely incl. non-criminal),"Press totals confirm trend only, not FBI level; FBI-press gap 7 in 2025 vs 10 (2023) and 6 (2024)"
+55:municipal:place:5548000,burglary,2025,confirmed_real,trusted_low_research_1.json: Madison PD Q4 2025 report 406,MPD 406 vs FBI 394 (ratio 1.030); MPD 2022-2024 avg 707 vs FBI 713; FBI 12/12 months
+55:municipal:place:5548000,motor_vehicle_theft,2025,confirmed_real,trusted_low_research_1.json: Madison PD 284 stolen autos (-23.7%),MPD 284 vs FBI 265 (ratio 1.072); MPD 2022-2024 avg 568 vs FBI 508 (1.118); FBI 12/12 months
+27:municipal:place:2758000,robbery,2025,confirmed_real,trusted_low_research_1.json: St. Paul incident open data 269 (FBI 0.93-1.00 of it every year),FBI 259 / SPPD 269 = 0.963; 2019-2024 ratios 0.928-0.998; FBI 12/12 months
+06:municipal:place:0669000,motor_vehicle_theft,2025,confirmed_real,trusted_low_research_1.json: SAPD 2025 annual report 691 (996 in 2024),SAPD 691 vs FBI 682; SAPD -30.6% vs FBI -30.5%; FBI 12/12 months
+48:municipal:place:4845000,motor_vehicle_theft,2025,confirmed_real,trusted_low_research_3.json: LPD 2025 annual report Part 1 MVT 558 vs 723 in 2024 (2024 = FBI 723); FBI 2025 571,
+22:municipal:place:2270000,robbery,2025,confirmed_real,"trusted_low_research_3.json: SPD council YTD robbery 70 (2024) vs 49 (2025), -30%; FBI Jan-Aug 96 vs 70",
+44:municipal:place:4459000,burglary,2025,confirmed_real,trusted_low_research_3.json: PPD weekly report YTD Dec 21 238 vs 331 (-28%),
+06:municipal:place:0665000,murder,2025,confirmed_real,trusted_low_research_4.json: CA DOJ CJSC (state UCR program) homicide 2025 22 = FBI 22; CA DOJ 2022-2025 72/36/25/22; 12 months reported; NIBRS 09A Jun-Dec 13 = Return A 13; statewide homicide -17.5%,
+17:municipal:place:1703012,motor_vehicle_theft,2025,confirmed_real,trusted_low_research_4.json: APD 2025 annual report NIBRS MVT 551 -> 453 (-17.8%); FBI CDE 472 -> 404 (-14.4%),upward vs 2018-2020 history (IL NIBRS switch)
+17:municipal:place:1703012,robbery,2025,confirmed_real,trusted_low_research_4.json: APD 2025 annual report robbery 67 -> 36 (-46.3%); FBI CDE 65 -> 34,
+48:municipal:place:4858016,motor_vehicle_theft,2025,confirmed_real,trusted_low_research.md: Plano PD Crime Analysis year-end (FBI UCR Part I incl. attempts) 422 -> 222 = FBI 415 -> 222; completed thefts 339 -> 170,
+36:municipal:place:3663000,burglary,2025,confirmed_real,"trusted_low_research.md: NY DCJS 948 -> 624 (-34%), city open data 946 -> 636 (-33%) vs FBI 575 (-31%)","FBI level ~8% below DCJS since 2021 (2025 ratio 0.92, implied 2024 ~0.88); FBI decline -31% smaller than DCJS -34% and open data -33%"
+04:municipal:place:0412000,burglary,2025,confirmed_real,"trusted_low_research.md: Chandler PD SRS 334 -> 252, AZ DPS 254, open data (codes 2202+2204) 311 -> 256; months match FBI within 2",
+06:municipal:place:0648354,motor_vehicle_theft,2025,confirmed_real,trusted_low_research.md: Modesto Chief's monthly reports Jan-May YTD 302 -> 166 (-45%) vs FBI 304 -> 185; FBI full year 720 -> 398; Stanislaus neighbours -30 to -41%,
+06:municipal:place:0649270,motor_vehicle_theft,2025,confirmed_real,trusted_low_research.md: Moreno Valley station monthly Part 1 reports YTD Nov 545 -> 401 (-26%) vs FBI -27% as stated; FBI full year 555 -> 400 (-28%),
+49:municipal:place:4953230,aggravated_assault,2025,confirmed_real,"pm/e3/trusted_low_research.md Ohio/Utah cells: Utah BCI 103,90,72,54,26 (same pipeline; moderate)","FBI 2025 28; Utah BCI 2021-2025 103,90,72,54,26 (same pipeline, not independent); 2026 pace ~33/yr; intimidation 187 -> 388 possible coding drift, unproven"
+17:municipal:place:1753481,aggravated_assault,2025,confirmed_real,"pm/e3/trusted_low_research.md NJ/IL/NY cells: small numbers, complete months","2025 = 0; history 2,1,5,4,2 (complete months); forecast 9.29 above history max 5; no independent 2025 count"
+28:municipal:place:2844520,motor_vehicle_theft,2025,confirmed_real,pm/e3/trusted_low_research.md LA/MS/GA cells: department releases 1-5/yr since 2019,"2025 = 1, within department releases 1-5/yr since 2019; forecast 17.23 above that range"

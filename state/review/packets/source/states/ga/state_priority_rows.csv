@@ -1,0 +1,8 @@
+state_fips,state_abbr,offense,repo_nibrs_observed_total_2024,repo_srs_observed_total_2024,year,fbi_cde_estimated_total_2024,population,state_name,bjs_ckle_count_2024,bjs_ckle_rate_2024,repo_srs_minus_fbi_cde,repo_nibrs_minus_bjs_ckle,bjs_state_estimate_suppressed,repo_srs_gap_below_fbi_cde,repo_nibrs_gap_below_bjs_ckle,gap_priority_score,priority_rank
+13,GA,larceny,123683.0,122891.0,2024,139462,11180878,Georgia,148940.0,1332.5,-16571.0,-25257.0,False,16571.0,25257.0,41828.0,10
+13,GA,aggravated_assault,17092.0,24006.0,2024,27494,11180878,Georgia,28500.0,255.0,-3488.0,-11408.0,False,3488.0,11408.0,14896.0,19
+13,GA,motor_vehicle_theft,20450.0,22405.0,2024,25124,11180878,Georgia,25520.0,228.4,-2719.0,-5070.0,False,2719.0,5070.0,7789.0,35
+13,GA,burglary,18537.0,21043.0,2024,22677,11180878,Georgia,22580.0,202.0,-1634.0,-4043.0,False,1634.0,4043.0,5677.0,46
+13,GA,rape,1826.0,3231.0,2024,3598,11180878,Georgia,3870.0,34.7,-367.0,-2044.0,False,367.0,2044.0,2411.0,89
+13,GA,robbery,4001.0,3998.0,2024,4558,11180878,Georgia,4740.0,42.4,-560.0,-739.0,False,560.0,739.0,1299.0,122
+13,GA,murder,638.0,706.0,2024,770,11180878,Georgia,770.0,6.9,-64.0,-132.0,False,64.0,132.0,196.0,220

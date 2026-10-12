@@ -1,0 +1,96 @@
+{
+  "case_key": "deltona_fl",
+  "jurisdiction_id": "12:municipal:place:1217200",
+  "jurisdiction_name": "Deltona city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "drop_standalone_municipal_control_row_12_municipal_place_1217200_and_treat_deltona_as_volusia_sheriff_contract_policing_structure",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Deltona is a real incorporated city, but the City does not present a Deltona Police Department. Its current official city page is titled Sheriff / Law Enforcement and states that the City contracts with the Volusia Sheriff's Office to provide law enforcement services to District 4 and the City of Deltona.",
+    "The City of Deltona's FY2024-25 Annual Budget says Deltona has received law-enforcement services from the Volusia Sheriff's Office pursuant to a contract in place since the city's incorporation in 1995. The same budget organizes law enforcement under contracted services, names a district commander rather than a police chief, and budgets contract personnel rather than city police staff.",
+    "The City's FY2024 Annual Comprehensive Financial Report independently says Deltona contracts with the Volusia County Sheriff's Department via an interlocal agreement for law-enforcement services in the city. That is direct official confirmation that Deltona uses a sheriff-contract model rather than a standalone municipal police department.",
+    "Volusia Sheriff's Office primary-source materials align with the city's description. The sheriff's jurisdiction manual says VSO has primary jurisdiction of all law enforcement in Deltona, and the sheriff's official county police-links page lists the county's municipal police departments but does not list any Deltona Police Department.",
+    "Florida's official annual county-and-municipal offense publications for 2020 and 2021 list Volusia County Sheriff's Office and the county's actual municipal police/public-safety agencies, but no Deltona row appears. That makes the repo's FL0642500 Deltona row look like a bad fallback agency definition, not a temporarily broken official Deltona municipal reporting series.",
+    "Repo evidence fits that interpretation. FL0642500 exists only as an agency_master_fallback crosswalk with raw name deltona, type unknown, SRS-only presence, no NIBRS presence, and zero annual counts for every offense in every observed year 2020-2024. The 2024 Deltona control row is therefore fully filled from peer estimates because there is no usable reported support."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_contracted_county_sheriff_policing",
+    "official_basis": [
+      "Deltona is an incorporated city with its own municipal government.",
+      "The city states that law enforcement is provided through a contract with the Volusia Sheriff's Office rather than through a city police department.",
+      "The city's FY2024 Annual Comprehensive Financial Report says the city contracts with the Volusia County Sheriff's Department via an interlocal agreement for law-enforcement services."
+    ]
+  },
+  "policing_structure": {
+    "standalone_deltona_police_department_found": false,
+    "primary_policing_entity": "Volusia Sheriff's Office, District 4",
+    "county_or_special_layer_displacing_city_police": true,
+    "official_evidence": [
+      "The City of Deltona's official Sheriff / Law Enforcement page says the city contracts with the Volusia Sheriff's Office for law-enforcement services.",
+      "The FY2024-25 city budget says the contractual relationship has been in place since the city's incorporation in 1995 and identifies law enforcement as contracted services with the Volusia Sheriff's Office.",
+      "VSO's jurisdiction manual says the sheriff has primary jurisdiction of all law enforcement in Deltona.",
+      "VSO's county police-links page lists the municipal police departments in Volusia County and Deltona is not among them."
+    ],
+    "important_clarification": "Deltona is a valid municipality, but it does not have a standalone city police agency in the ordinary Florida municipal-reporting sense. It is a sheriff-contract city."
+  },
+  "official_reporting_evidence": {
+    "fdle_state_publication_surface": {
+      "summary": "FDLE's official county-and-municipal offense reports for 2020 and 2021 show Volusia County Sheriff's Office plus the county's actual municipal departments, but no Deltona agency row.",
+      "interpretation": "Florida's official annual municipal reporting surface does not treat Deltona as a separate police agency row."
+    },
+    "best_local_annual_surface_found": {
+      "source": "City of Deltona FY2024-25 Annual Budget, Law Enforcement Services division",
+      "summary": "The budget provides annual law-enforcement narrative, contract staffing counts, and Deltona-labeled performance measures such as reported auto thefts, residential burglaries, larceny car breaks, robberies, domestic-violence cases, and calls for service.",
+      "why_it_matters": "This is the strongest official annual local publication found that speaks directly to Deltona law-enforcement activity.",
+      "limitations": [
+        "It is a city budget and contract-management publication, not a Florida official county-and-municipal offense row.",
+        "It does not provide a complete six-offense municipal annual series for the standard pipeline.",
+        "The same budget section describes VSO District 4 service territory beyond Deltona, so any later override would require careful scoping before treating the listed measures as a full Deltona-only crime table."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0642500 exclusively to 12:municipal:place:1217200 with review_status fallback and resolution_source agency_master_fallback.",
+    "agency_master_state": "agency_master.parquet shows FL0642500 as raw name deltona, agency_type unknown, source_presence_srs true, source_presence_nibrs false, srs_years 2020-2024, and latest_srs_part1_total 0.0.",
+    "observation_state": "agency_year_observations.parquet shows FL0642500 only as zero-count srs_return_a_annual summary rows with months_reported 0.0 and annual_part1_total 0.0 in every year 2020-2024.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all 2024 Deltona offense rows preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill from peer_state_type_pop_band.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Deltona in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 3729.960973, and total_reported_count 0.0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": false,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "why_not": [
+      "Deltona does not operate a Deltona Police Department; it purchases law-enforcement service from the Volusia Sheriff's Office.",
+      "VSO's own jurisdiction manual assigns VSO primary law-enforcement jurisdiction in Deltona.",
+      "FDLE official county-and-municipal offense reports do not publish a separate Deltona agency row.",
+      "The current FL0642500 row is only a fallback, unknown-type, zero-count pseudo-agency and is not credible evidence of a real municipal reporting surface."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The pipeline most likely converted the municipal place label Deltona into a fallback Florida agency row even though official city, sheriff, and FDLE materials treat Deltona as part of the sheriff contract-policing structure rather than as a standalone municipal police agency.",
+      "Because the fallback FL0642500 row carries only zero-count annual summary observations from 2020 through 2024, the control builder classifies the city as structurally missing or unreliable and fills every modeled offense from peer-state/pop-band estimates.",
+      "This is an agency-definition / routing problem, not a broken continuity problem for a real Deltona Police Department."
+    ],
+    "best_available_override_surface_if_business_requires_city_level_estimate": {
+      "source": "City of Deltona FY2024-25 Annual Budget, Law Enforcement Services division",
+      "why": "It is the best official annual local publication found that directly describes Deltona's contract-policing arrangement and publishes Deltona-labeled crime/service measures.",
+      "limitations": [
+        "It is not a standard FDLE/FBI municipal agency reporting surface.",
+        "It is incomplete for the full six-offense municipal control framework.",
+        "The relationship between the listed measures and strictly city-only geography would need to be validated before any production override."
+      ]
+    },
+    "recommended_handling": [
+      "Do not retain the current standalone Deltona municipal control row 12:municipal:place:1217200 as a normal agency-backed municipal target.",
+      "Retire or unroute FL0642500 as a Deltona municipal agency fallback row.",
+      "If business requirements still demand Deltona-specific place-level estimates, build them only through a bespoke local override path using Deltona/VSO contract-policing materials or direct records, not through ordinary state-agency continuity logic."
+    ]
+  },
+  "likely_issue_class": "invalid_target_contract_policing_agency_definition_error",
+  "open_questions": [
+    "If a later manual override is desired, confirm whether the city budget's key performance measures are strictly Deltona-only or partially reflect broader District 4 activity. That question affects override design but does not change the keep/drop decision on the current FL0642500-backed municipal row."
+  ]
+}

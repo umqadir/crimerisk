@@ -1,0 +1,129 @@
+{
+  "case_key": "opa_locka_fl",
+  "jurisdiction_id": "12:municipal:place:1251650",
+  "jurisdiction_name": "Opa-locka city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_current_all_fill_as_state_publication_continuity_failure_on_fl0131200",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Opa-locka remains a real incorporated municipal police target. The city's current police page presents an active Opa-locka Police Department with 24/7 operations, and the city's FY24 five-year plan budgets a police function with 50 sworn positions plus other personnel.",
+    "Official state agency directories also support a live Opa Locka Police Department identity. FDLE's criminal-justice agency links page lists the department and links to the city's police site, and FDLE's ATMS online directory includes Opa Locka Police Department with ORI FL0131200.",
+    "Miami-Dade's sheriff-transition record rejects a county-replacement interpretation. In the county's 2022 transition ordinance package, Miami-Dade states that county police serves unincorporated areas plus the contracting municipalities Miami Lakes, Palmetto Bay, and Cutler Bay, while the City of Opa-Locka provides municipal police services within its own jurisdiction.",
+    "Florida's official annual county-and-municipal crime publications support a real Opa-locka-specific reporting identity through 2021. FDLE's 2020 report publishes Opa-Locka Police Department with total index crime 1,242, and FDLE's 2021 report publishes Opa-Locka Police Department with total index crime 869.",
+    "The official public annual publication path then breaks. The FDLE FIBRS offense-detail workbook for 2021 through 2025 Q2 contains no Opa-Locka, Opa Locka, FL0131200, or 0131200 row in any sheet, even though FDLE's current agency rosters still show the department as an active agency.",
+    "Repo artifacts show a two-stage continuity failure rather than an invalid target. The live crosswalk still routes FL0131200 exclusively to Opa-locka city, but the observation layer preserves usable CIUS-local annual counts only for 2018-2019 and then carries zero-valued low-weight SRS rows for 2020-2024 with no NIBRS rows at all.",
+    "The current all-fill state is therefore best explained as broken Florida publication and repo continuity on a valid municipal police target, not contract policing, county replacement, or target invalidity."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "The City of Opa-locka currently publishes a Police Department page and police service pages for investigations, records, traffic, and reporting.",
+      "The city's FY24 five-year plan budgets a police department with sworn staffing and operating expenditures.",
+      "Miami-Dade's 2022 sheriff-transition document specifically lists the City of Opa-Locka among the municipalities that provide police services within their own jurisdictions."
+    ],
+    "important_interpretation": "Opa-locka is a valid municipal control object. The January 7, 2025 sheriff reestablishment in Miami-Dade did not replace Opa-locka's municipal police function."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Opa-locka Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The city's current Police page states that the Opa-locka Police Department serves residents, businesses, and visitors around the clock from city headquarters at 780 Fisherman Street.",
+      "The city's General Investigations Unit page says detectives investigate crimes occurring within the city.",
+      "The city's FY24 five-year plan budgets police staffing and police operating expense as city functions.",
+      "Miami-Dade's 2022 transition ordinance package says county police serves unincorporated areas and contracting municipalities, while Opa-Locka provides municipal police services within its jurisdiction."
+    ],
+    "important_clarification": "This is not a sheriff-contract city and not a county-remainder case. Opa-locka continues to present as a city-police jurisdiction."
+  },
+  "official_reporting_evidence": {
+    "current_agency_identity": {
+      "summary": "Current city and state public materials still support Opa Locka Police Department as a live agency.",
+      "details": [
+        "The city publishes a current Opa-locka Police Department page with 24/7 service language and direct police contact information.",
+        "FDLE's criminal-justice agency links page lists Opa Locka Police Department.",
+        "FDLE's ATMS directory search includes Opa Locka Police Department with ORI FL0131200."
+      ],
+      "interpretation": "The agency itself still exists as a real municipal police entity, so the target is not invalid."
+    },
+    "miami_dade_transition_structure": {
+      "summary": "County transition materials around the 2025 sheriff restoration preserve Opa-locka as a municipality providing its own police services.",
+      "details": [
+        "Miami-Dade says county police currently serves unincorporated areas plus Miami Lakes, Palmetto Bay, and Cutler Bay.",
+        "The same county document lists the City of Opa-Locka among municipalities that provide police services within their jurisdictions.",
+        "The county document further states that municipal authority to continue providing police services is unaffected by the sheriff reestablishment."
+      ],
+      "interpretation": "The transition-era change in county sheriff structure is not the cause of Opa-locka's all-fill state."
+    },
+    "fdle_county_and_municipal_publication_surface": {
+      "summary": "FDLE's official county-and-municipal annual offense reports publish Opa-Locka Police Department as a real municipal reporting row through 2021.",
+      "details": [
+        "FDLE 2020: Opa-Locka Police Department, population 18,090, total index crime 1,242.",
+        "FDLE 2021: Opa-Locka Police Department, population 16,570, total index crime 869."
+      ],
+      "interpretation": "Florida's official annual reporting surface confirms a real Opa-locka-specific municipal reporting identity through 2021."
+    },
+    "fdle_post_srs_fibrs_publication_check": {
+      "summary": "The official FDLE FIBRS offense-detail workbook does not surface Opa-locka in any sheet from 2021 through 2025 Q2.",
+      "details": [
+        "Searches for Opa-Locka, Opa Locka, FL0131200, and 0131200 returned no rows in the 2021, 2022, 2023, 2024, or 2025 Q2 sheets."
+      ],
+      "interpretation": "The public Florida FIBRS workbook does not currently preserve a usable Opa-locka annual offense row after the SRS-era county-and-municipal reports."
+    },
+    "identity_change_notes": {
+      "summary": "The reviewed official materials show only a naming-style change, not an agency replacement.",
+      "details": [
+        "FDLE's 2020-2021 annual reports use the hyphenated form Opa-Locka Police Department.",
+        "Current city and FDLE directory pages use Opa-locka or Opa Locka without changing the ORI identity FL0131200."
+      ],
+      "interpretation": "There is no evidence of a true agency substitution; the apparent change is punctuation and publication-path related."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0131200 exclusively to 12:municipal:place:1251650 with relationship_type exclusive and review_status auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0131200 as a local police department, marks both SRS and NIBRS source presence across 2018-2024, but records nibrs_max_months_reported 0.0 and latest_srs_part1_total 0.0.",
+    "observation_state": "agency_year_observations.parquet contains real CIUS-local annual counts for 2018 and 2019, then only zero-valued srs_return_a_annual rows from 2020 through 2024 with observation_weight 0.1 and no NIBRS rows.",
+    "jurisdiction_observation_state": "jurisdiction_year_observations.parquet mirrors that same pattern at the municipal target: usable observed support exists only through 2019 and collapses to zero-valued summary rows afterward.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows every 2024 Opa-locka offense row preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill from historical estimators.",
+    "estimator_state": "jurisdiction_year_estimates.parquet treats 2019 as the last usable observed year across offenses and fills 2020-2024 from trend or hist_median logic.",
+    "review_artifact_state": "municipal_target_review_queue.parquet flags Opa-locka as full_fill_no_reported_support with total_fill_count 1303.5, and fbi_cde_source_review_queue.parquet separately flags FL0131200 as present_but_no_2024_observation."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "usable_official_state_annual_identity_supported_through_year": 2021,
+    "why": [
+      "Opa-locka has an active city police department in current city and FDLE public materials.",
+      "Miami-Dade's own transition documentation says Opa-locka provides municipal police services within its jurisdiction and is not one of the county-contract municipal districts.",
+      "FDLE's official county-and-municipal annual reports publish Opa-Locka Police Department through 2021.",
+      "The later public FIBRS workbook drops the row entirely, so the pipeline's zero-support state reflects a broken publication and ingestion path rather than a bad target."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The repo already missed or failed to preserve the official FDLE annual Opa-Locka municipal rows for 2020 and 2021, because observations use zero-valued Kaplan SRS rows instead of the published FDLE counts.",
+      "After Florida's transition to incident-based public reporting, FDLE's public FIBRS workbook no longer exposes a usable Opa-locka annual offense row through 2025 Q2.",
+      "The combined effect is a continuity/publication failure on FL0131200, not contract policing, county replacement, or target invalidity."
+    ],
+    "best_available_override_surface_if_business_requires_city_level_2022_2024_support": {
+      "source": "Direct Opa-locka Police Department records / city public-records path, or a direct FDLE/FBI agency extract keyed to FL0131200",
+      "why": "Current city materials show an active department with records and investigative functions, while the public statewide workbook no longer exposes a usable offense row.",
+      "limitations": [
+        "The reviewed public city pages confirm the department's existence but do not publish a ready-made annual offense table equivalent to the state county-and-municipal reports.",
+        "The official public FDLE FIBRS workbook currently provides no Opa-locka row to backfill 2022-2024 directly from the standard statewide publication path."
+      ]
+    },
+    "recommended_handling": [
+      "Retain Opa-locka city as a standalone municipal control row.",
+      "Do not reroute Opa-locka to Miami-Dade Sheriff, county remainder, or a contract-policing treatment.",
+      "Treat the current all-fill state as a Florida publication and repo continuity failure on FL0131200.",
+      "Use FDLE's county-and-municipal offense reports as the official statewide support surface through 2021.",
+      "If production requires city-level observed counts for 2022-2024, recover them through direct city records or a direct agency-level state/federal extract rather than deleting the municipal target."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_state_publication_and_repo_continuity_failure",
+  "open_questions": [
+    "The keep-versus-drop decision is closed. The remaining implementation question is where the most reliable post-2021 annual offense counts for FL0131200 can be recovered: direct city records, a non-public FDLE extract, or a federal agency-level extract not reflected in the current public workbook."
+  ]
+}

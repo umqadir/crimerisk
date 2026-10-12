@@ -1,0 +1,200 @@
+{
+  "city_key": "fayetteville",
+  "city_name": "Fayetteville, NC",
+  "evidence_refs": [
+    "state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:77-102",
+    "state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:116-138",
+    "state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:165-212",
+    "state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:221",
+    "state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:241-276",
+    "state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:278-305",
+    "state/review/packets/city/fayetteville/evidence/README.md:7",
+    "state/review/packets/city/fayetteville/evidence/README.md:64-85",
+    "state/review/packets/city/fayetteville/evidence/README.md:126-187",
+    "state/review/packets/city/fayetteville/evidence/README.md:217-224",
+    "state/review/packets/city/fayetteville/evidence/raw_cache_profile.json",
+    "state/review/packets/city/fayetteville/evidence/jurisdictions.csv",
+    "state/review/packets/city/fayetteville/raw_cache.parquet",
+    "state/review/packets/city/fayetteville/packet.json case_text: \"Source fayetteville: an E4 truth-corpus city incident feed (2018-2024), fetched by evidence/01_fetch_fayetteville.py. README present: yes; offense_mapping.csv present: no.\"",
+    "state/review/packets/city/fayetteville/live/raw_persons_2025_2025_6b4f90561517.parquet",
+    "state/review/packets/city/fayetteville/live/raw_property_2025_2025_41b70596e2ef.parquet"
+  ],
+  "exclusions_stated_by_publisher": [],
+  "geography": {
+    "jurisdiction_ids": [
+      "37:municipal:place:3722920"
+    ],
+    "state_fips": [
+      "37"
+    ]
+  },
+  "known_differences_from_fetch_script": [
+    "Id string: the script builds incident_id as '{PERS|PROP}-{OBJECTID}' (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:273-274); the contract's id is the bare OBJECTID. The script's source_layer column exists only in the archived pull (state/review/packets/city/fayetteville/raw_cache.parquet columns); a live pull carries '__source_slug' instead (check result live columns), so an id_fields entry naming either column fails on the other pull (the previous contract failed the live check with KeyError: 'source_layer'). OBJECTID alone is unique in both pulls: 0 duplicate OBJECTIDs across the two layers in raw_cache.parquet (111,565 rows) and 0 across the two live 2025 layer files (12,465 rows; state/review/packets/city/fayetteville/live/), recomputed with pandas. The key is therefore one-to-one with the script's in these pulls, but it relies on the non-overlap of the two layers' OBJECTID sequences, which the script declines to rely on (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:265-272). dedupe_on_id is false, so the id choice does not change which rows are kept.",
+    "source_layer column: the script adds source_layer = 'persons'/'property' per layer after the fetch (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:221); the contract does not use it. Source slugs are still 'persons' and 'property', matching the archived values, if the runner's own '__source_slug' is used downstream.",
+    "Spatial reference: the script requests outSR=4326 on every query (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:175) because the layers' native SR is NC State Plane feet (EPSG:2264, state/review/packets/city/fayetteville/evidence/README.md:34-39). The contract has no outSR field. The live pull's __arcgis_latitude/__arcgis_longitude are already degrees (lat 34.968-35.204, lon -79.087 to -78.783 in state/review/packets/city/fayetteville/live/*.parquet, recomputed), as are the archived latitude/longitude (profile lat 34.850-35.208, lon -79.089 to -78.528).",
+    "Geometry 'NaN' strings: the script coerces non-numeric geometry x/y (the literal string 'NaN') to float NaN (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:201-207). The contract reads coordinates 'as numbers'; this matches only if the runner's numeric coercion turns 'NaN' strings into missing values. In raw_cache.parquet these are already NaN (165 rows = 111565 - 111400 non-null in the profile).",
+    "Year timezone: the script derives year from Date_Incident epoch ms in UTC (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:251-252), dropping 3 mapped rows whose UTC year is 2025. The contract's epoch_ms year reproduces this only if the runner also uses UTC; converting to America/New_York instead would move 23 of the 60,474 mapped rows to a different year (recomputed from raw_cache.parquet).",
+    "Server-side where: the script's where is fixed to 2018-01-01..2025-01-01 (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:97-100); the contract templates it with {start}/{end}. The comparison is against the ArcGIS server's own timestamp interpretation, while the client year is UTC (state/review/packets/city/fayetteville/evidence/README.md:148-156).",
+    "Block-group join: the script keeps the first block-group match per point on boundary ties and drops rows without a valid 12-digit GEOID (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:288-305). The contract runner performs the within join itself; the README reports 100.00% match (60,373/60,373) (state/review/packets/city/fayetteville/evidence/README.md:217-220), so no rows are lost at this step in this pull.",
+    "The script carries district/zone/tract/reportarea, Offense_Description, Address, Case_number and ucr_code through to incidents_bg.parquet (state/review/packets/city/fayetteville/evidence/01_fetch_fayetteville.py:307-311); the contract selects them but has no output-column list, so their pass-through depends on the runner."
+  ],
+  "mapping": {
+    "date_field": "Date_Incident",
+    "date_format": "epoch_ms",
+    "dedupe_on_id": false,
+    "id_fields": [
+      "OBJECTID"
+    ],
+    "latitude_field": "latitude|__arcgis_latitude",
+    "longitude_field": "longitude|__arcgis_longitude",
+    "offense_rules": [
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "09A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "murder"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "13A"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "aggravated_assault"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "120"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "robbery"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "220"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "burglary"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "23A",
+              "23B",
+              "23C",
+              "23D",
+              "23E",
+              "23F",
+              "23G",
+              "23H"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "larceny"
+      },
+      {
+        "conditions": [
+          {
+            "case_sensitive": false,
+            "field": "ucr_code",
+            "op": "in",
+            "value": "",
+            "values": [
+              "240"
+            ]
+          }
+        ],
+        "exclude_conditions": [],
+        "offense": "motor_vehicle_theft"
+      }
+    ],
+    "require_coordinates": true,
+    "year_field": ""
+  },
+  "notes": "Recomputed by applying the script's steps to raw_cache.parquet with pandas: 111,565 raw rows; 51,091 have a ucr_code outside the OFFENSE_MAP whitelist, leaving 60,474; 3 have a UTC year of 2025, leaving 60,471; 98 lack coordinates, leaving 60,373. By offense: larceny 37,875, burglary 8,711, aggravated_assault 7,429, motor_vehicle_theft 4,268, robbery 1,882, murder 208, rape 0. These match the README's totals table (README.md:176-187) and step counts (README.md:141-160). No duplicate (source_layer, OBJECTID) pairs remain, so dedupe_on_id=false, matching the script, which checks for duplicates without dropping any (01_fetch_fayetteville.py:275-276). Offense rules restate OFFENSE_MAP exactly (01_fetch_fayetteville.py:116-138): 09A murder; 13A aggravated_assault; 120 robbery; 220 burglary; 23A-23H larceny; 240 motor_vehicle_theft. Every other code is dropped: 09B, 09C, 100, 13B, 13C, 200, 210, 250, 26A-26G, 270, 280, 290, 510. The raw cache has no 11x or 36x (rape) codes (raw_cache_profile.json ucr_code distinct values), so rape is always 0. The README attributes this to the source not publishing those codes, not to an absence of offenses (README.md:64-85). That is the pipeline author's inference, not a statement from FayPD, so exclusions_stated_by_publisher is empty. The fetch script queries only the Persons and Property layers; the Society layer holds no target codes (01_fetch_fayetteville.py:19-24). jurisdiction_ids is the city only (Fayetteville city, 37:municipal:place:3722920) because the publisher is the Fayetteville Police Department, a city PD (README.md:7). evidence/jurisdictions.csv also places incidents in the North Carolina nonmunicipal remainder (17,090), Hope Mills town (1,088) and Spring Lake town (12). Those four counts sum to 78,529, not the script's 60,373, and the packet does not state how that file was counted. A reviewer may want to check whether the 17,090 nonmunicipal-remainder rows reflect city-limit boundary effects or out-of-city FayPD records. Revision: the previous contract passed replay (42 cells, 0 failing, 60,373 = 60,373 rows) but failed the live pull on id_fields source_layer. The only change is id_fields ['source_layer','OBJECTID'] -> ['OBJECTID']; offense rules, year, coordinate and dedupe settings are unchanged, so the replay row set is unchanged. Live pull check (recomputed from state/review/packets/city/fayetteville/live/*.parquet): 12,465 rows, Date_Incident int64 epoch ms, 7,041 rows with a target ucr_code, 14 rows with null __arcgis_latitude.",
+  "source_kind": "incident_report",
+  "sources": [
+    {
+      "api_endpoint": "https://gismaps.fayettevillenc.gov/cofopendatagis/rest/services/Police/IncidentsCrimesAgainstPersons/MapServer/0/query",
+      "name": "Fayetteville PD Incidents - Crimes Against Persons",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Date_Incident",
+        "ucr_code",
+        "Offense_Description",
+        "Address",
+        "Case_number",
+        "district",
+        "zone",
+        "tract",
+        "reportarea"
+      ],
+      "slug": "persons",
+      "source_url": "https://gismaps.fayettevillenc.gov/cofopendatagis/rest/services/Police/IncidentsCrimesAgainstPersons/MapServer/0",
+      "where": "Date_Incident >= timestamp '{start} 00:00:00' AND Date_Incident < timestamp '{end} 00:00:00'"
+    },
+    {
+      "api_endpoint": "https://gismaps.fayettevillenc.gov/cofopendatagis/rest/services/Police/IncidentsCrimesAgainstProperty/MapServer/0/query",
+      "name": "Fayetteville PD Incidents - Crimes Against Property",
+      "order": "OBJECTID ASC",
+      "page_size": 2000,
+      "portal_type": "arcgis_feature_service",
+      "select": [
+        "OBJECTID",
+        "Date_Incident",
+        "ucr_code",
+        "Offense_Description",
+        "Address",
+        "Case_number",
+        "district",
+        "zone",
+        "tract",
+        "reportarea"
+      ],
+      "slug": "property",
+      "source_url": "https://gismaps.fayettevillenc.gov/cofopendatagis/rest/services/Police/IncidentsCrimesAgainstProperty/MapServer/0",
+      "where": "Date_Incident >= timestamp '{start} 00:00:00' AND Date_Incident < timestamp '{end} 00:00:00'"
+    }
+  ]
+}

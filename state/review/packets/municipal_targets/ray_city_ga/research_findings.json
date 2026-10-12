@@ -1,0 +1,71 @@
+{
+  "case_key": "ray_city_ga",
+  "jurisdiction_id": "13:municipal:place:1363728",
+  "jurisdiction_name": "Ray City city",
+  "state_abbr": "GA",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": true,
+    "recommended_disposition": "retain_standalone_municipal_control_row_as_real_small_city_police_target_and_treat_all_fill_as_broken_reporting_continuity",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Ray City is a real incorporated municipality, not a fake place row. Georgia's 2020 joint comprehensive plan for Berrien County and its cities states that Ray City became incorporated on August 16, 1909.",
+    "Ray City currently presents an official city police department. The City's police page describes the Ray City Police Department as a full-service, full-time department recognized by Georgia P.O.S.T., led by Chief Steve Miller, and staffed by two full-time officers plus three part-time officers.",
+    "The city's contact pages reinforce that structure rather than a sheriff-only model. Ray City's map and directions page lists a dedicated Police Department phone number, and the police page provides an after-hours number that matches Berrien County's E-911 non-emergency line. That indicates a small-city dispatch arrangement, not the absence of a municipal police department.",
+    "Georgia's 2022 Municipal Government Information Catalog places Ray City in the municipal public-safety police tables with nonblank police fields, which is additional state-level confirmation that Ray City operates a city police function.",
+    "Georgia's official crime-statistics program describes UCR data as compiled directly from offense and arrest reports submitted by Georgia law-enforcement agencies and says additional UCR data can be retrieved for special-purpose reports upon request. At the same time, the public GBI crime-statistics database page says the database is not available, which explains why direct agency-level public continuity is hard to inspect from the normal public surface.",
+    "Repo evidence points to broken or suspect reporting continuity, not an invalid target. GA0100300 Ray City Police Department is crosswalked exclusively to Ray City city, which is methodologically correct for a city police agency. But the observation panel shows a plausible small-agency 2018 total of 23, an aberrant 2019 annual total of 14002 driven entirely by larceny, and then zeros from 2020 through 2024. The municipal target review queue therefore shows Ray City as fully fill-backed in 2024."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_city_police_department",
+    "official_basis": [
+      "The 2020 Berrien County and cities comprehensive plan says Ray City became incorporated on August 16, 1909.",
+      "The official City of Ray City website presents current municipal services and includes a dedicated Ray City Police Department."
+    ],
+    "important_interpretation": "Ray City is a valid municipal control object. Nothing in the official city, county, or Georgia public-safety sources suggests that Ray City is merely a Census shell, an unincorporated service area, or a municipality whose policing has been formally replaced by the county sheriff."
+  },
+  "policing_structure": {
+    "city_police_department_found": true,
+    "primary_policing_entity": "Ray City Police Department",
+    "supporting_county_role": "Berrien County E-911 dispatch and normal county sheriff overlap, but not a citywide replacement for the municipal police department",
+    "official_evidence": [
+      "The city police page calls Ray City Police Department a full-service, full-time department recognized by Georgia P.O.S.T.",
+      "The same page identifies Chief Steve Miller and states that the department is staffed by two full-time officers and three part-time officers.",
+      "The city police page directs after-hours calls to 229-686-2091, and the Berrien County contact directory identifies 229-686-2091 as E-911 non-emergency while separately listing the Sheriff Office at 229-686-7071."
+    ],
+    "separate_current_general_city_police_department_officially_visible": true,
+    "likely_reporting_continuity": "The service structure is valid but the crime-reporting continuity is broken or corrupted. The most likely official backfill surface is a Georgia Bureau of Investigation UCR special-purpose agency extract for Ray City Police Department, with direct Ray City Police Department or city records as the next official fallback if the GBI extract is unavailable."
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": {
+      "GA0100300": "exclusive to 13:municipal:place:1363728"
+    },
+    "current_observation_state": {
+      "GA0100300": "2018 annual Part I total 23; 2019 annual Part I total 14002 with all indexed offense count landing in larceny; 2020-2024 all indexed offenses zero"
+    },
+    "current_control_state": "Ray City's municipal target review row is flagged as high_impact_full_fill_place with 2024 estimated count 7007, total reported count 0, fill_share_of_estimated 1.0, and suspect reason full_fill_no_reported_support.",
+    "interpretation": "The jurisdiction mapping is straightforward and not structurally wrong. The production problem is that the only correctly mapped city-police agency has unusable continuity in the repo observation layer."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "why": [
+      "Ray City is a real incorporated city.",
+      "Ray City officially maintains a current municipal police department.",
+      "The existing exclusive Ray City Police Department to Ray City city mapping matches the official service structure.",
+      "No official source indicates that Berrien County Sheriff has replaced Ray City Police Department as the city's general municipal policing authority."
+    ],
+    "recommended_handling": [
+      "Retain the standalone Ray City municipal control row 13:municipal:place:1363728.",
+      "Do not replace Ray City's municipal target with Berrien County sheriff service structure or route the city into state nonmunicipal remainder.",
+      "Classify the current all-fill state as broken reporting continuity or bad state-summary continuity for GA0100300, not as an invalid-target problem.",
+      "Use a GBI UCR special-purpose agency report for Ray City Police Department as the preferred official backfill surface because GBI says agency-submitted UCR data can be retrieved upon request even though the public crime-statistics database is unavailable.",
+      "Use direct Ray City Police Department or city-origin records as the fallback official surface if GBI cannot supply a usable agency extract.",
+      "Quarantine or override the 2019 larceny-only spike during any backfill work unless an official agency-level source confirms it, because that single-year jump is inconsistent with the surrounding panel and looks like a corrupted continuity point rather than a true service-structure change."
+    ]
+  },
+  "likely_issue_class": "broken_reporting_continuity_not_invalid_target",
+  "open_questions": [
+    "The keep versus drop decision is closed. The only remaining implementation question is whether the first practical agency-level recovery path is a GBI special-purpose extract, direct Ray City Police Department records, or both."
+  ]
+}

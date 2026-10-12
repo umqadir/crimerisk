@@ -1,0 +1,106 @@
+{
+  "case_key": "winter_garden_fl",
+  "jurisdiction_id": "12:municipal:place:1278250",
+  "jurisdiction_name": "Winter Garden city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_full_fill_as_post_2020_reporting_publication_break",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Winter Garden plainly operates a real municipal police department. WGPD's official Administration page says the department protects an approximately 17 square mile area and currently employs 87 sworn police officers and 30 civilians, while the current police directory lists Police Chief Steve Graham plus active patrol, support, records, and evidence contacts.",
+    "Official current city-police pages do not support county replacement or contract policing. WGPD maintains separate Administration, Patrol Services, Support Services, Criminal Investigations, Records Management, and current 2026 Citizens Police Academy programming, which is incompatible with treating Winter Garden as an Orange County Sheriff primary-service substitute.",
+    "Official Florida annual reporting confirms that Winter Garden was a real municipal agency publication surface through the end of the legacy county-and-municipal series. FDLE's 2020 County and Municipal Offense Report publishes Winter Garden Police Department as a standard municipal row with population 48,469 and total index crime 963, and FDLE's 2021 report still carries a named Winter Garden Police Department row with population 47,475 even though offense cells are blank.",
+    "Official post-SRS public reporting continuity is broken. The current FDLE FIBRS Offense Detail workbook covering 2021 through 2025 Q3 contains no Winter Garden Police Department or FL0480500 row on any yearly sheet, so there is no usable public FDLE FIBRS annual row to backfill 2024.",
+    "The FBI's official CDE agency roster still recognizes Winter Garden Police Department as a live city agency but not as a NIBRS agency. The current roster returns FL0480500 under Florida / Orange County with agency type City, is_nibrs false, and no nibrs_start_date, which fits a valid municipal target whose post-SRS federal incident-based continuity never matured into a public NIBRS row.",
+    "The repo's municipal target itself is not the problem. The live crosswalk routes FL0480500 exclusively to Winter Garden city, jurisdiction_master does not flag Winter Garden as contracted, and the 2024 all-fill condition arises because observations collapse to zero-valued SRS rows in 2021-2024 with no NIBRS support, forcing hist_median fills across the control layer.",
+    "A real blocker remains for production backfill. I found an official police-records request path and records-management contacts, but I did not find a public Winter Garden police annual crime report or public offense dashboard on the city's current public site. That means the keep/drop decision is closed, but a ready-made public 2024 offense backfill surface is not."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_police_department",
+    "official_basis": [
+      "Winter Garden maintains a dedicated Police section on the official city site.",
+      "The current police directory lists a city police headquarters at 251 W Plant Street, a non-emergency line, 911 emergency line, and current command staff including the police chief.",
+      "WGPD's official Administration page states the department's staffing, service area, and community-policing programs."
+    ],
+    "important_interpretation": "Winter Garden is a valid municipal policing object. Nothing in the reviewed official city, FDLE, or FBI materials supports treating the city as merely a Census shell, a sheriff-contracted municipality, or a county-primary replacement target."
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Winter Garden Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "WGPD says it currently employs 87 sworn police officers and 30 civilians and provides protection to an approximately 17 square mile area.",
+      "The current police directory lists Police Chief Steve Graham plus command staff for patrol, administration, and support services, along with records, evidence, and professional compliance contacts.",
+      "WGPD's Patrol Services page describes active bicycle patrol, community liaison, canine, and uniform patrol functions.",
+      "WGPD's Support Services and Criminal Investigations pages describe active criminal investigations, property and evidence, school crossing guards, traffic enforcement, and narcotics investigative functions.",
+      "WGPD's Citizens Police Academy page advertises March-April 2026 and August-October 2026 sessions taught by Winter Garden police officers and staff in the department training room."
+    ],
+    "important_clarification": "This is not a contract-policing or county-replacement case. Orange County Sheriff may operate separately in the county, but the official city materials show Winter Garden Police Department as the city's primary general-law-enforcement agency."
+  },
+  "official_reporting_evidence": {
+    "fdle_county_and_municipal_surface": {
+      "summary": "FDLE's official county-and-municipal offense reports support Winter Garden as a real named municipal reporting identity through 2021, but only 2020 carries substantive offense totals.",
+      "details": [
+        "FDLE 2020: Winter Garden Police Department, population 48,469, total index crime 963, murder 3, rape 12, robbery 18, aggravated assault 120, burglary 88, larceny 654, motor vehicle theft 68.",
+        "FDLE 2021: Winter Garden Police Department, population 47,475, retained as a named row but offense fields published as dashes."
+      ],
+      "interpretation": "Florida's own legacy annual publication confirms a real Winter Garden-specific police identity; the transition problem is publication continuity after that point, not municipal-target invalidity."
+    },
+    "fdle_post_srs_publication_check": {
+      "summary": "The official FDLE FIBRS Offense Detail workbook for 2021-2025 Q3 contains no Winter Garden Police Department or FL0480500 row on any yearly sheet.",
+      "interpretation": "There is no public FDLE incident-based annual row to backfill Winter Garden for 2021, 2022, 2023, 2024, or 2025 Q3 from the current statewide workbook."
+    },
+    "fbi_cde_roster_check": {
+      "summary": "The official FBI CDE agency roster still lists Winter Garden Police Department as a Florida city agency under ORI FL0480500, but marks is_nibrs as false and provides no nibrs_start_date.",
+      "interpretation": "The federal roster confirms the agency still exists as a real city police identity, while also explaining why a public NIBRS continuity path is not appearing."
+    },
+    "best_local_backfill_surface_found": {
+      "source": "Winter Garden Police Department records-management and public-records request path",
+      "summary": "The city's January 16, 2026 records-request memo provides a dedicated police-records request route through WGPD and names Capt. Scott Allen as the police records management liaison, while WGPD's Administration and directory pages show an active Records Management Division.",
+      "why_it_matters": "This is the clearest official local route for recovering post-2020 Winter Garden offense totals if business needs a bespoke city-level override.",
+      "limitations": [
+        "I did not locate a ready-made public annual crime report, offense dashboard, or downloadable citywide annual offense table on the current official site.",
+        "A production override would likely require case-by-case records extraction and annual aggregation work.",
+        "The packet resolves target validity and continuity class, not the mechanics of a local-records override."
+      ]
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0480500 exclusively to 12:municipal:place:1278250 with relationship_type exclusive and resolution_source provisional_auto.",
+    "jurisdiction_master_state": "jurisdiction_master.csv shows Winter Garden city with agency_count 1 and is_contracted_place False.",
+    "agency_master_state": "agency_master.parquet classifies FL0480500 as a local police department and flags both SRS and NIBRS source presence through 2024, with latest_nibrs_year 2024 and population_latest_nibrs 48011.",
+    "observation_state": "agency_year_observations.parquet carries substantive Winter Garden SRS/CIUS annual support in 2018, 2019, and 2020, then only zero-valued srs_return_a_annual rows in 2021, 2022, 2023, and 2024, with no NIBRS rows at all.",
+    "important_mismatch": "The repo says FL0480500 has NIBRS presence through 2024, but the current FBI CDE roster marks the agency non-NIBRS and the official FDLE 2021-2025 Q3 workbook shows no Winter Garden FIBRS row. The reference layer is therefore overstating incident-based continuity for this agency.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows Winter Garden's 2024 offense rows preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill from hist_median.",
+    "review_queue_state": "municipal_target_review_queue.parquet places Winter Garden in high_impact_full_fill_place with total_fill_count 1130.0, total_estimated_count 1130.0, total_reported_count 0.0, and suspect_reason full_fill_no_reported_support."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_pipeline": false,
+    "why": [
+      "Winter Garden has an active city-run police department with current staffing, command staff, patrol, investigations, and records functions.",
+      "Official FDLE publications support Winter Garden as a real municipal police reporting identity, with a substantive city row in 2020 and a retained named row in 2021.",
+      "The current FBI CDE roster still lists Winter Garden Police Department as a live city agency.",
+      "No official public FDLE or FBI incident-based annual offense row was located for Winter Garden after 2020, so the problem is publication/reporting continuity rather than target invalidity."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "Winter Garden was a real municipal SRS publication identity, but its public statewide offense publication path breaks after the 2020 FDLE county-and-municipal report and a blank retained 2021 legacy row.",
+      "The FBI CDE roster's is_nibrs false status indicates that a public federal NIBRS continuity row was not available to replace the old SRS publication path.",
+      "The repo then carried zero-valued SRS annual rows for 2021-2024 and no NIBRS observations, leaving the control builder to fully fill the city from history."
+    ],
+    "recommended_handling": [
+      "Retain Winter Garden city as a true standalone municipal control row.",
+      "Do not demote Winter Garden to Orange County Sheriff service structure, county remainder, or invalid-target status.",
+      "Classify the current all-fill condition as a post-2020 reporting/publication continuity break on FL0480500.",
+      "Keep estimator-backed handling in place unless and until a direct official local backfill is acquired.",
+      "If business requires a city-specific override, pursue WGPD records-management/public-records extraction rather than assuming a missing statewide FIBRS row exists."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_post_2020_reporting_publication_break_and_no_public_statewide_backfill",
+  "open_questions": [
+    "The keep/drop question is closed. The remaining blocker is whether Winter Garden can furnish post-2020 annual offense totals through direct official police records or another city-owned statistical surface; no public statewide row was found."
+  ]
+}

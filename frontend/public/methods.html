@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Methods — CrimeRisk</title>
+<meta name="description" content="How the CrimeRisk neighborhood crime index is built, in plain language." />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<main class="doc">
+  <p class="topbar"><a href="index.html">&larr; Map</a><a href="download.html">Download</a><a href="attribution.html">Sources</a></p>
+
+  <h1>Methods</h1>
+  <p class="lede">What the numbers on the map mean, where they come from, and what they cannot tell you.</p>
+
+  <h2>What this map shows</h2>
+  <p>Every neighborhood in the 48 contiguous states and the District of Columbia gets a score for
+  seven crimes the FBI counts: murder, rape, robbery, aggravated assault, burglary, larceny/theft
+  and motor vehicle theft. <strong>100 is the national average.</strong> 200 means twice the
+  national average, 50 means half. The score describes a place. It is not anyone's chance of
+  being a victim.</p>
+
+  <h2>Two measures</h2>
+  <p><strong>Crime exposure</strong> divides recorded offenses by what each crime happens to.
+  Each offense has its own denominator, and every one of them is modeled rather than counted.
+  Murder, rape, robbery and assault use a fixed blend of resident population, modeled daytime
+  population and workplace jobs, weighted per offense: robbery gives jobs no weight and murder
+  gives daytime population none. Burglary uses residential and weighted commercial premises.
+  Car theft uses household and commuter vehicle exposure. Larceny adds shopping and other
+  destinations and retail jobs to the person blend. The person-based denominators are rescaled
+  so that their national total equals U.S. resident population, and every index divides by the
+  national rate, which is what keeps 100 the national average. So a downtown block is measured against a modeled activity base that can be far
+  larger than the number of people who sleep there &mdash; but that base is an estimate, not a
+  count of visitors, and no part of this map measures footfall.</p>
+  <p><strong>Per resident</strong> divides the same offenses by the people who live there. It
+  answers a different question, and it gives very high scores to commercial districts, campuses
+  and transit hubs where few people sleep. Both measures are scaled so 100 is the U.S. average.</p>
+
+  <h2>Year and geography</h2>
+  <p>Estimates are for 2025, on 2020 census boundaries. Most crimes are published for census
+  block groups, areas of roughly 600 to 3,000 residents. Murder and rape are published for census
+  tracts only: a single year holds too few of them to say anything about an area as small as a
+  block group. Zoomed out, the map shows tracts, then county averages.</p>
+
+  <h2>Unpublished areas</h2>
+  <!--STATUS_TABLE-->
+  <p><!--SUPPRESSED_COUNT--></p>
+
+  <h2>The three composites</h2>
+  <p>Overall, Violent and Property combine the single-offense numbers, weighted by how common
+  each offense is nationally. The two measures build them differently, and neither is simply
+  &ldquo;all seven offenses published together&rdquo;. On the crime-exposure measure a block
+  group has no murder or rape value of its own, so those two terms are taken from the block
+  group's parent tract; if the tract publishes no value the composite is withheld. On the
+  per-resident measure the composites are built from offense counts over a shared denominator,
+  and murder and rape do not veto a block-group composite at all, because their block-group
+  counts are published even where their rates are not. A missing value for any of the other five
+  offenses withholds the composite on both measures.</p>
+
+  <h2>Where the numbers come from</h2>
+  <p>Police agencies report offense totals to the FBI. Those totals cover a whole city or county,
+  not a neighborhood. Each agency's 2025 total is combined with a forecast from its own earlier
+  years, and from comparable agencies where the agency is small, each weighted by how precise it
+  is. A year an agency did not report in full, or that a documented review found defective, is left
+  out of its history rather than counted as zero; an agency with no usable 2025 filing takes the
+  forecast. The totals in each state are then scaled together to the FBI's 2025 estimate for that
+  state, corrected where a documented review replaced an agency's count.</p>
+  <p>Who patrols a town is taken from documented service arrangements (contracts, consolidated
+  departments, county coverage), not from which agency happens to report. Tribal police are placed on
+  their reservation and trust land. We spread each agency's total across the neighborhoods it
+  patrols using what is known to draw each kind of crime &mdash; residents, workers, shops, bars,
+  schools, parking, roads &mdash; and we calibrate that against the cities that publish
+  incident-level data.</p>
+  <p>The card reports both steps, separately. The source line says how much of the neighborhood
+  number comes from incident records located in that neighborhood, as against modeled allocation of
+  an agency total; in a city that publishes incidents the two are blended, and the line follows the
+  blend. The jurisdiction line says whether the agency total behind it was modeled from a complete
+  2025 police filing or modeled because the filing was incomplete or missing; every total on the map
+  is modeled, never the filed count itself. The line is absent where no single agency total applies,
+  as in areas covered only by a statewide remainder.</p>
+
+  <h2>How certain this is</h2>
+  <p>Most block-group values rest on modeled distribution rather than on incidents counted in that
+  block. Read broad patterns; treat a difference of a few points between neighboring blocks as
+  noise. We build an uncertainty range internally, but in held-out testing it covered the truth
+  less often than it claimed to, so this edition publishes no range and no reliability rating
+  rather than one you cannot rely on.</p>
+
+  <h2>Six limits</h2>
+  <ol>
+    <li>Only crime reported to and recorded by police appears here. A great deal of crime is never reported.</li>
+    <li>Agencies differ in how they classify offenses and how completely they report them.</li>
+    <li>Neighborhood values are modeled shares of agency totals, not counts of incidents.</li>
+    <li>Murder and rape exist at tract level only; there is no block-group value to show.</li>
+    <li>Boundaries are 2020 census geographies, which is not how people describe neighborhoods.</li>
+    <li>Parks, campuses, prisons, airports and industrial areas have unusual denominators: very
+      few residents, or an activity base much larger than the residential one. Their scores need
+      separate interpretation and are not comparable with a residential block. Those areas can be
+      marked on the map; the marking is an annotation, and it does not explain any individual
+      score. No denominator counts visitors, so casinos, stadiums and tourist districts can score
+      very high.</li>
+  </ol>
+
+  <h2>Updates and citation</h2>
+  <p>One edition per data year. Cite as: CrimeRisk <span id="edition-year">2025</span> neighborhood
+  crime index, block group and tract, 48 states and DC. Data and license:
+  <a href="download.html">download page</a>.</p>
+
+  <h2>Technical methods</h2>
+  <p>The full specification &mdash; the adjudicated reporting history, precision-weighted agency
+  levels, state totals, service relationships, the three-expert allocation mixture and its weights,
+  denominator construction, special-use classification and the validation tables &mdash; is
+  published separately in the project's technical documentation:
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/METHODOLOGY.md">methodology</a>,
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/FIELDS.md">field dictionary</a>,
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/EVALUATION.md">evaluation</a> and
+  <a href="https://github.com/umqadir/crimerisk/blob/main/docs/BUILD.md">build</a>, in the
+  <a href="https://github.com/umqadir/crimerisk">source repository</a>.
+  Field-level definitions for every published column are also in
+  <a href="downloads/fields_block_group.csv">fields_block_group.csv</a> and
+  <a href="downloads/fields_tract.csv">fields_tract.csv</a>.</p>
+
+  <!--EVIDENCE-->
+
+  <p class="meta" id="edition-line"></p>
+</main>
+<script>
+fetch("data/manifest.json").then(function (r) { return r.json(); }).then(function (m) {
+  document.getElementById("edition-line").textContent = m.copy.provenance_line;
+  document.getElementById("edition-year").textContent = m.data_year;
+}).catch(function () {});
+</script>
+</body>
+</html>

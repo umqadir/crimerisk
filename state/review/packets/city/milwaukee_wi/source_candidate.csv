@@ -1,0 +1,2 @@
+city_key,city_name,jurisdiction_id,source_name,source_url,recommended_disposition,analyst_notes
+milwaukee_wi,"Milwaukee, Wisconsin",55:municipal:place:5553000,City of Milwaukee NIBRS Crime Data (Historical),https://data.milwaukee.gov/dataset/wibrarchive,ready_now,Generic worker onboarding contract. Incident feed is share lane unless an offense passes the strict reconciliation gate.

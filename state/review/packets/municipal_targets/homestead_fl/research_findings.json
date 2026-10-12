@@ -1,0 +1,104 @@
+{
+  "case_key": "homestead_fl",
+  "jurisdiction_id": "12:municipal:place:1232275",
+  "jurisdiction_name": "Homestead city",
+  "state_abbr": "FL",
+  "review_date": "2026-03-24",
+  "recommended_status": {
+    "production_ready": false,
+    "recommended_disposition": "retain_standalone_municipal_control_row_and_treat_2024_as_pre_2025_reporting_gap",
+    "confidence": "high"
+  },
+  "core_findings": [
+    "Homestead is a real city with its own municipal government and an active Homestead Police Department. The City's official site maintains a City Manager page, a City Police Department page, a January 3, 2025 Police Chief swearing-in agenda for Mario Knapp, and current police contact information at 45 Northwest 1st Avenue.",
+    "Official city operating documents confirm that policing is still a live city function rather than a county replacement. Homestead's 2024 annual report describes Police Department projects and initiatives completed during 2024, and the adopted FY2025 budget book includes active Police Department and police-pension line items.",
+    "Florida's official pre-FIBRS county-and-municipal publication treated Homestead Police Department as a normal municipal row immediately before the current break. FDLE's 2021 County and Municipal Offense Report lists Homestead Police Department with population 81,110 and total index crime 2,258.",
+    "The public 2024 Florida incident-based path does not currently supply a Homestead row. The official FDLE FIBRS landing page points users to the 2021-2025 Q3 workbook, but the repo's normalized extract of the official 2024 worksheet contains no Homestead agency row.",
+    "The federal transition signal explains that absence. The official FBI CDE 2024 agency roster lists Homestead Police Department and gives an official NIBRS start date of January 1, 2025, while the repo's FBI-validation artifact classifies the row as present_but_no_2024_observation with issue official_nibrs_start_after_2024.",
+    "Repo behavior is therefore not evidence of an invalid municipal target or a Miami-Dade service-structure replacement. The crosswalk is exclusive to Homestead city, the historical observation panel has real nonzero annual support in 2018, 2019, 2020, and 2022, and the 2024 all-fill outcome arises because preferred reported support collapses to zero."
+  ],
+  "governance_structure": {
+    "municipal_status": "incorporated_city_with_active_city_manager_and_city_police_department",
+    "official_basis": [
+      "The City's official website presents Homestead as a full city government with a City Manager who oversees day-to-day operations, implements City Council policies, and manages the annual budget.",
+      "The official police site is organized as a City Department and lists Homestead Police Department headquarters, contact information, and city-run police programs.",
+      "The official January 3, 2025 special-call swearing-in agenda for the Police Chief was held in City Hall Council Chambers and includes remarks from the Mayor and City Manager, reinforcing that police leadership is embedded in city government."
+    ]
+  },
+  "policing_structure": {
+    "primary_policing_entity": "Homestead Police Department",
+    "active_city_police_department_found": true,
+    "county_or_special_layer_displacing_city_police": false,
+    "official_evidence": [
+      "The City maintains an official Homestead Police Department site with headquarters at 45 Northwest 1st Avenue, Homestead, Florida 33030.",
+      "The 2024 annual report says the Police Department accomplished projects and initiatives during 2024, including Police Athletic League and Police Explorers work and police capital improvements.",
+      "The adopted FY2025 budget book contains active Police Department and police-related budget lines, including Police Department operating items, police public-records request lines, and police pension funding.",
+      "The January 3, 2025 special-call agenda documents the swearing-in of Mario Knapp as Police Chief and references the Homestead Police Honor Guard."
+    ],
+    "important_clarification": "Miami-Dade County policing layers do not displace Homestead Police Department as the primary municipal policing entity for Homestead city."
+  },
+  "official_reporting_evidence": {
+    "fdle_pre_fibrs_publication_surface": {
+      "summary": "FDLE's official 2021 County and Municipal Offense Report still publishes Homestead Police Department as a normal municipal reporting row.",
+      "details": [
+        "FDLE 2021: Homestead Police Department, population 81,110, total index crime 2,258."
+      ],
+      "interpretation": "Homestead remained a real Florida municipal police reporting surface immediately before the current 2024 gap."
+    },
+    "fdle_2024_fibrs_publication_check": {
+      "summary": "The official FDLE FIBRS landing page points to the 2021-2025 Q3 workbook, but the repo's normalized extract of the official 2024 worksheet contains no Homestead row.",
+      "interpretation": "There is no public 2024 FDLE FIBRS agency row available to backfill Homestead in the same way as Miami Beach."
+    },
+    "fbi_transition_signal": {
+      "summary": "The official FBI CDE 2024 roster lists Homestead Police Department with a NIBRS start date of 2025-01-01.",
+      "interpretation": "The public 2024 state-workbook absence is consistent with an official transition timing gap before Homestead's federal incident-based start date rather than with a fake municipal target."
+    },
+    "best_local_backfill_surface_if_business_requires_2024_city_estimate": {
+      "source": "Homestead Police Department local records / public-records surface supported by the City's CAD and records-management system",
+      "summary": "The City's 2022 annual report says the Police Department processed 15,422 incident/offense and crash reports and completed 561 public-records requests, and the 2023 annual report says the department processed 13,036 incident/offense and crash reports, completed 190 public-records requests, and deployed ProPhonix as a replacement for CAD, records management, and report writing.",
+      "why_it_matters": "Those city documents show that Homestead PD maintains a real local records system that could support a manual 2024 override if business requirements demand city-specific counts before statewide continuity catches up.",
+      "limitations": [
+        "This is not a ready-made statewide annual offense publication.",
+        "Using it would require direct records retrieval, offense mapping, and annual aggregation.",
+        "The packet resolves the keep/drop decision, not the mechanics of a later local override."
+      ]
+    },
+    "most_likely_forward_official_continuity_surface": {
+      "source": "FDLE 2025 FIBRS workbook and official FBI CDE incident-based publication for Homestead Police Department",
+      "why": "The official roster start date of 2025-01-01 points to 2025, not 2024, as the first likely year for stable public incident-based continuity."
+    }
+  },
+  "repo_interpretation": {
+    "current_crosswalk_state": "agency_to_jurisdiction_crosswalk.parquet routes FL0130500 exclusively to 12:municipal:place:1232275 with relationship_type exclusive, weight 1.0, review_status auto, and resolution_source provisional_auto.",
+    "agency_master_state": "agency_master.parquet classifies FL0130500 as a local_police agency with both SRS and NIBRS presence flags, srs_years and nibrs_years listed through 2024, and latest_srs_year 2024 with latest_srs_part1_total 0.0.",
+    "observation_state": "agency_year_observations.parquet materializes annual rows for FL0130500 with annual_part1_total values 2996 in 2018, 2956 in 2019, 2314 in 2020, 0 in 2021, 2589 in 2022, 0 in 2023, and 0 in 2024.",
+    "important_mismatch": "The observation panel drops to zero in 2021, 2023, and 2024 even though FDLE's official 2021 municipal publication still shows Homestead Police Department with 2,258 index crimes, which confirms a continuity problem in the repo panel separate from the valid-target question.",
+    "current_control_state": "jurisdiction_controls_2024.parquet shows all seven 2024 Homestead offense rows preferred from srs_return_a_annual with reported_count_preferred 0.0, mean_months_reported_preferred 0.0, dominant_reporting_regime structurally_missing_or_unreliable, and full current-year fill from trend_log_linear.",
+    "review_queue_state": "municipal_target_review_queue.csv places Homestead in high_impact_full_fill_place with suspect_reason full_fill_no_reported_support, total_fill_count 2271.1193146698256, total_reported_count 0.0, and fill_share_of_estimated 1.0."
+  },
+  "production_interpretation": {
+    "standalone_municipal_control_row_defensible": true,
+    "usable_annual_police_row_exists_for_standard_2024_pipeline": false,
+    "why": [
+      "Homestead has an active city-run police department and is not a sheriff-contract or fake-place case.",
+      "FDLE's official 2021 county-and-municipal report published Homestead Police Department as a normal municipal row.",
+      "The official public 2024 gap aligns with the FBI roster's January 1, 2025 NIBRS start date, which points to reporting-transition timing rather than target invalidity."
+    ],
+    "likely_explanation_for_current_all_fill_state": [
+      "The standard 2024 Florida public incident-based source does not furnish a Homestead agency row, so there is no public FDLE 2024 municipal backfill to ingest for FL0130500.",
+      "The repo also has a separate continuity defect in its observation history because the official nonzero 2021 Homestead municipal row did not survive into agency_year_observations.",
+      "With no usable preferred reported support left in 2024, the control builder falls back to trend_log_linear fill for every offense."
+    ],
+    "recommended_handling": [
+      "Retain Homestead city as a standalone municipal control row.",
+      "Do not replace Homestead with a Miami-Dade county or sheriff-primary service-structure row.",
+      "Classify the current 2024 all-fill state as a valid-target reporting gap before public 2025 incident-based continuity, not as an invalid-target deletion case.",
+      "Use FDLE's 2021 county-and-municipal publication as the last clear official statewide municipal benchmark before the break.",
+      "Use FDLE 2025 FIBRS / official FBI CDE incident-based output as the most likely forward continuity anchor, and use Homestead PD local records only if a bespoke 2024 city override is required."
+    ]
+  },
+  "likely_issue_class": "valid_target_with_official_2024_reporting_gap_before_2025_nibrs_start",
+  "open_questions": [
+    "If a later production pass needs a 2024 city-specific override, verify whether any non-public FDLE submission existed for Homestead in 2024 despite the public roster start date, or else pull city-level counts directly from Homestead PD records. That follow-up is not needed for the keep/drop decision."
+  ]
+}
